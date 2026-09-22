@@ -14,7 +14,7 @@ samples and RMSSD HRV. Readiness, Sleep and Activity scores are not used. There
 are exactly three read permissions, no write/background/history permission.
 The native integration requires Android 14+; older devices use the countdown.
 
-Use available Oura data automatically. There is no Flux opt-in, connection tile,
+Use available Oura data automatically. There is no Nomadic Method opt-in, connection tile,
 status dialog, refresh button or disconnect control. Do not add any of these.
 On Android 14+ with Oura installed, request the three permissions once from
 Android's Health Connect screen after normal setup has loaded. Never interrupt
@@ -102,7 +102,7 @@ not included in the backed-up workout state or logcat. The live context is
 permission revocation is checked on every foreground return and before consuming
 a snapshot; it removes the cached summaries and decision log without clearing
 workouts. Only the permission-request-attempt marker remains, avoiding repeated
-prompts. The platform's required health-data privacy page is not a Flux feature
+prompts. The platform's required health-data privacy page is not a Nomadic Method feature
 screen and offers no application-specific opt-out.
 
 ## Tests and future changes

@@ -69,7 +69,7 @@ lower-score exercise is never pulled upward by recovery rotation.
 
 Automatic Light uses accumulated completed regular work, not a fixed three-day
 or three-session rule. One fully completed 45-second exercise block contributes
-one nominal workout minute (Flux's existing block-plus-rest approximation).
+one nominal workout minute (Nomadic Method's existing block-plus-rest approximation).
 Merely selected duration and uncompleted timer time do not contribute.
 Completed blocks in interrupted sessions do contribute. Classify
 each block using the Light setting at its completion, including recorded
@@ -123,7 +123,7 @@ additional hardness points or weights are introduced.
 Due automatic Light is shown ON and cannot be disabled before or during a
 workout; enforce this in the session service as well as the controls and check
 again when activating a prepared workout. Manual Light can still be toggled
-on ordinary days. Flux first
+on ordinary days. Nomadic Method first
 maximizes sequences whose every distinct member is demand `0`. Saved score,
 Keep, recovery, and equipment preferences then arbitrate among those light
 choices. A harder sequence fills a slot only when the compatible catalog cannot
@@ -169,7 +169,7 @@ are summed into every existing 3-, 5-, 7-, 10-, 15-, 20-, and 30-minute muscle
 resolution independently.
 
 At each resolution, the weakest bucket's share of the strongest is evaluated.
-The soft goal is at least 25% at all seven resolutions. Flux chooses one legal
+The soft goal is at least 25% at all seven resolutions. Nomadic Method chooses one legal
 replacement that lexicographically improves the sorted resolution shares,
 weakest first, recalculates, and repeats until all goals are met, no improvement
 exists, a lineup repeats, or 30 passes complete. Exact-slot Keeps remain frozen,

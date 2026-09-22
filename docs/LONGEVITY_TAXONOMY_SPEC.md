@@ -1,4 +1,4 @@
-# Flux disability-free longevity taxonomy
+# Nomadic Method disability-free longevity taxonomy
 
 Status: research and implementation specification; no application or catalog changes are authorized by this document.
 Taxonomy freeze: 2026-08-02, before the exercise catalog was opened.
@@ -13,7 +13,7 @@ Evidence search and catalog audit cutoff: 2026-08-02.
 - **Scheduling rule:** repeat that five-capacity cycle and take its first *N* entries for an *N*-minute workout. Every category appears by minute five; every five-round block is balanced.
 - **Qualification rule:** an exercise is tagged only when it meaningfully challenges or trains a capacity. Mere involvement does not qualify.
 
-Flux can train a narrow part of physical intrinsic capacity. It cannot, by itself, deliver healthy ageing or prove longer disability-free survival.
+Nomadic Method can train a narrow part of physical intrinsic capacity. It cannot, by itself, deliver healthy ageing or prove longer disability-free survival.
 
 ## Research method
 
@@ -30,9 +30,9 @@ The primary endpoint is **physical-disability-free survival**: time from a defin
 1. all-cause death; or
 2. persistent physical disability, operationalized as severe difficulty, inability, or need for another person's help in at least one Katz basic ADL—bathing, dressing, toileting, transferring, walking, or feeding—confirmed in the same ADL approximately six months later.
 
-For a study, report restricted mean years alive without persistent physical disability over a prespecified horizon, with death and persistent disability forming the composite endpoint. This adapts the durable physical-disability component used by ASPREE while omitting dementia from the primary composite because Flux's explicit target is physical capability. Dementia and cognition remain important secondary or out-of-scope determinants, not categories manufactured for this movement app. See the [ASPREE endpoint description](https://ams.aspree.org/public/study-overview/about-aspree/study-endpoints/) and [ASPREE trial report](https://pmc.ncbi.nlm.nih.gov/articles/PMC6426126/).
+For a study, report restricted mean years alive without persistent physical disability over a prespecified horizon, with death and persistent disability forming the composite endpoint. This adapts the durable physical-disability component used by ASPREE while omitting dementia from the primary composite because Nomadic Method's explicit target is physical capability. Dementia and cognition remain important secondary or out-of-scope determinants, not categories manufactured for this movement app. See the [ASPREE endpoint description](https://ams.aspree.org/public/study-overview/about-aspree/study-endpoints/) and [ASPREE trial report](https://pmc.ncbi.nlm.nih.gov/articles/PMC6426126/).
 
-Major mobility disability—commonly inability to complete a 400 m walk—is a proximal secondary outcome. In LIFE, a multicomponent physical-activity program reduced major mobility disability (hazard ratio 0.82) and persistent major mobility disability (hazard ratio 0.72), but the intervention combined substantial walking, strength, balance, and flexibility work over years. It does not identify the effect of a single capacity or validate Flux's 45-second dose. See the [LIFE randomized trial](https://pmc.ncbi.nlm.nih.gov/articles/PMC4266388/).
+Major mobility disability—commonly inability to complete a 400 m walk—is a proximal secondary outcome. In LIFE, a multicomponent physical-activity program reduced major mobility disability (hazard ratio 0.82) and persistent major mobility disability (hazard ratio 0.72), but the intervention combined substantial walking, strength, balance, and flexibility work over years. It does not identify the effect of a single capacity or validate Nomadic Method's 45-second dose. See the [LIFE randomized trial](https://pmc.ncbi.nlm.nih.gov/articles/PMC4266388/).
 
 ### 1.2 Distinguishing neighboring constructs
 
@@ -60,7 +60,7 @@ WHO defines healthy ageing as developing and maintaining the functional ability 
 
 SPPB, gait speed, chair rise, and grip are useful risk markers. Their predictive validity does not establish that training a visible test component causes longer survival. The original [SPPB cohort](https://pubmed.ncbi.nlm.nih.gov/8126356/), a [pooled gait-speed/disability analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC4715231/), and a [physical-capability/mortality meta-analysis](https://www.bmj.com/content/341/bmj.c4467) support prediction, not a category-specific causal claim.
 
-## 2. Evidence landscape and Flux's boundary
+## 2. Evidence landscape and Nomadic Method's boundary
 
 ### 2.1 External frameworks
 
@@ -72,21 +72,21 @@ SPPB, gait speed, chair rise, and grip are useful risk markers. Their predictive
 
 ### 2.2 Complete causal and contextual map
 
-| Factor family | Examples | Relationship to endpoint | Flux scope |
+| Factor family | Examples | Relationship to endpoint | Nomadic Method scope |
 |---|---|---|---|
 | Locomotor and gross-motor capacity | Force, postural control, gait/stepping, endurance, power, joint function | Contributes to reserve for mobility, transfers, self-care, and fall avoidance | **Direct but partial** |
-| Habitual physical activity and sedentary exposure | Walking volume, resistance work, moderate/vigorous activity, sitting | Affects cardiovascular, metabolic, musculoskeletal, cognitive, and mortality risk | **Flux contributes only a small dose** |
+| Habitual physical activity and sedentary exposure | Walking volume, resistance work, moderate/vigorous activity, sitting | Affects cardiovascular, metabolic, musculoskeletal, cognitive, and mortality risk | **Nomadic Method contributes only a small dose** |
 | Disease and pain | Cardiovascular disease, cancer, diabetes, arthritis, neurological disease, chronic pain | Major causes/modifiers of disability and death | Outside catalog classification; requires prevention/clinical care |
 | Cognition and psychological capacity | Memory, executive function, depression, motivation | Affects safe task performance, self-management, and independence | Outside a demonstration-only movement taxonomy |
 | Sensory capacity | Vision, hearing, vestibular and proprioceptive function | Affects mobility, communication, and falls | Sensory treatment is out of scope; sensory use is embedded in balance |
 | Vitality, nutrition, and body composition | Energy balance, malnutrition, protein adequacy, obesity | Modifies frailty, recovery, muscle adaptation, and disease | Outside scope |
-| Bone and fracture susceptibility | Bone density/quality, osteoporosis, fall impact | Fractures are a major pathway to disability and care dependence | Important but not a category: quiet, no-impact, unweighted Flux work cannot assure an osteogenic dose |
+| Bone and fracture susceptibility | Bone density/quality, osteoporosis, fall impact | Fractures are a major pathway to disability and care dependence | Important but not a category: quiet, no-impact, unweighted Nomadic Method work cannot assure an osteogenic dose |
 | Manual function | Grip, dexterity, object manipulation | Supports feeding, dressing, medications, communication, and domestic tasks | Relevant but poorly represented by free-space hand gestures; task-specific object work conflicts with zero equipment |
 | Health behavior and recovery | Smoking, alcohol, sleep, medication adherence | Affects disease, cognition, falls, and mortality | Outside scope |
 | Healthcare and assistive support | Prevention, rehabilitation, medication review, assistive products | Prevents, treats, or compensates for capacity loss | Outside scope |
 | Environment and social context | Housing, accessibility, transport, relationships, socioeconomic resources | Converts intrinsic capacity into actual functional ability | Outside scope |
 
-Within its present constraints, Flux can credibly classify **standing gross-motor movements that meaningfully overload or practise a trainable physical capacity**. It cannot reproduce chair rise, floor recovery, carrying, stairs, long-distance gait, obstacles, uneven terrain, externally perturbed balance, or object-based dexterity. Outcomes such as falls, frailty, sarcopenia, fractures, pain, and cardiometabolic disease are not exercise categories.
+Within its present constraints, Nomadic Method can credibly classify **standing gross-motor movements that meaningfully overload or practise a trainable physical capacity**. It cannot reproduce chair rise, floor recovery, carrying, stairs, long-distance gait, obstacles, uneven terrain, externally perturbed balance, or object-based dexterity. Outcomes such as falls, frailty, sarcopenia, fractures, pain, and cardiometabolic disease are not exercise categories.
 
 ### 2.3 Evidence interpretation
 
@@ -103,19 +103,19 @@ Key signals are:
 - Exercise reduces community fall rates by about 23%; balance/functional exercise and multicomponent programs have the clearest component-level evidence. See the [Cochrane falls review](https://www.cochrane.org/evidence/CD012424_exercise-preventing-falls-older-people-living-community) and [world falls guideline](https://pmc.ncbi.nlm.nih.gov/articles/PMC9523684/).
 - Progressive resistance improves strength substantially and physical function more modestly. A review of 121 randomized trials reported improvements in gait, chair rise, and some complex ADLs, with studied programs commonly using progressive external resistance. See the [Cochrane resistance review](https://www.cochrane.org/evidence/CD002759_progressive-resistance-strength-training-improving-physical-function-older-adults).
 - Power training may have a modest physical-function advantage over conventional strength training, but certainty and hard-disability evidence are limited. See the [power-training meta-analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC9096601/).
-- Step/gait-adaptability training can improve stepping outcomes and may reduce falls, but many studied programs use targets, obstacles, cues, or supervision that Flux lacks. See the [step-training review](https://pubmed.ncbi.nlm.nih.gov/26746905/) and [gait-adaptability review](https://academic.oup.com/ageing/article/50/6/1914/6296913).
+- Step/gait-adaptability training can improve stepping outcomes and may reduce falls, but many studied programs use targets, obstacles, cues, or supervision that Nomadic Method lacks. See the [step-training review](https://pubmed.ncbi.nlm.nih.gov/26746905/) and [gait-adaptability review](https://academic.oup.com/ageing/article/50/6/1914/6296913).
 - Flexibility training improves range of motion; evidence that isolated flexibility training improves ADLs or prevents disability is limited and inconsistent. See the [flexibility review](https://pmc.ncbi.nlm.nih.gov/articles/PMC3503322/).
-- WHO recommends varied multicomponent activity emphasizing functional balance and strength on three or more days per week for older adults. This supports a multicapacity design, not a claim that one Flux round meets the recommended dose. See the [WHO physical-activity recommendations](https://www.ncbi.nlm.nih.gov/books/NBK566046/?report=printable).
+- WHO recommends varied multicomponent activity emphasizing functional balance and strength on three or more days per week for older adults. This supports a multicapacity design, not a claim that one Nomadic Method round meets the recommended dose. See the [WHO physical-activity recommendations](https://www.ncbi.nlm.nih.gov/books/NBK566046/?report=printable).
 
 ## 3. Correct classification unit
 
 ### 3.1 Candidate units
 
-| Organizing unit | Endpoint relevance | Evidence | Flux trainability | Distinctness | Measurability | Short-workout fit | Novel-exercise stability | Main problem |
+| Organizing unit | Endpoint relevance | Evidence | Nomadic Method trainability | Distinctness | Measurability | Short-workout fit | Novel-exercise stability | Main problem |
 |---|---:|---:|---:|---:|---:|---:|---:|---|
 | Anatomy / muscle groups | Medium | Medium | High | Low | Medium | High | Medium | Describes where work occurs, not the reserve being trained; compound movements fragment arbitrarily. |
 | Physiological systems | High | High | Medium | Low | Medium | Medium | High | Neuromuscular, cardiovascular, sensory, and musculoskeletal systems co-activate in nearly every movement. |
-| Functional abilities / ADLs | High | High | Low–medium | Medium | High | Low | Medium | Transfers, carrying, stairs, self-care, and domestic tasks depend on objects and environments Flux cannot reproduce. |
+| Functional abilities / ADLs | High | High | Low–medium | Medium | High | Low | Medium | Transfers, carrying, stairs, self-care, and domestic tasks depend on objects and environments Nomadic Method cannot reproduce. |
 | Disability failure modes | High | Medium–high | Medium | Low | Medium | Low | Low | Falls, frailty, fractures, and care dependence are overlapping multicausal outcomes, not clean exercise stimuli. |
 | Fine-grained performance components | High | High | Medium | Medium–high | High | Low–medium | High | Separating maximal force, power, local endurance, aerobic endurance, balance, gait adaptation, and every joint function over-fragments very short workouts. |
 | **Gross-motor capacity families** | **High** | **High** | **High–medium** | **High–medium** | **High** | **High** | **High** | Boundaries still require explicit qualification rules and multi-tagging. |
@@ -143,7 +143,7 @@ The five families were frozen before `exercises.json` was opened. They were not 
 - **Validated measurements:** SPPB standing-balance items; Four-Stage Balance Test; tandem or single-leg stance for narrow constructs; Berg Balance Scale or Mini-BESTest for broader standing balance. A WHO-linked review discusses validated locomotor measures and cautions that instruments often combine attributes: [COSMIN locomotor-measure review](https://pmc.ncbi.nlm.nih.gov/articles/PMC10615073/).
 - **Endpoint relationship:** poor balance predicts adverse outcomes; balance/functional exercise reduces falls, a major disability pathway.
 - **Evidence strength:** high for fall reduction; moderate for direct causation of disability-free survival.
-- **Likely Flux trainability:** high for self-generated static and dynamic balance.
+- **Likely Nomadic Method trainability:** high for self-generated static and dynamic balance.
 - **Limitations:** safe reactive/perturbation training is not feasible without supervision or support. Challenge and safety vary greatly by user; balance is placed first while fresh.
 
 ### 4.2 Strength
@@ -155,7 +155,7 @@ The five families were frozen before `exercises.json` was opened. They were not 
 - **Validated measurements:** grip or joint dynamometry; five-times and 30-second chair stand as functional composite proxies; formula/instrument-derived sit-to-stand power or stair-climb power for the power facet.
 - **Endpoint relationship:** force reserve supports transfers, stairs, gait, carrying, posture, and recovery from a loss of balance. Strength and chair-rise performance predict disability and mortality; progressive resistance improves strength and some physical-function/ADL outcomes.
 - **Evidence strength:** high for strength and intermediate physical function; moderate for disability; low-certainty incremental evidence for power over conventional strength.
-- **Likely Flux trainability:** moderate. Lower-body and self-resisted/isometric work can be meaningful; maximal strength, pulling, carrying, and progressive loading are constrained.
+- **Likely Nomadic Method trainability:** moderate. Lower-body and self-resisted/isometric work can be meaningful; maximal strength, pulling, carrying, and progressive loading are constrained.
 - **Limitations:** no external load or velocity measurement makes overload and power dosing imprecise. Catalog review must reject “moving a muscle” as sufficient.
 
 **Why power is a facet, not a sixth scheduler family:** power is scientifically distinct from maximal force and must remain explicit in exercise metadata/rationale. It is grouped at the scheduling-family level because nearly every safe, equipment-free power movement also produces a force stimulus, most clips lack load/velocity needed for an isolated prescription, and a separate power round would over-fragment three-to-five-minute workouts. This decision preceded the coverage audit and was not made to reach ten exercises.
@@ -169,7 +169,7 @@ The five families were frozen before `exercises.json` was opened. They were not 
 - **Validated measurements:** cardiopulmonary exercise testing/VO₂peak; six-minute walk; validated two-minute walk or step tests.
 - **Endpoint relationship:** supports walking reserve and broad cardiometabolic health. Cardiorespiratory fitness predicts mortality, but this is largely observational and not proof that a 45-second bout changes survival.
 - **Evidence strength:** high for broad health/mortality association and exercise benefits; moderate for this specific disability endpoint, largely from multicomponent trials.
-- **Likely Flux trainability:** moderate across accumulated rounds; low from a single isolated round.
+- **Likely Nomadic Method trainability:** moderate across accumulated rounds; low from a single isolated round.
 - **Limitations:** a 3–20-minute session does not by itself meet studied aerobic-volume guidance; quiet/no-jump constraints cap intensity.
 
 ### 4.4 Stepping
@@ -181,7 +181,7 @@ The five families were frozen before `exercises.json` was opened. They were not 
 - **Validated measurements:** usual four-metre gait speed; 400 m walk; Timed Up and Go; SPPB gait component; Functional Gait Assessment; Four Square Step Test and Figure-8 Walk for directional adaptability.
 - **Endpoint relationship:** gait speed consistently predicts incident ADL and mobility disability; 400 m inability is an established major mobility-disability endpoint. Step/gait-adaptability interventions may reduce falls.
 - **Evidence strength:** high prognostic evidence; moderate category-specific intervention evidence.
-- **Likely Flux trainability:** moderate for voluntary foot placement and turns.
+- **Likely Nomadic Method trainability:** moderate for voluntary foot placement and turns.
 - **Limitations:** a flat 3 × 3 m space cannot reproduce distance, stairs, slopes, obstacles, uneven surfaces, environmental decisions, or true community ambulation.
 
 ### 4.5 Mobility
@@ -193,7 +193,7 @@ The five families were frozen before `exercises.json` was opened. They were not 
 - **Validated measurements:** joint-specific active range-of-motion goniometry; chair sit-and-reach and back-scratch as limited functional proxies; task-specific range tests where validated.
 - **Endpoint relationship:** adequate range enables dressing, reaching, gait, turning, and transfers.
 - **Evidence strength:** high for improving range of motion; low-to-moderate and inconsistent for isolated flexibility training improving ADLs or disability.
-- **Likely Flux trainability:** high for selected standing joints and movements.
+- **Likely Nomadic Method trainability:** high for selected standing joints and movements.
 - **Limitations:** mobility is joint-specific; there is no defensible single “global flexibility” score. More range beyond task needs is not necessarily better or safer.
 
 ### 4.6 Cross-cutting attributes, not categories
@@ -216,7 +216,7 @@ Consider, in order:
 
 1. direct intervention evidence on disability, major mobility disability, falls, or ADL;
 2. consistent prospective prediction of disability/dependence;
-3. plausible causal role and trainability under Flux constraints;
+3. plausible causal role and trainability under Nomadic Method constraints;
 4. nonredundant contribution to short sessions;
 5. safe within-session sequencing and expert judgment.
 
@@ -471,7 +471,7 @@ Multi-category tags remain scientifically and analytically useful, but the requi
   a later set counts again.
 - Canonical workload is summed independently into the existing 3-, 5-, 7-,
   10-, 15-, 20-, and 30-minute muscle resolutions. The target at each is a
-  weakest bucket at least 25% of its strongest. Flux applies one legal
+  weakest bucket at least 25% of its strongest. Nomadic Method applies one legal
   replacement that lexicographically improves the sorted shares, recalculates
   every resolution, and repeats until all pass, no improvement exists, a lineup
   repeats, or 30 passes complete.
@@ -560,7 +560,7 @@ Unqualified/removed exercises retain their historical database identity only for
 - Respect reduced-motion/system animation settings for decorative transitions while keeping essential timing state visible.
 - Give videos concise content descriptions naming the demonstrated action; do not narrate anatomical claims not present in the exercise name.
 - Preserve screen-on behavior during an active workout and system-bar/inset handling.
-- Do not present unsupported single-leg/reactive balance to users who cannot perform it safely; this remains a product safety limitation because Flux has no assessment or support equipment.
+- Do not present unsupported single-leg/reactive balance to users who cannot perform it safely; this remains a product safety limitation because Nomadic Method has no assessment or support equipment.
 
 ### 8.10 Verification plan
 
@@ -580,13 +580,13 @@ Manual release checks should play every video on a physical phone, verify footwe
 
 ## 9. Risks, limitations, and unresolved decisions
 
-- No direct evidence shows that Flux's exact dose extends physical-disability-free survival.
+- No direct evidence shows that Nomadic Method's exact dose extends physical-disability-free survival.
 - Most positive trials used progressive, supervised, individualized programs over weeks to years, with much greater weekly volume and often equipment.
 - Prognostic markers may reflect disease and reverse causation; improving a marker does not guarantee changing the endpoint.
 - The five families interact. Multi-tagging is more honest than forced exclusivity, but the primary category is still a scheduling simplification.
 - Grouping power into Strength is a product-level family decision. Preserve the explicit facet and revisit only if future velocity-aware programming can prescribe it distinctly.
 - Mobility has the weakest direct endpoint evidence and is joint-specific.
-- Flux's constraints particularly limit progressive upper-body pulling/loading, carrying, bone loading, sustained locomotion, stairs, object manipulation, and safe reactive balance.
+- Nomadic Method's constraints particularly limit progressive upper-body pulling/loading, carrying, bone loading, sustained locomotion, stairs, object manipulation, and safe reactive balance.
 - A user who always selects three minutes will receive only the three prioritized categories. Avoiding that would require cross-session rotation state, explicitly rejected here in favor of a simple deterministic schedule.
 - Audit confidence is based on names plus sampled human video frames, not biomechanical measurement or clinical dosing. Reconsider rows need full playback/product review before future catalog implementation.
 - Individual contraindications, disease, pain, pregnancy, disability, and fall risk are not assessed. This is not a clinical prescription.

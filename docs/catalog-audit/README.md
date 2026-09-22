@@ -1,6 +1,6 @@
 # Exercise catalog audit artifacts
 
-Flux models a first-time user standing in a 2 m × 2 m space with no external
+Nomadic Method models a first-time user standing in a 2 m × 2 m space with no external
 support, equipment, or spoken instruction except where a stable wall or
 physical mirror is explicitly declared. The final packaged silent human demonstration is authoritative for
 the action, name, muscular demand, anatomy, structure, and presentation.

@@ -259,9 +259,9 @@ foreach ($capacity in $baselineStrong.Keys) {
 }
 
 $markdown = [Collections.Generic.List[string]]::new()
-$markdown.Add('# Flux movement-practice coverage audit')
+$markdown.Add('# Nomadic Method movement-practice coverage audit')
 $markdown.Add('')
-$markdown.Add('Generated from the runtime catalog and the supplementary movement-practices DAG. The DAG is used for provenance, discovery, and diversity review; Flux capacities remain the scheduling taxonomy.')
+$markdown.Add('Generated from the runtime catalog and the supplementary movement-practices DAG. The DAG is used for provenance, discovery, and diversity review; Nomadic Method capacities remain the scheduling taxonomy.')
 $markdown.Add('')
 $markdown.Add('## Outcome')
 $markdown.Add('')

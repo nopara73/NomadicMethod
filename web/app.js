@@ -237,8 +237,8 @@ async function bootstrap() {
   } catch (error) {
     console.error(error);
     elements.beginWorkout.disabled = true;
-    elements.status.textContent = "Flux is unavailable.";
-    startupControls?.fail("Flux is unavailable.");
+    elements.status.textContent = "Nomadic Method is unavailable.";
+    startupControls?.fail("Nomadic Method is unavailable.");
   }
 }
 
@@ -441,7 +441,7 @@ function persistState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session.state));
   } catch (error) {
-    console.error("Unable to save Flux state.", error);
+    console.error("Unable to save Nomadic Method state.", error);
   }
 }
 

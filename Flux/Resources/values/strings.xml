@@ -5,7 +5,7 @@
     <string name="end_session_action">End session</string>
     <string name="cancel_action">Cancel</string>
     <string name="workout_change_failed">Could not change the workout. Your progress is safe.</string>
-    <string name="app_name">Flux</string>
+    <string name="app_name">Nomadic Method</string>
     <string name="exercise_animation_description">Exercise demonstration</string>
     <string name="duration_minutes_default">10</string>
     <string name="duration_minutes_unit">MIN</string>

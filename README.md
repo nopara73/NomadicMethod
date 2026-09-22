@@ -1,26 +1,29 @@
-# Flux
+# Nomadic Method
 
 **A whole-body workout for exactly the time you have.**
 
-Flux is a zero-admin workout app. Choose a duration, receive one standing
+Nomadic Method is a zero-admin workout app. Choose a duration, receive one standing
 exercise at a time, then keep or discard each movement. Exercises require no
 equipment by default; an ordinary wall and a compact or tall mirror can be
-declared available as optional modifiers. Flux
+declared available as optional modifiers. Nomadic Method
 uses those decisions to shape later sessions without allowing preference,
 randomness, or filters to destroy anatomical coverage.
 
-Try the web app: [nopara73.github.io/Flux](https://nopara73.github.io/Flux/)
+Try the web app: [Nomadic Method](https://nopara73.github.io/Flux/)
 
-Flux is also a private, offline Android app written in C# with .NET for Android.
+Formerly Flux. The existing web address and Android package stay in place so
+your saved workouts, scores, and Keeps carry over.
+
+Nomadic Method is also a private, offline Android app written in C# with .NET for Android.
 It supports Android 7.0 (API 24) and newer. No account is required.
 
-## The Flux method
+## The method
 
-Flux randomizes exercises, not workout structure.
+Nomadic Method randomizes exercises, not workout structure.
 
 ### Duration changes anatomical resolution
 
-The catalog uses 30 canonical muscle groups. Flux explicitly rolls those leaves
+The catalog uses 30 canonical muscle groups. Nomadic Method explicitly rolls those leaves
 up into seven complete anatomical partitions containing 3, 5, 7, 10, 15, 20,
 or 30 workout groups. Every canonical leaf belongs to exactly one group at each
 resolution.
@@ -48,7 +51,7 @@ movement with only a token association to one small part of it.
 
 ### The lineup is solved as one constrained assignment
 
-Flux does not select each round independently. It solves the complete lineup as
+Nomadic Method does not select each round independently. It solves the complete lineup as
 a maximum-weight atomic assignment between workout groups and eligible exercise
 sequences. Most sequences occupy one base group. A sequence whose consecutive
 blocks genuinely have primary muscles in different workout groups may occupy all
@@ -99,7 +102,7 @@ Intermediate block rests do not score or offer the heart.
 
 Modifier profiles share a logical slot, so a Keep made with Insect off remains
 the Keep for that same slot with Insect on whenever the exercise is eligible.
-When the duration changes anatomical resolution, Flux maps a Keep through the
+When the duration changes anatomical resolution, Nomadic Method maps a Keep through the
 kept sequence's primary canonical muscle into the corresponding slot at the new
 resolution. A multi-block sequence still stores one preference at its anchor;
 the other groups it covers cannot borrow that preference. Keeps survive Android
@@ -173,7 +176,7 @@ separately, and an actual repeated set counts again.
 The audit independently rolls those canonical loads into every existing 3-,
 5-, 7-, 10-, 15-, 20-, and 30-minute muscle resolution. At each resolution the
 weakest bucket is compared with the strongest; the soft goal is for every
-weakest bucket to reach at least 25% of its strongest. Flux repeatedly applies
+weakest bucket to reach at least 25% of its strongest. Nomadic Method repeatedly applies
 one legal replacement that improves the lexicographically sorted bucket shares
 (weakest first), recalculating all seven resolutions after every change. It
 stops when every resolution reaches the goal, no replacement improves the
@@ -239,7 +242,7 @@ slot with only one eligible movement must remain usable. The next preparation
 performs normal global assignment using its chosen duration, modifiers, current
 recovery and phase scores; no stale closing-time lineup overrides those choices.
 
-Flux currently provides eight composable controls in three visually separate
+Nomadic Method currently provides eight composable controls in three visually separate
 groups: five workout conditions, one intensity choice, and two equipment
 choices. In UI order:
 
@@ -359,7 +362,7 @@ arbitrary all-modifier intersections.
 
 ### Atomic exercise sequences
 
-Flux schedules one-block and multi-block exercise sequences as its only workout
+Nomadic Method schedules one-block and multi-block exercise sequences as its only workout
 unit. A block is always 45 seconds of the exact named exercise followed by 15
 seconds of rest. Blocks in one sequence are adjacent, cannot be divided between
 sessions, and share one Keep/reject decision after the final block.
@@ -474,7 +477,7 @@ If movement media buffers or the app is backgrounded, movement time pauses. The
 active round, exact remaining movement time, and user-pause state are committed
 locally; reopening after process death returns to that movement instead of
 discarding the workout. A live foreground deadline preserves elapsed time; if
-that deadline expired while Flux was absent, restoration uses the last safe
+that deadline expired while Nomadic Method was absent, restoration uses the last safe
 checkpoint instead of crediting unseen exercise time. Running Rest uses an
 absolute deadline and also restores after process death, advancing normally if
 its deadline already passed. Tapping its pause control instead persists the
@@ -487,7 +490,7 @@ still leaves the unreached exercise neutral.
 
 ## Exercise catalog
 
-Flux ships with 499 reviewed movements spanning compound strength and
+Nomadic Method ships with 499 reviewed movements spanning compound strength and
 conditioning, mobility, dynamic balance, active range of motion,
 rehabilitation-style movement, Pilates, yoga, tai chi, qigong, boxing, dance,
 martial arts, breathing, and isometrics.
@@ -523,7 +526,7 @@ ledger is documented in
 
 ## Persistence and upgrades
 
-Unfinished workouts never expire. Reopening Flux restores the same session at
+Unfinished workouts never expire. Reopening Nomadic Method restores the same session at
 Ready, movement, or rest, paused at its saved checkpoint even years later.
 Elapsed time outside the app is never treated as performed work. Completed
 history, preferences and the session's frozen automatic-Light decision survive.
@@ -666,12 +669,12 @@ Regenerate the human-media and muscle-group audit:
 
 ## Scope
 
-Flux is designed for broad, frequent, low-friction movement—not for maximizing
+Nomadic Method is designed for broad, frequent, low-friction movement—not for maximizing
 one specialized adaptation. It does not replace progressive resistance training
 for maximal strength or hypertrophy, sport-specific practice, measured endurance
 programming, diagnosis, rehabilitation, or individualized medical guidance.
 
 Its narrower promise is concrete: for the exact time and constraints selected,
-Flux constructs a varied workout while preserving anatomical targets, meaningful
+Nomadic Method constructs a varied workout while preserving anatomical targets, meaningful
 exercise-to-target assignments, bilateral execution, and the user's durable
 preferences.

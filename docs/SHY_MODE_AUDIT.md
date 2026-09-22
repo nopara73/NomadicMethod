@@ -2,7 +2,7 @@
 
 Shy mode is a default-off filter for people who want a less conspicuous
 workout in a shared space. The same standard applies whether nearby people are
-exercising or not. When enabled, Flux admits only exercises with an explicit
+exercising or not. When enabled, Nomadic Method admits only exercises with an explicit
 `Compatible` review; `Incompatible` exercises are removed and unreviewed
 metadata fails closed.
 
@@ -36,7 +36,7 @@ mixed Shy classifications inside one atomic exercise sequence. New exercises
 therefore remain unreviewed until their complete packaged loop is assessed.
 
 The corrected boundary exposed real coverage deficits in restrictive
-single/pair profiles. Flux closes them with three established movements and
+single/pair profiles. Nomadic Method closes them with three established movements and
 exact reviewed human demonstrations: `Fixed-Gaze Head-Turn March`,
 `Jab-Cross-Hook-Uppercut Combo`, and
 `Jab-Cross-Speed-Bag Combo`. No existing movement was falsely

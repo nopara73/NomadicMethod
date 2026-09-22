@@ -1,6 +1,6 @@
-# Flux exercise catalog
+# Nomadic Method exercise catalog
 
-Flux contains 475 human-demonstrated standing movements. Exercises are chosen
+Nomadic Method contains 475 human-demonstrated standing movements. Exercises are chosen
 for movement quality first and assigned to canonical muscle groups afterward.
 Each exercise has one primary scheduling group and zero or more meaningful
 secondary groups. Full-body movements remain eligible wherever they place real

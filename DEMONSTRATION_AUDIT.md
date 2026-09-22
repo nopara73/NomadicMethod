@@ -1,6 +1,6 @@
-# Flux demonstration quality audit
+# Nomadic Method demonstration quality audit
 
-Flux now ships a strictly human-demonstrated exercise catalog.
+Nomadic Method now ships a strictly human-demonstrated exercise catalog.
 All **508** bundled exercises show an actual person performing the movement.
 Synthetic, schematic, anatomical, and 3D demonstrations are excluded from
 both the runtime catalog and the application package.

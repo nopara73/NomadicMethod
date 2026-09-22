@@ -196,7 +196,7 @@ public partial class MainActivity : Activity
         base.OnCreate(savedInstanceState);
 
         // Keep hardware volume keys on the whistle/media stream even while
-        // Flux is between cues and no sound is actively playing.
+        // the app is between cues and no sound is actively playing.
         VolumeControlStream = Android.Media.Stream.Music;
 
         SetContentView(Resource.Layout.activity_main);
@@ -476,7 +476,7 @@ public partial class MainActivity : Activity
         _startWorkoutWhenReady = false;
         _beginWorkoutButton.Enabled = false;
         _beginWorkoutButton.Alpha = 0.6f;
-        _durationModifierFeedback.Text = "Flux is unavailable.";
+        _durationModifierFeedback.Text = "Nomadic Method is unavailable.";
         _durationModifierFeedback.Alpha = 1f;
         _durationModifierFeedback.Visibility = ViewStates.Visible;
     }
@@ -3191,7 +3191,7 @@ public partial class MainActivity : Activity
                 packageName,
                 Android.Content.PM.PackageManager.PackageInfoFlags.Of(0L))
                 ?? throw new InvalidOperationException(
-                    "Android could not resolve the installed Flux package.");
+                    "Android could not resolve the installed Nomadic Method package.");
             return packageInfo.LongVersionCode;
         }
 
@@ -3200,7 +3200,7 @@ public partial class MainActivity : Activity
             packageName,
             Android.Content.PM.PackageInfoFlags.Activities)
             ?? throw new InvalidOperationException(
-                "Android could not resolve the installed Flux package.");
+                "Android could not resolve the installed Nomadic Method package.");
 #pragma warning restore CS0618
         return OperatingSystem.IsAndroidVersionAtLeast(28)
             ? legacyPackageInfo.LongVersionCode

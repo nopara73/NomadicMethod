@@ -1,6 +1,6 @@
-# Flux movement-practice coverage audit
+# Nomadic Method movement-practice coverage audit
 
-Generated from the runtime catalog and the supplementary movement-practices DAG. The DAG is used for provenance, discovery, and diversity review; Flux capacities remain the scheduling taxonomy.
+Generated from the runtime catalog and the supplementary movement-practices DAG. The DAG is used for provenance, discovery, and diversity review; Nomadic Method capacities remain the scheduling taxonomy.
 
 ## Outcome
 

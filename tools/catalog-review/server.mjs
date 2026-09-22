@@ -55,7 +55,7 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`Flux catalog review: http://127.0.0.1:${port}`);
+  console.log(`Nomadic Method catalog review: http://127.0.0.1:${port}`);
   console.log(`Reviews save to: ${reviewPath}`);
 });
 

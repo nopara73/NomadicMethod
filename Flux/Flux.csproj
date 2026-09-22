@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationId>com.local.flux</ApplicationId>
-    <ApplicationVersion>133</ApplicationVersion>
-    <ApplicationDisplayVersion>3.19</ApplicationDisplayVersion>
+    <ApplicationVersion>134</ApplicationVersion>
+    <ApplicationDisplayVersion>3.20</ApplicationDisplayVersion>
     <!-- Device deployments must remain launchable without transient fast-deploy files. -->
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <!--

@@ -158,9 +158,9 @@ if ($assignmentDrift.Count -gt 0) {
 }
 
 $lines = [System.Collections.Generic.List[string]]::new()
-$lines.Add('# Flux demonstration quality audit')
+$lines.Add('# Nomadic Method demonstration quality audit')
 $lines.Add('')
-$lines.Add('Flux now ships a strictly human-demonstrated exercise catalog.')
+$lines.Add('Nomadic Method now ships a strictly human-demonstrated exercise catalog.')
 $lines.Add(('All **{0}** bundled exercises show an actual person performing the movement.' -f
         $catalog.Count))
 $lines.Add('Synthetic, schematic, anatomical, and 3D demonstrations are excluded from')

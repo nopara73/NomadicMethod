@@ -1,4 +1,4 @@
-# Flux exercise catalog review
+# Nomadic Method exercise catalog review
 
 Run `tools\Start-ExerciseCatalogReview.ps1` from PowerShell. The page saves every
 verdict immediately to `docs\catalog-audit\user_exercise_reviews.json` and advances
