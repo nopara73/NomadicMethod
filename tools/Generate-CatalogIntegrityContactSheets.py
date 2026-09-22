@@ -144,7 +144,7 @@ def render_catalog_sheets(args: argparse.Namespace) -> None:
     sheets.mkdir(parents=True, exist_ok=True)
     ffmpeg = require_program("ffmpeg")
     ffprobe = require_program("ffprobe")
-    catalog_path = root / "Flux" / "Assets" / "exercises.json"
+    catalog_path = root / "NomadicMethod" / "Assets" / "exercises.json"
     catalog = json.loads(catalog_path.read_text(encoding="utf-8-sig"))
     width = args.frames * args.thumbnail_size
     row_height = 58 + args.thumbnail_size
@@ -152,7 +152,7 @@ def render_catalog_sheets(args: argparse.Namespace) -> None:
     manifest: list[dict] = []
 
     for item_index, exercise in enumerate(catalog):
-        video = root / "Flux" / "Assets" / exercise["video"]
+        video = root / "NomadicMethod" / "Assets" / exercise["video"]
         frame_count = probe_frame_count(ffprobe, video)
         indices = sample_indices(frame_count, args.frames)
         strip = strips / f'exercise_{exercise["id"]:04d}.png'

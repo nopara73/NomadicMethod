@@ -124,7 +124,7 @@
       accumulatedMinutes(history, now, legacyDays)) / Math.min(duration, dailyCap));
   }
 
-  globalThis.fluxLightCadence = Object.freeze({
+  globalThis.nomadicMethodLightCadence = Object.freeze({
     dailyCap, threshold, fullCreditCompletionPercent, isDue, workoutsRemaining,
   });
 })();

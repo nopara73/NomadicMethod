@@ -1,5 +1,5 @@
 @{
-    # Reviewed Posecode renders checked into Flux/Assets. Flux-owned source
+    # Reviewed Posecode renders checked into NomadicMethod/Assets. NomadicMethod-owned source
     # descriptions for the new exact-motion batch live in tools/PosecodeSources.
     5 = @{ File = '0005-wide-stance-calf-raise.gif'; Source = 'Posecode' }
     6 = @{ File = '0006-toes-in-calf-raise.gif'; Source = 'Posecode' }

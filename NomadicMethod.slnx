@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NomadicMethod/NomadicMethod.csproj" />
+  <Project Path="NomadicMethod.Tests/NomadicMethod.Tests.csproj" />
+</Solution>

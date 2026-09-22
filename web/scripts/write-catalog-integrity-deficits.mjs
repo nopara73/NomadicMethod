@@ -13,7 +13,7 @@ import {
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const webRoot = path.resolve(scriptDirectory, "..");
 const repositoryRoot = path.resolve(webRoot, "..");
-const catalogPath = path.join(repositoryRoot, "Flux", "Assets", "exercises.json");
+const catalogPath = path.join(repositoryRoot, "NomadicMethod", "Assets", "exercises.json");
 const outputPath = path.join(
   repositoryRoot,
   "docs",

@@ -12,7 +12,7 @@ import {
 } from "../workout.js";
 
 const catalog = JSON.parse(await readFile(new URL(
-  "../../Flux/Assets/exercises.json", import.meta.url), "utf8"));
+  "../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 const review = JSON.parse(await readFile(new URL(
   "../../docs/catalog-audit/training-claim-corrections-2026-09-05.json",
   import.meta.url), "utf8"));

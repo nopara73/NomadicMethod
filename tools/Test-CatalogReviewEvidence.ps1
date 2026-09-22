@@ -1,7 +1,7 @@
 param()
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'CatalogReviewEvidence.ps1')
-$testKey = 'flux-review-evidence-' + [Guid]::NewGuid().ToString('N')
+$testKey = 'nomadic-method-review-evidence-' + [Guid]::NewGuid().ToString('N')
 $testRoot = Join-Path ([IO.Path]::GetTempPath()) $testKey
 New-Item -ItemType Directory -Force -Path (Join-Path $testRoot 'exercise_videos') | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $testRoot 'exercise_hold_frames') | Out-Null

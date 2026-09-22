@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ExerciseSourceDownload.ps1')
-$testRoot = Join-Path ([IO.Path]::GetTempPath()) ('FluxSourceVideoTest-' + [Guid]::NewGuid().ToString('N'))
+$testRoot = Join-Path ([IO.Path]::GetTempPath()) ('NomadicMethodSourceVideoTest-' + [Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $testRoot | Out-Null
 function Assert-Rejected {
     param([scriptblock]$Action, [string]$Message)
@@ -42,7 +42,7 @@ finally {
     $resolved = [IO.Path]::GetFullPath($testRoot)
     $temp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
     if (-not $resolved.StartsWith($temp, [StringComparison]::OrdinalIgnoreCase) -or
-        [IO.Path]::GetFileName($resolved) -notlike 'FluxSourceVideoTest-*') {
+        [IO.Path]::GetFileName($resolved) -notlike 'NomadicMethodSourceVideoTest-*') {
         throw 'Unexpected source test cleanup path.'
     }
     Remove-Item -LiteralPath $resolved -Recurse -Force

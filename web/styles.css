@@ -110,7 +110,7 @@ button:disabled {
   align-items: center;
 }
 
-.flux-icon {
+.nomadic-method-icon {
   display: block;
   width: 56px;
   height: 56px;
@@ -1413,7 +1413,7 @@ input:focus-visible {
     flex: 0 0 216px;
   }
 
-  .flux-icon {
+  .nomadic-method-icon {
     width: 40px;
     height: 40px;
   }
@@ -1580,7 +1580,7 @@ input:focus-visible {
     flex-basis: 160px;
   }
 
-  .flux-icon {
+  .nomadic-method-icon {
     width: 32px;
     height: 32px;
   }
@@ -1669,7 +1669,7 @@ input:focus-visible {
     flex: 0 0 auto;
   }
 
-  .flux-icon {
+  .nomadic-method-icon {
     width: clamp(68px, 4.2vw, 88px);
     height: clamp(68px, 4.2vw, 88px);
   }
@@ -2014,7 +2014,7 @@ input:focus-visible {
     padding-top: calc(12px + env(safe-area-inset-top));
   }
 
-  .flux-icon {
+  .nomadic-method-icon {
     width: 44px;
     height: 44px;
   }

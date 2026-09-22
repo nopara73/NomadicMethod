@@ -5,7 +5,7 @@ import vm from "node:vm";
 
 import "../light-cadence.js";
 
-const cadence = globalThis.fluxLightCadence;
+const cadence = globalThis.nomadicMethodLightCadence;
 const minute = 60_000;
 const light = 256;
 const atDay = (day, hour = 8, minutes = 0) =>
@@ -240,7 +240,7 @@ function startup(history = [], duration = 10, now = atDay(4)) {
   context.window = context;
   vm.runInContext(cadenceSource, context);
   vm.runInContext(instantSource, context);
-  return { controls: context.fluxStartupControls, element, timers };
+  return { controls: context.nomadicMethodStartupControls, element, timers };
 }
 
 function assertLockedTile(element) {

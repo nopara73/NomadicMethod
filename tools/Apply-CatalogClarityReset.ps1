@@ -1,5 +1,5 @@
 param(
-    [string]$CatalogPath = (Join-Path $PSScriptRoot '..\Flux\Assets\exercises.json'),
+    [string]$CatalogPath = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets\exercises.json'),
     [string]$AuditPath = (Join-Path $PSScriptRoot '..\docs\catalog-audit\exercise_usability_audit.csv'),
     [string]$ReplacementPath = (Join-Path $PSScriptRoot '..\docs\catalog-audit\catalog_replacements.csv')
 )

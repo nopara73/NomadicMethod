@@ -1,5 +1,5 @@
 param(
-    [string]$CatalogPath = (Join-Path $PSScriptRoot '..\Flux\Assets\exercises.json'),
+    [string]$CatalogPath = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets\exercises.json'),
     [string]$GraphPath = (Join-Path $PSScriptRoot '..\docs\supplementary\movement-practices\movement_practices_graph.json'),
     [string]$OutputDirectory = (Join-Path $PSScriptRoot '..\docs')
 )

@@ -225,7 +225,7 @@ export const MODERATE_MUSCULAR_DEMAND = 1;
 export const MAXIMUM_MUSCULAR_DEMAND = 2;
 
 // Insect mode requires visible continuous whole-body movement. Pelvic-floor
-// isolation cannot honestly meet that contract under Flux's feet-only rules.
+// isolation cannot honestly meet that contract under NomadicMethod's feet-only rules.
 // Intrinsic-hand work can meet it only when a wall is available. Keep these
 // exceptions exact instead of manufacturing secondary claims or artificial
 // marching combinations.
@@ -3951,7 +3951,7 @@ export function isLightWorkoutDayDue(
   nowUnixMilliseconds,
   legacyCompletedTrainingDayUnixMilliseconds = [],
 ) {
-  return globalThis.fluxLightCadence.isDue(
+  return globalThis.nomadicMethodLightCadence.isDue(
     workoutHistory, nowUnixMilliseconds, legacyCompletedTrainingDayUnixMilliseconds,
   );
 }
@@ -3962,7 +3962,7 @@ export function getWorkoutsUntilLightWorkout(
   nowUnixMilliseconds,
   legacyCompletedTrainingDayUnixMilliseconds = [],
 ) {
-  return globalThis.fluxLightCadence.workoutsRemaining(
+  return globalThis.nomadicMethodLightCadence.workoutsRemaining(
     workoutHistory, prospectiveWorkoutMinutes, nowUnixMilliseconds,
     legacyCompletedTrainingDayUnixMilliseconds,
   );

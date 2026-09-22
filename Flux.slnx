@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="Flux/Flux.csproj" />
-  <Project Path="Flux.Tests/Flux.Tests.csproj" />
-</Solution>

@@ -2,14 +2,14 @@ param(
     [Parameter(Mandatory = $true)]
     [int[]] $Ids,
 
-    [string] $OutputDirectory = (Join-Path $env:TEMP 'flux-catalog-integrity-candidates')
+    [string] $OutputDirectory = (Join-Path $env:TEMP 'nomadic-method-catalog-integrity-candidates')
 )
 
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $PSScriptRoot
-$catalogPath = Join-Path $root 'Flux/Assets/exercises.json'
-$videoRoot = Join-Path $root 'Flux/Assets'
+$catalogPath = Join-Path $root 'NomadicMethod/Assets/exercises.json'
+$videoRoot = Join-Path $root 'NomadicMethod/Assets'
 $catalog = Get-Content -Raw -LiteralPath $catalogPath | ConvertFrom-Json
 
 New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null

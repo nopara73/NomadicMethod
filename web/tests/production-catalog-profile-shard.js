@@ -15,7 +15,7 @@ import {
 } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(
-  new URL("../../Flux/Assets/exercises.json", import.meta.url),
+  new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url),
   "utf8",
 ));
 

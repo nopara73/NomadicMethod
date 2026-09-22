@@ -66,28 +66,28 @@ await writeFile(
 
 const hardFloorIconPath = path.join(
   repositoryRoot,
-  "Flux",
+  "NomadicMethod",
   "Resources",
   "drawable-xxhdpi",
   "ic_hard_floor.png",
 );
 const softFloorIconPath = path.join(
   repositoryRoot,
-  "Flux",
+  "NomadicMethod",
   "Resources",
   "drawable-xxhdpi",
   "ic_soft_floor.png",
 );
 const wallNoSoleIconPath = path.join(
   repositoryRoot,
-  "Flux",
+  "NomadicMethod",
   "Resources",
   "drawable-xxhdpi",
   "ic_wall_no_sole.png",
 );
 const lightWorkoutIconPath = path.join(
   repositoryRoot,
-  "Flux",
+  "NomadicMethod",
   "Resources",
   "drawable-xxhdpi",
   "ic_light_workout.png",
@@ -149,32 +149,32 @@ await copyInto(
 );
 
 const catalogSource = await readFile(
-  path.join(repositoryRoot, "Flux", "Assets", "exercises.json"),
+  path.join(repositoryRoot, "NomadicMethod", "Assets", "exercises.json"),
   "utf8",
 );
 const catalogVersion = contentFingerprint(catalogSource);
 await copyInto(
-  path.join(repositoryRoot, "Flux", "Assets", "exercises.json"),
+  path.join(repositoryRoot, "NomadicMethod", "Assets", "exercises.json"),
   path.join(outputRoot, "data", "exercises.json"),
 );
 await copyInto(
-  path.join(repositoryRoot, "tools", "flux_appicon.svg"),
-  path.join(outputRoot, "assets", "flux_appicon.svg"),
+  path.join(repositoryRoot, "tools", "nomadic_method_appicon.svg"),
+  path.join(outputRoot, "assets", "nomadic_method_appicon.svg"),
 );
 await copyDirectory(
-  path.join(repositoryRoot, "Flux", "Assets", "exercise_videos"),
+  path.join(repositoryRoot, "NomadicMethod", "Assets", "exercise_videos"),
   path.join(outputRoot, "assets", "exercise_videos"),
 );
 await copyOptionalDirectory(
-  path.join(repositoryRoot, "Flux", "Assets", "exercise_direction_videos"),
+  path.join(repositoryRoot, "NomadicMethod", "Assets", "exercise_direction_videos"),
   path.join(outputRoot, "assets", "exercise_direction_videos"),
 );
 await copyDirectory(
-  path.join(repositoryRoot, "Flux", "Assets", "exercise_hold_frames"),
+  path.join(repositoryRoot, "NomadicMethod", "Assets", "exercise_hold_frames"),
   path.join(outputRoot, "assets", "exercise_hold_frames"),
 );
 await copyDirectory(
-  path.join(repositoryRoot, "Flux", "Resources", "raw"),
+  path.join(repositoryRoot, "NomadicMethod", "Resources", "raw"),
   path.join(outputRoot, "audio"),
 );
 await writeFile(path.join(outputRoot, ".nojekyll"), "", "utf8");

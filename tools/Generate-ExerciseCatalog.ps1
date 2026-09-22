@@ -1,5 +1,5 @@
 param(
-    [string]$OutputRoot = (Join-Path $PSScriptRoot '..\Flux\Assets'),
+    [string]$OutputRoot = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets'),
     [ValidateRange(1, [int]::MaxValue)]
     [int]$StartExercise = 1,
     [ValidateRange(0, [int]::MaxValue)]
@@ -1255,7 +1255,7 @@ function New-HandExerciseFrameSvg {
 
     return @"
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <metadata>Flux real hand exercise $ExerciseId frame $FrameIndex</metadata>
+  <metadata>Nomadic Method real hand exercise $ExerciseId frame $FrameIndex</metadata>
   <rect width="256" height="256" rx="28" fill="#F7FAFC" />
   <circle cx="128" cy="126" r="102" fill="$Accent" opacity="0.08" />
   <g transform="rotate($rotation 128 132)">
@@ -1699,7 +1699,7 @@ function New-HeadExerciseFrameSvg {
 
     return @"
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <metadata>Flux real head exercise $ExerciseId frame $FrameIndex</metadata>
+  <metadata>Nomadic Method real head exercise $ExerciseId frame $FrameIndex</metadata>
   <rect width="256" height="256" rx="28" fill="#F7FAFC" />
   <circle cx="128" cy="126" r="102" fill="$Accent" opacity="0.08" />
   $targetPathSvg
@@ -1802,7 +1802,7 @@ function New-ExternalExerciseGif {
             if (-not (Test-Path -LiteralPath $archivePath)) {
                 Invoke-WebRequest `
                     -Uri $sourceUrl `
-                    -Headers @{ 'User-Agent' = 'Flux private exercise catalog/1.0' } `
+                    -Headers @{ 'User-Agent' = 'Nomadic Method private exercise catalog/1.0' } `
                     -OutFile $archivePath
             }
 
@@ -1830,7 +1830,7 @@ function New-ExternalExerciseGif {
         else {
             Invoke-WebRequest `
                 -Uri $sourceUrl `
-                -Headers @{ 'User-Agent' = 'Flux private exercise catalog/1.0' } `
+                -Headers @{ 'User-Agent' = 'Nomadic Method private exercise catalog/1.0' } `
                 -OutFile $sourcePath
         }
     }
@@ -2004,7 +2004,7 @@ function New-ExternalExerciseGif {
     }
     $gifArguments += @(
         '-set', 'dispose', 'background',
-        '-set', 'comment', "Flux reviewed exercise $ExerciseId - $ExerciseName",
+        '-set', 'comment', "Nomadic Method reviewed exercise $ExerciseId - $ExerciseName",
         '-loop', '0',
         '-layers', 'Optimize',
         $temporaryGifPath)
@@ -2303,7 +2303,7 @@ function New-ShoulderExerciseFrameSvg {
         else { '' }
         return @"
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <metadata>Flux exact shoulder exercise $ExerciseId frame $FrameIndex</metadata>
+  <metadata>Nomadic Method exact shoulder exercise $ExerciseId frame $FrameIndex</metadata>
   <rect width="256" height="256" rx="28" fill="#F7FAFC" />
   <circle cx="128" cy="126" r="102" fill="$Accent" opacity="0.08" />
   $pathSvg
@@ -2334,7 +2334,7 @@ function New-ShoulderExerciseFrameSvg {
 
     return @"
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <metadata>Flux exact shoulder exercise $ExerciseId frame $FrameIndex</metadata>
+  <metadata>Nomadic Method exact shoulder exercise $ExerciseId frame $FrameIndex</metadata>
   <rect width="256" height="256" rx="28" fill="#F7FAFC" />
   <circle cx="128" cy="126" r="102" fill="$Accent" opacity="0.08" />
   $pathSvg
@@ -2977,7 +2977,7 @@ function New-ExerciseFrameSvg {
 
     return @"
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <metadata>Flux exercise $ExerciseId frame $FrameIndex</metadata>
+  <metadata>Nomadic Method exercise $ExerciseId frame $FrameIndex</metadata>
   <rect width="256" height="256" rx="28" fill="#F7FAFC" />
   <circle cx="128" cy="126" r="102" fill="$accent" opacity="0.08" />
   <line x1="40" y1="224" x2="216" y2="224" stroke="$muted" stroke-width="4" stroke-linecap="round" />
@@ -3029,7 +3029,7 @@ function New-HoldFrameImage {
         $frameCount - 1,
         [Math]::Floor(($frameCount - 1) * ($FramePercent / 100.0)))
     $temporaryOutputPath = Join-Path ([IO.Path]::GetTempPath()) (
-        'flux-hold-{0}-{1}.png' -f $PID, [Guid]::NewGuid().ToString('N'))
+        'nomadic-method-hold-{0}-{1}.png' -f $PID, [Guid]::NewGuid().ToString('N'))
     try {
         $magickArguments = @($GifPath, '-coalesce')
         if ($frameIndex -gt 0) {
@@ -3087,7 +3087,7 @@ function New-ExerciseMp4 {
     $filters.Add('format=yuv420p')
 
     $temporaryVideoPath = Join-Path ([IO.Path]::GetTempPath()) (
-        'flux-video-{0}-{1}.mp4' -f $PID, [Guid]::NewGuid().ToString('N'))
+        'nomadic-method-video-{0}-{1}.mp4' -f $PID, [Guid]::NewGuid().ToString('N'))
     $ffmpegArguments = @(
         '-hide_banner', '-loglevel', 'error', '-y',
         '-i', $GifPath,
@@ -3244,7 +3244,7 @@ $videoOutputRoot = Join-Path $resolvedOutputRoot 'exercise_videos'
 $directionVideoOutputRoot = Join-Path $resolvedOutputRoot 'exercise_direction_videos'
 $holdFrameOutputRoot = Join-Path $resolvedOutputRoot 'exercise_hold_frames'
 $catalogPath = Join-Path $resolvedOutputRoot 'exercises.json'
-$tempRoot = Join-Path ([IO.Path]::GetTempPath()) ("FluxExerciseFrames-" + [Guid]::NewGuid().ToString('N'))
+$tempRoot = Join-Path ([IO.Path]::GetTempPath()) ("NomadicMethodExerciseFrames-" + [Guid]::NewGuid().ToString('N'))
 
 New-Item -ItemType Directory -Force -Path $resolvedOutputRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $gifOutputRoot | Out-Null
@@ -3504,7 +3504,7 @@ foreach ($definition in $sourceDefinitions) {
             -SourceGifPath $sourceGifPath `
             -OutputPath $transformedGifPath `
             -Transform $transform `
-            -Comment "Flux reviewed transformed exercise $exerciseId - $exerciseName"
+            -Comment "Nomadic Method reviewed transformed exercise $exerciseId - $exerciseName"
 
         $transformChanged = $Force -or -not (Test-Path -LiteralPath $gifPath)
         if (-not $transformChanged) {

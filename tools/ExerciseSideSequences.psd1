@@ -1,6 +1,6 @@
 # Explicitly reviewed screen-side order for movements that are not naturally
 # alternating. The source demonstration shows the first listed screen side;
-# Flux mirrors that same human demonstration for the second 45-second side.
+# NomadicMethod mirrors that same human demonstration for the second 45-second side.
 # Review the complete pose, including a fixed supporting arm, crossed-arm
 # order, held target, or lead stance; primary-limb alternation is not enough.
 @{

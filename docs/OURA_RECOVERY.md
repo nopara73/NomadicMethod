@@ -107,7 +107,7 @@ screen and offers no application-specific opt-out.
 
 ## Tests and future changes
 
-`Flux.Tests/Fixtures/oura-recovery-cases.json` pins boundary and fallback cases.
+`NomadicMethod.Tests/Fixtures/oura-recovery-cases.json` pins boundary and fallback cases.
 `OuraRecoveryPolicyTests` covers the policy, aggregation, persistence, active
 session gate and interaction with cadence. Tests must remain truthful: do not
 weaken data sufficiency to make the phone return a decisive result. Missing

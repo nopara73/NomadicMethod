@@ -7,7 +7,7 @@ param(
         [System.IO.Path]::Combine(
             $PSScriptRoot,
             '..',
-            'Flux',
+            'NomadicMethod',
             'Assets',
             'exercises.json'))
 )

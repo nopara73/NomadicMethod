@@ -21,7 +21,7 @@ foreach ($name in @('Publish-GeneratedFile', 'New-ExternalExerciseGif', 'New-Exe
     . ([scriptblock]::Create($declaration.Extent.Text))
 }
 
-$testKey = 'flux-media-timing-' + [Guid]::NewGuid().ToString('N')
+$testKey = 'nomadic-method-media-timing-' + [Guid]::NewGuid().ToString('N')
 $testRoot = Join-Path ([IO.Path]::GetTempPath()) $testKey
 $sourceRoot = Join-Path ([IO.Path]::GetTempPath()) 'FluxExerciseSourceCache'
 $sourceName = $testKey + '.mp4'

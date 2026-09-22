@@ -30,7 +30,7 @@ No distribution was targeted.
 The authoritative reviewed ID lists and rubric live in
 [`tools/ExerciseMuscularDemand.psd1`](../tools/ExerciseMuscularDemand.psd1).
 The generated rating for each named exercise is shipped as `muscularDemand` in
-[`Flux/Assets/exercises.json`](../Flux/Assets/exercises.json). Catalog generation
+[`NomadicMethod/Assets/exercises.json`](../NomadicMethod/Assets/exercises.json). Catalog generation
 fails if a retained exercise is missing, duplicated across ratings, or assigned
 outside `0..2`; linked opposite-direction exercises must agree.
 

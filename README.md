@@ -9,10 +9,11 @@ declared available as optional modifiers. Nomadic Method
 uses those decisions to shape later sessions without allowing preference,
 randomness, or filters to destroy anatomical coverage.
 
-Try the web app: [Nomadic Method](https://nopara73.github.io/Flux/)
+Try the web app: [Nomadic Method](https://nopara73.github.io/NomadicMethod/)
 
-Formerly Flux. The existing web address and Android package stay in place so
-your saved workouts, scores, and Keeps carry over.
+Formerly Flux. Existing Android installs and saved workouts, scores, and Keeps
+carry over. The previous web address redirects to the current app. See the
+[rebrand compatibility notes](docs/REBRAND_COMPATIBILITY.md).
 
 Nomadic Method is also a private, offline Android app written in C# with .NET for Android.
 It supports Android 7.0 (API 24) and newer. No account is required.
@@ -589,7 +590,7 @@ be mistaken for an older cached file.
 
 ## Android and web parity
 
-The Android implementation in `Flux/` is the canonical product contract. The web
+The Android implementation in `NomadicMethod/` is the canonical product contract. The web
 build copies its catalog, exercise videos, hold frames, and audio directly from
 the Android runtime assets.
 
@@ -603,13 +604,13 @@ Android code or resources change without a reviewed web parity update.
 Build the Android solution:
 
 ```powershell
-dotnet build .\Flux.slnx
+dotnet build .\NomadicMethod.slnx
 ```
 
 Run the Android-independent test suite:
 
 ```powershell
-dotnet test .\Flux.Tests\Flux.Tests.csproj
+dotnet test .\NomadicMethod.Tests\NomadicMethod.Tests.csproj
 ```
 
 Run and build the web app:
@@ -624,8 +625,8 @@ Run the Android app on an authorized USB-debugging device:
 
 ```powershell
 adb devices
-dotnet build .\Flux\Flux.csproj -c Debug -f net10.0-android
-adb install -r .\Flux\bin\Debug\net10.0-android\com.local.flux-Signed.apk
+dotnet build .\NomadicMethod\NomadicMethod.csproj -c Debug -f net10.0-android
+adb install -r .\NomadicMethod\bin\Debug\net10.0-android\com.local.flux-Signed.apk
 adb shell run-as com.local.flux pwd
 ```
 
@@ -637,17 +638,17 @@ the installed build is actually debuggable.
 Create a release APK:
 
 ```powershell
-dotnet publish .\Flux\Flux.csproj -c Release -f net10.0-android
+dotnet publish .\NomadicMethod\NomadicMethod.csproj -c Release -f net10.0-android
 ```
 
-The APK is written below `Flux/bin/Release/net10.0-android/publish/`.
+The APK is written below `NomadicMethod/bin/Release/net10.0-android/publish/`.
 
 ## Catalog maintenance
 
 Regenerate the catalog and runtime media from reviewed sources:
 
 ```powershell
-.\tools\Generate-ExerciseCatalog.ps1 -OutputRoot .\Flux\Assets -Force
+.\tools\Generate-ExerciseCatalog.ps1 -OutputRoot .\NomadicMethod\Assets -Force
 ```
 
 Verify assignments, media encoding, silence, duplicate renders, and hold targets:

@@ -1,4 +1,4 @@
-# Flux Posecode sources
+# Nomadic Method Posecode sources
 
 This directory contains the 62 editable movement descriptions added in the
 exact-motion batch. The earlier 15 reviewed Posecode renders remain mapped but
@@ -11,5 +11,5 @@ foot support. A source and render are added to the verified inventory only
 after visual review of the complete loop at its shipped size.
 
 The numeric part of each filename is the stable exercise ID in
-`Flux/Assets/exercises.json`. The corresponding reviewed-media inventory lives
+`NomadicMethod/Assets/exercises.json`. The corresponding reviewed-media inventory lives
 in `tools/PosecodeExerciseMedia.psd1` and `tools/VerifiedExerciseDemos.psd1`.

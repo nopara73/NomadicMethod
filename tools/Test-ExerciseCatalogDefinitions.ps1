@@ -21,7 +21,7 @@ if ($newExercise.Count -ne 1 -or -not $newExercise[0].Additional -or
     throw 'The new admission must have its own declared identity.'
 }
 
-$fixture = Join-Path ([IO.Path]::GetTempPath()) ('FluxCatalogDefinitions-' + [guid]::NewGuid())
+$fixture = Join-Path ([IO.Path]::GetTempPath()) ('NomadicMethodCatalogDefinitions-' + [guid]::NewGuid())
 $null = New-Item -ItemType Directory -Path $fixture
 try {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'RealExerciseCatalog.psd1') -Destination $fixture
@@ -104,7 +104,7 @@ try {
         if (-not $rejected) { throw 'Invalid mirror review schema or metadata was accepted.' }
     }
 
-    $floorCatalog = @(Get-Content -LiteralPath (Join-Path $PSScriptRoot '../Flux/Assets/exercises.json') -Raw | ConvertFrom-Json)
+    $floorCatalog = @(Get-Content -LiteralPath (Join-Path $PSScriptRoot '../NomadicMethod/Assets/exercises.json') -Raw | ConvertFrom-Json)
     $chop = $floorCatalog | Where-Object id -eq 616
     foreach ($profile in @('OverheadChop', 'SingleLegHop', 'CountermovementJump', 'JumpingJack', 'AlternatingBounds')) {
         $chop.motionProfile = $profile

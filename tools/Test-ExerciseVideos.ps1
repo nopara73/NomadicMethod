@@ -1,5 +1,5 @@
 param(
-    [string]$AssetsRoot = (Join-Path $PSScriptRoot '..\Flux\Assets')
+    [string]$AssetsRoot = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -228,7 +228,7 @@ foreach ($exercise in $directionExercises) {
 }
 
 $tempRoot = Join-Path ([IO.Path]::GetTempPath()) (
-    'FluxVideoVerification-' + [Guid]::NewGuid().ToString('N'))
+    'NomadicMethodVideoVerification-' + [Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $tempRoot | Out-Null
 $checkedCount = 0
 $renderedVideoHashes = [System.Collections.Generic.List[object]]::new(

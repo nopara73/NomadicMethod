@@ -18,7 +18,7 @@ import {
 } from "../workout.js";
 
 const catalog = JSON.parse(await readFile(
-  new URL("../../Flux/Assets/exercises.json", import.meta.url), "utf8"));
+  new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 
 for (const [minutes, profile] of [
   [15, WORKOUT_MODIFIERS.Insect],

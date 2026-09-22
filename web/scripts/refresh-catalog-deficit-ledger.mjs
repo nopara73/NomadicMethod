@@ -23,7 +23,7 @@ const webRoot = path.resolve(scriptDirectory, "..");
 const repositoryRoot = path.resolve(webRoot, "..");
 const catalogPath = path.join(
   repositoryRoot,
-  "Flux",
+  "NomadicMethod",
   "Assets",
   "exercises.json",
 );

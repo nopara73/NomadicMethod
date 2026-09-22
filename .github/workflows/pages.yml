@@ -6,29 +6,29 @@ on:
     paths:
       - ".github/workflows/pages.yml"
       - "web/**"
-      - "Flux/Assets/exercises.json"
-      - "Flux/Assets/exercise_videos/**"
-      - "Flux/Assets/exercise_direction_videos/**"
-      - "Flux/Assets/exercise_hold_frames/**"
-      - "Flux/Resources/raw/**"
-      - "Flux/Flux.csproj"
-      - "Flux/MainActivity.cs"
-      - "Flux/MainActivity.Recovery.cs"
-      - "Flux/RecoveryPrivacyActivity.cs"
-      - "Flux/AndroidManifest.xml"
-      - "Flux/Data/**"
-      - "Flux/Models/**"
-      - "Flux/Services/**"
-      - "Flux/Resources/color/**"
-      - "Flux/Resources/drawable/**"
-      - "Flux/Resources/drawable-xxhdpi/**"
-      - "Flux/Resources/layout/**"
-      - "Flux/Resources/values/**"
+      - "NomadicMethod/Assets/exercises.json"
+      - "NomadicMethod/Assets/exercise_videos/**"
+      - "NomadicMethod/Assets/exercise_direction_videos/**"
+      - "NomadicMethod/Assets/exercise_hold_frames/**"
+      - "NomadicMethod/Resources/raw/**"
+      - "NomadicMethod/NomadicMethod.csproj"
+      - "NomadicMethod/MainActivity.cs"
+      - "NomadicMethod/MainActivity.Recovery.cs"
+      - "NomadicMethod/RecoveryPrivacyActivity.cs"
+      - "NomadicMethod/AndroidManifest.xml"
+      - "NomadicMethod/Data/**"
+      - "NomadicMethod/Models/**"
+      - "NomadicMethod/Services/**"
+      - "NomadicMethod/Resources/color/**"
+      - "NomadicMethod/Resources/drawable/**"
+      - "NomadicMethod/Resources/drawable-xxhdpi/**"
+      - "NomadicMethod/Resources/layout/**"
+      - "NomadicMethod/Resources/values/**"
       - "docs/catalog-audit/modifier_coverage_deficits_2026-08-29.json"
       - "docs/catalog-audit/modifier_coverage_deficits_current.json"
       - "docs/catalog-audit/migration-2026-09-05.json"
       - "docs/catalog-audit/training-claim-corrections-2026-09-05.json"
-      - "tools/flux_appicon.svg"
+      - "tools/nomadic_method_appicon.svg"
       - "tools/ExerciseMirrorRelationships.psd1"
       - "tools/Test-ExerciseMirrorRelationshipAudit.ps1"
       - "tools/ExerciseSessionMovements.psd1"
@@ -65,31 +65,31 @@ jobs:
         with:
           sparse-checkout: |
             /web/**
-            /Flux/Assets/exercises.json
-            /Flux/Assets/exercise_videos/**
-            /Flux/Assets/exercise_direction_videos/**
-            /Flux/Assets/exercise_hold_frames/**
-            /Flux/Resources/raw/**
-            /Flux.Tests/CatalogInvariantTests.cs
-            /Flux/Flux.csproj
-            /Flux/MainActivity.cs
-            /Flux/MainActivity.Recovery.cs
-            /Flux/RecoveryPrivacyActivity.cs
-            /Flux/AndroidManifest.xml
-            /Flux/WorkoutBlockTimelineView.cs
-            /Flux/Data/**
-            /Flux/Models/**
-            /Flux/Services/**
-            /Flux/Resources/color/**
-            /Flux/Resources/drawable/**
-            /Flux/Resources/drawable-xxhdpi/**
-            /Flux/Resources/layout/**
-            /Flux/Resources/values/**
+            /NomadicMethod/Assets/exercises.json
+            /NomadicMethod/Assets/exercise_videos/**
+            /NomadicMethod/Assets/exercise_direction_videos/**
+            /NomadicMethod/Assets/exercise_hold_frames/**
+            /NomadicMethod/Resources/raw/**
+            /NomadicMethod.Tests/CatalogInvariantTests.cs
+            /NomadicMethod/NomadicMethod.csproj
+            /NomadicMethod/MainActivity.cs
+            /NomadicMethod/MainActivity.Recovery.cs
+            /NomadicMethod/RecoveryPrivacyActivity.cs
+            /NomadicMethod/AndroidManifest.xml
+            /NomadicMethod/WorkoutBlockTimelineView.cs
+            /NomadicMethod/Data/**
+            /NomadicMethod/Models/**
+            /NomadicMethod/Services/**
+            /NomadicMethod/Resources/color/**
+            /NomadicMethod/Resources/drawable/**
+            /NomadicMethod/Resources/drawable-xxhdpi/**
+            /NomadicMethod/Resources/layout/**
+            /NomadicMethod/Resources/values/**
             /docs/catalog-audit/modifier_coverage_deficits_2026-08-29.json
             /docs/catalog-audit/modifier_coverage_deficits_current.json
             /docs/catalog-audit/migration-2026-09-05.json
             /docs/catalog-audit/training-claim-corrections-2026-09-05.json
-            /tools/flux_appicon.svg
+            /tools/nomadic_method_appicon.svg
             /tools/ExerciseMirrorRelationships.psd1
             /tools/Test-ExerciseMirrorRelationshipAudit.ps1
             /tools/ExerciseSessionMovements.psd1

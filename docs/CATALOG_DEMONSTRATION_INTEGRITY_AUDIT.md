@@ -159,7 +159,7 @@ admit filler or false anatomy.
 
 ## Completed validation
 
-- `tools/Generate-ExerciseCatalog.ps1 -OutputRoot Flux/Assets`: regenerated
+- `tools/Generate-ExerciseCatalog.ps1 -OutputRoot NomadicMethod/Assets`: regenerated
   **475** records from the authoritative manifests.
 - `tools/Write-CatalogIntegrityAudit.ps1`: reproduced all **479** baseline
   ledger rows and both pinned catalog hashes.
@@ -168,7 +168,7 @@ admit filler or false anatomy.
 - Hard-floor, mirror, and session-movement audits: **384/91**, **5 + 5
   MirrorOnly / 27 + 50 BenefitsGreatly / 388 Agnostic**, and **15 families / 31
   records**, respectively.
-- `dotnet test Flux.slnx --configuration Release --no-restore`: **526/526**
+- `dotnet test NomadicMethod.slnx --configuration Release --no-restore`: **526/526**
   Android tests passed.
 - `npm test`: **189/189** web tests passed, including the synchronized source
   contract.

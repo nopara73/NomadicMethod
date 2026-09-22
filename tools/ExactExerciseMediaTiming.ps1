@@ -3,7 +3,7 @@ function New-ExactExerciseGif {
         [Parameter(Mandatory)][string]$SourceGifPath,
         [Parameter(Mandatory)][string]$OutputPath,
         [Parameter(Mandatory)][System.Collections.IDictionary]$Transform,
-        [string]$Comment = 'Flux reviewed transformed exercise'
+        [string]$Comment = 'Nomadic Method reviewed transformed exercise'
     )
     # Coalescing and cloning keep the image and its individual source delay
     # together. An intermediate PNG loses that timing metadata.

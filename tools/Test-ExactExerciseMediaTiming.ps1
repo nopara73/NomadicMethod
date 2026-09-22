@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ExactExerciseMediaTiming.ps1')
-$key = 'flux-exact-timing-' + [guid]::NewGuid().ToString('N')
+$key = 'nomadic-method-exact-timing-' + [guid]::NewGuid().ToString('N')
 $root = Join-Path ([IO.Path]::GetTempPath()) $key
 New-Item -ItemType Directory -Path $root | Out-Null
 try {

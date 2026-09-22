@@ -6,11 +6,11 @@ import { fileURLToPath } from "node:url";
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const repository = path.resolve(directory, "..", "..");
-const assets = path.join(repository, "Flux", "Assets");
+const assets = path.join(repository, "NomadicMethod", "Assets");
 const reviewPath = path.join(repository, "docs", "catalog-audit", "user_exercise_reviews.json");
 const catalogPath = path.join(assets, "exercises.json");
 const revisionSource = await readFile(
-  path.join(repository, "Flux", "Services", "CatalogMigrationRules.cs"),
+  path.join(repository, "NomadicMethod", "Services", "CatalogMigrationRules.cs"),
   "utf8",
 );
 const catalogRevision = Number(

@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ReviewedSourceMedia.ps1')
-$testRoot = Join-Path ([IO.Path]::GetTempPath()) ('FluxReviewedSourceTest-' + [Guid]::NewGuid().ToString('N'))
+$testRoot = Join-Path ([IO.Path]::GetTempPath()) ('NomadicMethodReviewedSourceTest-' + [Guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path (Join-Path $testRoot 'ReviewedSourceMedia') | Out-Null
 try {
     $path = Join-Path $testRoot 'ReviewedSourceMedia/source.gif'
@@ -34,7 +34,7 @@ finally {
     $resolved = [IO.Path]::GetFullPath($testRoot)
     $temp = [IO.Path]::GetFullPath([IO.Path]::GetTempPath())
     if (-not $resolved.StartsWith($temp, [StringComparison]::OrdinalIgnoreCase) -or
-        [IO.Path]::GetFileName($resolved) -notlike 'FluxReviewedSourceTest-*') {
+        [IO.Path]::GetFileName($resolved) -notlike 'NomadicMethodReviewedSourceTest-*') {
         throw 'Unexpected test cleanup path.'
     }
     Remove-Item -LiteralPath $resolved -Recurse -Force

@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from "../workout.js";
 
-const catalog = JSON.parse(await readFile(new URL("../../Flux/Assets/exercises.json", import.meta.url), "utf8"));
+const catalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 function finish(session) {
   const group = session.getNextGroup();
   session.beginRest(group, Date.now() + 15_000);

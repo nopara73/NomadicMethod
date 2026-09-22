@@ -6,13 +6,13 @@ import test from "node:test";
 
 test("Oura is an explicit Android-only capability with a read-only private bridge", async () => {
   const root = new URL("../../", import.meta.url);
-  const manifest = await readFile(new URL("Flux/AndroidManifest.xml", root), "utf8");
+  const manifest = await readFile(new URL("NomadicMethod/AndroidManifest.xml", root), "utf8");
   assert.equal((manifest.match(/android.permission.health.READ_/g) ?? []).length, 3);
   assert.doesNotMatch(manifest, /android.permission.health.WRITE_|READ_HEALTH_DATA_IN_BACKGROUND/);
   const lock = await readFile(new URL("web/scripts/check-mobile-parity.mjs", root), "utf8");
-  for (const file of ["Flux/MainActivity.Recovery.cs", "Flux/AndroidManifest.xml", "Flux/RecoveryPrivacyActivity.cs"])
+  for (const file of ["NomadicMethod/MainActivity.Recovery.cs", "NomadicMethod/AndroidManifest.xml", "NomadicMethod/RecoveryPrivacyActivity.cs"])
     assert.ok(lock.includes(file));
-  const native = await readFile(new URL("Flux/MainActivity.Recovery.cs", root), "utf8");
+  const native = await readFile(new URL("NomadicMethod/MainActivity.Recovery.cs", root), "utf8");
   assert.match(native, /NoBackupFilesDir/);
   assert.match(native, /HasOuraPermission \? _ouraCache\.Snapshot : null/);
   assert.match(manifest, /<package android:name="com\.ouraring\.oura"/);
@@ -20,9 +20,9 @@ test("Oura is an explicit Android-only capability with a read-only private bridg
   assert.match(native, /_appScreen == AppScreen\.Duration && _state\.ActiveWorkoutSession is null/);
   assert.match(native, /RequestPermissions\(OuraHealthConnectReader\.Permissions, OuraPermissionRequest\)/);
   assert.doesNotMatch(native, /AlertDialog|Toast|Disconnect|\.Enabled|oura_recovery_button/);
-  const layout = await readFile(new URL("Flux/Resources/layout/screen_duration.xml", root), "utf8");
+  const layout = await readFile(new URL("NomadicMethod/Resources/layout/screen_duration.xml", root), "utf8");
   assert.doesNotMatch(layout, /oura_recovery_button|ic_recovery_link/);
-  const store = await readFile(new URL("Flux/Data/OuraRecoveryStore.cs", root), "utf8");
+  const store = await readFile(new URL("NomadicMethod/Data/OuraRecoveryStore.cs", root), "utf8");
   assert.doesNotMatch(store, /bool Enabled|Disconnect/);
   const page = await readFile(new URL("web/index.html", root), "utf8");
   assert.doesNotMatch(page, /oura-recovery|oura-import|Connect Oura/);
@@ -143,62 +143,62 @@ const [
   lightWorkoutCountdownBadge,
   lightCadenceModule,
 ] = await Promise.all([
-  source("Flux", "Services", "ExerciseSessionService.cs"),
-  source("Flux", "Models", "WorkoutState.cs"),
-  source("Flux", "Models", "WorkoutGroup.cs"),
-  source("Flux", "Services", "MassGroupingTaxonomy.cs"),
-  source("Flux", "Services", "MovementPhaseSchedule.cs"),
-  source("Flux", "MainActivity.cs"),
+  source("NomadicMethod", "Services", "ExerciseSessionService.cs"),
+  source("NomadicMethod", "Models", "WorkoutState.cs"),
+  source("NomadicMethod", "Models", "WorkoutGroup.cs"),
+  source("NomadicMethod", "Services", "MassGroupingTaxonomy.cs"),
+  source("NomadicMethod", "Services", "MovementPhaseSchedule.cs"),
+  source("NomadicMethod", "MainActivity.cs"),
   source("web", "app.js"),
   source("web", "workout-preparation-worker.js"),
   source("web", "instant-controls.js"),
   source("web", "workout.js"),
-  source("Flux", "Services", "CatalogMigrationRules.cs"),
-  source("Flux", "Assets", "exercises.json"),
-  source("Flux", "Models", "WorkoutModifiers.cs"),
-  source("Flux", "Models", "Exercise.cs"),
-  source("Flux", "Services", "WorkoutModifierPolicy.cs"),
-  source("Flux", "Services", "WorkoutMuscleBalancePolicy.cs"),
-  source("Flux", "Services", "WorkoutRecoveryPolicy.cs"),
-  source("Flux", "Services", "WorkoutRecoveryLightPolicy.cs"),
-  source("Flux", "Services", "WorkoutLightDayPolicy.cs"),
-  source("Flux", "Data", "SqliteExerciseDatabase.cs"),
-  source("Flux.Tests", "CatalogInvariantTests.cs"),
-  source("Flux", "Data", "ExerciseDatabaseVersionPolicy.cs"),
-  source("Flux", "Models", "WorkoutSessionLog.cs"),
-  source("Flux", "Models", "WorkoutExercisePhase.cs"),
-  source("Flux", "Resources", "layout", "screen_duration.xml"),
-  source("Flux", "Resources", "layout", "screen_workout.xml"),
-  source("Flux", "Resources", "values", "colors.xml"),
-  source("Flux", "Resources", "values", "styles.xml"),
-  source("Flux", "Resources", "values", "strings.xml"),
+  source("NomadicMethod", "Services", "CatalogMigrationRules.cs"),
+  source("NomadicMethod", "Assets", "exercises.json"),
+  source("NomadicMethod", "Models", "WorkoutModifiers.cs"),
+  source("NomadicMethod", "Models", "Exercise.cs"),
+  source("NomadicMethod", "Services", "WorkoutModifierPolicy.cs"),
+  source("NomadicMethod", "Services", "WorkoutMuscleBalancePolicy.cs"),
+  source("NomadicMethod", "Services", "WorkoutRecoveryPolicy.cs"),
+  source("NomadicMethod", "Services", "WorkoutRecoveryLightPolicy.cs"),
+  source("NomadicMethod", "Services", "WorkoutLightDayPolicy.cs"),
+  source("NomadicMethod", "Data", "SqliteExerciseDatabase.cs"),
+  source("NomadicMethod.Tests", "CatalogInvariantTests.cs"),
+  source("NomadicMethod", "Data", "ExerciseDatabaseVersionPolicy.cs"),
+  source("NomadicMethod", "Models", "WorkoutSessionLog.cs"),
+  source("NomadicMethod", "Models", "WorkoutExercisePhase.cs"),
+  source("NomadicMethod", "Resources", "layout", "screen_duration.xml"),
+  source("NomadicMethod", "Resources", "layout", "screen_workout.xml"),
+  source("NomadicMethod", "Resources", "values", "colors.xml"),
+  source("NomadicMethod", "Resources", "values", "styles.xml"),
+  source("NomadicMethod", "Resources", "values", "strings.xml"),
   source("web", "index.html"),
   source("web", "styles.css"),
   source("web", "scripts", "build.mjs"),
-  source("Flux", "Models", "MirrorEquipment.cs"),
-  source("Flux", "Models", "WallEquipment.cs"),
-  source("Flux", "Models", "ExerciseMirrorCoverage.cs"),
-  source("Flux", "Models", "ExerciseHardFloorCompatibility.cs"),
-  source("Flux", "Models", "ExerciseUpperBodyClothingRequirement.cs"),
-  source("Flux", "Models", "ExerciseShyCompatibility.cs"),
-  source("Flux", "Models", "ExerciseSequenceBlock.cs"),
-  source("Flux", "Services", "MovementPhasePresentationPolicy.cs"),
-  source("Flux", "Services", "WorkoutDisplayPolicy.cs"),
-  source("Flux", "WorkoutBlockTimelineView.cs"),
-  source("Flux", "Resources", "drawable", "ic_mirror_compact.xml"),
-  source("Flux", "Resources", "drawable", "ic_mirror_tall.xml"),
-  binarySource("Flux", "Resources", "drawable-xxhdpi", "ic_hard_floor.png"),
-  binarySource("Flux", "Resources", "drawable-xxhdpi", "ic_soft_floor.png"),
-  source("Flux", "Resources", "drawable", "ic_upper_body_clothing.xml"),
-  source("Flux", "Resources", "drawable", "ic_shy.xml"),
-  binarySource("Flux", "Resources", "drawable-xxhdpi", "ic_light_workout.png"),
-  source("Flux", "Resources", "drawable", "ic_wall.xml"),
-  source("Flux", "Resources", "drawable", "ic_wall_off.xml"),
-  binarySource("Flux", "Resources", "drawable-xxhdpi", "ic_wall_no_sole.png"),
-  source("Flux", "Services", "AtomicSequenceLineupSolver.cs"),
-  source("Flux", "Services", "WorkoutSequencePolicy.cs"),
-  source("Flux", "Services", "WorkoutSchedulePolicy.cs"),
-  source("Flux", "Resources", "drawable", "light_workout_countdown_badge.xml"),
+  source("NomadicMethod", "Models", "MirrorEquipment.cs"),
+  source("NomadicMethod", "Models", "WallEquipment.cs"),
+  source("NomadicMethod", "Models", "ExerciseMirrorCoverage.cs"),
+  source("NomadicMethod", "Models", "ExerciseHardFloorCompatibility.cs"),
+  source("NomadicMethod", "Models", "ExerciseUpperBodyClothingRequirement.cs"),
+  source("NomadicMethod", "Models", "ExerciseShyCompatibility.cs"),
+  source("NomadicMethod", "Models", "ExerciseSequenceBlock.cs"),
+  source("NomadicMethod", "Services", "MovementPhasePresentationPolicy.cs"),
+  source("NomadicMethod", "Services", "WorkoutDisplayPolicy.cs"),
+  source("NomadicMethod", "WorkoutBlockTimelineView.cs"),
+  source("NomadicMethod", "Resources", "drawable", "ic_mirror_compact.xml"),
+  source("NomadicMethod", "Resources", "drawable", "ic_mirror_tall.xml"),
+  binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_hard_floor.png"),
+  binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_soft_floor.png"),
+  source("NomadicMethod", "Resources", "drawable", "ic_upper_body_clothing.xml"),
+  source("NomadicMethod", "Resources", "drawable", "ic_shy.xml"),
+  binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_light_workout.png"),
+  source("NomadicMethod", "Resources", "drawable", "ic_wall.xml"),
+  source("NomadicMethod", "Resources", "drawable", "ic_wall_off.xml"),
+  binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_wall_no_sole.png"),
+  source("NomadicMethod", "Services", "AtomicSequenceLineupSolver.cs"),
+  source("NomadicMethod", "Services", "WorkoutSequencePolicy.cs"),
+  source("NomadicMethod", "Services", "WorkoutSchedulePolicy.cs"),
+  source("NomadicMethod", "Resources", "drawable", "light_workout_countdown_badge.xml"),
   source("web", "light-cadence.js"),
 ]);
 const catalog = JSON.parse(catalogJson);
@@ -269,9 +269,9 @@ test("web and mobile persist the same complete workout audit trail", () => {
     LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT,
     integerConstant(lightDayPolicy, "RegularMinutesBeforeLightDay"),
   );
-  assert.equal(globalThis.fluxLightCadence.dailyCap, LIGHT_DAY_DAILY_REGULAR_MINUTES_CAP);
-  assert.equal(globalThis.fluxLightCadence.threshold, LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT);
-  assert.equal(globalThis.fluxLightCadence.fullCreditCompletionPercent,
+  assert.equal(globalThis.nomadicMethodLightCadence.dailyCap, LIGHT_DAY_DAILY_REGULAR_MINUTES_CAP);
+  assert.equal(globalThis.nomadicMethodLightCadence.threshold, LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT);
+  assert.equal(globalThis.nomadicMethodLightCadence.fullCreditCompletionPercent,
     integerConstant(lightDayPolicy, "MinimumRegularCompletionPercentForFullCredit"));
   assert.equal(
     MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES,
@@ -1096,7 +1096,7 @@ test("web and mobile persist one combined duration and modifier selection contex
   );
   assert.match(
     instantControls,
-    /readPersistedSetup[\s\S]*fluxLightCadence\.workoutsRemaining[\s\S]*fluxLightCadence\.isDue/,
+    /readPersistedSetup[\s\S]*nomadicMethodLightCadence\.workoutsRemaining[\s\S]*nomadicMethodLightCadence\.isDue/,
   );
   assert.match(
     lightDayPolicy,
@@ -1403,7 +1403,7 @@ test("movement and rest phases use pronounced accents across the surface, media,
   assert.match(mainActivity, /phase_move_chip_background/);
   assert.match(
     androidStyles,
-    /FluxKeepButton[\s\S]*@drawable\/rest_button_background/,
+    /NomadicMethodKeepButton[\s\S]*@drawable\/rest_button_background/,
   );
   assert.match(
     workoutLayout,
@@ -1591,7 +1591,7 @@ test("literal work-block timelines and logical exercise progress match", () => {
 });
 
 test("Android device builds embed their managed assemblies", async () => {
-  const project = await source("Flux", "Flux.csproj");
+  const project = await source("NomadicMethod", "NomadicMethod.csproj");
   assert.match(project, /<EmbedAssembliesIntoApk>true<\/EmbedAssembliesIntoApk>/);
 });
 
@@ -1627,7 +1627,7 @@ test("duration controls do not wait for catalog startup on either platform", () 
   assert.match(webIndex, /<script src="\.\/instant-controls\.js"><\/script>/);
   assert.match(
     instantControls,
-    /flux-controls-ready[\s\S]*durationDecrease|duration-decrease[\s\S]*requestStart/,
+    /nomadic-method-controls-ready[\s\S]*durationDecrease|duration-decrease[\s\S]*requestStart/,
   );
   assert.match(
     instantControls,
@@ -1672,7 +1672,7 @@ test("Start activates an off-thread prepared workout on Android and web", () => 
 
 test("Android persistence rejects malformed stored shapes without crashing launch", async () => {
   const stateStore = await source(
-    "Flux",
+    "NomadicMethod",
     "Data",
     "SharedPreferencesWorkoutStateStore.cs",
   );
@@ -1688,7 +1688,7 @@ test("Android persistence rejects malformed stored shapes without crashing launc
 });
 
 test("workout transport controls are functional and muscle labels stay hidden", async () => {
-  const workoutLayout = await source("Flux", "Resources", "layout", "screen_workout.xml");
+  const workoutLayout = await source("NomadicMethod", "Resources", "layout", "screen_workout.xml");
   const startControl = [...workoutLayout.matchAll(/<ImageButton[\s\S]*?\/>/g)]
     .map((match) => match[0])
     .find((control) => control.includes('android:id="@+id/start_button"')) ?? "";
@@ -1915,7 +1915,7 @@ test("mid-workout modifiers revalidate the active exercise on both platforms", (
 });
 
 test("session continuity, editable duration, and explicit end stay in parity", async () => {
-  const editing = await readFile(new URL("../../Flux/Services/WorkoutSessionEditing.cs", import.meta.url), "utf8");
+  const editing = await readFile(new URL("../../NomadicMethod/Services/WorkoutSessionEditing.cs", import.meta.url), "utf8");
   assert.match(mainActivity, /sessionService\.RestoreAfterReopen\(_state\)/);
   const startup = methodBody(mainActivity, "private ApplicationStartupResult InitializeApplication(", "private void CompleteApplicationStartup(");
   assert.doesNotMatch(startup, /FinishInterruptedWorkout|FinalizeCurrentWorkout|PrepareWorkout/);
@@ -1978,8 +1978,8 @@ test("duration modifiers separate workout context from available equipment", () 
 
 test("active movement checkpoints and invalid media recovery match across platforms", async () => {
   const [stateStoreContract, stateStore] = await Promise.all([
-    source("Flux", "Data", "IWorkoutStateStore.cs"),
-    source("Flux", "Data", "SharedPreferencesWorkoutStateStore.cs"),
+    source("NomadicMethod", "Data", "IWorkoutStateStore.cs"),
+    source("NomadicMethod", "Data", "SharedPreferencesWorkoutStateStore.cs"),
   ]);
   assert.match(workoutState, /PendingMovementGroupId/);
   assert.match(workoutState, /PendingMovementMillisecondsRemaining/);

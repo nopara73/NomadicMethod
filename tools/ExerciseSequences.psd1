@@ -4,7 +4,7 @@
 @{
     # Ordered exercise families that are valuable only when every block is
     # completed in one uninterrupted sequence. Each member expands to its own
-    # reviewed 45-second side/direction blocks; Flux inserts 15 seconds between
+    # reviewed 45-second side/direction blocks; NomadicMethod inserts 15 seconds between
     # blocks and records one outcome only after the final block.
     Sequences = @{
         '96' = @(96, 540)                 # Figure-four squat sides, then alternating integration

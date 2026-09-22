@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$BaselineCatalogPath,
-    [string]$CatalogPath = (Join-Path $PSScriptRoot '..\Flux\Assets\exercises.json'),
+    [string]$CatalogPath = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets\exercises.json'),
     [string]$ReviewEvidencePath,
     [string]$OutputPath = (Join-Path $PSScriptRoot '..\docs\catalog-audit\demonstration_metadata_integrity_current.csv')
 )

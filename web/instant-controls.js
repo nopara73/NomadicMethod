@@ -80,7 +80,7 @@
 
   renderDuration();
   renderModifiers();
-  performance.mark?.("flux-controls-ready");
+  performance.mark?.("nomadic-method-controls-ready");
 
   const controller = {
     get selectedMinutes() {
@@ -180,7 +180,7 @@
       }
     },
   };
-  window.fluxStartupControls = controller;
+  window.nomadicMethodStartupControls = controller;
 
   function readInitialModifiers() {
     let modifiers = 0;
@@ -223,11 +223,11 @@
       const storedModifiers = Number.isInteger(raw.lastWorkoutModifiers)
         ? raw.lastWorkoutModifiers & ~modifierFlags.light
         : readInitialModifiers();
-      const lightWorkoutsRemaining = globalThis.fluxLightCadence.workoutsRemaining(
+      const lightWorkoutsRemaining = globalThis.nomadicMethodLightCadence.workoutsRemaining(
         raw.workoutHistory, selectedMinutes, Date.now(),
         raw.legacyCompletedTrainingDayUnixMilliseconds,
       );
-      const automaticLightMode = globalThis.fluxLightCadence.isDue(
+      const automaticLightMode = globalThis.nomadicMethodLightCadence.isDue(
         raw.workoutHistory, Date.now(), raw.legacyCompletedTrainingDayUnixMilliseconds,
       );
       return {
@@ -263,7 +263,7 @@
     selectedMinutes = minutes;
     selectionChanged = true;
     const raw = persistedSetup?.cadenceState ?? {};
-    lightWorkoutsRemaining = globalThis.fluxLightCadence.workoutsRemaining(
+    lightWorkoutsRemaining = globalThis.nomadicMethodLightCadence.workoutsRemaining(
       raw.workoutHistory, selectedMinutes, Date.now(),
       raw.legacyCompletedTrainingDayUnixMilliseconds,
     );

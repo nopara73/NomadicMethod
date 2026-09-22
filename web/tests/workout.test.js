@@ -763,7 +763,7 @@ test("long-workout balance uses the actual repeated-set allocation", () => {
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(testDirectory, "..", "..");
 const catalog = JSON.parse(
-  await readFile(path.join(repositoryRoot, "Flux", "Assets", "exercises.json"), "utf8"),
+  await readFile(path.join(repositoryRoot, "NomadicMethod", "Assets", "exercises.json"), "utf8"),
 );
 
 test("asymmetric demonstrations use atomic mirrored side sequences", () => {
@@ -1125,7 +1125,7 @@ test("recovery-light requires four fifths of selectable muscles to have no fresh
   ).isActive, true);
 });
 
-test("duration inventory and legacy normalization match Flux", () => {
+test("duration inventory and legacy normalization match NomadicMethod", () => {
   assert.deepEqual(SUPPORTED_MINUTES, [3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
   assert.equal(normalizeMinutes(6), 7);
   assert.equal(normalizeMinutes(4), 5);
@@ -9456,7 +9456,7 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
     const videoPath = getExerciseVideoPath(item);
     assert.match(videoPath, /\.mp4$/);
     assert.doesNotMatch(videoPath, /exercise_gifs|\.gif$/i);
-    await assertFile(path.join(repositoryRoot, "Flux", "Assets", videoPath));
+    await assertFile(path.join(repositoryRoot, "NomadicMethod", "Assets", videoPath));
 
     if (item.directionSequence !== "None") {
       directionIds.push(item.id);
@@ -9475,14 +9475,14 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
         assert.equal(directionVideoPath, segment === "FirstDirection"
           ? item.video
           : `exercise_direction_videos/exercise_${String(item.id).padStart(4, "0")}.mp4`);
-        await assertFile(path.join(repositoryRoot, "Flux", "Assets", directionVideoPath));
+        await assertFile(path.join(repositoryRoot, "NomadicMethod", "Assets", directionVideoPath));
       }
     }
     if (item.mode === "Hold") {
       holds.push(item);
       assert.match(item.name, /\b(?:hold|isometric|pose|posing|stance|stretch|sit|against)\b/i);
       await assertFile(
-        path.join(repositoryRoot, "Flux", "Assets", getHoldFramePath(item)),
+        path.join(repositoryRoot, "NomadicMethod", "Assets", getHoldFramePath(item)),
       );
     }
   }

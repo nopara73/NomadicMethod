@@ -8,22 +8,22 @@ const webRoot = path.resolve(scriptDirectory, "..");
 const repositoryRoot = path.resolve(webRoot, "..");
 const manifestPath = path.join(webRoot, "mobile-parity.json");
 const sourceTargets = [
-  "Flux/Flux.csproj",
-  "Flux/MainActivity.cs",
+  "NomadicMethod/NomadicMethod.csproj",
+  "NomadicMethod/MainActivity.cs",
   // Oura is intentionally Android-only (owner decision, docs/OURA_RECOVERY.md).
   // Track its bridge and permission surface even though web has no health UI.
-  "Flux/MainActivity.Recovery.cs",
-  "Flux/RecoveryPrivacyActivity.cs",
-  "Flux/AndroidManifest.xml",
-  "Flux/WorkoutBlockTimelineView.cs",
-  "Flux/Data",
-  "Flux/Models",
-  "Flux/Services",
-  "Flux/Resources/color",
-  "Flux/Resources/drawable",
-  "Flux/Resources/drawable-xxhdpi",
-  "Flux/Resources/layout",
-  "Flux/Resources/values",
+  "NomadicMethod/MainActivity.Recovery.cs",
+  "NomadicMethod/RecoveryPrivacyActivity.cs",
+  "NomadicMethod/AndroidManifest.xml",
+  "NomadicMethod/WorkoutBlockTimelineView.cs",
+  "NomadicMethod/Data",
+  "NomadicMethod/Models",
+  "NomadicMethod/Services",
+  "NomadicMethod/Resources/color",
+  "NomadicMethod/Resources/drawable",
+  "NomadicMethod/Resources/drawable-xxhdpi",
+  "NomadicMethod/Resources/layout",
+  "NomadicMethod/Resources/values",
 ];
 
 const sourceFiles = [];

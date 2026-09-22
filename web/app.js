@@ -119,7 +119,7 @@ const sounds = Object.fromEntries(
   }),
 );
 
-const startupControls = window.fluxStartupControls ?? null;
+const startupControls = window.nomadicMethodStartupControls ?? null;
 let session = null;
 let exerciseCatalog = null;
 let assetVersions = Object.freeze({});
@@ -217,7 +217,7 @@ async function bootstrap() {
     renderDuration(selectedMinutes, false);
     renderWorkoutModifiers();
     startupControls?.setSelection(selectedMinutes, selectedModifiers);
-    performance.mark?.("flux-session-ready");
+    performance.mark?.("nomadic-method-session-ready");
 
     if (session.state.workoutCompleted && !session.state.completionAcknowledged) {
       cancelQueuedWorkoutStart();
@@ -988,7 +988,7 @@ function queueWorkoutPreparation(
     workoutPreparationWorker = null;
     preparedWorkout = result;
     if (result) {
-      performance.mark?.("flux-workout-prepared");
+      performance.mark?.("nomadic-method-workout-prepared");
     }
     workoutPreparationResolve?.(result);
     workoutPreparationResolve = null;
@@ -1125,7 +1125,7 @@ function cloneWorkoutState(state) {
 }
 
 async function startWorkout() {
-  performance.mark?.("flux-workout-start-requested");
+  performance.mark?.("nomadic-method-workout-start-requested");
   if (!session) {
     startWorkoutWhenReady = true;
     elements.beginWorkout.disabled = true;
@@ -1168,11 +1168,11 @@ async function startWorkout() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSession.state));
     session = nextSession;
     showNextExercise();
-    performance.mark?.("flux-workout-visible");
+    performance.mark?.("nomadic-method-workout-visible");
     performance.measure?.(
-      "flux-workout-start-latency",
-      "flux-workout-start-requested",
-      "flux-workout-visible",
+      "nomadic-method-workout-start-latency",
+      "nomadic-method-workout-start-requested",
+      "nomadic-method-workout-visible",
     );
   } catch (error) {
     console.error(error);

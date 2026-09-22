@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.11" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!--
+    The Android app has a single net10.0-android target. Link its platform-neutral
+    domain sources so these tests run as ordinary .NET tests without an emulator.
+  -->
+  <ItemGroup>
+    <Compile Include="..\NomadicMethod\Data\IExerciseDatabase.cs" Link="Production\Data\IExerciseDatabase.cs" />
+    <Compile Include="..\NomadicMethod\Data\OuraRecoveryStore.cs" Link="Production\Data\OuraRecoveryStore.cs" />
+    <Compile Include="..\NomadicMethod\Models\OuraRecoverySnapshot.cs" Link="Production\Models\OuraRecoverySnapshot.cs" />
+    <Compile Include="..\NomadicMethod\Services\OuraRecoveryPolicy.cs" Link="Production\Services\OuraRecoveryPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\RestFeedback.cs" Link="Production\Services\RestFeedback.cs" />
+    <Compile Include="..\NomadicMethod\Services\OuraNightBuilder.cs" Link="Production\Services\OuraNightBuilder.cs" />
+    <Compile Include="..\NomadicMethod\Data\ExerciseDatabaseMigrationSql.cs" Link="Production\Data\ExerciseDatabaseMigrationSql.cs" />
+    <Compile Include="..\NomadicMethod\Data\ExerciseDatabaseVersionPolicy.cs" Link="Production\Data\ExerciseDatabaseVersionPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Data\IWorkoutStateStore.cs" Link="Production\Data\IWorkoutStateStore.cs" />
+    <Compile Include="..\NomadicMethod\Models\CanonicalMuscleGroup.cs" Link="Production\Models\CanonicalMuscleGroup.cs" />
+    <Compile Include="..\NomadicMethod\Models\Exercise.cs" Link="Production\Models\Exercise.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseSequenceBlock.cs" Link="Production\Models\ExerciseSequenceBlock.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseInsectCompatibility.cs" Link="Production\Models\ExerciseInsectCompatibility.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseHardFloorCompatibility.cs" Link="Production\Models\ExerciseHardFloorCompatibility.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseUpperBodyClothingRequirement.cs" Link="Production\Models\ExerciseUpperBodyClothingRequirement.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseShyCompatibility.cs" Link="Production\Models\ExerciseShyCompatibility.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseMirrorCoverage.cs" Link="Production\Models\ExerciseMirrorCoverage.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseMirrorRelationship.cs" Link="Production\Models\ExerciseMirrorRelationship.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseMode.cs" Link="Production\Models\ExerciseMode.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExercisePresentation.cs" Link="Production\Models\ExercisePresentation.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseDirectionSequence.cs" Link="Production\Models\ExerciseDirectionSequence.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseSideSequence.cs" Link="Production\Models\ExerciseSideSequence.cs" />
+    <Compile Include="..\NomadicMethod\Models\ExerciseOutcome.cs" Link="Production\Models\ExerciseOutcome.cs" />
+    <Compile Include="..\NomadicMethod\Models\RecordedWorkoutOutcome.cs" Link="Production\Models\RecordedWorkoutOutcome.cs" />
+    <Compile Include="..\NomadicMethod\Models\LegacyWorkoutState.cs" Link="Production\Models\LegacyWorkoutState.cs" />
+    <Compile Include="..\NomadicMethod\Models\WorkoutGroup.cs" Link="Production\Models\WorkoutGroup.cs" />
+    <Compile Include="..\NomadicMethod\Models\WorkoutExercisePhase.cs" Link="Production\Models\WorkoutExercisePhase.cs" />
+    <Compile Include="..\NomadicMethod\Models\WorkoutModifiers.cs" Link="Production\Models\WorkoutModifiers.cs" />
+    <Compile Include="..\NomadicMethod\Models\WorkoutSessionLog.cs" Link="Production\Models\WorkoutSessionLog.cs" />
+    <Compile Include="..\NomadicMethod\Models\MirrorEquipment.cs" Link="Production\Models\MirrorEquipment.cs" />
+    <Compile Include="..\NomadicMethod\Models\WallEquipment.cs" Link="Production\Models\WallEquipment.cs" />
+    <Compile Include="..\NomadicMethod\Models\WorkoutState.cs" Link="Production\Models\WorkoutState.cs" />
+    <Compile Include="..\NomadicMethod\Services\ExerciseSessionService.cs" Link="Production\Services\ExerciseSessionService.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutSessionEditing.cs" Link="Production\Services\WorkoutSessionEditing.cs" />
+    <Compile Include="..\NomadicMethod\Services\AtomicSequenceLineupSolver.cs" Link="Production\Services\AtomicSequenceLineupSolver.cs" />
+    <Compile Include="..\NomadicMethod\Services\LegacyWorkoutStateMigration.cs" Link="Production\Services\LegacyWorkoutStateMigration.cs" />
+    <Compile Include="..\NomadicMethod\Services\CatalogMigrationRules.cs" Link="Production\Services\CatalogMigrationRules.cs" />
+    <Compile Include="..\NomadicMethod\Services\MassGroupingTaxonomy.cs" Link="Production\Services\MassGroupingTaxonomy.cs" />
+    <Compile Include="..\NomadicMethod\Services\MovementPhaseSchedule.cs" Link="Production\Services\MovementPhaseSchedule.cs" />
+    <Compile Include="..\NomadicMethod\Services\MovementPhasePresentationPolicy.cs" Link="Production\Services\MovementPhasePresentationPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutCoveragePolicy.cs" Link="Production\Services\WorkoutCoveragePolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutDisplayPolicy.cs" Link="Production\Services\WorkoutDisplayPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutLightDayPolicy.cs" Link="Production\Services\WorkoutLightDayPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutModifierPolicy.cs" Link="Production\Services\WorkoutModifierPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutMuscleBalancePolicy.cs" Link="Production\Services\WorkoutMuscleBalancePolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutRecoveryPolicy.cs" Link="Production\Services\WorkoutRecoveryPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutRecoveryLightPolicy.cs" Link="Production\Services\WorkoutRecoveryLightPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutSchedulePolicy.cs" Link="Production\Services\WorkoutSchedulePolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutSequencePolicy.cs" Link="Production\Services\WorkoutSequencePolicy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\web\tests\fixtures\regional-compound-cases.json"
+          Link="Assets\regional-compound-cases.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\docs\catalog-audit\training-claim-corrections-2026-09-05.json"
+          Link="Assets\training-claim-corrections-2026-09-05.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\docs\catalog-audit\migration-2026-09-05.json"
+          Link="Assets\migration-2026-09-05.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\NomadicMethod\Assets\exercises.json"
+          Link="Assets\exercises.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Fixtures\oura-recovery-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\NomadicMethod\Assets\exercise_hold_frames\*.png"
+          Link="Assets\exercise_hold_frames\%(Filename)%(Extension)"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
