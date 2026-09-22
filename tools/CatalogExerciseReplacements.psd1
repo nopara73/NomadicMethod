@@ -2709,7 +2709,7 @@
         HoldFramePercent = 90
         Media = @{
             LocalSourceFile = 'preserved-0261-20260905.gif'
-            LocalSourceSha256 = 'ccace086fd1a445cab3748f7cfd65e41a5b3c67f83ef67e2f1998bd2192fc50e'
+            LocalSourceSha256 = '359c037b6dbd59e74953ff2a2a5778ef61085099eca37628cba0177de7468f97'
             File = 'preserved-0261-20260905.gif'
             Url = 'https://www.youtube.com/watch?v=PJO1hQSMPT4'
             SourcePage = 'https://www.youtube.com/watch?v=PJO1hQSMPT4'
@@ -7801,7 +7801,7 @@
         Presentation = 'Still'
         HoldFramePercent = 90
         Media = @{
-            LocalSourceSha256 = 'ccace086fd1a445cab3748f7cfd65e41a5b3c67f83ef67e2f1998bd2192fc50e'
+            LocalSourceSha256 = '359c037b6dbd59e74953ff2a2a5778ef61085099eca37628cba0177de7468f97'
             LocalSourceFile = 'preserved-0261-20260905.gif'
             File = 'preserved-0261-20260905.gif'
             Url = 'https://www.youtube.com/watch?v=PJO1hQSMPT4'

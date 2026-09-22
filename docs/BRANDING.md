@@ -21,6 +21,8 @@ package or storage names. This is a separate Android installation and browser
 storage namespace. Existing data is not automatically imported. Android owns
 health-data consent for the new installation.
 
-Current documentation and audit records use the current product name. Exercise
-IDs, catalog revisions, review measurements, media bytes, and the flowing emblem
-are unchanged.
+Current documentation, audit records, and source GIF comments use the current
+product name. The GIF comment update preserves every image, palette, frame delay,
+and loop block byte for byte; source-file checksums reflect the updated comments.
+Exercise IDs, catalog revisions, review measurements, packaged runtime media,
+and the flowing emblem are unchanged.
