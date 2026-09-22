@@ -11,9 +11,8 @@ randomness, or filters to destroy anatomical coverage.
 
 Try the web app: [Nomadic Method](https://nopara73.github.io/NomadicMethod/)
 
-Formerly Flux. Existing Android installs and saved workouts, scores, and Keeps
-carry over. The previous web address redirects to the current app. See the
-[rebrand compatibility notes](docs/REBRAND_COMPATIBILITY.md).
+The Android package and local storage use the Nomadic Method identity. See the
+[product identifiers](docs/BRANDING.md).
 
 Nomadic Method is also a private, offline Android app written in C# with .NET for Android.
 It supports Android 7.0 (API 24) and newer. No account is required.
@@ -601,6 +600,10 @@ Android code or resources change without a reviewed web parity update.
 
 ## Build and verify
 
+`global.json` selects the validated .NET 10.0.3xx SDK feature band. Install that
+SDK and its Android workload before building; a newer SDK feature band can have
+a different set of installed workloads.
+
 Build the Android solution:
 
 ```powershell
@@ -626,8 +629,8 @@ Run the Android app on an authorized USB-debugging device:
 ```powershell
 adb devices
 dotnet build .\NomadicMethod\NomadicMethod.csproj -c Debug -f net10.0-android
-adb install -r .\NomadicMethod\bin\Debug\net10.0-android\com.local.flux-Signed.apk
-adb shell run-as com.local.flux pwd
+adb install -r .\NomadicMethod\bin\Debug\net10.0-android\com.local.nomadicmethod-Signed.apk
+adb shell run-as com.local.nomadicmethod pwd
 ```
 
 The connected development phone must always receive this debuggable build. Use

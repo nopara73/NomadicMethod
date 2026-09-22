@@ -1775,7 +1775,7 @@ function New-ExternalExerciseGif {
     # a stable temporary cache so an interrupted review run can resume without
     # downloading the same long human-demonstration videos again.
     $sourceRoot = Join-Path (
-        [IO.Path]::GetTempPath()) 'FluxExerciseSourceCache'
+        [IO.Path]::GetTempPath()) 'NomadicMethodExerciseSourceCache'
     $frameRoot = Join-Path $WorkingRoot ('external-frames-{0:D4}' -f $ExerciseId)
     New-Item -ItemType Directory -Force -Path $sourceRoot, $frameRoot | Out-Null
 

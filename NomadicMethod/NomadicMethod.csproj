@@ -5,9 +5,9 @@
     <OutputType>Exe</OutputType>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationId>com.local.flux</ApplicationId>
-    <ApplicationVersion>135</ApplicationVersion>
-    <ApplicationDisplayVersion>3.21</ApplicationDisplayVersion>
+    <ApplicationId>com.local.nomadicmethod</ApplicationId>
+    <ApplicationVersion>136</ApplicationVersion>
+    <ApplicationDisplayVersion>3.22</ApplicationDisplayVersion>
     <!-- Device deployments must remain launchable without transient fast-deploy files. -->
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <!--

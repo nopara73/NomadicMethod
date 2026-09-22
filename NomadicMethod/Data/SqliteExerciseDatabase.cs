@@ -10,7 +10,7 @@ namespace NomadicMethod.Data;
 
 public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
 {
-    private const string DatabaseFileName = "flux_exercises.db";
+    private const string DatabaseFileName = "nomadic_method_exercises.db";
     private const int DatabaseVersion = ExerciseDatabaseVersionPolicy.CurrentVersion;
     private const string ExerciseTable = "exercises";
     private const string CanonicalGroupTable = "canonical_muscle_groups";

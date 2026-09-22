@@ -9,8 +9,7 @@ using NomadicMethod.Services;
 namespace NomadicMethod;
 
 [Activity(
-    // Preserve the installed launcher component across the namespace/assembly rename.
-    Name = "crc648a276c800321e548.MainActivity",
+    Name = "com.local.nomadicmethod.MainActivity",
     Label = "@string/app_name",
     MainLauncher = true,
     ConfigurationChanges =

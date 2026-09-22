@@ -5,7 +5,7 @@ Every frame is shown in `1031-all-53-frames.jpg`. The original source window
 is Melissa Villagomez's public Get Healthy U TV legs workout at 6:28-6:30.7;
 see the research and completion records for source cues and identity review.
 
-`playback.json` and the screenshots record the actual Flux source-preview
+`playback.json` and the screenshots record the actual Nomadic Method source-preview
 player's paused/resumed preparation, work, rest and next movement. Target round
 6 used the real ten-minute planner with Insect, Silence, Hard Floor, Upper Body
 Clothing and Shy enabled (profile 659). Five previous round outcomes were

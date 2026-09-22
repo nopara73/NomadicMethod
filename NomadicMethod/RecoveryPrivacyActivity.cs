@@ -2,7 +2,7 @@ using Android.Content;
 
 namespace NomadicMethod;
 
-[Activity(Name = "com.local.flux.RecoveryPrivacyActivity", Exported = true,
+[Activity(Name = "com.local.nomadicmethod.RecoveryPrivacyActivity", Exported = true,
     Permission = "android.permission.START_VIEW_PERMISSION_USAGE")]
 [IntentFilter([Intent.ActionViewPermissionUsage], Categories = ["android.intent.category.HEALTH_PERMISSIONS"])]
 public sealed class RecoveryPrivacyActivity : Activity

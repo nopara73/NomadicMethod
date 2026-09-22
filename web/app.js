@@ -27,7 +27,7 @@ import {
   withWallEquipment,
 } from "./workout.js";
 
-const STORAGE_KEY = "flux.workout.state.v1";
+const STORAGE_KEY = "nomadic-method.workout.state.v1";
 const TIMER_INTERVAL_MS = 100;
 const MEDIA_RECOVERY_TIMEOUT_MS = 12_000;
 const MODIFIER_FEEDBACK_DURATION_MS = 2_040;

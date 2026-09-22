@@ -1,5 +1,5 @@
 (() => {
-  const storageKey = "flux.workout.state.v1";
+  const storageKey = "nomadic-method.workout.state.v1";
   const durationOptions = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
   const modifierFlags = Object.freeze({
     insect: 1,

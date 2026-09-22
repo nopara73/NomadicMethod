@@ -7,7 +7,7 @@ namespace NomadicMethod.Data;
 
 public sealed class SharedPreferencesWorkoutStateStore : IWorkoutStateStore
 {
-    private const string PreferencesName = "flux_workout_state";
+    private const string PreferencesName = "nomadic_method_workout_state";
     private const string StateKey = "state";
 
     private readonly ISharedPreferences _preferences;

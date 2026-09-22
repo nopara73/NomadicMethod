@@ -23,7 +23,7 @@ foreach ($name in @('Publish-GeneratedFile', 'New-ExternalExerciseGif', 'New-Exe
 
 $testKey = 'nomadic-method-media-timing-' + [Guid]::NewGuid().ToString('N')
 $testRoot = Join-Path ([IO.Path]::GetTempPath()) $testKey
-$sourceRoot = Join-Path ([IO.Path]::GetTempPath()) 'FluxExerciseSourceCache'
+$sourceRoot = Join-Path ([IO.Path]::GetTempPath()) 'NomadicMethodExerciseSourceCache'
 $sourceName = $testKey + '.mp4'
 $sourcePath = Join-Path $sourceRoot $sourceName
 $animatedSourceName = $testKey + '.gif'

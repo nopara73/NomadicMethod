@@ -21,7 +21,7 @@
 
 - Always install a debuggable `Debug` build on the user's connected phone. Release APKs may be built as distribution artifacts, but must not be installed on that phone.
 - Replace the existing package in place so persisted workout state survives. Never uninstall the app or clear its data as part of deployment.
-- Before switching an existing installation to Debug, verify that the installed APK and Debug APK have the same signing certificate. After installation, verify that `run-as com.local.flux` succeeds; an install is not complete merely because `adb install` returned success.
+- Before switching an existing installation to Debug, verify that the installed APK and Debug APK have the same signing certificate. After installation, verify that `run-as com.local.nomadicmethod` succeeds; an install is not complete merely because `adb install` returned success.
 
 # Exercise selection guidelines
 

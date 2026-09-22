@@ -1,5 +1,5 @@
 function Get-YtDlpPath {
-    $sourceCacheRoot = Join-Path ([IO.Path]::GetTempPath()) 'FluxExerciseSourceCache'
+    $sourceCacheRoot = Join-Path ([IO.Path]::GetTempPath()) 'NomadicMethodExerciseSourceCache'
     New-Item -ItemType Directory -Force -Path $sourceCacheRoot | Out-Null
     $version = '2026.08.19'
     $expectedHash = '66674953fe251b89f4d08c5f0e35e0728679bd67ab3d7d05c0562af101dd3e7a'

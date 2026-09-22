@@ -2564,7 +2564,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = '5c3186691b3e0b10b0f6beb72352dc9c35f5c464d976f32b2bc111eaf10ca7ba'
             LocalSourceFile = 'catalog-audit-0264-22.2-2.1.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\arms74.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\arms74.mp4'
             Url = 'https://www.youtube.com/watch?v=PJO1hQSMPT4'
             SourcePage = 'https://www.youtube.com/watch?v=PJO1hQSMPT4'
             Human = $true
@@ -2594,7 +2594,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = 'af922094bc62d040a18af301ec1ce4dfbabab8ce2bbabba7801808f9daf826b1'
             LocalSourceFile = 'catalog-audit-0265-54-1.8.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\speedbag74.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\speedbag74.mp4'
             Url = 'https://www.youtube.com/watch?v=OOHFTjpK5LM'
             SourcePage = 'https://www.youtube.com/watch?v=OOHFTjpK5LM'
             Human = $true
@@ -2624,7 +2624,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = 'e75f62c82b0849d75f54b17e816f4a36fce839babc67e4865fd24cc54eae8710'
             LocalSourceFile = 'catalog-audit-0266-161.28-3.15.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\bodyflow70.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\bodyflow70.mp4'
             Url = 'https://www.youtube.com/watch?v=kfP_9z-BtmA'
             SourcePage = 'https://www.youtube.com/watch?v=kfP_9z-BtmA'
             Human = $true
@@ -2798,7 +2798,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = '80e15df72264de234c54a112c3e55d0997e8137675be8b051ac92192bcabfb45'
             LocalSourceFile = 'catalog-audit-0275-207.26-1.96.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\bodyflow70.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\bodyflow70.mp4'
             Url = 'https://www.youtube.com/watch?v=kfP_9z-BtmA'
             SourcePage = 'https://www.youtube.com/watch?v=kfP_9z-BtmA'
             Human = $true
@@ -3396,7 +3396,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = 'ee911d8b39235737a51b1e38732dc692ee365329bc5b825e755f105eb6f4b636'
             LocalSourceFile = 'catalog-audit-0301-2.32-1.44.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\darebee-side-arm-raises.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\darebee-side-arm-raises.mp4'
             Url = 'https://www.youtube.com/watch?v=ww0r9xZunDM'
             SourcePage = 'https://www.youtube.com/watch?v=ww0r9xZunDM'
             Human = $true
@@ -4511,7 +4511,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = '267fc6f6ec858ca339438b7771a20bfc2aa3e8e9342c34f3f6a7e14330ff7547'
             LocalSourceFile = 'catalog-audit-0422-82.1-5.4.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\hasfit-neck-stretches.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\hasfit-neck-stretches.mp4'
             Url = 'https://www.youtube.com/watch?v=A-ZhcHmG-a8'
             SourcePage = 'https://hasfit.com/workouts/rehabilitation/neck-stretches-for-neck-pain-relief/'
             Human = $true
@@ -4541,7 +4541,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = '3f4f9da45e53e1b53b479dc654aa069d8e6296a7787d36529d0a640c011e7573'
             LocalSourceFile = 'catalog-audit-0423-135.25-4.45.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\hasfit-neck-stretches.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\hasfit-neck-stretches.mp4'
             Url = 'https://www.youtube.com/watch?v=A-ZhcHmG-a8'
             SourcePage = 'https://hasfit.com/workouts/rehabilitation/neck-stretches-for-neck-pain-relief/'
             Human = $true
@@ -4631,7 +4631,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = 'aaca1cb6326ccea2136b3854348a069c3c30cd172b095edc67f1cac4c500eec7'
             LocalSourceFile = 'catalog-audit-0426-14.12-1.6.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\openphysed-cross-jacks.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\openphysed-cross-jacks.mp4'
             Url = 'https://www.youtube.com/watch?v=iD_EUi_d-yk'
             SourcePage = 'https://www.youtube.com/watch?v=iD_EUi_d-yk'
             Human = $true
@@ -4769,7 +4769,7 @@
             SourceWidth = 406
             LocalSourceSha256 = 'e1cb7f0eb18d65ec3c71c24bd8c55a09a960f1228863085af4bb11fc948d6abf'
             LocalSourceFile = 'catalog-audit-0431-8.57-2.6.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\prescription-jump-squats.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\prescription-jump-squats.mp4'
             Url = 'https://www.youtube.com/watch?v=o8X3XsvP9Gc'
             SourcePage = 'https://www.youtube.com/watch?v=o8X3XsvP9Gc'
             Human = $true
@@ -5761,7 +5761,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = '84ffccf018aa2ab43c97be4a5eeda4c46918b6097faa08cef357290de01d948b'
             LocalSourceFile = 'catalog-audit-0467-225.7-5.75.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\hasfit-neck-stretches.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\hasfit-neck-stretches.mp4'
             Url = 'https://www.youtube.com/watch?v=A-ZhcHmG-a8'
             SourcePage = 'https://hasfit.com/workouts/rehabilitation/neck-stretches-for-neck-pain-relief/'
             Human = $true
@@ -7893,7 +7893,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = 'eb9b0db3fb2a058771468cae4b387d7c6af7b68172e12a2d9a13ef349ae545ba'
             LocalSourceFile = 'catalog-audit-0683-291.5-4.8.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\bodyflow70.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\bodyflow70.mp4'
             Url = 'https://www.youtube.com/watch?v=kfP_9z-BtmA'
             SourcePage = 'https://www.youtube.com/watch?v=kfP_9z-BtmA'
             Human = $true
@@ -8073,7 +8073,7 @@
             LocalSourceFile = 'catalog-audit-0743-20.75-1.25.mp4'
             SourceHeight = 720
             SourceWidth = 1280
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\stelizabeth-big-arm-circles.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\stelizabeth-big-arm-circles.mp4'
             Url = 'https://www.youtube.com/watch?v=DCXvEdia1Kg'
             SourcePage = 'https://www.stelizabeth.com/medical-services/orthopaedics/upper-extremity/upper-extremity-exercises/'
             Human = $true
@@ -8139,7 +8139,7 @@
             SourceWidth = 640
             LocalSourceSha256 = '81db6e4255c9a0b952ff28e048d27b1e4bdcb1c4e7b5b95f180105a6717568a9'
             LocalSourceFile = 'catalog-audit-0755-23-7.15.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\standing-wrist-cars.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\standing-wrist-cars.mp4'
             Human = $true; Youtube = $true; Video = $true
             StartSeconds = 0
             Crop = 'crop=480:360:80:0,pad=480:480:0:60:black'
@@ -8273,7 +8273,7 @@
             SourceWidth = 1280
             LocalSourceSha256 = '81b123ab2567021d78ec90b7ec8da5aceb75061077c49465fd183431f8b5e9fa'
             LocalSourceFile = 'catalog-audit-0843-11-1.5.mp4'
-            File = 'C:\Users\user\AppData\Local\Temp\FluxExerciseSourceCache\catalog-audit-native\stelizabeth-Pm5xr81UXAE.mp4'
+            File = 'C:\Users\user\AppData\Local\Temp\NomadicMethodExerciseSourceCache\catalog-audit-native\stelizabeth-Pm5xr81UXAE.mp4'
             Url = 'https://www.youtube.com/watch?v=Pm5xr81UXAE'
             SourcePage = 'https://www.stelizabeth.com/medical-services/orthopaedics/upper-extremity/upper-extremity-exercises/'
             Human = $true
