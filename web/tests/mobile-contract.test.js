@@ -84,6 +84,7 @@ import {
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(testDirectory, "..", "..");
+const adaptivePlanning = await source("NomadicMethod", "Services", "WorkoutAdaptivePlanning.cs");
 const [
   sessionService,
   workoutState,
@@ -381,9 +382,11 @@ test("web and mobile persist hard-first block-aware workout allocation", () => {
 });
 
 test("web and mobile carry keeps across duration resolutions", () => {
+  assert.match(sessionService, /PrepareWorkout\([\s\S]*PrepareAdaptiveLineup\(state\);/);
+  assert.match(workoutModule, /prepareWorkout\([\s\S]*this\.prepareAdaptiveLineup\(\);/);
   assert.match(
-    sessionService,
-    /PrepareWorkout\([\s\S]*CarrySlotPreferencesForward\(state\);[\s\S]*RepairActiveLineup\(\s*state,\s*preserveCurrentSelections: !modifiers\.HasFlag\(\s*WorkoutModifiers\.Light\)\);/,
+    adaptivePlanning,
+    /CarrySlotPreferencesForward\(plan\);[\s\S]*RepairActiveLineup\(plan, preserveCurrentSelections:[\s\S]*!plan\.ActiveWorkoutModifiers\.HasFlag\(WorkoutModifiers\.Light\)\);/,
   );
   assert.match(
     sessionService,
@@ -467,12 +470,12 @@ test("web and mobile apply the same multi-resolution muscle balancing", () => {
     integerConstant(muscleBalancePolicy, "MaximumRebalancePasses"),
   );
   assert.match(
-    sessionService,
-    /RepairActiveLineup\(\s*state,\s*preserveCurrentSelections: !modifiers\.HasFlag\(\s*WorkoutModifiers\.Light\)\);[\s\S]*RebalanceNewExercisesByMuscleBalance\(state\);[\s\S]*SetActiveLongWorkoutAllocation\(state\);/,
+    adaptivePlanning,
+    /RepairActiveLineup\(plan, preserveCurrentSelections:[\s\S]*!plan\.ActiveWorkoutModifiers\.HasFlag\(WorkoutModifiers\.Light\)\);[\s\S]*RebalanceNewExercisesByMuscleBalance\(plan\);[\s\S]*SetActiveLongWorkoutAllocation\(plan\);/,
   );
   assert.match(
     workoutModule,
-    /this\.repairActiveLineup\(\s*\(modifiers & WORKOUT_MODIFIERS\.Light\) === 0,\s*\);[\s\S]*this\.rebalanceNewExercisesByMuscleBalance\(\);[\s\S]*this\.setActiveLongWorkoutAllocation\(\);/,
+    /this\.repairActiveLineup\(\(this\.state\.activeWorkoutModifiers & WORKOUT_MODIFIERS\.Light\) === 0\);[\s\S]*this\.rebalanceNewExercisesByMuscleBalance\(\);[\s\S]*this\.setActiveLongWorkoutAllocation\(\);/,
   );
   assert.match(
     muscleBalancePolicy,

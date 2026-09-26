@@ -4273,13 +4273,108 @@ export class WorkoutSession {
     // Shuffle exclusions belong only to the workout being shuffled. Durable
     // rejection feedback is stored by workout phase.
     this.state.nextWorkoutExcludedExerciseIds = [];
-    this.carrySlotPreferencesForward();
-    this.repairActiveLineup(
-      (modifiers & WORKOUT_MODIFIERS.Light) === 0,
-    );
-    this.rebalanceNewExercisesByMuscleBalance();
-    this.setActiveLongWorkoutAllocation();
-    this.reconcileLineupWithScheduledPhases();
+    this.prepareAdaptiveLineup();
+  }
+
+  // Broaden only a new short workout whose complete plan brings back rejected
+  // movements. Restoration and in-progress transitions retain the saved groups.
+  prepareAdaptiveLineup() {
+    const finestResolution = Math.min(this.state.activeWorkoutMinutes, 30);
+    let best = this.buildPreparationPlan(finestResolution);
+    let bestBurden = this.getPreparationBurden(best);
+    if (this.state.activeWorkoutMinutes <= 30 && bestBurden.rejectedBlocks > 0) {
+      for (const resolution of [...RESOLUTIONS.keys()]
+        .filter(minutes => minutes < finestResolution).sort((a, b) => b - a)) {
+        let candidate;
+        try {
+          candidate = this.buildPreparationPlan(resolution);
+        } catch {
+          // An unavailable broader bucket must never be silently omitted.
+          continue;
+        }
+        const burden = this.getPreparationBurden(candidate);
+        if (burden.lightBlocks < bestBurden.lightBlocks ||
+            burden.rejectedBlocks > bestBurden.rejectedBlocks ||
+            (burden.rejectedBlocks === bestBurden.rejectedBlocks &&
+             burden.rejectionDepth >= bestBurden.rejectionDepth)) continue;
+        best = candidate;
+        bestBurden = burden;
+        if (burden.rejectedBlocks === 0) break;
+      }
+    }
+    for (const key of [
+      "selectedExerciseIds", "keptExerciseRootIdsBySelectionGroupId",
+      "lastKeptExerciseIds", "activeDurationSelectionGroupIds",
+      "activeSetCountsBySelectionGroupId", "activeExtraSetSelectionGroupIds",
+      "activeSelectionGroupOrder",
+    ]) this.state[key] = best[key];
+  }
+
+  buildPreparationPlan(resolution) {
+    const source = this.state;
+    // Use isolated planning state so discarded candidates cannot leak migrated
+    // Keeps, cached selections, allocations or votes into the chosen workout.
+    this.state = {
+      ...createDefaultState(),
+      activeWorkoutMinutes: source.activeWorkoutMinutes,
+      activeWorkoutModifiers: source.activeWorkoutModifiers,
+      activeWorkoutIsLightDay: source.activeWorkoutIsLightDay,
+      activeDurationSelectionGroupIds: resolution === Math.min(source.activeWorkoutMinutes, 30)
+        ? null : getResolution(resolution).groups.map(group => group.id),
+      selectedExerciseIds: { ...source.selectedExerciseIds },
+      scores: { ...source.scores },
+      lastKeptExerciseIds: [...source.lastKeptExerciseIds],
+      keptExerciseRootIdsBySelectionGroupId: Object.fromEntries(
+        Object.entries(source.keptExerciseRootIdsBySelectionGroupId)
+          .map(([key, ids]) => [key, [...ids]])),
+      exerciseScoreAdjustmentsByPhase: Object.fromEntries(
+        Object.entries(source.exerciseScoreAdjustmentsByPhase)
+          .map(([key, scores]) => [key, { ...scores }])),
+      lastHardWorkUnixMillisecondsByPrimaryMuscle:
+        { ...source.lastHardWorkUnixMillisecondsByPrimaryMuscle },
+      lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle:
+        { ...source.lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle },
+    };
+    try {
+      this.carrySlotPreferencesForward();
+      this.repairActiveLineup((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0);
+      this.rebalanceNewExercisesByMuscleBalance();
+      this.setActiveLongWorkoutAllocation();
+      this.reconcileLineupWithScheduledPhases();
+      return this.state;
+    } finally {
+      this.state = source;
+    }
+  }
+
+  getPreparationBurden(plan) {
+    const source = this.state;
+    this.state = plan;
+    try {
+      const selections = new Map();
+      for (const round of this.getActiveGroups()) {
+        const key = getSelectionKey(round);
+        if (!selections.has(key)) selections.set(key, []);
+        selections.get(key).push(round);
+      }
+      let rejectedBlocks = 0;
+      let rejectionDepth = 0;
+      let lightBlocks = 0;
+      for (const rounds of selections.values()) {
+        const final = rounds.reduce((a, b) => a.order > b.order ? a : b);
+        const root = this.getSequenceRoot(this.getSelectedExercise(final));
+        const score = this.getSelectionScore(root, getWorkoutExercisePhase(final.order));
+        if (score < 0) {
+          rejectedBlocks += rounds.length;
+          rejectionDepth -= score * rounds.length;
+        }
+        if ((plan.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0 &&
+            this.isDemandZeroSequence(root)) lightBlocks += rounds.length;
+      }
+      return { rejectedBlocks, rejectionDepth, lightBlocks };
+    } finally {
+      this.state = source;
+    }
   }
 
   activatePreparedWorkout() {

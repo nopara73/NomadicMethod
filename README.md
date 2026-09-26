@@ -29,8 +29,8 @@ or 30 workout groups. Every canonical leaf belongs to exactly one group at each
 resolution.
 
 Choosing a shorter session therefore coarsens the body map instead of cutting
-the end off a longer routine. A 5-minute workout has five broad targets; a
-30-minute workout addresses all 30 leaves individually. Selected exercise
+the end off a longer routine. The default 5-minute partition has five broad
+targets; the 30-minute partition addresses all 30 leaves individually. Selected exercise
 sequences are scheduled first by muscular demand: demand `0`, then demand `2`,
 then demand `1`. Within each demand tier, groups retain their existing order
 from smaller to larger estimated bilateral skeletal-muscle mass.
@@ -38,6 +38,18 @@ from smaller to larger estimated bilateral skeletal-muscle mass.
 The supported workout durations are 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90
 minutes. Durations above 30 begin with the 30-group resolution and spend the
 remaining time according to the expansion rules below.
+
+For a new workout of up to 30 minutes, a duration is a time budget rather than
+a compulsory one-target-per-minute lineup. When the default plan brings back
+rejected movements, Nomadic Method also evaluates the broader complete partitions.
+It switches only when a complete plan spends fewer blocks on rejected sequences,
+or the same number of blocks on less-rejected sequences. Ties keep the finer
+partition. Every target in the chosen partition remains covered, every side and
+direction stays complete, and the selected duration remains exact. Light plans
+must retain at least as many demand-0 blocks. Scores, recovery and logged work are
+unchanged; the chosen grouping is saved with the session and is not reconsidered
+on cold reopen. The normal planner still chooses and balances each candidate
+lineup using the priorities below.
 
 ### An exercise must meaningfully cover its target
 

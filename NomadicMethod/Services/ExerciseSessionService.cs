@@ -431,14 +431,7 @@ public sealed partial class ExerciseSessionService
         // Shuffle exclusions are scoped to the workout in which the shuffle
         // happened. Persistent rejection feedback is stored by workout phase.
         state.NextWorkoutExcludedExerciseIds.Clear();
-        CarrySlotPreferencesForward(state);
-        RepairActiveLineup(
-            state,
-            preserveCurrentSelections: !modifiers.HasFlag(
-                WorkoutModifiers.Light));
-        RebalanceNewExercisesByMuscleBalance(state);
-        SetActiveLongWorkoutAllocation(state);
-        ReconcileLineupWithScheduledPhases(state);
+        PrepareAdaptiveLineup(state);
     }
 
     public void ActivatePreparedWorkout(WorkoutState state)

@@ -64,8 +64,9 @@ public sealed class WorkoutState
     // selections are rebuilt after a mid-workout equipment change.
     public List<string> ActiveSelectionGroupOrder { get; set; } = [];
 
-    // A duration edit retains completed/current slots at their original
-    // resolution and replans only the remaining slots. Null is the ordinary
+    // Adaptive preparation may use a broader complete partition to make room
+    // for alternatives to rejected exercises. Duration edits retain completed/
+    // current slots and replan only the remainder. Null is the ordinary
     // duration-derived plan, including every pre-version-30 workout.
     public List<string>? ActiveDurationSelectionGroupIds { get; set; }
 

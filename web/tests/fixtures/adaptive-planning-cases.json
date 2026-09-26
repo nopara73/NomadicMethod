@@ -1,0 +1,52 @@
+[
+  {
+    "name": "unrated seven-minute workout keeps its fine partition",
+    "minutes": 7,
+    "modifiers": 60,
+    "adjustments": {},
+    "legacyScore": 0,
+    "expectedResolution": 7,
+    "expectedRejectedBlocks": 0,
+    "excludedRoots": []
+  },
+  {
+    "name": "forced rejected glute movement makes room for whole alternatives",
+    "minutes": 7,
+    "modifiers": 60,
+    "adjustments": { "Warmup": { "130": -4 } },
+    "legacyScore": 0,
+    "expectedResolution": 5,
+    "expectedRejectedBlocks": 0,
+    "excludedRoots": [130]
+  },
+  {
+    "name": "rejected hip and glute pools do not trap the seven-minute plan",
+    "minutes": 7,
+    "modifiers": 60,
+    "adjustments": { "Warmup": { "130": -4, "118": -2, "132": -2, "1028": -2, "1031": -2 } },
+    "legacyScore": 0,
+    "expectedResolution": 5,
+    "expectedRejectedBlocks": 0,
+    "excludedRoots": [130, 118, 132, 1028, 1031]
+  },
+  {
+    "name": "rejections in another execution phase do not broaden warmup",
+    "minutes": 7,
+    "modifiers": 60,
+    "adjustments": { "PeakPerformance": { "130": -4 } },
+    "legacyScore": 0,
+    "expectedResolution": 7,
+    "expectedRejectedBlocks": 0,
+    "excludedRoots": []
+  },
+  {
+    "name": "equally rejected broader plans do not sacrifice anatomical detail",
+    "minutes": 7,
+    "modifiers": 60,
+    "adjustments": {},
+    "legacyScore": -1,
+    "expectedResolution": 7,
+    "expectedRejectedBlocks": 7,
+    "excludedRoots": []
+  }
+]
