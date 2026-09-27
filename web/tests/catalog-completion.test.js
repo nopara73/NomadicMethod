@@ -107,7 +107,7 @@ for (const light of [false, true]) {
     assert.equal(isSelectable(row, RESOLUTIONS.get(30).groups.find((group) =>
       group.id === "r30.elbow-flexors")), true);
     assert.equal(isSelectable(row, RESOLUTIONS.get(3).groups.find((group) =>
-      group.id === "r3.head-neck-upper-limbs")), false);
+      group.id === "r3.head-neck-upper-limbs")), true);
     for (const randomValue of [0.01, 0.2, 0.4]) {
       const profile = WORKOUT_MODIFIERS.Insect | (light ? WORKOUT_MODIFIERS.Light : 0);
       const session = new WorkoutSession(catalog, createDefaultState(), () => randomValue);
@@ -276,7 +276,7 @@ for (const exerciseId of [480, 517]) {
 for (const insect of [false, true]) {
   for (const light of [false, true]) {
     for (const shy of [false, true]) {
-      test(`short workout keeps broad training: Light=${light}, Shy=${shy}, Insect=${insect}`, () => {
+      test(`short workout respects preferred real targets and modifiers: Light=${light}, Shy=${shy}, Insect=${insect}`, () => {
         for (const randomValue of [0.01, 0.2, 0.4]) {
           const state = createDefaultState();
           state.scores[239] = 100;
@@ -300,7 +300,8 @@ for (const insect of [false, true]) {
           const upper = rounds.find((round) => getSelectionKey(round) === "r3.head-neck-upper-limbs");
           const selectedUpper = session.getSelectedExercise(upper);
           assert.equal(isSelectable(selectedUpper, upper), true);
-          assert.notEqual(selectedUpper.id, 239);
+          if (insect) assert.notEqual(selectedUpper.id, 239);
+          else assert.equal(selectedUpper.id, 239);
           if (light && !insect) assert.equal(selectedUpper.muscularDemand, 0);
           for (const round of rounds) session.recordOutcome(round, true);
           assert.equal(session.state.workoutCompleted, true);
@@ -313,12 +314,13 @@ for (const insect of [false, true]) {
 
 test("compound workout feedback and history survive reload", () => {
   const state = createDefaultState();
+  state.scores[248] = 100;
   const profile = state.lastWorkoutModifiers | WORKOUT_MODIFIERS.Insect | WORKOUT_MODIFIERS.Shy;
   const session = new WorkoutSession(catalog, state, () => 0);
   session.initialize();
   session.startWorkout(3, profile);
   const rounds = session.getActiveGroups();
-  const upper = rounds.find((round) => getSelectionKey(round) === "r3.head-neck-upper-limbs");
+  const upper = rounds.find((round) => session.getSelectedExercise(round).id === 248);
   assert.equal(session.getSelectedExercise(upper).id, 248);
   for (const round of rounds) {
     session.beginRest(round, Date.now() + 15_000);

@@ -3105,7 +3105,7 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
   }
 });
 
-test("pairwise availability requires one real broad movement", () => {
+test("pairwise availability requires five actual broad choices in every modifier state", () => {
   const groups = RESOLUTIONS.get(BROAD_COVERAGE_RESOLUTION_MINUTES).groups;
   const targetGroup = groups[1];
   const primary = targetGroup.canonicalGroups[0];
@@ -3126,23 +3126,16 @@ test("pairwise availability requires one real broad movement", () => {
       result.firstModifier === WORKOUT_MODIFIERS.Insect &&
       result.secondModifier === WORKOUT_MODIFIERS.Silence);
 
-  assert.equal(deficiencies.length, 1);
-  assert.equal(deficiencies[0].firstModifierEnabled, true);
-  assert.equal(deficiencies[0].secondModifierEnabled, true);
-  assert.equal(deficiencies[0].matchingExerciseCount, 0);
+  assert.equal(deficiencies.length, 4);
+  const intersection = deficiencies.find(result => result.firstModifierEnabled && result.secondModifierEnabled);
+  assert.equal(intersection.matchingExerciseCount, 0);
   assert.equal(
     deficiencies[0].requiredExerciseCount,
     MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
   );
 
-  exercises.push(exercise(
-    8,
-    primary,
-    secondary,
-    0,
-    EXERCISE_INSECT_COMPATIBILITY.Compatible,
-    true,
-  ));
+  for (let id = 8; id < 13; id += 1) exercises.push(exercise(
+    id, primary, secondary, 0, EXERCISE_INSECT_COMPATIBILITY.Compatible, true));
   assert.deepEqual(
     findWorkoutModifierPairCoverageDeficiencies(exercises).filter((result) =>
       result.minutes === BROAD_COVERAGE_RESOLUTION_MINUTES &&
@@ -3347,31 +3340,8 @@ test("fine pairwise buckets measure availability without forcing mirror preferen
 test("broad pairwise buckets count selectable agnostic movements", () => {
   const targetGroup = RESOLUTIONS.get(BROAD_COVERAGE_RESOLUTION_MINUTES).groups[0];
   const groups = targetGroup.canonicalGroups;
-  const catalog = [];
-  for (let index = 0; index < 5; index += 1) {
-    const rootId = index * 2 + 1;
-    const memberId = rootId + 1;
-    catalog.push({
-      ...exercise(
-        rootId,
-        groups[0],
-        groups.slice(1, 3),
-        0,
-        EXERCISE_INSECT_COMPATIBILITY.Compatible,
-      ),
-      sequenceBlocks: [{ exerciseId: rootId }, { exerciseId: memberId }],
-    });
-    catalog.push({
-      ...exercise(
-        memberId,
-        groups[3],
-        groups.slice(4, 6),
-        0,
-        EXERCISE_INSECT_COMPATIBILITY.Compatible,
-      ),
-      sequenceBlocks: [],
-    });
-  }
+  const catalog = Array.from({ length: 5 }, (_, index) => exercise(
+    index + 1, groups[0], [], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible));
 
   const deficiencies = findWorkoutModifierPairCoverageDeficiencies(catalog)
     .filter((result) =>
@@ -6716,7 +6686,7 @@ test("pending rest survives schedule order and coverage changes for the performe
       ? { ...item, secondaryCanonicalGroups: retainedAssignment }
       : item,
   );
-  assert.equal(isSelectable(changedCatalog.find((item) => item.id === performed.id), pendingGroup), false);
+  assert.equal(isSelectable(changedCatalog.find((item) => item.id === performed.id), pendingGroup), true);
 
   const restored = new WorkoutSession(
     changedCatalog,

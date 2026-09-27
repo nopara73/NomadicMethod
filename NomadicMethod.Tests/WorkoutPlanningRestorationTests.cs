@@ -5,7 +5,7 @@ using NomadicMethod.Services;
 
 namespace NomadicMethod.Tests;
 
-public sealed class WorkoutAdaptivePlanningTests
+public sealed class WorkoutPlanningRestorationTests
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -28,7 +28,7 @@ public sealed class WorkoutAdaptivePlanningTests
     };
 
     public static IEnumerable<object[]> Cases() => JsonSerializer.Deserialize<PlanningCase[]>(
-        File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets", "adaptive-planning-cases.json")),
+        File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets", "workout-planning-cases.json")),
         JsonOptions)!.SelectMany(item => new[] { 1, 2, 3 }.Select(seed => new object[] { item, seed }));
 
     [Theory]
@@ -118,9 +118,12 @@ public sealed class WorkoutAdaptivePlanningTests
         {
             var rounds = service.GetActiveGroups(state);
             Assert.Equal(minutes, rounds.Count);
+            var roots = rounds.Select(g => service.GetSelectedExercise(state, g)).DistinctBy(e => e.Id);
+            Assert.All(roots, root => Assert.DoesNotContain(root.SequenceBlocks,
+                block => block.SideCue != ExerciseSequenceSideCue.None ||
+                    block.DirectionCue != ExerciseSequenceDirectionCue.None));
             Assert.Equal(MassGroupingTaxonomy.GetResolution(minutes).Groups.Select(g => g.Id).Order(),
-                rounds.Select(g => g.SelectionKey).Order());
-            Assert.All(rounds, g => Assert.Single(service.GetSelectedExercise(state, g).SequenceBlocks));
+                state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
         }
     }
 
@@ -142,22 +145,14 @@ public sealed class WorkoutAdaptivePlanningTests
     }
 
     [Fact]
-    public void BroaderWorkoutRestoresPausedSidesAndRetainsCompletedWorkThroughEdits()
+    public void LegacyBroaderWorkoutRestoresPausedSidesAndRetainsCompletedWorkThroughEdits()
     {
         Exercise[] catalog = Catalog();
         var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
-        var state = RejectedState();
-        service.Initialize(state);
-        service.StartWorkout(state, 10, Profile);
+        var state = JsonSerializer.Deserialize<WorkoutState>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "legacy-adaptive-session.json")), JsonOptions)!;
         Assert.NotNull(state.ActiveDurationSelectionGroupIds);
-        WorkoutGroup first = service.GetNextGroup(state)!;
-        service.BeginRest(state, first, Now.AddSeconds(15).ToUnixTimeMilliseconds());
-        if (first.IsFinalSequenceRound) service.RecordOutcome(state, first, keep: true);
-        else service.AdvanceSequence(state, first);
-        service.ClearPendingRest(state);
         WorkoutGroup current = service.GetNextGroup(state)!;
-        service.BeginMovement(state, current, 25_000, Now.AddSeconds(25).ToUnixTimeMilliseconds());
-        service.PauseMovement(state, current, 25_000, pausedByUser: true);
         WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
         string blocks = JsonSerializer.Serialize(state.ActiveWorkoutSession!.Blocks);
         string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);

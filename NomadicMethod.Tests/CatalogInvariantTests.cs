@@ -79,7 +79,7 @@ public sealed class CatalogInvariantTests
             WorkoutModifierPolicy.FindPairwiseCoverageDeficiencies(exercises).ToArray();
         Assert.Empty(pairwiseDeficiencies);
         Assert.Equal(
-            1,
+            5,
             WorkoutModifierPolicy.GetMinimumExercisesPerPairStatePerGroup(3));
         Assert.Equal(
             1,

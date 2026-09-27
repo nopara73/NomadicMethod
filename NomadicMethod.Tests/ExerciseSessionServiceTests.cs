@@ -3104,7 +3104,7 @@ public sealed class ExerciseSessionServiceTests
     }
 
     [Fact]
-    public void MuscleBalanceCanOverridePrimaryTieWhenSecondaryChoiceImprovesLineup()
+    public void GenuineTrainingInSeparateGroupsKeepsBothHighlyRatedChoices()
     {
         WorkoutGroup lower = MassGroupingTaxonomy.GetGroup(3, "r3.lower-limbs");
         Exercise primary = ExerciseWithCoverage(
@@ -3129,7 +3129,9 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, 3, WorkoutModifiers.None);
 
-        Assert.Equal(secondary.Id, service.GetSelectedExercise(state, lower).Id);
+        Assert.Equal(primary.Id, service.GetSelectedExercise(state, lower).Id);
+        Assert.Contains(service.GetActiveGroups(state), group =>
+            service.GetSelectedExercise(state, group).Id == secondary.Id);
     }
 
     [Fact]
@@ -3162,7 +3164,7 @@ public sealed class ExerciseSessionServiceTests
     }
 
     [Fact]
-    public void CoverageGateRunsBeforeScoreRanking()
+    public void RealMuscleMembershipAllowsPreferredNarrowExercises()
     {
         Exercise highScoreBelowThreshold = ExerciseWithCoverage(
             1,
@@ -3191,7 +3193,7 @@ public sealed class ExerciseSessionServiceTests
             3,
             lowerScoreQualified.PrimaryCanonicalGroup);
         Assert.Equal(
-            lowerScoreQualified.Id,
+            highScoreBelowThreshold.Id,
             service.GetSelectedExercise(state, lower).Id);
     }
 
@@ -3472,7 +3474,7 @@ public sealed class ExerciseSessionServiceTests
     }
 
     [Fact]
-    public void SavedSelectionBelowCoverageThresholdIsReplaced()
+    public void SavedSelectionWithGenuineTrainingSurvivesRestoredMembership()
     {
         Exercise savedBelowThreshold = ExerciseWithCoverage(
             1,
@@ -3507,7 +3509,7 @@ public sealed class ExerciseSessionServiceTests
         service.Initialize(state);
 
         Assert.Equal(
-            qualifyingReplacement.Id,
+            savedBelowThreshold.Id,
             state.SelectedExerciseIds[lower.Id]);
     }
 
@@ -3605,7 +3607,7 @@ public sealed class ExerciseSessionServiceTests
     }
 
     [Fact]
-    public void StalePendingRestDoesNotPreserveSelectionBelowCoverageThreshold()
+    public void StalePendingRestIsClearedWithoutDiscardingAValidSelection()
     {
         Exercise staleSelection = ExerciseWithCoverage(
             1,
@@ -3642,7 +3644,7 @@ public sealed class ExerciseSessionServiceTests
 
         Assert.Null(state.PendingRestGroupId);
         Assert.Equal(
-            qualifyingReplacement.Id,
+            staleSelection.Id,
             state.SelectedExerciseIds[lower.Id]);
     }
 
@@ -5874,7 +5876,7 @@ public sealed class ExerciseSessionServiceTests
             id,
             primary,
             minutes,
-            WorkoutCoveragePolicy.GetRequiredCanonicalCoverage(group),
+            (group.CanonicalGroups.Count + 1) / 2,
             score,
             sideSequence: sideSequence,
             insectCompatibility: insectCompatibility,
@@ -5893,7 +5895,7 @@ public sealed class ExerciseSessionServiceTests
             id,
             primary,
             3,
-            WorkoutCoveragePolicy.GetRequiredCanonicalCoverage(group),
+            (group.CanonicalGroups.Count + 1) / 2,
             score,
             insectCompatibility: insectCompatibility);
     }

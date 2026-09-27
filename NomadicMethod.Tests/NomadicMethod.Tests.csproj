@@ -57,7 +57,6 @@
     <Compile Include="..\NomadicMethod\Models\WorkoutState.cs" Link="Production\Models\WorkoutState.cs" />
     <Compile Include="..\NomadicMethod\Services\ExerciseSessionService.cs" Link="Production\Services\ExerciseSessionService.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutSessionEditing.cs" Link="Production\Services\WorkoutSessionEditing.cs" />
-    <Compile Include="..\NomadicMethod\Services\WorkoutAdaptivePlanning.cs" Link="Production\Services\WorkoutAdaptivePlanning.cs" />
     <Compile Include="..\NomadicMethod\Services\AtomicSequenceLineupSolver.cs" Link="Production\Services\AtomicSequenceLineupSolver.cs" />
     <Compile Include="..\NomadicMethod\Services\LegacyWorkoutStateMigration.cs" Link="Production\Services\LegacyWorkoutStateMigration.cs" />
     <Compile Include="..\NomadicMethod\Services\CatalogMigrationRules.cs" Link="Production\Services\CatalogMigrationRules.cs" />
@@ -76,11 +75,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\web\tests\fixtures\adaptive-planning-cases.json"
-          Link="Assets\adaptive-planning-cases.json"
+    <None Include="..\web\tests\fixtures\legacy-adaptive-session.json" Link="Assets\legacy-adaptive-session.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\workout-planning-cases.json"
+          Link="Assets\workout-planning-cases.json"
           CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\web\tests\fixtures\regional-compound-cases.json"
-          Link="Assets\regional-compound-cases.json"
+    <None Include="..\web\tests\fixtures\trained-muscle-membership-cases.json"
+          Link="Assets\trained-muscle-membership-cases.json"
           CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\docs\catalog-audit\training-claim-corrections-2026-09-05.json"
           Link="Assets\training-claim-corrections-2026-09-05.json"

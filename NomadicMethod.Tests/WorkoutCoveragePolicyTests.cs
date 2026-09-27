@@ -6,13 +6,13 @@ namespace NomadicMethod.Tests;
 public sealed class WorkoutCoveragePolicyTests
 {
     [Theory]
-    [InlineData(3, "r3.lower-limbs", 6)]
-    [InlineData(3, "r3.torso-pelvic-complex", 3)]
-    [InlineData(5, "r5.hips-thighs", 5)]
-    [InlineData(7, "r7.lower-legs-feet", 2)]
+    [InlineData(3, "r3.lower-limbs", 1)]
+    [InlineData(3, "r3.torso-pelvic-complex", 1)]
+    [InlineData(5, "r5.hips-thighs", 1)]
+    [InlineData(7, "r7.lower-legs-feet", 1)]
     [InlineData(20, "r20.back-spinal-stabilization", 1)]
     [InlineData(30, "r30.medial-deep-knee-extensors", 1)]
-    public void RequiredCoverageRoundsHalfUpToWholeCanonicalLeaves(
+    public void EachGroupOffersItsGenuinelyTrainedMusclesAsAlternatives(
         int minutes,
         string groupId,
         int expected)
@@ -29,31 +29,24 @@ public sealed class WorkoutCoveragePolicyTests
     {
         WorkoutGroup group = MassGroupingTaxonomy.GetGroup(3, "r3.lower-limbs");
         CanonicalMuscleGroup[] leaves = group.CanonicalGroups.ToArray();
-        Exercise belowThreshold = Exercise(
-            1,
-            leaves[0],
-            leaves.Skip(1).Take(4).ToArray());
-        Exercise exactlyHalf = Exercise(
-            2,
-            leaves[0],
-            leaves.Skip(1).Take(5).ToArray());
+        Exercise isolatedPrimary = Exercise(1, leaves[0], []);
+        Exercise unrelated = Exercise(2, CanonicalMuscleGroup.SpinalExtensors, []);
         Exercise secondaryOnly = Exercise(
             3,
             CanonicalMuscleGroup.SpinalExtensors,
-            leaves.Take(6).ToArray());
+            [leaves[0]]);
 
-        Assert.Equal(5, WorkoutCoveragePolicy.GetCanonicalCoverage(belowThreshold, group));
-        Assert.False(WorkoutCoveragePolicy.IsSelectable(belowThreshold, group));
-        Assert.Equal(6, WorkoutCoveragePolicy.GetCanonicalCoverage(exactlyHalf, group));
-        Assert.True(WorkoutCoveragePolicy.IsSelectable(exactlyHalf, group));
-        Assert.Equal(6, WorkoutCoveragePolicy.GetCanonicalCoverage(secondaryOnly, group));
+        Assert.Equal(1, WorkoutCoveragePolicy.GetCanonicalCoverage(isolatedPrimary, group));
+        Assert.True(WorkoutCoveragePolicy.IsSelectable(isolatedPrimary, group));
+        Assert.False(WorkoutCoveragePolicy.IsSelectable(unrelated, group));
+        Assert.Equal(1, WorkoutCoveragePolicy.GetCanonicalCoverage(secondaryOnly, group));
         Assert.True(WorkoutCoveragePolicy.IsSelectable(secondaryOnly, group));
-        Assert.True(WorkoutCoveragePolicy.IsPrimaryForGroup(exactlyHalf, group));
+        Assert.True(WorkoutCoveragePolicy.IsPrimaryForGroup(isolatedPrimary, group));
         Assert.False(WorkoutCoveragePolicy.IsPrimaryForGroup(secondaryOnly, group));
     }
 
     [Fact]
-    public void CompoundSequenceCannotHideAnIsolatedMemberInABroadRound()
+    public void SequenceKeepsItsRealTargetsAndRequiresTimeForEveryMember()
     {
         WorkoutGroup upper = MassGroupingTaxonomy.GetGroup(3, "r3.head-neck-upper-limbs");
         Exercise compound = Exercise(10, CanonicalMuscleGroup.ShoulderAbductors,
@@ -62,8 +55,11 @@ public sealed class WorkoutCoveragePolicyTests
         var catalog = new[] { compound, wrist }.ToDictionary(exercise => exercise.Id);
 
         Assert.True(WorkoutCoveragePolicy.IsSelectable(compound, upper));
-        Assert.False(WorkoutSequencePolicy.IsSelectable(compound, catalog, upper));
-        Assert.Empty(WorkoutSequencePolicy.GetPlacementOptions(compound, catalog, [upper]));
+        Assert.True(WorkoutSequencePolicy.IsSelectable(compound, catalog, upper));
+        Assert.Single(WorkoutSequencePolicy.GetPlacementOptions(compound, catalog, [upper]));
+        Assert.False(WorkoutSequencePolicy.IsSelectable(compound, catalog,
+            MassGroupingTaxonomy.GetGroup(3, "r3.lower-limbs")));
+        Assert.Equal(2, compound.SequenceBlocks.Length);
     }
 
     private static Exercise Exercise(

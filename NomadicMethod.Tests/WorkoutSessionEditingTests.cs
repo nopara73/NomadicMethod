@@ -123,13 +123,14 @@ public sealed class WorkoutSessionEditingTests
     }
 
     [Theory]
-    [InlineData(WorkoutModifiers.None)]
+    [InlineData(WorkoutModifiers.None, 0)]
+    [InlineData(WorkoutModifiers.None, 10)]
     [InlineData(WorkoutModifiers.Insect | WorkoutModifiers.Silence | WorkoutModifiers.UpperBodyClothing)]
     [InlineData(WorkoutModifiers.HardFloor | WorkoutModifiers.Silence | WorkoutModifiers.UpperBodyClothing)]
     [InlineData(WorkoutModifiers.Wall | WorkoutModifiers.UpperBodyClothing)]
-    public void EditedWorkoutCanChangeModifiersAndDurationAgainDuringPausedWork(WorkoutModifiers profile)
+    public void EditedWorkoutCanChangeModifiersAndDurationAgainDuringPausedWork(WorkoutModifiers profile, int seed = 0)
     {
-        var service = new ExerciseSessionService(Catalog());
+        var service = new ExerciseSessionService(Catalog(), new Random(seed));
         var state = new WorkoutState();
         service.Initialize(state);
         service.StartWorkout(state, 60, profile);
@@ -144,6 +145,12 @@ public sealed class WorkoutSessionEditingTests
         Assert.Equal(25_000, state.PendingMovementMillisecondsRemaining);
         Assert.Equal(outcomes, JsonSerializer.Serialize(state.Outcomes));
         service.ReconfigureActiveWorkout(state, profile ^ WorkoutModifiers.Wall, current.Id);
+        if (profile == WorkoutModifiers.None && seed == 10)
+        {
+            Assert.Equal(2, current.SetNumber);
+            Assert.Equal(current.Id, service.GetNextGroup(state)!.Id);
+            Assert.Equal(25_000, state.PendingMovementMillisecondsRemaining);
+        }
         Assert.Equal(completedWork, JsonSerializer.Serialize(state.ActiveWorkoutSession!.Blocks));
         outcomes = JsonSerializer.Serialize(state.Outcomes);
         service.ResizeActiveWorkout(state, 45);

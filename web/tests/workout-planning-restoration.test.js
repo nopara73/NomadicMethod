@@ -7,7 +7,7 @@ import {
 } from "../workout.js";
 
 const catalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
-const cases = JSON.parse(await readFile(new URL("fixtures/adaptive-planning-cases.json", import.meta.url), "utf8"));
+const cases = JSON.parse(await readFile(new URL("fixtures/workout-planning-cases.json", import.meta.url), "utf8"));
 const profile = M.Mirror | M.TallMirror | M.HardFloor | M.Wall;
 const now = Date.parse("2026-09-26T04:00:00Z");
 const rejectedState = () => ({
@@ -56,7 +56,7 @@ for (const item of cases) {
   }
 }
 
-test("Light adaptation cannot spend more blocks on demanding work", () => {
+test("Rejection feedback does not displace Light choices", () => {
   const baseline = new WorkoutSession(catalog, createDefaultState(), () => 0.5, () => now);
   baseline.initialize();
   baseline.startWorkout(7, profile | M.Light);
@@ -105,27 +105,20 @@ for (const minutes of [3, 5, 7]) {
       function assertSingleBlockGroups() {
         const rounds = session.getActiveGroups();
         assert.equal(rounds.length, minutes);
-        assert.deepEqual(rounds.map(g => g.selectionGroupId ?? g.id).sort(),
+        assert.deepEqual(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
           getResolution(minutes).groups.map(g => g.id).sort());
-        assert.ok(rounds.every(g => session.getSelectedExercise(g).sequenceBlocks.length === 1));
+        assert.ok(rounds.every(g => session.getSelectedExercise(g).sequenceBlocks.every(b =>
+          (b.sideCue ?? "None") === "None" && (b.directionCue ?? "None") === "None")));
       }
     });
   }
 }
 
-test("broader plans restore paused sides and preserve completed work through edits", () => {
-  let session = new WorkoutSession(catalog, rejectedState(), () => 0.5, () => now);
-  session.initialize();
-  session.startWorkout(10, profile);
+test("legacy broader plans restore paused sides and preserve completed work through edits", async () => {
+  const saved = JSON.parse(await readFile(new URL("fixtures/legacy-adaptive-session.json", import.meta.url), "utf8"));
+  let session = new WorkoutSession(catalog, saved, () => 0.5, () => now);
   assert.ok(session.state.activeDurationSelectionGroupIds);
-  const first = session.getNextGroup();
-  session.beginRest(first, now + 15_000);
-  if (session.isIntermediateSequenceBlock(first)) session.advanceSequence(first);
-  else session.recordOutcome(first, true);
-  session.clearPendingRest();
   const current = session.getNextGroup();
-  session.beginMovement(current, 25_000, now + 25_000);
-  session.pauseMovement(current, 25_000, true);
   const rounds = session.getActiveGroups();
   const blocks = structuredClone(session.state.activeWorkoutSession.blocks);
   const feedback = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);

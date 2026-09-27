@@ -40,7 +40,7 @@
       "distinctLineup"
     ],
     "broadCoverageResolutionMinutes": 3,
-    "broadModifierPairMinimumPerStatePerGroup": 1,
+    "broadModifierPairMinimumPerStatePerGroup": 5,
     "fineModifierPairMinimumPerStatePerGroup": 1,
     "muscularDemandMinimumPerCategoryPerGroup": 1
   },

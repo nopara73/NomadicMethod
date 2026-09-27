@@ -72,9 +72,9 @@ public sealed record WorkoutModifierMaterialityDeficiency(
 public static class WorkoutModifierPolicy
 {
     public const int BroadCoverageResolutionMinutes = 3;
-    // Availability means a real choice exists. Complete-lineup validation
-    // separately enforces breadth and the complete atomic block budget.
-    public const int MinimumExercisesPerBroadPairStatePerGroup = 1;
+    // Broad groups need five real alternatives, with complete atomic blocks
+    // that fit the duration. Fine muscle groups still need at least one.
+    public const int MinimumExercisesPerBroadPairStatePerGroup = 5;
     public const int MinimumExercisesPerFinePairStatePerGroup = 1;
     // Historical demand and materiality targets are diagnostic inventories,
     // not admission requirements or release gates. Never fill them with
@@ -460,7 +460,7 @@ public static class WorkoutModifierPolicy
                                                 exercise,
                                                 exercisesById,
                                                 group,
-                                                profile))
+                                                profile, requireDurationFit: true))
                                         .Select(GetSessionMovementId)
                                         .Distinct()
                                         .Count(),
@@ -525,7 +525,7 @@ public static class WorkoutModifierPolicy
                                         exercise,
                                         exercisesById,
                                         group,
-                                        profile))
+                                        profile, requireDurationFit: true))
                                 .Select(GetSessionMovementId)
                                 .Distinct()
                                 .Count();
@@ -1008,14 +1008,25 @@ public static class WorkoutModifierPolicy
         Exercise exercise,
         IReadOnlyDictionary<int, Exercise> exercisesById,
         WorkoutGroup group,
-        WorkoutModifiers profile)
+        WorkoutModifiers profile,
+        bool requireDurationFit = false)
     {
         if (!WorkoutSequencePolicy.IsSelectable(exercise, exercisesById, group))
         {
             return false;
         }
 
-        return IsSequenceCompatible(exercise, exercisesById, profile);
+        if (!IsSequenceCompatible(exercise, exercisesById, profile)) return false;
+        if (!requireDurationFit || exercise.SequenceBlocks.Length == 1) return true;
+
+        WorkoutResolution resolution = MassGroupingTaxonomy.SupportedMinutes
+            .Select(MassGroupingTaxonomy.GetResolution)
+            .Single(candidate => candidate.Groups.Any(known => known.Id == group.Id));
+        WorkoutGroup[] available = resolution.Groups
+            .Where(candidate => IsSelectionGroupAvailable(candidate, profile)).ToArray();
+        return WorkoutSequencePolicy.GetPlacementOptions(exercise, exercisesById, available)
+            .Any(option => option.Any(candidate => candidate.Id == group.Id) &&
+                exercise.SequenceBlocks.Length + available.Length - option.Length <= resolution.Minutes);
     }
 
     private static bool IsSequenceHardFloorCategory(

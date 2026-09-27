@@ -39,28 +39,21 @@ The supported workout durations are 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90
 minutes. Durations above 30 begin with the 30-group resolution and spend the
 remaining time according to the expansion rules below.
 
-Three-, five- and seven-minute workouts retain their full anatomical partition:
-rejected exercises cannot displace muscle groups to make room for two-sided
-sequences. For a new workout of 10 through 30 minutes, when the default plan brings back
-rejected movements, Nomadic Method also evaluates the broader complete partitions.
-It switches only when a complete plan spends fewer blocks on rejected sequences,
-or the same number of blocks on less-rejected sequences. Ties keep the finer
-partition. Every target in the chosen partition remains covered, every side and
-direction stays complete, and the selected duration remains exact. Light plans
-must retain at least as many demand-0 blocks. Scores, recovery and logged work are
-unchanged; the chosen grouping is saved with the session and is not reconsidered
-on cold reopen. The normal planner still chooses and balances each candidate
-lineup using the priorities below.
+Every new workout keeps the complete anatomical partition for its duration.
+Rejecting exercises changes movement choices, not the muscle-group structure.
+Three-, five- and seven-minute workouts have no spare blocks for separate sides
+or directions. A combined sequence may still fill different groups when each
+block has a genuine primary target in its own group. Every side and direction
+remains complete; saved unfinished workouts keep their original plans.
 
-### An exercise must meaningfully cover its target
+### An exercise must genuinely train its target
 
-Each exercise has one primary canonical group and every secondary group it
-meaningfully trains. An exercise may represent a rolled-up workout group only
-when it trains at least half of that group's canonical leaves. Primary ownership
-is preferred, but a truthful secondary association remains valid.
-
-This prevents a broad target such as a body region from being satisfied by a
-movement with only a token association to one small part of it.
+An exercise is eligible for a group when its reviewed primary or meaningful
+secondary training includes a muscle in that group. The group offers alternative
+targets: one exercise need not train half its anatomical subdivisions. Primary
+ownership and wider genuine coverage remain ranking preferences after scores,
+Light, recovery and the other priorities below. Anatomy is never broadened to
+make an exercise eligible.
 
 ### The lineup is solved as one constrained assignment
 
@@ -340,8 +333,10 @@ Hard Floor requires compatible availability in applicable buckets; it does not
 require an incompatible counterpart. Demand-0/demand-2 inventories, mirror
 relationship populations and percentage materiality are diagnostic results,
 not admission quotas or release gates. Ratings, anatomy and relationship
-criteria remain truthful and audited. Broad rounds retain meaningful regional
-training through the existing coverage rule or a reviewed dynamic compound.
+criteria remain truthful and audited. Broad regions require five distinct selectable movements in every required
+modifier state; fine groups require one. The audit counts only whole sequences
+that fit the selected duration, using the same reviewed training and physical
+restrictions as the planner.
 Upper-body clothing's exact catalog partition is recorded in
 [`docs/UPPER_BODY_CLOTHING_AUDIT.md`](docs/UPPER_BODY_CLOTHING_AUDIT.md).
 Shy's ordinary-observer review boundary and exhaustive catalog partition are
@@ -360,12 +355,14 @@ its exact historical deficits are retained in
 no relationship or muscle assignment may be inflated to hide a gap. The
 hierarchical policy makes the live contract both meaningful and achievable:
 broad regions protect real variety, fine buckets protect reachability, and
-demand checks protect broad light/hard availability. The current catalog has
-zero pairwise, floor-category, demand-category, materiality, mirror-category,
-or distinct-lineup deficits. The reproducible current ledger is
+demand checks protect broad light/hard availability. The current ledger records zero pairwise, hard-floor and complete-lineup
+deficits. Demand and distinct-lineup counts remain diagnostics. One pre-existing
+Silence/Hard Floor materiality gap remains: 13 excluded movements versus the
+14 required by the five-percent rule. It is recorded explicitly and must be
+resolved or accepted by the owner before the selective rollback is published.
+The reproducible ledger is
 [`docs/catalog-audit/modifier_coverage_deficits_current.json`](docs/catalog-audit/modifier_coverage_deficits_current.json).
-Production builds and Android tests fail on any nonzero live deficit; updating
-the ledger cannot bless a regression.
+Updating the ledger never changes an exercise's eligibility or waives a gate.
 
 The pairwise guarantees grow quadratically with the number of quota-bearing
 modifiers. The two demand categories multiply the broad profile audit by a

@@ -138,7 +138,7 @@ public sealed class CatalogCompletionTests
                 WorkoutModifiers.HardFloor | WorkoutModifiers.Silence | WorkoutModifiers.Shy));
             Assert.True(WorkoutCoveragePolicy.IsSelectable(row,
                 MassGroupingTaxonomy.GetGroup(30, "r30.elbow-flexors")));
-            Assert.False(WorkoutCoveragePolicy.IsSelectable(row,
+            Assert.True(WorkoutCoveragePolicy.IsSelectable(row,
                 MassGroupingTaxonomy.GetGroup(3, "r3.head-neck-upper-limbs")));
             var state = new WorkoutState();
             var service = new ExerciseSessionService(catalog, new Random(seed));
@@ -347,7 +347,7 @@ public sealed class CatalogCompletionTests
     [InlineData(false, true, true)]
     [InlineData(true, false, true)]
     [InlineData(true, true, true)]
-    public void DefaultShortWorkoutRetainsBroadTrainingWithAndWithoutLight(
+    public void ShortWorkoutAllowsPreferredRealTargetsAndRespectsModifiers(
         bool light,
         bool shy,
         bool insect)
@@ -355,8 +355,8 @@ public sealed class CatalogCompletionTests
         foreach (int seed in new[] { 1, 2, 4 })
         {
             Exercise[] exercises = LoadCatalog();
-            // A liked isolated wrist movement must never occupy the broad
-            // upper-body round, including when Light prioritizes mobility.
+            // A liked wrist movement is a genuine upper-body choice. Insect
+            // still excludes it because it lacks whole-body movement.
             exercises.Single(exercise => exercise.Id == 239).Score = 100;
             var service = new ExerciseSessionService(exercises, new Random(seed));
             var state = new WorkoutState();
@@ -382,7 +382,8 @@ public sealed class CatalogCompletionTests
             WorkoutGroup upper = rounds.Single(round => round.SelectionKey == "r3.head-neck-upper-limbs");
             Exercise upperExercise = service.GetSelectedExercise(state, upper);
             Assert.True(WorkoutCoveragePolicy.IsSelectable(upperExercise, upper));
-            Assert.NotEqual(239, upperExercise.Id);
+            if (insect) Assert.NotEqual(239, upperExercise.Id);
+            else Assert.Equal(239, upperExercise.Id);
             if (light && !insect) Assert.Equal(0, upperExercise.MuscularDemand);
             foreach (WorkoutGroup round in rounds)
                 service.RecordOutcome(state, round, keep: true);
@@ -394,12 +395,13 @@ public sealed class CatalogCompletionTests
     public void CompoundWorkoutFeedbackAndHistorySurviveReload()
     {
         Exercise[] catalog = LoadCatalog();
+        catalog.Single(exercise => exercise.Id == 248).Score = 100;
         var service = new ExerciseSessionService(catalog, new Random(1));
         var state = new WorkoutState { CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision };
         WorkoutModifiers profile = state.LastWorkoutModifiers | WorkoutModifiers.Insect | WorkoutModifiers.Shy;
         service.StartWorkout(state, 3, profile);
         WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
-        WorkoutGroup upper = rounds.Single(round => round.SelectionKey == "r3.head-neck-upper-limbs");
+        WorkoutGroup upper = rounds.Single(round => service.GetSelectedExercise(state, round).Id == 248);
         Assert.Equal(248, service.GetSelectedExercise(state, upper).Id);
         foreach (WorkoutGroup round in rounds)
         {

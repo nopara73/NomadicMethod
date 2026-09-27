@@ -127,8 +127,7 @@ public static class WorkoutSequencePolicy
     {
         Exercise[] members = GetMembers(root, exercisesById);
         return members.Length > 0 &&
-            (group.CanonicalGroups.Count(muscle => members.Any(member => member.Trains(muscle))) >=
-                WorkoutCoveragePolicy.GetRequiredCanonicalCoverage(group) ||
-                members.All(member => WorkoutCoveragePolicy.IsRegionalCompound(member, group)));
+            group.CanonicalGroups.Count(muscle => members.Any(member => member.Trains(muscle))) >=
+                WorkoutCoveragePolicy.GetRequiredCanonicalCoverage(group);
     }
 }

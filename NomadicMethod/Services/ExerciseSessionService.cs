@@ -431,7 +431,12 @@ public sealed partial class ExerciseSessionService
         // Shuffle exclusions are scoped to the workout in which the shuffle
         // happened. Persistent rejection feedback is stored by workout phase.
         state.NextWorkoutExcludedExerciseIds.Clear();
-        PrepareAdaptiveLineup(state);
+        CarrySlotPreferencesForward(state);
+        RepairActiveLineup(state, preserveCurrentSelections:
+            !modifiers.HasFlag(WorkoutModifiers.Light));
+        RebalanceNewExercisesByMuscleBalance(state);
+        SetActiveLongWorkoutAllocation(state);
+        ReconcileLineupWithScheduledPhases(state);
     }
 
     public void ActivatePreparedWorkout(WorkoutState state)
@@ -522,7 +527,11 @@ public sealed partial class ExerciseSessionService
         SelectedSequencePlacement currentPlacement = priorPlacements.Single(
             placement => placement.Anchor.Id == currentRound.SelectionKey);
         bool preserveCompletedCurrentSelection =
-            GetPendingRestGroup(state)?.Id == currentRound.Id;
+            GetPendingRestGroup(state)?.Id == currentRound.Id ||
+            (priorActiveRounds.Any(round => round.SelectionKey == currentRound.SelectionKey &&
+                state.Outcomes.ContainsKey(round.Id)) &&
+             GetSequenceExercises(currentPlacement.Root).All(member =>
+                IsCompatibleWithModifiers(member, modifiers)));
         HashSet<string> lockedSelectionGroupIds = priorActiveRounds
             .Where(round => state.Outcomes.ContainsKey(round.Id))
             .Select(round => round.SelectionKey)
@@ -2380,7 +2389,7 @@ public sealed partial class ExerciseSessionService
             $"No complete exercise lineup exists for the active workout profile " +
             $"across {groups.Count} groups and {movementCount} eligible session " +
             $"movements " +
-            $"with at least {WorkoutCoveragePolicy.MinimumCoveragePercent}% coverage.");
+            "with reviewed training in every selected muscle group.");
     }
 
     private void Shuffle<T>(IList<T> items)

@@ -10,10 +10,10 @@ const catalog = JSON.parse(await readFile(
   new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 const byId = new Map(catalog.map((exercise) => [exercise.id, exercise]));
 const cases = JSON.parse(await readFile(
-  new URL("./fixtures/regional-compound-cases.json", import.meta.url), "utf8"));
+  new URL("./fixtures/trained-muscle-membership-cases.json", import.meta.url), "utf8"));
 
 for (const item of cases) {
-  test(`reviewed compound and isolation contract: ${item.group}`, () => {
+  test(`reviewed trained-muscle membership: ${item.group}`, () => {
     const group = RESOLUTIONS.get(item.minutes).groups.find((candidate) => candidate.id === item.group);
     for (const id of item.accepted)
       assert.equal(isSelectable(byId.get(id), group), true, `${id} ${byId.get(id).name}`);
@@ -31,12 +31,15 @@ test("compound eligibility retains physical restrictions and both boxing lead bl
   assert.equal(byId.get(591).sequenceBlocks.length, 2);
 });
 
-test("a compound sequence cannot hide an isolated member in a broad round", () => {
+test("a sequence retains trained targets and needs time for every block", () => {
   const upper = RESOLUTIONS.get(3).groups.find((group) => group.id === "r3.head-neck-upper-limbs");
   const compound = structuredClone(byId.get(248));
-  const wrist = byId.get(239);
+  const wrist = structuredClone(byId.get(239));
   assert.equal(getMaximumDistinctLineupSize([compound, wrist], [upper], 0, 2), 1);
   compound.sequenceBlocks.push({ ...compound.sequenceBlocks[0], exerciseId: wrist.id });
   assert.equal(isSelectable(compound, upper), true);
-  assert.equal(getMaximumDistinctLineupSize([compound, wrist], [upper], 0, 2), 0);
+  assert.equal(getMaximumDistinctLineupSize([compound, wrist], [upper], 0, 7), 1);
+  wrist.sequenceBlocks = [];
+  assert.equal(getMaximumDistinctLineupSize([compound, wrist], [upper], 0, 1), 0);
+  assert.equal(getMaximumDistinctLineupSize([compound, wrist], [upper], 0, 2), 1);
 });

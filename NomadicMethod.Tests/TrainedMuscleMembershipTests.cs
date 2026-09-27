@@ -5,10 +5,10 @@ using NomadicMethod.Services;
 
 namespace NomadicMethod.Tests;
 
-public sealed class RegionalCompoundCoverageTests
+public sealed class TrainedMuscleMembershipTests
 {
     [Fact]
-    public void ReviewedCompoundMovementsAndIsolationCasesMatchBothPlatforms()
+    public void ReviewedTrainingClaimsDefineMembershipOnBothPlatforms()
     {
         var options = new JsonSerializerOptions
         {
@@ -20,7 +20,7 @@ public sealed class RegionalCompoundCoverageTests
             File.ReadAllText(Path.Combine(assets, "exercises.json")), options)!
             .ToDictionary(exercise => exercise.Id);
         CoverageCase[] cases = JsonSerializer.Deserialize<CoverageCase[]>(
-            File.ReadAllText(Path.Combine(assets, "regional-compound-cases.json")), options)!;
+            File.ReadAllText(Path.Combine(assets, "trained-muscle-membership-cases.json")), options)!;
         foreach (CoverageCase item in cases)
         {
             WorkoutGroup group = MassGroupingTaxonomy.GetGroup(item.Minutes, item.Group);
@@ -28,13 +28,15 @@ public sealed class RegionalCompoundCoverageTests
             {
                 Assert.True(WorkoutCoveragePolicy.IsSelectable(catalog[id], group),
                     $"{id} {catalog[id].Name} should qualify for {item.Group}");
-                Assert.True(WorkoutSequencePolicy.IsSelectable(catalog[id], catalog, group));
+                if (catalog[id].SequenceBlocks.Length > 0)
+                    Assert.True(WorkoutSequencePolicy.IsSelectable(catalog[id], catalog, group),
+                        $"Sequence {id} should qualify for {item.Group}");
             }
             foreach (int id in item.Rejected)
             {
                 Assert.False(WorkoutCoveragePolicy.IsSelectable(catalog[id], group),
                     $"{id} {catalog[id].Name} should not qualify for {item.Group}");
-                Assert.False(WorkoutSequencePolicy.IsSelectable(catalog[id], catalog, group));
+                // A linked sequence can train additional targets through another member.
             }
         }
 

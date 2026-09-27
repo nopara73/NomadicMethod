@@ -210,9 +210,8 @@ export const WORKOUT_MODIFIER_VALIDATION_PROFILES = Object.freeze(
 );
 const SELECTION_PROFILE_PREFIX = "p";
 const SELECTION_PROFILE_SEPARATOR = "|";
-const MINIMUM_CANONICAL_COVERAGE_PERCENT = 50;
 export const BROAD_COVERAGE_RESOLUTION_MINUTES = 3;
-export const MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP = 1;
+export const MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP = 5;
 export const MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP = 1;
 export const MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP = 1;
 export const MINIMUM_WALL_REQUIRED_SESSION_MOVEMENTS = 20;
@@ -1617,47 +1616,12 @@ export function getCanonicalCoverage(exercise, group) {
 }
 
 export function getRequiredCanonicalCoverage(group) {
-  return Math.ceil(group.canonicalGroups.length / 2);
+  if (!group.canonicalGroups.length) throw new Error("A workout group needs a trained muscle target.");
+  return 1;
 }
 
 export function isSelectable(exercise, group) {
-  return getCanonicalCoverage(exercise, group) >= getRequiredCanonicalCoverage(group) ||
-    isRegionalCompound(exercise, group);
-}
-
-const REGIONAL_SHOULDER_TARGETS = new Set([
-  "ShoulderAbductors", "ShoulderAdductorsAndExtensors", "RotatorCuff", "ScapularGirdle", "Chest",
-]);
-const REGIONAL_ELBOW_TARGETS = new Set(["ElbowFlexors", "ElbowExtensors"]);
-const ANTERIOR_TRUNK_TARGETS = new Set(["AbdominalWall", "Chest"]);
-const POSTERIOR_TRUNK_TARGETS = new Set(["SpinalExtensors", "DeepAndIntersegmentalBack"]);
-const COMPOUND_UPPER_BUCKET_MEMBERS = [
-  "ShoulderAbductors", "ShoulderAdductorsAndExtensors", "RotatorCuff", "ElbowFlexors", "ElbowExtensors",
-];
-const COMPOUND_TORSO_BUCKET_MEMBERS = [
-  "SpinalExtensors", "DeepAndIntersegmentalBack", "AbdominalWall", "Chest", "BreathingMuscles", "PelvicFloorAndPerineum",
-];
-
-export function isRegionalCompound(exercise, group) {
-  if (exercise.mode !== "Repetition" || exercise.presentation !== "Motion") return false;
-  const trained = [exercise.primaryCanonicalGroup, ...(exercise.secondaryCanonicalGroups ?? [])];
-  // Broad rounds must recognize reviewed work across the shoulder and elbow,
-  // without treating fine hand, face and neck subdivisions as equal-sized regions.
-  if (COMPOUND_UPPER_BUCKET_MEMBERS.every((muscle) => group.canonicalGroups.includes(muscle))) {
-    return (REGIONAL_SHOULDER_TARGETS.has(exercise.primaryCanonicalGroup) ||
-      REGIONAL_ELBOW_TARGETS.has(exercise.primaryCanonicalGroup)) &&
-      trained.some((muscle) => REGIONAL_SHOULDER_TARGETS.has(muscle)) &&
-      trained.some((muscle) => REGIONAL_ELBOW_TARGETS.has(muscle));
-  }
-  // Direct front-and-back trunk work does not need an invented breathing,
-  // pelvic-floor or incidental stabilization claim to be a broad torso movement.
-  if (COMPOUND_TORSO_BUCKET_MEMBERS.every((muscle) => group.canonicalGroups.includes(muscle))) {
-    return (ANTERIOR_TRUNK_TARGETS.has(exercise.primaryCanonicalGroup) ||
-      POSTERIOR_TRUNK_TARGETS.has(exercise.primaryCanonicalGroup)) &&
-      trained.some((muscle) => ANTERIOR_TRUNK_TARGETS.has(muscle)) &&
-      trained.some((muscle) => POSTERIOR_TRUNK_TARGETS.has(muscle));
-  }
-  return false;
+  return getCanonicalCoverage(exercise, group) >= getRequiredCanonicalCoverage(group);
 }
 
 function getSequenceMembers(root, exercisesById) {
@@ -1692,8 +1656,7 @@ function isSequenceSelectable(root, exercisesById, group) {
     member.primaryCanonicalGroup, ...(member.secondaryCanonicalGroups ?? []),
   ]));
   return group.canonicalGroups.filter((muscle) => trained.has(muscle)).length >=
-    getRequiredCanonicalCoverage(group) ||
-    members.every((member) => isRegionalCompound(member, group));
+    getRequiredCanonicalCoverage(group);
 }
 
 function getSequencePrimaryGroups(root, exercisesById, groups) {
@@ -2201,12 +2164,20 @@ function isSequenceUnitEligible(
   exercisesById,
   group,
   modifiers,
+  requireDurationFit = false,
 ) {
   if (!isSequenceSelectable(exercise, exercisesById, group)) {
     return false;
   }
 
-  return isSequenceCompatible(exercise, exercisesById, modifiers);
+  if (!isSequenceCompatible(exercise, exercisesById, modifiers)) return false;
+  if (!requireDurationFit || exercise.sequenceBlocks.length === 1) return true;
+  const resolution = [...RESOLUTIONS.values()].find(candidate =>
+    candidate.groups.some(known => known.id === group.id));
+  const available = resolution.groups.filter(candidate => isSelectionGroupAvailable(candidate, modifiers));
+  return getSequencePlacementOptions(exercise, exercisesById, available).some(option =>
+    option.some(candidate => candidate.id === group.id) &&
+    exercise.sequenceBlocks.length + available.length - option.length <= resolution.groups.length);
 }
 
 function isSequenceCompatible(exercise, exercisesById, modifiers) {
@@ -2259,8 +2230,7 @@ export function findWorkoutModifierPairCoverageDeficiencies(exercises) {
                     exercise,
                     exercisesById,
                     group,
-                    profile,
-                  ))
+                    profile, true))
                 .map(getSessionMovementId)).size,
             };
           })))
@@ -2304,8 +2274,7 @@ export function findHardFloorCategoryCoverageDeficiencies(exercises) {
                 exercise,
                 exercisesById,
                 group,
-                profile,
-              ))
+                profile, true))
             .map(getSessionMovementId)).size;
           return {
             minutes,
@@ -4273,110 +4242,11 @@ export class WorkoutSession {
     // Shuffle exclusions belong only to the workout being shuffled. Durable
     // rejection feedback is stored by workout phase.
     this.state.nextWorkoutExcludedExerciseIds = [];
-    this.prepareAdaptiveLineup();
-  }
-
-  // Through seven minutes retain one block per anatomical group: rejections
-  // cannot make room for extra sides. Only longer new workouts may broaden.
-  // Restoration and in-progress transitions retain the saved groups.
-  prepareAdaptiveLineup() {
-    const finestResolution = Math.min(this.state.activeWorkoutMinutes, 30);
-    let best = this.buildPreparationPlan(finestResolution);
-    let bestBurden = this.getPreparationBurden(best);
-    if (this.state.activeWorkoutMinutes > 7 && this.state.activeWorkoutMinutes <= 30 &&
-        bestBurden.rejectedBlocks > 0) {
-      for (const resolution of [...RESOLUTIONS.keys()]
-        .filter(minutes => minutes < finestResolution).sort((a, b) => b - a)) {
-        let candidate;
-        try {
-          candidate = this.buildPreparationPlan(resolution);
-        } catch {
-          // An unavailable broader bucket must never be silently omitted.
-          continue;
-        }
-        const burden = this.getPreparationBurden(candidate);
-        if (burden.lightBlocks < bestBurden.lightBlocks ||
-            burden.rejectedBlocks > bestBurden.rejectedBlocks ||
-            (burden.rejectedBlocks === bestBurden.rejectedBlocks &&
-             burden.rejectionDepth >= bestBurden.rejectionDepth)) continue;
-        best = candidate;
-        bestBurden = burden;
-        if (burden.rejectedBlocks === 0) break;
-      }
-    }
-    for (const key of [
-      "selectedExerciseIds", "keptExerciseRootIdsBySelectionGroupId",
-      "lastKeptExerciseIds", "activeDurationSelectionGroupIds",
-      "activeSetCountsBySelectionGroupId", "activeExtraSetSelectionGroupIds",
-      "activeSelectionGroupOrder",
-    ]) this.state[key] = best[key];
-  }
-
-  buildPreparationPlan(resolution) {
-    const source = this.state;
-    // Use isolated planning state so discarded candidates cannot leak migrated
-    // Keeps, cached selections, allocations or votes into the chosen workout.
-    this.state = {
-      ...createDefaultState(),
-      activeWorkoutMinutes: source.activeWorkoutMinutes,
-      activeWorkoutModifiers: source.activeWorkoutModifiers,
-      activeWorkoutIsLightDay: source.activeWorkoutIsLightDay,
-      activeDurationSelectionGroupIds: resolution === Math.min(source.activeWorkoutMinutes, 30)
-        ? null : getResolution(resolution).groups.map(group => group.id),
-      selectedExerciseIds: { ...source.selectedExerciseIds },
-      scores: { ...source.scores },
-      lastKeptExerciseIds: [...source.lastKeptExerciseIds],
-      keptExerciseRootIdsBySelectionGroupId: Object.fromEntries(
-        Object.entries(source.keptExerciseRootIdsBySelectionGroupId)
-          .map(([key, ids]) => [key, [...ids]])),
-      exerciseScoreAdjustmentsByPhase: Object.fromEntries(
-        Object.entries(source.exerciseScoreAdjustmentsByPhase)
-          .map(([key, scores]) => [key, { ...scores }])),
-      lastHardWorkUnixMillisecondsByPrimaryMuscle:
-        { ...source.lastHardWorkUnixMillisecondsByPrimaryMuscle },
-      lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle:
-        { ...source.lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle },
-    };
-    try {
-      this.carrySlotPreferencesForward();
-      this.repairActiveLineup((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0);
-      this.rebalanceNewExercisesByMuscleBalance();
-      this.setActiveLongWorkoutAllocation();
-      this.reconcileLineupWithScheduledPhases();
-      return this.state;
-    } finally {
-      this.state = source;
-    }
-  }
-
-  getPreparationBurden(plan) {
-    const source = this.state;
-    this.state = plan;
-    try {
-      const selections = new Map();
-      for (const round of this.getActiveGroups()) {
-        const key = getSelectionKey(round);
-        if (!selections.has(key)) selections.set(key, []);
-        selections.get(key).push(round);
-      }
-      let rejectedBlocks = 0;
-      let rejectionDepth = 0;
-      let lightBlocks = 0;
-      for (const rounds of selections.values()) {
-        const final = rounds.reduce((a, b) => a.order > b.order ? a : b);
-        const root = this.getSequenceRoot(this.getSelectedExercise(final));
-        const score = this.getSelectionScore(root, getWorkoutExercisePhase(final.order));
-        if (score < 0) {
-          rejectedBlocks += rounds.length;
-          rejectionDepth -= score * rounds.length;
-        }
-        if ((plan.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0 &&
-            this.isDemandZeroSequence(root)) lightBlocks += rounds.length;
-      }
-      return { rejectedBlocks, rejectionDepth, lightBlocks };
-    } finally {
-      this.state = source;
-    }
+    this.carrySlotPreferencesForward();
+    this.repairActiveLineup((modifiers & WORKOUT_MODIFIERS.Light) === 0);
+    this.rebalanceNewExercisesByMuscleBalance();
+    this.setActiveLongWorkoutAllocation();
+    this.reconcileLineupWithScheduledPhases();
   }
 
   activatePreparedWorkout() {
@@ -4698,7 +4568,11 @@ export class WorkoutSession {
       throw new Error("The current atomic selection could not be resolved.");
     }
     const preserveCompletedCurrentSelection =
-      this.getPendingRestGroup()?.id === currentRound.id;
+      this.getPendingRestGroup()?.id === currentRound.id ||
+      (priorActiveRounds.some(round => getSelectionKey(round) === getSelectionKey(currentRound) &&
+        this.state.outcomes[round.id] !== undefined) &&
+       this.getSequenceExercises(currentPlacement.root).every(member =>
+        this.isCompatibleWithModifiers(member, modifiers)));
     const lockedSelectionGroupIds = new Set(priorActiveRounds
       .filter((round) => this.state.outcomes[round.id] !== undefined)
       .map((round) => getSelectionKey(round)));
@@ -6293,8 +6167,8 @@ export class WorkoutSession {
   createDistinctLineupError(groups, movementCount) {
     return new Error(
       `No complete exercise lineup exists for the active workout profile across ` +
-      `${groups.length} groups and ${movementCount} eligible session movements with at least ` +
-      `${MINIMUM_CANONICAL_COVERAGE_PERCENT}% coverage.`,
+      `${groups.length} groups and ${movementCount} eligible session movements with ` +
+      "reviewed training in every selected muscle group.",
     );
   }
 

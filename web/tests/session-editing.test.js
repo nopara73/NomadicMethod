@@ -113,6 +113,26 @@ for (const profile of [M.None, M.Insect | M.Silence | M.UpperBodyClothing,
   });
 }
 
+test("equipment changes retain a compatible paused second set after shortening", () => {
+  const session = new WorkoutSession(catalog, createDefaultState(), () => 0);
+  session.initialize();
+  session.startWorkout(60, M.None);
+  while (session.getNextGroup().setNumber !== 2 ||
+      session.getNextGroup().sequenceBlockCount !== 1) finish(session);
+  const current = session.getNextGroup();
+  const rootId = session.getSelectedExercise(current).id;
+  session.beginMovement(current, 25_000, Date.now() + 25_000);
+  session.pauseMovement(current, 25_000, true);
+  session.resizeActiveWorkout(30);
+  const work = structuredClone(session.state.activeWorkoutSession.blocks);
+  session.reconfigureActiveWorkout(M.Wall, current.id);
+  assert.equal(session.getNextGroup().id, current.id);
+  assert.equal(session.getSelectedExercise(session.getNextGroup()).id, rootId);
+  assert.equal(session.state.pendingMovementMillisecondsRemaining, 25_000);
+  assert.equal(session.getActiveGroups().length, 30);
+  assert.deepEqual(session.state.activeWorkoutSession.blocks, work);
+});
+
 for (const minutes of [60, 90]) {
   test(`extend from the last fine slot to ${minutes} and reject destructive shortening`, () => {
     const session = new WorkoutSession(catalog, createDefaultState(), () => 0);
