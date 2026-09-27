@@ -89,8 +89,9 @@ public sealed class CatalogInvariantTests
                 .FindHardFloorCategoryCoverageDeficiencies(exercises)
                 .ToArray();
         Assert.Empty(hardFloorCategoryDeficiencies);
-        // Demand-category counts and percentage materiality remain in the
-        // diagnostic ledger. They do not define whether a workout is playable.
+        Assert.DoesNotContain(WorkoutModifierPolicy.FindMaterialityDeficiencies(exercises),
+            deficiency => !WorkoutModifierPolicy.IsAcceptedMaterialityDeficiency(deficiency));
+        // Demand-category counts remain diagnostic inventories.
         WorkoutProfileCompletionDeficiency[] lineupDeficiencies =
             WorkoutModifierPolicy.FindCompleteLineupDeficiencies(exercises).ToArray();
         Assert.Empty(lineupDeficiencies);

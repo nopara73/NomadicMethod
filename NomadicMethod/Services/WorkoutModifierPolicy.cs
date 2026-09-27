@@ -76,7 +76,7 @@ public static class WorkoutModifierPolicy
     // that fit the duration. Fine muscle groups still need at least one.
     public const int MinimumExercisesPerBroadPairStatePerGroup = 5;
     public const int MinimumExercisesPerFinePairStatePerGroup = 1;
-    // Historical demand and materiality targets are diagnostic inventories,
+    // Historical demand targets are diagnostic inventories,
     // not admission requirements or release gates. Never fill them with
     // altered anatomy, demand ratings or invented variations.
     public const int MinimumExercisesPerMuscularDemandCategoryPerGroup = 1;
@@ -87,6 +87,21 @@ public static class WorkoutModifierPolicy
     public const int MinimumAffectedBucketPercent = 10;
 
     private const int MaterialityResolutionMinutes = 30;
+
+    // Exact existing deficit accepted by the owner on 27 September 2026.
+    // All other materiality deficits still block release; never alter metadata
+    // or silently widen this exception to meet a quota.
+    public static IReadOnlyList<WorkoutModifierMaterialityDeficiency> AcceptedMaterialityExceptions { get; } =
+        Array.AsReadOnly<WorkoutModifierMaterialityDeficiency>(
+        [
+            new(WorkoutModifiers.Silence, WorkoutModifiers.HardFloor,
+                WorkoutModifiers.Silence | WorkoutModifiers.HardFloor,
+                268, 255, 13, 14, 7, 3),
+        ]);
+
+    public static bool IsAcceptedMaterialityDeficiency(
+        WorkoutModifierMaterialityDeficiency deficiency) =>
+        AcceptedMaterialityExceptions.Contains(deficiency);
 
     // Owner-accepted catalog gaps, 12 September 2026. These exact slots are
     // omitted in their affected setup; remaining rounds retain the full duration.

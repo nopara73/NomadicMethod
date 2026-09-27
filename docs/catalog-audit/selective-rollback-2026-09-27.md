@@ -70,18 +70,19 @@ remain diagnostics.
 One pre-existing materiality deficit remains: with Hard Floor enabled, Silence
 excludes 13 of 268 distinct movements, across seven canonical groups. The
 existing five-percent threshold requires 14 movements and three groups. This
-is not an availability failure, but the supplied `AGENTS.md` requires the
-materiality gate. Publishing therefore requires either resolving this gap
-without filler or false metadata, or an explicit owner exception. No exception
-is implied by refreshing the diagnostic ledger.
+is not an availability failure. The owner explicitly approved this exact
+exception on 27 September 2026. Android and web use the same pinned fixture;
+regression checks reject changes to any profile, count or threshold. The raw
+deficit stays visible in the ledger, while every unaccepted materiality
+deficit blocks release. Refreshing the ledger cannot waive that gate.
 
-Local validation passed: 889 Android tests, 446 web tests, the Android Debug
+Local validation passed: 890 Android tests, 447 web tests, the Android Debug
 build (zero warnings/errors), and the production web build (646 files, 545
 catalog records). The native/web parity lock covers 134 source files. The
 installed APK and the new Debug APK have matching signing certificates.
-The installed v3.24 APK and private state have been backed up; the phone has
-34 history records and no active workout. This is preparation, not an install.
+Before deployment, the installed v3.24 APK and private state were backed up;
+the phone had 34 history records and no active workout.
 
-Publishing is pending the materiality decision above. Deployment evidence will
-be recorded in the local release receipt after the Pages run and in-place Debug
-install, with `run-as` and saved-state verification.
+Publication is authorized with the exact exception above. Deployment evidence
+is recorded separately in the local release receipt after the Pages run and
+in-place Debug install, with `run-as` and saved-state verification.

@@ -331,7 +331,7 @@ availability and complete-lineup checks remain enforced.
 
 Hard Floor requires compatible availability in applicable buckets; it does not
 require an incompatible counterpart. Demand-0/demand-2 inventories, mirror
-relationship populations and percentage materiality are diagnostic results,
+relationship populations are diagnostic results,
 not admission quotas or release gates. Ratings, anatomy and relationship
 criteria remain truthful and audited. Broad regions require five distinct selectable movements in every required
 modifier state; fine groups require one. The audit counts only whole sequences
@@ -355,11 +355,13 @@ its exact historical deficits are retained in
 no relationship or muscle assignment may be inflated to hide a gap. The
 hierarchical policy makes the live contract both meaningful and achievable:
 broad regions protect real variety, fine buckets protect reachability, and
-demand checks protect broad light/hard availability. The current ledger records zero pairwise, hard-floor and complete-lineup
+demand checks report broad light/hard availability. The current ledger records zero pairwise, hard-floor and complete-lineup
 deficits. Demand and distinct-lineup counts remain diagnostics. One pre-existing
 Silence/Hard Floor materiality gap remains: 13 excluded movements versus the
-14 required by the five-percent rule. It is recorded explicitly and must be
-resolved or accepted by the owner before the selective rollback is published.
+14 required by the five-percent rule. The owner accepted this exact deficit on
+27 September 2026: baseline 268, filtered 255, seven affected groups with three
+required. Android tests and the web build reject every other materiality
+deficit, including any change to these counts or modifier profiles.
 The reproducible ledger is
 [`docs/catalog-audit/modifier_coverage_deficits_current.json`](docs/catalog-audit/modifier_coverage_deficits_current.json).
 Updating the ledger never changes an exercise's eligibility or waives a gate.

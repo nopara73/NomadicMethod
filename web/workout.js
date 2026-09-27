@@ -223,6 +223,27 @@ export const MINIMUM_MUSCULAR_DEMAND = 0;
 export const MODERATE_MUSCULAR_DEMAND = 1;
 export const MAXIMUM_MUSCULAR_DEMAND = 2;
 
+// Exact existing deficit accepted by the owner on 27 September 2026.
+// Every other materiality deficit still blocks release.
+export const ACCEPTED_MATERIALITY_EXCEPTIONS = Object.freeze([
+  Object.freeze({
+    baseProfile: WORKOUT_MODIFIERS.HardFloor,
+    enabledModifier: WORKOUT_MODIFIERS.Silence,
+    modifiedProfile: WORKOUT_MODIFIERS.HardFloor | WORKOUT_MODIFIERS.Silence,
+    baselineExerciseCount: 268,
+    modifiedExerciseCount: 255,
+    materialExerciseCount: 13,
+    requiredMaterialExerciseCount: 14,
+    affectedGroupCount: 7,
+    requiredAffectedGroupCount: 3,
+  }),
+]);
+
+export function isAcceptedMaterialityDeficiency(deficiency) {
+  return ACCEPTED_MATERIALITY_EXCEPTIONS.some((exception) =>
+    Object.keys(exception).every((key) => deficiency[key] === exception[key]));
+}
+
 // Insect mode requires visible continuous whole-body movement. Pelvic-floor
 // isolation cannot honestly meet that contract under NomadicMethod's feet-only rules.
 // Intrinsic-hand work can meet it only when a wall is available. Keep these

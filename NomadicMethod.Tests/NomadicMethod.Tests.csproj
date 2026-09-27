@@ -76,6 +76,7 @@
 
   <ItemGroup>
     <None Include="..\web\tests\fixtures\legacy-adaptive-session.json" Link="Assets\legacy-adaptive-session.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\accepted-materiality-exception.json" Link="Assets\accepted-materiality-exception.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\workout-planning-cases.json"
           Link="Assets\workout-planning-cases.json"
           CopyToOutputDirectory="PreserveNewest" />

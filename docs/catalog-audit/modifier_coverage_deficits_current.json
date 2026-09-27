@@ -3,7 +3,7 @@
   "catalogRecordCount": 545,
   "catalogSha256": "aa22b43af06c145760dbd79f40e1223947b8788c0d9f8d538f58ff92c8965ad9",
   "policy": {
-    "treatment": "Availability and complete atomic lineups must have zero deficits outside the exact owner-accepted coverage exceptions. Affected slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup, demand-category and percentage materiality arrays are diagnostics, not release gates.",
+    "treatment": "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
     "acceptedCoverageExceptions": [
       {
         "groupId": "r15.scapular-chest-breathing",
@@ -34,9 +34,21 @@
         "requiredModifiers": 513
       }
     ],
+    "acceptedMaterialityExceptions": [
+      {
+        "baseProfile": 16,
+        "enabledModifier": 2,
+        "modifiedProfile": 18,
+        "baselineExerciseCount": 268,
+        "modifiedExerciseCount": 255,
+        "materialExerciseCount": 13,
+        "requiredMaterialExerciseCount": 14,
+        "affectedGroupCount": 7,
+        "requiredAffectedGroupCount": 3
+      }
+    ],
     "diagnosticOnly": [
       "muscularDemand",
-      "materiality",
       "distinctLineup"
     ],
     "broadCoverageResolutionMinutes": 3,
@@ -56,6 +68,7 @@
     "demandTwoDeficiencyCount": 8,
     "demandTwoAffectedGroupCount": 2,
     "materialityDeficiencyCount": 1,
+    "unacceptedMaterialityDeficiencyCount": 0,
     "distinctLineupDeficiencyCount": 8,
     "completeLineupDeficiencyCount": 0
   },

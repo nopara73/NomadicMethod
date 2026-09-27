@@ -61,6 +61,7 @@ import {
   evaluateRecoveryLightMode,
   findHardFloorCategoryCoverageDeficiencies,
   findWorkoutModifierMaterialityDeficiencies,
+  isAcceptedMaterialityDeficiency,
   findWorkoutModifierPairCoverageDeficiencies,
   findMuscularDemandCoverageDeficiencies,
   findSoleWallContactRequiredCatalogDeficiencies,
@@ -3083,8 +3084,9 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
   const hardFloorDeficiencies = findHardFloorCategoryCoverageDeficiencies(catalog);
   assert.deepEqual(hardFloorDeficiencies, []);
 
-  // Demand and materiality inventories are recorded in the diagnostic ledger;
-  // playable-workout availability and complete atomic lineups still gate release.
+  assert.deepEqual(findWorkoutModifierMaterialityDeficiencies(catalog)
+    .filter((deficiency) => !isAcceptedMaterialityDeficiency(deficiency)), []);
+  // Demand inventories remain diagnostic; availability and complete lineups gate release.
   assert.deepEqual(findCompleteWorkoutProfileLineupDeficiencies(catalog), []);
   const allModifiers = WORKOUT_MODIFIERS.Insect |
     WORKOUT_MODIFIERS.Silence |

@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 
 import {
   ACCEPTED_COVERAGE_EXCEPTIONS,
+  ACCEPTED_MATERIALITY_EXCEPTIONS,
+  isAcceptedMaterialityDeficiency,
   BROAD_COVERAGE_RESOLUTION_MINUTES,
   CURRENT_CATALOG_REVISION,
   MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
@@ -51,9 +53,10 @@ const report = {
     .update(catalogSource.replaceAll("\r\n", "\n"))
     .digest("hex"),
   policy: {
-    treatment: "Availability and complete atomic lineups must have zero deficits outside the exact owner-accepted coverage exceptions. Affected slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup, demand-category and percentage materiality arrays are diagnostics, not release gates.",
+    treatment: "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
     acceptedCoverageExceptions: ACCEPTED_COVERAGE_EXCEPTIONS,
-    diagnosticOnly: ["muscularDemand", "materiality", "distinctLineup"],
+    acceptedMaterialityExceptions: ACCEPTED_MATERIALITY_EXCEPTIONS,
+    diagnosticOnly: ["muscularDemand", "distinctLineup"],
     broadCoverageResolutionMinutes: BROAD_COVERAGE_RESOLUTION_MINUTES,
     broadModifierPairMinimumPerStatePerGroup:
       MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
@@ -81,6 +84,8 @@ const report = {
       muscularDemand.filter((item) => item.muscularDemand === 2),
     ),
     materialityDeficiencyCount: materiality.length,
+    unacceptedMaterialityDeficiencyCount: materiality.filter((deficiency) =>
+      !isAcceptedMaterialityDeficiency(deficiency)).length,
     distinctLineupDeficiencyCount: distinctLineup.length,
     completeLineupDeficiencyCount: completeLineup.length,
   },

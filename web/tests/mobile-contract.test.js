@@ -760,6 +760,8 @@ test("web and mobile persist one combined duration and modifier selection contex
   );
   assert.doesNotMatch(webBuild, /muscularDemandDeficiencies\.length === 0/);
   assert.doesNotMatch(webBuild, /materialityDeficiencies\.length === 0/);
+  assert.match(webBuild, /"modifier materiality", unacceptedMaterialityDeficiencies\.length === 0/);
+  assert.match(webBuild, /filter\(\(deficiency\) => !isAcceptedMaterialityDeficiency\(deficiency\)\)/);
   assert.doesNotMatch(webBuild, /distinctLineupDeficiencies\.length === 0/);
   assert.match(webBuild, /exactlyEqual\(integrityDeficitReport\.materiality, materialityDeficiencies\)/);
   assert.doesNotMatch(webApp, /findMirrorCategoryDeficiencies/);

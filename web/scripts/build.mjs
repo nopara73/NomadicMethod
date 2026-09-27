@@ -11,6 +11,8 @@ import {
   findSoleWallContactRequiredCatalogDeficiencies,
   findWallRequiredCatalogDeficiencies,
   findWorkoutModifierMaterialityDeficiencies,
+  ACCEPTED_MATERIALITY_EXCEPTIONS,
+  isAcceptedMaterialityDeficiency,
   findWorkoutModifierPairCoverageDeficiencies,
   findWorkoutProfileLineupDeficiencies,
   findCompleteWorkoutProfileLineupDeficiencies,
@@ -195,6 +197,8 @@ const muscularDemandDeficiencies =
   findMuscularDemandCoverageDeficiencies(catalog);
 const materialityDeficiencies =
   findWorkoutModifierMaterialityDeficiencies(catalog);
+const unacceptedMaterialityDeficiencies = materialityDeficiencies
+  .filter((deficiency) => !isAcceptedMaterialityDeficiency(deficiency));
 const wallCatalogDeficiencies = findWallRequiredCatalogDeficiencies(catalog);
 const soleWallCatalogDeficiencies =
   findSoleWallContactRequiredCatalogDeficiencies(catalog);
@@ -234,6 +238,7 @@ const expectedIntegritySummary = {
     muscularDemandDeficiencies.filter((item) => item.muscularDemand === 2),
   ),
   materialityDeficiencyCount: materialityDeficiencies.length,
+  unacceptedMaterialityDeficiencyCount: unacceptedMaterialityDeficiencies.length,
   distinctLineupDeficiencyCount: distinctLineupDeficiencies.length,
   completeLineupDeficiencyCount: completeLineupDeficiencies.length,
 };
@@ -241,6 +246,8 @@ const integrityDebtMatches =
   integrityDeficitReport.catalogRevision === CURRENT_CATALOG_REVISION &&
   integrityDeficitReport.catalogRecordCount === catalog.length &&
   integrityDeficitReport.catalogSha256 === catalogSha256 &&
+  exactlyEqual(integrityDeficitReport.policy?.acceptedMaterialityExceptions,
+    ACCEPTED_MATERIALITY_EXCEPTIONS) &&
   integrityDeficitReport.policy
     ?.muscularDemandMinimumPerCategoryPerGroup ===
       MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP &&
@@ -258,8 +265,8 @@ const integrityDebtMatches =
   exactlyEqual(integrityDeficitReport.distinctLineup, distinctLineupDeficiencies) &&
   exactlyEqual(integrityDeficitReport.completeLineup, completeLineupDeficiencies);
 
-// Demand-category and percentage materiality results above are diagnostic.
-// Availability and complete atomic lineups remain release requirements.
+// Demand-category and distinct-lineup inventories are diagnostic. Every other
+// deficit must satisfy the release requirements or an exact owner exception.
 const catalogInvariantChecks = [
   ["modifier metadata completeness", isModifierMetadataComplete(catalog)],
   ["session movement metadata", isSessionMovementMetadataValid(catalog)],
@@ -267,6 +274,7 @@ const catalogInvariantChecks = [
   ["hierarchical hard-floor category coverage",
     hardFloorCategoryDeficiencies.length === 0],
   ["complete workout lineups", completeLineupDeficiencies.length === 0],
+  ["modifier materiality", unacceptedMaterialityDeficiencies.length === 0],
   ["wall-required session-movement floor", wallCatalogDeficiencies.length === 0],
   ["sole-wall session-movement floor", soleWallCatalogDeficiencies.length === 0],
   ["explicit catalog-integrity deficit ledger", integrityDebtMatches],

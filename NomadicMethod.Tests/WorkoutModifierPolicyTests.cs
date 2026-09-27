@@ -1,3 +1,4 @@
+using System.Text.Json;
 using NomadicMethod.Models;
 using NomadicMethod.Services;
 
@@ -1043,6 +1044,29 @@ public sealed class WorkoutModifierPolicyTests
         Assert.Equal(
             34,
             WorkoutModifierPolicy.FindMaterialityDeficiencies([]).Count);
+    }
+
+    [Fact]
+    public void SharedMaterialityExceptionRejectsEveryDifferentProfileOrCount()
+    {
+        Dictionary<string, int> accepted = JsonSerializer.Deserialize<Dictionary<string, int>>(
+            File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets",
+                "accepted-materiality-exception.json")))!;
+        Assert.True(WorkoutModifierPolicy.IsAcceptedMaterialityDeficiency(FromFixture(accepted)));
+        foreach (string key in accepted.Keys)
+        foreach (int delta in new[] { -1, 1 })
+        {
+            var changed = new Dictionary<string, int>(accepted) { [key] = accepted[key] + delta };
+            Assert.False(WorkoutModifierPolicy.IsAcceptedMaterialityDeficiency(FromFixture(changed)),
+                $"{key} must match the exact owner-approved deficit");
+        }
+
+        static WorkoutModifierMaterialityDeficiency FromFixture(IReadOnlyDictionary<string, int> item) =>
+            new((WorkoutModifiers)item["enabledModifier"], (WorkoutModifiers)item["baseProfile"],
+                (WorkoutModifiers)item["modifiedProfile"], item["baselineExerciseCount"],
+                item["modifiedExerciseCount"], item["materialExerciseCount"],
+                item["requiredMaterialExerciseCount"], item["affectedGroupCount"],
+                item["requiredAffectedGroupCount"]);
     }
 
     [Fact]
