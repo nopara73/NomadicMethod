@@ -57,6 +57,11 @@ public sealed class WorkoutAdaptivePlanningTests
         foreach (var selection in selections)
         {
             Exercise root = catalog.Single(e => e.Id == selection.RootExerciseId);
+            if (item.Minutes <= 7)
+            {
+                Assert.Equal(1, selection.SequenceBlockCount);
+                Assert.Equal(1, selection.SetCount);
+            }
             Assert.Equal(root.SequenceBlocks.Length, selection.SequenceBlockCount);
             var rounds = service.GetActiveGroups(state).Where(g => g.SelectionKey == selection.SelectionGroupId).ToArray();
             Assert.Equal(selection.SequenceBlockCount * selection.SetCount, rounds.Length);
@@ -84,6 +89,41 @@ public sealed class WorkoutAdaptivePlanningTests
         Assert.Equal(7, service.GetActiveGroups(state).Count);
     }
 
+    [Theory]
+    [InlineData(3, false)]
+    [InlineData(5, false)]
+    [InlineData(7, false)]
+    [InlineData(3, true)]
+    [InlineData(5, true)]
+    [InlineData(7, true)]
+    public void ShortWorkoutsKeepMuscleGroupsEvenWhenPairedExercisesScoreHigher(int minutes, bool light)
+    {
+        Exercise[] catalog = Catalog();
+        foreach (Exercise exercise in catalog)
+            exercise.Score = exercise.SequenceBlocks.Length == 1 ? -5 : 50;
+        var state = new WorkoutState();
+        var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
+        WorkoutModifiers modifiers = Profile | (light ? WorkoutModifiers.Light : WorkoutModifiers.None);
+        service.Initialize(state);
+        service.StartWorkout(state, minutes, modifiers);
+        AssertSingleBlockGroups();
+        service.ShuffleNextExercise(state, service.GetNextGroup(state)!);
+        AssertSingleBlockGroups();
+        service.ReconfigureActiveWorkout(state,
+            modifiers ^ WorkoutModifiers.Mirror ^ WorkoutModifiers.TallMirror,
+            service.GetNextGroup(state)!.Id);
+        AssertSingleBlockGroups();
+
+        void AssertSingleBlockGroups()
+        {
+            var rounds = service.GetActiveGroups(state);
+            Assert.Equal(minutes, rounds.Count);
+            Assert.Equal(MassGroupingTaxonomy.GetResolution(minutes).Groups.Select(g => g.Id).Order(),
+                rounds.Select(g => g.SelectionKey).Order());
+            Assert.All(rounds, g => Assert.Single(service.GetSelectedExercise(state, g).SequenceBlocks));
+        }
+    }
+
     [Fact]
     public void ExistingReadyWorkoutDoesNotReplanItsGroupsOnUpgrade()
     {
@@ -108,7 +148,7 @@ public sealed class WorkoutAdaptivePlanningTests
         var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
         var state = RejectedState();
         service.Initialize(state);
-        service.StartWorkout(state, 7, Profile);
+        service.StartWorkout(state, 10, Profile);
         Assert.NotNull(state.ActiveDurationSelectionGroupIds);
         WorkoutGroup first = service.GetNextGroup(state)!;
         service.BeginRest(state, first, Now.AddSeconds(15).ToUnixTimeMilliseconds());
@@ -127,11 +167,11 @@ public sealed class WorkoutAdaptivePlanningTests
         Assert.Equal(rounds, service.GetActiveGroups(state));
         Assert.Equal(25_000, state.PendingMovementMillisecondsRemaining);
         Assert.Equal(current.Id, state.PendingMovementGroupId);
-        service.ResizeActiveWorkout(state, 10);
-        Assert.Equal(10, service.GetActiveGroups(state).Count);
+        service.ResizeActiveWorkout(state, 15);
+        Assert.Equal(15, service.GetActiveGroups(state).Count);
         Assert.Equal(current.Id, service.GetNextGroup(state)!.Id);
         service.ReconfigureActiveWorkout(state, Profile ^ WorkoutModifiers.Mirror ^ WorkoutModifiers.TallMirror, current.Id);
-        Assert.Equal(10, service.GetActiveGroups(state).Count);
+        Assert.Equal(15, service.GetActiveGroups(state).Count);
         Assert.Equal(blocks, JsonSerializer.Serialize(state.ActiveWorkoutSession!.Blocks));
         Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
         Assert.Equal(sessionId, state.ActiveWorkoutSession.SessionId);

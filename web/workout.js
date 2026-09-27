@@ -4276,13 +4276,15 @@ export class WorkoutSession {
     this.prepareAdaptiveLineup();
   }
 
-  // Broaden only a new short workout whose complete plan brings back rejected
-  // movements. Restoration and in-progress transitions retain the saved groups.
+  // Through seven minutes retain one block per anatomical group: rejections
+  // cannot make room for extra sides. Only longer new workouts may broaden.
+  // Restoration and in-progress transitions retain the saved groups.
   prepareAdaptiveLineup() {
     const finestResolution = Math.min(this.state.activeWorkoutMinutes, 30);
     let best = this.buildPreparationPlan(finestResolution);
     let bestBurden = this.getPreparationBurden(best);
-    if (this.state.activeWorkoutMinutes <= 30 && bestBurden.rejectedBlocks > 0) {
+    if (this.state.activeWorkoutMinutes > 7 && this.state.activeWorkoutMinutes <= 30 &&
+        bestBurden.rejectedBlocks > 0) {
       for (const resolution of [...RESOLUTIONS.keys()]
         .filter(minutes => minutes < finestResolution).sort((a, b) => b - a)) {
         let candidate;

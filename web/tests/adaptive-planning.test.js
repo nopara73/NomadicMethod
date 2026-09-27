@@ -43,6 +43,10 @@ for (const item of cases) {
       assert.equal(log.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.minutes);
       for (const selection of log.initialSelections) {
         const root = catalog.find(e => e.id === selection.rootExerciseId);
+        if (item.minutes <= 7) {
+          assert.equal(selection.sequenceBlockCount, 1);
+          assert.equal(selection.setCount, 1);
+        }
         assert.equal(selection.sequenceBlockCount, root.sequenceBlocks.length);
         const selectedRounds = rounds.filter(g => (g.selectionGroupId ?? g.id) === selection.selectionGroupId);
         assert.equal(selectedRounds.length, selection.sequenceBlockCount * selection.setCount);
@@ -82,10 +86,37 @@ test("an existing Ready workout does not replan its grouping on upgrade", () => 
   assert.equal(session.state.activeDurationSelectionGroupIds, null);
 });
 
+for (const minutes of [3, 5, 7]) {
+  for (const light of [false, true]) {
+    test(`${minutes}-minute muscle groups survive higher-scoring paired exercises (Light ${light})`, () => {
+      const session = new WorkoutSession(catalog, {
+        ...createDefaultState(),
+        scores: Object.fromEntries(catalog.map(e => [e.id, e.sequenceBlocks.length === 1 ? -5 : 50])),
+      }, () => 0.5, () => now);
+      const modifiers = profile | (light ? M.Light : 0);
+      session.initialize();
+      session.startWorkout(minutes, modifiers);
+      assertSingleBlockGroups();
+      session.shuffleNextExercise(session.getNextGroup());
+      assertSingleBlockGroups();
+      session.reconfigureActiveWorkout(modifiers ^ M.Mirror ^ M.TallMirror, session.getNextGroup().id);
+      assertSingleBlockGroups();
+
+      function assertSingleBlockGroups() {
+        const rounds = session.getActiveGroups();
+        assert.equal(rounds.length, minutes);
+        assert.deepEqual(rounds.map(g => g.selectionGroupId ?? g.id).sort(),
+          getResolution(minutes).groups.map(g => g.id).sort());
+        assert.ok(rounds.every(g => session.getSelectedExercise(g).sequenceBlocks.length === 1));
+      }
+    });
+  }
+}
+
 test("broader plans restore paused sides and preserve completed work through edits", () => {
   let session = new WorkoutSession(catalog, rejectedState(), () => 0.5, () => now);
   session.initialize();
-  session.startWorkout(7, profile);
+  session.startWorkout(10, profile);
   assert.ok(session.state.activeDurationSelectionGroupIds);
   const first = session.getNextGroup();
   session.beginRest(first, now + 15_000);
@@ -104,11 +135,11 @@ test("broader plans restore paused sides and preserve completed work through edi
   assert.deepEqual(session.getActiveGroups(), rounds);
   assert.equal(session.state.pendingMovementMillisecondsRemaining, 25_000);
   assert.equal(session.state.pendingMovementGroupId, current.id);
-  session.resizeActiveWorkout(10);
-  assert.equal(session.getActiveGroups().length, 10);
+  session.resizeActiveWorkout(15);
+  assert.equal(session.getActiveGroups().length, 15);
   assert.equal(session.getNextGroup().id, current.id);
   session.reconfigureActiveWorkout(profile ^ M.Mirror ^ M.TallMirror, current.id);
-  assert.equal(session.getActiveGroups().length, 10);
+  assert.equal(session.getActiveGroups().length, 15);
   assert.deepEqual(session.state.activeWorkoutSession.blocks, blocks);
   assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, feedback);
   assert.equal(session.state.activeWorkoutSession.sessionId, sessionId);

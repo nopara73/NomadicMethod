@@ -39,8 +39,9 @@ The supported workout durations are 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90
 minutes. Durations above 30 begin with the 30-group resolution and spend the
 remaining time according to the expansion rules below.
 
-For a new workout of up to 30 minutes, a duration is a time budget rather than
-a compulsory one-target-per-minute lineup. When the default plan brings back
+Three-, five- and seven-minute workouts retain their full anatomical partition:
+rejected exercises cannot displace muscle groups to make room for two-sided
+sequences. For a new workout of 10 through 30 minutes, when the default plan brings back
 rejected movements, Nomadic Method also evaluates the broader complete partitions.
 It switches only when a complete plan spends fewer blocks on rejected sequences,
 or the same number of blocks on less-rejected sequences. Ties keep the finer

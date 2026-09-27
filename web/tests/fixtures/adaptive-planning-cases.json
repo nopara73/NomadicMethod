@@ -10,24 +10,24 @@
     "excludedRoots": []
   },
   {
-    "name": "forced rejected glute movement makes room for whole alternatives",
+    "name": "rejected glute movement cannot displace the seven-minute muscle groups",
     "minutes": 7,
     "modifiers": 60,
     "adjustments": { "Warmup": { "130": -4 } },
     "legacyScore": 0,
-    "expectedResolution": 5,
-    "expectedRejectedBlocks": 0,
-    "excludedRoots": [130]
+    "expectedResolution": 7,
+    "expectedRejectedBlocks": 1,
+    "excludedRoots": []
   },
   {
-    "name": "rejected hip and glute pools do not trap the seven-minute plan",
+    "name": "rejected pools cannot make room for sides in seven minutes",
     "minutes": 7,
     "modifiers": 60,
     "adjustments": { "Warmup": { "130": -4, "118": -2, "132": -2, "1028": -2, "1031": -2 } },
     "legacyScore": 0,
-    "expectedResolution": 5,
-    "expectedRejectedBlocks": 0,
-    "excludedRoots": [130, 118, 132, 1028, 1031]
+    "expectedResolution": 7,
+    "expectedRejectedBlocks": 2,
+    "excludedRoots": []
   },
   {
     "name": "rejections in another execution phase do not broaden warmup",
@@ -48,5 +48,15 @@
     "expectedResolution": 7,
     "expectedRejectedBlocks": 7,
     "excludedRoots": []
+  },
+  {
+    "name": "ten-minute workout can fit complete alternatives to rejected movements",
+    "minutes": 10,
+    "modifiers": 60,
+    "adjustments": { "Warmup": { "130": -4, "118": -2, "132": -2, "1028": -2, "1031": -2 } },
+    "legacyScore": 0,
+    "expectedResolution": 7,
+    "expectedRejectedBlocks": 0,
+    "excludedRoots": [130, 118, 132, 1028, 1031]
   }
 ]

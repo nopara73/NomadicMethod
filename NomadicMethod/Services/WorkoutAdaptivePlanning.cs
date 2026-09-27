@@ -4,16 +4,16 @@ namespace NomadicMethod.Services;
 
 public sealed partial class ExerciseSessionService
 {
-    // A short duration is a block budget, not a requirement that every block
-    // own a different narrow target. Try the existing, complete anatomical
-    // partitions when the finest plan would bring back rejected movements.
+    // Through seven minutes every block belongs to its own anatomical group.
+    // Rejections must not coarsen that partition to make room for extra sides.
+    // Longer workouts may try broader complete partitions to avoid rejections.
     // This runs only during new-workout preparation, never during restoration.
     private void PrepareAdaptiveLineup(WorkoutState state)
     {
         int finestResolution = Math.Min(state.ActiveWorkoutMinutes, 30);
         WorkoutState best = BuildPreparationPlan(state, finestResolution);
         PreparationBurden bestBurden = GetPreparationBurden(best);
-        if (state.ActiveWorkoutMinutes <= 30 && bestBurden.RejectedBlocks > 0)
+        if (state.ActiveWorkoutMinutes is > 7 and <= 30 && bestBurden.RejectedBlocks > 0)
         {
             foreach (int resolution in MassGroupingTaxonomy.SupportedMinutes
                          .Where(minutes => minutes < finestResolution)
