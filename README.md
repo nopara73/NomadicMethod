@@ -11,6 +11,8 @@ randomness, or filters to destroy anatomical coverage.
 
 Try the web app: [Nomadic Method](https://nopara73.github.io/NomadicMethod/)
 
+Created by [Ádám Ficsór (nopara73)](https://adamficsor.com/).
+
 The Android package and local storage use the Nomadic Method identity. See the
 [product identifiers](docs/BRANDING.md).
 
