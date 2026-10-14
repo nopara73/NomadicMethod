@@ -549,6 +549,7 @@ button.modifier-tile:not(:disabled):active {
   display: inline;
 }
 
+.locomotion-icon .modifier-icon-stroke { stroke-width: 1.9; }
 .locomotion-glyph { display: none; }
 .modifier-tile[data-locomotion-space="none"] .locomotion-glyph-none,
 .modifier-tile[data-locomotion-space="room"] .locomotion-glyph-room,
