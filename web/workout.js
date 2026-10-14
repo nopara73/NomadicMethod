@@ -13,6 +13,8 @@ export const WORKOUT_MODIFIERS = Object.freeze({
   UpperBodyClothing: 128,
   Light: 256,
   Shy: 512,
+  RoomLocomotion: 1024,
+  FieldLocomotion: 2048,
 });
 export const MIRROR_EQUIPMENT = Object.freeze({
   None: "None",
@@ -24,6 +26,9 @@ export const WALL_EQUIPMENT = Object.freeze({
   SolesStayOff: "SolesStayOff",
   SolesMayTouch: "SolesMayTouch",
 });
+export const LOCOMOTION_SPACE = Object.freeze({ None: "None", Room: "Room", Field: "Field" });
+const locomotionSpaceRank = (space) =>
+  [LOCOMOTION_SPACE.None, LOCOMOTION_SPACE.Room, LOCOMOTION_SPACE.Field].indexOf(space);
 export const RECOVERY_LIGHT_MINIMUM_SHARE_NUMERATOR = 4;
 export const RECOVERY_LIGHT_MINIMUM_SHARE_DENOMINATOR = 5;
 export const EXERCISE_INSECT_COMPATIBILITY = Object.freeze({
@@ -134,6 +139,14 @@ const MODIFIER_RULES = Object.freeze([
     isReviewed: isMirrorMetadataReviewed,
     isCompatibleForProfile: isMirrorCompatible,
   }),
+  Object.freeze({
+    flag: WORKOUT_MODIFIERS.RoomLocomotion,
+    isReviewed: isLocomotionSpaceMetadataValid,
+    isCompatibleForProfile: (exercise, profile) => {
+      const required = locomotionSpaceRank(exercise.locomotionSpace ?? LOCOMOTION_SPACE.None);
+      return isLocomotionSpaceMetadataValid(exercise) && required <= locomotionSpaceRank(getLocomotionSpace(profile));
+    },
+  }),
 ]);
 
 function isMirrorMetadataReviewed(exercise) {
@@ -171,6 +184,10 @@ function isMirrorCompatible(exercise, profile) {
 }
 
 function getModifierRuleStateProfiles(rule) {
+  if (rule.flag === WORKOUT_MODIFIERS.RoomLocomotion) {
+    return [WORKOUT_MODIFIERS.None, WORKOUT_MODIFIERS.RoomLocomotion,
+      WORKOUT_MODIFIERS.RoomLocomotion | WORKOUT_MODIFIERS.FieldLocomotion];
+  }
   return rule.flag === WORKOUT_MODIFIERS.Mirror
     ? [
         WORKOUT_MODIFIERS.None,
@@ -203,6 +220,7 @@ export const SUPPORTED_WORKOUT_MODIFIER_MASK = MODIFIER_RULES.reduce(
   WORKOUT_MODIFIERS.TallMirror |
     WORKOUT_MODIFIERS.Wall |
     WORKOUT_MODIFIERS.SoleWallContact |
+    WORKOUT_MODIFIERS.FieldLocomotion |
     WORKOUT_MODIFIERS.Light,
 );
 export const WORKOUT_MODIFIER_VALIDATION_PROFILES = Object.freeze(
@@ -216,6 +234,8 @@ export const MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP = 1;
 export const MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP = 1;
 export const MINIMUM_WALL_REQUIRED_SESSION_MOVEMENTS = 20;
 export const MINIMUM_SOLE_WALL_CONTACT_REQUIRED_SESSION_MOVEMENTS = 5;
+export const MINIMUM_ROOM_LOCOMOTION_SESSION_MOVEMENTS = 25;
+export const MINIMUM_FIELD_LOCOMOTION_SESSION_MOVEMENTS = 5;
 export const MINIMUM_MODIFIER_MATERIALITY_EXERCISES = 5;
 export const MINIMUM_MODIFIER_MATERIALITY_PERCENT = 5;
 export const MINIMUM_MODIFIER_MATERIALITY_GROUP_PERCENT = 10;
@@ -230,8 +250,8 @@ export const ACCEPTED_MATERIALITY_EXCEPTIONS = Object.freeze([
     baseProfile: WORKOUT_MODIFIERS.HardFloor,
     enabledModifier: WORKOUT_MODIFIERS.Silence,
     modifiedProfile: WORKOUT_MODIFIERS.HardFloor | WORKOUT_MODIFIERS.Silence,
-    baselineExerciseCount: 268,
-    modifiedExerciseCount: 255,
+    baselineExerciseCount: 267,
+    modifiedExerciseCount: 254,
     materialExerciseCount: 13,
     requiredMaterialExerciseCount: 14,
     affectedGroupCount: 7,
@@ -384,7 +404,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 79;
+export const CURRENT_CATALOG_REVISION = 80;
 const HARD_FLOOR_SLIPPERINESS_CATALOG_REVISION = 53;
 const REUSED_SHY_AUDIT_CATALOG_REVISION = 70;
 const REUSED_SHY_AUDIT_EXERCISE_IDS = new Set([202, 204, 205]);
@@ -1298,9 +1318,11 @@ export function getWorkoutBlockAccent(group) {
   switch (group?.sequenceSideCue ?? "None") {
     case "ScreenRight":
     case "ShownLeadStance":
+    case "ShownHandPosition":
       return "blue";
     case "ScreenLeft":
     case "OppositeLeadStance":
+    case "OppositeHandPosition":
       return "red";
     default:
       break;
@@ -2023,6 +2045,7 @@ export function isSessionMovementMetadataValid(exercises) {
 
   const validSideCues = new Set([
     "None", "ScreenLeft", "ScreenRight", "ShownLeadStance", "OppositeLeadStance",
+    "ShownHandPosition", "OppositeHandPosition",
   ]);
   const validDirectionCues = new Set([
     "None", "Forward", "Backward", "Clockwise", "Counterclockwise", "Inward", "Outward",
@@ -2048,6 +2071,8 @@ export function isSessionMovementMetadataValid(exercises) {
           member.upperBodyClothingRequirement !==
             root.upperBodyClothingRequirement ||
           member.shyCompatibility !== root.shyCompatibility ||
+          (member.locomotionSpace ?? LOCOMOTION_SPACE.None) !==
+            (root.locomotionSpace ?? LOCOMOTION_SPACE.None) ||
           !validSideCues.has(block.sideCue ?? "None") ||
           !validDirectionCues.has(block.directionCue ?? "None") ||
           typeof block.mirrorMedia !== "boolean" ||
@@ -2404,7 +2429,8 @@ export function findWorkoutModifierMaterialityDeficiencies(exercises) {
   const reviewedExercises = exercises.filter((exercise) =>
     MODIFIER_RULES.every((rule) => rule.isReviewed(exercise)));
   const materialityRules = MODIFIER_RULES.filter((rule) =>
-    rule.flag !== WORKOUT_MODIFIERS.UpperBodyClothing);
+    rule.flag !== WORKOUT_MODIFIERS.UpperBodyClothing &&
+    rule.flag !== WORKOUT_MODIFIERS.RoomLocomotion);
   const rulePairs = materialityRules.flatMap((firstRule, firstIndex) =>
     materialityRules.slice(firstIndex + 1).map((secondRule) =>
       ({ firstRule, secondRule })));
@@ -3122,11 +3148,62 @@ export function normalizeWorkoutModifiers(modifiers) {
   if ((normalized & WORKOUT_MODIFIERS.Wall) === 0) {
     normalized &= ~WORKOUT_MODIFIERS.SoleWallContact;
   }
+  if ((normalized & WORKOUT_MODIFIERS.RoomLocomotion) === 0) {
+    normalized &= ~WORKOUT_MODIFIERS.FieldLocomotion;
+  }
   return normalized;
 }
 
 export function getPersistentSetupModifiers(modifiers) {
   return normalizeWorkoutModifiers(modifiers) & ~WORKOUT_MODIFIERS.Light;
+}
+
+export function getLocomotionSpace(modifiers) {
+  const normalized = normalizeWorkoutModifiers(modifiers);
+  return (normalized & WORKOUT_MODIFIERS.RoomLocomotion) === 0
+    ? LOCOMOTION_SPACE.None
+    : (normalized & WORKOUT_MODIFIERS.FieldLocomotion) !== 0
+      ? LOCOMOTION_SPACE.Field : LOCOMOTION_SPACE.Room;
+}
+
+export function withLocomotionSpace(modifiers, space) {
+  const without = normalizeWorkoutModifiers(modifiers) &
+    ~(WORKOUT_MODIFIERS.RoomLocomotion | WORKOUT_MODIFIERS.FieldLocomotion);
+  if (space === LOCOMOTION_SPACE.None) return without;
+  if (space === LOCOMOTION_SPACE.Room) return without | WORKOUT_MODIFIERS.RoomLocomotion;
+  if (space === LOCOMOTION_SPACE.Field) return without |
+    WORKOUT_MODIFIERS.RoomLocomotion | WORKOUT_MODIFIERS.FieldLocomotion;
+  throw new RangeError(`Unknown locomotion space: ${space}`);
+}
+
+export function findLocomotionCatalogDeficiencies(exercises) {
+  const byId = new Map(exercises.map((exercise) => [exercise.id, exercise]));
+  const profile = withLocomotionSpace(withWallEquipment(
+    WORKOUT_MODIFIERS.None, WALL_EQUIPMENT.SolesMayTouch), LOCOMOTION_SPACE.Field);
+  return [
+    [LOCOMOTION_SPACE.Room, MINIMUM_ROOM_LOCOMOTION_SESSION_MOVEMENTS],
+    [LOCOMOTION_SPACE.Field, MINIMUM_FIELD_LOCOMOTION_SESSION_MOVEMENTS],
+  ].map(([space, minimum]) => ({
+    locomotionSpace: space,
+    matchingSessionMovementCount: new Set(exercises.filter((exercise) =>
+      exercise.locomotionSpace === space &&
+      isSequenceCompatible(exercise, byId, profile) &&
+      exercise.sequenceBlocks.every((block) =>
+        locomotionSpaceRank(byId.get(block.exerciseId).locomotionSpace) <= locomotionSpaceRank(space)) &&
+      exercise.sequenceBlocks.some((block) => byId.get(block.exerciseId).locomotionSpace === space))
+      .map(getSessionMovementId)).size,
+    requiredSessionMovementCount: minimum,
+  })).filter((deficit) => deficit.matchingSessionMovementCount < deficit.requiredSessionMovementCount);
+}
+
+export function isLocomotionSpaceMetadataValid(exercise) {
+  const space = exercise.locomotionSpace ?? LOCOMOTION_SPACE.None;
+  const meters = exercise.maxSpaceMeters ?? 2;
+  if (!Number.isInteger(meters)) return false;
+  if (space === LOCOMOTION_SPACE.None) return meters >= 1 && meters <= 2;
+  if (space === LOCOMOTION_SPACE.Room) return meters >= 3 && meters <= 10;
+  if (space === LOCOMOTION_SPACE.Field) return meters > 10 && meters <= 100;
+  return false;
 }
 
 export function getMirrorEquipment(modifiers) {
@@ -3282,6 +3359,7 @@ export function createDefaultState() {
     pendingRestKept: false,
     lastWorkoutMinutes: 10,
     lastWorkoutModifiers: DEFAULT_WORKOUT_MODIFIERS,
+    activeCatalogRevision: 0,
     activeWorkoutMinutes: 0,
     activeWorkoutModifiers: WORKOUT_MODIFIERS.None,
     activeWorkoutIsLightDay: false,
@@ -3316,6 +3394,8 @@ function normalizeStateShape(raw) {
   state.catalogRevision = Number.isInteger(raw.catalogRevision)
     ? raw.catalogRevision
     : 0;
+  state.activeCatalogRevision = Number.isInteger(raw.activeCatalogRevision)
+    ? raw.activeCatalogRevision : 0;
   state.lastWorkoutMinutes = normalizeMinutes(raw.lastWorkoutMinutes);
   state.lastWorkoutModifiers = raw.lastWorkoutModifiers === undefined
     ? state.lastWorkoutModifiers
@@ -4026,6 +4106,35 @@ export function inferLegacyCompletedTrainingDays(
   return inferred;
 }
 
+export const HAND_POSITION_EXERCISE_IDS = Object.freeze([32, 216, 224, 510, 740, 1012]);
+const SHY_CORRECTION_IDS = new Set([
+  432, 435, 436, 437, 438, 439, 440, 441, 443, 446, 447, 452, 453, 458,
+  460, 461, 468, 469, 471, 472, 476, 479, 494, 496, 547, 1002,
+  1025, 1026, 1027,
+]);
+
+export function getWorkoutCatalog(catalog, activeRevision) {
+  if (activeRevision < 73 || activeRevision >= 80) return catalog;
+  const jackIds = [459, 468, 469];
+  const hasJackSeries = jackIds.every(id => catalog.some(e => e.id === id));
+  const jackBlocks = hasJackSeries ? jackIds.flatMap(id =>
+    catalog.find(e => e.id === id).sequenceBlocks) : [];
+  return catalog.map(exercise => {
+    const hand = HAND_POSITION_EXERCISE_IDS.includes(exercise.id) &&
+      exercise.sideSequence === "ShownHandPositionThenOpposite";
+    const shy = SHY_CORRECTION_IDS.has(exercise.id);
+    const jackSeries = hasJackSeries && jackIds.includes(exercise.id);
+    if (!hand && !shy && !jackSeries) return exercise;
+    return { ...exercise,
+      sideSequence: hand ? "Continuous" : exercise.sideSequence,
+      sequenceBlocks: hand ? [{ exerciseId: exercise.id, sideCue: "None",
+        directionCue: "None", mirrorMedia: false, mediaSegment: "Full" }]
+        : jackSeries ? exercise.id === 459 ? jackBlocks : [] : exercise.sequenceBlocks,
+      shyCompatibility: shy ? "Compatible" : exercise.shyCompatibility,
+    };
+  });
+}
+
 export class WorkoutSession {
   constructor(
     exercises,
@@ -4036,6 +4145,32 @@ export class WorkoutSession {
     if (!Array.isArray(exercises)) {
       throw new TypeError("Exercise catalog must be an array.");
     }
+    this.catalogExercises = exercises;
+    this.state = normalizeStateShape(storedState);
+    if (!this.state.activeCatalogRevision && this.state.activeWorkoutMinutes > 0) {
+      this.state.activeCatalogRevision = this.state.catalogRevision;
+    }
+    this.setExercises(this.state.activeWorkoutMinutes > 0
+      ? getWorkoutCatalog(exercises, this.state.activeCatalogRevision) : exercises);
+    this.loadedStateVersion = this.state[SOURCE_STATE_VERSION] ?? this.state.version;
+    this.random = random;
+    this.nowProvider = nowProvider;
+    if (this.loadedStateVersion < SLOT_SCOPED_PREFERENCE_STATE_VERSION) {
+      this.migrateSlotScopedPreferences();
+    }
+    if (this.loadedStateVersion < PHASE_SCOPED_DOWNVOTE_STATE_VERSION) {
+      if (this.loadedStateVersion < SLOT_SCOPED_PREFERENCE_STATE_VERSION) {
+        // Older releases have only the global score baseline, so their
+        // historical rejections cannot be assigned a truthful phase.
+        this.state.exerciseScoreAdjustmentsBySelectionGroupId = {};
+      }
+      // This also restores historical Keeps that an older rejection removed.
+      this.migratePhaseScopedDownvotes();
+    }
+    this.normalizeSlotPreferences();
+  }
+
+  setExercises(exercises) {
     this.exercises = exercises;
     this.exercisesById = new Map(exercises.map((exercise) => [exercise.id, exercise]));
     if (this.exercisesById.size !== exercises.length) {
@@ -4061,23 +4196,6 @@ export class WorkoutSession {
       throw new Error("Every exercise must belong to exactly one sequence.");
     }
     this.sequencePlacementOptionsCache = new Map();
-    this.state = normalizeStateShape(storedState);
-    this.loadedStateVersion = this.state[SOURCE_STATE_VERSION] ?? this.state.version;
-    this.random = random;
-    this.nowProvider = nowProvider;
-    if (this.loadedStateVersion < SLOT_SCOPED_PREFERENCE_STATE_VERSION) {
-      this.migrateSlotScopedPreferences();
-    }
-    if (this.loadedStateVersion < PHASE_SCOPED_DOWNVOTE_STATE_VERSION) {
-      if (this.loadedStateVersion < SLOT_SCOPED_PREFERENCE_STATE_VERSION) {
-        // Older releases have only the global score baseline, so their
-        // historical rejections cannot be assigned a truthful phase.
-        this.state.exerciseScoreAdjustmentsBySelectionGroupId = {};
-      }
-      // This also restores historical Keeps that an older rejection removed.
-      this.migratePhaseScopedDownvotes();
-    }
-    this.normalizeSlotPreferences();
   }
 
   getCurrentUnixTimeMilliseconds() {
@@ -4226,6 +4344,8 @@ export class WorkoutSession {
       throw new Error("A workout is already active.");
     }
 
+    this.setExercises(this.catalogExercises);
+    this.state.activeCatalogRevision = CURRENT_CATALOG_REVISION;
     this.normalizeSlotPreferences();
     const workoutStartedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     if (this.loadedStateVersion < LEGACY_TRAINING_DAY_INFERENCE_STATE_VERSION) {
@@ -7830,6 +7950,7 @@ export class WorkoutSession {
         "ScreenRightThenLeft",
         "ScreenLeftLeadThenRightLead",
         "ScreenRightLeadThenLeftLead",
+        "ShownHandPositionThenOpposite",
       ].includes(member.sideSequence) || member.directionSequence !== "None");
     if (!usedTimedPair) {
       return { representedRoundIndex: 0, remainingMilliseconds: remaining };
@@ -8077,6 +8198,25 @@ export class WorkoutSession {
   }
 
   reconcileCatalog() {
+    this.migrateSplitJackPreferences(this.state.catalogRevision, this.exercises);
+    if (this.state.catalogRevision < 80 && this.state.activeWorkoutMinutes > 0 &&
+        !this.state.workoutCompleted) {
+      const priorProfile = normalizeWorkoutModifiers(this.state.activeWorkoutModifiers);
+      const active = Object.entries(this.state.selectedExerciseIds).map(([key, id]) =>
+        ({ id, parsed: this.parseSelectionStorageKey(key) })).filter(({ parsed }) =>
+          normalizeWorkoutModifiers(parsed.modifiers) === priorProfile);
+      const required = active.reduce((space, { id }) => {
+        const candidate = this.exercisesById.get(id)?.locomotionSpace ?? LOCOMOTION_SPACE.None;
+        return locomotionSpaceRank(candidate) > locomotionSpaceRank(space) ? candidate : space;
+      }, LOCOMOTION_SPACE.None);
+      if (locomotionSpaceRank(required) > locomotionSpaceRank(getLocomotionSpace(priorProfile))) {
+        this.state.activeWorkoutModifiers = withLocomotionSpace(priorProfile, required);
+        for (const { id, parsed } of active) {
+          const key = this.getSelectionStorageKey(parsed.selectionGroupId, this.state.activeWorkoutModifiers);
+          this.state.selectedExerciseIds[key] ??= id;
+        }
+      }
+    }
     const previousIdentities = this.state.catalogIdentities;
     const currentIdentities = Object.fromEntries(
       this.exercises.map((exercise) => [String(exercise.id), catalogIdentity(exercise)]),
@@ -8530,7 +8670,28 @@ export class WorkoutSession {
     this.state.activeWorkoutSession = null;
   }
 
+  migrateSplitJackPreferences(sourceRevision, catalog) {
+    if (sourceRevision < 73 || sourceRevision >= 80) return;
+    const ids = [459, 468, 469];
+    const members = catalog.filter(e => ids.includes(e.id));
+    if (members.length !== ids.length || members.some(e =>
+      e.sequenceBlocks.length !== 1 || e.sequenceBlocks[0].exerciseId !== e.id)) return;
+    for (const [slot, kept] of Object.entries(this.state.keptExerciseRootIdsBySelectionGroupId)) {
+      if (kept.includes(459)) this.state.keptExerciseRootIdsBySelectionGroupId[slot] = [...new Set([...kept, ...ids])];
+    }
+    if (this.state.lastKeptExerciseIds.includes(459))
+      this.state.lastKeptExerciseIds = [...new Set([...this.state.lastKeptExerciseIds, ...ids])];
+    for (const scores of [...Object.values(this.state.exerciseScoreAdjustmentsByPhase),
+      ...Object.values(this.state.exerciseScoreAdjustmentsBySelectionGroupId)]) {
+      if (!Object.hasOwn(scores, 459)) continue;
+      for (const id of ids) scores[id] ??= scores[459];
+    }
+  }
+
   resetTransientState() {
+    this.migrateSplitJackPreferences(this.state.activeCatalogRevision, this.catalogExercises);
+    this.setExercises(this.catalogExercises);
+    this.state.activeCatalogRevision = 0;
     this.state.activeDurationSelectionGroupIds = null;
     this.state.activeSimpleRoundSelectionGroupIds = [];
     this.state.activeWorkoutSession = null;
@@ -8609,6 +8770,7 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
     "ScreenRightThenLeft",
     "ScreenLeftLeadThenRightLead",
     "ScreenRightLeadThenLeftLead",
+    "ShownHandPositionThenOpposite",
   ].includes(currentExercise.sideSequence);
   const timedSideNormalization =
     usesLegacyTimedSides &&

@@ -4,12 +4,14 @@ import {
   LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT,
   MIRROR_EQUIPMENT,
   WALL_EQUIPMENT,
+  LOCOMOTION_SPACE,
   REST_DURATION_MS,
   SUPPORTED_MINUTES,
   WORKOUT_MODIFIERS,
   WorkoutSession,
   findSoleWallContactRequiredCatalogDeficiencies,
   findWallRequiredCatalogDeficiencies,
+  findLocomotionCatalogDeficiencies,
   getExerciseVideoPath,
   getHoldFramePath,
   getMovementCountdownDurationMs,
@@ -18,6 +20,7 @@ import {
   getMovementPresentation,
   getMirrorEquipment,
   getWallEquipment,
+  getLocomotionSpace,
   getWorkoutDisplayProgress,
   getWorkoutExecutionTimeline,
   isModifierMetadataComplete,
@@ -25,6 +28,7 @@ import {
   parseStoredState,
   withMirrorEquipment,
   withWallEquipment,
+  withLocomotionSpace,
 } from "./workout.js";
 
 const STORAGE_KEY = "nomadic-method.workout.state.v1";
@@ -72,6 +76,7 @@ const elements = {
   lightModifier: byId("light-workout-modifier"),
   lightCountdown: byId("light-workout-countdown"),
   wallModifier: byId("wall-modifier"),
+  locomotionModifier: byId("locomotion-modifier"),
   mirrorModifier: byId("mirror-modifier"),
   modifierFeedback: byId("modifier-feedback"),
   workoutScreen: byId("workout-screen"),
@@ -202,7 +207,8 @@ async function bootstrap() {
     if (!isModifierMetadataComplete(exercises) ||
         !isSessionMovementMetadataValid(exercises) ||
         wallCatalogDeficiencies.length > 0 ||
-        soleWallCatalogDeficiencies.length > 0) {
+        soleWallCatalogDeficiencies.length > 0 ||
+        findLocomotionCatalogDeficiencies(exercises).length > 0) {
       throw new Error("Catalog does not satisfy workout invariants.");
     }
     session = new WorkoutSession(exercises, loadState());
@@ -282,6 +288,7 @@ function bindEvents() {
       element.addEventListener("click", () => toggleWorkoutModifier(flag));
     }
     elements.wallModifier.addEventListener("click", cycleWallEquipment);
+    elements.locomotionModifier.addEventListener("click", cycleLocomotionSpace);
     elements.mirrorModifier.addEventListener("click", cycleMirrorEquipment);
   }
   elements.shuffleExercise.addEventListener("click", shuffleCurrentExercise);
@@ -583,6 +590,22 @@ function workoutModifierFeedbackLabel(flag, enabled) {
   throw new RangeError(`Unknown workout modifier: ${flag}`);
 }
 
+function cycleLocomotionSpace() {
+  const current = getLocomotionSpace(selectedModifiers);
+  const next = current === LOCOMOTION_SPACE.None ? LOCOMOTION_SPACE.Room
+    : current === LOCOMOTION_SPACE.Room ? LOCOMOTION_SPACE.Field : LOCOMOTION_SPACE.None;
+  selectedModifiers = withLocomotionSpace(selectedModifiers, next);
+  if (!session) startupSelectionChanged = true;
+  renderWorkoutModifiers();
+  showWorkoutModifierFeedback(locomotionFeedbackLabel(next));
+  queueWorkoutPreparation();
+}
+
+function locomotionFeedbackLabel(space) {
+  return space === LOCOMOTION_SPACE.Room ? "locomotion: room length"
+    : space === LOCOMOTION_SPACE.Field ? "locomotion: field size" : "no locomotion";
+}
+
 function cycleWallEquipment() {
   const currentEquipment = getWallEquipment(selectedModifiers);
   const nextEquipment = currentEquipment === WALL_EQUIPMENT.None
@@ -728,6 +751,11 @@ function renderWorkoutModifiers() {
       : `Mirror equipment: ${mirrorEquipment.toLowerCase()} mirror available`,
   );
   elements.mirrorModifier.dataset.mirrorEquipment = mirrorEquipment.toLowerCase();
+  const space = getLocomotionSpace(selectedModifiers);
+  elements.locomotionModifier.dataset.locomotionSpace = space.toLowerCase();
+  elements.locomotionModifier.setAttribute("aria-pressed", String(space !== LOCOMOTION_SPACE.None));
+  elements.locomotionModifier.setAttribute("aria-label", `Locomotion space: ${locomotionFeedbackLabel(space)}`);
+  elements.locomotionModifier.setAttribute("title", locomotionFeedbackLabel(space));
 }
 
 function renderLightModeCountdown() {
@@ -2203,6 +2231,8 @@ function movementCueDescription(sideCue, directionCue) {
     ScreenRight: "Right side",
     ShownLeadStance: "Shown lead stance",
     OppositeLeadStance: "Opposite lead stance",
+    ShownHandPosition: "Shown hand position",
+    OppositeHandPosition: "Opposite hand position",
     Forward: "Forward",
     Backward: "Backward",
     Clockwise: "Clockwise",

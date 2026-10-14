@@ -6011,6 +6011,7 @@ public sealed class ExerciseSessionServiceTests
             OnlyFeetTouchGround = source.OnlyFeetTouchGround,
             ShoeAgnostic = source.ShoeAgnostic,
             MaxSpaceMeters = source.MaxSpaceMeters,
+            LocomotionSpace = source.LocomotionSpace,
             Equipment = source.Equipment,
             Silent = silent ?? source.Silent,
         };
@@ -6052,6 +6053,7 @@ public sealed class ExerciseSessionServiceTests
             OnlyFeetTouchGround = source.OnlyFeetTouchGround,
             ShoeAgnostic = source.ShoeAgnostic,
             MaxSpaceMeters = source.MaxSpaceMeters,
+            LocomotionSpace = source.LocomotionSpace,
             Equipment = source.Equipment,
             Silent = source.Silent,
         };
@@ -6102,6 +6104,7 @@ public sealed class ExerciseSessionServiceTests
             OnlyFeetTouchGround = source.OnlyFeetTouchGround,
             ShoeAgnostic = source.ShoeAgnostic,
             MaxSpaceMeters = source.MaxSpaceMeters,
+            LocomotionSpace = source.LocomotionSpace,
             Equipment = mirrorRelationship == ExerciseMirrorRelationship.MirrorOnly
                 ? "Mirror"
                 : "None",
@@ -6152,6 +6155,7 @@ public sealed class ExerciseSessionServiceTests
             OnlyFeetTouchGround = source.OnlyFeetTouchGround,
             ShoeAgnostic = source.ShoeAgnostic,
             MaxSpaceMeters = source.MaxSpaceMeters,
+            LocomotionSpace = source.LocomotionSpace,
             Equipment = source.Equipment,
             Silent = source.Silent,
         };
@@ -6230,7 +6234,7 @@ public sealed class ExerciseSessionServiceTests
             Score = score,
             OnlyFeetTouchGround = true,
             ShoeAgnostic = true,
-            MaxSpaceMeters = 3,
+            MaxSpaceMeters = 2,
             Equipment = "None",
             Silent = true,
         };

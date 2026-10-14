@@ -171,6 +171,6 @@ public sealed class CatalogIntegrityMigrationTests
             Assert.Equal(-4, state.PendingScoreValue);
             Assert.False(CatalogMigrationRules.ReconcileWorkoutState(state, byId));
         }
-        Assert.Equal(364, reviewedRoots);
+        Assert.Equal(367, reviewedRoots);
     }
 }

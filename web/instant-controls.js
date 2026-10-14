@@ -12,6 +12,8 @@
     upperBodyClothing: 128,
     light: 256,
     shy: 512,
+    roomLocomotion: 1024,
+    fieldLocomotion: 2048,
   });
   const feedbackDurationMs = 2_040;
   const elements = {
@@ -30,6 +32,7 @@
     light: document.getElementById("light-workout-modifier"),
     lightCountdown: document.getElementById("light-workout-countdown"),
     wall: document.getElementById("wall-modifier"),
+    locomotion: document.getElementById("locomotion-modifier"),
     mirror: document.getElementById("mirror-modifier"),
     feedback: document.getElementById("modifier-feedback"),
     status: document.getElementById("status"),
@@ -76,6 +79,7 @@
   elements.shy.addEventListener("click", () => toggleModifier("shy"));
   elements.light.addEventListener("click", () => toggleModifier("light"));
   elements.wall.addEventListener("click", cycleWallEquipment);
+  elements.locomotion?.addEventListener("click", cycleLocomotionSpace);
   elements.mirror.addEventListener("click", cycleMirrorEquipment);
 
   renderDuration();
@@ -208,6 +212,9 @@
     } else if (wallEquipment === "soles-may-touch") {
       modifiers |= modifierFlags.wall | modifierFlags.soleWallContact;
     }
+    const space = elements.locomotion?.dataset.locomotionSpace;
+    if (space === "room" || space === "field") modifiers |= modifierFlags.roomLocomotion;
+    if (space === "field") modifiers |= modifierFlags.fieldLocomotion;
     return modifiers;
   }
 
@@ -220,9 +227,12 @@
       const selectedMinutes = durationOptions.includes(raw.lastWorkoutMinutes)
         ? raw.lastWorkoutMinutes
         : 10;
-      const storedModifiers = Number.isInteger(raw.lastWorkoutModifiers)
+      let storedModifiers = Number.isInteger(raw.lastWorkoutModifiers)
         ? raw.lastWorkoutModifiers & ~modifierFlags.light
         : readInitialModifiers();
+      if ((storedModifiers & modifierFlags.roomLocomotion) === 0) {
+        storedModifiers &= ~modifierFlags.fieldLocomotion;
+      }
       const lightWorkoutsRemaining = globalThis.nomadicMethodLightCadence.workoutsRemaining(
         raw.workoutHistory, selectedMinutes, Date.now(),
         raw.legacyCompletedTrainingDayUnixMilliseconds,
@@ -335,6 +345,24 @@
     notifySelection(true);
   }
 
+  function cycleLocomotionSpace() {
+    const room = (selectedModifiers & modifierFlags.roomLocomotion) !== 0;
+    const field = (selectedModifiers & modifierFlags.fieldLocomotion) !== 0;
+    selectedModifiers &= ~(modifierFlags.roomLocomotion | modifierFlags.fieldLocomotion);
+    if (!room) selectedModifiers |= modifierFlags.roomLocomotion;
+    else if (!field) selectedModifiers |= modifierFlags.roomLocomotion | modifierFlags.fieldLocomotion;
+    selectionChanged = true;
+    renderModifiers();
+    showFeedback(locomotionFeedbackLabel());
+    notifySelection(true);
+  }
+
+  function locomotionFeedbackLabel() {
+    return (selectedModifiers & modifierFlags.roomLocomotion) === 0 ? "no locomotion"
+      : (selectedModifiers & modifierFlags.fieldLocomotion) !== 0
+        ? "locomotion: field size" : "locomotion: room length";
+  }
+
   function cycleWallEquipment() {
     const hasWall = (selectedModifiers & modifierFlags.wall) !== 0;
     const solesMayTouch =
@@ -354,6 +382,14 @@
   }
 
   function renderModifiers() {
+    if (elements.locomotion) {
+      const room = (selectedModifiers & modifierFlags.roomLocomotion) !== 0;
+      const field = room && (selectedModifiers & modifierFlags.fieldLocomotion) !== 0;
+      elements.locomotion.dataset.locomotionSpace = !room ? "none" : field ? "field" : "room";
+      elements.locomotion.setAttribute("aria-pressed", String(room));
+      elements.locomotion.setAttribute("aria-label", `Locomotion space: ${locomotionFeedbackLabel()}`);
+      elements.locomotion.setAttribute("title", locomotionFeedbackLabel());
+    }
     renderBinaryModifier(elements.upperBodyClothing, "upperBodyClothing");
     renderBinaryModifier(elements.hardFloor, "hardFloor");
     renderBinaryModifier(elements.insect, "insect");

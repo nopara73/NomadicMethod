@@ -365,14 +365,14 @@ button:disabled {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .modifier-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   padding: 4px;
   border: 1px solid #9f978d;
   border-radius: 22px;
@@ -548,6 +548,11 @@ button.modifier-tile:not(:disabled):active {
 .modifier-tile[data-wall-equipment="soles-may-touch"] .wall-glyph-soles-may-touch {
   display: inline;
 }
+
+.locomotion-glyph { display: none; }
+.modifier-tile[data-locomotion-space="none"] .locomotion-glyph-none,
+.modifier-tile[data-locomotion-space="room"] .locomotion-glyph-room,
+.modifier-tile[data-locomotion-space="field"] .locomotion-glyph-field { display: inline; }
 
 .modifier-tile[data-mirror-equipment="none"] .mirror-glyph-none,
 .modifier-tile[data-mirror-equipment="compact"] .mirror-glyph-compact,
@@ -1747,19 +1752,19 @@ input:focus-visible {
   .duration-modifiers {
     min-height: clamp(74px, 6vw, 92px);
     margin-top: clamp(24px, 3dvh, 40px);
-    gap: 24px;
+    gap: 16px;
   }
 
   .modifier-group {
-    gap: 12px;
-    padding: 8px;
+    gap: 6px;
+    padding: 6px;
     border-radius: 28px;
   }
 
   .modifier-tile {
-    width: clamp(74px, 6vw, 92px);
-    height: clamp(74px, 6vw, 92px);
-    padding: clamp(18px, 1.5vw, 24px);
+    width: clamp(64px, 5vw, 84px);
+    height: clamp(64px, 5vw, 84px);
+    padding: clamp(14px, 1.2vw, 20px);
     border-radius: 20px;
   }
 
@@ -2087,6 +2092,14 @@ input:focus-visible {
 @media (orientation: landscape) and (max-width: 999px) {
   .active-workout-setup .duration-action-bar { flex-direction: column; gap: 24px; }
   .active-workout-setup .begin-workout { flex: 0 0 auto; }
+}
+
+@media (max-width: 300px) {
+  .modifier-tile {
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

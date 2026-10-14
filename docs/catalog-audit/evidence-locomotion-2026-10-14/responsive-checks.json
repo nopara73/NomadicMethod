@@ -1,0 +1,50 @@
+[
+  {
+    "allFit": true,
+    "controls": 9,
+    "height": 660,
+    "rowWidth": 248,
+    "scrollWidth": 248,
+    "width": 280
+  },
+  {
+    "allFit": true,
+    "controls": 9,
+    "height": 800,
+    "rowWidth": 328,
+    "scrollWidth": 328,
+    "width": 360
+  },
+  {
+    "allFit": true,
+    "controls": 9,
+    "height": 800,
+    "rowWidth": 432,
+    "scrollWidth": 432,
+    "width": 480
+  },
+  {
+    "allFit": true,
+    "controls": 9,
+    "height": 800,
+    "rowWidth": 760,
+    "scrollWidth": 760,
+    "width": 1000
+  },
+  {
+    "allFit": true,
+    "controls": 9,
+    "height": 900,
+    "rowWidth": 760,
+    "scrollWidth": 760,
+    "width": 1280
+  },
+  {
+    "allFit": true,
+    "controls": 9,
+    "height": 1080,
+    "rowWidth": 1114,
+    "scrollWidth": 1114,
+    "width": 1920
+  }
+]

@@ -168,6 +168,21 @@
                   role="group"
                   aria-label="Available equipment"
                 >
+                <button id="locomotion-modifier" class="modifier-tile" type="button"
+                  aria-label="Locomotion space: no locomotion" aria-pressed="false"
+                  title="no locomotion" data-locomotion-space="none">
+                  <svg class="modifier-icon locomotion-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <g class="locomotion-glyph locomotion-glyph-none">
+                      <path class="modifier-icon-stroke" d="M12 3a2 2 0 1 0 0 4 2 2 0 1 0 0-4M7 10h10m-5 0v5m0 0-4 5m4-5 4 5M5 22h14" />
+                    </g>
+                    <g class="locomotion-glyph locomotion-glyph-room">
+                      <path class="modifier-icon-stroke" d="M3 9V4h18v5M3 15v5h18v-5M4 12h16M7 9l-3 3 3 3m10-6 3 3-3 3" />
+                    </g>
+                    <g class="locomotion-glyph locomotion-glyph-field">
+                      <path class="modifier-icon-stroke" d="M3 4h18v16H3ZM12 4v4m0 8v4M4 12h16M7 9l-3 3 3 3m10-6 3 3-3 3" />
+                    </g>
+                  </svg>
+                </button>
                 <button
                   id="wall-modifier"
                   class="modifier-tile"

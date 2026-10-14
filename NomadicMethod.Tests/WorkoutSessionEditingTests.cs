@@ -135,6 +135,11 @@ public sealed class WorkoutSessionEditingTests
         service.Initialize(state);
         service.StartWorkout(state, 60, profile);
         for (int i = 0; i < 10; i++) Finish(service, state);
+        // Reach the repeated-set checkpoint explicitly; catalog additions must
+        // not turn this regression into a test of a particular random lineup.
+        if (profile == WorkoutModifiers.None && seed == 10)
+            while (service.GetNextGroup(state)!.SetNumber < 2) Finish(service, state);
+
         var current = service.GetNextGroup(state)!;
         service.BeginMovement(state, current, 25_000, DateTimeOffset.UtcNow.AddSeconds(25).ToUnixTimeMilliseconds());
         service.PauseMovement(state, current, 25_000, pausedByUser: true);

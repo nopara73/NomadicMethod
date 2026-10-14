@@ -2,6 +2,9 @@ namespace NomadicMethod.Models;
 
 public sealed class Exercise
 {
+    private ExerciseSideSequence _sideSequence;
+    private ExerciseSequenceBlock[] _sequenceBlocks = [];
+    private ExerciseShyCompatibility _shyCompatibility = ExerciseShyCompatibility.Unreviewed;
     public const int MinimumMuscularDemand = 0;
 
     public const int ModerateMuscularDemand = 1;
@@ -30,12 +33,12 @@ public sealed class Exercise
 
     public required int HoldFramePercent { get; init; }
 
-    public required ExerciseSideSequence SideSequence { get; init; }
+    public required ExerciseSideSequence SideSequence { get => _sideSequence; init => _sideSequence = value; }
 
     public ExerciseDirectionSequence DirectionSequence { get; init; } =
         ExerciseDirectionSequence.None;
 
-    public ExerciseSequenceBlock[] SequenceBlocks { get; init; } = [];
+    public ExerciseSequenceBlock[] SequenceBlocks { get => _sequenceBlocks; init => _sequenceBlocks = value; }
 
     public int SessionMovementId { get; init; }
 
@@ -48,8 +51,7 @@ public sealed class Exercise
     public ExerciseUpperBodyClothingRequirement UpperBodyClothingRequirement
         { get; init; } = ExerciseUpperBodyClothingRequirement.Unreviewed;
 
-    public ExerciseShyCompatibility ShyCompatibility { get; init; } =
-        ExerciseShyCompatibility.Unreviewed;
+    public ExerciseShyCompatibility ShyCompatibility { get => _shyCompatibility; init => _shyCompatibility = value; }
 
     public ExerciseMirrorRelationship MirrorRelationship { get; init; } =
         ExerciseMirrorRelationship.Unreviewed;
@@ -71,9 +73,21 @@ public sealed class Exercise
 
     public required int MaxSpaceMeters { get; init; }
 
+    public LocomotionSpace LocomotionSpace { get; init; } = LocomotionSpace.None;
+
     public required string Equipment { get; init; }
 
     public required bool Silent { get; init; }
+
+    public Exercise WithWorkoutMetadata(ExerciseSideSequence sides,
+        ExerciseSequenceBlock[] blocks, ExerciseShyCompatibility shy)
+    {
+        Exercise copy = (Exercise)MemberwiseClone();
+        copy._sideSequence = sides;
+        copy._sequenceBlocks = blocks;
+        copy._shyCompatibility = shy;
+        return copy;
+    }
 
     public string GetVideoAssetPath(ExerciseSequenceMediaSegment segment) =>
         segment == ExerciseSequenceMediaSegment.SecondDirection

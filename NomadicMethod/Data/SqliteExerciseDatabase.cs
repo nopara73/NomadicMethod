@@ -47,6 +47,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         "wall_required",
         "sole_wall_contact_required",
         "session_movement_id",
+        "locomotion_space",
     ];
 
     private readonly Context _context;
@@ -200,7 +201,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 shoe_agnostic INTEGER NOT NULL DEFAULT 1
                     CHECK (shoe_agnostic = 1),
                 max_space_meters INTEGER NOT NULL DEFAULT 2
-                    CHECK (max_space_meters > 0 AND max_space_meters <= 2),
+                    CHECK (max_space_meters > 0 AND max_space_meters <= 100),
+                locomotion_space TEXT NOT NULL DEFAULT 'None'
+                    CHECK (locomotion_space IN ('None', 'Room', 'Field')),
                 equipment TEXT NOT NULL DEFAULT 'None'
                     CHECK (equipment IN ('None', 'Mirror')),
                 silent INTEGER NOT NULL DEFAULT 1
@@ -218,7 +221,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                         'ScreenLeftThenRight',
                         'ScreenRightThenLeft',
                         'ScreenLeftLeadThenRightLead',
-                        'ScreenRightLeadThenLeftLead')),
+                        'ScreenRightLeadThenLeftLead',
+                        'ShownHandPositionThenOpposite')),
                 direction_sequence TEXT NOT NULL DEFAULT 'None'
                     CHECK (direction_sequence IN (
                         'None',
@@ -266,6 +270,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                     CHECK (sole_wall_contact_required IN (0, 1)),
                 session_movement_id INTEGER NOT NULL DEFAULT 0
                     CHECK (session_movement_id >= 0),
+                CHECK ((locomotion_space = 'None' AND max_space_meters <= 2) OR
+                    (locomotion_space = 'Room' AND max_space_meters BETWEEN 3 AND 10) OR
+                    (locomotion_space = 'Field' AND max_space_meters > 10)),
                 CHECK (
                     sole_wall_contact_required = 0 OR wall_required = 1),
                 CHECK (
@@ -300,7 +307,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                     'ScreenLeft',
                     'ScreenRight',
                     'ShownLeadStance',
-                    'OppositeLeadStance')),
+                    'OppositeLeadStance',
+                    'ShownHandPosition',
+                    'OppositeHandPosition')),
                 direction_cue TEXT NOT NULL CHECK (direction_cue IN (
                     'None',
                     'Forward',
@@ -619,6 +628,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             "sole_wall_contact_required",
             exercise.SoleWallContactRequired ? 1 : 0);
         values.Put("session_movement_id", exercise.SessionMovementId);
+        values.Put("locomotion_space", exercise.LocomotionSpace.ToString());
         return values;
     }
 
@@ -812,6 +822,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 WallRequired = cursor.GetInt(23) == 1,
                 SoleWallContactRequired = cursor.GetInt(24) == 1,
                 SessionMovementId = cursor.GetInt(25),
+                LocomotionSpace = Enum.Parse<LocomotionSpace>(cursor.GetString(26)!, ignoreCase: false),
             });
         }
 
@@ -940,6 +951,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             WorkoutModifierPolicy
                 .FindSoleWallContactRequiredCatalogDeficiencies(exercises)
                 .Count > 0;
+        bool hasUndersizedLocomotionCatalog =
+            WorkoutModifierPolicy.FindLocomotionCatalogDeficiencies(exercises)
+                .Count > 0;
         bool violatesRequirements = exercises.Any(exercise =>
             !Enum.IsDefined(exercise.PrimaryCanonicalGroup) ||
             exercise.SecondaryCanonicalGroups.Distinct().Count() !=
@@ -948,7 +962,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             exercise.SecondaryCanonicalGroups.Any(group => !Enum.IsDefined(group)) ||
             !exercise.OnlyFeetTouchGround ||
             !exercise.ShoeAgnostic ||
-            exercise.MaxSpaceMeters is <= 0 or > 2 ||
+            !WorkoutModifierPolicy.IsSpaceMetadataValid(exercise) ||
             (exercise.MirrorRelationship ==
                     ExerciseMirrorRelationship.MirrorOnly
                 ? exercise.Equipment != "Mirror"
@@ -1032,6 +1046,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                     member.UpperBodyClothingRequirement !=
                         root.UpperBodyClothingRequirement ||
                     member.ShyCompatibility != root.ShyCompatibility ||
+                    member.LocomotionSpace != root.LocomotionSpace ||
                     block.MediaSegment != ExerciseSequenceMediaSegment.Full &&
                         member.DirectionSequence == ExerciseDirectionSequence.None)
                 {
@@ -1069,6 +1084,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
 
         if (hasUndersizedWallCatalog ||
             hasUndersizedSoleWallCatalog ||
+            hasUndersizedLocomotionCatalog ||
             !WorkoutModifierPolicy.IsCatalogMetadataComplete(exercises) ||
             exercises.Select(exercise => exercise.Id).Distinct().Count() != exercises.Count ||
             exercises.Select(exercise => exercise.Name).Distinct().Count() != exercises.Count ||

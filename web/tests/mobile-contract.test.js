@@ -837,9 +837,9 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 428);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 417);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 117);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 152);
   assert.deepEqual(
     new Set(catalog.filter((exercise) =>
       exercise.upperBodyClothingRequirement === "ClothingRequired")
@@ -1158,7 +1158,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /DatabaseVersion\s*=\s*ExerciseDatabaseVersionPolicy\.CurrentVersion/,
   );
-  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*95/);
+  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*96/);
   assert.match(
     exerciseDatabase,
     /ExerciseDatabaseVersionPolicy\.IsSupportedNonDestructiveUpgrade\([\s\S]*oldVersion,[\s\S]*newVersion/,
@@ -1185,7 +1185,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /muscular_demand INTEGER NOT NULL[\s\S]*CHECK \(muscular_demand BETWEEN 0 AND 2\)/,
   );
-  assert.match(exerciseDatabase, /max_space_meters > 0 AND max_space_meters <= 2/);
+  assert.match(exerciseDatabase, /max_space_meters > 0 AND max_space_meters <= 100/);
   assert.match(exerciseDatabase, /equipment IN \('None', 'Mirror'\)/);
   assert.match(exerciseDatabase, /mirror_relationship TEXT NOT NULL/);
   assert.match(exerciseDatabase, /mirror_coverage TEXT NOT NULL/);
@@ -1961,10 +1961,10 @@ test("duration modifiers separate workout context from available equipment", () 
     durationLayout,
     /duration_context_modifier_group[\s\S]*background="@drawable\/duration_modifier_group_background"[\s\S]*duration_equipment_modifier_group[\s\S]*background="@drawable\/duration_modifier_group_background"/,
   );
-  assert.match(webStyles, /\.duration-modifiers[\s\S]*gap: 12px/);
+  assert.match(webStyles, /\.duration-modifiers[\s\S]*gap: 10px/);
   assert.match(
     webStyles,
-    /\.modifier-group\s*\{[\s\S]*gap: 5px;[\s\S]*padding: 4px;[\s\S]*border: 1px solid #9f978d;[\s\S]*border-radius: 22px;[\s\S]*background: #e8e0d6;/,
+    /\.modifier-group\s*\{[\s\S]*gap: 4px;[\s\S]*padding: 4px;[\s\S]*border: 1px solid #9f978d;[\s\S]*border-radius: 22px;[\s\S]*background: #e8e0d6;/,
   );
   assert.match(
     webStyles,
@@ -2123,7 +2123,7 @@ test("backgrounding pauses movement and rest until playback is resumed", () => {
 test("lead-stance exercises use the same two-block sequence cues on mobile and web", () => {
   const expectedLeadStanceIds = [
     204, 205, 245, 265, 279, 473, 528, 538, 575, 578, 583, 591,
-    884, 885, 886, 887, 1024,
+    884, 885, 886, 887, 1024, 1042, 1044,
   ];
   assert.deepEqual(
     catalog
@@ -2328,7 +2328,7 @@ test("all bilateral, directional, linked, and repeated work uses one sequence mo
     [
       96, 115, 178, 179, 180, 181,
       211, 214, 220, 223, 252, 264, 285, 288, 291, 302, 307,
-      367, 392, 393, 415, 420, 459, 465, 491, 500, 502, 566, 610, 612,
+      367, 392, 393, 415, 420, 465, 491, 500, 502, 566, 610, 612,
       617, 742, 784, 834, 910, 948,
     ],
   );

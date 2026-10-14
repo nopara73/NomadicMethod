@@ -9,7 +9,7 @@ public static class CatalogMigrationRules
     private const string AlternatingPrefix = "Alternating ";
     // Revision 73 corrects catalog training claims and complete movement sequences.
     // Revalidate impossible slot choices while preserving exercise feedback.
-    public const int CurrentCatalogRevision = 79;
+    public const int CurrentCatalogRevision = 80;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;
@@ -2458,6 +2458,31 @@ public static class CatalogMigrationRules
         state.ActiveDirectionPartnerExerciseIds ??= [];
         state.ActiveFullSideRoundIds ??= [];
         state.PendingScoreUpdates ??= [];
+        if (exercisesById is not null)
+            WorkoutCatalogPolicy.MigrateSplitJackPreferences(state,
+                exercisesById.Values, state.CatalogRevision);
+        // Existing workouts predate the travel control. Retain the allowance
+        // needed by their saved lineup; future setup still defaults to None.
+        if (state.CatalogRevision < 80 && exercisesById is not null &&
+            state.ActiveWorkoutMinutes > 0 && !state.WorkoutCompleted)
+        {
+            WorkoutModifiers priorProfile = WorkoutModifierPolicy.Normalize(state.ActiveWorkoutModifiers);
+            var activeSelections = state.SelectedExerciseIds.Select(selection => new
+            {
+                selection.Value,
+                Parsed = ParseSelectionStorageKey(selection.Key),
+            }).Where(selection => WorkoutModifierPolicy.Normalize(selection.Parsed.Modifiers) == priorProfile).ToArray();
+            LocomotionSpace required = activeSelections.Select(selection =>
+                exercisesById.GetValueOrDefault(selection.Value)?.LocomotionSpace ?? LocomotionSpace.None)
+                .DefaultIfEmpty(LocomotionSpace.None).Max();
+            if (required > WorkoutModifierPolicy.GetLocomotionSpace(priorProfile))
+            {
+                state.ActiveWorkoutModifiers = WorkoutModifierPolicy.WithLocomotionSpace(priorProfile, required);
+                foreach (var selection in activeSelections)
+                    state.SelectedExerciseIds.TryAdd(
+                        $"p{(int)state.ActiveWorkoutModifiers}|{selection.Parsed.SelectionGroupId}", selection.Value);
+            }
+        }
         IReadOnlySet<int> trainingClaimChangedExerciseIds =
             exercisesById is null
                 ? new HashSet<int>()

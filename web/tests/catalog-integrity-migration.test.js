@@ -131,5 +131,5 @@ test("every changed standalone claim removes only impossible fine-slot selection
     assert.equal(restored.state.exerciseScoreAdjustmentsByPhase[WORKOUT_EXERCISE_PHASE.PeakPerformance][e.id], -3);
     assert.equal(restored.getScore(e), -4);
   }
-  assert.equal(reviewedRoots, 364);
+  assert.equal(reviewedRoots, 367);
 });

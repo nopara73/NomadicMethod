@@ -100,4 +100,7 @@
     <string name="completion_check_mark">✓</string>
     <string name="workout_complete_description">Workout complete</string>
     <string name="done">Done</string>
+    <string name="locomotion_none">no locomotion</string>
+    <string name="locomotion_room">locomotion: room length</string>
+    <string name="locomotion_field">locomotion: field size</string>
 </resources>

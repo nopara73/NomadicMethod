@@ -68,5 +68,183 @@
     "sourceExerciseId": 845,
     "sourcePage": "https://www.youtube.com/watch?v=gTEBlnqcJ2c",
     "provenance": "Existing packaged human footage, preserved before semantic recutting. The cadence correction, where applicable, changes delay bytes only; no frame is synthesized."
+  },
+  {
+    "file": "locomotion-20261014-1033.mp4",
+    "sha256": "b46d5124ac7ace3a4d2b1853f1e7b434c631f1cc995d6ceefb36e3af818567cc",
+    "sourceExerciseId": 1033,
+    "sourcePage": "https://www.dvidshub.net/video/551850/walking-knee-hug",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 17 to 27 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 b7a9bba897660269f2df5efc51f12094c0b9d282c4d9fb926484cf673d8f11bd."
+  },
+  {
+    "file": "locomotion-20261014-1034.mp4",
+    "sha256": "b36619b1f1fc839a8cca6fb4191511ebcbafe99c9d6eb54f3259ba238858f9ff",
+    "sourceExerciseId": 1034,
+    "sourcePage": "https://www.dvidshub.net/video/551863/walking-quad-stretch",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 19 to 32 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 f848fbb8fc29055410d8531d5d5772bde2f63c61550ead2b90df34d98f9fde7e."
+  },
+  {
+    "file": "locomotion-20261014-1035.mp4",
+    "sha256": "54b387d04ab7905e4ca755f588883c986b2c82d7b906f2aa74770701a8c78da9",
+    "sourceExerciseId": 1035,
+    "sourcePage": "https://www.dvidshub.net/video/551854/walking-leg-cradle",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 19 to 33 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 82bfe3878187cc997f612d3938900825dfd637b17dd555dfa5bbd885f365643a."
+  },
+  {
+    "file": "locomotion-20261014-1036.mp4",
+    "sha256": "384b4b14374dadbd603286ef54615df5b9aba8165b32a30e68eeccc1fee111f6",
+    "sourceExerciseId": 1036,
+    "sourcePage": "https://www.dvidshub.net/video/551378/frankenstein",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 19 to 27.5 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 d23693846d5bd96d657c3098b0e882e4ffdc6cfef68d88bfac4d7ccaa03576e0."
+  },
+  {
+    "file": "locomotion-20261014-1037.mp4",
+    "sha256": "9ede4f0552f903d50f732187f4731a09479ac7107e21a450aa63df3a256cd5de",
+    "sourceExerciseId": 1037,
+    "sourcePage": "https://www.dvidshub.net/video/551862/walking-lunge",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 23 to 34 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 26146ded2efc114294f221fcada8d744b0cdad484aa9853ecdbba96dd351efd9."
+  },
+  {
+    "file": "locomotion-20261014-1038.mp4",
+    "sha256": "030216823d60f8d50d962b3fde21c45e07f2bcc363ef7183e761faec99aa85cb",
+    "sourceExerciseId": 1038,
+    "sourcePage": "https://www.dvidshub.net/video/551861/walking-lunge-with-twist",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 22 to 35 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 fd8de5af31bb52ba70bc232c7d91bf09c1e016392a2f477fc49f1d29744bfd34."
+  },
+  {
+    "file": "locomotion-20261014-1039.mp4",
+    "sha256": "5d682a861509303ed75728a3311ce89d120013d7f717c15135ce0a457ebe4a58",
+    "sourceExerciseId": 1039,
+    "sourcePage": "https://www.dvidshub.net/video/551860/walking-lunge-with-side-reach",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 20 to 34 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 35fd76c28865657d518fd5d0781cec702c70b57b4e1674cbb8d2c4d6c30c0a4c."
+  },
+  {
+    "file": "locomotion-20261014-1040.mp4",
+    "sha256": "0e187cd06361480b6ffe4109b493e15e6d5ef19f7d6a5f2718d479cf6b92fa33",
+    "sourceExerciseId": 1040,
+    "sourcePage": "https://www.dvidshub.net/video/558585/monster-walk",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 17 to 28.5 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 8ec5995db270480c63ddd306a657ae3fa1ceead5d4ef7cdf5b936f543f3bd8d8."
+  },
+  {
+    "file": "locomotion-20261014-1041.mp4",
+    "sha256": "bddf07b8a6e06cb356cd27f183885b1edd76bac41881eace3684bea3e53b6fc7",
+    "sourceExerciseId": 1041,
+    "sourcePage": "https://www.dvidshub.net/video/558579/lateral-skip",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 14 to 18.8 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 fdbd9abede660d6c7f1c833a9e0fc3e5e72c4dc82d3fc01307a05bec53a99923."
+  },
+  {
+    "file": "locomotion-20261014-1042.mp4",
+    "sha256": "48dc6a80faeebdecfde3131a8a15a19d936dd07969b942b198947c68576d516f",
+    "sourceExerciseId": 1042,
+    "sourcePage": "https://www.dvidshub.net/video/558575/lateral-cross-over-skip",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 14.1 to 17.9 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 2571c00e33b7936318d95e597a9b65d3ee99678a7b0e6e5643c6ba8078c203e1."
+  },
+  {
+    "file": "locomotion-20261014-1043.mp4",
+    "sha256": "cf6affaf9aa7cff960dd60ff481926c596144653b682b00b4efd0b62951e9464",
+    "sourceExerciseId": 1043,
+    "sourcePage": "https://www.dvidshub.net/video/558590/side-slide-w-arm-swing",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 14 to 18.5 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 4c02732259b3b7d1afc6f8d2bac164c1253f72dda9a9685033f89c237c8ba42b."
+  },
+  {
+    "file": "locomotion-20261014-1044.mp4",
+    "sha256": "cebbb972850525540139e11bbad16c5156536a77331a6ae0f231783b125b8e78",
+    "sourceExerciseId": 1044,
+    "sourcePage": "https://www.dvidshub.net/video/558560/carioca-w-knee-drive",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 23.35 to 25.5 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 f4906fe9ffd114071cb28ad73bb74b985a7ee3acb6220f56a4d33bd191ce2010.",
+    "sourceTrimStartSeconds": 23.35,
+    "sourceTrimDurationSeconds": 2.15
+  },
+  {
+    "file": "locomotion-20261014-1045.mp4",
+    "sha256": "8b53bd4002934b18ead662b67bbb3df5a43224b6264b174d8ac1b1c2df430788",
+    "sourceExerciseId": 1045,
+    "sourcePage": "https://www.dvidshub.net/video/551370/crossover-walk",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 14.5 to 23.5 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 f0003649d6ced51365e7260e56b392beb970ab8ccfc8922848c2313bd9fc713b."
+  },
+  {
+    "file": "locomotion-20261014-1046.mp4",
+    "sha256": "1e593058e0fb4f30d81245abe815a8862e8e9bc31d2112db3a5368cb8293f68d",
+    "sourceExerciseId": 1046,
+    "sourcePage": "https://www.dvidshub.net/video/551373/diagonal-lunge",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 15 to 31 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 b050e9a32561486714126fa38a7eb03dc90a8ae5927b5cda1a34ce7818cdf261."
+  },
+  {
+    "file": "locomotion-20261014-1047.mp4",
+    "sha256": "45b5339301b081fceb961e55e84b247ead67a8ffccd6df8125c02d2e0e5d13b5",
+    "sourceExerciseId": 1047,
+    "sourcePage": "https://www.dvidshub.net/video/551366/cross-over-lunge",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 16.5 to 28.0 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 3fcec98d58990523a7dfa28626c3161bf0b15acff3315a9eb81858b8bf6ef4cf."
+  },
+  {
+    "file": "locomotion-20261014-1048.mp4",
+    "sha256": "249ed67c16383f4b6d4fa938a0ed15fe549b54160f8053f1fab529526c6dec1c",
+    "sourceExerciseId": 1048,
+    "sourcePage": "https://www.dvidshub.net/video/642016/power-skip-height",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 1 to 3.4 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 aeba66d69267026bfeca1f4e28e55c3cb01ff0d8ba0db70d56f70f92342e2666."
+  },
+  {
+    "file": "locomotion-20261014-1049.mp4",
+    "sha256": "a28e405a29077100cbf92a390c3d619a8bfc8f9c02b91605848f470ab498ad55",
+    "sourceExerciseId": 1049,
+    "sourcePage": "https://www.dvidshub.net/video/558582/lunge-w-power-skip",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 12 to 20 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 aa9aeb48488b153c04500ab2c881318ae369d166deb3d7c4257e9dcf6a4c2520."
+  },
+  {
+    "file": "locomotion-20261014-1050.mp4",
+    "sha256": "a8f5cf556bc7705ead71d02819c7a39ea46fa3987aa28b7d490dd385bc4532d1",
+    "sourceExerciseId": 1050,
+    "sourcePage": "https://www.youtube.com/watch?v=vKqW6H6vFNg",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 0.2 to 8.399999999999999 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 ab512cfa4aea2d5b0bc4a82b3b0828ea8096de5a063636ac90c5a298f39d8b0b."
+  },
+  {
+    "file": "locomotion-20261014-1051.mp4",
+    "sha256": "bed9214db70c497b0c436030ad431360dd65941863a903cdb4089a43ea313aaf",
+    "sourceExerciseId": 1051,
+    "sourcePage": "https://www.youtube.com/watch?v=GGGFiAlZDVg",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 82.15 to 84.85 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 1cfdb0d2dfef58a2b602f96c759d5264e8ab8184e51e4a424a7c03f7c9f24344.",
+    "sourceTrimStartSeconds": 82.15,
+    "sourceTrimDurationSeconds": 2.7
+  },
+  {
+    "file": "locomotion-20261014-1052.mp4",
+    "sha256": "e2fdf888b55e0bb641ba77608909bd7d95b99015202912f68cc92edd9a85abc2",
+    "sourceExerciseId": 1052,
+    "sourcePage": "https://www.dvidshub.net/video/699154",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 8.8 to 12.200000000000001 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 c3111220c05364214fa73646449f9c450cc90f417842a9e477a85e0de142753b."
+  },
+  {
+    "file": "locomotion-20261014-1053.mp4",
+    "sha256": "d299e9ff561f30861a9169864c7b3a8a75f528df1b3b4b3f25c5439206b14697",
+    "sourceExerciseId": 1053,
+    "sourcePage": "https://www.youtube.com/watch?v=PU6qPvT6sAc",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 0.2 to 4.3 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 32f341cd3e0f5db84501aa3d6c4d87df4e5d21b65b54c6cbf9ccd1f1c49f17d4."
+  },
+  {
+    "file": "locomotion-20261014-1054.mp4",
+    "sha256": "0e1f0bf6a9cfb84fd14253a2c355f181d54d9c9869988d58f08f05786c5b490a",
+    "sourceExerciseId": 1054,
+    "sourcePage": "https://www.youtube.com/watch?v=g1Wb9DbbO1g",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 16.5 to 18.55 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 04cd09f26793ed7dd2550b7667f6abfa1a6375f1d6e02705da06a56fcb4e9390.",
+    "sourceTrimStartSeconds": 16.5,
+    "sourceTrimDurationSeconds": 2.05
+  },
+  {
+    "file": "locomotion-20261014-1055.mp4",
+    "sha256": "f9178a34e452b410216fbd18216506eb4a611e5e0984bc2c7ca1d5a7f1751367",
+    "sourceExerciseId": 1055,
+    "sourcePage": "https://www.youtube.com/watch?v=f5IWM3a0x20",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 6.1 to 7.6 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 486659a6a7faeff1180354a9e181f7c6db7e3e0272d9a71936f8290dd58c2212.",
+    "sourceTrimStartSeconds": 6.1,
+    "sourceTrimDurationSeconds": 1.5
+  },
+  {
+    "file": "locomotion-20261014-1056.mp4",
+    "sha256": "6c35d7b06924a152f8fd65266c15406b97d77681b8de45230040e0de77bda01a",
+    "sourceExerciseId": 1056,
+    "sourcePage": "https://www.dvidshub.net/video/642014/power-skip-distance",
+    "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 4.2 to 5.45 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 3f763d5bb92f2f8a12f9e4b7bcde38beb2256e4eeba7eaa19fa50ea20b0d1824.",
+    "sourceTrimStartSeconds": 4.2,
+    "sourceTrimDurationSeconds": 1.25
   }
 ]

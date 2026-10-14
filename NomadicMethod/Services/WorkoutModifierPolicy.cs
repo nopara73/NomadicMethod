@@ -42,6 +42,11 @@ public sealed record WorkoutSoleWallContactRequiredCatalogDeficiency(
     int MatchingSessionMovementCount,
     int RequiredSessionMovementCount);
 
+public sealed record WorkoutLocomotionCatalogDeficiency(
+    LocomotionSpace LocomotionSpace,
+    int MatchingSessionMovementCount,
+    int RequiredSessionMovementCount);
+
 public sealed record WorkoutProfileLineupDeficiency(
     int Minutes,
     WorkoutModifiers Profile,
@@ -82,6 +87,8 @@ public static class WorkoutModifierPolicy
     public const int MinimumExercisesPerMuscularDemandCategoryPerGroup = 1;
     public const int MinimumWallRequiredSessionMovements = 20;
     public const int MinimumSoleWallContactRequiredSessionMovements = 5;
+    public const int MinimumRoomLocomotionSessionMovements = 25;
+    public const int MinimumFieldLocomotionSessionMovements = 5;
     public const int MinimumMaterialExercises = 5;
     public const int MinimumMaterialExercisePercent = 5;
     public const int MinimumAffectedBucketPercent = 10;
@@ -96,7 +103,7 @@ public static class WorkoutModifierPolicy
         [
             new(WorkoutModifiers.Silence, WorkoutModifiers.HardFloor,
                 WorkoutModifiers.Silence | WorkoutModifiers.HardFloor,
-                268, 255, 13, 14, 7, 3),
+                267, 254, 13, 14, 7, 3),
         ]);
 
     public static bool IsAcceptedMaterialityDeficiency(
@@ -188,6 +195,11 @@ public static class WorkoutModifierPolicy
             WorkoutModifiers.Mirror,
             IsMirrorMetadataReviewed,
             IsMirrorCompatible),
+        new(
+            WorkoutModifiers.RoomLocomotion,
+            IsSpaceMetadataValid,
+            (exercise, profile) => IsSpaceMetadataValid(exercise) &&
+                exercise.LocomotionSpace <= GetLocomotionSpace(profile)),
     ];
 
     private static readonly WorkoutModifiers SupportedModifierMask =
@@ -195,6 +207,7 @@ public static class WorkoutModifierPolicy
             WorkoutModifiers.TallMirror |
                 WorkoutModifiers.Wall |
                 WorkoutModifiers.SoleWallContact |
+                WorkoutModifiers.FieldLocomotion |
                 WorkoutModifiers.Light,
             (mask, rule) => mask | rule.Flag);
 
@@ -229,8 +242,63 @@ public static class WorkoutModifierPolicy
         {
             normalized &= ~WorkoutModifiers.SoleWallContact;
         }
+        if (!normalized.HasFlag(WorkoutModifiers.RoomLocomotion))
+        {
+            normalized &= ~WorkoutModifiers.FieldLocomotion;
+        }
 
         return normalized;
+    }
+
+    public static LocomotionSpace GetLocomotionSpace(WorkoutModifiers profile)
+    {
+        WorkoutModifiers normalized = Normalize(profile);
+        return !normalized.HasFlag(WorkoutModifiers.RoomLocomotion)
+            ? LocomotionSpace.None
+            : normalized.HasFlag(WorkoutModifiers.FieldLocomotion)
+                ? LocomotionSpace.Field
+                : LocomotionSpace.Room;
+    }
+
+    public static WorkoutModifiers WithLocomotionSpace(
+        WorkoutModifiers profile, LocomotionSpace space)
+    {
+        if (!Enum.IsDefined(space))
+            throw new ArgumentOutOfRangeException(nameof(space), space, null);
+        WorkoutModifiers withoutLocomotion = Normalize(profile) &
+            ~(WorkoutModifiers.RoomLocomotion | WorkoutModifiers.FieldLocomotion);
+        return space switch
+        {
+            LocomotionSpace.None => withoutLocomotion,
+            LocomotionSpace.Room => withoutLocomotion | WorkoutModifiers.RoomLocomotion,
+            LocomotionSpace.Field => withoutLocomotion |
+                WorkoutModifiers.RoomLocomotion | WorkoutModifiers.FieldLocomotion,
+            _ => throw new ArgumentOutOfRangeException(nameof(space), space, null),
+        };
+    }
+
+    public static IReadOnlyList<WorkoutLocomotionCatalogDeficiency>
+        FindLocomotionCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises)
+    {
+        ArgumentNullException.ThrowIfNull(exercises);
+        IReadOnlyDictionary<int, Exercise> byId = exercises.ToDictionary(exercise => exercise.Id);
+        WorkoutModifiers profile = WithLocomotionSpace(
+            WithWallEquipment(WorkoutModifiers.None, WallEquipment.SolesMayTouch),
+            LocomotionSpace.Field);
+        return new[]
+        {
+            (Space: LocomotionSpace.Room, Minimum: MinimumRoomLocomotionSessionMovements),
+            (Space: LocomotionSpace.Field, Minimum: MinimumFieldLocomotionSessionMovements),
+        }.Select(category => new WorkoutLocomotionCatalogDeficiency(
+            category.Space,
+            exercises.Where(exercise => exercise.LocomotionSpace == category.Space &&
+                    IsSequenceCompatible(exercise, byId, profile) &&
+                    exercise.SequenceBlocks.All(block => byId[block.ExerciseId].LocomotionSpace <= category.Space) &&
+                    exercise.SequenceBlocks.Any(block => byId[block.ExerciseId].LocomotionSpace == category.Space))
+                .Select(GetSessionMovementId).Distinct().Count(),
+            category.Minimum))
+          .Where(deficiency => deficiency.MatchingSessionMovementCount < deficiency.RequiredSessionMovementCount)
+          .ToArray();
     }
 
     public static MirrorEquipment GetMirrorEquipment(WorkoutModifiers profile)
@@ -307,6 +375,15 @@ public static class WorkoutModifierPolicy
                 nameof(equipment), equipment, null),
         };
     }
+
+    public static bool IsSpaceMetadataValid(Exercise exercise) =>
+        exercise.LocomotionSpace switch
+        {
+            LocomotionSpace.None => exercise.MaxSpaceMeters is >= 1 and <= 2,
+            LocomotionSpace.Room => exercise.MaxSpaceMeters is >= 3 and <= 10,
+            LocomotionSpace.Field => exercise.MaxSpaceMeters is > 10 and <= 100,
+            _ => false,
+        };
 
     public static bool IsCatalogMetadataComplete(
         IEnumerable<Exercise> exercises)
@@ -1173,6 +1250,10 @@ public static class WorkoutModifierPolicy
         {
             yield return WorkoutModifiers.Mirror | WorkoutModifiers.TallMirror;
         }
+        if (rule.Flag == WorkoutModifiers.RoomLocomotion)
+        {
+            yield return WorkoutModifiers.RoomLocomotion | WorkoutModifiers.FieldLocomotion;
+        }
     }
 
     private static IEnumerable<(
@@ -1182,7 +1263,10 @@ public static class WorkoutModifierPolicy
         GetMaterialityEdges()
     {
         ModifierRule[] materialityRules = Rules
-            .Where(rule => rule.Flag != WorkoutModifiers.UpperBodyClothing)
+            // Space is an allowance with global movement minimums. It does not
+            // promise locomotive work in every anatomical bucket.
+            .Where(rule => rule.Flag != WorkoutModifiers.UpperBodyClothing &&
+                rule.Flag != WorkoutModifiers.RoomLocomotion)
             .ToArray();
         foreach (ModifierRule rule in materialityRules)
         {

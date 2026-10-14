@@ -1,6 +1,7 @@
 @{
     # Natural execution can stay quiet. This is independent of muted media audio.
     Silent = @(
+        1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1045, 1046, 1047, 1050,
         1032,
         1031,
         1030,
@@ -53,6 +54,7 @@
 
     # Natural execution predictably creates impact, clapping, stomping, or vocal sound.
     NonSilent = @(
+        1041, 1042, 1043, 1044, 1048, 1049, 1051, 1052, 1053, 1054, 1055, 1056,
         1025,
 
         420, 421, 424, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436,

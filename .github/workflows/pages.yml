@@ -40,6 +40,9 @@ on:
       - "tools/AdditionalExerciseCatalog.psd1"
       - "tools/ExerciseCatalogDefinitions.ps1"
       - "tools/Test-ExerciseCatalogDefinitions.ps1"
+      - "tools/ExerciseLocomotionSpaces.ps1"
+      - "tools/ExerciseLocomotionSpaces.psd1"
+      - "tools/Test-ExerciseLocomotionAudit.ps1"
       - "tools/ExerciseHardFloorCompatibility.psd1"
       - "tools/Test-ExerciseHardFloorCompatibilityAudit.ps1"
   workflow_dispatch:
@@ -101,6 +104,9 @@ jobs:
             /tools/AdditionalExerciseCatalog.psd1
             /tools/ExerciseCatalogDefinitions.ps1
             /tools/Test-ExerciseCatalogDefinitions.ps1
+            /tools/ExerciseLocomotionSpaces.ps1
+            /tools/ExerciseLocomotionSpaces.psd1
+            /tools/Test-ExerciseLocomotionAudit.ps1
             /tools/ExerciseHardFloorCompatibility.psd1
             /tools/Test-ExerciseHardFloorCompatibilityAudit.ps1
           sparse-checkout-cone-mode: false
@@ -120,6 +126,10 @@ jobs:
       - name: Validate stable exercise identities
         shell: pwsh
         run: ./tools/Test-ExerciseCatalogDefinitions.ps1
+
+      - name: Validate locomotion catalog minimums
+        shell: pwsh
+        run: ./tools/Test-ExerciseLocomotionAudit.ps1
 
       - name: Set up Node.js
         uses: actions/setup-node@v6

@@ -23,7 +23,9 @@ internal static class ExerciseDatabaseMigrationSql
             shoe_agnostic INTEGER NOT NULL DEFAULT 1
                 CHECK (shoe_agnostic = 1),
             max_space_meters INTEGER NOT NULL DEFAULT 2
-                CHECK (max_space_meters > 0 AND max_space_meters <= 2),
+                CHECK (max_space_meters > 0 AND max_space_meters <= 100),
+            locomotion_space TEXT NOT NULL DEFAULT 'None'
+                CHECK (locomotion_space IN ('None', 'Room', 'Field')),
             equipment TEXT NOT NULL DEFAULT 'None'
                 CHECK (equipment IN ('None', 'Mirror')),
             silent INTEGER NOT NULL DEFAULT 1
@@ -41,7 +43,8 @@ internal static class ExerciseDatabaseMigrationSql
                     'ScreenLeftThenRight',
                     'ScreenRightThenLeft',
                     'ScreenLeftLeadThenRightLead',
-                    'ScreenRightLeadThenLeftLead')),
+                    'ScreenRightLeadThenLeftLead',
+                    'ShownHandPositionThenOpposite')),
             direction_sequence TEXT NOT NULL DEFAULT 'None'
                 CHECK (direction_sequence IN (
                     'None',
@@ -89,6 +92,9 @@ internal static class ExerciseDatabaseMigrationSql
                 CHECK (sole_wall_contact_required IN (0, 1)),
             session_movement_id INTEGER NOT NULL DEFAULT 0
                 CHECK (session_movement_id >= 0),
+            CHECK ((locomotion_space = 'None' AND max_space_meters <= 2) OR
+                (locomotion_space = 'Room' AND max_space_meters BETWEEN 3 AND 10) OR
+                (locomotion_space = 'Field' AND max_space_meters > 10)),
             CHECK (
                 sole_wall_contact_required = 0 OR wall_required = 1),
             CHECK (

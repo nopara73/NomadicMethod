@@ -10,6 +10,7 @@ import {
   findMuscularDemandCoverageDeficiencies,
   findSoleWallContactRequiredCatalogDeficiencies,
   findWallRequiredCatalogDeficiencies,
+  findLocomotionCatalogDeficiencies,
   findWorkoutModifierMaterialityDeficiencies,
   ACCEPTED_MATERIALITY_EXCEPTIONS,
   isAcceptedMaterialityDeficiency,
@@ -185,8 +186,8 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", "exercises.json"), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 545) {
-  throw new Error(`Expected 545 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 569) {
+  throw new Error(`Expected 569 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 
 const pairwiseDeficiencies =
@@ -277,6 +278,7 @@ const catalogInvariantChecks = [
   ["modifier materiality", unacceptedMaterialityDeficiencies.length === 0],
   ["wall-required session-movement floor", wallCatalogDeficiencies.length === 0],
   ["sole-wall session-movement floor", soleWallCatalogDeficiencies.length === 0],
+  ["locomotion session-movement floors", findLocomotionCatalogDeficiencies(catalog).length === 0],
   ["explicit catalog-integrity deficit ledger", integrityDebtMatches],
 ];
 const failedCatalogInvariants = catalogInvariantChecks

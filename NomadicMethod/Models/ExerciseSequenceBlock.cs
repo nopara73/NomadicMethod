@@ -7,6 +7,8 @@ public enum ExerciseSequenceSideCue
     ScreenRight,
     ShownLeadStance,
     OppositeLeadStance,
+    ShownHandPosition,
+    OppositeHandPosition,
 }
 
 public enum ExerciseSequenceDirectionCue

@@ -29,7 +29,6 @@
         '393' = @(393, 537)               # Deadlift-to-runner-march sides, then alternating integration
         '415' = @(415, 416)               # Fixed-thumb nod and tilt planes on both sides
         '420' = @(420, 421, 426)          # Jumping-, seal-, and cross-jack series
-        '459' = @(459, 468, 469)          # Goalpost, scarecrow, and arm-circle jack series
         '465' = @(465, 445)               # Single-leg jump-rope sides, then changing-feet integration
         '491' = @(491, 501)               # Fixed-thumb gaze stabilization with nods and turns
         '500' = @(500, 505, 506)          # Jaw opening, side glide, and forward glide
@@ -48,6 +47,8 @@
     # These records were reviewed and deliberately remain complete one-member
     # scheduling units. Sequence roots and hidden members must not appear here.
     StandaloneIds = @(
+        459, 468, 469,
+        1033, 1034, 1035, 1036, 1037, 1038, 1039, 1040, 1041, 1042, 1043, 1044, 1045, 1046, 1047, 1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056,
         1032,
         1031,
         1030,

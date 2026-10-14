@@ -8,6 +8,7 @@ public enum ExerciseSideSequence
     ScreenRightThenLeft,
     ScreenLeftLeadThenRightLead,
     ScreenRightLeadThenLeftLead,
+    ShownHandPositionThenOpposite,
 }
 
 public static class ExerciseSideSequenceExtensions
@@ -16,7 +17,8 @@ public static class ExerciseSideSequenceExtensions
         sequence is ExerciseSideSequence.ScreenLeftThenRight or
             ExerciseSideSequence.ScreenRightThenLeft or
             ExerciseSideSequence.ScreenLeftLeadThenRightLead or
-            ExerciseSideSequence.ScreenRightLeadThenLeftLead;
+            ExerciseSideSequence.ScreenRightLeadThenLeftLead or
+            ExerciseSideSequence.ShownHandPositionThenOpposite;
 
     public static bool UsesTimedLeadStances(this ExerciseSideSequence sequence) =>
         sequence is ExerciseSideSequence.ScreenLeftLeadThenRightLead or

@@ -1627,7 +1627,7 @@
         MotionProfile = 'WristAndFingerFlexorStretch'
         Primary = 'ForearmFlexorsAndPronators'
         Secondary = @()
-        SideSequence = 'Continuous'
+        SideSequence = 'ShownHandPositionThenOpposite'
         Mode = 'Hold'
         Presentation = 'Still'
         HoldFramePercent = 78
@@ -1807,7 +1807,7 @@
         MotionProfile = 'InterlacedWristRoll'
         Primary = 'ForearmExtensorsAndSupinators'
         Secondary = @('ForearmFlexorsAndPronators')
-        SideSequence = 'Continuous'
+        SideSequence = 'ShownHandPositionThenOpposite'
         Mode = 'Repetition'
         Presentation = 'Motion'
         HoldFramePercent = 0
@@ -6940,7 +6940,7 @@
         MotionProfile = 'ForwardFold'
         Primary = 'PosteriorThighAndKneeFlexors'
         Secondary = @('Chest')
-        SideSequence = 'Continuous'
+        SideSequence = 'ShownHandPositionThenOpposite'
         Mode = 'Hold'
         Presentation = 'Still'
         HoldFramePercent = 80

@@ -390,6 +390,22 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/locomotion_modifier_button"
+                            style="@style/DurationModifierTile"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:button="@null"
+                            android:contentDescription="Locomotion space: no locomotion"
+                            android:drawableTint="@color/duration_modifier_icon_tint"
+                            android:drawableTop="@drawable/ic_locomotion_none"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text=""
+                            android:textSize="0sp" />
+
+                        <CheckBox
                             android:id="@+id/wall_modifier_button"
                             style="@style/DurationModifierTile"
                             android:layout_width="48dp"

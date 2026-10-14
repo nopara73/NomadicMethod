@@ -252,6 +252,18 @@ function assertLockedTile(element) {
   assert.equal(element("light-workout-countdown").hidden, true);
 }
 
+test("startup locomotion cycles through three capacities before catalog loading", () => {
+  const { controls, element } = startup();
+  const tile = element("locomotion-modifier");
+  const other = controls.selectedModifiers;
+  for (const [space, bits] of [["room", 1024], ["field", 3072], ["none", 0]]) {
+    tile.fire("click");
+    assert.equal(tile.dataset.locomotionSpace, space);
+    assert.equal(controls.selectedModifiers, other | bits);
+    assert.equal(tile.getAttribute("aria-pressed"), String(bits !== 0));
+  }
+});
+
 test("startup locks due Light before module loading and never shows a zero badge", () => {
   const history = [1, 2, 3].map((day) => completed(atDay(day), 60));
   const { controls, element } = startup(history);

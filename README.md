@@ -281,6 +281,12 @@ choices. In UI order:
   sole contact allowed, and wall available with soles kept off. It admits
   established exercises that genuinely require the selected wall access and
   softly prefers them when all stronger selection priorities tie;
+- **Locomotion**, off by default, cycles through no travel, room-length travel,
+  and field-sized travel. Each state admits movements needing that much space
+  or less. The catalog contains 26 distinct room-length movements and five
+  field-length movements; generation, Android, web, and CI enforce minimums of
+  25 and five, counting each session movement once. In-place running remains
+  available without travel space. Silence and other filters still apply;
 - **Mirror**, disabled by default, cycles through no mirror, tall mirror, and
   compact mirror. A compact mirror shows roughly the upper body; a tall mirror
   can show the full body. Mirror relevance breaks only otherwise remaining ties,
@@ -516,7 +522,8 @@ Every retained exercise must:
 - show an actual person performing the complete natural movement;
 - keep all ground contact at the feet;
 - work in ordinary shoes or barefoot;
-- fit inside 2 m x 2 m;
+- fit inside 2 m x 2 m without locomotion; intrinsically traveling movements
+  require the selected room-length or field-sized space;
 - require no chair, floor work, prop, or partner; the only admitted external
   supports are an ordinary stable wall explicitly gated by Wall and a physical
   mirror explicitly gated by Mirror; travel is permitted only when intrinsic
@@ -586,7 +593,7 @@ Movement start and resume checkpoints use Android's non-blocking preference
 apply so the Play control responds without waiting for a disk flush; pausing,
 finishing, and score-changing actions still commit synchronously.
 
-The Android catalog uses SQLite schema version 73. Catalog migrations distinguish
+The Android catalog uses SQLite schema version 96. Catalog migrations distinguish
 semantic exercise replacements from approved name, timing, and media repairs.
 Unchanged identities retain their scores and valid keeps; changed identities
 invalidate only affected workout state. Score changes use a small recovery

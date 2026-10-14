@@ -1,7 +1,7 @@
 {
-  "catalogRevision": 79,
-  "catalogRecordCount": 545,
-  "catalogSha256": "aa22b43af06c145760dbd79f40e1223947b8788c0d9f8d538f58ff92c8965ad9",
+  "catalogRevision": 80,
+  "catalogRecordCount": 569,
+  "catalogSha256": "44a62d9c8f00c5a6d42918dbbfb949013dece677b77d2dd0292c74cfb69ae3f3",
   "policy": {
     "treatment": "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
     "acceptedCoverageExceptions": [
@@ -39,8 +39,8 @@
         "baseProfile": 16,
         "enabledModifier": 2,
         "modifiedProfile": 18,
-        "baselineExerciseCount": 268,
-        "modifiedExerciseCount": 255,
+        "baselineExerciseCount": 267,
+        "modifiedExerciseCount": 254,
         "materialExerciseCount": 13,
         "requiredMaterialExerciseCount": 14,
         "affectedGroupCount": 7,
@@ -61,11 +61,11 @@
     "pairwiseAffectedGroupCount": 0,
     "hardFloorCategoryDeficiencyCount": 0,
     "hardFloorCategoryAffectedGroupCount": 0,
-    "muscularDemandDeficiencyCount": 8,
+    "muscularDemandDeficiencyCount": 10,
     "muscularDemandAffectedGroupCount": 2,
     "demandZeroDeficiencyCount": 0,
     "demandZeroAffectedGroupCount": 0,
-    "demandTwoDeficiencyCount": 8,
+    "demandTwoDeficiencyCount": 10,
     "demandTwoAffectedGroupCount": 2,
     "materialityDeficiencyCount": 1,
     "unacceptedMaterialityDeficiencyCount": 0,
@@ -140,6 +140,24 @@
     },
     {
       "minutes": 3,
+      "groupId": "r3.head-neck-upper-limbs",
+      "groupName": "Head, neck and upper limbs",
+      "muscularDemand": 2,
+      "profile": 1025,
+      "matchingExerciseCount": 0,
+      "requiredExerciseCount": 1
+    },
+    {
+      "minutes": 3,
+      "groupId": "r3.head-neck-upper-limbs",
+      "groupName": "Head, neck and upper limbs",
+      "muscularDemand": 2,
+      "profile": 3073,
+      "matchingExerciseCount": 0,
+      "requiredExerciseCount": 1
+    },
+    {
+      "minutes": 3,
       "groupId": "r3.torso-pelvic-complex",
       "groupName": "Torso and pelvic complex",
       "muscularDemand": 2,
@@ -153,8 +171,8 @@
       "baseProfile": 16,
       "enabledModifier": 2,
       "modifiedProfile": 18,
-      "baselineExerciseCount": 268,
-      "modifiedExerciseCount": 255,
+      "baselineExerciseCount": 267,
+      "modifiedExerciseCount": 254,
       "materialExerciseCount": 13,
       "requiredMaterialExerciseCount": 14,
       "affectedGroupCount": 7,
@@ -171,7 +189,7 @@
     {
       "minutes": 30,
       "profile": 513,
-      "maximumDistinctExerciseCount": 26,
+      "maximumDistinctExerciseCount": 25,
       "requiredDistinctExerciseCount": 27
     },
     {
@@ -183,7 +201,7 @@
     {
       "minutes": 45,
       "profile": 513,
-      "maximumDistinctExerciseCount": 26,
+      "maximumDistinctExerciseCount": 25,
       "requiredDistinctExerciseCount": 27
     },
     {
@@ -195,7 +213,7 @@
     {
       "minutes": 60,
       "profile": 513,
-      "maximumDistinctExerciseCount": 26,
+      "maximumDistinctExerciseCount": 25,
       "requiredDistinctExerciseCount": 27
     },
     {
@@ -207,7 +225,7 @@
     {
       "minutes": 90,
       "profile": 513,
-      "maximumDistinctExerciseCount": 26,
+      "maximumDistinctExerciseCount": 25,
       "requiredDistinctExerciseCount": 27
     }
   ],

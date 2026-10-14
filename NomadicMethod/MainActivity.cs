@@ -86,6 +86,7 @@ public partial class MainActivity : Activity
     private bool _lightModifierLocked;
     private TextView _lightModifierCountdownBadge = null!;
     private CheckBox _wallModifierButton = null!;
+    private CheckBox _locomotionModifierButton = null!;
     private CheckBox _mirrorModifierButton = null!;
     private TextView _durationModifierFeedback = null!;
     private int _modifierFeedbackGeneration;
@@ -627,6 +628,8 @@ public partial class MainActivity : Activity
             Resource.Id.light_workout_countdown_badge);
         _wallModifierButton = FindRequiredView<CheckBox>(
             Resource.Id.wall_modifier_button);
+        _locomotionModifierButton = FindRequiredView<CheckBox>(
+            Resource.Id.locomotion_modifier_button);
         _mirrorModifierButton = FindRequiredView<CheckBox>(
             Resource.Id.mirror_modifier_button);
         _durationModifierFeedback = FindRequiredView<TextView>(
@@ -834,6 +837,18 @@ public partial class MainActivity : Activity
             ShowModifierFeedback(GetModifierFeedbackResourceId(
                 WorkoutModifiers.Light,
                 enabled));
+        };
+        _locomotionModifierButton.Click += (_, _) =>
+        {
+            LocomotionSpace next = WorkoutModifierPolicy.GetLocomotionSpace(
+                _selectedWorkoutModifiers) switch
+            {
+                LocomotionSpace.None => LocomotionSpace.Room,
+                LocomotionSpace.Room => LocomotionSpace.Field,
+                _ => LocomotionSpace.None,
+            };
+            SetSelectedLocomotionSpace(next, userInitiated: true);
+            ShowModifierFeedback(GetLocomotionFeedbackResourceId(next));
         };
         _wallModifierButton.Click += (_, _) =>
         {
@@ -1716,6 +1731,7 @@ public partial class MainActivity : Activity
                      _silenceModifierButton,
                      _shyModifierButton,
                      _wallModifierButton,
+                     _locomotionModifierButton,
                      _mirrorModifierButton,
                  })
         {
@@ -1739,6 +1755,8 @@ public partial class MainActivity : Activity
             WorkoutModifierPolicy.GetWallEquipment(
                 _selectedWorkoutModifiers),
             size);
+        UpdateLocomotionModifierPresentation(
+            WorkoutModifierPolicy.GetLocomotionSpace(_selectedWorkoutModifiers));
         UpdateHardFloorModifierPresentation(
             _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.HardFloor),
             size);
@@ -1801,6 +1819,18 @@ public partial class MainActivity : Activity
             padding,
             padding,
             padding);
+    }
+
+    private void UpdateLocomotionModifierPresentation(LocomotionSpace space)
+    {
+        int icon = space switch
+        {
+            LocomotionSpace.Room => Resource.Drawable.ic_locomotion_room,
+            LocomotionSpace.Field => Resource.Drawable.ic_locomotion_field,
+            _ => Resource.Drawable.ic_locomotion_none,
+        };
+        _locomotionModifierButton.SetCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0);
+        _locomotionModifierButton.SetTextSize(Android.Util.ComplexUnitType.Sp, 0f);
     }
 
     private void UpdateWallModifierPresentation(
@@ -1939,6 +1969,7 @@ public partial class MainActivity : Activity
         SetSelectedWallEquipment(
             WorkoutModifierPolicy.GetWallEquipment(
                 defaultModifiers));
+        SetSelectedLocomotionSpace(WorkoutModifierPolicy.GetLocomotionSpace(defaultModifiers));
         SetSelectedMirrorEquipment(
             WorkoutModifierPolicy.GetMirrorEquipment(
                 defaultModifiers));
@@ -2047,6 +2078,7 @@ public partial class MainActivity : Activity
         SetSelectedWallEquipment(
             WorkoutModifierPolicy.GetWallEquipment(
                 _selectedWorkoutModifiers));
+        SetSelectedLocomotionSpace(WorkoutModifierPolicy.GetLocomotionSpace(_selectedWorkoutModifiers));
         SetSelectedMirrorEquipment(
             WorkoutModifierPolicy.GetMirrorEquipment(
                 _selectedWorkoutModifiers));
@@ -2418,6 +2450,34 @@ public partial class MainActivity : Activity
             QueueWorkoutPreparation();
         }
     }
+
+    private void SetSelectedLocomotionSpace(LocomotionSpace space, bool userInitiated = false)
+    {
+        _selectedWorkoutModifiers = WorkoutModifierPolicy.WithLocomotionSpace(_selectedWorkoutModifiers, space);
+        _locomotionModifierButton.Checked = space != LocomotionSpace.None;
+        _locomotionModifierButton.Text = string.Empty;
+        UpdateLocomotionModifierPresentation(space);
+        string description = GetString(GetLocomotionFeedbackResourceId(space));
+        _locomotionModifierButton.ContentDescription = $"Locomotion space: {description}";
+        if (OperatingSystem.IsAndroidVersionAtLeast(26))
+            _locomotionModifierButton.TooltipText = description;
+        if (OperatingSystem.IsAndroidVersionAtLeast(30))
+            _locomotionModifierButton.StateDescription = description;
+        UpdateLightModifierPresentation((_selectedWorkoutModifiers & WorkoutModifiers.Light) != 0);
+        if (userInitiated)
+        {
+            _durationSelectionChangedDuringStartup |= !_applicationStartupCompleted;
+            AnimateModifierTile(_locomotionModifierButton);
+            QueueWorkoutPreparation();
+        }
+    }
+
+    private static int GetLocomotionFeedbackResourceId(LocomotionSpace space) => space switch
+    {
+        LocomotionSpace.Room => Resource.String.locomotion_room,
+        LocomotionSpace.Field => Resource.String.locomotion_field,
+        _ => Resource.String.locomotion_none,
+    };
 
     private void SetSelectedWallEquipment(
         WallEquipment equipment,
@@ -4253,6 +4313,8 @@ public partial class MainActivity : Activity
             ExerciseSequenceSideCue.ScreenRight => "Right side",
             ExerciseSequenceSideCue.ShownLeadStance => "Shown lead stance",
             ExerciseSequenceSideCue.OppositeLeadStance => "Opposite lead stance",
+                    ExerciseSequenceSideCue.ShownHandPosition => "Shown hand position",
+                    ExerciseSequenceSideCue.OppositeHandPosition => "Opposite hand position",
             _ => throw new ArgumentOutOfRangeException(
                 nameof(presentation), presentation.SideCue, null),
         };

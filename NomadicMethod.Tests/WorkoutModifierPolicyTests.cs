@@ -686,7 +686,7 @@ public sealed class WorkoutModifierPolicyTests
         Assert.All(WorkoutModifierPolicy.ValidationProfiles, profile =>
             Assert.Equal(profile, WorkoutModifierPolicy.Normalize(profile)));
         Assert.Contains(WorkoutModifiers.None, WorkoutModifierPolicy.ValidationProfiles);
-        Assert.Equal(28, WorkoutModifierPolicy.ValidationProfiles.Count);
+        Assert.Equal(44, WorkoutModifierPolicy.ValidationProfiles.Count);
         Assert.Contains(
             WorkoutModifiers.UpperBodyClothing,
             WorkoutModifierPolicy.ValidationProfiles);

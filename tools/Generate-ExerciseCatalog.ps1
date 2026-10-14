@@ -15,6 +15,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ExerciseSourceDownload.ps1')
 . (Join-Path $PSScriptRoot 'ExactExerciseMediaTiming.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseCatalogDefinitions.ps1')
+. (Join-Path $PSScriptRoot 'ExerciseLocomotionSpaces.ps1')
 $sourceDefinitions = @(Get-ExerciseCatalogDefinitions)
 $sourceExerciseIds = @($sourceDefinitions | ForEach-Object { [int]$_.Id })
 
@@ -260,6 +261,9 @@ $retainedExerciseIds = @(
         ForEach-Object { [int]$_ } |
         Sort-Object -Unique)
 $expectedExerciseCount = $retainedExerciseIds.Count
+$locomotionSpaceByExerciseId = Get-ExerciseLocomotionReview `
+    -RetainedExerciseIds $retainedExerciseIds `
+    -SessionMovementByExerciseId $sessionMovementByExerciseId
 
 if ($wallRequiredExerciseIds.Count -ne
         @($wallRequiredExerciseIds | Sort-Object -Unique).Count -or
@@ -419,7 +423,7 @@ $invalidReplacementDefinitions = @(
                 'Continuous', 'Alternating',
                 'ScreenLeftThenRight', 'ScreenRightThenLeft',
                 'ScreenLeftLeadThenRightLead',
-                'ScreenRightLeadThenLeftLead') -or
+                'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite') -or
             -not $replacement.ContainsKey('Mode') -or
             [string]$replacement.Mode -notin @('Repetition', 'Hold') -or
             -not $replacement.ContainsKey('Presentation') -or
@@ -759,7 +763,7 @@ $validSideSequences = @(
     'ScreenLeftThenRight',
     'ScreenRightThenLeft',
     'ScreenLeftLeadThenRightLead',
-    'ScreenRightLeadThenLeftLead')
+    'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite')
 $validDirectionSequences = @(
     'ForwardThenBackward',
     'BackwardThenForward',
@@ -1927,7 +1931,7 @@ function New-ExternalExerciseGif {
     if ($Media.MirrorForAlternation -and $SideSequence -notin @(
             'ScreenLeftThenRight', 'ScreenRightThenLeft',
             'ScreenLeftLeadThenRightLead',
-            'ScreenRightLeadThenLeftLead')) {
+            'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite')) {
         $mirroredPaths = [System.Collections.Generic.List[string]]::new()
         for ($index = 0; $index -lt $framePaths.Count; $index++) {
             $mirroredPath = Join-Path $frameRoot ('mirror_{0:D4}.png' -f $index)
@@ -1980,7 +1984,7 @@ function New-ExternalExerciseGif {
         if ($Media.MirrorForAlternation -and $SideSequence -notin @(
                 'ScreenLeftThenRight', 'ScreenRightThenLeft',
                 'ScreenLeftLeadThenRightLead',
-                'ScreenRightLeadThenLeftLead')) {
+                'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite')) {
             $patterns += (Join-Path $frameRoot 'mirror_*.png')
         }
         $patterns
@@ -3193,6 +3197,12 @@ function New-ExerciseSequenceBlocks {
                 @{ SideCue = 'OppositeLeadStance'; MirrorMedia = $true }
             )
         }
+        'ShownHandPositionThenOpposite' {
+            @(
+                @{ SideCue = 'ShownHandPosition'; MirrorMedia = $false }
+                @{ SideCue = 'OppositeHandPosition'; MirrorMedia = $true }
+            )
+        }
         default {
             @(@{ SideCue = 'None'; MirrorMedia = $false })
         }
@@ -3293,7 +3303,11 @@ foreach ($definition in $sourceDefinitions) {
             $retiredBaselineName = $retiredBaselineName.Substring(
                 'Alternating '.Length)
         }
-        if ([string]$replacement.RetiredName -ne $retiredBaselineName) {
+        # A new hand-position review must not rewrite the historical identity
+        # used to migrate scores from the original, bilateral source movement.
+        if ([string]$replacement.RetiredName -ne $retiredBaselineName -and
+            -not ($baselineSideSequence -eq 'ShownHandPositionThenOpposite' -and
+                [string]$replacement.RetiredName -eq $baselineExerciseName)) {
             throw "Replacement $exerciseId expects retired exercise '$($replacement.RetiredName)' but the baseline name is '$retiredBaselineName'."
         }
     }
@@ -3457,7 +3471,10 @@ foreach ($definition in $sourceDefinitions) {
         muscularDemand = [int]$muscularDemandByExerciseId[$exerciseId]
         onlyFeetTouchGround = $true
         shoeAgnostic = $true
-        maxSpaceMeters = 2
+        locomotionSpace = [string]$locomotionSpaceByExerciseId[$exerciseId]
+        maxSpaceMeters = switch ($locomotionSpaceByExerciseId[$exerciseId]) {
+            Room { 6 }; Field { 50 }; default { 2 }
+        }
         equipment = if ($exerciseId -in $mirrorOnlyExerciseIds) {
             'Mirror'
         }
@@ -3702,7 +3719,10 @@ $constraintViolations = $records | Where-Object {
     -not $_['onlyFeetTouchGround'] -or
     -not $_['shoeAgnostic'] -or
     $_['maxSpaceMeters'] -le 0 -or
-    $_['maxSpaceMeters'] -gt 2 -or
+    $_['locomotionSpace'] -notin @('None', 'Room', 'Field') -or
+    ($_['locomotionSpace'] -eq 'None' -and $_['maxSpaceMeters'] -gt 2) -or
+    ($_['locomotionSpace'] -eq 'Room' -and $_['maxSpaceMeters'] -notin 3..10) -or
+    ($_['locomotionSpace'] -eq 'Field' -and $_['maxSpaceMeters'] -notin 11..100) -or
     ($_['mirrorRelationship'] -eq 'MirrorOnly' -and
         $_['equipment'] -ne 'Mirror') -or
     ($_['mirrorRelationship'] -ne 'MirrorOnly' -and
@@ -3741,7 +3761,7 @@ $constraintViolations = $records | Where-Object {
         'ScreenLeftThenRight',
         'ScreenRightThenLeft',
         'ScreenLeftLeadThenRightLead',
-        'ScreenRightLeadThenLeftLead') -or
+        'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite') -or
     $_['directionSequence'] -notin @(
         'None',
         'ForwardThenBackward',
@@ -3771,7 +3791,7 @@ foreach ($record in $records) {
 }
 $validSequenceSideCues = @(
     'None', 'ScreenLeft', 'ScreenRight', 'ShownLeadStance',
-    'OppositeLeadStance')
+    'OppositeLeadStance', 'ShownHandPosition', 'OppositeHandPosition')
 $validSequenceDirectionCues = @(
     'None', 'Forward', 'Backward', 'Clockwise',
     'Counterclockwise', 'Inward', 'Outward')
@@ -3828,6 +3848,9 @@ foreach ($root in $records | Where-Object { @($_['sequenceBlocks']).Count -gt 0 
         }
         if ([string]$member['shyCompatibility'] -ne
                 [string]$root['shyCompatibility']) {
+            $sequenceViolations.Add($rootId)
+        }
+        if ([string]$member['locomotionSpace'] -ne [string]$root['locomotionSpace']) {
             $sequenceViolations.Add($rootId)
         }
     }

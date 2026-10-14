@@ -31,4 +31,8 @@ public enum WorkoutModifiers
     // Restricts the session to movements reviewed as less conspicuous in a
     // shared space, including around other people who are exercising.
     Shy = 512,
+    // A room-length travel lane. FieldLocomotion qualifies this flag to admit
+    // running and other movements requiring a field; it cannot stand alone.
+    RoomLocomotion = 1024,
+    FieldLocomotion = 2048,
 }

@@ -82,7 +82,6 @@
     213 = 'ScreenLeftThenRight'
     214 = 'ScreenRightThenLeft'
     215 = 'ScreenLeftThenRight'
-    216 = 'ScreenRightThenLeft'
     217 = 'ScreenLeftThenRight'
     218 = 'ScreenRightThenLeft'
     219 = 'ScreenRightThenLeft'
@@ -208,4 +207,16 @@
     1015 = 'ScreenLeftThenRight'
     1022 = 'ScreenLeftThenRight'
     1024 = 'ScreenLeftLeadThenRightLead'
+
+    # Locomotion additions, 14 October 2026.
+    1042 = 'ScreenLeftLeadThenRightLead'
+    1044 = 'ScreenLeftLeadThenRightLead'
+
+    # Fixed crossed arms or interlaced clasp: complete both hand positions.
+    32 = 'ShownHandPositionThenOpposite'
+    216 = 'ShownHandPositionThenOpposite'
+    224 = 'ShownHandPositionThenOpposite'
+    510 = 'ShownHandPositionThenOpposite'
+    740 = 'ShownHandPositionThenOpposite'
+    1012 = 'ShownHandPositionThenOpposite'
 }

@@ -36,10 +36,11 @@ public sealed partial class ExerciseSessionService
         MassGroupingTaxonomy.SupportedMinutes
             .SelectMany(minutes => MassGroupingTaxonomy.GetResolution(minutes).Groups)
             .ToDictionary(group => group.Id, StringComparer.Ordinal);
-    private readonly IReadOnlyList<Exercise> _exercises;
-    private readonly IReadOnlyDictionary<int, Exercise> _exercisesById;
-    private readonly IReadOnlyDictionary<int, Exercise> _sequenceRootByExerciseId;
-    private readonly IReadOnlyDictionary<int, Exercise[]> _sequenceExercisesByRootId;
+    private readonly IReadOnlyList<Exercise> _catalogExercises;
+    private IReadOnlyList<Exercise> _exercises = [];
+    private IReadOnlyDictionary<int, Exercise> _exercisesById = null!;
+    private IReadOnlyDictionary<int, Exercise> _sequenceRootByExerciseId = null!;
+    private IReadOnlyDictionary<int, Exercise[]> _sequenceExercisesByRootId = null!;
     private readonly Dictionary<string, WorkoutGroup[][]>
         _sequencePlacementOptionsCache = new(StringComparer.Ordinal);
     private readonly Random _random;
@@ -53,6 +54,16 @@ public sealed partial class ExerciseSessionService
         TimeZoneInfo? localTimeZone = null)
     {
         ArgumentNullException.ThrowIfNull(exercises);
+        _catalogExercises = exercises;
+        SetExercises(exercises);
+        _random = random ?? Random.Shared;
+        _utcNowProvider = utcNowProvider ?? (() => DateTimeOffset.UtcNow);
+        _localTimeZone = localTimeZone ?? TimeZoneInfo.Local;
+    }
+
+    private void SetExercises(IReadOnlyList<Exercise> exercises)
+    {
+        _sequencePlacementOptionsCache.Clear();
         _exercises = exercises;
         _exercisesById = exercises.ToDictionary(exercise => exercise.Id);
         var sequenceRootByExerciseId = new Dictionary<int, Exercise>();
@@ -87,9 +98,6 @@ public sealed partial class ExerciseSessionService
                     .Select(block => _exercisesById[block.ExerciseId])
                     .DistinctBy(member => member.Id)
                     .ToArray());
-        _random = random ?? Random.Shared;
-        _utcNowProvider = utcNowProvider ?? (() => DateTimeOffset.UtcNow);
-        _localTimeZone = localTimeZone ?? TimeZoneInfo.Local;
     }
 
     public static IReadOnlyList<int> SupportedWorkoutMinutes =>
@@ -157,6 +165,11 @@ public sealed partial class ExerciseSessionService
         ArgumentNullException.ThrowIfNull(state);
 
         int loadedStateVersion = state.Version;
+        if (state.ActiveCatalogRevision == 0 && state.ActiveWorkoutMinutes > 0)
+            state.ActiveCatalogRevision = state.CatalogRevision;
+        SetExercises(state.ActiveWorkoutMinutes > 0
+            ? WorkoutCatalogPolicy.ForWorkout(_catalogExercises, state.ActiveCatalogRevision)
+            : _catalogExercises);
         NormalizeCollections(state);
         NormalizeWorkoutHistory(state);
         long currentUnixTimeMilliseconds = GetCurrentUnixTimeMilliseconds();
@@ -387,6 +400,9 @@ public sealed partial class ExerciseSessionService
         {
             throw new InvalidOperationException("A workout is already active.");
         }
+
+        SetExercises(_catalogExercises);
+        state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
 
         int loadedStateVersion = state.Version;
         NormalizeCollections(state);
@@ -4901,8 +4917,12 @@ public sealed partial class ExerciseSessionService
         state.LegacyPendingRestGroup = null;
     }
 
-    private static void ResetToDurationSelection(WorkoutState state)
+    private void ResetToDurationSelection(WorkoutState state)
     {
+        WorkoutCatalogPolicy.MigrateSplitJackPreferences(state,
+            _catalogExercises, state.ActiveCatalogRevision);
+        SetExercises(_catalogExercises);
+        state.ActiveCatalogRevision = 0;
         state.ActiveDurationSelectionGroupIds = null;
         state.ActiveSimpleRoundSelectionGroupIds.Clear();
         state.ActiveWorkoutSession = null;

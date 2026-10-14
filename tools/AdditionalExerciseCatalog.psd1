@@ -175,4 +175,30 @@
         Practice = 'Qigong elbow mobility'
         MotionProfile = 'ReverseRowingKneeBend'
     }
+
+    # Locomotion additions, 14 October 2026.
+    1033 = @{ Name = 'Walking Knee Hugs'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingKneeHugs' }
+    1034 = @{ Name = 'Walking Quad Stretch'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingQuadStretch' }
+    1035 = @{ Name = 'Walking Figure-Four Stretch'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingFigureFourStretch' }
+    1036 = @{ Name = 'Walking Straight-Leg Kicks'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingStraightLegKicks' }
+    1037 = @{ Name = 'Walking Lunges'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingLunges' }
+    1038 = @{ Name = 'Walking Lunges with Trunk Twist'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingLungeswithTrunkTwist' }
+    1039 = @{ Name = 'Walking Lunges with Overhead Side Reach'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingLungeswithOverheadSideReach' }
+    1040 = @{ Name = 'Walking Hip Circles'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingHipCircles' }
+    1041 = @{ Name = 'Lateral Skipping'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'LateralSkipping' }
+    1042 = @{ Name = 'Lateral Crossover Skipping'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'LateralCrossoverSkipping' }
+    1043 = @{ Name = 'Side Shuffle with Arm Swings'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'SideShufflewithArmSwings' }
+    1044 = @{ Name = 'Carioca with Knee Drive'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'CariocawithKneeDrive' }
+    1045 = @{ Name = 'Crossover Squat Walk'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'CrossoverSquatWalk' }
+    1046 = @{ Name = 'Diagonal Walking Lunges'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'DiagonalWalkingLunges' }
+    1047 = @{ Name = 'Walking Crossover Lunges'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingCrossoverLunges' }
+    1048 = @{ Name = 'Power Skipping for Height'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'PowerSkippingforHeight' }
+    1049 = @{ Name = 'Walking Lunge to Power Skip'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'WalkingLungetoPowerSkip' }
+    1050 = @{ Name = 'Backward Walking'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'BackwardWalking' }
+    1051 = @{ Name = 'Forward Two-Foot Hops'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'ForwardTwoFootHops' }
+    1052 = @{ Name = 'Sprinting'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'Sprinting' }
+    1053 = @{ Name = 'Backward Running'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'BackwardRunning' }
+    1054 = @{ Name = 'Straight-Leg Bounds'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'StraightLegBounds' }
+    1055 = @{ Name = 'Alternating Forward Bounds'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'AlternatingForwardBounds' }
+    1056 = @{ Name = 'Power Skipping for Distance'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'PowerSkippingforDistance' }
 }

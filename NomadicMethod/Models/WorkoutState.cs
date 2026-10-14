@@ -11,6 +11,10 @@ public sealed class WorkoutState
 
     public int CatalogRevision { get; set; }
 
+    // Freeze catalog semantics for an unfinished workout independently of the
+    // bundled revision. New sessions always use the current contract.
+    public int ActiveCatalogRevision { get; set; }
+
     public Dictionary<string, int> SelectedExerciseIds { get; set; } = [];
 
     public Dictionary<string, ExerciseOutcome> Outcomes { get; set; } = [];
