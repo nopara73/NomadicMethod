@@ -100,7 +100,7 @@
     <string name="completion_check_mark">✓</string>
     <string name="workout_complete_description">Workout complete</string>
     <string name="done">Done</string>
-    <string name="locomotion_none">no locomotion</string>
+    <string name="locomotion_none">locomotion OFF</string>
     <string name="locomotion_room">locomotion: room length</string>
     <string name="locomotion_field">locomotion: field size</string>
     <string name="floor_modifier_description">Floor contact</string>
@@ -110,4 +110,5 @@
     <string name="floor_modifier_unclothed">Floor exercises allowed; no torso or shoulder contact</string>
     <string name="floor_enabled_feedback">floor ON</string>
     <string name="floor_disabled_feedback">floor OFF</string>
+    <string name="movement_context_category">Movement context</string>
 </resources>

@@ -240,6 +240,13 @@
                         android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/duration_personal_modifier_groups"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                    <LinearLayout
                         android:id="@+id/duration_context_modifier_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -263,38 +270,6 @@
                             android:gravity="center"
                             android:text=""
                             android:tooltipText="@string/upper_body_clothing_enabled_feedback" />
-
-                        <CheckBox
-                            android:id="@+id/hard_floor_modifier_button"
-                            style="@style/DurationModifierTile"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_margin="5dp"
-                            android:layout_gravity="center"
-                            android:button="@null"
-                            android:checked="true"
-                            android:contentDescription="@string/hard_floor_modifier_description"
-                            android:drawableTint="@color/duration_modifier_icon_tint"
-                            android:drawableTop="@drawable/ic_hard_floor"
-                            android:gravity="center"
-                            android:text=""
-                            android:tooltipText="@string/hard_floor_enabled_feedback" />
-
-                        <CheckBox
-                            android:id="@+id/insect_modifier_button"
-                            style="@style/DurationModifierTile"
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:layout_margin="5dp"
-                            android:layout_gravity="center"
-                            android:button="@null"
-                            android:checked="false"
-                            android:contentDescription="@string/insect_modifier_description"
-                            android:foreground="@drawable/ic_insect"
-                            android:foregroundGravity="center"
-                            android:foregroundTint="@color/duration_modifier_icon_tint"
-                            android:text=""
-                            android:tooltipText="@string/insect_mode_disabled_feedback" />
 
                         <CheckBox
                             android:id="@+id/silence_modifier_button"
@@ -378,16 +353,50 @@
                                 android:textSize="11sp" />
                         </FrameLayout>
                     </LinearLayout>
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/duration_equipment_modifier_group"
+                        android:id="@+id/duration_movement_modifier_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:contentDescription="@string/movement_context_category"
                         android:background="@drawable/duration_modifier_group_background"
                         android:baselineAligned="false"
                         android:elevation="1dp"
                         android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/locomotion_modifier_button"
+                            style="@style/DurationModifierTile"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:button="@null"
+                            android:contentDescription="Locomotion space: locomotion OFF"
+                            android:drawableTint="@color/duration_modifier_icon_tint"
+                            android:drawableTop="@drawable/ic_locomotion_none"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text=""
+                            android:textSize="0sp" />
+
+                        <CheckBox
+                            android:id="@+id/insect_modifier_button"
+                            style="@style/DurationModifierTile"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:button="@null"
+                            android:checked="false"
+                            android:contentDescription="@string/insect_modifier_description"
+                            android:foreground="@drawable/ic_insect"
+                            android:foregroundGravity="center"
+                            android:foregroundTint="@color/duration_modifier_icon_tint"
+                            android:text=""
+                            android:tooltipText="@string/insect_mode_disabled_feedback" />
 
                         <CheckBox
                             android:id="@+id/floor_modifier_button"
@@ -407,20 +416,31 @@
                             android:textSize="0sp" />
 
                         <CheckBox
-                            android:id="@+id/locomotion_modifier_button"
+                            android:id="@+id/hard_floor_modifier_button"
                             style="@style/DurationModifierTile"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_margin="5dp"
                             android:layout_gravity="center"
                             android:button="@null"
-                            android:contentDescription="Locomotion space: no locomotion"
+                            android:checked="true"
+                            android:contentDescription="@string/hard_floor_modifier_description"
                             android:drawableTint="@color/duration_modifier_icon_tint"
-                            android:drawableTop="@drawable/ic_locomotion_none"
+                            android:drawableTop="@drawable/ic_hard_floor"
                             android:gravity="center"
-                            android:padding="16dp"
                             android:text=""
-                            android:textSize="0sp" />
+                            android:tooltipText="@string/hard_floor_enabled_feedback" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/duration_equipment_modifier_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/duration_modifier_group_background"
+                        android:baselineAligned="false"
+                        android:elevation="1dp"
+                        android:orientation="horizontal">
 
                         <CheckBox
                             android:id="@+id/wall_modifier_button"

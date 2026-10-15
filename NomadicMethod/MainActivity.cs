@@ -73,7 +73,7 @@ public partial class MainActivity : Activity
     private HorizontalScrollView _durationModifierScroller = null!;
     private LinearLayout _durationModifierGroups = null!;
     private LinearLayout _durationContextModifierGroup = null!;
-    private LinearLayout _durationIntensityModifierGroup = null!;
+    private LinearLayout _durationMovementModifierGroup = null!;
     private LinearLayout _durationEquipmentModifierGroup = null!;
     private CheckBox _upperBodyClothingModifierButton = null!;
     private CheckBox _hardFloorModifierButton = null!;
@@ -607,8 +607,8 @@ public partial class MainActivity : Activity
             Resource.Id.duration_modifier_groups);
         _durationContextModifierGroup = FindRequiredView<LinearLayout>(
             Resource.Id.duration_context_modifier_group);
-        _durationIntensityModifierGroup = FindRequiredView<LinearLayout>(
-            Resource.Id.duration_intensity_modifier_group);
+        _durationMovementModifierGroup = FindRequiredView<LinearLayout>(
+            Resource.Id.duration_movement_modifier_group);
         _durationEquipmentModifierGroup = FindRequiredView<LinearLayout>(
             Resource.Id.duration_equipment_modifier_group);
         _upperBodyClothingModifierButton = FindRequiredView<CheckBox>(
@@ -1100,17 +1100,17 @@ public partial class MainActivity : Activity
                 ? Orientation.Vertical
                 : Orientation.Horizontal;
             _durationModifierGroups.SetGravity(GravityFlags.Center);
-            var landscapeIntensityLayout =
+            var landscapeMovementLayout =
                 (LinearLayout.LayoutParams)
-                    _durationIntensityModifierGroup.LayoutParameters!;
-            landscapeIntensityLayout.SetMargins(
+                    _durationMovementModifierGroup.LayoutParameters!;
+            landscapeMovementLayout.SetMargins(
                 stackLandscapeModifierGroups ? 0 : DpInt(10),
                 stackLandscapeModifierGroups ? DpInt(8) : 0,
                 0,
                 0);
-            landscapeIntensityLayout.Gravity = GravityFlags.Center;
-            _durationIntensityModifierGroup.LayoutParameters =
-                landscapeIntensityLayout;
+            landscapeMovementLayout.Gravity = GravityFlags.Center;
+            _durationMovementModifierGroup.LayoutParameters =
+                landscapeMovementLayout;
             var landscapeEquipmentLayout =
                 (LinearLayout.LayoutParams)
                     _durationEquipmentModifierGroup.LayoutParameters!;
@@ -1215,13 +1215,13 @@ public partial class MainActivity : Activity
             1f);
         _durationModifierGroups.Orientation = Orientation.Vertical;
         _durationModifierGroups.SetGravity(GravityFlags.Center);
-        var portraitIntensityLayout =
+        var portraitMovementLayout =
             (LinearLayout.LayoutParams)
-                _durationIntensityModifierGroup.LayoutParameters!;
-        portraitIntensityLayout.SetMargins(0, DpInt(10), 0, 0);
-        portraitIntensityLayout.Gravity = GravityFlags.Center;
-        _durationIntensityModifierGroup.LayoutParameters =
-            portraitIntensityLayout;
+                _durationMovementModifierGroup.LayoutParameters!;
+        portraitMovementLayout.SetMargins(0, DpInt(10), 0, 0);
+        portraitMovementLayout.Gravity = GravityFlags.Center;
+        _durationMovementModifierGroup.LayoutParameters =
+            portraitMovementLayout;
         var portraitEquipmentLayout =
             (LinearLayout.LayoutParams)
                 _durationEquipmentModifierGroup.LayoutParameters!;
@@ -1841,9 +1841,7 @@ public partial class MainActivity : Activity
         bool floor = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.Floor);
         bool hard = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.HardFloor);
         bool clothing = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.UpperBodyClothing);
-        int icon = !floor ? Resource.Drawable.ic_floor_off
-            : hard ? Resource.Drawable.ic_floor_hands_and_feet
-            : clothing ? Resource.Drawable.ic_floor_lying : Resource.Drawable.ic_floor_kneeling;
+        int icon = floor ? Resource.Drawable.ic_floor_on : Resource.Drawable.ic_floor_off;
         int description = !floor ? Resource.String.floor_modifier_off
             : hard ? Resource.String.floor_modifier_hard
             : clothing ? Resource.String.floor_modifier_on : Resource.String.floor_modifier_unclothed;

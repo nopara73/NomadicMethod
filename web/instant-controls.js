@@ -362,7 +362,7 @@
   }
 
   function locomotionFeedbackLabel() {
-    return (selectedModifiers & modifierFlags.roomLocomotion) === 0 ? "no locomotion"
+    return (selectedModifiers & modifierFlags.roomLocomotion) === 0 ? "locomotion OFF"
       : (selectedModifiers & modifierFlags.fieldLocomotion) !== 0
         ? "locomotion: field size" : "locomotion: room length";
   }
@@ -449,8 +449,7 @@
     if (name === "floor") {
       const hard = (selectedModifiers & modifierFlags.hardFloor) !== 0;
       const clothing = (selectedModifiers & modifierFlags.upperBodyClothing) !== 0;
-      element.dataset.floorPresentation = !enabled ? "off" : hard ? "hands-and-feet"
-        : clothing ? "lying" : "kneeling";
+      element.dataset.floorPresentation = enabled ? "on" : "off";
       element.setAttribute("aria-label", !enabled ? "Floor contact: feet only"
         : hard ? "Floor exercises allowed; no knee, elbow, head, torso, or shoulder contact"
           : clothing ? "Floor exercises allowed"

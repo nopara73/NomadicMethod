@@ -874,12 +874,12 @@ test("web and mobile persist one combined duration and modifier selection contex
       webIndex.indexOf('id="hard-floor-modifier"'),
   );
   assert.ok(
-    durationLayout.indexOf("@+id/hard_floor_modifier_button") <
-      durationLayout.indexOf("@+id/insect_modifier_button"),
+    durationLayout.indexOf("@+id/insect_modifier_button") <
+      durationLayout.indexOf("@+id/hard_floor_modifier_button"),
   );
   assert.ok(
-    webIndex.indexOf('id="hard-floor-modifier"') <
-      webIndex.indexOf('id="insect-modifier"'),
+    webIndex.indexOf('id="insect-modifier"') <
+      webIndex.indexOf('id="hard-floor-modifier"'),
   );
   assert.ok(
     durationLayout.indexOf("@+id/silence_modifier_button") <
@@ -1941,44 +1941,60 @@ test("session continuity, editable duration, and explicit end stay in parity", a
   assert.match(workoutSessionLog, /DurationChanges/);
 });
 
-test("duration modifiers separate workout context from available equipment", () => {
-  assert.match(
-    durationLayout,
-    /HorizontalScrollView[\s\S]*@\+id\/duration_modifier_scroller[\s\S]*fillViewport="true"[\s\S]*@\+id\/duration_modifier_groups/,
-  );
-  assert.match(
-    mainActivity,
-    /FindRequiredView<HorizontalScrollView>[\s\S]*Resource\.Id\.duration_modifier_scroller/,
-  );
-  assert.match(
-    mainActivity,
-    /modifierScrollerLayout[\s\S]*_durationModifierScroller\.LayoutParameters[\s\S]*_durationModifierScroller\.ScrollTo\(0, 0\)/,
-  );
-  assert.match(
-    durationLayout,
-    /duration_context_modifier_group[\s\S]*upper_body_clothing_modifier_button[\s\S]*hard_floor_modifier_button[\s\S]*insect_modifier_button[\s\S]*silence_modifier_button[\s\S]*shy_modifier_button[\s\S]*duration_equipment_modifier_group[\s\S]*wall_modifier_button[\s\S]*mirror_modifier_button/,
-  );
-  assert.match(
-    webIndex,
-    /modifier-context-group[\s\S]*upper-body-clothing-modifier[\s\S]*hard-floor-modifier[\s\S]*insect-modifier[\s\S]*silence-modifier[\s\S]*shy-modifier[\s\S]*modifier-equipment-group[\s\S]*wall-modifier[\s\S]*mirror-modifier/,
-  );
-  assert.match(
-    durationLayout,
-    /duration_context_modifier_group[\s\S]*background="@drawable\/duration_modifier_group_background"[\s\S]*duration_equipment_modifier_group[\s\S]*background="@drawable\/duration_modifier_group_background"/,
-  );
-  assert.match(webStyles, /\.duration-modifiers[\s\S]*gap: 10px/);
-  assert.match(
-    webStyles,
-    /\.modifier-group\s*\{[\s\S]*gap: 4px;[\s\S]*padding: 4px;[\s\S]*border: 1px solid #9f978d;[\s\S]*border-radius: 22px;[\s\S]*background: #e8e0d6;/,
-  );
-  assert.match(
-    webStyles,
-    /@media \(max-width: 340px\)[\s\S]*\.duration-modifiers[\s\S]*gap: 8px[\s\S]*\.modifier-group[\s\S]*gap: 4px/,
-  );
-  assert.match(
-    webStyles,
-    /@media \(orientation: landscape\)[\s\S]*\.duration-modifiers\s*\{[\s\S]*flex-wrap: nowrap;[\s\S]*overflow-x: auto;[\s\S]*touch-action: pan-x;/,
-  );
+test("setup categories and the binary Floor icon match across platforms", async () => {
+  assert.match(durationLayout, /HorizontalScrollView[\s\S]*@\+id\/duration_modifier_scroller[\s\S]*fillViewport="true"/);
+  assert.match(mainActivity, /FindRequiredView<HorizontalScrollView>[\s\S]*Resource\.Id\.duration_modifier_scroller/);
+  const categories = [
+    ["context", ["upper-body-clothing", "silence", "shy"]],
+    ["intensity", ["light-workout"]],
+    ["movement", ["locomotion", "insect", "floor", "hard-floor"]],
+    ["equipment", ["wall", "mirror"]],
+  ];
+  const allNative = [], allWeb = [];
+  for (const [category, names] of categories) {
+    const native = durationLayout.match(new RegExp(
+      'android:id="@\\+id/duration_' + category + '_modifier_group"[\\s\\S]*?</LinearLayout>'))?.[0];
+    const web = webIndex.match(new RegExp(
+      'class="modifier-group modifier-' + category + '-group"[\\s\\S]*?</div>'))?.[0];
+    assert.ok(native, category + " Android group");
+    assert.ok(web, category + " web group");
+    const nativeIds = [...native.matchAll(/android:id="@\+id\/([a-z_]+)_modifier_button"/g)]
+      .map(match => match[1].replaceAll("_", "-"));
+    const webIds = [...web.matchAll(/<button[^>]*id="([a-z-]+)-modifier"/g)]
+      .map(match => match[1]);
+    assert.deepEqual(nativeIds, names, category + " Android membership/order");
+    assert.deepEqual(webIds, names, category + " web membership/order");
+    allNative.push(...nativeIds);
+    allWeb.push(...webIds);
+  }
+  assert.equal(new Set(allNative).size, 10);
+  assert.deepEqual(allWeb, allNative);
+  assert.match(webIndex, /modifier-movement-group" role="group" aria-label="Movement context"/);
+  assert.match(durationLayout, /duration_movement_modifier_group[\s\S]*@string\/movement_context_category/);
+  assert.match(strings, /name="locomotion_none">locomotion OFF<\/string>/);
+  assert.match(durationLayout, /contentDescription="Locomotion space: locomotion OFF"/);
+  assert.match(webIndex, /aria-label="Locomotion space: locomotion OFF"[\s\S]*title="locomotion OFF"/);
+  for (const shell of [webApp, instantControls]) {
+    assert.match(shell, /"locomotion OFF"/);
+    assert.doesNotMatch(shell, /"no locomotion"/);
+  }
+  assert.match(mainActivity, /int icon = floor \? Resource\.Drawable\.ic_floor_on : Resource\.Drawable\.ic_floor_off;/);
+  for (const shell of [webApp, instantControls])
+    assert.match(shell, /element\.dataset\.floorPresentation = enabled \? "on" : "off";/);
+  assert.deepEqual([...webIndex.matchAll(/floor-contact-glyph floor-contact-([a-z-]+)/g)]
+    .map(match => match[1]), ["off", "on"]);
+  for (const state of ["off", "on"]) {
+    const native = await source("NomadicMethod", "Resources", "drawable", `ic_floor_${state}.xml`);
+    const web = webIndex.match(new RegExp('floor-contact-' + state + '">([\\s\\S]*?)</g>'))[1];
+    const normalize = path => path.replaceAll(",", " ").trim().replace(/\s+/g, " ");
+    const nativePaths = [...native.matchAll(/android:pathData="([^"]+)"/g)].slice(1).map(match => normalize(match[1]));
+    const webPaths = [...web.matchAll(/ d="([^"]+)"/g)].map(match => normalize(match[1]));
+    assert.deepEqual(webPaths, nativePaths, state + " approved figure parity");
+    assert.match(native, /viewportWidth="32" android:viewportHeight="32"/);
+  }
+  assert.match(webStyles, /\.modifier-personal-groups[\s\S]*gap: 10px/);
+  assert.match(webStyles, /\.modifier-group\s*\{[\s\S]*gap: 4px;[\s\S]*padding: 4px;[\s\S]*border: 1px solid #9f978d;/);
+  assert.match(webStyles, /@media \(orientation: landscape\)[\s\S]*\.duration-modifiers\s*\{[\s\S]*overflow-x: auto;[\s\S]*touch-action: pan-x;/);
 });
 
 test("active movement checkpoints and invalid media recovery match across platforms", async () => {

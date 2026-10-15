@@ -362,7 +362,14 @@ button:disabled {
   min-height: 56px;
   margin-top: 32px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modifier-personal-groups {
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -550,12 +557,11 @@ button.modifier-tile:not(:disabled):active {
 }
 
 .locomotion-icon .modifier-icon-stroke { stroke-width: 1.9; }
-.floor-contact-icon .modifier-icon-stroke { stroke-width: 1.9; }
+.floor-contact-icon .modifier-icon-stroke { stroke-width: 2.05; }
+.floor-contact-icon .floor-contact-ground { stroke-width: 1.5; }
 .floor-contact-glyph { display: none; }
 .modifier-tile[data-floor-presentation="off"] .floor-contact-off,
-.modifier-tile[data-floor-presentation="hands-and-feet"] .floor-contact-hands-and-feet,
-.modifier-tile[data-floor-presentation="kneeling"] .floor-contact-kneeling,
-.modifier-tile[data-floor-presentation="lying"] .floor-contact-lying { display: inline; }
+.modifier-tile[data-floor-presentation="on"] .floor-contact-on { display: inline; }
 .locomotion-glyph { display: none; }
 .modifier-tile[data-locomotion-space="none"] .locomotion-glyph-none,
 .modifier-tile[data-locomotion-space="room"] .locomotion-glyph-room,
@@ -1468,6 +1474,7 @@ input:focus-visible {
     min-height: 56px;
     margin-top: 16px;
     padding-block: 4px;
+    flex-direction: row;
     flex-wrap: nowrap;
     justify-content: safe center;
     overflow-x: auto;
@@ -1481,7 +1488,8 @@ input:focus-visible {
     display: none;
   }
 
-  .duration-modifiers > .modifier-group {
+  .duration-modifiers > .modifier-group,
+  .duration-modifiers > .modifier-personal-groups {
     flex: 0 0 auto;
   }
 
@@ -1760,6 +1768,8 @@ input:focus-visible {
     min-height: clamp(74px, 6vw, 92px);
     margin-top: clamp(24px, 3dvh, 40px);
     gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .modifier-group {

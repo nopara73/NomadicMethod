@@ -66,11 +66,8 @@
                 <span>60</span><span>90</span>
               </div>
               <div class="duration-modifiers">
-                <div
-                  class="modifier-group modifier-context-group"
-                  role="group"
-                  aria-label="Workout conditions"
-                >
+                <div class="modifier-personal-groups">
+                <div class="modifier-group modifier-context-group" role="group" aria-label="Workout conditions">
                 <button
                   id="upper-body-clothing-modifier"
                   class="modifier-tile"
@@ -81,32 +78,6 @@
                 >
                   <svg class="modifier-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd" d="M6.5 3h2.75C9.72 4.19 10.71 5 12 5s2.28-.81 2.75-2h2.75L23 7.5l-3 4-2-1.25V19a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-8.75L4 11.5l-3-4L6.5 3Zm.7 2L3.8 7.8l.6.8L8 6.35V19h8V6.35l3.6 2.25.6-.8L16.8 5h-.77C15.17 6.25 13.74 7 12 7s-3.17-.75-4.03-2H7.2Z" />
-                  </svg>
-                </button>
-                <button
-                  id="hard-floor-modifier"
-                  class="modifier-tile"
-                  type="button"
-                  aria-label="Floor surface: hard and slippery floor"
-                  aria-pressed="true"
-                  data-hard-floor="hard"
-                >
-                  <span class="modifier-icon floor-icon" aria-hidden="true">
-                    <span class="floor-glyph floor-glyph-hard"></span>
-                    <span class="floor-glyph floor-glyph-soft"></span>
-                  </span>
-                </button>
-                <button
-                  id="insect-modifier"
-                  class="modifier-tile"
-                  type="button"
-                  aria-label="Insect modifier"
-                  aria-pressed="false"
-                >
-                  <svg class="modifier-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path opacity=".62" d="M14.2 9.8C12.9 5.4 9.8 2.5 7.1 2.7 5.5 2.8 6.4 6.3 13.1 11.1ZM13.4 10.8C9.8 7.8 5.7 7.6 4.4 9.7 3.5 11.2 7.2 12.7 13.6 12.1Z" />
-                    <path d="M18.2 6.7a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 1 1 0-3.4ZM16.5 8.5c-1.7-1.2-4.1-.7-4.7 1.1-.6 1.8.5 3.6 2.5 4 1.8.4 3.7-.8 3.9-2.7.2-1-.5-1.8-1.7-2.4ZM12.7 11.4c-2.5.3-6.4 2.1-9.5 5.1 4.2-.5 8.6-2.1 11.4-3.8Z" />
-                    <path d="m19.6 7.4 3.4-2.6M14.3 12.7l-2.5 3.5-2.3 5.1M15.6 12.7l1.3 3.7-.6 5.1M16.9 11.9l3.1 2.4 1.3 4.3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.15" />
                   </svg>
                 </button>
                 <button
@@ -139,11 +110,7 @@
                   </svg>
                 </button>
                 </div>
-                <div
-                  class="modifier-group modifier-intensity-group"
-                  role="group"
-                  aria-label="Workout intensity"
-                >
+                <div class="modifier-group modifier-intensity-group" role="group" aria-label="Workout intensity">
                   <button
                     id="light-workout-modifier"
                     class="modifier-tile"
@@ -163,36 +130,11 @@
                     >18</span>
                   </button>
                 </div>
-                <div
-                  class="modifier-group modifier-equipment-group"
-                  role="group"
-                  aria-label="Available space and equipment"
-                >
-                <button id="floor-modifier" class="modifier-tile" type="button"
-                  aria-label="Floor contact: feet only" aria-pressed="false"
-                  title="floor OFF" data-floor-presentation="off">
-                  <svg class="modifier-icon floor-contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <g class="floor-contact-glyph floor-contact-off">
-                      <circle cx="5.5" cy="7" r="1.7" fill="currentColor" />
-                      <path class="modifier-icon-stroke" d="M7 9L21 17L22 20 M9 10L7 20H4 M2 22H23 M3 3L22 22" />
-                    </g>
-                    <g class="floor-contact-glyph floor-contact-hands-and-feet">
-                      <circle cx="5.5" cy="7" r="1.7" fill="currentColor" />
-                      <path class="modifier-icon-stroke" d="M7 9L21 17L22 20 M9 10L7 20H4 M2 22H23" />
-                    </g>
-                    <g class="floor-contact-glyph floor-contact-kneeling">
-                      <circle cx="5.5" cy="7" r="1.7" fill="currentColor" />
-                      <path class="modifier-icon-stroke" d="M7 9L9 10H17L16 20H22 M9 10L7 20H4 M2 22H23" />
-                    </g>
-                    <g class="floor-contact-glyph floor-contact-lying">
-                      <circle cx="4" cy="17" r="1.7" fill="currentColor" />
-                      <path class="modifier-icon-stroke" d="M6 19L8 20H14L18 14L21 20H23 M2 22H23" />
-                    </g>
-                  </svg>
-                </button>
+                </div>
+                <div class="modifier-group modifier-movement-group" role="group" aria-label="Movement context">
                 <button id="locomotion-modifier" class="modifier-tile" type="button"
-                  aria-label="Locomotion space: no locomotion" aria-pressed="false"
-                  title="no locomotion" data-locomotion-space="none">
+                  aria-label="Locomotion space: locomotion OFF" aria-pressed="false"
+                  title="locomotion OFF" data-locomotion-space="none">
                   <svg class="modifier-icon locomotion-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <g class="locomotion-glyph locomotion-glyph-none">
                       <circle cx="12" cy="4" r="1.8" fill="currentColor" />
@@ -208,6 +150,50 @@
                     </g>
                   </svg>
                 </button>
+                <button
+                  id="insect-modifier"
+                  class="modifier-tile"
+                  type="button"
+                  aria-label="Insect modifier"
+                  aria-pressed="false"
+                >
+                  <svg class="modifier-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path opacity=".62" d="M14.2 9.8C12.9 5.4 9.8 2.5 7.1 2.7 5.5 2.8 6.4 6.3 13.1 11.1ZM13.4 10.8C9.8 7.8 5.7 7.6 4.4 9.7 3.5 11.2 7.2 12.7 13.6 12.1Z" />
+                    <path d="M18.2 6.7a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 1 1 0-3.4ZM16.5 8.5c-1.7-1.2-4.1-.7-4.7 1.1-.6 1.8.5 3.6 2.5 4 1.8.4 3.7-.8 3.9-2.7.2-1-.5-1.8-1.7-2.4ZM12.7 11.4c-2.5.3-6.4 2.1-9.5 5.1 4.2-.5 8.6-2.1 11.4-3.8Z" />
+                    <path d="m19.6 7.4 3.4-2.6M14.3 12.7l-2.5 3.5-2.3 5.1M15.6 12.7l1.3 3.7-.6 5.1M16.9 11.9l3.1 2.4 1.3 4.3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.15" />
+                  </svg>
+                </button>
+                <button id="floor-modifier" class="modifier-tile" type="button"
+                  aria-label="Floor contact: feet only" aria-pressed="false"
+                  title="floor OFF" data-floor-presentation="off">
+                  <svg class="modifier-icon floor-contact-icon" viewBox="0 0 32 32" aria-hidden="true">
+                    <g class="floor-contact-glyph floor-contact-off">
+                      <circle cx="16" cy="5.7" r="2.5" fill="currentColor" />
+                      <path class="modifier-icon-stroke" d="M16 11V19 M10 14L12 11H20L22 14V18 M10 14V18 M16 19L11.5 27H8.5 M16 19L20.5 27H23.5" />
+                      <path class="modifier-icon-stroke floor-contact-ground" d="M3 29H29" />
+                    </g>
+                    <g class="floor-contact-glyph floor-contact-on">
+                      <circle cx="5.3" cy="15.1" r="2.5" fill="currentColor" />
+                      <path class="modifier-icon-stroke" d="M9.2 17.8L20 20L27 27H29 M10 18L8 27H5" />
+                      <path class="modifier-icon-stroke floor-contact-ground" d="M3 29H29" />
+                    </g>
+                  </svg>
+                </button>
+                <button
+                  id="hard-floor-modifier"
+                  class="modifier-tile"
+                  type="button"
+                  aria-label="Floor surface: hard and slippery floor"
+                  aria-pressed="true"
+                  data-hard-floor="hard"
+                >
+                  <span class="modifier-icon floor-icon" aria-hidden="true">
+                    <span class="floor-glyph floor-glyph-hard"></span>
+                    <span class="floor-glyph floor-glyph-soft"></span>
+                  </span>
+                </button>
+                </div>
+                <div class="modifier-group modifier-equipment-group" role="group" aria-label="Available equipment">
                 <button
                   id="wall-modifier"
                   class="modifier-tile"

@@ -32,10 +32,17 @@ exercise may retain its safe feet-only default; missing metadata never admits a
 floor movement. Canonical database reseeding supplies reviewed contacts while
 preserving stored scores and workout state.
 
-The Floor tile shows an example suited to the current clothing and surface:
-hands-and-feet support on a hard floor, kneeling while shirtless on soft flooring,
-and lying down while clothed on soft flooring. The tile's accessible description
-states the applicable restrictions. The off icon is crossed out.
+The Floor allowance is one binary toggle: a standing person means off, and a
+person in a high plank means on. Its icon depends only on Floor; the accessible
+description still states the applicable clothing and surface restrictions.
+Floor softness retains its separate hard/soft icons.
+
+The Movement context category contains space size, Insect, Floor allowance,
+and floor surface, in that order: available space, movement style, permission
+to use the floor, then the surface condition. Clothing, Silence and Shy remain
+under workout conditions; Light remains intensity; Wall and Mirror remain
+available equipment. The same grouping and order appear in setup and active
+workout settings on Android and web.
 
 ## Validation
 
