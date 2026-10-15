@@ -21,6 +21,9 @@ $requiredIncompatibilityReasons = @(
     'LateralTravelOrDirectionChange'
     'TractionLoadedWideOrSplitStance'
     'PivotingStrikingOrKicking'
+    'ForbiddenFloorContacts'
+    'ConcentratedHandLoading'
+    'TractionDependentFloorLoading'
 )
 
 $review = Import-PowerShellDataFile -LiteralPath $ReviewPath -SkipLimitCheck

@@ -47,6 +47,10 @@ public sealed record WorkoutLocomotionCatalogDeficiency(
     int MatchingSessionMovementCount,
     int RequiredSessionMovementCount);
 
+public sealed record WorkoutFloorCatalogDeficiency(
+    int MatchingSessionMovementCount,
+    int RequiredSessionMovementCount);
+
 public sealed record WorkoutProfileLineupDeficiency(
     int Minutes,
     WorkoutModifiers Profile,
@@ -89,6 +93,8 @@ public static class WorkoutModifierPolicy
     public const int MinimumSoleWallContactRequiredSessionMovements = 5;
     public const int MinimumRoomLocomotionSessionMovements = 25;
     public const int MinimumFieldLocomotionSessionMovements = 5;
+    public const int MinimumFloorRequiredSessionMovements = 201;
+    public const int MinimumFloorAndWallRequiredSessionMovements = 21;
     public const int MinimumMaterialExercises = 5;
     public const int MinimumMaterialExercisePercent = 5;
     public const int MinimumAffectedBucketPercent = 10;
@@ -149,6 +155,10 @@ public static class WorkoutModifierPolicy
 
     private static readonly ModifierRule[] Rules =
     [
+        new(
+            WorkoutModifiers.Floor,
+            FloorContactPolicy.IsMetadataReviewed,
+            FloorContactPolicy.IsCompatible),
         new(
             WorkoutModifiers.UpperBodyClothing,
             exercise => exercise.UpperBodyClothingRequirement !=
@@ -299,6 +309,37 @@ public static class WorkoutModifierPolicy
             category.Minimum))
           .Where(deficiency => deficiency.MatchingSessionMovementCount < deficiency.RequiredSessionMovementCount)
           .ToArray();
+    }
+
+    public static IReadOnlyList<WorkoutFloorCatalogDeficiency>
+        FindFloorCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises)
+        => FindFloorCatalogDeficiencies(exercises, requireWall: false);
+
+    public static IReadOnlyList<WorkoutFloorCatalogDeficiency>
+        FindFloorAndWallCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises)
+        => FindFloorCatalogDeficiencies(exercises, requireWall: true);
+
+    private static IReadOnlyList<WorkoutFloorCatalogDeficiency>
+        FindFloorCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises, bool requireWall)
+    {
+        ArgumentNullException.ThrowIfNull(exercises);
+        IReadOnlyDictionary<int, Exercise> byId = exercises.ToDictionary(exercise => exercise.Id);
+        WorkoutModifiers[] profiles = new[]
+        {
+            WorkoutModifiers.Floor,
+            WorkoutModifiers.Floor | WorkoutModifiers.UpperBodyClothing,
+        }.Select(profile => WithLocomotionSpace(WithWallEquipment(
+            WithMirrorEquipment(profile, MirrorEquipment.Tall),
+            WallEquipment.SolesMayTouch), LocomotionSpace.Field)).ToArray();
+        int count = exercises.Where(exercise =>
+                profiles.Any(profile => IsSequenceCompatible(exercise, byId, profile)) &&
+                exercise.SequenceBlocks.Any(block => byId.TryGetValue(block.ExerciseId,
+                    out Exercise? member) && FloorContactPolicy.RequiresFloor(member) &&
+                    (!requireWall || member.WallRequired)))
+            .Select(GetSessionMovementId).Distinct().Count();
+        int minimum = requireWall ? MinimumFloorAndWallRequiredSessionMovements
+            : MinimumFloorRequiredSessionMovements;
+        return count >= minimum ? [] : [new(count, minimum)];
     }
 
     public static MirrorEquipment GetMirrorEquipment(WorkoutModifiers profile)
@@ -1263,10 +1304,11 @@ public static class WorkoutModifierPolicy
         GetMaterialityEdges()
     {
         ModifierRule[] materialityRules = Rules
-            // Space is an allowance with global movement minimums. It does not
-            // promise locomotive work in every anatomical bucket.
+            // Floor and space are allowances with global movement minimums.
+            // They do not promise floor/travelling work in every muscle bucket.
             .Where(rule => rule.Flag != WorkoutModifiers.UpperBodyClothing &&
-                rule.Flag != WorkoutModifiers.RoomLocomotion)
+                rule.Flag != WorkoutModifiers.RoomLocomotion &&
+                rule.Flag != WorkoutModifiers.Floor)
             .ToArray();
         foreach (ModifierRule rule in materialityRules)
         {

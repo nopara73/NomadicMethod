@@ -246,5 +246,2129 @@
     "provenance": "Public human source downloaded in the background, decoded and visually inspected. Original excerpt 4.2 to 5.45 seconds; original chronology and cadence retained, audio removed. Source video SHA-256 3f763d5bb92f2f8a12f9e4b7bcde38beb2256e4eeba7eaa19fa50ea20b0d1824.",
     "sourceTrimStartSeconds": 4.2,
     "sourceTrimDurationSeconds": 1.25
+  },
+  {
+    "file": "floor-20261015-1057.mp4",
+    "sha256": "70e85540b0362ebd3eb71a0577b9c2de61f289540cf0d23b2e8b020d5ea2361f",
+    "sourceExerciseId": 1057,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/abdominal-crunch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 70e85540b0362ebd3eb71a0577b9c2de61f289540cf0d23b2e8b020d5ea2361f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.973622
+  },
+  {
+    "file": "floor-20261015-1058.mp4",
+    "sha256": "991db6c311d6453f2e188dd1021460a541697bfda026c1f71eef1ccf8a11aee5",
+    "sourceExerciseId": 1058,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/active-hamstring-stretch-90-90-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 991db6c311d6453f2e188dd1021460a541697bfda026c1f71eef1ccf8a11aee5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.074733
+  },
+  {
+    "file": "floor-20261015-1059.mp4",
+    "sha256": "3abc23bf1cf27a5345cea04698e67548081ac1365da89f6db45d87db983431aa",
+    "sourceExerciseId": 1059,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/alternating-push-up-plank.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3abc23bf1cf27a5345cea04698e67548081ac1365da89f6db45d87db983431aa. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.007
+  },
+  {
+    "file": "floor-20261015-1060.mp4",
+    "sha256": "dda26d76249a594f08031dba64ce12b6258ff13d86962add9bf8cf9a53c18f92",
+    "sourceExerciseId": 1060,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/ankle-on-the-knee.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 dda26d76249a594f08031dba64ce12b6258ff13d86962add9bf8cf9a53c18f92. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.243567
+  },
+  {
+    "file": "floor-20261015-1061.mp4",
+    "sha256": "235c6ad44b3289d9a81b9edaeac08e7cfbe1a04a8b7cae3d2cfa40f659e240af",
+    "sourceExerciseId": 1061,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/archer-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 235c6ad44b3289d9a81b9edaeac08e7cfbe1a04a8b7cae3d2cfa40f659e240af. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.343667
+  },
+  {
+    "file": "floor-20261015-1062.mp4",
+    "sha256": "323bdd77fed6aaad63bd65f7edff3ad84ee932cbe0996a86ffca13c7979d2bf6",
+    "sourceExerciseId": 1062,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/back-bow-jacks.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 323bdd77fed6aaad63bd65f7edff3ad84ee932cbe0996a86ffca13c7979d2bf6. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.875533
+  },
+  {
+    "file": "floor-20261015-1063.mp4",
+    "sha256": "c1fd661dac014d6e3a39172cf97b52108a7b8b51b0f6fee7465c3587c6fbaaef",
+    "sourceExerciseId": 1063,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/bear-crawls.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c1fd661dac014d6e3a39172cf97b52108a7b8b51b0f6fee7465c3587c6fbaaef. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.742067
+  },
+  {
+    "file": "floor-20261015-1064.mp4",
+    "sha256": "9f4bee1e0744fd1a08691e665de8e453196436dfed36485db7aa6768b6e8ef27",
+    "sourceExerciseId": 1064,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/bent-knee-drop.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9f4bee1e0744fd1a08691e665de8e453196436dfed36485db7aa6768b6e8ef27. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.144467
+  },
+  {
+    "file": "floor-20261015-1065.mp4",
+    "sha256": "a0d212a436bf2fd2e3a90638c00dc4bc9ab93658bf634f6fc081e7fccac15fa3",
+    "sourceExerciseId": 1065,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/bent-knee-side-plank-hold-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a0d212a436bf2fd2e3a90638c00dc4bc9ab93658bf634f6fc081e7fccac15fa3. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.009
+  },
+  {
+    "file": "floor-20261015-1066.mp4",
+    "sha256": "9fe9697ee683b346274bc591b63bac5594d2cfddd28b98ac4fa94ac08877a442",
+    "sourceExerciseId": 1066,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/birddog-sequence.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9fe9697ee683b346274bc591b63bac5594d2cfddd28b98ac4fa94ac08877a442. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.2102
+  },
+  {
+    "file": "floor-20261015-1067.mp4",
+    "sha256": "394b0a0cf92f98ecf5506b16c6f6385ca7374fb4ce72d54c14465e7f44dc81c3",
+    "sourceExerciseId": 1067,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/bridge-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 394b0a0cf92f98ecf5506b16c6f6385ca7374fb4ce72d54c14465e7f44dc81c3. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.7107
+  },
+  {
+    "file": "floor-20261015-1068.mp4",
+    "sha256": "e1bf9755ad2708a960078c5400e23a33bf56e71da0fa32477bf36472e0ef7ba4",
+    "sourceExerciseId": 1068,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/burpee.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e1bf9755ad2708a960078c5400e23a33bf56e71da0fa32477bf36472e0ef7ba4. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.438756
+  },
+  {
+    "file": "floor-20261015-1069.mp4",
+    "sha256": "dfe00187b8204203f6c3a13361a55ea33003a91f58f8f0ccdca51ecdeff24e0b",
+    "sourceExerciseId": 1069,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/butterfly-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 dfe00187b8204203f6c3a13361a55ea33003a91f58f8f0ccdca51ecdeff24e0b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.010989
+  },
+  {
+    "file": "floor-20261015-1070.mp4",
+    "sha256": "c88e2d85feb98943306a2a982f4275edb65967a95cee9e58fe9f93a8475f3064",
+    "sourceExerciseId": 1070,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cat-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c88e2d85feb98943306a2a982f4275edb65967a95cee9e58fe9f93a8475f3064. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.272933
+  },
+  {
+    "file": "floor-20261015-1071.mp4",
+    "sha256": "465e695e80b38cb8d60fadf33e10cf2ddf438f7b36ae28568bcb60f128e60d4f",
+    "sourceExerciseId": 1071,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/child-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 465e695e80b38cb8d60fadf33e10cf2ddf438f7b36ae28568bcb60f128e60d4f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.876522
+  },
+  {
+    "file": "floor-20261015-1072.mp4",
+    "sha256": "e87a59d48af6576068f375f56784c127967d948e420cd68508878ce897f1b5bd",
+    "sourceExerciseId": 1072,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/clam-shells-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e87a59d48af6576068f375f56784c127967d948e420cd68508878ce897f1b5bd. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.147467
+  },
+  {
+    "file": "floor-20261015-1073.mp4",
+    "sha256": "7c7ac6f92f4f94cf351a95bee93b49e2f5e6b26093f8e1466f15f8f1a122c708",
+    "sourceExerciseId": 1073,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/close-body-toe-touch-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 7c7ac6f92f4f94cf351a95bee93b49e2f5e6b26093f8e1466f15f8f1a122c708. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.476133
+  },
+  {
+    "file": "floor-20261015-1074.mp4",
+    "sha256": "593ba5f5143eae065785e326fd930e053596912ae0f9964137dc01464998af25",
+    "sourceExerciseId": 1074,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cobra-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 593ba5f5143eae065785e326fd930e053596912ae0f9964137dc01464998af25. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.612589
+  },
+  {
+    "file": "floor-20261015-1075.mp4",
+    "sha256": "b0fa400a41d21c5c0cd7a48f41a34c2b40372146b9329a798328a3bf06ab5212",
+    "sourceExerciseId": 1075,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cobra-wings.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b0fa400a41d21c5c0cd7a48f41a34c2b40372146b9329a798328a3bf06ab5212. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.541867
+  },
+  {
+    "file": "floor-20261015-1076.mp4",
+    "sha256": "42c1cf2770c4320e19ee9fa24a66eb321c3ae4ffd53eafacfb83b2d39e4ed63d",
+    "sourceExerciseId": 1076,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/crab-walk.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 42c1cf2770c4320e19ee9fa24a66eb321c3ae4ffd53eafacfb83b2d39e4ed63d. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.675322
+  },
+  {
+    "file": "floor-20261015-1077.mp4",
+    "sha256": "27367a5b2ec0cde507cc96b68f2fe456f52b8e41516e6ffc9f4d00e817f4ee21",
+    "sourceExerciseId": 1077,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cross-bent-knee-lifts-tabletop-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 27367a5b2ec0cde507cc96b68f2fe456f52b8e41516e6ffc9f4d00e817f4ee21. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.4114
+  },
+  {
+    "file": "floor-20261015-1078.mp4",
+    "sha256": "4be64379a12b6ad59966dabb430e5fb655aebb468613afba42be498dc47a8b14",
+    "sourceExerciseId": 1078,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cross-knee-lifts-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 4be64379a12b6ad59966dabb430e5fb655aebb468613afba42be498dc47a8b14. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.011
+  },
+  {
+    "file": "floor-20261015-1079.mp4",
+    "sha256": "68af77121b5347c0c93dbdadc7c20646c99f105833e60a39be1bd37ea9290dd7",
+    "sourceExerciseId": 1079,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/dead-bug.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 68af77121b5347c0c93dbdadc7c20646c99f105833e60a39be1bd37ea9290dd7. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.344667
+  },
+  {
+    "file": "floor-20261015-1080.mp4",
+    "sha256": "20f6a9958e509a811b82d2c86aea9f9ec5d4adb07b65a0e47e8a8614a58a1c8f",
+    "sourceExerciseId": 1080,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/diamond-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 20f6a9958e509a811b82d2c86aea9f9ec5d4adb07b65a0e47e8a8614a58a1c8f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.672322
+  },
+  {
+    "file": "floor-20261015-1081.mp4",
+    "sha256": "3fb20f9ed453f30dbd9a3ad7f170f223af09127323ba6f3b9601f8414fe2258c",
+    "sourceExerciseId": 1081,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/dive-bomber-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3fb20f9ed453f30dbd9a3ad7f170f223af09127323ba6f3b9601f8414fe2258c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.209189
+  },
+  {
+    "file": "floor-20261015-1082.mp4",
+    "sha256": "cae0dbf6d98555c362c8f4b7579544e19cf0093ebfbd97090e8ff87e71b59b9b",
+    "sourceExerciseId": 1082,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/donkey-kick-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 cae0dbf6d98555c362c8f4b7579544e19cf0093ebfbd97090e8ff87e71b59b9b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.480133
+  },
+  {
+    "file": "floor-20261015-1083.mp4",
+    "sha256": "40ba7f17bcbbcdc9f0e4e4920beb9a00e165ab7b28a39fa0b2c3152ec8b5643f",
+    "sourceExerciseId": 1083,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/double-knee-to-chest.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 40ba7f17bcbbcdc9f0e4e4920beb9a00e165ab7b28a39fa0b2c3152ec8b5643f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.675333
+  },
+  {
+    "file": "floor-20261015-1084.mp4",
+    "sha256": "ce20e3240dccfdbe90e92cdb68055ca776d75a2b6c95e2086b384b1cfd16ed91",
+    "sourceExerciseId": 1084,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/double-leg-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 ce20e3240dccfdbe90e92cdb68055ca776d75a2b6c95e2086b384b1cfd16ed91. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.774422
+  },
+  {
+    "file": "floor-20261015-1085.mp4",
+    "sha256": "447cba9b700bd568331c6ac8425a482bdf622fa7859e863612928aca87e7ba1a",
+    "sourceExerciseId": 1085,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/down-dog-knee-drive-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 447cba9b700bd568331c6ac8425a482bdf622fa7859e863612928aca87e7ba1a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.6106
+  },
+  {
+    "file": "floor-20261015-1086.mp4",
+    "sha256": "e526749d0bc0e1d76280afc8d003c8585009b89a49d0c4bdb2de86b8a128ffae",
+    "sourceExerciseId": 1086,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/downward-dog.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e526749d0bc0e1d76280afc8d003c8585009b89a49d0c4bdb2de86b8a128ffae. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.948256
+  },
+  {
+    "file": "floor-20261015-1087.mp4",
+    "sha256": "88a22059296db51385c091ae33a0cb58a5daba8ea5dafdb537b22c3466c93bba",
+    "sourceExerciseId": 1087,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/dynamic-downward-dog.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 88a22059296db51385c091ae33a0cb58a5daba8ea5dafdb537b22c3466c93bba. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.8058
+  },
+  {
+    "file": "floor-20261015-1088.mp4",
+    "sha256": "0caef83283e4f343c8776177b05c8f03bc05e269336311604fcef01c453005f0",
+    "sourceExerciseId": 1088,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/elevated-crunch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0caef83283e4f343c8776177b05c8f03bc05e269336311604fcef01c453005f0. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.074722
+  },
+  {
+    "file": "floor-20261015-1089.mp4",
+    "sha256": "562ef687fd6b59a28926eb9965b26cc4c0fe608bb8560fb8f6073d3e09a20d01",
+    "sourceExerciseId": 1089,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/fire-hydrant-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 562ef687fd6b59a28926eb9965b26cc4c0fe608bb8560fb8f6073d3e09a20d01. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.941267
+  },
+  {
+    "file": "floor-20261015-1090.mp4",
+    "sha256": "8492a4b5af2e375811b6637460168a61ec383cf1f7456f9f5eaa10a3a64671a3",
+    "sourceExerciseId": 1090,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/frog-stretch-with-rotation.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 8492a4b5af2e375811b6637460168a61ec383cf1f7456f9f5eaa10a3a64671a3. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.2092
+  },
+  {
+    "file": "floor-20261015-1091.mp4",
+    "sha256": "9ac23dff18352e2b9f04053d99716e5bd3b2ae27dc06ecf242319bffd506ebb7",
+    "sourceExerciseId": 1091,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/frog-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9ac23dff18352e2b9f04053d99716e5bd3b2ae27dc06ecf242319bffd506ebb7. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.4084
+  },
+  {
+    "file": "floor-20261015-1092.mp4",
+    "sha256": "7b1aa548430fcc8d0515fc682552b387ee2e22f1396471906589f776c14fd58c",
+    "sourceExerciseId": 1092,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/genie-sit.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 7b1aa548430fcc8d0515fc682552b387ee2e22f1396471906589f776c14fd58c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.3063
+  },
+  {
+    "file": "floor-20261015-1093.mp4",
+    "sha256": "e7871337d5181103c082bec66aa15b58f3c2b5b0f514e0c7ff2fdf3c3295f7ac",
+    "sourceExerciseId": 1093,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/glute-bridge.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e7871337d5181103c082bec66aa15b58f3c2b5b0f514e0c7ff2fdf3c3295f7ac. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.008
+  },
+  {
+    "file": "floor-20261015-1094.mp4",
+    "sha256": "721989d8ea64fe6441cccda55d85c06600126eda47153ef9212a70c8bb12a08a",
+    "sourceExerciseId": 1094,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/half-spinal-twist.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 721989d8ea64fe6441cccda55d85c06600126eda47153ef9212a70c8bb12a08a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 23.690322
+  },
+  {
+    "file": "floor-20261015-1095.mp4",
+    "sha256": "ea8cfb7cc12afe4d762fca1f3f786d50382f089e2558d36c15158a9321f58547",
+    "sourceExerciseId": 1095,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hands-and-knees-leg-raise-pulse-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 ea8cfb7cc12afe4d762fca1f3f786d50382f089e2558d36c15158a9321f58547. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.276933
+  },
+  {
+    "file": "floor-20261015-1096.mp4",
+    "sha256": "cbfa8c94442d1a63fff183493fa0f39a8ee96731829e9130c83b8cb1bf138ed2",
+    "sourceExerciseId": 1096,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/head-to-knee-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 cbfa8c94442d1a63fff183493fa0f39a8ee96731829e9130c83b8cb1bf138ed2. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 16.616589
+  },
+  {
+    "file": "floor-20261015-1097.mp4",
+    "sha256": "975d84a1cbd1d603dcdb49fecb7b9ec150f8afa2f67f4e8dee575e898098735f",
+    "sourceExerciseId": 1097,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/heel-slides.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 975d84a1cbd1d603dcdb49fecb7b9ec150f8afa2f67f4e8dee575e898098735f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.480133
+  },
+  {
+    "file": "floor-20261015-1098.mp4",
+    "sha256": "dfa1635f37a8e79da21ac32832cd381e330f0927f6b6ffb303639a97d3c41f4d",
+    "sourceExerciseId": 1098,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hip-abduction-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 dfa1635f37a8e79da21ac32832cd381e330f0927f6b6ffb303639a97d3c41f4d. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.277933
+  },
+  {
+    "file": "floor-20261015-1099.mp4",
+    "sha256": "9674b47f55978c98a45816cb6e0cc5a178145bb218c2d99f741a7500afbf5ad8",
+    "sourceExerciseId": 1099,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hip-extension-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9674b47f55978c98a45816cb6e0cc5a178145bb218c2d99f741a7500afbf5ad8. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.678333
+  },
+  {
+    "file": "floor-20261015-1100.mp4",
+    "sha256": "ba7edcc88cee8038b81d62770b96f340c83d9f61b8abc8ba1d2e196362e5fe15",
+    "sourceExerciseId": 1100,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hip-flexor-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 ba7edcc88cee8038b81d62770b96f340c83d9f61b8abc8ba1d2e196362e5fe15. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.755056
+  },
+  {
+    "file": "floor-20261015-1101.mp4",
+    "sha256": "aaaf18e0e2840a44de0baa09d64a09c7b5f290ddf9c90cd81a85aa1f38710ef5",
+    "sourceExerciseId": 1101,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hollow-body.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 aaaf18e0e2840a44de0baa09d64a09c7b5f290ddf9c90cd81a85aa1f38710ef5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.746067
+  },
+  {
+    "file": "floor-20261015-1102.mp4",
+    "sha256": "c9f0184c74dacf329d009d113e47749625889e2d9c84ebdbcc515634ab46ddad",
+    "sourceExerciseId": 1102,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hover-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c9f0184c74dacf329d009d113e47749625889e2d9c84ebdbcc515634ab46ddad. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.143467
+  },
+  {
+    "file": "floor-20261015-1103.mp4",
+    "sha256": "2447d13fd53851d6de4d1a5f469363792f09e9506b45399736cb13ad00f1096c",
+    "sourceExerciseId": 1103,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hurdlers-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 2447d13fd53851d6de4d1a5f469363792f09e9506b45399736cb13ad00f1096c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 18.468456
+  },
+  {
+    "file": "floor-20261015-1104.mp4",
+    "sha256": "071da947aa6bb09dbfb83c9cbec76fb2a818d1b902a98e52cf14eec85e3824a8",
+    "sourceExerciseId": 1104,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/in-out-burpee.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 071da947aa6bb09dbfb83c9cbec76fb2a818d1b902a98e52cf14eec85e3824a8. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.073733
+  },
+  {
+    "file": "floor-20261015-1105.mp4",
+    "sha256": "b25dd74f0c8b94495b7d1ddec1aef94e2cc84734954b84da7a45f4e8ca7dba81",
+    "sourceExerciseId": 1105,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/isometric-hooklying-hip-extension-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b25dd74f0c8b94495b7d1ddec1aef94e2cc84734954b84da7a45f4e8ca7dba81. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.008
+  },
+  {
+    "file": "floor-20261015-1106.mp4",
+    "sha256": "c293536e031ca143b52f65b37c9c27f5dddc3a505d30d83e8972af66ef3da468",
+    "sourceExerciseId": 1106,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/isometric-hooklying-hip-flexion-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c293536e031ca143b52f65b37c9c27f5dddc3a505d30d83e8972af66ef3da468. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.474133
+  },
+  {
+    "file": "floor-20261015-1107.mp4",
+    "sha256": "38040b8a2f046b6123a0427ab533f19da0babdb1d78f84f682aebf8310342a46",
+    "sourceExerciseId": 1107,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/jumping-plank.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 38040b8a2f046b6123a0427ab533f19da0babdb1d78f84f682aebf8310342a46. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.738067
+  },
+  {
+    "file": "floor-20261015-1108.mp4",
+    "sha256": "23a8b4686fb2906fad06b6f2fcb1c90f4018ff9a98f334b6b55513b343c26e47",
+    "sourceExerciseId": 1108,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/knee-in-push-ups.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 23a8b4686fb2906fad06b6f2fcb1c90f4018ff9a98f334b6b55513b343c26e47. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.078733
+  },
+  {
+    "file": "floor-20261015-1109.mp4",
+    "sha256": "6c726401b645ff675df614f529adc0478f91f9ed41d08a72f790b7730c251afb",
+    "sourceExerciseId": 1109,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/kneeling-circle.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6c726401b645ff675df614f529adc0478f91f9ed41d08a72f790b7730c251afb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 27.093722
+  },
+  {
+    "file": "floor-20261015-1110.mp4",
+    "sha256": "8e82b3eb1666f898967616b14ac4d980f430f19d132fa235a8a2d8f563d92ebe",
+    "sourceExerciseId": 1110,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/lateral-abductor-crunch-beginner-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 8e82b3eb1666f898967616b14ac4d980f430f19d132fa235a8a2d8f563d92ebe. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.6076
+  },
+  {
+    "file": "floor-20261015-1111.mp4",
+    "sha256": "a45a759704ec01e2bc7bc5403bfb0272819cf49c78c0743aba9600aa7fae9e23",
+    "sourceExerciseId": 1111,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/lateral-pillar-bridge.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a45a759704ec01e2bc7bc5403bfb0272819cf49c78c0743aba9600aa7fae9e23. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 15.248556
+  },
+  {
+    "file": "floor-20261015-1112.mp4",
+    "sha256": "9115702df9bd5600de1e5165abb497dd895d9ce602615527177c087bcbd4e950",
+    "sourceExerciseId": 1112,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/laying-side-kick.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9115702df9bd5600de1e5165abb497dd895d9ce602615527177c087bcbd4e950. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.5215
+  },
+  {
+    "file": "floor-20261015-1113.mp4",
+    "sha256": "89f6c948617521ae90948c9b8637871dcf1ce73150ec1e7220210577ea723e99",
+    "sourceExerciseId": 1113,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/low-lunge-left-forward.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 89f6c948617521ae90948c9b8637871dcf1ce73150ec1e7220210577ea723e99. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 15.749067
+  },
+  {
+    "file": "floor-20261015-1114.mp4",
+    "sha256": "c9e2ccdf9e45f5800301cced2ee84d7a8a1f748438208092d22032e4c95961fe",
+    "sourceExerciseId": 1114,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/lunge-rotation-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c9e2ccdf9e45f5800301cced2ee84d7a8a1f748438208092d22032e4c95961fe. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 22.8228
+  },
+  {
+    "file": "floor-20261015-1115.mp4",
+    "sha256": "effee0ab403c33a557642ee10898f4f98e6e9e3a7155b61b7006dc0f764344d7",
+    "sourceExerciseId": 1115,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/lying-scapular-rows.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 effee0ab403c33a557642ee10898f4f98e6e9e3a7155b61b7006dc0f764344d7. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.6076
+  },
+  {
+    "file": "floor-20261015-1116.mp4",
+    "sha256": "d460540e7e5bb1f9fe9f023995bb9d73b38db5ab1ed3b7b64b1bb48e6098effd",
+    "sourceExerciseId": 1116,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/mountain-climber.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d460540e7e5bb1f9fe9f023995bb9d73b38db5ab1ed3b7b64b1bb48e6098effd. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.6046
+  },
+  {
+    "file": "floor-20261015-1117.mp4",
+    "sha256": "e591db3c9de2e44595b6c5c5dd4b4932b2997fc45cc1d4c9a0fc18b86473d197",
+    "sourceExerciseId": 1117,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/one-arm-side-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e591db3c9de2e44595b6c5c5dd4b4932b2997fc45cc1d4c9a0fc18b86473d197. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 18.618589
+  },
+  {
+    "file": "floor-20261015-1118.mp4",
+    "sha256": "5e0463eca245616a78793f17b499d34c5cce6a3b13de50cb2ab4e4907ef9b624",
+    "sourceExerciseId": 1118,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pelvic-tilt-with-heel-walk.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5e0463eca245616a78793f17b499d34c5cce6a3b13de50cb2ab4e4907ef9b624. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.8148
+  },
+  {
+    "file": "floor-20261015-1119.mp4",
+    "sha256": "efbb14a9b7626a4a6fb5509cd935227b92437bf4cf3bb493333ce5c43aae6c3a",
+    "sourceExerciseId": 1119,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pigeon-pose-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 efbb14a9b7626a4a6fb5509cd935227b92437bf4cf3bb493333ce5c43aae6c3a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.745056
+  },
+  {
+    "file": "floor-20261015-1120.mp4",
+    "sha256": "d4578bdefd1168a674b8a20f2647294162b36c393eef46f5d15aa3f45bfb08aa",
+    "sourceExerciseId": 1120,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pigeon-pose-with-circles-front.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d4578bdefd1168a674b8a20f2647294162b36c393eef46f5d15aa3f45bfb08aa. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.6096
+  },
+  {
+    "file": "floor-20261015-1121.mp4",
+    "sha256": "6df10be3726a70950f1b68b14a392076b5d0d8d4243dc9dd1655af8b8a2a9b6b",
+    "sourceExerciseId": 1121,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pike-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6df10be3726a70950f1b68b14a392076b5d0d8d4243dc9dd1655af8b8a2a9b6b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 17.550867
+  },
+  {
+    "file": "floor-20261015-1122.mp4",
+    "sha256": "4e7e046403830ebbf9c6406e1899e11163c383ae2d4e00e095c348f90e255218",
+    "sourceExerciseId": 1122,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pilates-roll-like-a-bug.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 4e7e046403830ebbf9c6406e1899e11163c383ae2d4e00e095c348f90e255218. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.1101
+  },
+  {
+    "file": "floor-20261015-1123.mp4",
+    "sha256": "9165a191daee165513b31626ec9120644917cfb756fbe038e0169a6499782e54",
+    "sourceExerciseId": 1123,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/piriformis-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9165a191daee165513b31626ec9120644917cfb756fbe038e0169a6499782e54. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 30.9
+  },
+  {
+    "file": "floor-20261015-1124.mp4",
+    "sha256": "3a1970ab7b8f705a47775064ec69cacdd59868c5f992b44644305fb0efdc60f8",
+    "sourceExerciseId": 1124,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-crunch-and-kickback-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3a1970ab7b8f705a47775064ec69cacdd59868c5f992b44644305fb0efdc60f8. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.4094
+  },
+  {
+    "file": "floor-20261015-1125.mp4",
+    "sha256": "2e3ad8a22705045b89c809819ef1f60102354cc5793cb9ad7b1dc9ad9150982b",
+    "sourceExerciseId": 1125,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-hip-rotation.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 2e3ad8a22705045b89c809819ef1f60102354cc5793cb9ad7b1dc9ad9150982b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.944267
+  },
+  {
+    "file": "floor-20261015-1126.mp4",
+    "sha256": "1d127b9c16bea48ae9ee3053b079ba985e32e1294ec6e26efee6a479dd4783cc",
+    "sourceExerciseId": 1126,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-jack.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 1d127b9c16bea48ae9ee3053b079ba985e32e1294ec6e26efee6a479dd4783cc. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.239556
+  },
+  {
+    "file": "floor-20261015-1127.mp4",
+    "sha256": "3cf48cf6f487e68c06a7b9ee8249fc725e9b9c4510579fcfc12263b07c978b05",
+    "sourceExerciseId": 1127,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-jump-to-squat.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3cf48cf6f487e68c06a7b9ee8249fc725e9b9c4510579fcfc12263b07c978b05. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.074733
+  },
+  {
+    "file": "floor-20261015-1128.mp4",
+    "sha256": "5cdf9975951bf5ddd1cf8f9e549f42df74e6c980ba8de6d2933f9f4f2a9b457e",
+    "sourceExerciseId": 1128,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-knee-taps.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5cdf9975951bf5ddd1cf8f9e549f42df74e6c980ba8de6d2933f9f4f2a9b457e. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.007
+  },
+  {
+    "file": "floor-20261015-1129.mp4",
+    "sha256": "1f30ccf98421dfd1867d33433400d0498a4594e5ac80e226e180fff6371efd67",
+    "sourceExerciseId": 1129,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-knee-tuck.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 1f30ccf98421dfd1867d33433400d0498a4594e5ac80e226e180fff6371efd67. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.742067
+  },
+  {
+    "file": "floor-20261015-1130.mp4",
+    "sha256": "e7399390ebdc128293d4742f535b0d2f806223d53bd9194b4a732740d5442452",
+    "sourceExerciseId": 1130,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e7399390ebdc128293d4742f535b0d2f806223d53bd9194b4a732740d5442452. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.4084
+  },
+  {
+    "file": "floor-20261015-1131.mp4",
+    "sha256": "6b729de6d11f4be02e95431533b7b6ac662955231bb3693fc18f53307b4e9b41",
+    "sourceExerciseId": 1131,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-side-walk.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6b729de6d11f4be02e95431533b7b6ac662955231bb3693fc18f53307b4e9b41. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.576222
+  },
+  {
+    "file": "floor-20261015-1132.mp4",
+    "sha256": "6751cdeffe79ad1a0208ee9979670ccc814ca1552a7fda4ec3b4abad196d97b5",
+    "sourceExerciseId": 1132,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-step-leg-lift-advanced.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6751cdeffe79ad1a0208ee9979670ccc814ca1552a7fda4ec3b4abad196d97b5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.140467
+  },
+  {
+    "file": "floor-20261015-1133.mp4",
+    "sha256": "c6fb7b000bcaabbd8a0884adb1963f8673890ed5546d445c91f98796c64be08f",
+    "sourceExerciseId": 1133,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-style-calf-stretch-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c6fb7b000bcaabbd8a0884adb1963f8673890ed5546d445c91f98796c64be08f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.3133
+  },
+  {
+    "file": "floor-20261015-1134.mp4",
+    "sha256": "022e351a44ff15cc0e3e2cca8df89f8ea22cc1f413615ea6974c4745adaaaac1",
+    "sourceExerciseId": 1134,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-walk-out.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 022e351a44ff15cc0e3e2cca8df89f8ea22cc1f413615ea6974c4745adaaaac1. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.475133
+  },
+  {
+    "file": "floor-20261015-1135.mp4",
+    "sha256": "2aeb628b0093ab46aa666081d8c01bcfc573896cf795812685d8d4a644237c49",
+    "sourceExerciseId": 1135,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-with-arm-lift.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 2aeb628b0093ab46aa666081d8c01bcfc573896cf795812685d8d4a644237c49. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.776422
+  },
+  {
+    "file": "floor-20261015-1136.mp4",
+    "sha256": "326abcd6bccecd3dfa177ab169a1c615f8143474faf427d12744aad5144b7cbb",
+    "sourceExerciseId": 1136,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank-with-reach-back.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 326abcd6bccecd3dfa177ab169a1c615f8143474faf427d12744aad5144b7cbb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.2132
+  },
+  {
+    "file": "floor-20261015-1137.mp4",
+    "sha256": "5fe9fc84fbd3f0aae2514b007b0ac05e3c5b132ffcc2061747ab9ab81c9d6d6b",
+    "sourceExerciseId": 1137,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/plank.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5fe9fc84fbd3f0aae2514b007b0ac05e3c5b132ffcc2061747ab9ab81c9d6d6b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.977622
+  },
+  {
+    "file": "floor-20261015-1138.mp4",
+    "sha256": "094acd294dbbf930e6bd4d54fe61ee3600e33144e44eea6dc6c14689299d9523",
+    "sourceExerciseId": 1138,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/prone-i.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 094acd294dbbf930e6bd4d54fe61ee3600e33144e44eea6dc6c14689299d9523. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.345667
+  },
+  {
+    "file": "floor-20261015-1139.mp4",
+    "sha256": "bbbb4036434c388d7dd53b9dbdc29c3aa35c692077bd47db722a6d4ff009550c",
+    "sourceExerciseId": 1139,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/prone-ir-er-hip-rotation.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 bbbb4036434c388d7dd53b9dbdc29c3aa35c692077bd47db722a6d4ff009550c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 20.453767
+  },
+  {
+    "file": "floor-20261015-1140.mp4",
+    "sha256": "4fd4f24f71fe70e8f4d38b1c70e3e440cd665d40e64df559e081105da42f0a90",
+    "sourceExerciseId": 1140,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/prone-on-elbows.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 4fd4f24f71fe70e8f4d38b1c70e3e440cd665d40e64df559e081105da42f0a90. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.676333
+  },
+  {
+    "file": "floor-20261015-1141.mp4",
+    "sha256": "b700776a7360199f6a0fabdaa3ae20a029e6b52d83bc34ef46ea4212bfdd220a",
+    "sourceExerciseId": 1141,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/prone-w.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b700776a7360199f6a0fabdaa3ae20a029e6b52d83bc34ef46ea4212bfdd220a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.043367
+  },
+  {
+    "file": "floor-20261015-1142.mp4",
+    "sha256": "06f552ccbbf80fc2e764c6f6febada3082d45099ec8a778bc4bc72ef7b3076d9",
+    "sourceExerciseId": 1142,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/push-up-and-clap.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 06f552ccbbf80fc2e764c6f6febada3082d45099ec8a778bc4bc72ef7b3076d9. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.439756
+  },
+  {
+    "file": "floor-20261015-1143.mp4",
+    "sha256": "ea29e2d3aa0b802f7424972f23b5f5c48d919a56c98f92dbe2f019217a1e98a2",
+    "sourceExerciseId": 1143,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/push-up-and-rotation.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 ea29e2d3aa0b802f7424972f23b5f5c48d919a56c98f92dbe2f019217a1e98a2. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.972633
+  },
+  {
+    "file": "floor-20261015-1144.mp4",
+    "sha256": "e906e0399fee6bce9d035fb200ed8749fef0c57c4d020477154549ffeffe8503",
+    "sourceExerciseId": 1144,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/push-up-on-knee.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e906e0399fee6bce9d035fb200ed8749fef0c57c4d020477154549ffeffe8503. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.841156
+  },
+  {
+    "file": "floor-20261015-1145.mp4",
+    "sha256": "68d8ff2c49267059ac29c747fd8b64505006dad0651006836d29e437029d4d19",
+    "sourceExerciseId": 1145,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/push-up-with-abduction-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 68d8ff2c49267059ac29c747fd8b64505006dad0651006836d29e437029d4d19. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.074733
+  },
+  {
+    "file": "floor-20261015-1146.mp4",
+    "sha256": "ddb650346ec8b906ede254af4c95c9968c1ecc7086801523313e4c6896d15c03",
+    "sourceExerciseId": 1146,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/push-up-with-hip-extension-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 ddb650346ec8b906ede254af4c95c9968c1ecc7086801523313e4c6896d15c03. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.2092
+  },
+  {
+    "file": "floor-20261015-1147.mp4",
+    "sha256": "c868e441e7c0cb8cca1dea416de56d4a889101eb41c72fd88db4de4f1d2536f8",
+    "sourceExerciseId": 1147,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c868e441e7c0cb8cca1dea416de56d4a889101eb41c72fd88db4de4f1d2536f8. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.739056
+  },
+  {
+    "file": "floor-20261015-1148.mp4",
+    "sha256": "f0cbc7c1f2c3e4301fe422ddfa52c48eaf01ecdffa61f58cb691dd52757a8ab9",
+    "sourceExerciseId": 1148,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/ql-stretch-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 f0cbc7c1f2c3e4301fe422ddfa52c48eaf01ecdffa61f58cb691dd52757a8ab9. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.014
+  },
+  {
+    "file": "floor-20261015-1149.mp4",
+    "sha256": "f8ed174df5db639646375de237c6175658c601066960c2a6084f9db11a3d59ec",
+    "sourceExerciseId": 1149,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/quad-stretch-back-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 f8ed174df5db639646375de237c6175658c601066960c2a6084f9db11a3d59ec. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.012
+  },
+  {
+    "file": "floor-20261015-1150.mp4",
+    "sha256": "2056c4719b24721ba3c17cca4bcb17ec44a2d7f95dc571dd1aad79b34f85f20f",
+    "sourceExerciseId": 1150,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/quad-stretch-sidelying-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 2056c4719b24721ba3c17cca4bcb17ec44a2d7f95dc571dd1aad79b34f85f20f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.2042
+  },
+  {
+    "file": "floor-20261015-1151.mp4",
+    "sha256": "1fa4b3dfbcccc622f100ca9329d1dab9a39170c55f0102a2ab002bb7de259fb9",
+    "sourceExerciseId": 1151,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/quadruped-hip-extension-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 1fa4b3dfbcccc622f100ca9329d1dab9a39170c55f0102a2ab002bb7de259fb9. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.013
+  },
+  {
+    "file": "floor-20261015-1152.mp4",
+    "sha256": "7856fbe8bc656c2df9b2a40bc8e3f61b3206c78fff916d1b7c9d07e6686391ef",
+    "sourceExerciseId": 1152,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/rear-lunge-chest-to-knee-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 7856fbe8bc656c2df9b2a40bc8e3f61b3206c78fff916d1b7c9d07e6686391ef. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.8068
+  },
+  {
+    "file": "floor-20261015-1153.mp4",
+    "sha256": "757c03321d86ae0cc333cf85846e532cfa0a93343bd90e907db1ba0a2d51a2ca",
+    "sourceExerciseId": 1153,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/reverse-plank.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 757c03321d86ae0cc333cf85846e532cfa0a93343bd90e907db1ba0a2d51a2ca. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.174822
+  },
+  {
+    "file": "floor-20261015-1154.mp4",
+    "sha256": "45a5cfe6faae94d97961bc6899c48ce28cb3684bef2a6d3fbd1a1fc47958933d",
+    "sourceExerciseId": 1154,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/roll-up-twist.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 45a5cfe6faae94d97961bc6899c48ce28cb3684bef2a6d3fbd1a1fc47958933d. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 15.148467
+  },
+  {
+    "file": "floor-20261015-1155.mp4",
+    "sha256": "0384218b83aabc268ed137d6ce6b1069b79035f2232544af20d6aac1a244a3a8",
+    "sourceExerciseId": 1155,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/roll-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0384218b83aabc268ed137d6ce6b1069b79035f2232544af20d6aac1a244a3a8. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.743067
+  },
+  {
+    "file": "floor-20261015-1156.mp4",
+    "sha256": "f90c6fbbb681e7a26670385d2bf72fd751191c62bfbe0d7975ae0938cf99999e",
+    "sourceExerciseId": 1156,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/rolling-like-a-ball.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 f90c6fbbb681e7a26670385d2bf72fd751191c62bfbe0d7975ae0938cf99999e. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.307289
+  },
+  {
+    "file": "floor-20261015-1157.mp4",
+    "sha256": "b9c5f3b781d5ac5a00441cb73567a665e5be6e8caa20737de0e8595bb5774437",
+    "sourceExerciseId": 1157,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/scissor-kick.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b9c5f3b781d5ac5a00441cb73567a665e5be6e8caa20737de0e8595bb5774437. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.171822
+  },
+  {
+    "file": "floor-20261015-1158.mp4",
+    "sha256": "0e581c4c028844767cc79b8b6e2a318cde912f754beec88d176b60d4f939bcb5",
+    "sourceExerciseId": 1158,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/scorpion.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0e581c4c028844767cc79b8b6e2a318cde912f754beec88d176b60d4f939bcb5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.481133
+  },
+  {
+    "file": "floor-20261015-1159.mp4",
+    "sha256": "9e1ffca7eba2be0b154264d25e0ae06b11a858157b59e71c5dc73c59e9501cf6",
+    "sourceExerciseId": 1159,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/seated-spine-twist.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9e1ffca7eba2be0b154264d25e0ae06b11a858157b59e71c5dc73c59e9501cf6. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.910889
+  },
+  {
+    "file": "floor-20261015-1160.mp4",
+    "sha256": "20fa10e90f75f4db950971a5a096d0a7d36d7d1a84c425bc53f3b81adee7de57",
+    "sourceExerciseId": 1160,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/shoulder-bridge.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 20fa10e90f75f4db950971a5a096d0a7d36d7d1a84c425bc53f3b81adee7de57. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.443767
+  },
+  {
+    "file": "floor-20261015-1161.mp4",
+    "sha256": "23cef09f41d837030129b28ab0e2895bb47a3db92a0f202f5ca025499a812278",
+    "sourceExerciseId": 1161,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/shoulder-tap-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 23cef09f41d837030129b28ab0e2895bb47a3db92a0f202f5ca025499a812278. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.211189
+  },
+  {
+    "file": "floor-20261015-1162.mp4",
+    "sha256": "d74402d2867cfe819ceab5ad4cab887ed494fd0f15b2e32eb902d7af83715e9c",
+    "sourceExerciseId": 1162,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-leg-lift.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d74402d2867cfe819ceab5ad4cab887ed494fd0f15b2e32eb902d7af83715e9c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.280933
+  },
+  {
+    "file": "floor-20261015-1163.mp4",
+    "sha256": "eafd9af6b7710545737bc4b66b9aedfca00301a7298746d711089844a1d983f0",
+    "sourceExerciseId": 1163,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-leg-windshield-wiper-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 eafd9af6b7710545737bc4b66b9aedfca00301a7298746d711089844a1d983f0. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.6106
+  },
+  {
+    "file": "floor-20261015-1164.mp4",
+    "sha256": "a6903c1d9d9db7316ab514d91b483cca7fcae6b6b7986ed303e74bb3d44ff0f5",
+    "sourceExerciseId": 1164,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-plank-2-way-leg-raise-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a6903c1d9d9db7316ab514d91b483cca7fcae6b6b7986ed303e74bb3d44ff0f5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.343667
+  },
+  {
+    "file": "floor-20261015-1165.mp4",
+    "sha256": "f2e2ff8ede603cc61b3f12502533f232644f830dfc4c5405169563a982fd1ba2",
+    "sourceExerciseId": 1165,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-plank-abductor-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 f2e2ff8ede603cc61b3f12502533f232644f830dfc4c5405169563a982fd1ba2. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.876533
+  },
+  {
+    "file": "floor-20261015-1166.mp4",
+    "sha256": "b215d6813a03ea9746eb52774b3e344d2bf0a811022f6db8d9cf71e4f05ff060",
+    "sourceExerciseId": 1166,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-plank-knee-drives-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b215d6813a03ea9746eb52774b3e344d2bf0a811022f6db8d9cf71e4f05ff060. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.744067
+  },
+  {
+    "file": "floor-20261015-1167.mp4",
+    "sha256": "b2fe4de86fb611a367e8a6e59beea821ddae19eff3b1ae776ca0087e822ac33f",
+    "sourceExerciseId": 1167,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-plank.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b2fe4de86fb611a367e8a6e59beea821ddae19eff3b1ae776ca0087e822ac33f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.747067
+  },
+  {
+    "file": "floor-20261015-1168.mp4",
+    "sha256": "587bcb9b5dc77f877c7ac6ea61888b71491b0b1d3b0a1cbc63ec05b19c1b410c",
+    "sourceExerciseId": 1168,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/sidelying-shoulder-abduction-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 587bcb9b5dc77f877c7ac6ea61888b71491b0b1d3b0a1cbc63ec05b19c1b410c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.541867
+  },
+  {
+    "file": "floor-20261015-1169.mp4",
+    "sha256": "be63573595b4f15cff0fc426d902e4869a9a5e96e3c0cff6ae930e66c0952c1a",
+    "sourceExerciseId": 1169,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/sidelying-shoulder-external-rotation.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 be63573595b4f15cff0fc426d902e4869a9a5e96e3c0cff6ae930e66c0952c1a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.172833
+  },
+  {
+    "file": "floor-20261015-1170.mp4",
+    "sha256": "f4a13b0da6c73b75f7b12b16317a5e4a0b2783153e2ab85ae8c0116c31987527",
+    "sourceExerciseId": 1170,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/single-leg-bridge-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 f4a13b0da6c73b75f7b12b16317a5e4a0b2783153e2ab85ae8c0116c31987527. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.6086
+  },
+  {
+    "file": "floor-20261015-1171.mp4",
+    "sha256": "a6e6b2798f8f661ba96026f2ddb3764c4219cf17b913219c67e9f90a223d9543",
+    "sourceExerciseId": 1171,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/single-leg-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a6e6b2798f8f661ba96026f2ddb3764c4219cf17b913219c67e9f90a223d9543. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.6136
+  },
+  {
+    "file": "floor-20261015-1172.mp4",
+    "sha256": "d78897b0392726cd91effe524a1a27cc87a85e9d0d770d786b17323bccd5760b",
+    "sourceExerciseId": 1172,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/sit-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d78897b0392726cd91effe524a1a27cc87a85e9d0d770d786b17323bccd5760b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.439756
+  },
+  {
+    "file": "floor-20261015-1173.mp4",
+    "sha256": "c4cff7fe5b9425531092bd57e43b07cfcb735dd8da39f30e6ea3449527ff3eb1",
+    "sourceExerciseId": 1173,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/sleeper-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c4cff7fe5b9425531092bd57e43b07cfcb735dd8da39f30e6ea3449527ff3eb1. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 40.1401
+  },
+  {
+    "file": "floor-20261015-1174.mp4",
+    "sha256": "7741486a09cdb3172b37e2e78daa3fc41273270066f8edcc23c4c751c5a36951",
+    "sourceExerciseId": 1174,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/spiderman-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 7741486a09cdb3172b37e2e78daa3fc41273270066f8edcc23c4c751c5a36951. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.107089
+  },
+  {
+    "file": "floor-20261015-1175.mp4",
+    "sha256": "d9056a081b46f6e59be0fb2c1ca69ee351c3e727cbf265d9578a163771de7989",
+    "sourceExerciseId": 1175,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/spine-stretch-forward.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d9056a081b46f6e59be0fb2c1ca69ee351c3e727cbf265d9578a163771de7989. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.107089
+  },
+  {
+    "file": "floor-20261015-1176.mp4",
+    "sha256": "d14bea3eeff1f2fc58aa65fa3244c0d3889abbefe5374863c06090ebe5b833ed",
+    "sourceExerciseId": 1176,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/straight-leg-raise-with-external-rotation-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d14bea3eeff1f2fc58aa65fa3244c0d3889abbefe5374863c06090ebe5b833ed. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 15.015
+  },
+  {
+    "file": "floor-20261015-1177.mp4",
+    "sha256": "0042341d3e05bb7d2330bac02942270557a6f45cca7a7bb3595b61ceee4f69b6",
+    "sourceExerciseId": 1177,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/straight-leg-raise.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0042341d3e05bb7d2330bac02942270557a6f45cca7a7bb3595b61ceee4f69b6. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 24.057367
+  },
+  {
+    "file": "floor-20261015-1178.mp4",
+    "sha256": "6e6c41c892cafb32fa47d2d3e62c8686b88549308e664f155ecab91f47dcb188",
+    "sourceExerciseId": 1178,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/superman.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6e6c41c892cafb32fa47d2d3e62c8686b88549308e664f155ecab91f47dcb188. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.544856
+  },
+  {
+    "file": "floor-20261015-1179.mp4",
+    "sha256": "09f8911b3f9bbcf76c1570a28d3d0f92d9e0a37d3aaaf334a08ca5b111e3ebec",
+    "sourceExerciseId": 1179,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/supine-bicycle.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 09f8911b3f9bbcf76c1570a28d3d0f92d9e0a37d3aaaf334a08ca5b111e3ebec. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.572233
+  },
+  {
+    "file": "floor-20261015-1180.mp4",
+    "sha256": "63c5ebbeedef12fb69df6fd50a5a33348638d73148c4a2b9929aeae80f7838a8",
+    "sourceExerciseId": 1180,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/supine-serratus-circles.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63c5ebbeedef12fb69df6fd50a5a33348638d73148c4a2b9929aeae80f7838a8. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 27.494133
+  },
+  {
+    "file": "floor-20261015-1181.mp4",
+    "sha256": "d8b9293ffafc4841efbcb9a828010aeddf4cb21789925bffc826bc2a8fb8abc2",
+    "sourceExerciseId": 1181,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/supine-serratus-punches.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d8b9293ffafc4841efbcb9a828010aeddf4cb21789925bffc826bc2a8fb8abc2. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.479133
+  },
+  {
+    "file": "floor-20261015-1182.mp4",
+    "sha256": "0db1fa05897dcd76e1f5497878a26b5b7560c2e405aa0a4654c7ac25375cb0df",
+    "sourceExerciseId": 1182,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/supine-shoulder-flexion-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0db1fa05897dcd76e1f5497878a26b5b7560c2e405aa0a4654c7ac25375cb0df. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.538867
+  },
+  {
+    "file": "floor-20261015-1183.mp4",
+    "sha256": "94fb4683f0ee2104298ca31a8ad82526914d58c7d379426e384dd0be1904d00e",
+    "sourceExerciseId": 1183,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/supine-windshield-wipers.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 94fb4683f0ee2104298ca31a8ad82526914d58c7d379426e384dd0be1904d00e. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.344667
+  },
+  {
+    "file": "floor-20261015-1184.mp4",
+    "sha256": "4eaac130663cf5620bc4073f2bd57a6cbff220f70d6dd02f577d7077bbb2202c",
+    "sourceExerciseId": 1184,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/swimmer.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 4eaac130663cf5620bc4073f2bd57a6cbff220f70d6dd02f577d7077bbb2202c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.741056
+  },
+  {
+    "file": "floor-20261015-1185.mp4",
+    "sha256": "6d4d26afcb7b49c0e2c532a5601fad8cfaf72271cae4a520554c54171fc35502",
+    "sourceExerciseId": 1185,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/t-spine-rotation-head-follows.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6d4d26afcb7b49c0e2c532a5601fad8cfaf72271cae4a520554c54171fc35502. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.273933
+  },
+  {
+    "file": "floor-20261015-1186.mp4",
+    "sha256": "b8d054e9dc06627b7b40033871b1d51a61bef89b9baadf553c8fd733828824ca",
+    "sourceExerciseId": 1186,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/tabletop-with-a-kick.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 b8d054e9dc06627b7b40033871b1d51a61bef89b9baadf553c8fd733828824ca. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.342667
+  },
+  {
+    "file": "floor-20261015-1187.mp4",
+    "sha256": "2887bcd2607181c7a23c49563dc43f417b3cf5aa115dd2ca32b4ed90b971a38a",
+    "sourceExerciseId": 1187,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/teaser.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 2887bcd2607181c7a23c49563dc43f417b3cf5aa115dd2ca32b4ed90b971a38a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.005
+  },
+  {
+    "file": "floor-20261015-1188.mp4",
+    "sha256": "e836322f92d9577658957c298f3e7c1a44405e8b3be53e34e405de3a81430e76",
+    "sourceExerciseId": 1188,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/thread-the-needle-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e836322f92d9577658957c298f3e7c1a44405e8b3be53e34e405de3a81430e76. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.073733
+  },
+  {
+    "file": "floor-20261015-1189.mp4",
+    "sha256": "0c1794ea9b4862df2960de807025bedf6c7b4133df56e7e033f21a01d26164c0",
+    "sourceExerciseId": 1189,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/three-legged-down-dog-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0c1794ea9b4862df2960de807025bedf6c7b4133df56e7e033f21a01d26164c0. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 19.419389
+  },
+  {
+    "file": "floor-20261015-1190.mp4",
+    "sha256": "9bf825c1b91693b7c0dae28cafa74ccd769e0a0d540661b92ce1ae4a96ac0aff",
+    "sourceExerciseId": 1190,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/tricep-dip.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9bf825c1b91693b7c0dae28cafa74ccd769e0a0d540661b92ce1ae4a96ac0aff. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.339667
+  },
+  {
+    "file": "floor-20261015-1191.mp4",
+    "sha256": "a516b0c4b6f33e36db15692fdfb7a89a90020db6a88cf1ac4f3940266b526356",
+    "sourceExerciseId": 1191,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/twisting-crunch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a516b0c4b6f33e36db15692fdfb7a89a90020db6a88cf1ac4f3940266b526356. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.270922
+  },
+  {
+    "file": "floor-20261015-1192.mp4",
+    "sha256": "c3feeb1a2a0b566ce19e1309aa20fdde32e760bbcf65485ded4209399bc9a2ea",
+    "sourceExerciseId": 1192,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/two-point-plank.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 c3feeb1a2a0b566ce19e1309aa20fdde32e760bbcf65485ded4209399bc9a2ea. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.440756
+  },
+  {
+    "file": "floor-20261015-1193.mp4",
+    "sha256": "bbf9456ee21d26f2b055f604959824b967104e5c632ef7282ba4522b822fc7fa",
+    "sourceExerciseId": 1193,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/v-sit-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 bbf9456ee21d26f2b055f604959824b967104e5c632ef7282ba4522b822fc7fa. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.039356
+  },
+  {
+    "file": "floor-20261015-1194.mp4",
+    "sha256": "5c7d1cbe9fb1772371aa573ad2fbad7e590cd7872e26a9cae86fd2c294943031",
+    "sourceExerciseId": 1194,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/w-superman.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5c7d1cbe9fb1772371aa573ad2fbad7e590cd7872e26a9cae86fd2c294943031. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.475133
+  },
+  {
+    "file": "floor-20261015-1195.mp4",
+    "sha256": "d1f85a84ebeff129c8a9496029aebae8ef0e2730249c318eac295da6c16111d3",
+    "sourceExerciseId": 1195,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/wide-arm-push-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 d1f85a84ebeff129c8a9496029aebae8ef0e2730249c318eac295da6c16111d3. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.307289
+  },
+  {
+    "file": "floor-20261015-1196.mp4",
+    "sha256": "1b06f5d021221a64bec4e13500e725d9925424dd62acd0c1a2ee2bbc67ad9819",
+    "sourceExerciseId": 1196,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/worlds-greatest-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 1b06f5d021221a64bec4e13500e725d9925424dd62acd0c1a2ee2bbc67ad9819. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 16.783433
+  },
+  {
+    "file": "floor-20261015-1197.mp4",
+    "sha256": "0024cbaa6b0758fcbb13d5b0dba7505eafcce1497beaa4bcd8a8ef4ed73a7c1b",
+    "sourceExerciseId": 1197,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/z-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0024cbaa6b0758fcbb13d5b0dba7505eafcce1497beaa4bcd8a8ef4ed73a7c1b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 35.033333
+  },
+  {
+    "file": "floor-20261015-1198.mp4",
+    "sha256": "94d3371a498c70f8115faad7aaa3c7c42107bc97cd45b5d79e5280fc42c3c293",
+    "sourceExerciseId": 1198,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/barre-pretzel-full-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 94d3371a498c70f8115faad7aaa3c7c42107bc97cd45b5d79e5280fc42c3c293. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.2062
+  },
+  {
+    "file": "floor-20261015-1199.mp4",
+    "sha256": "3789a4da6ffbfccd71a432c1948b03ed4391ffc2a2fcfd0176d75016e5bfa191",
+    "sourceExerciseId": 1199,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/break-dance.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3789a4da6ffbfccd71a432c1948b03ed4391ffc2a2fcfd0176d75016e5bfa191. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.074733
+  },
+  {
+    "file": "floor-20261015-1200.mp4",
+    "sha256": "24204e824080e223be3fd53bf73e9359d9eac8319128ac244ada03b3a03ed538",
+    "sourceExerciseId": 1200,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cat-and-cow-sequence.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 24204e824080e223be3fd53bf73e9359d9eac8319128ac244ada03b3a03ed538. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.544867
+  },
+  {
+    "file": "floor-20261015-1201.mp4",
+    "sha256": "8dce056f3a2b81c9714be5013fd607c51e3877f84bace7dee1015e2e0893829b",
+    "sourceExerciseId": 1201,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cervical-flexion-rotation.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 8dce056f3a2b81c9714be5013fd607c51e3877f84bace7dee1015e2e0893829b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 16.783433
+  },
+  {
+    "file": "floor-20261015-1202.mp4",
+    "sha256": "22cdca9c4e7336916b01c8e70301de7a05c951a47dd3a784ccd60013f16e0f98",
+    "sourceExerciseId": 1202,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/chin-tuck.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 22cdca9c4e7336916b01c8e70301de7a05c951a47dd3a784ccd60013f16e0f98. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.474133
+  },
+  {
+    "file": "floor-20261015-1203.mp4",
+    "sha256": "670093041d1d03a4d6d22a3982e09e369d717a6da93958661938750e9de6276d",
+    "sourceExerciseId": 1203,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/cow-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 670093041d1d03a4d6d22a3982e09e369d717a6da93958661938750e9de6276d. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.841156
+  },
+  {
+    "file": "floor-20261015-1204.mp4",
+    "sha256": "e0d568c9942315231df543fc896fabbc3ad5f7d449333b2ccb01b2329d58e73f",
+    "sourceExerciseId": 1204,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/dcf-endurance-hold.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e0d568c9942315231df543fc896fabbc3ad5f7d449333b2ccb01b2329d58e73f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.8108
+  },
+  {
+    "file": "floor-20261015-1205.mp4",
+    "sha256": "aad312c45403fb8c5cfb1a3e501fe03447fe27bd20186f5d1ee2fd6ec9787cdd",
+    "sourceExerciseId": 1205,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/double-leg-kick.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 aad312c45403fb8c5cfb1a3e501fe03447fe27bd20186f5d1ee2fd6ec9787cdd. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.671322
+  },
+  {
+    "file": "floor-20261015-1206.mp4",
+    "sha256": "a4c32bf1e2e09a74ce838b44204c80224c78ca635003551129b94489d7785091",
+    "sourceExerciseId": 1206,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/forward-fold.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a4c32bf1e2e09a74ce838b44204c80224c78ca635003551129b94489d7785091. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.020989
+  },
+  {
+    "file": "floor-20261015-1207.mp4",
+    "sha256": "7c5cceccbaac7f054bcb4c4e9d3b60f6a5102c0e1c62b831579652d50d664cd0",
+    "sourceExerciseId": 1207,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/four-limbed-staff-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 7c5cceccbaac7f054bcb4c4e9d3b60f6a5102c0e1c62b831579652d50d664cd0. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.810789
+  },
+  {
+    "file": "floor-20261015-1208.mp4",
+    "sha256": "6c2cdedc77af60c385f43005ff8402e45541f6c6406282adbae6c476ffc730e5",
+    "sourceExerciseId": 1208,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/grasshoppers.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6c2cdedc77af60c385f43005ff8402e45541f6c6406282adbae6c476ffc730e5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.276933
+  },
+  {
+    "file": "floor-20261015-1209.mp4",
+    "sha256": "858995810fb983baaf4e2695493146b473bfbd633f1cf2596c8eb7115ab87733",
+    "sourceExerciseId": 1209,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/happy-baby.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 858995810fb983baaf4e2695493146b473bfbd633f1cf2596c8eb7115ab87733. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 18.466667
+  },
+  {
+    "file": "floor-20261015-1210.mp4",
+    "sha256": "2d36322eb6f98b2025ae26466ef57263e5b390e2df40ef929cdda003498d9ac4",
+    "sourceExerciseId": 1210,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/hero-pose.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 2d36322eb6f98b2025ae26466ef57263e5b390e2df40ef929cdda003498d9ac4. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 3.703689
+  },
+  {
+    "file": "floor-20261015-1211.mp4",
+    "sha256": "495e42cff246c708664e37255d0bccbfd0b1fe8ea41910115865a66d087eb3a9",
+    "sourceExerciseId": 1211,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/in-and-out-ab.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 495e42cff246c708664e37255d0bccbfd0b1fe8ea41910115865a66d087eb3a9. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.404389
+  },
+  {
+    "file": "floor-20261015-1212.mp4",
+    "sha256": "3e91fe22a9379b2cf320a4d5095e319d942e7bf33a348e3fab5a1656cbc394d1",
+    "sourceExerciseId": 1212,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/inch-worm.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3e91fe22a9379b2cf320a4d5095e319d942e7bf33a348e3fab5a1656cbc394d1. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.945256
+  },
+  {
+    "file": "floor-20261015-1213.mp4",
+    "sha256": "9086bed4267c4426d75eafa9d3838a6c59e53dea695fd90cb490b7fc05727a40",
+    "sourceExerciseId": 1213,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/inchworms-with-feet-standing.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9086bed4267c4426d75eafa9d3838a6c59e53dea695fd90cb490b7fc05727a40. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.4214
+  },
+  {
+    "file": "floor-20261015-1214.mp4",
+    "sha256": "5fe3279682f479c097b7e90c69b6b1e133960ca65b1c608c63e20511ad7ba3a9",
+    "sourceExerciseId": 1214,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/inner-thigh-lift.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5fe3279682f479c097b7e90c69b6b1e133960ca65b1c608c63e20511ad7ba3a9. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 20.954267
+  },
+  {
+    "file": "floor-20261015-1215.mp4",
+    "sha256": "14367858a6c5d7a2f1acd3142e983777d2261b57027a4f3c406cabb9cdce5fa1",
+    "sourceExerciseId": 1215,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/internal-external-rotation-with-pop-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 14367858a6c5d7a2f1acd3142e983777d2261b57027a4f3c406cabb9cdce5fa1. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.6096
+  },
+  {
+    "file": "floor-20261015-1216.mp4",
+    "sha256": "5691b1077fe5c720e81a97fdd54aaa38e472fcd0242446a121b640195bb29ea3",
+    "sourceExerciseId": 1216,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/knee-to-chest-stretch.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5691b1077fe5c720e81a97fdd54aaa38e472fcd0242446a121b640195bb29ea3. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.413389
+  },
+  {
+    "file": "floor-20261015-1217.mp4",
+    "sha256": "9f7d6a3009de73fcb684ee8046757c9d54f3cea274737af3a242e85f28f54e14",
+    "sourceExerciseId": 1217,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/laying-back-extension.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 9f7d6a3009de73fcb684ee8046757c9d54f3cea274737af3a242e85f28f54e14. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.842156
+  },
+  {
+    "file": "floor-20261015-1218.mp4",
+    "sha256": "f29ec078653844c9b5938a512087ba4598a6d2fa3298214b279fb81be1b94ffe",
+    "sourceExerciseId": 1218,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/leg-lift.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 f29ec078653844c9b5938a512087ba4598a6d2fa3298214b279fb81be1b94ffe. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.591922
+  },
+  {
+    "file": "floor-20261015-1219.mp4",
+    "sha256": "484f4453faf867cb53509882e118395d90e02b5a003cfbe43d11271a600e6d16",
+    "sourceExerciseId": 1219,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/leg-pull-back.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 484f4453faf867cb53509882e118395d90e02b5a003cfbe43d11271a600e6d16. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 5.772422
+  },
+  {
+    "file": "floor-20261015-1220.mp4",
+    "sha256": "24106482d70edb3ab5e53524c2b6e93c0ff3d048086992f72f0bdb3f3cb571c0",
+    "sourceExerciseId": 1220,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/leg-pull-front.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 24106482d70edb3ab5e53524c2b6e93c0ff3d048086992f72f0bdb3f3cb571c0. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.106089
+  },
+  {
+    "file": "floor-20261015-1221.mp4",
+    "sha256": "5735e89440be6f4a8ac051c8026bdc01dcb01daba3694667116e60f043df6165",
+    "sourceExerciseId": 1221,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/leg-spreader.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5735e89440be6f4a8ac051c8026bdc01dcb01daba3694667116e60f043df6165. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.838156
+  },
+  {
+    "file": "floor-20261015-1222.mp4",
+    "sha256": "727f8c85f43939e97ccb412c2e8a76d3491d8930504b916870f2963798f51b94",
+    "sourceExerciseId": 1222,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/legs-up-the-wall.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 727f8c85f43939e97ccb412c2e8a76d3491d8930504b916870f2963798f51b94. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.866667
+  },
+  {
+    "file": "floor-20261015-1223.mp4",
+    "sha256": "55c546cb889b8c8302da180dea90df6c34659486df3f71b65c25874752a5ad41",
+    "sourceExerciseId": 1223,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/mason-twist.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 55c546cb889b8c8302da180dea90df6c34659486df3f71b65c25874752a5ad41. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 4.838156
+  },
+  {
+    "file": "floor-20261015-1224.mp4",
+    "sha256": "5e4fa1d25ab7ed6797cec2ec0899763bbdba74a4dbd23310f0b100d20b568a62",
+    "sourceExerciseId": 1224,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/mcgill-curl-up.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 5e4fa1d25ab7ed6797cec2ec0899763bbdba74a4dbd23310f0b100d20b568a62. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.1
+  },
+  {
+    "file": "floor-20261015-1225.mp4",
+    "sha256": "3109f85a83a7fb06a36dda8bea1147d5477e0bfbf6a10d846f9d04d447e049c5",
+    "sourceExerciseId": 1225,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/one-leg-circle.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 3109f85a83a7fb06a36dda8bea1147d5477e0bfbf6a10d846f9d04d447e049c5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.280922
+  },
+  {
+    "file": "floor-20261015-1226.mp4",
+    "sha256": "41596787f2536b6bd503fdb8d29942866988e5970c909b975bbb5aca6cdfab73",
+    "sourceExerciseId": 1226,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pelvic-tilt-with-march.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 41596787f2536b6bd503fdb8d29942866988e5970c909b975bbb5aca6cdfab73. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.344667
+  },
+  {
+    "file": "floor-20261015-1227.mp4",
+    "sha256": "a74191dad83e13a87b1c943c1de2253e71b34444512972204b7d7a1beac13a94",
+    "sourceExerciseId": 1227,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/pelvic-tilt-with-march-and-shoulder-flex.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 a74191dad83e13a87b1c943c1de2253e71b34444512972204b7d7a1beac13a94. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.878533
+  },
+  {
+    "file": "floor-20261015-1228.mp4",
+    "sha256": "171d49425448d9113d08a3c0acc9a64d13951d44abca4522431401dc10fe0da9",
+    "sourceExerciseId": 1228,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/quadruped-chin-tuck.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 171d49425448d9113d08a3c0acc9a64d13951d44abca4522431401dc10fe0da9. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.976633
+  },
+  {
+    "file": "floor-20261015-1229.mp4",
+    "sha256": "cbafa3d10917c7c59fbd1db11f1b84b5f8f125241c36b4c75c6f481433bf7bdd",
+    "sourceExerciseId": 1229,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-angle-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 cbafa3d10917c7c59fbd1db11f1b84b5f8f125241c36b4c75c6f481433bf7bdd. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 32.499133
+  },
+  {
+    "file": "floor-20261015-1230.mp4",
+    "sha256": "45c206fdd953fae980c25ee7bef9de7cbd7ce5d0ac5ddb227892a3ba3855f820",
+    "sourceExerciseId": 1230,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/side-circle.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 45c206fdd953fae980c25ee7bef9de7cbd7ce5d0ac5ddb227892a3ba3855f820. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.988622
+  },
+  {
+    "file": "floor-20261015-1231.mp4",
+    "sha256": "33e034ba07c702ca6a8c69fe866f644eec98b938200085c575678f4737ab51c6",
+    "sourceExerciseId": 1231,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/six-inch-and-hold.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 33e034ba07c702ca6a8c69fe866f644eec98b938200085c575678f4737ab51c6. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.306289
+  },
+  {
+    "file": "floor-20261015-1232.mp4",
+    "sha256": "7fb07bfe73acb3b3f94f272bce0f3136dce0b1a2e565355732e8fd118ccd16ed",
+    "sourceExerciseId": 1232,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/skier-abs.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 7fb07bfe73acb3b3f94f272bce0f3136dce0b1a2e565355732e8fd118ccd16ed. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 17.884533
+  },
+  {
+    "file": "floor-20261015-1233.mp4",
+    "sha256": "1d2d11935453a0268d32ec7e11a04edfe12031495f84e86a9deb21b5211c7884",
+    "sourceExerciseId": 1233,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/snow-angel.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 1d2d11935453a0268d32ec7e11a04edfe12031495f84e86a9deb21b5211c7884. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.140456
+  },
+  {
+    "file": "floor-20261015-1234.mp4",
+    "sha256": "041f6fb8fc670a5dacaa3186c67c101cc6950ccf375e9f645572aeeac6420746",
+    "sourceExerciseId": 1234,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/spiderman-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 041f6fb8fc670a5dacaa3186c67c101cc6950ccf375e9f645572aeeac6420746. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 17.484133
+  },
+  {
+    "file": "floor-20261015-1235.mp4",
+    "sha256": "bf7b357de96ff53ce81a065791476ac1ede6d64f0c331f7c7488276ae6f866b6",
+    "sourceExerciseId": 1235,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/swiper.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 bf7b357de96ff53ce81a065791476ac1ede6d64f0c331f7c7488276ae6f866b6. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 11.911889
+  },
+  {
+    "file": "floor-20261015-1236.mp4",
+    "sha256": "61c4c1c2296d81af213b373b7d12c794ad3b56d1dfe3e6cf8dfcddcd93427f9c",
+    "sourceExerciseId": 1236,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/switch-kick.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 61c4c1c2296d81af213b373b7d12c794ad3b56d1dfe3e6cf8dfcddcd93427f9c. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.006
+  },
+  {
+    "file": "floor-20261015-1237.mp4",
+    "sha256": "e57f0bf3ee7fe8f1d4e08db6d3370e13c70a867405d9b75a800d6670451f9966",
+    "sourceExerciseId": 1237,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/table-top-rocks.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e57f0bf3ee7fe8f1d4e08db6d3370e13c70a867405d9b75a800d6670451f9966. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 13.279933
+  },
+  {
+    "file": "floor-20261015-1238.mp4",
+    "sha256": "fb80fb1136cf5301244ad7f2e53b67238acd1df24176f0b85936cd5605dc43f5",
+    "sourceExerciseId": 1238,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/the-hundred.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 fb80fb1136cf5301244ad7f2e53b67238acd1df24176f0b85936cd5605dc43f5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 6.239556
+  },
+  {
+    "file": "floor-20261015-1239.mp4",
+    "sha256": "23eed620d3e99d0855b62c07f978cd4ae22c18878e53d2dcab2fb9cc4a8709a3",
+    "sourceExerciseId": 1239,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/the-saw.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 23eed620d3e99d0855b62c07f978cd4ae22c18878e53d2dcab2fb9cc4a8709a3. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.007
+  },
+  {
+    "file": "floor-20261015-1240.mp4",
+    "sha256": "4d79f7a45371e40e722769221a844908c46f2cf8a90dd6b653cf2929164579ae",
+    "sourceExerciseId": 1240,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/thoracic-rotation-openbook-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 4d79f7a45371e40e722769221a844908c46f2cf8a90dd6b653cf2929164579ae. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.009
+  },
+  {
+    "file": "floor-20261015-1241.mp4",
+    "sha256": "0fcc8a713bad30b30bca656583449ee33d526e1e880ab1b3b1fed575285ab8cb",
+    "sourceExerciseId": 1241,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/triangle-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0fcc8a713bad30b30bca656583449ee33d526e1e880ab1b3b1fed575285ab8cb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.714689
+  },
+  {
+    "file": "floor-20261015-1242.mp4",
+    "sha256": "1e9a04dcf5bfcbea46b6246ad26323e64037adc6d12f0bd4fecdb9b04571ae86",
+    "sourceExerciseId": 1242,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/triangle-forward-bend-left.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 1e9a04dcf5bfcbea46b6246ad26323e64037adc6d12f0bd4fecdb9b04571ae86. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 8.008
+  },
+  {
+    "file": "floor-20261015-1243.mp4",
+    "sha256": "6a11c3570e2ad7ae904d80b89cf561b69e3ecb83cd68533f6a6024e59ce35a4a",
+    "sourceExerciseId": 1243,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/v-balance.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6a11c3570e2ad7ae904d80b89cf561b69e3ecb83cd68533f6a6024e59ce35a4a. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.009989
+  },
+  {
+    "file": "floor-20261015-1244.mp4",
+    "sha256": "e419e93aa6e6092b7aea2851f5933c1a5a9913037abb9c6ef946c0925de2579f",
+    "sourceExerciseId": 1244,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/wag-your-tail.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 e419e93aa6e6092b7aea2851f5933c1a5a9913037abb9c6ef946c0925de2579f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 18.818789
+  },
+  {
+    "file": "floor-20261015-1245.mp4",
+    "sha256": "ee83d81a3bd1e9dd72169aa5ddf33fc5cfe2ab4aa5255028a458d32369c72cea",
+    "sourceExerciseId": 1245,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/wide-leg-forward-fold.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 ee83d81a3bd1e9dd72169aa5ddf33fc5cfe2ab4aa5255028a458d32369c72cea. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 21.454756
+  },
+  {
+    "file": "floor-20261015-1246.mp4",
+    "sha256": "371cb677ef83ad58894121a1e9093381f1c18bf85d9546557f5ce0a3d6aa9d26",
+    "sourceExerciseId": 1246,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/yt-raises.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 371cb677ef83ad58894121a1e9093381f1c18bf85d9546557f5ce0a3d6aa9d26. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 10.133333
+  },
+  {
+    "file": "floor-20261015-1247.mp4",
+    "sha256": "86a9f2d561843a4cad125585945d7bb41144c146b837528fa107939dd9a3dc98",
+    "sourceExerciseId": 1247,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/z-sit.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 86a9f2d561843a4cad125585945d7bb41144c146b837528fa107939dd9a3dc98. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 19.6196
+  },
+  {
+    "file": "floor-20261015-1248.mp4",
+    "sha256": "589877f92735e84fc61ba12e7cc6d58e1337f04c1f1030387a75963242ad0951",
+    "sourceExerciseId": 1248,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/belly-angels-kids.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 589877f92735e84fc61ba12e7cc6d58e1337f04c1f1030387a75963242ad0951. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 12.345667
+  },
+  {
+    "file": "floor-20261015-1249.mp4",
+    "sha256": "21e41db198ad3ccede69cbb6de76dc64a707270f2b6109dbd5e312df3b3a9d65",
+    "sourceExerciseId": 1249,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/laying-toe-touch-kids.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 21e41db198ad3ccede69cbb6de76dc64a707270f2b6109dbd5e312df3b3a9d65. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 14.347667
+  },
+  {
+    "file": "floor-20261015-1250.mp4",
+    "sha256": "42287df4953ec59c1936a67d616dc0e599a1ac67f1fe93bad0e69921c5c04e6b",
+    "sourceExerciseId": 1250,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/one-arm-hold-kids.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 42287df4953ec59c1936a67d616dc0e599a1ac67f1fe93bad0e69921c5c04e6b. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.342667
+  },
+  {
+    "file": "floor-20261015-1251.mp4",
+    "sha256": "74b803507b6cc8c3ec8abd205649d209bc6f6ec5e91b875958ecbacb6ba04a46",
+    "sourceExerciseId": 1251,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/supine-table-top-kids.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 74b803507b6cc8c3ec8abd205649d209bc6f6ec5e91b875958ecbacb6ba04a46. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.340667
+  },
+  {
+    "file": "floor-20261015-1252.mp4",
+    "sha256": "6b606042c292d7694659e57d1def77f89a04841ee0acc2bbaa6a2d4b58b3a558",
+    "sourceExerciseId": 1252,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/dead-bug-kids.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 6b606042c292d7694659e57d1def77f89a04841ee0acc2bbaa6a2d4b58b3a558. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 9.009
+  },
+  {
+    "file": "floor-20261015-1253.mp4",
+    "sha256": "0f08a5bf0bbf1777e46dd9cf15f3b544f2210add65fb11da2b6e83e440f7fdf4",
+    "sourceExerciseId": 1253,
+    "sourcePage": "https://storage.googleapis.com/sworkit-assets/video/ios/leg-lifts-kids.mp4",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 0f08a5bf0bbf1777e46dd9cf15f3b544f2210add65fb11da2b6e83e440f7fdf4. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0,
+    "sourceTrimDurationSeconds": 7.474133
+  },
+  {
+    "file": "floor-20261015-1254.mp4",
+    "sha256": "605edf89d8b0bc5c5f0582512fd04efa23f6fec1ce187893e5fb299e1c6c16c1",
+    "sourceExerciseId": 1254,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 64.5,
+    "sourceTrimDurationSeconds": 3.700000000000003
+  },
+  {
+    "file": "floor-20261015-1255.mp4",
+    "sha256": "74ead3c9786b252e9da0bb0dc7eba289ec375add7c3f9b91779e000aaac7d409",
+    "sourceExerciseId": 1255,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 191.5,
+    "sourceTrimDurationSeconds": 6.0
+  },
+  {
+    "file": "floor-20261015-1256.mp4",
+    "sha256": "6ed7af1057ea2160705e65c46993fe982a42912e412148959640ed2c7af64f6f",
+    "sourceExerciseId": 1256,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 202.5,
+    "sourceTrimDurationSeconds": 5.0
+  },
+  {
+    "file": "floor-20261015-1257.mp4",
+    "sha256": "d3c12790bf5dad8c72bbc36ddd6c37aa502ac255db6aa16f7902c5f130034722",
+    "sourceExerciseId": 1257,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 229,
+    "sourceTrimDurationSeconds": 6
+  },
+  {
+    "file": "floor-20261015-1258.mp4",
+    "sha256": "8a1604144e2f4217ba172ab85380fde9a7251125eb4cd9b7c44c9ecab4a0aef3",
+    "sourceExerciseId": 1258,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 240.3,
+    "sourceTrimDurationSeconds": 9.199999999999989
+  },
+  {
+    "file": "floor-20261015-1259.mp4",
+    "sha256": "db1b8b267a3871553c1ef2f0a1521b1eac0d493d1131c93ca99e63cba52bd19d",
+    "sourceExerciseId": 1259,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 288.5,
+    "sourceTrimDurationSeconds": 9.800000000000011
+  },
+  {
+    "file": "floor-20261015-1260.mp4",
+    "sha256": "444765a375a80f6a55722a7bd054b4229c30ccd77e723929594ce057f3ed69a5",
+    "sourceExerciseId": 1260,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 315,
+    "sourceTrimDurationSeconds": 7.300000000000011
+  },
+  {
+    "file": "floor-20261015-1261.mp4",
+    "sha256": "eb1ca69cc51e7f550b35ddf318dedd71248b7cb622a0097cc9c2d9f7ad09cf4d",
+    "sourceExerciseId": 1261,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 328,
+    "sourceTrimDurationSeconds": 5
+  },
+  {
+    "file": "floor-20261015-1262.mp4",
+    "sha256": "e81e633d1bee9c922b99ab9cec607b0ddc3852915ab3e38b21740b6d5fac3454",
+    "sourceExerciseId": 1262,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 338.5,
+    "sourceTrimDurationSeconds": 8.5
+  },
+  {
+    "file": "floor-20261015-1263.mp4",
+    "sha256": "a141c8de0fef7f42a9e279cd6af4a2735449d82d8e5a69b0d57488d590932243",
+    "sourceExerciseId": 1263,
+    "sourcePage": "https://redefiningstrength.com/31-push-up-variations/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 63adb0def259ae4a6476dcce0dd7b3030eda9a1ad1cc42349b0f96ab541431bb. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 366.5,
+    "sourceTrimDurationSeconds": 7.0
+  },
+  {
+    "file": "floor-20261015-1264.mp4",
+    "sha256": "61b9f8104ef4280090ebe66105c4e7543e6704e7670b31fc5d035f7fa762845d",
+    "sourceExerciseId": 1264,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 19,
+    "sourceTrimDurationSeconds": 4.5
+  },
+  {
+    "file": "floor-20261015-1265.mp4",
+    "sha256": "5a4a2647c565601d2ff5974f6f64bd6b0d4f3faa61f2a913133a8daa1ad92bcb",
+    "sourceExerciseId": 1265,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 50.5,
+    "sourceTrimDurationSeconds": 5.0
+  },
+  {
+    "file": "floor-20261015-1266.mp4",
+    "sha256": "eec78ccf2ab6c241010953c717af8560b4eba694de4ce26b7cadf9fc2bcf98bb",
+    "sourceExerciseId": 1266,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 135.5,
+    "sourceTrimDurationSeconds": 4.0
+  },
+  {
+    "file": "floor-20261015-1267.mp4",
+    "sha256": "2cab2c8d1ddb94f81f5a2aee9f65cffa22bea8defaf1982a65ef1fdaf8ac06c5",
+    "sourceExerciseId": 1267,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 183.5,
+    "sourceTrimDurationSeconds": 7.5
+  },
+  {
+    "file": "floor-20261015-1268.mp4",
+    "sha256": "25229996bde197834f9048a915f7223e5c488b714327e83fa6bef548dccd1745",
+    "sourceExerciseId": 1268,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 198,
+    "sourceTrimDurationSeconds": 9
+  },
+  {
+    "file": "floor-20261015-1269.mp4",
+    "sha256": "0c26efcd6b7d7b3ee2fa8473ed91725b6cf6a9df3a5b631fede29552b8bf0da1",
+    "sourceExerciseId": 1269,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 217.5,
+    "sourceTrimDurationSeconds": 5.699999999999989
+  },
+  {
+    "file": "floor-20261015-1270.mp4",
+    "sha256": "18718f951cb50ffe99abab084053eb9a592b074520b11343862b91f941b2c9a0",
+    "sourceExerciseId": 1270,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 229.5,
+    "sourceTrimDurationSeconds": 10.5
+  },
+  {
+    "file": "floor-20261015-1271.mp4",
+    "sha256": "2ea5d9aba224728ae5ecf3703fd875dac9ea0ca9b05509d7717b7b06b1f43538",
+    "sourceExerciseId": 1271,
+    "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+    "provenance": "Public, actual-human source downloaded in the background and screened for the complete action, equipment and support contacts. Natural chronology and speed retained. Original source SHA-256 02a469499c75a74e89d68a779345f0e42161b96f06e6eaef36b5d4281fcab23f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 264.5,
+    "sourceTrimDurationSeconds": 9.5
+  },
+  {
+    "file": "floor-wall-20261015-1272.mp4",
+    "sha256": "f6d5d5721d3227ae627c987ca06d23a51e29892e8344aa2c448ebac500eba511",
+    "sourceExerciseId": 1272,
+    "sourcePage": "https://uk.physitrack.com/home-exercise-video/piriformis-stretch-in-supine-%2528against-wall%2529",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 c2f598d1bf4f6cf8eed15568c3d36e6f9f080361dd058144a1c90170ff269e35. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 9.0,
+    "sourceTrimDurationSeconds": 17.0
+  },
+  {
+    "file": "floor-wall-20261015-1273.mp4",
+    "sha256": "73e1511985fe33f755f878c6d0389f17025cb174407d2a537c6691c4e2d2a9ee",
+    "sourceExerciseId": 1273,
+    "sourcePage": "https://au.physitrack.com/home-exercise-video/quadriceps-wall-stretch-in-kneeling",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 2809a4f5dc3d18b53b75e8519fd4752dc189513009007fbad1652724059271db. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 4.0,
+    "sourceTrimDurationSeconds": 10.0
+  },
+  {
+    "file": "floor-wall-20261015-1274.mp4",
+    "sha256": "a3cd456f4baafc03271a0b9b275e9e8a521dfecfc74179630962d6fe3002fead",
+    "sourceExerciseId": 1274,
+    "sourcePage": "https://uk.physitrack.com/home-exercise-video/seated-wall--angel",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 c890f47d7fad579f63265e6788b85c97dea51dff8433272b598d6177f9295d27. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 17.0,
+    "sourceTrimDurationSeconds": 10.5
+  },
+  {
+    "file": "floor-wall-20261015-1276.mp4",
+    "sha256": "16aff5dbafe5115a56901ed310f4f16dc9d52a885e3d023631f572a3c42c27e6",
+    "sourceExerciseId": 1276,
+    "sourcePage": "https://uk.physitrack.com/home-exercise-video/side-lying-hip-abduction-against-a-wall",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 dbf19bcd91a19e137ccb44b29bc0384b132e5ce70eba8a1de359891f4cabee45. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 2.0,
+    "sourceTrimDurationSeconds": 9.6
+  },
+  {
+    "file": "floor-wall-20261015-1277.mp4",
+    "sha256": "30b4cd20213c52af3a8e5765658b928eb27f304c409ccb44cdfca6b968880dee",
+    "sourceExerciseId": 1277,
+    "sourcePage": "https://us.physitrack.com/home-exercise-video/ankle-dorsiflexion-rom-in-half-kneeling",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 d52cc8c6bf03bfd9e172ad5f0330f642584e5dbc91452f7960e7e3d4773186d4. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 13.0,
+    "sourceTrimDurationSeconds": 17.0
+  },
+  {
+    "file": "floor-wall-20261015-1278.mp4",
+    "sha256": "e6d724a6baf5ac95e54adeb238f7f1b1190af6ce513204ba1f5cc93d1a9ffd1e",
+    "sourceExerciseId": 1278,
+    "sourcePage": "https://us.physitrack.com/home-exercise-video/wall-hamstrings-stretch",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 2fc744dae3c3b8009f85d3386bc384d0b91f17b8b3f19557b8df13eec6072af7. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 12.0,
+    "sourceTrimDurationSeconds": 12.0
+  },
+  {
+    "file": "floor-wall-20261015-1279.mp4",
+    "sha256": "5423a05ec5b040bb43de95048a6ba7412776b685fc93bdf504845c56a7ae7f57",
+    "sourceExerciseId": 1279,
+    "sourcePage": "https://www.vissco.com/physiotherapy-exercise/single-hand-wall-push-plus-to-kneeling/",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 664f31c62fde0f89182c0fc2fbd5cb2e11cd0153e58154154dc6324f3fa5ad6d. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0.3,
+    "sourceTrimDurationSeconds": 18.0
+  },
+  {
+    "file": "floor-wall-20261015-1280.mp4",
+    "sha256": "43001436a28b3d119b165072e5a72f813795ae7113134b6fb47991fcb5ec3392",
+    "sourceExerciseId": 1280,
+    "sourcePage": "https://www.youtube.com/watch?v=W_59DW4aGzk",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 5fa060fa616044b7dbdcb047343c8f6e3176ac10b98ed1d109952cb3f73d8e6d. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0.3,
+    "sourceTrimDurationSeconds": 5.5
+  },
+  {
+    "file": "floor-wall-20261015-1281.mp4",
+    "sha256": "352e1cb9c9f1e061cdfa79a2bc9e320d87f78cfca670c85e753acfda957aa9d9",
+    "sourceExerciseId": 1281,
+    "sourcePage": "https://www.youtube.com/watch?v=CmbWLyX-al4",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 3fe0d5a6cee359f36c100acd955bc61a095801812476a081ef3bf44f6cb66f95. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0.2,
+    "sourceTrimDurationSeconds": 16.4
+  },
+  {
+    "file": "floor-wall-20261015-1282.mp4",
+    "sha256": "47630503f951a260b7d860901f49ee41e70f17cf7946a51dd614c51d2030bd33",
+    "sourceExerciseId": 1282,
+    "sourcePage": "https://www.youtube.com/watch?v=N8GdMY0HTxw",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 4e1a8e8f841568987577f071401dd02c8b2f4004452a95066ddb10974398ee79. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 3.5,
+    "sourceTrimDurationSeconds": 4.5
+  },
+  {
+    "file": "floor-wall-20261015-1283.mp4",
+    "sha256": "f03823e385b96e7b8ff00c6eb9b89c7ac375da45f57e15d518ccd3f84f97224e",
+    "sourceExerciseId": 1283,
+    "sourcePage": "https://www.youtube.com/watch?v=inuJAP0-EUs",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 3b34339fd5e5c888816a9c970849df60093af22d286bdb00de27c82c5fe8eb20. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 153.0,
+    "sourceTrimDurationSeconds": 10.0
+  },
+  {
+    "file": "floor-wall-20261015-1284.mp4",
+    "sha256": "dbc9f0c4bb6f20283b0dbf18dc88ef639b6678c7ce4ddb591858d6b49c3cdd9b",
+    "sourceExerciseId": 1284,
+    "sourcePage": "https://www.youtube.com/watch?v=jSlAbqrbIVE",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 e1774061d3f5427f2394692d2e9741b4474d525b650673de31c7db4c5a2b590f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 57.0,
+    "sourceTrimDurationSeconds": 9.0
+  },
+  {
+    "file": "floor-wall-20261015-1285.mp4",
+    "sha256": "b1a99742b1880b97f614a6d448099c1aae56acd340a72ddaaa05dadc7d0b042c",
+    "sourceExerciseId": 1285,
+    "sourcePage": "https://www.youtube.com/watch?v=inuJAP0-EUs",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 3b34339fd5e5c888816a9c970849df60093af22d286bdb00de27c82c5fe8eb20. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 244.0,
+    "sourceTrimDurationSeconds": 15.0
+  },
+  {
+    "file": "floor-wall-20261015-1286.mp4",
+    "sha256": "ee57bc9d505e1b384e39c2f3c1812d56ab453633d11daa54bf38cb6f1a7f9569",
+    "sourceExerciseId": 1286,
+    "sourcePage": "https://www.youtube.com/watch?v=xG0N1hONRio",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 877ed7bcef9eae19c896a554c66d0528f03b38a5cc18e5f6e5a1865be6fd06a4. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 867.0,
+    "sourceTrimDurationSeconds": 10.0
+  },
+  {
+    "file": "floor-wall-20261015-1287.mp4",
+    "sha256": "6193f1460cbefa88417887aa56ef221de1c81feb26de10e11f37e0f8db5addf1",
+    "sourceExerciseId": 1287,
+    "sourcePage": "https://www.youtube.com/watch?v=inuJAP0-EUs",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 3b34339fd5e5c888816a9c970849df60093af22d286bdb00de27c82c5fe8eb20. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 391.0,
+    "sourceTrimDurationSeconds": 15.0
+  },
+  {
+    "file": "floor-wall-20261015-1288.mp4",
+    "sha256": "e26664578395a95604a94bb52e27a84c8c5e01cd8dbace2ac6044cc6818cd791",
+    "sourceExerciseId": 1288,
+    "sourcePage": "https://www.youtube.com/watch?v=inuJAP0-EUs",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 3b34339fd5e5c888816a9c970849df60093af22d286bdb00de27c82c5fe8eb20. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 532.0,
+    "sourceTrimDurationSeconds": 15.0
+  },
+  {
+    "file": "floor-wall-20261015-1289.mp4",
+    "sha256": "8e5bd44702c7234a37b5b9688f53b0f5e134bd60c4bbac54a39380303891704d",
+    "sourceExerciseId": 1289,
+    "sourcePage": "https://www.youtube.com/watch?v=jSlAbqrbIVE",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 e1774061d3f5427f2394692d2e9741b4474d525b650673de31c7db4c5a2b590f. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 108.0,
+    "sourceTrimDurationSeconds": 10.5
+  },
+  {
+    "file": "floor-wall-20261015-1290.mp4",
+    "sha256": "b8af889d7bc4f1ab8bf381108685ad4b97d56ff9891a2a2fd9c8849e34fbf847",
+    "sourceExerciseId": 1290,
+    "sourcePage": "https://www.youtube.com/watch?v=Wz11IEuTOa8",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 8a281a3e77b682f6fdc073a8cfd4cf8792d894d2a7374faac722e329d6f13cc5. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 17.0,
+    "sourceTrimDurationSeconds": 12.0
+  },
+  {
+    "file": "floor-wall-20261015-1291.mp4",
+    "sha256": "d000efc45b4966b2ca8ea13a9635c03696d327c464cb1933ec4d35333e29b7de",
+    "sourceExerciseId": 1291,
+    "sourcePage": "https://ca.physitrack.com/home-exercise-video/supine-assisted-knee-flexion",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 c0ee09560618470a1b42e321a66d043267ee784d9e4b4c18901bb74893f6ae51. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 0.2,
+    "sourceTrimDurationSeconds": 15.0
+  },
+  {
+    "file": "floor-wall-20261015-1292.mp4",
+    "sha256": "2a6ae890112dcdb67586b7b85ad56cf6d5ac92bab3c94457bdeed319f00c4fbe",
+    "sourceExerciseId": 1292,
+    "sourcePage": "https://www.youtube.com/watch?v=cTwdv_Nmy6Q",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 03460a689fdfcf55e7b1618e74b59a95dd08145715c9a5f83efa9ecd7ea6bcdd. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 47.0,
+    "sourceTrimDurationSeconds": 5.0
+  },
+  {
+    "file": "floor-wall-20261015-1293.mp4",
+    "sha256": "0bf84a3c687f0f01e39e555ab7f0cb8147578f99ddbf05593b3a2653183e9958",
+    "sourceExerciseId": 1293,
+    "sourcePage": "https://www.youtube.com/watch?v=xG0N1hONRio",
+    "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 877ed7bcef9eae19c896a554c66d0528f03b38a5cc18e5f6e5a1865be6fd06a4. Final packaged workout review is recorded separately before release.",
+    "sourceTrimStartSeconds": 386.0,
+    "sourceTrimDurationSeconds": 25.0
   }
 ]

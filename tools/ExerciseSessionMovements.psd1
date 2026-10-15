@@ -53,5 +53,18 @@
         '277' = @(261, 277) # Standing bent-elbow chest squeeze
         '262' = @(262, 507)      # Standing cross-body bicycle crunch
 
+
+    # Floor admissions, 15 October 2026.
+        '1167' = @(1111, 1167) # Same side plank, alternating and timed-side presentation
+        '1093' = @(1067, 1093) # Conservative floor movement identity
+        '1200' = @(1070, 1203, 1200) # Conservative floor movement identity
+        '1086' = @(1086, 1087) # Conservative floor movement identity
+        '1147' = @(1147, 1207) # Conservative floor movement identity
+        '1218' = @(1218, 1231) # Conservative floor movement identity
+        '1124' = @(1124, 1132) # Conservative floor movement identity
+        '1248' = @(1075, 1248) # Conservative floor movement identity
+        '1177' = @(1176, 1177) # Conservative floor movement identity
+        '1154' = @(1154, 1223) # Conservative floor movement identity
+        '1187' = @(1187, 1193) # Conservative floor movement identity
     }
 }

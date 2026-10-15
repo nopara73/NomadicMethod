@@ -166,8 +166,30 @@
                 <div
                   class="modifier-group modifier-equipment-group"
                   role="group"
-                  aria-label="Available equipment"
+                  aria-label="Available space and equipment"
                 >
+                <button id="floor-modifier" class="modifier-tile" type="button"
+                  aria-label="Floor contact: feet only" aria-pressed="false"
+                  title="floor OFF" data-floor-presentation="off">
+                  <svg class="modifier-icon floor-contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <g class="floor-contact-glyph floor-contact-off">
+                      <circle cx="5.5" cy="7" r="1.7" fill="currentColor" />
+                      <path class="modifier-icon-stroke" d="M7 9L21 17L22 20 M9 10L7 20H4 M2 22H23 M3 3L22 22" />
+                    </g>
+                    <g class="floor-contact-glyph floor-contact-hands-and-feet">
+                      <circle cx="5.5" cy="7" r="1.7" fill="currentColor" />
+                      <path class="modifier-icon-stroke" d="M7 9L21 17L22 20 M9 10L7 20H4 M2 22H23" />
+                    </g>
+                    <g class="floor-contact-glyph floor-contact-kneeling">
+                      <circle cx="5.5" cy="7" r="1.7" fill="currentColor" />
+                      <path class="modifier-icon-stroke" d="M7 9L9 10H17L16 20H22 M9 10L7 20H4 M2 22H23" />
+                    </g>
+                    <g class="floor-contact-glyph floor-contact-lying">
+                      <circle cx="4" cy="17" r="1.7" fill="currentColor" />
+                      <path class="modifier-icon-stroke" d="M6 19L8 20H14L18 14L21 20H23 M2 22H23" />
+                    </g>
+                  </svg>
+                </button>
                 <button id="locomotion-modifier" class="modifier-tile" type="button"
                   aria-label="Locomotion space: no locomotion" aria-pressed="false"
                   title="no locomotion" data-locomotion-space="none">

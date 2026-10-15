@@ -35,4 +35,7 @@ public enum WorkoutModifiers
     // running and other movements requiring a field; it cannot stand alone.
     RoomLocomotion = 1024,
     FieldLocomotion = 2048,
+    // Permits reviewed contact beyond the feet. Clothing and Hard Floor keep
+    // their independent physical restrictions even while this is enabled.
+    Floor = 4096,
 }

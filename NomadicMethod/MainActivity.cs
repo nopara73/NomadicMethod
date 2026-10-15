@@ -87,6 +87,7 @@ public partial class MainActivity : Activity
     private TextView _lightModifierCountdownBadge = null!;
     private CheckBox _wallModifierButton = null!;
     private CheckBox _locomotionModifierButton = null!;
+    private CheckBox _floorModifierButton = null!;
     private CheckBox _mirrorModifierButton = null!;
     private TextView _durationModifierFeedback = null!;
     private int _modifierFeedbackGeneration;
@@ -630,6 +631,8 @@ public partial class MainActivity : Activity
             Resource.Id.wall_modifier_button);
         _locomotionModifierButton = FindRequiredView<CheckBox>(
             Resource.Id.locomotion_modifier_button);
+        _floorModifierButton = FindRequiredView<CheckBox>(
+            Resource.Id.floor_modifier_button);
         _mirrorModifierButton = FindRequiredView<CheckBox>(
             Resource.Id.mirror_modifier_button);
         _durationModifierFeedback = FindRequiredView<TextView>(
@@ -837,6 +840,16 @@ public partial class MainActivity : Activity
             ShowModifierFeedback(GetModifierFeedbackResourceId(
                 WorkoutModifiers.Light,
                 enabled));
+        };
+        _floorModifierButton.Click += (_, _) =>
+        {
+            bool enabled = _floorModifierButton.Checked;
+            SetSelectedWorkoutModifier(WorkoutModifiers.Floor, enabled,
+                _floorModifierButton, Resource.String.floor_modifier_description,
+                Resource.String.floor_modifier_on, Resource.String.floor_modifier_off,
+                userInitiated: true);
+            UpdateFloorModifierPresentation();
+            ShowModifierFeedback(GetModifierFeedbackResourceId(WorkoutModifiers.Floor, enabled));
         };
         _locomotionModifierButton.Click += (_, _) =>
         {
@@ -1732,6 +1745,7 @@ public partial class MainActivity : Activity
                      _shyModifierButton,
                      _wallModifierButton,
                      _locomotionModifierButton,
+                     _floorModifierButton,
                      _mirrorModifierButton,
                  })
         {
@@ -1760,6 +1774,7 @@ public partial class MainActivity : Activity
         UpdateHardFloorModifierPresentation(
             _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.HardFloor),
             size);
+        UpdateFloorModifierPresentation();
     }
 
     private int GetModifierTilePadding(int size) =>
@@ -1819,6 +1834,25 @@ public partial class MainActivity : Activity
             padding,
             padding,
             padding);
+    }
+
+    private void UpdateFloorModifierPresentation()
+    {
+        bool floor = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.Floor);
+        bool hard = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.HardFloor);
+        bool clothing = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.UpperBodyClothing);
+        int icon = !floor ? Resource.Drawable.ic_floor_off
+            : hard ? Resource.Drawable.ic_floor_hands_and_feet
+            : clothing ? Resource.Drawable.ic_floor_lying : Resource.Drawable.ic_floor_kneeling;
+        int description = !floor ? Resource.String.floor_modifier_off
+            : hard ? Resource.String.floor_modifier_hard
+            : clothing ? Resource.String.floor_modifier_on : Resource.String.floor_modifier_unclothed;
+        _floorModifierButton.Checked = floor;
+        _floorModifierButton.SetCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0);
+        _floorModifierButton.SetTextSize(Android.Util.ComplexUnitType.Sp, 0f);
+        _floorModifierButton.ContentDescription = GetString(description);
+        if (OperatingSystem.IsAndroidVersionAtLeast(30))
+            _floorModifierButton.StateDescription = GetString(description);
     }
 
     private void UpdateLocomotionModifierPresentation(LocomotionSpace space)
@@ -1969,6 +2003,11 @@ public partial class MainActivity : Activity
         SetSelectedWallEquipment(
             WorkoutModifierPolicy.GetWallEquipment(
                 defaultModifiers));
+        SetSelectedWorkoutModifier(WorkoutModifiers.Floor,
+            defaultModifiers.HasFlag(WorkoutModifiers.Floor), _floorModifierButton,
+            Resource.String.floor_modifier_description, Resource.String.floor_modifier_on,
+            Resource.String.floor_modifier_off);
+        UpdateFloorModifierPresentation();
         SetSelectedLocomotionSpace(WorkoutModifierPolicy.GetLocomotionSpace(defaultModifiers));
         SetSelectedMirrorEquipment(
             WorkoutModifierPolicy.GetMirrorEquipment(
@@ -2078,6 +2117,11 @@ public partial class MainActivity : Activity
         SetSelectedWallEquipment(
             WorkoutModifierPolicy.GetWallEquipment(
                 _selectedWorkoutModifiers));
+        SetSelectedWorkoutModifier(WorkoutModifiers.Floor,
+            _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.Floor), _floorModifierButton,
+            Resource.String.floor_modifier_description, Resource.String.floor_modifier_on,
+            Resource.String.floor_modifier_off);
+        UpdateFloorModifierPresentation();
         SetSelectedLocomotionSpace(WorkoutModifierPolicy.GetLocomotionSpace(_selectedWorkoutModifiers));
         SetSelectedMirrorEquipment(
             WorkoutModifierPolicy.GetMirrorEquipment(
@@ -2400,9 +2444,11 @@ public partial class MainActivity : Activity
 
         if (!userInitiated)
         {
+            UpdateFloorModifierPresentation();
             return;
         }
 
+        UpdateFloorModifierPresentation();
         _durationSelectionChangedDuringStartup |=
             !_applicationStartupCompleted;
         AnimateModifierTile(modifier == WorkoutModifiers.Light
@@ -2567,6 +2613,9 @@ public partial class MainActivity : Activity
         WorkoutModifiers modifier,
         bool enabled) => modifier switch
     {
+        WorkoutModifiers.Floor => enabled
+            ? Resource.String.floor_enabled_feedback
+            : Resource.String.floor_disabled_feedback,
         WorkoutModifiers.UpperBodyClothing => enabled
             ? Resource.String.upper_body_clothing_enabled_feedback
             : Resource.String.upper_body_clothing_disabled_feedback,

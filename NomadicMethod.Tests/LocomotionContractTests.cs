@@ -125,7 +125,7 @@ public sealed class LocomotionContractTests
                     WorkoutModifiers.None, capacity);
                 if (exercise.LocomotionSpace > capacity)
                     Assert.False(WorkoutModifierPolicy.IsCompatible(exercise, unrestricted));
-                else if (!exercise.WallRequired && exercise.MirrorRelationship != ExerciseMirrorRelationship.MirrorOnly)
+                else if (exercise.OnlyFeetTouchGround && !exercise.WallRequired && exercise.MirrorRelationship != ExerciseMirrorRelationship.MirrorOnly)
                     Assert.True(WorkoutModifierPolicy.IsCompatible(exercise, unrestricted));
             }
         }

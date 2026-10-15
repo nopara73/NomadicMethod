@@ -69,6 +69,11 @@ public sealed class Exercise
 
     public required bool OnlyFeetTouchGround { get; init; }
 
+    // Historical exercises admitted before floor support were all feet-only.
+    // A non-feet-only exercise without explicit contact metadata fails closed.
+    public ExerciseFloorContact FloorContactPoints { get; init; } =
+        ExerciseFloorContact.Feet;
+
     public required bool ShoeAgnostic { get; init; }
 
     public required int MaxSpaceMeters { get; init; }

@@ -1,0 +1,209 @@
+{
+  "profiles": [
+    0,
+    128,
+    16,
+    144,
+    4096,
+    4224,
+    4112,
+    4240
+  ],
+  "cases": [
+    {
+      "name": "standing",
+      "floorContactPoints": "Feet",
+      "onlyFeetTouchGround": true,
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "push-up",
+      "floorContactPoints": "Feet, Hands",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "forearm plank",
+      "floorContactPoints": "Feet, Forearms, Elbows",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "hands and knees",
+      "floorContactPoints": "Hands, Knees",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "head contact",
+      "floorContactPoints": "Hands, Head",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "lying trunk contact",
+      "floorContactPoints": "Feet, Torso",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "shoulder contact",
+      "floorContactPoints": "Feet, Shoulders",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "seated hand support",
+      "floorContactPoints": "Hands, Hips",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "forearms without elbow contact",
+      "floorContactPoints": "Feet, Forearms",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "lower-leg contact",
+      "floorContactPoints": "Hands, Thighs, LowerLegs",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "contradictory feet-only claim",
+      "floorContactPoints": "Feet, Hands",
+      "onlyFeetTouchGround": true,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "unreviewed",
+      "floorContactPoints": "Unreviewed",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "name": "unknown contact",
+      "floorContactPoints": "Unknown",
+      "onlyFeetTouchGround": false,
+      "expected": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ]
+}

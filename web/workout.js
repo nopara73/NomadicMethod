@@ -15,7 +15,63 @@ export const WORKOUT_MODIFIERS = Object.freeze({
   Shy: 512,
   RoomLocomotion: 1024,
   FieldLocomotion: 2048,
+  Floor: 4096,
 });
+export const EXERCISE_FLOOR_CONTACT = Object.freeze({
+  Unreviewed: 0, Feet: 1, Hands: 2, Forearms: 4, Elbows: 8,
+  Knees: 16, Head: 32, Torso: 64, Shoulders: 128,
+  Hips: 256, Thighs: 512, LowerLegs: 1024,
+});
+export const MINIMUM_FLOOR_REQUIRED_SESSION_MOVEMENTS = 201;
+export const MINIMUM_FLOOR_AND_WALL_REQUIRED_SESSION_MOVEMENTS = 21;
+const knownFloorContacts = Object.values(EXERCISE_FLOOR_CONTACT)
+  .reduce((mask, value) => mask | value, 0);
+const clothingRequiredFloorContacts = EXERCISE_FLOOR_CONTACT.Torso |
+  EXERCISE_FLOOR_CONTACT.Shoulders;
+const hardFloorForbiddenContacts = clothingRequiredFloorContacts |
+  EXERCISE_FLOOR_CONTACT.Knees | EXERCISE_FLOOR_CONTACT.Elbows |
+  EXERCISE_FLOOR_CONTACT.Head;
+const floorContactMasks = new Map([["Feet", EXERCISE_FLOOR_CONTACT.Feet]]);
+
+export function getFloorContactPoints(exercise) {
+  const value = exercise?.floorContactPoints;
+  // Legacy feet-only exercises remain safe. Missing metadata never grants
+  // permission for a movement with any other ground contact.
+  if (value === undefined) return exercise?.onlyFeetTouchGround === true
+    ? EXERCISE_FLOOR_CONTACT.Feet : 0;
+  if (typeof value !== "string" || !value) return 0;
+  if (floorContactMasks.has(value)) return floorContactMasks.get(value);
+  let mask = 0;
+  const names = value.split(",").map(name => name.trim());
+  for (const name of names) {
+    const contact = EXERCISE_FLOOR_CONTACT[name];
+    if (!Number.isInteger(contact) || contact === 0) return 0;
+    mask |= contact;
+  }
+  floorContactMasks.set(value, mask);
+  return mask;
+}
+
+export function isFloorContactMetadataReviewed(exercise) {
+  const contacts = getFloorContactPoints(exercise);
+  return contacts !== 0 && (contacts & ~knownFloorContacts) === 0 &&
+    typeof exercise.onlyFeetTouchGround === "boolean" &&
+    exercise.onlyFeetTouchGround === (contacts === EXERCISE_FLOOR_CONTACT.Feet);
+}
+
+export function requiresFloor(exercise) {
+  return isFloorContactMetadataReviewed(exercise) && !exercise.onlyFeetTouchGround;
+}
+
+export function isFloorContactCompatible(exercise, profile) {
+  if (!isFloorContactMetadataReviewed(exercise)) return false;
+  const contacts = getFloorContactPoints(exercise);
+  if ((profile & WORKOUT_MODIFIERS.Floor) === 0 && requiresFloor(exercise)) return false;
+  if ((profile & WORKOUT_MODIFIERS.UpperBodyClothing) === 0 &&
+      (contacts & clothingRequiredFloorContacts) !== 0) return false;
+  return (profile & WORKOUT_MODIFIERS.HardFloor) === 0 ||
+    (contacts & hardFloorForbiddenContacts) === 0;
+}
 export const MIRROR_EQUIPMENT = Object.freeze({
   None: "None",
   Compact: "Compact",
@@ -74,6 +130,11 @@ export function getSessionMovementId(exercise) {
 }
 
 const MODIFIER_RULES = Object.freeze([
+  Object.freeze({
+    flag: WORKOUT_MODIFIERS.Floor,
+    isReviewed: isFloorContactMetadataReviewed,
+    isCompatibleForProfile: isFloorContactCompatible,
+  }),
   Object.freeze({
     flag: WORKOUT_MODIFIERS.UpperBodyClothing,
     isReviewed: (exercise) =>
@@ -404,7 +465,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 80;
+export const CURRENT_CATALOG_REVISION = 81;
 const HARD_FLOOR_SLIPPERINESS_CATALOG_REVISION = 53;
 const REUSED_SHY_AUDIT_CATALOG_REVISION = 70;
 const REUSED_SHY_AUDIT_EXERCISE_IDS = new Set([202, 204, 205]);
@@ -2430,7 +2491,8 @@ export function findWorkoutModifierMaterialityDeficiencies(exercises) {
     MODIFIER_RULES.every((rule) => rule.isReviewed(exercise)));
   const materialityRules = MODIFIER_RULES.filter((rule) =>
     rule.flag !== WORKOUT_MODIFIERS.UpperBodyClothing &&
-    rule.flag !== WORKOUT_MODIFIERS.RoomLocomotion);
+    rule.flag !== WORKOUT_MODIFIERS.RoomLocomotion &&
+    rule.flag !== WORKOUT_MODIFIERS.Floor);
   const rulePairs = materialityRules.flatMap((firstRule, firstIndex) =>
     materialityRules.slice(firstIndex + 1).map((secondRule) =>
       ({ firstRule, secondRule })));
@@ -3174,6 +3236,33 @@ export function withLocomotionSpace(modifiers, space) {
   if (space === LOCOMOTION_SPACE.Field) return without |
     WORKOUT_MODIFIERS.RoomLocomotion | WORKOUT_MODIFIERS.FieldLocomotion;
   throw new RangeError(`Unknown locomotion space: ${space}`);
+}
+
+export function findFloorCatalogDeficiencies(exercises) {
+  return findFloorMovementDeficiencies(exercises, false);
+}
+
+export function findFloorAndWallCatalogDeficiencies(exercises) {
+  return findFloorMovementDeficiencies(exercises, true);
+}
+
+function findFloorMovementDeficiencies(exercises, requireWall) {
+  const byId = new Map(exercises.map(exercise => [exercise.id, exercise]));
+  const profiles = [WORKOUT_MODIFIERS.Floor,
+    WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.UpperBodyClothing]
+    .map(profile => withLocomotionSpace(withWallEquipment(withMirrorEquipment(
+      profile, MIRROR_EQUIPMENT.Tall), WALL_EQUIPMENT.SolesMayTouch), LOCOMOTION_SPACE.Field));
+  const count = new Set(exercises.filter(exercise =>
+    profiles.some(profile => isSequenceCompatible(exercise, byId, profile)) &&
+    exercise.sequenceBlocks.some(block => requiresFloor(byId.get(block.exerciseId)) &&
+      (!requireWall || byId.get(block.exerciseId).wallRequired === true)))
+    .map(getSessionMovementId)).size;
+  const minimum = requireWall ? MINIMUM_FLOOR_AND_WALL_REQUIRED_SESSION_MOVEMENTS
+    : MINIMUM_FLOOR_REQUIRED_SESSION_MOVEMENTS;
+  return count >= minimum ? [] : [{
+    matchingSessionMovementCount: count,
+    requiredSessionMovementCount: minimum,
+  }];
 }
 
 export function findLocomotionCatalogDeficiencies(exercises) {

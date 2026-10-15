@@ -19,7 +19,9 @@ internal static class ExerciseDatabaseMigrationSql
             muscular_demand INTEGER NOT NULL
                 CHECK (muscular_demand BETWEEN 0 AND 2),
             only_feet_touch_ground INTEGER NOT NULL DEFAULT 1
-                CHECK (only_feet_touch_ground = 1),
+                CHECK (only_feet_touch_ground IN (0, 1)),
+            floor_contact_points INTEGER NOT NULL DEFAULT 1
+                CHECK (floor_contact_points BETWEEN 0 AND 2047),
             shoe_agnostic INTEGER NOT NULL DEFAULT 1
                 CHECK (shoe_agnostic = 1),
             max_space_meters INTEGER NOT NULL DEFAULT 2
@@ -126,7 +128,7 @@ internal static class ExerciseDatabaseMigrationSql
             shy_compatibility,
             mirror_relationship, mirror_coverage,
             wall_required, sole_wall_contact_required,
-            session_movement_id)
+            session_movement_id, floor_contact_points)
         SELECT
             id, name, video, practice, motion_profile, score, 0,
             only_feet_touch_ground, shoe_agnostic,
@@ -136,7 +138,8 @@ internal static class ExerciseDatabaseMigrationSql
             hold_frame_percent, side_sequence, direction_sequence,
             insect_compatibility, 'Unreviewed', 'Unreviewed',
             'Unreviewed', 'Unreviewed', 'None',
-            0, 0, 0
+            0, 0, 0,
+            CASE WHEN only_feet_touch_ground = 1 THEN 1 ELSE 0 END
         FROM exercises
         """;
 

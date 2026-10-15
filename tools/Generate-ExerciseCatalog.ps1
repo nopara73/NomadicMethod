@@ -16,6 +16,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ExactExerciseMediaTiming.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseCatalogDefinitions.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseLocomotionSpaces.ps1')
+. (Join-Path $PSScriptRoot 'ExerciseFloorContacts.ps1')
 $sourceDefinitions = @(Get-ExerciseCatalogDefinitions)
 $sourceExerciseIds = @($sourceDefinitions | ForEach-Object { [int]$_.Id })
 
@@ -261,6 +262,8 @@ $retainedExerciseIds = @(
         ForEach-Object { [int]$_ } |
         Sort-Object -Unique)
 $expectedExerciseCount = $retainedExerciseIds.Count
+$floorContactsByExerciseId = Get-ExerciseFloorContactReview `
+    -ExpectedExerciseIds $retainedExerciseIds
 $locomotionSpaceByExerciseId = Get-ExerciseLocomotionReview `
     -RetainedExerciseIds $retainedExerciseIds `
     -SessionMovementByExerciseId $sessionMovementByExerciseId
@@ -3469,7 +3472,8 @@ foreach ($definition in $sourceDefinitions) {
         }
         score = 0
         muscularDemand = [int]$muscularDemandByExerciseId[$exerciseId]
-        onlyFeetTouchGround = $true
+        onlyFeetTouchGround = $floorContactsByExerciseId[$exerciseId] -eq 'Feet'
+        floorContactPoints = [string]$floorContactsByExerciseId[$exerciseId]
         shoeAgnostic = $true
         locomotionSpace = [string]$locomotionSpaceByExerciseId[$exerciseId]
         maxSpaceMeters = switch ($locomotionSpaceByExerciseId[$exerciseId]) {
@@ -3716,7 +3720,7 @@ $duplicateNames = $records | Group-Object { $_['name'] } | Where-Object Count -n
 $duplicateVideos = $records | Group-Object { $_['video'] } | Where-Object Count -ne 1
 $duplicateIds = $records | Group-Object { $_['id'] } | Where-Object Count -ne 1
 $constraintViolations = $records | Where-Object {
-    -not $_['onlyFeetTouchGround'] -or
+    -not (Test-ExerciseFloorContactMetadata $_) -or
     -not $_['shoeAgnostic'] -or
     $_['maxSpaceMeters'] -le 0 -or
     $_['locomotionSpace'] -notin @('None', 'Room', 'Field') -or
@@ -3994,6 +3998,7 @@ if ($MaxExercises -eq 0 -and $ExerciseIds.Count -eq 0) {
     }
 }
 
+$floorInventory = Assert-ExerciseFloorInventory @($records)
 $records | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $catalogPath -Encoding utf8
 
 $resolvedTempRoot = [IO.Path]::GetFullPath($tempRoot)

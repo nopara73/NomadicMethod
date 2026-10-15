@@ -390,6 +390,23 @@
                         android:orientation="horizontal">
 
                         <CheckBox
+                            android:id="@+id/floor_modifier_button"
+                            style="@style/DurationModifierTile"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:button="@null"
+                            android:checked="false"
+                            android:contentDescription="@string/floor_modifier_off"
+                            android:drawableTint="@color/duration_modifier_icon_tint"
+                            android:drawableTop="@drawable/ic_floor_off"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text=""
+                            android:textSize="0sp" />
+
+                        <CheckBox
                             android:id="@+id/locomotion_modifier_button"
                             style="@style/DurationModifierTile"
                             android:layout_width="48dp"

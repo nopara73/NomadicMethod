@@ -1,0 +1,2071 @@
+{
+  "catalogRevision": 81,
+  "catalogRecords": 805,
+  "addedRecords": 236,
+  "floorSessionMovements": 224,
+  "floorAndWallRequiredSessionMovements": 21,
+  "minimumFloorSessionMovements": 201,
+  "minimumFloorAndWallRequiredSessionMovements": 21,
+  "catalogSha256": "c43d68d073838b0fbbf09b60653d83fdbe47d7041f140b374abe4447c5b98828",
+  "review": {
+    "method": "Final packaged media in the actual web workout with isolated ephemeral storage; Ready, movement, full natural playback or static hold, and Rest.",
+    "atomicBlocks": 304,
+    "motionBlocks": 222,
+    "staticHoldBlocks": 82,
+    "visuallyReviewedBatches": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "correctedBatchRepeated": 13,
+    "evidenceSha256": "b330549d014dce0face7debf30bfd5236d3f58df2559be9e91d307c41afb4123",
+    "contactSheets": {
+      "batch-001.jpg": "ffd51aedaa6c55cc2b0372d6ab1f738e5aab3c32a6619c90ee7bfb2f1ced4afc",
+      "batch-002.jpg": "5b8e3af9254cb9496dfe4244df565298618f62d5dbb098b05cb805746f3e3871",
+      "batch-003.jpg": "809a15464f215dff5f3c632cb67d3e908a95c205afbd3c20760c921143ffc81d",
+      "batch-004.jpg": "4c01eaf0f8dae562e4dba2d589563cf752673450014bec08f70486c0abe0a2bb",
+      "batch-005.jpg": "f72228b1fc6a57be0d11c078ebd5b3913f76a61f7b9c4fda1648c1f2af2c2f9d",
+      "batch-006.jpg": "5256353d7b436ca84fc2ef6e386e9488af23e82676fa046fb791805fca55233a",
+      "batch-007.jpg": "ef1ff2b4c1ab571232eb93167be854178720af2a1917e7cccb53323d7cb9e3ff",
+      "batch-008.jpg": "a7291c0f70dd23acbbed962d5188df79e88831adff1460714996fb6ee6fa43f3",
+      "batch-009.jpg": "6caa5c82bd3c445c32cb96d47524f427130f250fa635dead323d44e71a8c14f3",
+      "batch-010.jpg": "98d2017bed51074f7050e4e1057e39ed70329bd2dc9fd76148b571717a6ebc00",
+      "batch-011.jpg": "6c4235ab2d34241b6f44da84243653a3652d731c895bfcf7a72022546b6fd791",
+      "batch-012.jpg": "b4351673586410da179d6b6b002c49990444ec7b3f0b7cb8c7f785b7e63fbff3",
+      "batch-013.jpg": "fac3507e4a29f4a07e7f0ed4c92a692b94f7e47667e0fa9f8c72d671bb1ddd07",
+      "batch-014.jpg": "d40e5e647e093b6ab08957c277bd689c444ab31b9187fdc5ddea6f80b2842ad9",
+      "batch-015.jpg": "208fa28fbdc31624b2b44614ef06bc61cc6d2654c3f7c759cf2326b559aea6eb",
+      "batch-016.jpg": "1cb6a3d2cfb1babf2b4af1aa24b5754cd06648780e395c167288673b67b09339",
+      "batch-017.jpg": "272e87ad6177e551d4c5e2c499b6dfb222443b7f4ae524a663b74a16c1a096f4",
+      "batch-018.jpg": "ce40baf36ff85d261369d57bb1aa39e3f986aaa749f78964f4e641239a1f6c7b",
+      "batch-019.jpg": "acaa8f2372c690968d44ce4e1a09efcffb56bdc868efce0195d2f386f5eadaca",
+      "batch-020.jpg": "2cca95d255415ee56e73ee6b54d0cf17993983a2bdbbc3b8c1bb45a959511d82",
+      "batch-021.jpg": "0c7b21307c331888050fecb479fbc6cbaab8b0eb38e01fe24dca5f09f316fb58",
+      "batch-022.jpg": "cc3b551f7b1399e49bdfad0152093a611df13936f62ea14ba635af4c29d3233f",
+      "batch-023.jpg": "f4628b18e35a0ae84ddfb16a7bdf78965ca74f3418f4d0578d0ad079876da1ea",
+      "batch-024.jpg": "0046cafa5e4e5df0f8f4b7fa7f9a5e59faef8a28bd4b39b3ba56fef76414fbed",
+      "batch-025.jpg": "96468f23cb18598dda5beccf2b74976dd57eb7c5c8937bd50f97f4a3a2637a10",
+      "batch-026.jpg": "9f1fa5d34e038aba202e615d015961fc4b4cd75f067c3185bd9de3b842a9c1d6",
+      "batch-027.jpg": "eb3bb7797c443fb8eaa699606063698b07bed405fff663e952e3e759cc0690f1",
+      "batch-028.jpg": "bc40f1be00da50ea8aa3cacfc13f4d8b0fd759e2d1e2f367c3203fb2ef80bd2a",
+      "batch-029.jpg": "51ebbd248066ff2a812fef24276401746330ef23ee81e9480e3735aa2e0757ce",
+      "batch-030.jpg": "5e70d64dbd932a9e043527bef78b44e7d61146f71a25dac1b45f3b1110a8e5c9",
+      "batch-031.jpg": "236965cda32fe0e4fe05683c9ce550509f1a3124f9606bcecb38b1b02ad91a30",
+      "batch-032.jpg": "9b8d679eec4a815b9e224b41df3e884822e67f7c0e16960cd0ad949e8fb751b2",
+      "batch-033.jpg": "ae4aa972f64432b68bfdfccda356054beb9c0e3fa1c127a84e978538863878ff",
+      "batch-034.jpg": "19e52d995de9d54db4d046e1dd08a57c1a4e4a5a14b539abb02f9d8a90f0dacd",
+      "batch-035.jpg": "c6456dfea62b17f2d9c520767e4a5f044c72698410d66ee50a36bc0fcba7dfa2",
+      "batch-036.jpg": "d596e87b32a9824abff8187a134abc17791d9a3703a2f5acd1f918d8c409b68b",
+      "batch-037.jpg": "923f2a57f1939892f03c5550947795e0193725e3959e0d34d1782496683e5fef",
+      "batch-038.jpg": "250c1f408c6e21f23a8c5490549ccbe49bb7f41f6789171d14c4a6dba11ebc36",
+      "batch-039.jpg": "0d811b4b96da05972aa5225225d8c5143e263ac5fd39c90477a52d88113bebd8",
+      "batch-040.jpg": "47daac28af3ebff97c25b9fb6baf25fdb8cf9ae3bbe31b8ad3748cb91a69b92e",
+      "batch-041.jpg": "783d714b82e1d086e7894490ecc22b5eb47465800736b40a6602babfedfce397",
+      "batch-042.jpg": "90c8683b456c5cf600873d21247349520bcbb999cee723cb1633a78b75892da7",
+      "batch-043.jpg": "9443e42a108706663a55fbc47806aa161ce3431e8ff13c075023a229b0f1c33f",
+      "batch-044.jpg": "09bddd41c203217fdfb36ef769f765df8933cc2d77cfc25fd4fed8c04898e80e",
+      "batch-045.jpg": "9bf58360a01295403d41033cb884ef53105565e040f5bba0eacfc503d422c3c0",
+      "batch-046.jpg": "78990b0fb916944257c6caf434932dc6022081aca6e419157e3b5ef28c4d3c12",
+      "batch-047.jpg": "585c667c30e74c65481a254d7a2d3430939a6d83828bc239a48a280e39a000a1",
+      "batch-048.jpg": "e56438f5fbcf97ba8049052c2f301326500045245c26c9d55e83728d1485f9f9",
+      "batch-049.jpg": "13e86eed4d0133cb9bd39a762fad0db22a38badbae55b37525cc5434a43582c1",
+      "batch-050.jpg": "cc9cdad3555076c32a75562d53d7326661344718da57de1bdf79443fdd4f476e",
+      "batch-051.jpg": "0e9d93a1f39d590978e90b8d8b9857e2ee483ff4f6adbade890fa18ec895fdef"
+    },
+    "corrections": [
+      "1111 renamed Alternating Side Planks, full seated-transition contacts retained, Insect excluded, and movement identity shared with 1167."
+    ]
+  },
+  "exercises": [
+    {
+      "id": 1057,
+      "name": "Abdominal Crunches",
+      "sessionMovementId": 1057,
+      "media": {
+        "exercise_videos/exercise_1057.mp4": "00d02497f766ed37fcf5314f31b0f69acee5ffe3c8ba1d761f04f60e67c28079"
+      }
+    },
+    {
+      "id": 1058,
+      "name": "Lying 90-Degree Hamstring Extensions",
+      "sessionMovementId": 1058,
+      "media": {
+        "exercise_videos/exercise_1058.mp4": "ad7fec49068e974e64e917707cc26b64cc94bde408eaf6ee426674da3bcac344"
+      }
+    },
+    {
+      "id": 1059,
+      "name": "Up-Down Planks",
+      "sessionMovementId": 1059,
+      "media": {
+        "exercise_videos/exercise_1059.mp4": "82348a631a8ff626aa8bd5aca133dce671bef74e63fff37c55559190982ad8a3"
+      }
+    },
+    {
+      "id": 1060,
+      "name": "Lying Figure-Four Stretch",
+      "sessionMovementId": 1060,
+      "media": {
+        "exercise_videos/exercise_1060.mp4": "c1be5c9096d05e6333c1513fe800182fc5803827bbfd8933783ff9a3bc7c8f25",
+        "exercise_hold_frames/exercise_1060.png": "3a7f3c71797d7af6b5cea5b6c1bf31d5c482adaa93bc8931e57b2d38b7cac23d"
+      }
+    },
+    {
+      "id": 1061,
+      "name": "Archer Push-Ups",
+      "sessionMovementId": 1061,
+      "media": {
+        "exercise_videos/exercise_1061.mp4": "1f13adc9a9a33bcdd96a6a41849685e05a0f9fcebb4f81897ae769fe13e31d9c"
+      }
+    },
+    {
+      "id": 1062,
+      "name": "Back-Bow Jacks",
+      "sessionMovementId": 1062,
+      "media": {
+        "exercise_videos/exercise_1062.mp4": "80909d1364a046069c54e674e3a5ff7c624cf9d7dcd63899130ce0fe49450603"
+      }
+    },
+    {
+      "id": 1063,
+      "name": "Bear Crawl",
+      "sessionMovementId": 1063,
+      "media": {
+        "exercise_videos/exercise_1063.mp4": "55487c6c87f62083391681a0b4a12433b2018022e2293500485eb6f3f310b6ad"
+      }
+    },
+    {
+      "id": 1064,
+      "name": "Lying Bent-Knee Openers",
+      "sessionMovementId": 1064,
+      "media": {
+        "exercise_videos/exercise_1064.mp4": "5dd141d8c66e3b42443d94ecb3463403907e6401e0ae3b7221f4e8f86f8cde93"
+      }
+    },
+    {
+      "id": 1065,
+      "name": "Bent-Knee Side Plank",
+      "sessionMovementId": 1065,
+      "media": {
+        "exercise_videos/exercise_1065.mp4": "56235a665acc94e8842aead05e6163229f0f8bc8374f2a5c8e6e45a8f0917b3a",
+        "exercise_hold_frames/exercise_1065.png": "cacea6676296321bc68c516455796b10ad78bd5af8a47f6202942e23247d0703"
+      }
+    },
+    {
+      "id": 1066,
+      "name": "Bird Dogs",
+      "sessionMovementId": 1066,
+      "media": {
+        "exercise_videos/exercise_1066.mp4": "e50377f51c6bfebe5cfd5d4c04bee3bd21f397adba5d38883d08a03ea26735a3"
+      }
+    },
+    {
+      "id": 1067,
+      "name": "Bridge Pose",
+      "sessionMovementId": 1093,
+      "media": {
+        "exercise_videos/exercise_1067.mp4": "5b804373d506b201241da240fa0614db4ee29193fa2485f5abb8d0c45a1e4727",
+        "exercise_hold_frames/exercise_1067.png": "21ee2b0d78a1b0d07b9fffb0fb2740ffff5e604d94504403096bb7c62bde3741"
+      }
+    },
+    {
+      "id": 1068,
+      "name": "Knee Push-Up Burpees",
+      "sessionMovementId": 1068,
+      "media": {
+        "exercise_videos/exercise_1068.mp4": "7c41ee0815a877afa33681dae5c26a4662abfba44cfb681289568afe71e298ae"
+      }
+    },
+    {
+      "id": 1069,
+      "name": "Seated Butterfly Stretch",
+      "sessionMovementId": 1069,
+      "media": {
+        "exercise_videos/exercise_1069.mp4": "3a9018b70097eac6278bd0781bff8e4ee43f32471bec70a476072a81c8dc60a1",
+        "exercise_hold_frames/exercise_1069.png": "113b55036c520515f85e54a2392d147a05ac9b6a2e56d8a485762f6beceacfc3"
+      }
+    },
+    {
+      "id": 1070,
+      "name": "Cat Stretch",
+      "sessionMovementId": 1200,
+      "media": {
+        "exercise_videos/exercise_1070.mp4": "70d65181c6dc831eed99a6e97067419214fe856c65e6497d63dcc852c2066480",
+        "exercise_hold_frames/exercise_1070.png": "804c817862eb6ead33ed6bc11652c9eaf214575254de42764848dfdaa419ef8c"
+      }
+    },
+    {
+      "id": 1071,
+      "name": "Child's Pose",
+      "sessionMovementId": 1071,
+      "media": {
+        "exercise_videos/exercise_1071.mp4": "a8a217d093be2d7702c7932a18e23781768d9f0385b9e3228f5eb11a70373643",
+        "exercise_hold_frames/exercise_1071.png": "b0fb5375afba4164242c43a97b3897db0e1661bac297fc7885da5d850c6c2b03"
+      }
+    },
+    {
+      "id": 1072,
+      "name": "Side-Lying Clamshells",
+      "sessionMovementId": 1072,
+      "media": {
+        "exercise_videos/exercise_1072.mp4": "0d2b5fd3ac8b3ddda78665f4ed5abe817abf8749ec9c32a34a33c5e588804bc7"
+      }
+    },
+    {
+      "id": 1073,
+      "name": "Plank with Cross-Body Toe Touch",
+      "sessionMovementId": 1073,
+      "media": {
+        "exercise_videos/exercise_1073.mp4": "0fc82004bba29a70ca1da9a2da46f97fa82bfb9a1c2daf6c3eeaf3afe1a04169"
+      }
+    },
+    {
+      "id": 1074,
+      "name": "Cobra Pose",
+      "sessionMovementId": 1074,
+      "media": {
+        "exercise_videos/exercise_1074.mp4": "afb76a8acc5de3ba6e383f1db25aadd81ab4336594b8da19c036bedd1fc41622",
+        "exercise_hold_frames/exercise_1074.png": "cfb8acb1e77296c315fd42c0a6e5253b2f0fc7b1170b8d7d4f644e09a9a00f97"
+      }
+    },
+    {
+      "id": 1075,
+      "name": "Prone Arm Sweeps",
+      "sessionMovementId": 1248,
+      "media": {
+        "exercise_videos/exercise_1075.mp4": "c6908e2ad1173e2fc27b47da80209e6a1e09279cf12c4971736043368116199c"
+      }
+    },
+    {
+      "id": 1076,
+      "name": "Crab Walk",
+      "sessionMovementId": 1076,
+      "media": {
+        "exercise_videos/exercise_1076.mp4": "244db86e11dad381c29d7c20cf6bee1fb12013c9d106b929801154c6a70d902a"
+      }
+    },
+    {
+      "id": 1077,
+      "name": "Reverse Tabletop Knee-to-Elbow Crunches",
+      "sessionMovementId": 1077,
+      "media": {
+        "exercise_videos/exercise_1077.mp4": "c79c49301f7ae27bc282f4dffa0fcafdec7db7680c035f2816d773a226d04485"
+      }
+    },
+    {
+      "id": 1078,
+      "name": "Figure-Four Straight-Leg Raises",
+      "sessionMovementId": 1078,
+      "media": {
+        "exercise_videos/exercise_1078.mp4": "a9d11722433f7e26497b4523ba551964ce76fda42b2261f57e484834ab565a13"
+      }
+    },
+    {
+      "id": 1079,
+      "name": "Dead Bug Leg Extensions",
+      "sessionMovementId": 1079,
+      "media": {
+        "exercise_videos/exercise_1079.mp4": "e201dc62fb674fda986a1cc9a2d059dcd966c61fe7754e4472ec9cb34170f44b"
+      }
+    },
+    {
+      "id": 1080,
+      "name": "Diamond Push-Ups",
+      "sessionMovementId": 1080,
+      "media": {
+        "exercise_videos/exercise_1080.mp4": "b54cf31d142a4c88247c019e70ac68c04191804e02592c238de74ed553de9627"
+      }
+    },
+    {
+      "id": 1081,
+      "name": "Dive-Bomber Push-Ups",
+      "sessionMovementId": 1081,
+      "media": {
+        "exercise_videos/exercise_1081.mp4": "ab575e741a6db7603268b07734459444c474de4ca5d09161ba5ceffeeb8a25b1"
+      }
+    },
+    {
+      "id": 1082,
+      "name": "Donkey Kicks",
+      "sessionMovementId": 1082,
+      "media": {
+        "exercise_videos/exercise_1082.mp4": "f9d3a64ecb3174357a4b5444e28d0c5b39034781bf0998950b983c4fa71c7e62"
+      }
+    },
+    {
+      "id": 1083,
+      "name": "Double Knee-to-Chest Stretch",
+      "sessionMovementId": 1083,
+      "media": {
+        "exercise_videos/exercise_1083.mp4": "c3b4d5dcd8d6e278484bf6772fcb221f4308a80118f053fb655a8940f79b0f78",
+        "exercise_hold_frames/exercise_1083.png": "9b39e5ed4b86586e5c9bbe9c59061a3178133a8ceee3b2f5c2b773d5f7d3ddfb"
+      }
+    },
+    {
+      "id": 1084,
+      "name": "Pilates Double-Leg Stretch",
+      "sessionMovementId": 1084,
+      "media": {
+        "exercise_videos/exercise_1084.mp4": "e96c2bdfebe782176ee06781becbe9860fe426d551ad2b2a5d6186301dc5b22f"
+      }
+    },
+    {
+      "id": 1085,
+      "name": "Downward Dog to Knee Drive",
+      "sessionMovementId": 1085,
+      "media": {
+        "exercise_videos/exercise_1085.mp4": "128f2c8bda232b9acbb2a50e418ed4e7a203ae3fa96d42216206e5b15c7a277a"
+      }
+    },
+    {
+      "id": 1086,
+      "name": "Downward Dog Pose",
+      "sessionMovementId": 1086,
+      "media": {
+        "exercise_videos/exercise_1086.mp4": "17c04d58a712fe59e8244096e8d0bd995bad42bf38789e3538080cfb5e6d234b",
+        "exercise_hold_frames/exercise_1086.png": "40834eab8c7bdc649f9c5bb3b65a4eab297d0d1e1885fcad1f85516954d243e6"
+      }
+    },
+    {
+      "id": 1087,
+      "name": "Plank to Downward Dog",
+      "sessionMovementId": 1086,
+      "media": {
+        "exercise_videos/exercise_1087.mp4": "457220b467cfe4be223c32cc84e51fe4817cbe38c23a35ee6f55eba6394e02df"
+      }
+    },
+    {
+      "id": 1088,
+      "name": "Tabletop Crunches",
+      "sessionMovementId": 1088,
+      "media": {
+        "exercise_videos/exercise_1088.mp4": "c16e0049da6f7f65e9f5972c6a6eda97a9c72a58a21104bde50ea10a067710ab"
+      }
+    },
+    {
+      "id": 1089,
+      "name": "Fire Hydrants",
+      "sessionMovementId": 1089,
+      "media": {
+        "exercise_videos/exercise_1089.mp4": "172ff7a99a002973422f92d947e55c8b2057d2a78b2cca1e30668493ccdee35c"
+      }
+    },
+    {
+      "id": 1090,
+      "name": "Prone Frog Hip Rotations",
+      "sessionMovementId": 1090,
+      "media": {
+        "exercise_videos/exercise_1090.mp4": "6abe8cde8b5d48a84376c8e4e9dae74e7e40abcaf485081c1d9edb133d8c711c"
+      }
+    },
+    {
+      "id": 1091,
+      "name": "Frog Stretch",
+      "sessionMovementId": 1091,
+      "media": {
+        "exercise_videos/exercise_1091.mp4": "139e3db344bdeb43da6daabc7f1c64381fc3c74e0da24d3f1093b69a2f7c0553",
+        "exercise_hold_frames/exercise_1091.png": "37247c8bd8e1301d09496b1db1520e2812fc662485f31b830a9b24fe82499aa6"
+      }
+    },
+    {
+      "id": 1092,
+      "name": "Reverse Nordic Curls",
+      "sessionMovementId": 1092,
+      "media": {
+        "exercise_videos/exercise_1092.mp4": "e36182109204fb7158b7048e30464021a47d2c23919800d68702c000ba46537c"
+      }
+    },
+    {
+      "id": 1093,
+      "name": "Glute Bridges",
+      "sessionMovementId": 1093,
+      "media": {
+        "exercise_videos/exercise_1093.mp4": "0ae84c2411fd0765ca4628ac4d53fa3f89bfe6a7aa044e0488bcf5a551a54271"
+      }
+    },
+    {
+      "id": 1094,
+      "name": "Seated Spinal Twist Hold",
+      "sessionMovementId": 1094,
+      "media": {
+        "exercise_videos/exercise_1094.mp4": "7bf4e245b564fa9ba5fcebb1de99995254ebb11a85ed9876c1abf951a18772cb",
+        "exercise_hold_frames/exercise_1094.png": "c60f0419e62012cdb8a5bf7ea05b9a4e1f7665f73c03b64c064a678eb1c6f663"
+      }
+    },
+    {
+      "id": 1095,
+      "name": "Quadruped Straight-Leg Pulses",
+      "sessionMovementId": 1095,
+      "media": {
+        "exercise_videos/exercise_1095.mp4": "c8c7ba66cfccbcc42b54e288cce594dae23b3424da7755e4f7fd609a6574486d"
+      }
+    },
+    {
+      "id": 1096,
+      "name": "Seated Head-to-Knee Stretch",
+      "sessionMovementId": 1096,
+      "media": {
+        "exercise_videos/exercise_1096.mp4": "7f90cffda6854a3d8c8f95869b69fc532bd49ef78532b441271b67e64c129c05",
+        "exercise_hold_frames/exercise_1096.png": "27be5827ef0685754a33d6ae72cc9d9c9d9b125b8bac94edbaad4722d3fceeb9"
+      }
+    },
+    {
+      "id": 1097,
+      "name": "Lying Heel Slides",
+      "sessionMovementId": 1097,
+      "media": {
+        "exercise_videos/exercise_1097.mp4": "7b1a9e3363a1914bb84d0cc0dafa7b54b59f2f2f8555c496eb175d484f5fee2b"
+      }
+    },
+    {
+      "id": 1098,
+      "name": "Side-Lying Leg Raises",
+      "sessionMovementId": 1098,
+      "media": {
+        "exercise_videos/exercise_1098.mp4": "fa0d48155530076659280f63a5b72744531539d9128856a0926805e170b250ed"
+      }
+    },
+    {
+      "id": 1099,
+      "name": "Prone Single-Leg Lifts",
+      "sessionMovementId": 1099,
+      "media": {
+        "exercise_videos/exercise_1099.mp4": "27a062c17dc285588fb064251e9617d09ad165abfb9c6ccbcd9ccfabbff4b96d"
+      }
+    },
+    {
+      "id": 1100,
+      "name": "Kneeling Hip Flexor Stretch",
+      "sessionMovementId": 1100,
+      "media": {
+        "exercise_videos/exercise_1100.mp4": "14ce7922c67dfb302570551587d20a7295c485df0be5b26ee365112ca18bec2f",
+        "exercise_hold_frames/exercise_1100.png": "37e80d94e442b6b92f24fdb4b07e3c03f65d27621c3b20f555d16d0dd6cc65f4"
+      }
+    },
+    {
+      "id": 1101,
+      "name": "Hollow-Body Hold",
+      "sessionMovementId": 1101,
+      "media": {
+        "exercise_videos/exercise_1101.mp4": "472649a5cdd39d5bfb8e934b084feac7d8bc1438012740e84d6eebdead6e2f4f",
+        "exercise_hold_frames/exercise_1101.png": "e7352041dc4837c749194ed25bb05b0fe0ba87634eb1367814a5cc0e94556103"
+      }
+    },
+    {
+      "id": 1102,
+      "name": "Side-to-Side Hover Push-Ups",
+      "sessionMovementId": 1102,
+      "media": {
+        "exercise_videos/exercise_1102.mp4": "3404893a4a3d38d0a2bbdf9aab6b65ebba18a16c36958e84eec29948529c1fc4"
+      }
+    },
+    {
+      "id": 1103,
+      "name": "Seated Hurdler Stretch",
+      "sessionMovementId": 1103,
+      "media": {
+        "exercise_videos/exercise_1103.mp4": "ceef5782002eed10aeabfb6169c705bb6656ed3c3c95a1fa248f98cddd94389e",
+        "exercise_hold_frames/exercise_1103.png": "aeee06bd99909d4c0b05591fbdc4b77275696e9012f86afc6f738c4dbe0c4838"
+      }
+    },
+    {
+      "id": 1104,
+      "name": "Burpees with Plank Jacks",
+      "sessionMovementId": 1104,
+      "media": {
+        "exercise_videos/exercise_1104.mp4": "f3ed25b5c8a0448885f7281b09bb8382dd5fa0fbc959bea833801571166a4707"
+      }
+    },
+    {
+      "id": 1105,
+      "name": "Lying Thigh-Down Press into Hands Hold",
+      "sessionMovementId": 1105,
+      "media": {
+        "exercise_videos/exercise_1105.mp4": "7bed8638aabb1a9adfe4dfd1a4a4c5e3b0728cf0c0fe5cca292d8cb00fa409b8",
+        "exercise_hold_frames/exercise_1105.png": "9dd59bb321a5e30d4a71ca74f9fa46a5237b7817ff3a9d6aa22f1620acd4ae4f"
+      }
+    },
+    {
+      "id": 1106,
+      "name": "Lying Knee-to-Palms Press Hold",
+      "sessionMovementId": 1106,
+      "media": {
+        "exercise_videos/exercise_1106.mp4": "7c59547a1db5f87000a261908ba68d6ae58c48cfeed244dc13f826b91aca9133",
+        "exercise_hold_frames/exercise_1106.png": "96e6317ddf4a429829fe866b47c3a4a027482845bc64497bdee4c6831ed61542"
+      }
+    },
+    {
+      "id": 1107,
+      "name": "Plank Hops In and Out",
+      "sessionMovementId": 1107,
+      "media": {
+        "exercise_videos/exercise_1107.mp4": "b2b2525111bf6f5b06990dddd62d878dc98d26b855daadf5401930fd7b4032cb"
+      }
+    },
+    {
+      "id": 1108,
+      "name": "Push-Ups with Knee Tuck",
+      "sessionMovementId": 1108,
+      "media": {
+        "exercise_videos/exercise_1108.mp4": "0759840de239b611619270ab614442afffa3ec9a35155c841584390eaa6ab82b"
+      }
+    },
+    {
+      "id": 1109,
+      "name": "Side-Kneeling Leg Circles",
+      "sessionMovementId": 1109,
+      "media": {
+        "exercise_videos/exercise_1109.mp4": "73a00e0345d18c78a0069867e704d056c594d9b64cfa31ebd6b8f8dfeac6ece9"
+      }
+    },
+    {
+      "id": 1110,
+      "name": "Side Crunches with Top-Leg Lift",
+      "sessionMovementId": 1110,
+      "media": {
+        "exercise_videos/exercise_1110.mp4": "bf64e38eeb4bcd53216604df8b80a855d9b372727d34c125b07a32840f71033b"
+      }
+    },
+    {
+      "id": 1111,
+      "name": "Alternating Side Planks",
+      "sessionMovementId": 1167,
+      "media": {
+        "exercise_videos/exercise_1111.mp4": "9fe6c1b530e5dfa78b5e23a94c75b8c9f4999c1819ea56c7462b79c56a04d9eb"
+      }
+    },
+    {
+      "id": 1112,
+      "name": "Side-Lying Front-and-Back Kicks",
+      "sessionMovementId": 1112,
+      "media": {
+        "exercise_videos/exercise_1112.mp4": "cb5f0827d9f87b6f36ddd07dc692b10eefe929735b0008e648a84cc0f07a698d"
+      }
+    },
+    {
+      "id": 1113,
+      "name": "Hands-Down Low Lunge Hold",
+      "sessionMovementId": 1113,
+      "media": {
+        "exercise_videos/exercise_1113.mp4": "e269df36eacf75421067556e1fa8665d6f3f0b105909c6155070f5a87f1322b1",
+        "exercise_hold_frames/exercise_1113.png": "4517246a9b40e0736bf5727a64bc535ac67d81070704b752cf1db939f47f2a83"
+      }
+    },
+    {
+      "id": 1114,
+      "name": "Lunge with Upper-Body Rotation",
+      "sessionMovementId": 1114,
+      "media": {
+        "exercise_videos/exercise_1114.mp4": "439ed9112b1dfa9317e86410142b5ad99f4a1c1e53ccdc535f300486134f2bba"
+      }
+    },
+    {
+      "id": 1115,
+      "name": "Prone Elbow Pullbacks",
+      "sessionMovementId": 1115,
+      "media": {
+        "exercise_videos/exercise_1115.mp4": "7d93ede9deb8f7f05b8d971e1ccaa7dc5be0c0860c9888c74a7577eeb9799c7e"
+      }
+    },
+    {
+      "id": 1116,
+      "name": "Mountain Climbers",
+      "sessionMovementId": 1116,
+      "media": {
+        "exercise_videos/exercise_1116.mp4": "c7b94ebdd7358b284a14c1bbbb3b07521f77bf4153a7fcc3c3e15efff09c6820"
+      }
+    },
+    {
+      "id": 1117,
+      "name": "Side-Lying One-Arm Push-Ups",
+      "sessionMovementId": 1117,
+      "media": {
+        "exercise_videos/exercise_1117.mp4": "e3283968917a240a9b20adc353bdd566d876babe0390222f93cc7b16b6ca82f6"
+      }
+    },
+    {
+      "id": 1118,
+      "name": "Glute Bridge Heel Walkouts",
+      "sessionMovementId": 1118,
+      "media": {
+        "exercise_videos/exercise_1118.mp4": "9274bbbb065fb4df8d9c5b1eba2e4a051db58d0c4161e972cb76d28eb52d6e5b"
+      }
+    },
+    {
+      "id": 1119,
+      "name": "Pigeon Stretch",
+      "sessionMovementId": 1119,
+      "media": {
+        "exercise_videos/exercise_1119.mp4": "a7ff20e5643614632c9361221155006931279d56450a7954bebe4a1067ff05aa",
+        "exercise_hold_frames/exercise_1119.png": "082abf5c7c5776ee0768f4288a26d5590e1d3b4ccc897907723e75d229bb1719"
+      }
+    },
+    {
+      "id": 1120,
+      "name": "Pigeon Stretch with Circular Reaches",
+      "sessionMovementId": 1120,
+      "media": {
+        "exercise_videos/exercise_1120.mp4": "3ebe17201ff580fc41d7f785755d04eaa0890655e1e4826df2e755fcd8deba6d"
+      }
+    },
+    {
+      "id": 1121,
+      "name": "Pike Push-Ups",
+      "sessionMovementId": 1121,
+      "media": {
+        "exercise_videos/exercise_1121.mp4": "ced137f581681fbca4b7712136c937bd1cd8438d343107df72dabf49827e1873"
+      }
+    },
+    {
+      "id": 1122,
+      "name": "Pilates Open-Leg Rocker",
+      "sessionMovementId": 1122,
+      "media": {
+        "exercise_videos/exercise_1122.mp4": "97477154381670767f6b8a03e0d1d518e117cbdab0690316176bace2427c975c"
+      }
+    },
+    {
+      "id": 1123,
+      "name": "Lying Crossed-Knee Glute Stretch",
+      "sessionMovementId": 1123,
+      "media": {
+        "exercise_videos/exercise_1123.mp4": "6bd3e0d93ede7643c20cf3f52119dfa2ed28f7474b29dfb2e4d030bf911d2f01",
+        "exercise_hold_frames/exercise_1123.png": "8238caa7b20dc2b3474521b88986c58371863977fa1e5bcf29b6ee0e78aba381"
+      }
+    },
+    {
+      "id": 1124,
+      "name": "Forearm Plank Knee Crunch to Kickback",
+      "sessionMovementId": 1124,
+      "media": {
+        "exercise_videos/exercise_1124.mp4": "680df006b26704e602cf6ad4ab1d8d9e74521dcd327bc898d3efac5c04cfa2a9"
+      }
+    },
+    {
+      "id": 1125,
+      "name": "Forearm Plank Hip Dips",
+      "sessionMovementId": 1125,
+      "media": {
+        "exercise_videos/exercise_1125.mp4": "417ced8cbe4fb47010b4ee9dd454c4ee773dfbf22387105da23a664e35528bb3"
+      }
+    },
+    {
+      "id": 1126,
+      "name": "Plank Jacks",
+      "sessionMovementId": 1126,
+      "media": {
+        "exercise_videos/exercise_1126.mp4": "0a00a72a249d20debd4449618b788831daae73e853b2415e02509a2b6d468a7b"
+      }
+    },
+    {
+      "id": 1127,
+      "name": "Plank Jump to Squat",
+      "sessionMovementId": 1127,
+      "media": {
+        "exercise_videos/exercise_1127.mp4": "429919bcc2f3b8e6b0a47ff01baddf32ad3468cd598cb9883b64e3b7a505a04d"
+      }
+    },
+    {
+      "id": 1128,
+      "name": "Forearm Plank Knee Taps",
+      "sessionMovementId": 1128,
+      "media": {
+        "exercise_videos/exercise_1128.mp4": "24eb910fd4657d655879aa54fb9ba3fd58ef51e7aa9a7b88efc9b8e9db42048f"
+      }
+    },
+    {
+      "id": 1129,
+      "name": "Forearm Plank Knee Tucks",
+      "sessionMovementId": 1129,
+      "media": {
+        "exercise_videos/exercise_1129.mp4": "b73247dc8a7e1efc4e66b391deaf7abd9df5f6a1aed63987177437d82be641e2"
+      }
+    },
+    {
+      "id": 1130,
+      "name": "High Plank",
+      "sessionMovementId": 1130,
+      "media": {
+        "exercise_videos/exercise_1130.mp4": "f6bf43f326eff9cc8f0ee0cbc3cbbf847e7948949bc34d632a97898171f60ad9",
+        "exercise_hold_frames/exercise_1130.png": "e096c330e40a50d04b54ac382b9824be89cdd4901fd6e9270ac85d5553a598f4"
+      }
+    },
+    {
+      "id": 1131,
+      "name": "Sideways Plank Walk",
+      "sessionMovementId": 1131,
+      "media": {
+        "exercise_videos/exercise_1131.mp4": "74feaa513d1dc40ced773ba2cb2d06779eb70d55b75ec7901a70439a4d1b9aeb"
+      }
+    },
+    {
+      "id": 1132,
+      "name": "Plank Knee Drive to Leg Lift",
+      "sessionMovementId": 1124,
+      "media": {
+        "exercise_videos/exercise_1132.mp4": "92b18202f86a67399e569c2fbf5227413d379a3aebf1757dde0e1f61bf7d43a6"
+      }
+    },
+    {
+      "id": 1133,
+      "name": "Downward Dog Calf Stretch",
+      "sessionMovementId": 1133,
+      "media": {
+        "exercise_videos/exercise_1133.mp4": "0229063c8cca666317211f8bd3163dde1886cf1446f0248f49a2d0e8ad73a263",
+        "exercise_hold_frames/exercise_1133.png": "6c3be8476ff89e49ba42458b4d41d3faaa012f2129eeba1a28c60b91db9b77f8"
+      }
+    },
+    {
+      "id": 1134,
+      "name": "Long-Lever Plank Walkouts",
+      "sessionMovementId": 1134,
+      "media": {
+        "exercise_videos/exercise_1134.mp4": "c60ae1f0a64301cf362235d066e7623e35cd5df38163622d6971e008b7a888fa"
+      }
+    },
+    {
+      "id": 1135,
+      "name": "Plank Arm Raises",
+      "sessionMovementId": 1135,
+      "media": {
+        "exercise_videos/exercise_1135.mp4": "4c7cc120474d5b32b40007b6a3441a2b7403682c2ea6eea8501142704420b354"
+      }
+    },
+    {
+      "id": 1136,
+      "name": "Forearm Plank Reach-Backs",
+      "sessionMovementId": 1136,
+      "media": {
+        "exercise_videos/exercise_1136.mp4": "21857b1865a967d08dde1a4c90a8f8406dd5ee0adb3a31123db2e62e10aca0fc"
+      }
+    },
+    {
+      "id": 1137,
+      "name": "Forearm Plank",
+      "sessionMovementId": 1137,
+      "media": {
+        "exercise_videos/exercise_1137.mp4": "9b5dad2a80a57055086e6edd0ea7c9705af398d41278a22ba90bc91c1a9124f8",
+        "exercise_hold_frames/exercise_1137.png": "b14308ad49c8bae91bbf36a052524c9544a3411a7327f0c134b60dc6e0afd6b1"
+      }
+    },
+    {
+      "id": 1138,
+      "name": "Prone I Raises",
+      "sessionMovementId": 1138,
+      "media": {
+        "exercise_videos/exercise_1138.mp4": "4f52d103aefec963da3f625103aa960f6fd948b48e119f6957add1fd8482ffe4"
+      }
+    },
+    {
+      "id": 1139,
+      "name": "Prone Hip Internal and External Rotations",
+      "sessionMovementId": 1139,
+      "media": {
+        "exercise_videos/exercise_1139.mp4": "21e7e45a78fec3c31befc9faefb92481371c937deefca4d9e398e30f9b4ed503"
+      }
+    },
+    {
+      "id": 1140,
+      "name": "Sphinx Pose",
+      "sessionMovementId": 1140,
+      "media": {
+        "exercise_videos/exercise_1140.mp4": "325f1ad8f6c2578785f61f21d29cc5a8467224737698c68486eb2fc232a0a6c5",
+        "exercise_hold_frames/exercise_1140.png": "47e1b4af1c4373a25e5df8ea99479c0f2f7970719cb3900582be0c627cd716bc"
+      }
+    },
+    {
+      "id": 1141,
+      "name": "Prone W Raises",
+      "sessionMovementId": 1141,
+      "media": {
+        "exercise_videos/exercise_1141.mp4": "5187d4fbc21713e40b53bda08f2021d2dcd1861def084160b551e39c34a628ea"
+      }
+    },
+    {
+      "id": 1142,
+      "name": "Clapping Push-Ups",
+      "sessionMovementId": 1142,
+      "media": {
+        "exercise_videos/exercise_1142.mp4": "a7a4f21c9bde727b078b2b0e8cb913ee5e82453c8759eb5973e71cf3d704f890"
+      }
+    },
+    {
+      "id": 1143,
+      "name": "Push-Up to Side Plank",
+      "sessionMovementId": 1143,
+      "media": {
+        "exercise_videos/exercise_1143.mp4": "34cbc14e87baf4e5c321216a599906107ba296f9caabed92ddf2d056d3ff56a2"
+      }
+    },
+    {
+      "id": 1144,
+      "name": "Knee Push-Ups",
+      "sessionMovementId": 1144,
+      "media": {
+        "exercise_videos/exercise_1144.mp4": "d21f8536b49cd182f3988049b4504be1249ac258922cefb5ed5c79a8360a11b6"
+      }
+    },
+    {
+      "id": 1145,
+      "name": "Push-Ups with Side Leg Lift",
+      "sessionMovementId": 1145,
+      "media": {
+        "exercise_videos/exercise_1145.mp4": "384f1f2af3f7c8b4c7bba8fd63b95b504cc4715e1f9f292d3fbd8f949c5c0af1"
+      }
+    },
+    {
+      "id": 1146,
+      "name": "Single-Leg Push-Ups",
+      "sessionMovementId": 1146,
+      "media": {
+        "exercise_videos/exercise_1146.mp4": "a1c3b083924538c35925db73531b0fb3d09ae5bed6822817a092dc812038e296"
+      }
+    },
+    {
+      "id": 1147,
+      "name": "Push-Ups",
+      "sessionMovementId": 1147,
+      "media": {
+        "exercise_videos/exercise_1147.mp4": "6b891a76572294105391aeaf9de478ba43dd6ff50f27f47a3c40830d2409a90d"
+      }
+    },
+    {
+      "id": 1148,
+      "name": "Lying Knee-Over-Side Stretch",
+      "sessionMovementId": 1148,
+      "media": {
+        "exercise_videos/exercise_1148.mp4": "8582738badea7ce62276aadaf410ccf928d1b42b978dc40b34d6160c770056cc",
+        "exercise_hold_frames/exercise_1148.png": "9a0596a6b3a3130b0a003c7cc07a546beecba6d3bc7d1a91b3151360c8dd2202"
+      }
+    },
+    {
+      "id": 1149,
+      "name": "Prone Quadriceps Stretch",
+      "sessionMovementId": 1149,
+      "media": {
+        "exercise_videos/exercise_1149.mp4": "7591618d281488814253d8f281a9843fda94ebd25354df440b4b6256a5896ecc",
+        "exercise_hold_frames/exercise_1149.png": "ce6725017ebde9f8e1d25a7ac738146497c867ca7d7351fba96d5e678e1d3344"
+      }
+    },
+    {
+      "id": 1150,
+      "name": "Side-Lying Quadriceps Stretch",
+      "sessionMovementId": 1150,
+      "media": {
+        "exercise_videos/exercise_1150.mp4": "96ba79596c3d8a82f99795939ec0570be3155453f690e10f41b89bbd770c86a5",
+        "exercise_hold_frames/exercise_1150.png": "b454dd2ae9714c21a72ea1468e369d08cd8c258fe84e547cde800fc8ae3d8c47"
+      }
+    },
+    {
+      "id": 1151,
+      "name": "Quadruped Straight-Leg Raises",
+      "sessionMovementId": 1151,
+      "media": {
+        "exercise_videos/exercise_1151.mp4": "dca06010170e6e3ce63bf3ee7c4a24fbfc5a7ce64f60784ef7efdaf39b635802"
+      }
+    },
+    {
+      "id": 1152,
+      "name": "Half-Kneeling Knee Drives",
+      "sessionMovementId": 1152,
+      "media": {
+        "exercise_videos/exercise_1152.mp4": "feea24b8e160f37d54ab4dff2f3813d873655c1422d8748218fbc00f624f23b4"
+      }
+    },
+    {
+      "id": 1153,
+      "name": "Reverse Plank",
+      "sessionMovementId": 1153,
+      "media": {
+        "exercise_videos/exercise_1153.mp4": "f7ee149f8fcfc6445b7fdd7d298e88303c3d7672d27d7809db6920e7ae1a02a0",
+        "exercise_hold_frames/exercise_1153.png": "d043126cfa2b4c8a850a9404b9dc9ac07cab7413573d7904e59e8fdffa782217"
+      }
+    },
+    {
+      "id": 1154,
+      "name": "Russian Twists with Feet Down",
+      "sessionMovementId": 1154,
+      "media": {
+        "exercise_videos/exercise_1154.mp4": "01c31e7976105fd2cb194c3918cfb51c2451ec9d92395e531e1c4030b4a81c5a"
+      }
+    },
+    {
+      "id": 1155,
+      "name": "Pilates Roll-Ups",
+      "sessionMovementId": 1155,
+      "media": {
+        "exercise_videos/exercise_1155.mp4": "63c45bc00fa4d4cc2bfbea6155b640d16174c4fb1a77819ed36ce48a7820a301"
+      }
+    },
+    {
+      "id": 1156,
+      "name": "Rolling Like a Ball",
+      "sessionMovementId": 1156,
+      "media": {
+        "exercise_videos/exercise_1156.mp4": "5f83b16d8b3a9ec1ab06a28c3537fba5f4e44ed05a68b9597974378829a825b1"
+      }
+    },
+    {
+      "id": 1157,
+      "name": "Vertical Scissor Kicks",
+      "sessionMovementId": 1157,
+      "media": {
+        "exercise_videos/exercise_1157.mp4": "516cad95009c541b52abff2638509d93c6849e6a45f2c39e6e77259b0a5d8ca4"
+      }
+    },
+    {
+      "id": 1158,
+      "name": "Prone Scorpion Stretch",
+      "sessionMovementId": 1158,
+      "media": {
+        "exercise_videos/exercise_1158.mp4": "281ab9b9b0fe7a8512a7604f4dd87a62471594164b2e126cb2e5ee0a899480e6"
+      }
+    },
+    {
+      "id": 1159,
+      "name": "Pilates Seated Spine Twist",
+      "sessionMovementId": 1159,
+      "media": {
+        "exercise_videos/exercise_1159.mp4": "c3662476998c84a0ecfc9abe087bf8d71162a7f9aeb17bce322d9a6a35aa1566"
+      }
+    },
+    {
+      "id": 1160,
+      "name": "Glute Bridge with Straight-Leg Kicks",
+      "sessionMovementId": 1160,
+      "media": {
+        "exercise_videos/exercise_1160.mp4": "223c6947cce6561b1c05287ebfa26ddbd33505e9e187fabc2af22911b4ef0e8b"
+      }
+    },
+    {
+      "id": 1161,
+      "name": "Push-Ups with Shoulder Taps",
+      "sessionMovementId": 1161,
+      "media": {
+        "exercise_videos/exercise_1161.mp4": "37e01c5638c4359b08fa0584b7894d9b40002262e0d56679f16028ac4c34492c"
+      }
+    },
+    {
+      "id": 1162,
+      "name": "Side V-Ups",
+      "sessionMovementId": 1162,
+      "media": {
+        "exercise_videos/exercise_1162.mp4": "76b082fe35c823be633aba8a3ab413f263a26472fb603152cb81eb11a0ae76c1"
+      }
+    },
+    {
+      "id": 1163,
+      "name": "Twisting Plank Knee Drives",
+      "sessionMovementId": 1163,
+      "media": {
+        "exercise_videos/exercise_1163.mp4": "3e8f81cb0afe784862acd654e1c730b2974242b8624b0710f1b606a8f030f3bc"
+      }
+    },
+    {
+      "id": 1164,
+      "name": "Side Plank with Two-Way Leg Raise",
+      "sessionMovementId": 1164,
+      "media": {
+        "exercise_videos/exercise_1164.mp4": "fc79c94ea382f728e7699084817db393f9c84a8777c8d69521407d2689438695"
+      }
+    },
+    {
+      "id": 1165,
+      "name": "Side Plank with Top-Leg Raises",
+      "sessionMovementId": 1165,
+      "media": {
+        "exercise_videos/exercise_1165.mp4": "79d52f337d154d5bea6a9cf8e51bac176e4a4fe00483a7c4dec0b701c2ede45a"
+      }
+    },
+    {
+      "id": 1166,
+      "name": "Straight-Arm Side Plank Knee Drives",
+      "sessionMovementId": 1166,
+      "media": {
+        "exercise_videos/exercise_1166.mp4": "2908b1adfd2001d5e199174eaae25c2225aba8fba1567fb48d7582d65ce9e56a"
+      }
+    },
+    {
+      "id": 1167,
+      "name": "Side Plank",
+      "sessionMovementId": 1167,
+      "media": {
+        "exercise_videos/exercise_1167.mp4": "b2c0d74f5d02b584100c2c4e1803b47c30ab1cd051b60a78073fa9a98318c339",
+        "exercise_hold_frames/exercise_1167.png": "f13aad9c49e258bd01c4b31516bc6d2d24e6976cd0d395381bbb88fcfbd713a4"
+      }
+    },
+    {
+      "id": 1168,
+      "name": "Side-Lying Arm Raises",
+      "sessionMovementId": 1168,
+      "media": {
+        "exercise_videos/exercise_1168.mp4": "a018f4a99573907d28c127eff67ce5ae0a8a9104bbee339c01de03bed5ea853c"
+      }
+    },
+    {
+      "id": 1169,
+      "name": "Side-Lying Shoulder External Rotations",
+      "sessionMovementId": 1169,
+      "media": {
+        "exercise_videos/exercise_1169.mp4": "9efa672c6d1f756ac69bbce15cf2fbf0c56956b7736da41bc5769c5c5d258a6b"
+      }
+    },
+    {
+      "id": 1170,
+      "name": "Single-Leg Glute Bridges",
+      "sessionMovementId": 1170,
+      "media": {
+        "exercise_videos/exercise_1170.mp4": "9a4de7ca00189b4d28e8540b09691a3e56dbd136ccb0d392a4829114f827362d"
+      }
+    },
+    {
+      "id": 1171,
+      "name": "Pilates Single-Leg Stretch",
+      "sessionMovementId": 1171,
+      "media": {
+        "exercise_videos/exercise_1171.mp4": "036616321ee9724d32800b19705564d1849811ca7ade037219426de3ee575457"
+      }
+    },
+    {
+      "id": 1172,
+      "name": "Sit-Ups",
+      "sessionMovementId": 1172,
+      "media": {
+        "exercise_videos/exercise_1172.mp4": "e5d7a4ba691df92176795f9227f09065241c17b15cd687970fbb3f96b95f8d25"
+      }
+    },
+    {
+      "id": 1173,
+      "name": "Sleeper Stretch",
+      "sessionMovementId": 1173,
+      "media": {
+        "exercise_videos/exercise_1173.mp4": "bb252e3031aedfcb5450b1eb1c72a4239bf29ffd469479ef17fc37d8b62cde0f",
+        "exercise_hold_frames/exercise_1173.png": "4e5086ed021c80650c6f9f16bc165c8746300734fd24676916ce5dc4f7417d3b"
+      }
+    },
+    {
+      "id": 1174,
+      "name": "Spiderman Push-Ups",
+      "sessionMovementId": 1174,
+      "media": {
+        "exercise_videos/exercise_1174.mp4": "487754dace213222071ac03e306a5d266bfc7bb8f48268c9c05fd04c57fc6c89"
+      }
+    },
+    {
+      "id": 1175,
+      "name": "Pilates Spine Stretch Forward",
+      "sessionMovementId": 1175,
+      "media": {
+        "exercise_videos/exercise_1175.mp4": "83fd4a9db75629f6e91cdc5771e4beccd129c28c706ca229ffd0d7f56354ddf0"
+      }
+    },
+    {
+      "id": 1176,
+      "name": "Turned-Out Straight-Leg Raises",
+      "sessionMovementId": 1177,
+      "media": {
+        "exercise_videos/exercise_1176.mp4": "03fa4e5cdfe6f08357536a3bf054f1a8f9440a92652a24fb0cf6266702e0bcf1"
+      }
+    },
+    {
+      "id": 1177,
+      "name": "Lying Single-Leg Raises",
+      "sessionMovementId": 1177,
+      "media": {
+        "exercise_videos/exercise_1177.mp4": "ac497ef8de944a776faa6ca1a6406e3c490ba8ecc186abe281153841954a802d"
+      }
+    },
+    {
+      "id": 1178,
+      "name": "Supermans",
+      "sessionMovementId": 1178,
+      "media": {
+        "exercise_videos/exercise_1178.mp4": "c378a1461f4a72fe264a08684efa4f99f47820bf155f1af313e034d7302a5966"
+      }
+    },
+    {
+      "id": 1179,
+      "name": "Bicycle Crunches",
+      "sessionMovementId": 1179,
+      "media": {
+        "exercise_videos/exercise_1179.mp4": "1dc0b49198418b6c2e24cef9453fa45e08d10716f95633facfd488c64a8e5355"
+      }
+    },
+    {
+      "id": 1180,
+      "name": "Lying Straight-Arm Circles",
+      "sessionMovementId": 1180,
+      "media": {
+        "exercise_videos/exercise_1180.mp4": "08c4ca84e670876fc513babd693549e1b6bca023477fd3d9beab4212bf4fd9dd"
+      }
+    },
+    {
+      "id": 1181,
+      "name": "Lying Serratus Punches",
+      "sessionMovementId": 1181,
+      "media": {
+        "exercise_videos/exercise_1181.mp4": "768e6cb1097ec308fead1d18ab135ab63ea19c4410bca6714aa274aa543065a9"
+      }
+    },
+    {
+      "id": 1182,
+      "name": "Lying Shoulder Flexion",
+      "sessionMovementId": 1182,
+      "media": {
+        "exercise_videos/exercise_1182.mp4": "7ee2fd64725c16bc653590e2d233f357a357196bd80209860d39485c56a76902"
+      }
+    },
+    {
+      "id": 1183,
+      "name": "Bent-Knee Windshield Wipers",
+      "sessionMovementId": 1183,
+      "media": {
+        "exercise_videos/exercise_1183.mp4": "a7e14ab826bc70c0968f447deb6f4b93f93bc372f7fbfe7a81cbe8520a95d249"
+      }
+    },
+    {
+      "id": 1184,
+      "name": "Prone Swimmers",
+      "sessionMovementId": 1184,
+      "media": {
+        "exercise_videos/exercise_1184.mp4": "9fa1bd3d1f4170fc8fd7db29843bdd27c4177cc0cadd29516e3339ba5cfeba4f"
+      }
+    },
+    {
+      "id": 1185,
+      "name": "Lying Upper-Trunk Rotations",
+      "sessionMovementId": 1185,
+      "media": {
+        "exercise_videos/exercise_1185.mp4": "f69730fe97ed6bc9cd49cad51d3b4a9ee2507aece841e973381831bcda38b271"
+      }
+    },
+    {
+      "id": 1186,
+      "name": "Reverse Tabletop Kicks",
+      "sessionMovementId": 1186,
+      "media": {
+        "exercise_videos/exercise_1186.mp4": "f80ef35577ccc4b451840ddd2fdd816a828598ff18d0bd0bbf4150c88f250e22"
+      }
+    },
+    {
+      "id": 1187,
+      "name": "Straight-Leg V-Ups",
+      "sessionMovementId": 1187,
+      "media": {
+        "exercise_videos/exercise_1187.mp4": "428c867a843c3930e5de7f1bf724fcc676a6460abebcec01322bb5fa1298a0a8"
+      }
+    },
+    {
+      "id": 1188,
+      "name": "Quadruped Thread-the-Needle Reaches",
+      "sessionMovementId": 1188,
+      "media": {
+        "exercise_videos/exercise_1188.mp4": "5ea28bdb6e24586fa749ca34aab3794a766fd7f5bf51f8260f80fab94c664e68"
+      }
+    },
+    {
+      "id": 1189,
+      "name": "Three-Legged Downward Dog Pose",
+      "sessionMovementId": 1189,
+      "media": {
+        "exercise_videos/exercise_1189.mp4": "c5490bf01c8fbca6bafc578befa1033d9ef5724d632a51bae1c7abdadc36d1a9",
+        "exercise_hold_frames/exercise_1189.png": "4cfd8a8634e66d83b820c0fa27ec81cb5b0bca7c2e5110dad6f71e1ef39b2ee9"
+      }
+    },
+    {
+      "id": 1190,
+      "name": "Floor Triceps Dips",
+      "sessionMovementId": 1190,
+      "media": {
+        "exercise_videos/exercise_1190.mp4": "1c9587ad25b1744874b5bb4b0841a29959403d740e6922dfc52e2940fe121d97"
+      }
+    },
+    {
+      "id": 1191,
+      "name": "Twisting Crunches",
+      "sessionMovementId": 1191,
+      "media": {
+        "exercise_videos/exercise_1191.mp4": "53d4cdd6030714c911aee6f57dae41b2afc3463704537b44eb273a1a7a1ba677"
+      }
+    },
+    {
+      "id": 1192,
+      "name": "Plank Opposite Arm-and-Leg Raises",
+      "sessionMovementId": 1192,
+      "media": {
+        "exercise_videos/exercise_1192.mp4": "ed0ae745e4d541048c61c90c3c668cb0574e0c2ac403576b9bd0b66775469d3c"
+      }
+    },
+    {
+      "id": 1193,
+      "name": "Bent-Knee V-Ups",
+      "sessionMovementId": 1187,
+      "media": {
+        "exercise_videos/exercise_1193.mp4": "b9b058cdae92163a66492866a4912f027b4bf3e3fd588c4b2e04c9e7a6eb46dc"
+      }
+    },
+    {
+      "id": 1194,
+      "name": "W-Arm Supermans",
+      "sessionMovementId": 1194,
+      "media": {
+        "exercise_videos/exercise_1194.mp4": "fe175d1ee6415541a203aec701ed506093d620b10f7644a629efe07b7ff39ee0"
+      }
+    },
+    {
+      "id": 1195,
+      "name": "Wide-Grip Push-Ups",
+      "sessionMovementId": 1195,
+      "media": {
+        "exercise_videos/exercise_1195.mp4": "acea5d04609c7e52838595f73bbbcedca9c7773b82e1a69b4c51c45aa003512f"
+      }
+    },
+    {
+      "id": 1196,
+      "name": "World's Greatest Stretch",
+      "sessionMovementId": 1196,
+      "media": {
+        "exercise_videos/exercise_1196.mp4": "41d0372359a1477fbb3be9edf6098e35f5ac567ac597d2114d48080b691e56d0"
+      }
+    },
+    {
+      "id": 1197,
+      "name": "Seated 90/90 Hip Stretch",
+      "sessionMovementId": 1197,
+      "media": {
+        "exercise_videos/exercise_1197.mp4": "ecd2b5330bc48a34dc94d1c0a6e306635b17aa342a54d490d836df253ac6c18d",
+        "exercise_hold_frames/exercise_1197.png": "60eb931ddaf5f6beb9da1f10a1cea1e1ea42372b9ea981cfdf34d3854c81eacb"
+      }
+    },
+    {
+      "id": 1198,
+      "name": "Barre Pretzel Leg Lifts",
+      "sessionMovementId": 1198,
+      "media": {
+        "exercise_videos/exercise_1198.mp4": "7837d2bca4d72cb9516accd0ab494a39928002c91c38dd9a3026aa07197ec875"
+      }
+    },
+    {
+      "id": 1199,
+      "name": "Sit-Throughs",
+      "sessionMovementId": 1199,
+      "media": {
+        "exercise_videos/exercise_1199.mp4": "1897057411049456914c48966697fd84a87db889703ddd4c874c16ae3616246f"
+      }
+    },
+    {
+      "id": 1200,
+      "name": "Cat-Cow",
+      "sessionMovementId": 1200,
+      "media": {
+        "exercise_videos/exercise_1200.mp4": "ce148296eadaf9d119df992e37fa4e501edce3ac49397f97d347a018cd68d479"
+      }
+    },
+    {
+      "id": 1201,
+      "name": "Lying Head-Lift Rotations",
+      "sessionMovementId": 1201,
+      "media": {
+        "exercise_videos/exercise_1201.mp4": "3cd4ba835a91db6827e8b3e92c73d6d5d6e9dc56d9a5e8209f5951f63e614dbd"
+      }
+    },
+    {
+      "id": 1202,
+      "name": "Lying Chin Tucks",
+      "sessionMovementId": 1202,
+      "media": {
+        "exercise_videos/exercise_1202.mp4": "9b9ce3d8595a62eae175c5abc9abce8f063f643b7d38d58651c7eadca6285bba"
+      }
+    },
+    {
+      "id": 1203,
+      "name": "Cow Pose",
+      "sessionMovementId": 1200,
+      "media": {
+        "exercise_videos/exercise_1203.mp4": "9e7909c2875877b926564f20c0c8ccf0966c6af654c0e73e5a4a3bdfe5ef2b7e",
+        "exercise_hold_frames/exercise_1203.png": "733e369e4ab02c80090e5a2afb190cbff6dde21d859f09e6fb490a259693e53f"
+      }
+    },
+    {
+      "id": 1204,
+      "name": "Lying Chin-Tuck Head Hold",
+      "sessionMovementId": 1204,
+      "media": {
+        "exercise_videos/exercise_1204.mp4": "d9de8c9107dcdc143f5b5cb7f1aef6c75e6b9da96de4f5e4cc88bfe71b1db44f",
+        "exercise_hold_frames/exercise_1204.png": "6ac1f7ca1c40ee5bbf4d4670862536e8ac6d4ebcf5354ae842676227da1832f6"
+      }
+    },
+    {
+      "id": 1205,
+      "name": "Pilates Double-Leg Kicks",
+      "sessionMovementId": 1205,
+      "media": {
+        "exercise_videos/exercise_1205.mp4": "28791ecf592a40523d9507aa0f27c4197b505403b1da7fa186ebfe53c4efccec"
+      }
+    },
+    {
+      "id": 1206,
+      "name": "Hands-on-Floor Forward Fold Hold",
+      "sessionMovementId": 1206,
+      "media": {
+        "exercise_videos/exercise_1206.mp4": "9aa34a8462aa14f8b935b8dd2f07d74973ce0f6ee8232a56a9c7416635b128ad",
+        "exercise_hold_frames/exercise_1206.png": "c475cfed32af44cff32f23709a8a6f5fafd4316f26328839e8d94bcc15a1385a"
+      }
+    },
+    {
+      "id": 1207,
+      "name": "Low Push-Up Hold",
+      "sessionMovementId": 1147,
+      "media": {
+        "exercise_videos/exercise_1207.mp4": "211e8d10eb67a9e0f1208a8f0dfd248feaac0b71e22c88223764aeaeda984112",
+        "exercise_hold_frames/exercise_1207.png": "72028d7bc4b9c8949714ea246f19cbe003e7471fe41dd3a831e1c0b204a4081f"
+      }
+    },
+    {
+      "id": 1208,
+      "name": "Prone Frog Leg Lifts",
+      "sessionMovementId": 1208,
+      "media": {
+        "exercise_videos/exercise_1208.mp4": "c4b92dfac34fa08a1ed63fcf488d0d17ceb2499a5b146c79f1f78ba859a8cf86"
+      }
+    },
+    {
+      "id": 1209,
+      "name": "Happy Baby Stretch",
+      "sessionMovementId": 1209,
+      "media": {
+        "exercise_videos/exercise_1209.mp4": "79c6663bfa38089ad3755ef22ca64de1d1b5535a5c109b59279ed191084aea52",
+        "exercise_hold_frames/exercise_1209.png": "c89f7f0bc3b872de16cc9e06efd614106eeff9c56100e732ba1c1a961718d52d"
+      }
+    },
+    {
+      "id": 1210,
+      "name": "Kneeling Sit-on-Heels Hold",
+      "sessionMovementId": 1210,
+      "media": {
+        "exercise_videos/exercise_1210.mp4": "a5cbe0f02597547a309874c75315125c460889b586ee3ff6c05df29a0f8bd075",
+        "exercise_hold_frames/exercise_1210.png": "1885dc598cec088ca5a1b31431d3028b9042a773c82894ff9be7a6832e410e10"
+      }
+    },
+    {
+      "id": 1211,
+      "name": "Seated In-and-Out Knee Tucks",
+      "sessionMovementId": 1211,
+      "media": {
+        "exercise_videos/exercise_1211.mp4": "22397aa309dca3da6f31fe106274016a5006eaf4cf12c64e32249a81eeaf5ea0"
+      }
+    },
+    {
+      "id": 1212,
+      "name": "Inchworm Crawl",
+      "sessionMovementId": 1212,
+      "media": {
+        "exercise_videos/exercise_1212.mp4": "1d84189b6cefb1137f24f71ee8b83363c136f5a9541064482c7d0b7118034808"
+      }
+    },
+    {
+      "id": 1213,
+      "name": "Standing Hand Walkouts",
+      "sessionMovementId": 1213,
+      "media": {
+        "exercise_videos/exercise_1213.mp4": "f12f90588d240987d06f77d07791fa8abea9e0588e20c0eb5a062a2e4c4d0313"
+      }
+    },
+    {
+      "id": 1214,
+      "name": "Side-Lying Inner-Thigh Raises",
+      "sessionMovementId": 1214,
+      "media": {
+        "exercise_videos/exercise_1214.mp4": "ba73c303317cdf26157cb009a7d433ca66c11442f82dbd6865512eee39e1c2c4"
+      }
+    },
+    {
+      "id": 1215,
+      "name": "90/90 Hip Switch to Kneeling",
+      "sessionMovementId": 1215,
+      "media": {
+        "exercise_videos/exercise_1215.mp4": "ac691cf4198602f4253df891aeee681c54d4d5439d2cd7adf9eb4c5860063a5a"
+      }
+    },
+    {
+      "id": 1216,
+      "name": "Single Knee-to-Chest Stretch",
+      "sessionMovementId": 1216,
+      "media": {
+        "exercise_videos/exercise_1216.mp4": "ea34f0385477301fe9b8bd2367acb3c47a28d99d5e1178cdfe42a44324b8196c",
+        "exercise_hold_frames/exercise_1216.png": "c3413fef5b232da477a99d97d4755937eca5aed4a4d7157223021f5a5b37446e"
+      }
+    },
+    {
+      "id": 1217,
+      "name": "Prone Back Extensions",
+      "sessionMovementId": 1217,
+      "media": {
+        "exercise_videos/exercise_1217.mp4": "671b96c62f8ccabbb67516a8fbc7c12c06ef326c036e1b4b5cbba52eea5884a4"
+      }
+    },
+    {
+      "id": 1218,
+      "name": "Lying Double-Leg Raises",
+      "sessionMovementId": 1218,
+      "media": {
+        "exercise_videos/exercise_1218.mp4": "10f623b3701f0eedf01d3af5d6e87ffb3f6f73473b560af9e13de9b220a31e5c"
+      }
+    },
+    {
+      "id": 1219,
+      "name": "Plank Leg Raises",
+      "sessionMovementId": 1219,
+      "media": {
+        "exercise_videos/exercise_1219.mp4": "0402895424a788ebf22b585a31a5f8dd57446209127af1e55318f182b9e08d85"
+      }
+    },
+    {
+      "id": 1220,
+      "name": "Reverse Plank Leg Raises",
+      "sessionMovementId": 1220,
+      "media": {
+        "exercise_videos/exercise_1220.mp4": "36b357315c933239bde99cad8d8f97067d6fdd4a034f087ed97d6a099723d450"
+      }
+    },
+    {
+      "id": 1221,
+      "name": "Horizontal Scissor Kicks",
+      "sessionMovementId": 1221,
+      "media": {
+        "exercise_videos/exercise_1221.mp4": "e9a73bfeffaba51d2a2f1758c427b9cac0098da17e566ffb2af3ef1250fc529e"
+      }
+    },
+    {
+      "id": 1222,
+      "name": "Lying Vertical Leg Opens",
+      "sessionMovementId": 1222,
+      "media": {
+        "exercise_videos/exercise_1222.mp4": "c840b873215d5219f0dd95806528adb7c6345ee74f7f0ef442c57c7678d251bf"
+      }
+    },
+    {
+      "id": 1223,
+      "name": "Russian Twists with Feet Raised",
+      "sessionMovementId": 1154,
+      "media": {
+        "exercise_videos/exercise_1223.mp4": "e77e03e0c508566d98843988fd1b9b5a4b8414e4334532f959abaf213f21a174"
+      }
+    },
+    {
+      "id": 1224,
+      "name": "McGill Curl-Ups",
+      "sessionMovementId": 1224,
+      "media": {
+        "exercise_videos/exercise_1224.mp4": "2adfcbf3dc03c7624d57dbc7e73d130a4c7b1977dbc1e7c8e2348e62081c69c3"
+      }
+    },
+    {
+      "id": 1225,
+      "name": "Lying Single-Leg Circles",
+      "sessionMovementId": 1225,
+      "media": {
+        "exercise_videos/exercise_1225.mp4": "229db0397c08e4d86764ce71afcdca66c85b14fcd5e9f331ab8a7ed850f5fa11"
+      }
+    },
+    {
+      "id": 1226,
+      "name": "Supine Marching",
+      "sessionMovementId": 1226,
+      "media": {
+        "exercise_videos/exercise_1226.mp4": "41368dd6befedd32482f761ae5fd998c4a3f88fdcaeee9f49513f24f771bf4a7"
+      }
+    },
+    {
+      "id": 1227,
+      "name": "Supine March with Opposite Arm Reach",
+      "sessionMovementId": 1227,
+      "media": {
+        "exercise_videos/exercise_1227.mp4": "9ca0a3e889083319e85c498b19a8e98c6b7b2209861dab79fa7a2b705bc13445"
+      }
+    },
+    {
+      "id": 1228,
+      "name": "Quadruped Chin Tucks",
+      "sessionMovementId": 1228,
+      "media": {
+        "exercise_videos/exercise_1228.mp4": "a8897971f72ade300acfdd28d77c9e8d251fa8e389e42cdc94f23fc0204283f1"
+      }
+    },
+    {
+      "id": 1229,
+      "name": "Extended Side-Angle Pose",
+      "sessionMovementId": 1229,
+      "media": {
+        "exercise_videos/exercise_1229.mp4": "efd60b2c61b7a11acfe0357fe6184d4a64cf00b37c3a880117451330ef7067e5",
+        "exercise_hold_frames/exercise_1229.png": "24d4f850ef5da6b7c5f9328932ca6733919d1661435230234486ebab37630961"
+      }
+    },
+    {
+      "id": 1230,
+      "name": "Side-Lying Leg Circles",
+      "sessionMovementId": 1230,
+      "media": {
+        "exercise_videos/exercise_1230.mp4": "152885c2a363375a283b63762b24662e783f44127db181a714b8127623e07395"
+      }
+    },
+    {
+      "id": 1231,
+      "name": "Six-Inch Leg Hold",
+      "sessionMovementId": 1218,
+      "media": {
+        "exercise_videos/exercise_1231.mp4": "4ba95773803944e09dc45231aaa8c8fa827fd41a8aeacd984759562cc683436c",
+        "exercise_hold_frames/exercise_1231.png": "f318fac35f1c71c5febcce7432410ee9a1dce05535e1c8c3c93e04c12420c2d7"
+      }
+    },
+    {
+      "id": 1232,
+      "name": "Side-to-Side Plank Hops",
+      "sessionMovementId": 1232,
+      "media": {
+        "exercise_videos/exercise_1232.mp4": "e222af753f78bcce3a4f368a6f8e32b501c329301cbd7ba418f187ea92c0d207"
+      }
+    },
+    {
+      "id": 1233,
+      "name": "Lying Snow Angels",
+      "sessionMovementId": 1233,
+      "media": {
+        "exercise_videos/exercise_1233.mp4": "908e00afc65dde82e4236020ec0329f9f6091e0cbb6dfd6358c1f713294a3045"
+      }
+    },
+    {
+      "id": 1234,
+      "name": "Spiderman Lunges",
+      "sessionMovementId": 1234,
+      "media": {
+        "exercise_videos/exercise_1234.mp4": "7c0483a2857200e02edab927482c60c143d908b39bb4146ca6fb68735648d7ec"
+      }
+    },
+    {
+      "id": 1235,
+      "name": "Crab-to-Bear Switches",
+      "sessionMovementId": 1235,
+      "media": {
+        "exercise_videos/exercise_1235.mp4": "8ba66cc1e5590a9c11c8d413628e239419bc1b1af77ccefce01bfd1f8d6d42b9"
+      }
+    },
+    {
+      "id": 1236,
+      "name": "Alternating Crab Kicks",
+      "sessionMovementId": 1236,
+      "media": {
+        "exercise_videos/exercise_1236.mp4": "e977f66de43bc1b6772dd7ac63b22a88c13c4abc47daadff588d2f49b319dd29"
+      }
+    },
+    {
+      "id": 1237,
+      "name": "Reverse Tabletop Rocks",
+      "sessionMovementId": 1237,
+      "media": {
+        "exercise_videos/exercise_1237.mp4": "a2a8eec7f78f73df26005a7b47f29bc76d5054ba335c337cc43895685703ca0f"
+      }
+    },
+    {
+      "id": 1238,
+      "name": "Pilates Hundred",
+      "sessionMovementId": 1238,
+      "media": {
+        "exercise_videos/exercise_1238.mp4": "d5fcf5ead4a988635993d0bb506591693fbfedcbb1c409dd5c45d7bf7b261acd"
+      }
+    },
+    {
+      "id": 1239,
+      "name": "Pilates Saw",
+      "sessionMovementId": 1239,
+      "media": {
+        "exercise_videos/exercise_1239.mp4": "1593325b832925cc5779c29940a6c1d1342865e3f863ce3b4b6e3d420cc304df"
+      }
+    },
+    {
+      "id": 1240,
+      "name": "Side-Lying Open-Book Rotations",
+      "sessionMovementId": 1240,
+      "media": {
+        "exercise_videos/exercise_1240.mp4": "0375688269fe3021ee843d4f8e45a46694684b6dc14e87ffb500345b647f0f5e"
+      }
+    },
+    {
+      "id": 1241,
+      "name": "Triangle Pose with Hand on Floor",
+      "sessionMovementId": 1241,
+      "media": {
+        "exercise_videos/exercise_1241.mp4": "55615395b16448662a07c37375926ecfd8a7869fe31abf05044a54026a7d5410",
+        "exercise_hold_frames/exercise_1241.png": "f7552bb847db7ab29ded44aa9c18375d6b6d8cb657bdb6f4977aa556ee89964b"
+      }
+    },
+    {
+      "id": 1242,
+      "name": "Pyramid Pose with Hands on Floor",
+      "sessionMovementId": 1242,
+      "media": {
+        "exercise_videos/exercise_1242.mp4": "a3d85b288bcd4ccd1b75c2fa8f9703b84c3195d2fcc90179ba966206afae0150",
+        "exercise_hold_frames/exercise_1242.png": "42f8fef501ad0fb66a6ba6a7afc89b268330d61521a7e6a478c576ea88edcfda"
+      }
+    },
+    {
+      "id": 1243,
+      "name": "Seated Bent-Knee Leg Raises",
+      "sessionMovementId": 1243,
+      "media": {
+        "exercise_videos/exercise_1243.mp4": "405acbef65477f6eb4d06250e4111f042ad3a66476f053c474fae3e141e9ebdd"
+      }
+    },
+    {
+      "id": 1244,
+      "name": "Quadruped Side Bends",
+      "sessionMovementId": 1244,
+      "media": {
+        "exercise_videos/exercise_1244.mp4": "25d6ec7291f372e52cb8b9a4c1b2f74843d727a99e719a331ce45e57904fc0ab"
+      }
+    },
+    {
+      "id": 1245,
+      "name": "Hands-on-Floor Straddle Fold Hold",
+      "sessionMovementId": 1245,
+      "media": {
+        "exercise_videos/exercise_1245.mp4": "5efe91733fc95fdd59264067a65e20b74dd9c9a3af81a8d38319625f43a15055",
+        "exercise_hold_frames/exercise_1245.png": "87eede4870b6b1e18cc81dbff5dfc408c147f6be6cebb4eafff3894dd3b4a20d"
+      }
+    },
+    {
+      "id": 1246,
+      "name": "Prone Y-to-T Arm Raises",
+      "sessionMovementId": 1246,
+      "media": {
+        "exercise_videos/exercise_1246.mp4": "f93214f8a014c5d85375030e35fabcf3c4eec1928a103aca7ea0e3328ae8c0e1"
+      }
+    },
+    {
+      "id": 1247,
+      "name": "Seated 90/90 Hip Switches",
+      "sessionMovementId": 1247,
+      "media": {
+        "exercise_videos/exercise_1247.mp4": "07db91792ad9f2bb5d8823693791aa3c95538fe0a55f60c8d1692c1433c12d79"
+      }
+    },
+    {
+      "id": 1248,
+      "name": "Prone Snow Angels",
+      "sessionMovementId": 1248,
+      "media": {
+        "exercise_videos/exercise_1248.mp4": "ca3b11a716997d7d69c6a8318e6c669125a9c062d36748baf784e0dc18f15284"
+      }
+    },
+    {
+      "id": 1249,
+      "name": "Lying Toe-Reach Crunches",
+      "sessionMovementId": 1249,
+      "media": {
+        "exercise_videos/exercise_1249.mp4": "812ff7d4a25cb7e17b9f872a7a9e74bb944fff6a2720c429c4b6429206334a05"
+      }
+    },
+    {
+      "id": 1250,
+      "name": "One-Arm High Plank",
+      "sessionMovementId": 1250,
+      "media": {
+        "exercise_videos/exercise_1250.mp4": "5c5abd3a7704c14a46dae2cb83f0119f7dc20245afad73ad787e90e447546772",
+        "exercise_hold_frames/exercise_1250.png": "a48ce04a790ee35aa48a85f9e7ebf50f1c80ef57919cbd9b49e7fe3c5d1893f9"
+      }
+    },
+    {
+      "id": 1251,
+      "name": "Reverse Tabletop Hold",
+      "sessionMovementId": 1251,
+      "media": {
+        "exercise_videos/exercise_1251.mp4": "ec6b70318e8ae208ddaa33816c48dfc502e5b6d0ee626a714145a1f992012d9e",
+        "exercise_hold_frames/exercise_1251.png": "158dfee14fb9a9df7d76273ccb33ad2bd7b7da48d50ab3258eddd394d1522092"
+      }
+    },
+    {
+      "id": 1252,
+      "name": "Dead Bugs with Opposite Arm Reach",
+      "sessionMovementId": 1252,
+      "media": {
+        "exercise_videos/exercise_1252.mp4": "9e5257b259ed34aab1e021afd36cae2db07a01483ddeceace9191ba071609107"
+      }
+    },
+    {
+      "id": 1253,
+      "name": "Reverse Crunches",
+      "sessionMovementId": 1253,
+      "media": {
+        "exercise_videos/exercise_1253.mp4": "0624fae9dbaa5cd3a36644aad4308b1145c3fd6e353ffdd4e80e6014f6e9fb97"
+      }
+    },
+    {
+      "id": 1254,
+      "name": "Plyometric Push-Ups",
+      "sessionMovementId": 1254,
+      "media": {
+        "exercise_videos/exercise_1254.mp4": "fc20b93d4caa3e03c13d8faa1b02b1b2b4d037341a65e42cac8c3e5bc1c889a4"
+      }
+    },
+    {
+      "id": 1255,
+      "name": "Close-Grip Push-Ups",
+      "sessionMovementId": 1255,
+      "media": {
+        "exercise_videos/exercise_1255.mp4": "613a6a6ceb08ea047ad1008a4687ae5c236350d21cd62875a1885c39d2103fae"
+      }
+    },
+    {
+      "id": 1256,
+      "name": "Knuckle Push-Ups",
+      "sessionMovementId": 1256,
+      "media": {
+        "exercise_videos/exercise_1256.mp4": "8880b3a25b67531462154447060c1056890ac42021903f7e7c128a9a7072d061"
+      }
+    },
+    {
+      "id": 1257,
+      "name": "Bird Dog Push-Ups",
+      "sessionMovementId": 1257,
+      "media": {
+        "exercise_videos/exercise_1257.mp4": "186051089c451ba51e823315d2a630df2d354d4d33cfe1eb3203756243a99de2"
+      }
+    },
+    {
+      "id": 1258,
+      "name": "Push-Ups with Cross-Body Leg Kick",
+      "sessionMovementId": 1258,
+      "media": {
+        "exercise_videos/exercise_1258.mp4": "df72d0aa915a0a355ad30d1c0c611745c792826cc85bd1a1e79337e7d7c62f30"
+      }
+    },
+    {
+      "id": 1259,
+      "name": "Push-Up to Forearm Plank",
+      "sessionMovementId": 1259,
+      "media": {
+        "exercise_videos/exercise_1259.mp4": "7fe1008f4dd18280ed7e03ffa7f8cf3128583908c59a2d0cc1fc82a472c9d9e1"
+      }
+    },
+    {
+      "id": 1260,
+      "name": "Alternating Staggered Push-Ups",
+      "sessionMovementId": 1260,
+      "media": {
+        "exercise_videos/exercise_1260.mp4": "663e41fdbe10e7617218c99a4e6392286681dcfd0a95e0aa7478be09359ad3c6"
+      }
+    },
+    {
+      "id": 1261,
+      "name": "Mountain Climber Push-Ups",
+      "sessionMovementId": 1261,
+      "media": {
+        "exercise_videos/exercise_1261.mp4": "1838903e98443742ffcfee1f7a2bf634bb91ce710fc4d1a34d32942e4e582eed"
+      }
+    },
+    {
+      "id": 1262,
+      "name": "Hand-Release Push-Ups",
+      "sessionMovementId": 1262,
+      "media": {
+        "exercise_videos/exercise_1262.mp4": "052d983bcd94accc5f4e0e6d70a572b1140f5ce4d556914fd0c361a25b3ae0c5"
+      }
+    },
+    {
+      "id": 1263,
+      "name": "Walking Push-Ups",
+      "sessionMovementId": 1263,
+      "media": {
+        "exercise_videos/exercise_1263.mp4": "c66936c23621b5ab21906edd25e57109559b184d0a4557d9a0be963d0b267d4a"
+      }
+    },
+    {
+      "id": 1264,
+      "name": "Hands-and-Knees Crawl",
+      "sessionMovementId": 1264,
+      "media": {
+        "exercise_videos/exercise_1264.mp4": "2085855fb14dade3e3cb3e75e11d6a0ae5942975eff06f4675e4b03ed019e611"
+      }
+    },
+    {
+      "id": 1265,
+      "name": "Low Bear Crawl",
+      "sessionMovementId": 1265,
+      "media": {
+        "exercise_videos/exercise_1265.mp4": "565a02d6bfceff2528789fc1c7160cea42b198b85a64ad314076666fd48a6802"
+      }
+    },
+    {
+      "id": 1266,
+      "name": "Gorilla Crawl",
+      "sessionMovementId": 1266,
+      "media": {
+        "exercise_videos/exercise_1266.mp4": "508c29328618ecdbc0b3d2a13b0b6c89f05f35e9aa12d17ffa0dfabd475c2241"
+      }
+    },
+    {
+      "id": 1267,
+      "name": "Alligator Crawl",
+      "sessionMovementId": 1267,
+      "media": {
+        "exercise_videos/exercise_1267.mp4": "deb4cb7e55c3256b1e4f1b2ce1f37c4b70e7378ab304e393b1ce4d58c9f4c80f"
+      }
+    },
+    {
+      "id": 1268,
+      "name": "Low Alligator Crawl",
+      "sessionMovementId": 1268,
+      "media": {
+        "exercise_videos/exercise_1268.mp4": "185aea65307a5c22667865c70360c08cab39cf4af15345affb32f2a90a25f3f0"
+      }
+    },
+    {
+      "id": 1269,
+      "name": "Army Crawl",
+      "sessionMovementId": 1269,
+      "media": {
+        "exercise_videos/exercise_1269.mp4": "e2fe154b15011da98faba03d9a29ddfa86ad2623143c5c3bb4e5a0e148b77a09"
+      }
+    },
+    {
+      "id": 1270,
+      "name": "Kneeling Crawl with Sit-Through",
+      "sessionMovementId": 1270,
+      "media": {
+        "exercise_videos/exercise_1270.mp4": "16eb538de069099339a69bbbf521b9820902c6c189b0349e6736b20b428782e3"
+      }
+    },
+    {
+      "id": 1271,
+      "name": "Forward-and-Backward Plank Walk",
+      "sessionMovementId": 1271,
+      "media": {
+        "exercise_videos/exercise_1271.mp4": "10493c33fad837241bc0077e9cd5a3fbc7db75dc16be5be8aa7f5512ad68f5da"
+      }
+    },
+    {
+      "id": 1272,
+      "name": "Wall-Supported Figure-Four Stretch",
+      "sessionMovementId": 1272,
+      "media": {
+        "exercise_videos/exercise_1272.mp4": "d22ae6d06447c5d1035fa18b2a1f2462c0df29a3a811c481bff0a87247464acb",
+        "exercise_hold_frames/exercise_1272.png": "316a4c3a188bffd64e63638fd33194f9b75a60873e2e95803dd372cb6a691ead"
+      }
+    },
+    {
+      "id": 1273,
+      "name": "Kneeling Wall Quadriceps Stretch",
+      "sessionMovementId": 1273,
+      "media": {
+        "exercise_videos/exercise_1273.mp4": "586e47220f09ab3155f5e2b783adc109b5c51edb1900422b029563d69d0bb576",
+        "exercise_hold_frames/exercise_1273.png": "3a744fdd6b8937076e4f0642ef2de65656eddd2e37a2fcc604a29a0ea7da3a70"
+      }
+    },
+    {
+      "id": 1274,
+      "name": "Seated Wall Angels",
+      "sessionMovementId": 1274,
+      "media": {
+        "exercise_videos/exercise_1274.mp4": "d4a4ee49e954e1c2f7266a585e68a9328632d63fe3b39bef468fdd94a33679ab"
+      }
+    },
+    {
+      "id": 1276,
+      "name": "Side-Lying Wall Hip Abductions",
+      "sessionMovementId": 1276,
+      "media": {
+        "exercise_videos/exercise_1276.mp4": "3abffc6c3d1b2b4c797b058ce3d29d01adf3f4952a963cfc18e745746de21871"
+      }
+    },
+    {
+      "id": 1277,
+      "name": "Kneeling Knee-to-Wall Rocks",
+      "sessionMovementId": 1277,
+      "media": {
+        "exercise_videos/exercise_1277.mp4": "5582173cefcc0c5476d202f46006af091bc071b3de69b9c45ba6df60dec0423f"
+      }
+    },
+    {
+      "id": 1278,
+      "name": "Kneeling Wall Hamstring and Calf Stretch",
+      "sessionMovementId": 1278,
+      "media": {
+        "exercise_videos/exercise_1278.mp4": "ec20c1a563adebfe29e5cb0f5e288d68715f6126696fb101caec687235374d9d",
+        "exercise_hold_frames/exercise_1278.png": "24928ae41104d7ab27511114558af2e31b2268e4aab5f98a6a6d4a0ae0ade761"
+      }
+    },
+    {
+      "id": 1279,
+      "name": "Single-Arm Kneeling Wall Scapular Rockbacks",
+      "sessionMovementId": 1279,
+      "media": {
+        "exercise_videos/exercise_1279.mp4": "aa0df0cd07d367474b50c9934b00553a7d812217f84f857b9de50c41a73ed445"
+      }
+    },
+    {
+      "id": 1280,
+      "name": "Half-Kneeling Wall Thoracic Rotations",
+      "sessionMovementId": 1280,
+      "media": {
+        "exercise_videos/exercise_1280.mp4": "4dc49b81c3dca1a2052e1fd3473e6d25a9d897195fac9268f7a1b89234e43798"
+      }
+    },
+    {
+      "id": 1281,
+      "name": "Wall-Press Dead Bugs",
+      "sessionMovementId": 1281,
+      "media": {
+        "exercise_videos/exercise_1281.mp4": "46a026b084449ae3ef6cfe63504f7a0edcf8b7a8b65d105eeef2cf5b6be79b0c"
+      }
+    },
+    {
+      "id": 1282,
+      "name": "Feet-on-Wall Forearm Plank",
+      "sessionMovementId": 1282,
+      "media": {
+        "exercise_videos/exercise_1282.mp4": "272ec86b3fdbc18d0c18ddc3447be56784f0934357512162a4d131a42e91b9d9",
+        "exercise_hold_frames/exercise_1282.png": "4d2cea0e9c0a8581fa9f2e75475b8e7006451cb442e18387b81f139cebdbc627"
+      }
+    },
+    {
+      "id": 1283,
+      "name": "Wall Glute Bridge Hold",
+      "sessionMovementId": 1283,
+      "media": {
+        "exercise_videos/exercise_1283.mp4": "9f550cc93dd8901f827f840b065e08f238ee0fe71268937e02bdb46250f24770",
+        "exercise_hold_frames/exercise_1283.png": "ef9fa840baff8cc3de23c99101623f6b62a6f299738a1fc14d653a848c52f0b7"
+      }
+    },
+    {
+      "id": 1284,
+      "name": "Wall Glute Bridge Marches",
+      "sessionMovementId": 1284,
+      "media": {
+        "exercise_videos/exercise_1284.mp4": "43116328b1c709cb32c65516208fcae4b072e45ad46f4b11d73231149024f270"
+      }
+    },
+    {
+      "id": 1285,
+      "name": "Wall Bridge Heel Raises",
+      "sessionMovementId": 1285,
+      "media": {
+        "exercise_videos/exercise_1285.mp4": "21ad876fc54255b6de3b9488b59ae8e2aea28b07cc950471e243598b92a4fe00"
+      }
+    },
+    {
+      "id": 1286,
+      "name": "Single-Leg Wall Glute Bridge Hold",
+      "sessionMovementId": 1286,
+      "media": {
+        "exercise_videos/exercise_1286.mp4": "479d54ab73d664a176b44fcef7e811b8124e2c9ac9fea97b08ff64176026c088",
+        "exercise_hold_frames/exercise_1286.png": "fc7e72f0500d4d00c606cfe4d6e9a9607d03bae097663cb77e423c0b469976db"
+      }
+    },
+    {
+      "id": 1287,
+      "name": "Wall-Supported Abdominal Crunches",
+      "sessionMovementId": 1287,
+      "media": {
+        "exercise_videos/exercise_1287.mp4": "3350693a8034ae00772230a2f39e98abac1f0db11ab37aa2dcc6dacf4a74ea89"
+      }
+    },
+    {
+      "id": 1288,
+      "name": "Wall-Supported Cross-Body Crunches",
+      "sessionMovementId": 1288,
+      "media": {
+        "exercise_videos/exercise_1288.mp4": "8f5af6744c20f45e9b9af6f2338c94a7e08d026226868d19d463741ff9ea5263"
+      }
+    },
+    {
+      "id": 1289,
+      "name": "High Plank to Wall Reaches",
+      "sessionMovementId": 1289,
+      "media": {
+        "exercise_videos/exercise_1289.mp4": "d0d48602750a55fe148b0af4bd8b0c693e232118ed8ff607b53ed28ec7680499"
+      }
+    },
+    {
+      "id": 1290,
+      "name": "Feet-on-Wall Pike Hold",
+      "sessionMovementId": 1290,
+      "media": {
+        "exercise_videos/exercise_1290.mp4": "c43bbeb68088d1d17926a3262fde4e363fae6d9ef05bc04a84df3318ec4111c7",
+        "exercise_hold_frames/exercise_1290.png": "aafed40b444f2102a154bf9d8100f5bbba1c4da9b2d6dfad6a112b4834a02ed2"
+      }
+    },
+    {
+      "id": 1291,
+      "name": "Supine Wall Heel Slides",
+      "sessionMovementId": 1291,
+      "media": {
+        "exercise_videos/exercise_1291.mp4": "d44c0bf8854a62c56cfe4a7784c25ed271a19f06df879a847a726174e39b17e3"
+      }
+    },
+    {
+      "id": 1292,
+      "name": "Wall Straddle Stretch",
+      "sessionMovementId": 1292,
+      "media": {
+        "exercise_videos/exercise_1292.mp4": "a52469dfe2d6afaf5da183f7a55a064db50d547d25d7bb95b33b5ad92c67c3b4",
+        "exercise_hold_frames/exercise_1292.png": "76d43017c786901d52ad7116f53cc6eac7138bbab3d0faa607ae302adea8ac3d"
+      }
+    },
+    {
+      "id": 1293,
+      "name": "Wall-Supported Roll-Ups",
+      "sessionMovementId": 1293,
+      "media": {
+        "exercise_videos/exercise_1293.mp4": "df4999f2f90e88ec31265df8d6268885a405d003d9a0afca853ff641b3961cdf"
+      }
+    }
+  ]
+}

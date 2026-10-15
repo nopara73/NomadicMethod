@@ -550,6 +550,12 @@ button.modifier-tile:not(:disabled):active {
 }
 
 .locomotion-icon .modifier-icon-stroke { stroke-width: 1.9; }
+.floor-contact-icon .modifier-icon-stroke { stroke-width: 1.9; }
+.floor-contact-glyph { display: none; }
+.modifier-tile[data-floor-presentation="off"] .floor-contact-off,
+.modifier-tile[data-floor-presentation="hands-and-feet"] .floor-contact-hands-and-feet,
+.modifier-tile[data-floor-presentation="kneeling"] .floor-contact-kneeling,
+.modifier-tile[data-floor-presentation="lying"] .floor-contact-lying { display: inline; }
 .locomotion-glyph { display: none; }
 .modifier-tile[data-locomotion-space="none"] .locomotion-glyph-none,
 .modifier-tile[data-locomotion-space="room"] .locomotion-glyph-room,

@@ -43,6 +43,9 @@ on:
       - "tools/ExerciseLocomotionSpaces.ps1"
       - "tools/ExerciseLocomotionSpaces.psd1"
       - "tools/Test-ExerciseLocomotionAudit.ps1"
+      - "tools/ExerciseFloorContacts.ps1"
+      - "tools/ExerciseFloorContacts.psd1"
+      - "tools/Test-ExerciseFloorContactAudit.ps1"
       - "tools/ExerciseHardFloorCompatibility.psd1"
       - "tools/Test-ExerciseHardFloorCompatibilityAudit.ps1"
   workflow_dispatch:
@@ -107,6 +110,9 @@ jobs:
             /tools/ExerciseLocomotionSpaces.ps1
             /tools/ExerciseLocomotionSpaces.psd1
             /tools/Test-ExerciseLocomotionAudit.ps1
+            /tools/ExerciseFloorContacts.ps1
+            /tools/ExerciseFloorContacts.psd1
+            /tools/Test-ExerciseFloorContactAudit.ps1
             /tools/ExerciseHardFloorCompatibility.psd1
             /tools/Test-ExerciseHardFloorCompatibilityAudit.ps1
           sparse-checkout-cone-mode: false
@@ -130,6 +136,10 @@ jobs:
       - name: Validate locomotion catalog minimums
         shell: pwsh
         run: ./tools/Test-ExerciseLocomotionAudit.ps1
+
+      - name: Validate floor contacts and combined equipment minimums
+        shell: pwsh
+        run: ./tools/Test-ExerciseFloorContactAudit.ps1
 
       - name: Set up Node.js
         uses: actions/setup-node@v6

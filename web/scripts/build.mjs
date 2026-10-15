@@ -11,6 +11,8 @@ import {
   findSoleWallContactRequiredCatalogDeficiencies,
   findWallRequiredCatalogDeficiencies,
   findLocomotionCatalogDeficiencies,
+  findFloorCatalogDeficiencies,
+  findFloorAndWallCatalogDeficiencies,
   findWorkoutModifierMaterialityDeficiencies,
   ACCEPTED_MATERIALITY_EXCEPTIONS,
   isAcceptedMaterialityDeficiency,
@@ -156,10 +158,16 @@ const catalogSource = await readFile(
   "utf8",
 );
 const catalogVersion = contentFingerprint(catalogSource);
+const catalogOutputName = `exercises.${catalogVersion}.json`;
 await copyInto(
   path.join(repositoryRoot, "NomadicMethod", "Assets", "exercises.json"),
-  path.join(outputRoot, "data", "exercises.json"),
+  path.join(outputRoot, "data", catalogOutputName),
 );
+// A cached pre-Floor runtime does not understand the new contact predicates.
+// Fail before it loads or migrates workout state instead of offering floor work.
+await writeFile(path.join(outputRoot, "data", "exercises.json"),
+  `${JSON.stringify({ reloadRequired: true, catalogRevision: CURRENT_CATALOG_REVISION })}\n`,
+  "utf8");
 await copyInto(
   path.join(repositoryRoot, "tools", "nomadic_method_appicon.svg"),
   path.join(outputRoot, "assets", "nomadic_method_appicon.svg"),
@@ -183,11 +191,11 @@ await copyDirectory(
 await writeFile(path.join(outputRoot, ".nojekyll"), "", "utf8");
 
 const catalog = JSON.parse(
-  await readFile(path.join(outputRoot, "data", "exercises.json"), "utf8"),
+  await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 569) {
-  throw new Error(`Expected 569 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 805) {
+  throw new Error(`Expected 805 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 
 const pairwiseDeficiencies =
@@ -279,6 +287,8 @@ const catalogInvariantChecks = [
   ["wall-required session-movement floor", wallCatalogDeficiencies.length === 0],
   ["sole-wall session-movement floor", soleWallCatalogDeficiencies.length === 0],
   ["locomotion session-movement floors", findLocomotionCatalogDeficiencies(catalog).length === 0],
+  ["floor session-movement minimum", findFloorCatalogDeficiencies(catalog).length === 0],
+  ["floor-and-wall session-movement minimum", findFloorAndWallCatalogDeficiencies(catalog).length === 0],
   ["explicit catalog-integrity deficit ledger", integrityDebtMatches],
 ];
 const failedCatalogInvariants = catalogInvariantChecks
@@ -328,8 +338,9 @@ for (const file of await walk(path.join(outputRoot, "assets"))) {
 }
 const assetVersionsSource = `${JSON.stringify(assetVersions, null, 2)}\n`;
 const assetVersionsVersion = contentFingerprint(assetVersionsSource);
+const assetVersionsOutputName = `asset-versions.${assetVersionsVersion}.json`;
 await writeFile(
-  path.join(outputRoot, "data", "asset-versions.json"),
+  path.join(outputRoot, "data", assetVersionsOutputName),
   assetVersionsSource,
   "utf8",
 );
@@ -342,11 +353,11 @@ const fingerprintedAppSource = appSource
   )
   .replace(
     '"data/exercises.json"',
-    `"data/exercises.json?v=${catalogVersion}"`,
+    `"data/${catalogOutputName}"`,
   )
   .replace(
     '"data/asset-versions.json"',
-    `"data/asset-versions.json?v=${assetVersionsVersion}"`,
+    `"data/${assetVersionsOutputName}"`,
   )
   .replaceAll(
     '"./workout-preparation-worker.js"',
@@ -355,9 +366,9 @@ const fingerprintedAppSource = appSource
 if (fingerprintedAppSource === appSource ||
     !fingerprintedAppSource.includes(workoutOutputName) ||
     !fingerprintedAppSource.includes(preparationWorkerOutputName) ||
-    !fingerprintedAppSource.includes(`exercises.json?v=${catalogVersion}`) ||
+    !fingerprintedAppSource.includes(catalogOutputName) ||
     !fingerprintedAppSource.includes(
-      `asset-versions.json?v=${assetVersionsVersion}`)) {
+      assetVersionsOutputName)) {
   throw new Error("Could not content-address the web runtime dependencies.");
 }
 const appOutputName = fingerprintedName("app", "js", fingerprintedAppSource);
@@ -380,11 +391,11 @@ const fingerprintedIndex = indexSource
   .replace('./app.js', `./${appOutputName}`)
   .replace(
     './data/exercises.json',
-    `./data/exercises.json?v=${catalogVersion}`,
+    `./data/${catalogOutputName}`,
   )
   .replace(
     './data/asset-versions.json',
-    `./data/asset-versions.json?v=${assetVersionsVersion}`,
+    `./data/${assetVersionsOutputName}`,
   )
   .replace(
     '<script src="./instant-controls.js"></script>',
@@ -393,9 +404,9 @@ const fingerprintedIndex = indexSource
 if (fingerprintedIndex === indexSource ||
     !fingerprintedIndex.includes(stylesOutputName) ||
     !fingerprintedIndex.includes(appOutputName) ||
-    !fingerprintedIndex.includes(`exercises.json?v=${catalogVersion}`) ||
+    !fingerprintedIndex.includes(catalogOutputName) ||
     !fingerprintedIndex.includes(
-      `asset-versions.json?v=${assetVersionsVersion}`) ||
+      assetVersionsOutputName) ||
     fingerprintedIndex.includes('./instant-controls.js') ||
     fingerprintedIndex.includes('./light-cadence.js') ||
     !fingerprintedIndex.includes(lightCadenceSource)) {

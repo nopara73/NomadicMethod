@@ -14,6 +14,7 @@
     shy: 512,
     roomLocomotion: 1024,
     fieldLocomotion: 2048,
+    floor: 4096,
   });
   const feedbackDurationMs = 2_040;
   const elements = {
@@ -26,6 +27,7 @@
     begin: document.getElementById("begin-workout"),
     upperBodyClothing: document.getElementById("upper-body-clothing-modifier"),
     hardFloor: document.getElementById("hard-floor-modifier"),
+    floor: document.getElementById("floor-modifier"),
     insect: document.getElementById("insect-modifier"),
     silence: document.getElementById("silence-modifier"),
     shy: document.getElementById("shy-modifier"),
@@ -74,6 +76,7 @@
     toggleModifier("upperBodyClothing"));
   elements.hardFloor?.addEventListener("click", () =>
     toggleModifier("hardFloor"));
+  elements.floor?.addEventListener("click", () => toggleModifier("floor"));
   elements.insect.addEventListener("click", () => toggleModifier("insect"));
   elements.silence.addEventListener("click", () => toggleModifier("silence"));
   elements.shy.addEventListener("click", () => toggleModifier("shy"));
@@ -189,6 +192,7 @@
   function readInitialModifiers() {
     let modifiers = 0;
     for (const [name, element] of [
+      ["floor", elements.floor],
       ["upperBodyClothing", elements.upperBodyClothing],
       ["hardFloor", elements.hardFloor],
       ["insect", elements.insect],
@@ -392,6 +396,7 @@
     }
     renderBinaryModifier(elements.upperBodyClothing, "upperBodyClothing");
     renderBinaryModifier(elements.hardFloor, "hardFloor");
+    renderBinaryModifier(elements.floor, "floor");
     renderBinaryModifier(elements.insect, "insect");
     renderBinaryModifier(elements.silence, "silence");
     renderBinaryModifier(elements.shy, "shy");
@@ -441,6 +446,16 @@
       (name === "light" && (recoveryLightMode || automaticLightMode));
     element.setAttribute("aria-pressed", String(enabled));
     element.setAttribute("title", modifierFeedbackLabel(name));
+    if (name === "floor") {
+      const hard = (selectedModifiers & modifierFlags.hardFloor) !== 0;
+      const clothing = (selectedModifiers & modifierFlags.upperBodyClothing) !== 0;
+      element.dataset.floorPresentation = !enabled ? "off" : hard ? "hands-and-feet"
+        : clothing ? "lying" : "kneeling";
+      element.setAttribute("aria-label", !enabled ? "Floor contact: feet only"
+        : hard ? "Floor exercises allowed; no knee, elbow, head, torso, or shoulder contact"
+          : clothing ? "Floor exercises allowed"
+            : "Floor exercises allowed; no torso or shoulder contact");
+    }
     if (name === "hardFloor") {
       element.dataset.hardFloor = enabled ? "hard" : "soft";
       element.setAttribute(
@@ -501,6 +516,7 @@
 
   function modifierFeedbackLabel(name) {
     const enabled = (selectedModifiers & modifierFlags[name]) !== 0;
+    if (name === "floor") return `floor ${enabled ? "ON" : "OFF"}`;
     if (name === "upperBodyClothing") {
       return `upper-body clothing ${enabled ? "ON" : "OFF"}`;
     }

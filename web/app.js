@@ -12,6 +12,8 @@ import {
   findSoleWallContactRequiredCatalogDeficiencies,
   findWallRequiredCatalogDeficiencies,
   findLocomotionCatalogDeficiencies,
+  findFloorCatalogDeficiencies,
+  findFloorAndWallCatalogDeficiencies,
   getExerciseVideoPath,
   getHoldFramePath,
   getMovementCountdownDurationMs,
@@ -38,6 +40,8 @@ const MODIFIER_FEEDBACK_DURATION_MS = 2_040;
 const EXERCISE_NAME_LONG_PRESS_MS = 500;
 const EXERCISE_NAME_LONG_PRESS_MOVE_TOLERANCE_PX = 12;
 const MODIFIER_FEEDBACK_LABELS = Object.freeze({
+  floorEnabled: "floor ON",
+  floorDisabled: "floor OFF",
   upperBodyClothingEnabled: "upper-body clothing ON",
   upperBodyClothingDisabled: "upper-body clothing OFF",
   hardFloorEnabled: "hard floor ON",
@@ -70,6 +74,7 @@ const elements = {
   beginWorkout: byId("begin-workout"),
   upperBodyClothingModifier: byId("upper-body-clothing-modifier"),
   hardFloorModifier: byId("hard-floor-modifier"),
+  floorModifier: byId("floor-modifier"),
   insectModifier: byId("insect-modifier"),
   silenceModifier: byId("silence-modifier"),
   shyModifier: byId("shy-modifier"),
@@ -194,6 +199,9 @@ async function bootstrap() {
       catalogResponse.json(),
       assetVersionsResponse.json(),
     ]);
+    if (!Array.isArray(exercises)) {
+      throw new Error("Reload Nomadic Method to use the current exercise catalog.");
+    }
     exerciseCatalog = exercises;
     if (!loadedAssetVersions || Array.isArray(loadedAssetVersions) ||
         typeof loadedAssetVersions !== "object") {
@@ -208,7 +216,9 @@ async function bootstrap() {
         !isSessionMovementMetadataValid(exercises) ||
         wallCatalogDeficiencies.length > 0 ||
         soleWallCatalogDeficiencies.length > 0 ||
-        findLocomotionCatalogDeficiencies(exercises).length > 0) {
+        findLocomotionCatalogDeficiencies(exercises).length > 0 ||
+        findFloorCatalogDeficiencies(exercises).length > 0 ||
+        findFloorAndWallCatalogDeficiencies(exercises).length > 0) {
       throw new Error("Catalog does not satisfy workout invariants.");
     }
     session = new WorkoutSession(exercises, loadState());
@@ -506,6 +516,7 @@ function renderDuration(minutes, userInitiated) {
 
 function workoutModifierTiles() {
   return [
+    { element: elements.floorModifier, flag: WORKOUT_MODIFIERS.Floor },
     {
       element: elements.upperBodyClothingModifier,
       flag: WORKOUT_MODIFIERS.UpperBodyClothing,
@@ -557,6 +568,8 @@ function toggleWorkoutModifier(flag) {
 }
 
 function workoutModifierFeedbackLabel(flag, enabled) {
+  if (flag === WORKOUT_MODIFIERS.Floor)
+    return MODIFIER_FEEDBACK_LABELS[enabled ? "floorEnabled" : "floorDisabled"];
   if (flag === WORKOUT_MODIFIERS.UpperBodyClothing) {
     return MODIFIER_FEEDBACK_LABELS[
       enabled ? "upperBodyClothingEnabled" : "upperBodyClothingDisabled"
@@ -700,7 +713,16 @@ function renderWorkoutModifiers() {
       element.setAttribute("aria-disabled", String(locked));
       if (locked) element.setAttribute("title", MODIFIER_FEEDBACK_LABELS.lightLocked);
     }
-    if (flag === WORKOUT_MODIFIERS.HardFloor) {
+    if (flag === WORKOUT_MODIFIERS.Floor) {
+      const hard = (selectedModifiers & WORKOUT_MODIFIERS.HardFloor) !== 0;
+      const clothing = (selectedModifiers & WORKOUT_MODIFIERS.UpperBodyClothing) !== 0;
+      element.dataset.floorPresentation = !enabled ? "off" : hard ? "hands-and-feet"
+        : clothing ? "lying" : "kneeling";
+      element.setAttribute("aria-label", !enabled ? "Floor contact: feet only"
+        : hard ? "Floor exercises allowed; no knee, elbow, head, torso, or shoulder contact"
+          : clothing ? "Floor exercises allowed"
+            : "Floor exercises allowed; no torso or shoulder contact");
+    } else if (flag === WORKOUT_MODIFIERS.HardFloor) {
       element.dataset.hardFloor = enabled ? "hard" : "soft";
       element.setAttribute(
         "aria-label",

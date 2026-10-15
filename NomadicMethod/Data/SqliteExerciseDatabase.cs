@@ -48,6 +48,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         "sole_wall_contact_required",
         "session_movement_id",
         "locomotion_space",
+        "floor_contact_points",
     ];
 
     private readonly Context _context;
@@ -197,7 +198,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 muscular_demand INTEGER NOT NULL
                     CHECK (muscular_demand BETWEEN 0 AND 2),
                 only_feet_touch_ground INTEGER NOT NULL DEFAULT 1
-                    CHECK (only_feet_touch_ground = 1),
+                    CHECK (only_feet_touch_ground IN (0, 1)),
+                floor_contact_points INTEGER NOT NULL DEFAULT 1
+                    CHECK (floor_contact_points BETWEEN 0 AND 2047),
                 shoe_agnostic INTEGER NOT NULL DEFAULT 1
                     CHECK (shoe_agnostic = 1),
                 max_space_meters INTEGER NOT NULL DEFAULT 2
@@ -629,6 +632,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             exercise.SoleWallContactRequired ? 1 : 0);
         values.Put("session_movement_id", exercise.SessionMovementId);
         values.Put("locomotion_space", exercise.LocomotionSpace.ToString());
+        values.Put("floor_contact_points", (int)exercise.FloorContactPoints);
         return values;
     }
 
@@ -823,6 +827,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 SoleWallContactRequired = cursor.GetInt(24) == 1,
                 SessionMovementId = cursor.GetInt(25),
                 LocomotionSpace = Enum.Parse<LocomotionSpace>(cursor.GetString(26)!, ignoreCase: false),
+                FloorContactPoints = (ExerciseFloorContact)cursor.GetInt(27),
             });
         }
 
@@ -954,13 +959,19 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         bool hasUndersizedLocomotionCatalog =
             WorkoutModifierPolicy.FindLocomotionCatalogDeficiencies(exercises)
                 .Count > 0;
+        bool hasUndersizedFloorCatalog =
+            WorkoutModifierPolicy.FindFloorCatalogDeficiencies(exercises)
+                .Count > 0;
+        bool hasUndersizedFloorAndWallCatalog =
+            WorkoutModifierPolicy.FindFloorAndWallCatalogDeficiencies(exercises)
+                .Count > 0;
         bool violatesRequirements = exercises.Any(exercise =>
             !Enum.IsDefined(exercise.PrimaryCanonicalGroup) ||
             exercise.SecondaryCanonicalGroups.Distinct().Count() !=
                 exercise.SecondaryCanonicalGroups.Length ||
             exercise.SecondaryCanonicalGroups.Contains(exercise.PrimaryCanonicalGroup) ||
             exercise.SecondaryCanonicalGroups.Any(group => !Enum.IsDefined(group)) ||
-            !exercise.OnlyFeetTouchGround ||
+            !FloorContactPolicy.IsMetadataReviewed(exercise) ||
             !exercise.ShoeAgnostic ||
             !WorkoutModifierPolicy.IsSpaceMetadataValid(exercise) ||
             (exercise.MirrorRelationship ==
@@ -1085,6 +1096,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         if (hasUndersizedWallCatalog ||
             hasUndersizedSoleWallCatalog ||
             hasUndersizedLocomotionCatalog ||
+            hasUndersizedFloorCatalog ||
+            hasUndersizedFloorAndWallCatalog ||
             !WorkoutModifierPolicy.IsCatalogMetadataComplete(exercises) ||
             exercises.Select(exercise => exercise.Id).Distinct().Count() != exercises.Count ||
             exercises.Select(exercise => exercise.Name).Distinct().Count() != exercises.Count ||

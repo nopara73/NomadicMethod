@@ -103,4 +103,11 @@
     <string name="locomotion_none">no locomotion</string>
     <string name="locomotion_room">locomotion: room length</string>
     <string name="locomotion_field">locomotion: field size</string>
+    <string name="floor_modifier_description">Floor contact</string>
+    <string name="floor_modifier_on">Floor exercises allowed</string>
+    <string name="floor_modifier_off">Floor contact: feet only</string>
+    <string name="floor_modifier_hard">Floor exercises allowed; no knee, elbow, head, torso, or shoulder contact</string>
+    <string name="floor_modifier_unclothed">Floor exercises allowed; no torso or shoulder contact</string>
+    <string name="floor_enabled_feedback">floor ON</string>
+    <string name="floor_disabled_feedback">floor OFF</string>
 </resources>

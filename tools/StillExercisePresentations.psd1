@@ -49,4 +49,62 @@
     704 = $true
     835 = $true
     1004 = $true
+
+    # Floor admissions, 15 October 2026.
+    1060 = $true
+    1065 = $true
+    1067 = $true
+    1069 = $true
+    1070 = $true
+    1071 = $true
+    1074 = $true
+    1083 = $true
+    1086 = $true
+    1091 = $true
+    1094 = $true
+    1096 = $true
+    1100 = $true
+    1101 = $true
+    1103 = $true
+    1105 = $true
+    1106 = $true
+    1113 = $true
+    1119 = $true
+    1123 = $true
+    1130 = $true
+    1133 = $true
+    1137 = $true
+    1140 = $true
+    1148 = $true
+    1149 = $true
+    1150 = $true
+    1153 = $true
+    1167 = $true
+    1173 = $true
+    1189 = $true
+    1197 = $true
+    1203 = $true
+    1204 = $true
+    1206 = $true
+    1207 = $true
+    1209 = $true
+    1210 = $true
+    1216 = $true
+    1229 = $true
+    1231 = $true
+    1241 = $true
+    1242 = $true
+    1245 = $true
+    1250 = $true
+    1251 = $true
+
+    # Floor admissions, 15 October 2026.
+    1272 = $true
+    1273 = $true
+    1278 = $true
+    1282 = $true
+    1283 = $true
+    1286 = $true
+    1290 = $true
+    1292 = $true
 }

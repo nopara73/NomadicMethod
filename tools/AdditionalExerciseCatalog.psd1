@@ -201,4 +201,244 @@
     1054 = @{ Name = 'Straight-Leg Bounds'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'StraightLegBounds' }
     1055 = @{ Name = 'Alternating Forward Bounds'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'AlternatingForwardBounds' }
     1056 = @{ Name = 'Power Skipping for Distance'; Region = 'LEGS'; Practice = 'Locomotor conditioning'; MotionProfile = 'PowerSkippingforDistance' }
+
+    # Floor admissions, 15 October 2026.
+    1057 = @{ Name = 'Abdominal Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorAbdominalCrunches' }
+    1058 = @{ Name = 'Lying 90-Degree Hamstring Extensions'; Region = 'LEGS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingDegreeHamstringExtensions' }
+    1059 = @{ Name = 'Up-Down Planks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorUpDownPlanks' }
+    1060 = @{ Name = 'Lying Figure-Four Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorLyingFigureFourStretch' }
+    1061 = @{ Name = 'Archer Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorArcherPushUps' }
+    1062 = @{ Name = 'Back-Bow Jacks'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBackBowJacks' }
+    1063 = @{ Name = 'Bear Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBearCrawl' }
+    1064 = @{ Name = 'Lying Bent-Knee Openers'; Region = 'HIPS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingBentKneeOpeners' }
+    1065 = @{ Name = 'Bent-Knee Side Plank'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBentKneeSidePlank' }
+    1066 = @{ Name = 'Bird Dogs'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBirdDogs' }
+    1067 = @{ Name = 'Bridge Pose'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBridgePose' }
+    1068 = @{ Name = 'Knee Push-Up Burpees'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorKneePushUpBurpees' }
+    1069 = @{ Name = 'Seated Butterfly Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorSeatedButterflyStretch' }
+    1070 = @{ Name = 'Cat Stretch'; Region = 'BACK'; Practice = 'Yoga'; MotionProfile = 'FloorCatStretch' }
+    1071 = @{ Name = 'Child''s Pose'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'FloorChildsPose' }
+    1072 = @{ Name = 'Side-Lying Clamshells'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideLyingClamshells' }
+    1073 = @{ Name = 'Plank with Cross-Body Toe Touch'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankwithCrossBodyToeTouch' }
+    1074 = @{ Name = 'Cobra Pose'; Region = 'CORE'; Practice = 'Yoga'; MotionProfile = 'FloorCobraPose' }
+    1075 = @{ Name = 'Prone Arm Sweeps'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneArmSweeps' }
+    1076 = @{ Name = 'Crab Walk'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorCrabWalk' }
+    1077 = @{ Name = 'Reverse Tabletop Knee-to-Elbow Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReverseTabletopKneetoElbowCrunches' }
+    1078 = @{ Name = 'Figure-Four Straight-Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorFigureFourStraightLegRaises' }
+    1079 = @{ Name = 'Dead Bug Leg Extensions'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDeadBugLegExtensions' }
+    1080 = @{ Name = 'Diamond Push-Ups'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDiamondPushUps' }
+    1081 = @{ Name = 'Dive-Bomber Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDiveBomberPushUps' }
+    1082 = @{ Name = 'Donkey Kicks'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDonkeyKicks' }
+    1083 = @{ Name = 'Double Knee-to-Chest Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorDoubleKneetoChestStretch' }
+    1084 = @{ Name = 'Pilates Double-Leg Stretch'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPilatesDoubleLegStretch' }
+    1085 = @{ Name = 'Downward Dog to Knee Drive'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDownwardDogtoKneeDrive' }
+    1086 = @{ Name = 'Downward Dog Pose'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorDownwardDog' }
+    1087 = @{ Name = 'Plank to Downward Dog'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorPlanktoDownwardDog' }
+    1088 = @{ Name = 'Tabletop Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTabletopCrunches' }
+    1089 = @{ Name = 'Fire Hydrants'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorFireHydrants' }
+    1090 = @{ Name = 'Prone Frog Hip Rotations'; Region = 'HIPS'; Practice = 'Floor mobility'; MotionProfile = 'FloorProneFrogHipRotations' }
+    1091 = @{ Name = 'Frog Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorFrogStretch' }
+    1092 = @{ Name = 'Reverse Nordic Curls'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReverseNordicCurls' }
+    1093 = @{ Name = 'Glute Bridges'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorGluteBridges' }
+    1094 = @{ Name = 'Seated Spinal Twist Hold'; Region = 'BACK'; Practice = 'Yoga'; MotionProfile = 'FloorSeatedSpinalTwist' }
+    1095 = @{ Name = 'Quadruped Straight-Leg Pulses'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorQuadrupedStraightLegPulses' }
+    1096 = @{ Name = 'Seated Head-to-Knee Stretch'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorSeatedHeadtoKneeStretch' }
+    1097 = @{ Name = 'Lying Heel Slides'; Region = 'LEGS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingHeelSlides' }
+    1098 = @{ Name = 'Side-Lying Leg Raises'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideLyingLegRaises' }
+    1099 = @{ Name = 'Prone Single-Leg Lifts'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneSingleLegLifts' }
+    1100 = @{ Name = 'Kneeling Hip Flexor Stretch'; Region = 'CORE'; Practice = 'Yoga'; MotionProfile = 'FloorKneelingHipFlexorStretch' }
+    1101 = @{ Name = 'Hollow-Body Hold'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHollowBodyHold' }
+    1102 = @{ Name = 'Side-to-Side Hover Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSidetoSideHoverPushUps' }
+    1103 = @{ Name = 'Seated Hurdler Stretch'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorSeatedHurdlerStretch' }
+    1104 = @{ Name = 'Burpees with Plank Jacks'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBurpeeswithPlankJacks' }
+    1105 = @{ Name = 'Lying Thigh-Down Press into Hands Hold'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingThighDownPressintoHands' }
+    1106 = @{ Name = 'Lying Knee-to-Palms Press Hold'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingKneetoPalmsPress' }
+    1107 = @{ Name = 'Plank Hops In and Out'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankHopsInandOut' }
+    1108 = @{ Name = 'Push-Ups with Knee Tuck'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUpswithKneeTuck' }
+    1109 = @{ Name = 'Side-Kneeling Leg Circles'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideKneelingLegCircles' }
+    1110 = @{ Name = 'Side Crunches with Top-Leg Lift'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideCruncheswithTopLegLift' }
+    1111 = @{ Name = 'Alternating Side Planks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorRotatingForearmPlanks' }
+    1112 = @{ Name = 'Side-Lying Front-and-Back Kicks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideLyingFrontandBackKicks' }
+    1113 = @{ Name = 'Hands-Down Low Lunge Hold'; Region = 'CORE'; Practice = 'Yoga'; MotionProfile = 'FloorHandsDownLowLunge' }
+    1114 = @{ Name = 'Lunge with Upper-Body Rotation'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorLungewithUpperBodyRotation' }
+    1115 = @{ Name = 'Prone Elbow Pullbacks'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneElbowPullbacks' }
+    1116 = @{ Name = 'Mountain Climbers'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorMountainClimbers' }
+    1117 = @{ Name = 'Side-Lying One-Arm Push-Ups'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideLyingOneArmPushUps' }
+    1118 = @{ Name = 'Glute Bridge Heel Walkouts'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorGluteBridgeHeelWalkouts' }
+    1119 = @{ Name = 'Pigeon Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorPigeonStretch' }
+    1120 = @{ Name = 'Pigeon Stretch with Circular Reaches'; Region = 'HIPS'; Practice = 'Floor mobility'; MotionProfile = 'FloorPigeonStretchwithCircularReaches' }
+    1121 = @{ Name = 'Pike Push-Ups'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPikePushUps' }
+    1122 = @{ Name = 'Pilates Open-Leg Rocker'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPilatesOpenLegRocker' }
+    1123 = @{ Name = 'Lying Crossed-Knee Glute Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorLyingCrossedKneeGluteStretch' }
+    1124 = @{ Name = 'Forearm Plank Knee Crunch to Kickback'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForearmPlankKneeCrunchtoKickback' }
+    1125 = @{ Name = 'Forearm Plank Hip Dips'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForearmPlankHipDips' }
+    1126 = @{ Name = 'Plank Jacks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankJacks' }
+    1127 = @{ Name = 'Plank Jump to Squat'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankJumptoSquat' }
+    1128 = @{ Name = 'Forearm Plank Knee Taps'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForearmPlankKneeTaps' }
+    1129 = @{ Name = 'Forearm Plank Knee Tucks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForearmPlankKneeTucks' }
+    1130 = @{ Name = 'High Plank'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHighPlank' }
+    1131 = @{ Name = 'Sideways Plank Walk'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSidewaysPlankWalk' }
+    1132 = @{ Name = 'Plank Knee Drive to Leg Lift'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankKneeDrivetoLegLift' }
+    1133 = @{ Name = 'Downward Dog Calf Stretch'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorDownwardDogCalfStretch' }
+    1134 = @{ Name = 'Long-Lever Plank Walkouts'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLongLeverPlankWalkouts' }
+    1135 = @{ Name = 'Plank Arm Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankArmRaises' }
+    1136 = @{ Name = 'Forearm Plank Reach-Backs'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForearmPlankReachBacks' }
+    1137 = @{ Name = 'Forearm Plank'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForearmPlank' }
+    1138 = @{ Name = 'Prone I Raises'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneIRaises' }
+    1139 = @{ Name = 'Prone Hip Internal and External Rotations'; Region = 'HIPS'; Practice = 'Floor mobility'; MotionProfile = 'FloorProneHipInternalandExternalRotations' }
+    1140 = @{ Name = 'Sphinx Pose'; Region = 'CORE'; Practice = 'Yoga'; MotionProfile = 'FloorSphinxPose' }
+    1141 = @{ Name = 'Prone W Raises'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneWRaises' }
+    1142 = @{ Name = 'Clapping Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorClappingPushUps' }
+    1143 = @{ Name = 'Push-Up to Side Plank'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUptoSidePlank' }
+    1144 = @{ Name = 'Knee Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorKneePushUps' }
+    1145 = @{ Name = 'Push-Ups with Side Leg Lift'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUpswithSideLegLift' }
+    1146 = @{ Name = 'Single-Leg Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSingleLegPushUps' }
+    1147 = @{ Name = 'Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUps' }
+    1148 = @{ Name = 'Lying Knee-Over-Side Stretch'; Region = 'BACK'; Practice = 'Yoga'; MotionProfile = 'FloorLyingKneeOverSideStretch' }
+    1149 = @{ Name = 'Prone Quadriceps Stretch'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorProneQuadricepsStretch' }
+    1150 = @{ Name = 'Side-Lying Quadriceps Stretch'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorSideLyingQuadricepsStretch' }
+    1151 = @{ Name = 'Quadruped Straight-Leg Raises'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorQuadrupedStraightLegRaises' }
+    1152 = @{ Name = 'Half-Kneeling Knee Drives'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHalfKneelingKneeDrives' }
+    1153 = @{ Name = 'Reverse Plank'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReversePlank' }
+    1154 = @{ Name = 'Russian Twists with Feet Down'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorRussianTwistswithFeetDown' }
+    1155 = @{ Name = 'Pilates Roll-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPilatesRollUps' }
+    1156 = @{ Name = 'Rolling Like a Ball'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorRollingLikeaBall' }
+    1157 = @{ Name = 'Vertical Scissor Kicks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorVerticalScissorKicks' }
+    1158 = @{ Name = 'Prone Scorpion Stretch'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorProneScorpionStretch' }
+    1159 = @{ Name = 'Pilates Seated Spine Twist'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorPilatesSeatedSpineTwist' }
+    1160 = @{ Name = 'Glute Bridge with Straight-Leg Kicks'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorGluteBridgewithStraightLegKicks' }
+    1161 = @{ Name = 'Push-Ups with Shoulder Taps'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUpswithShoulderTaps' }
+    1162 = @{ Name = 'Side V-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideVUps' }
+    1163 = @{ Name = 'Twisting Plank Knee Drives'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTwistingPlankKneeDrives' }
+    1164 = @{ Name = 'Side Plank with Two-Way Leg Raise'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSidePlankwithTwoWayLegRaise' }
+    1165 = @{ Name = 'Side Plank with Top-Leg Raises'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSidePlankwithTopLegRaises' }
+    1166 = @{ Name = 'Straight-Arm Side Plank Knee Drives'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorStraightArmSidePlankKneeDrives' }
+    1167 = @{ Name = 'Side Plank'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSidePlank' }
+    1168 = @{ Name = 'Side-Lying Arm Raises'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorSideLyingArmRaises' }
+    1169 = @{ Name = 'Side-Lying Shoulder External Rotations'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorSideLyingShoulderExternalRotations' }
+    1170 = @{ Name = 'Single-Leg Glute Bridges'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSingleLegGluteBridges' }
+    1171 = @{ Name = 'Pilates Single-Leg Stretch'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPilatesSingleLegStretch' }
+    1172 = @{ Name = 'Sit-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSitUps' }
+    1173 = @{ Name = 'Sleeper Stretch'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'FloorSleeperStretch' }
+    1174 = @{ Name = 'Spiderman Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSpidermanPushUps' }
+    1175 = @{ Name = 'Pilates Spine Stretch Forward'; Region = 'LEGS'; Practice = 'Floor mobility'; MotionProfile = 'FloorPilatesSpineStretchForward' }
+    1176 = @{ Name = 'Turned-Out Straight-Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTurnedOutStraightLegRaises' }
+    1177 = @{ Name = 'Lying Single-Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingSingleLegRaises' }
+    1178 = @{ Name = 'Supermans'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSupermans' }
+    1179 = @{ Name = 'Bicycle Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBicycleCrunches' }
+    1180 = @{ Name = 'Lying Straight-Arm Circles'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingStraightArmCircles' }
+    1181 = @{ Name = 'Lying Serratus Punches'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingSerratusPunches' }
+    1182 = @{ Name = 'Lying Shoulder Flexion'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingShoulderFlexion' }
+    1183 = @{ Name = 'Bent-Knee Windshield Wipers'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorBentKneeWindshieldWipers' }
+    1184 = @{ Name = 'Prone Swimmers'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneSwimmers' }
+    1185 = @{ Name = 'Lying Upper-Trunk Rotations'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingUpperTrunkRotations' }
+    1186 = @{ Name = 'Reverse Tabletop Kicks'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReverseTabletopKicks' }
+    1187 = @{ Name = 'Straight-Leg V-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorStraightLegVUps' }
+    1188 = @{ Name = 'Quadruped Thread-the-Needle Reaches'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorQuadrupedThreadtheNeedleReaches' }
+    1189 = @{ Name = 'Three-Legged Downward Dog Pose'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorThreeLeggedDownwardDog' }
+    1190 = @{ Name = 'Floor Triceps Dips'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorFloorTricepsDips' }
+    1191 = @{ Name = 'Twisting Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTwistingCrunches' }
+    1192 = @{ Name = 'Plank Opposite Arm-and-Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankOppositeArmandLegRaises' }
+    1193 = @{ Name = 'Bent-Knee V-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBentKneeVUps' }
+    1194 = @{ Name = 'W-Arm Supermans'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorWArmSupermans' }
+    1195 = @{ Name = 'Wide-Grip Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorWideGripPushUps' }
+    1196 = @{ Name = 'World''s Greatest Stretch'; Region = 'CORE'; Practice = 'Floor mobility'; MotionProfile = 'FloorWorldsGreatestStretch' }
+    1197 = @{ Name = 'Seated 90/90 Hip Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorSeatedHipStretch' }
+    1198 = @{ Name = 'Barre Pretzel Leg Lifts'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBarrePretzelLegLifts' }
+    1199 = @{ Name = 'Sit-Throughs'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSitThroughs' }
+    1200 = @{ Name = 'Cat-Cow'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorCatCow' }
+    1201 = @{ Name = 'Lying Head-Lift Rotations'; Region = 'HEAD'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingHeadLiftRotations' }
+    1202 = @{ Name = 'Lying Chin Tucks'; Region = 'HEAD'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingChinTucks' }
+    1203 = @{ Name = 'Cow Pose'; Region = 'CORE'; Practice = 'Yoga'; MotionProfile = 'FloorCowPose' }
+    1204 = @{ Name = 'Lying Chin-Tuck Head Hold'; Region = 'HEAD'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingChinTuckHeadHold' }
+    1205 = @{ Name = 'Pilates Double-Leg Kicks'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPilatesDoubleLegKicks' }
+    1206 = @{ Name = 'Hands-on-Floor Forward Fold Hold'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorStandingForwardFoldwithHandsonFloor' }
+    1207 = @{ Name = 'Low Push-Up Hold'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLowPushUpHold' }
+    1208 = @{ Name = 'Prone Frog Leg Lifts'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneFrogLegLifts' }
+    1209 = @{ Name = 'Happy Baby Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorHappyBabyStretch' }
+    1210 = @{ Name = 'Kneeling Sit-on-Heels Hold'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorKneelingSeatonHeels' }
+    1211 = @{ Name = 'Seated In-and-Out Knee Tucks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSeatedInandOutKneeTucks' }
+    1212 = @{ Name = 'Inchworm Crawl'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorInchwormCrawl' }
+    1213 = @{ Name = 'Standing Hand Walkouts'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorStandingHandWalkouts' }
+    1214 = @{ Name = 'Side-Lying Inner-Thigh Raises'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideLyingInnerThighRaises' }
+    1215 = @{ Name = '90/90 Hip Switch to Kneeling'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHipSwitchtoKneeling' }
+    1216 = @{ Name = 'Single Knee-to-Chest Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorSingleKneetoChestStretch' }
+    1217 = @{ Name = 'Prone Back Extensions'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneBackExtensions' }
+    1218 = @{ Name = 'Lying Double-Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingDoubleLegRaises' }
+    1219 = @{ Name = 'Plank Leg Raises'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankLegRaises' }
+    1220 = @{ Name = 'Reverse Plank Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReversePlankLegRaises' }
+    1221 = @{ Name = 'Horizontal Scissor Kicks'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHorizontalScissorKicks' }
+    1222 = @{ Name = 'Lying Vertical Leg Opens'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingVerticalLegOpens' }
+    1223 = @{ Name = 'Russian Twists with Feet Raised'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorRussianTwistswithFeetRaised' }
+    1224 = @{ Name = 'McGill Curl-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorMcGillCurlUps' }
+    1225 = @{ Name = 'Lying Single-Leg Circles'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingSingleLegCircles' }
+    1226 = @{ Name = 'Supine Marching'; Region = 'CORE'; Practice = 'Floor mobility'; MotionProfile = 'FloorSupineMarching' }
+    1227 = @{ Name = 'Supine March with Opposite Arm Reach'; Region = 'CORE'; Practice = 'Floor mobility'; MotionProfile = 'FloorSupineMarchwithOppositeArmReach' }
+    1228 = @{ Name = 'Quadruped Chin Tucks'; Region = 'HEAD'; Practice = 'Floor mobility'; MotionProfile = 'FloorQuadrupedChinTucks' }
+    1229 = @{ Name = 'Extended Side-Angle Pose'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorExtendedSideAnglePose' }
+    1230 = @{ Name = 'Side-Lying Leg Circles'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSideLyingLegCircles' }
+    1231 = @{ Name = 'Six-Inch Leg Hold'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSixInchLegHold' }
+    1232 = @{ Name = 'Side-to-Side Plank Hops'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSidetoSidePlankHops' }
+    1233 = @{ Name = 'Lying Snow Angels'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorLyingSnowAngels' }
+    1234 = @{ Name = 'Spiderman Lunges'; Region = 'CORE'; Practice = 'Floor mobility'; MotionProfile = 'FloorSpidermanLunges' }
+    1235 = @{ Name = 'Crab-to-Bear Switches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorCrabtoBearSwitches' }
+    1236 = @{ Name = 'Alternating Crab Kicks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorAlternatingCrabKicks' }
+    1237 = @{ Name = 'Reverse Tabletop Rocks'; Region = 'SHOULDERS'; Practice = 'Floor mobility'; MotionProfile = 'FloorReverseTabletopRocks' }
+    1238 = @{ Name = 'Pilates Hundred'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPilatesHundred' }
+    1239 = @{ Name = 'Pilates Saw'; Region = 'LEGS'; Practice = 'Floor mobility'; MotionProfile = 'FloorPilatesSaw' }
+    1240 = @{ Name = 'Side-Lying Open-Book Rotations'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorSideLyingOpenBookRotations' }
+    1241 = @{ Name = 'Triangle Pose with Hand on Floor'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorTrianglePosewithHandonFloor' }
+    1242 = @{ Name = 'Pyramid Pose with Hands on Floor'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorPyramidPosewithHandsonFloor' }
+    1243 = @{ Name = 'Seated Bent-Knee Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorSeatedBentKneeLegRaises' }
+    1244 = @{ Name = 'Quadruped Side Bends'; Region = 'BACK'; Practice = 'Floor mobility'; MotionProfile = 'FloorQuadrupedSideBends' }
+    1245 = @{ Name = 'Hands-on-Floor Straddle Fold Hold'; Region = 'LEGS'; Practice = 'Yoga'; MotionProfile = 'FloorStandingStraddleFoldwithHandsonFloor' }
+    1246 = @{ Name = 'Prone Y-to-T Arm Raises'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneYtoTArmRaises' }
+    1247 = @{ Name = 'Seated 90/90 Hip Switches'; Region = 'HIPS'; Practice = 'Floor mobility'; MotionProfile = 'FloorSeatedHipSwitches' }
+    1248 = @{ Name = 'Prone Snow Angels'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorProneSnowAngels' }
+    1249 = @{ Name = 'Lying Toe-Reach Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLyingToeReachCrunches' }
+    1250 = @{ Name = 'One-Arm High Plank'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorOneArmHighPlank' }
+    1251 = @{ Name = 'Reverse Tabletop Hold'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReverseTabletopHold' }
+    1252 = @{ Name = 'Dead Bugs with Opposite Arm Reach'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDeadBugswithOppositeArmReach' }
+    1253 = @{ Name = 'Reverse Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReverseCrunches' }
+    1254 = @{ Name = 'Plyometric Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlyometricPushUps' }
+    1255 = @{ Name = 'Close-Grip Push-Ups'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorCloseGripPushUps' }
+    1256 = @{ Name = 'Knuckle Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorKnucklePushUps' }
+    1257 = @{ Name = 'Bird Dog Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBirdDogPushUps' }
+    1258 = @{ Name = 'Push-Ups with Cross-Body Leg Kick'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUpswithCrossBodyLegKick' }
+    1259 = @{ Name = 'Push-Up to Forearm Plank'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUptoForearmPlank' }
+    1260 = @{ Name = 'Alternating Staggered Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorAlternatingStaggeredPushUps' }
+    1261 = @{ Name = 'Mountain Climber Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorMountainClimberPushUps' }
+    1262 = @{ Name = 'Hand-Release Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHandReleasePushUps' }
+    1263 = @{ Name = 'Walking Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorWalkingPushUps' }
+    1264 = @{ Name = 'Hands-and-Knees Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorHandsandKneesCrawl' }
+    1265 = @{ Name = 'Low Bear Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLowBearCrawl' }
+    1266 = @{ Name = 'Gorilla Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorGorillaCrawl' }
+    1267 = @{ Name = 'Alligator Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorAlligatorCrawl' }
+    1268 = @{ Name = 'Low Alligator Crawl'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorLowAlligatorCrawl' }
+    1269 = @{ Name = 'Army Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorArmyCrawl' }
+    1270 = @{ Name = 'Kneeling Crawl with Sit-Through'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorKneelingCrawlwithSitThrough' }
+    1271 = @{ Name = 'Forward-and-Backward Plank Walk'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorForwardandBackwardPlankWalk' }
+
+    # Floor admissions, 15 October 2026.
+    1272 = @{ Name = 'Wall-Supported Figure-Four Stretch'; Region = 'HIPS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallWallSupportedFigureFourStretch' }
+    1273 = @{ Name = 'Kneeling Wall Quadriceps Stretch'; Region = 'LEGS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallKneelingWallQuadricepsStretch' }
+    1274 = @{ Name = 'Seated Wall Angels'; Region = 'SHOULDERS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallSeatedWallAngels' }
+    1276 = @{ Name = 'Side-Lying Wall Hip Abductions'; Region = 'HIPS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallSideLyingWallHipAbductions' }
+    1277 = @{ Name = 'Kneeling Knee-to-Wall Rocks'; Region = 'LEGS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallKneelingKneetoWallRocks' }
+    1278 = @{ Name = 'Kneeling Wall Hamstring and Calf Stretch'; Region = 'LEGS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallKneelingWallHamstringandCalfStretch' }
+    1279 = @{ Name = 'Single-Arm Kneeling Wall Scapular Rockbacks'; Region = 'SHOULDERS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallSingleArmKneelingWallScapularRockbacks' }
+    1280 = @{ Name = 'Half-Kneeling Wall Thoracic Rotations'; Region = 'BACK'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallHalfKneelingWallThoracicRotations' }
+    1281 = @{ Name = 'Wall-Press Dead Bugs'; Region = 'CORE'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallPressDeadBugs' }
+    1282 = @{ Name = 'Feet-on-Wall Forearm Plank'; Region = 'CORE'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallFeetonWallForearmPlank' }
+    1283 = @{ Name = 'Wall Glute Bridge Hold'; Region = 'HIPS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallGluteBridgeHold' }
+    1284 = @{ Name = 'Wall Glute Bridge Marches'; Region = 'HIPS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallGluteBridgeMarches' }
+    1285 = @{ Name = 'Wall Bridge Heel Raises'; Region = 'LEGS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallBridgeHeelRaises' }
+    1286 = @{ Name = 'Single-Leg Wall Glute Bridge Hold'; Region = 'HIPS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallSingleLegWallGluteBridgeHold' }
+    1287 = @{ Name = 'Wall-Supported Abdominal Crunches'; Region = 'CORE'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallSupportedAbdominalCrunches' }
+    1288 = @{ Name = 'Wall-Supported Cross-Body Crunches'; Region = 'CORE'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallSupportedCrossBodyCrunches' }
+    1289 = @{ Name = 'High Plank to Wall Reaches'; Region = 'CORE'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallHighPlanktoWallReaches' }
+    1290 = @{ Name = 'Feet-on-Wall Pike Hold'; Region = 'SHOULDERS'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallFeetonWallPikeHold' }
+    1291 = @{ Name = 'Supine Wall Heel Slides'; Region = 'LEGS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallSupineWallHeelSlides' }
+    1292 = @{ Name = 'Wall Straddle Stretch'; Region = 'HIPS'; Practice = 'Wall and floor mobility'; MotionProfile = 'FloorWallWallStraddleStretch' }
+    1293 = @{ Name = 'Wall-Supported Roll-Ups'; Region = 'CORE'; Practice = 'Wall and floor strength'; MotionProfile = 'FloorWallWallSupportedRollUps' }
 }
