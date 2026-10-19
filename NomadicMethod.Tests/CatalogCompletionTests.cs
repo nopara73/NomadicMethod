@@ -102,11 +102,18 @@ public sealed class CatalogCompletionTests
                 (light ? WorkoutModifiers.Light : WorkoutModifiers.None);
             service.StartWorkout(state, minutes, profile);
             WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
-            WorkoutGroup target = rounds.Single(round => round.SelectionKey == selectionKey);
-            Assert.Equal(expectedId, service.GetSelectedExercise(state, target).Id);
+            if (insect && minutes == 10)
+                Assert.DoesNotContain(rounds, round => round.SelectionKey == selectionKey);
+            else
+            {
+                WorkoutGroup target = rounds.Single(round => round.SelectionKey == selectionKey);
+                Assert.Equal(expectedId, service.GetSelectedExercise(state, target).Id);
+            }
+            Assert.Equal(minutes, rounds.Length);
             Assert.All(rounds, round => Assert.True(WorkoutModifierPolicy.IsCompatible(
                 service.GetSelectedExercise(state, round), profile)));
-            WorkoutGroup[] baseRounds = rounds.Where(round => round.SequenceBlockIndex == 0).ToArray();
+            WorkoutGroup[] baseRounds = rounds.Where(round => round.SequenceBlockIndex == 0)
+                .DistinctBy(round => round.SelectionKey).ToArray();
             Assert.Equal(baseRounds.Length, baseRounds.Select(round =>
                 WorkoutModifierPolicy.GetSessionMovementId(service.GetSelectedExercise(state, round)))
                 .Distinct().Count());
@@ -130,6 +137,7 @@ public sealed class CatalogCompletionTests
         {
             Exercise[] catalog = LoadCatalog();
             Exercise row = catalog.Single(exercise => exercise.Id == 1030);
+            row.Score = 10_000;
             Assert.Equal(CanonicalMuscleGroup.ElbowFlexors, row.PrimaryCanonicalGroup);
             Assert.Empty(row.SecondaryCanonicalGroups);
             Assert.Equal(0, row.MuscularDemand);

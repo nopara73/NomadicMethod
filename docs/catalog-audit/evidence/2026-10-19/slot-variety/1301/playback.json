@@ -1,0 +1,259 @@
+{
+  "id": 1301,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T05:35:57.085Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\nExercise 1 of 15. March in Place with Arm Curls.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 0.081532,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T05:35:58.197Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 0.131351,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T05:36:02.796Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n45\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 0.786719,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T05:36:07.884Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n40\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 5.874035,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T05:36:12.982Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n35\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 10.972935,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T05:36:18.088Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n30\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 3.671385,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T05:36:23.209Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n25\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 8.793897,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T05:36:28.275Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 1.444972,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T05:36:33.324Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n14\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 6.493914,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T05:36:38.402Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n9\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 11.57147,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T05:36:43.489Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n4\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 4.244566,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T05:36:48.607Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n14\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 7.924661,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T05:36:59.687Z",
+      "name": "March in Place with Arm Curls",
+      "text": "01 / 15\nMarch in Place with Arm Curls\n3\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1301.mp4",
+          "time": 7.924661,
+          "duration": 12.4,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T05:37:04.776Z",
+      "name": "Lateral Weight Shift",
+      "text": "02 / 15\nLateral Weight Shift\nExercise 2 of 15. Lateral Weight Shift.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0094.mp4",
+          "time": 2.505139,
+          "duration": 4.85,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

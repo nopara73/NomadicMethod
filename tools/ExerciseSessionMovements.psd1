@@ -4,6 +4,8 @@
     # record is a hold, repetition, or naming variant. A workout may select at
     # most one member of a family as a base muscle-group slot.
     Families = @{
+        '588' = @(588, 1300) # Shoulder-roll mobility; the natural marching demonstration expands compatibility without multiplying the fundamental scapular-circle movement.
+        '161' = @(161, 1297) # Standing gate openers; sequential and naturally alternating demonstrations share one movement identity.
         '969' = @(969, 1028, 1031) # Chair holds and repetitions, including explicitly cued thigh-squeeze variants
         '1026' = @(1026, 1027) # Teacup arm circles: alternating and simultaneous bilateral demonstrations
         '625' = @(625, 1021) # Segmental standing roll-down: halfway-lift and continuous variants share one identity
@@ -18,7 +20,7 @@
         '579' = @(579, 580) # Standing back-to-wall shoulder slides and wall-angel range variant
         '266' = @(266, 301) # Standing straight-arm lateral raises through complementary ranges
         '264' = @(264, 275) # Standing shoulder-height arm circles and their small-circle naming variant
-        '288' = @(288, 758) # Supported knee-and-ankle circles in opposite directions
+        '288' = @(288, 758, 1299) # Supported knee-and-ankle circles in opposite directions
         '948' = @(948, 949) # Natural diagonal wood chop, upward and downward naming variants
         '568' = @(568, 633) # Toes-on-wall calf stretch
         '143' = @(143, 538) # Reverse lunge followed by a front kick

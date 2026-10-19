@@ -2370,5 +2370,95 @@
     "provenance": "Public actual-human footage screened for an established movement using both wall support/resistance and floor contact. Natural speed and chronology retained. Original source SHA-256 877ed7bcef9eae19c896a554c66d0528f03b38a5cc18e5f6e5a1865be6fd06a4. Final packaged workout review is recorded separately before release.",
     "sourceTrimStartSeconds": 386.0,
     "sourceTrimDurationSeconds": 25.0
+  },
+  {
+    "file": "slot-variety-1294-furlan-334-8.3.mp4",
+    "sha256": "32cf465b21ed368cb8fd5f168d96d574d13da3e66e4d30f2f47f173cad243107",
+    "sourceExerciseId": 1294,
+    "sourcePage": "https://www.youtube.com/watch?v=wKEu1SLzZB0",
+    "publisher": "Andrea Furlan MD PhD",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 334,
+    "sourceTrimDurationSeconds": 8.3
+  },
+  {
+    "file": "slot-variety-1295-dvids-8.8-4.55.mp4",
+    "sha256": "b5b8e0a37b3908c28bc5a8bfdd5a62f5afc65dbdd43cdaf737f1b6042dcfca2e",
+    "sourceExerciseId": 1295,
+    "sourcePage": "https://www.dvidshub.net/video/551384/heel-toe-raises",
+    "publisher": "DVIDS / U.S. military",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 8.8,
+    "sourceTrimDurationSeconds": 4.55
+  },
+  {
+    "file": "slot-variety-1296-furlan-528.5-26.mp4",
+    "sha256": "80e746e8238fcf9ed8e6e04b9314868df9c981894ce4dfdede2842b38b62a288",
+    "sourceExerciseId": 1296,
+    "sourcePage": "https://www.youtube.com/watch?v=wKEu1SLzZB0",
+    "publisher": "Andrea Furlan MD PhD",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 528.5,
+    "sourceTrimDurationSeconds": 26
+  },
+  {
+    "file": "slot-variety-1297-stratum-0.2-5.8.mp4",
+    "sha256": "174009312df80c529688099fceaf1c634f7d6c09d37ae94df41478b50771bc1d",
+    "sourceExerciseId": 1297,
+    "sourcePage": "https://www.youtube.com/watch?v=aEokrmABTaM",
+    "publisher": "Stratum Fitness",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 0.2,
+    "sourceTrimDurationSeconds": 5.8
+  },
+  {
+    "file": "slot-variety-1298-temple-0.2-8.8.mp4",
+    "sha256": "76de5da1e668af4640a9a8f9f65602f00d852a39546df2442f68e111e20aabe3",
+    "sourceExerciseId": 1298,
+    "sourcePage": "https://www.youtube.com/watch?v=hdchUYuvUho",
+    "publisher": "Eric J Temple",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 0.2,
+    "sourceTrimDurationSeconds": 8.8
+  },
+  {
+    "file": "slot-variety-1299-athlete-0.25-15.mp4",
+    "sha256": "41f96198865b05178a85f95e54461bbf9de5d63520a996842fe5af49e5e6e32a",
+    "sourceExerciseId": 1299,
+    "sourcePage": "https://www.youtube.com/watch?v=GSJroLOkSU8",
+    "publisher": "Complete Athlete Spokane",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 0.25,
+    "sourceTrimDurationSeconds": 15
+  },
+  {
+    "file": "slot-variety-1300-bhf-508.4-6.1.mp4",
+    "sha256": "b7c8222dbcc6cfa56312162d0ab83d06775451a5416d540595d4caa8901cca30",
+    "sourceExerciseId": 1300,
+    "sourcePage": "https://www.youtube.com/watch?v=c41OYHF9BB8",
+    "publisher": "British Heart Foundation",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 508.4,
+    "sourceTrimDurationSeconds": 6.1
+  },
+  {
+    "file": "slot-variety-1301-uhnm-658.6-12.4.mp4",
+    "sha256": "b5bb2c70dd6541fc645ffbbf46210250c0f2336ac967aaf664a51ed1aa0f3069",
+    "sourceExerciseId": 1301,
+    "sourcePage": "https://www.youtube.com/watch?v=Uocyaek9TJw",
+    "publisher": "UHNM NHS cardiac rehabilitation team",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 658.6,
+    "sourceTrimDurationSeconds": 12.4
+  },
+  {
+    "file": "slot-variety-1302-bernal-74.1-3.2.mp4",
+    "sha256": "8a2cb2eff3ca678c9a4d363a1834d43926015833757083ceb9a2f73f2bb84013",
+    "sourceExerciseId": 1302,
+    "sourcePage": "https://www.youtube.com/watch?v=GzE3tzMzL_g",
+    "publisher": "Deborah Bernal MD",
+    "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
+    "sourceTrimStartSeconds": 74.1,
+    "sourceTrimDurationSeconds": 3.2
   }
 ]

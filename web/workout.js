@@ -1,6 +1,21 @@
 import "./light-cadence.js";
 
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15]);
+
+// Keep the historical planner durations so an unfinished longer workout is
+// restored intact. Setup cannot create or lengthen a workout beyond 15 minutes.
+export function getWorkoutMinuteOptions(activeWorkoutMinutes = 0) {
+  return activeWorkoutMinutes > 15
+    ? SUPPORTED_MINUTES.filter(minutes => minutes <= activeWorkoutMinutes)
+    : NEW_WORKOUT_MINUTES;
+}
+
+export function normalizeSetupMinutes(minutes, activeWorkoutMinutes = 0) {
+  const requested = Number.isFinite(minutes) ? minutes : 10;
+  return [...getWorkoutMinuteOptions(activeWorkoutMinutes)]
+    .sort((left, right) => Math.abs(left - requested) - Math.abs(right - requested) || right - left)[0];
+}
 export const WORKOUT_MODIFIERS = Object.freeze({
   None: 0,
   Insect: 1,
@@ -290,8 +305,9 @@ export const WORKOUT_MODIFIER_VALIDATION_PROFILES = Object.freeze(
 const SELECTION_PROFILE_PREFIX = "p";
 const SELECTION_PROFILE_SEPARATOR = "|";
 export const BROAD_COVERAGE_RESOLUTION_MINUTES = 3;
-export const MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP = 5;
-export const MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP = 1;
+export const SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES = 15;
+export const MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP = 5;
+export const MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP = 1;
 export const MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP = 1;
 export const MINIMUM_WALL_REQUIRED_SESSION_MOVEMENTS = 20;
 export const MINIMUM_SOLE_WALL_CONTACT_REQUIRED_SESSION_MOVEMENTS = 5;
@@ -353,11 +369,23 @@ export const ACCEPTED_COVERAGE_EXCEPTIONS = Object.freeze([
   ["r30.shoulder-adductors-extensors", WORKOUT_MODIFIERS.Insect | WORKOUT_MODIFIERS.HardFloor],
   ["r30.breathing-muscles", WORKOUT_MODIFIERS.Insect | WORKOUT_MODIFIERS.Silence],
   ["r30.breathing-muscles", WORKOUT_MODIFIERS.Insect | WORKOUT_MODIFIERS.Shy],
+  // Owner-accepted short-workout variety gaps, 19 October 2026.
+  ["r10.anterior-lateral-lower-leg-dorsal-foot", WORKOUT_MODIFIERS.Insect],
+  ["r15.anterior-lateral-lower-leg-dorsal-foot", WORKOUT_MODIFIERS.Insect],
+  ["r15.head-neck", WORKOUT_MODIFIERS.Insect | WORKOUT_MODIFIERS.Shy],
 ].map(([groupId, requiredModifiers]) => Object.freeze({ groupId, requiredModifiers })));
 
-function isCoverageException(group, profile) {
+export const SLOT_VARIETY_COVERAGE_EXCEPTION_GROUP_IDS = Object.freeze([
+  "r10.anterior-lateral-lower-leg-dorsal-foot",
+  "r15.anterior-lateral-lower-leg-dorsal-foot",
+  "r15.head-neck",
+]);
+
+function isCoverageException(group, profile, catalogRevision = CURRENT_CATALOG_REVISION) {
   if (ACCEPTED_COVERAGE_EXCEPTIONS.some((exception) =>
     exception.groupId === getSelectionKey(group) &&
+    (!(catalogRevision > 0 && catalogRevision < 82) ||
+      !SLOT_VARIETY_COVERAGE_EXCEPTION_GROUP_IDS.includes(exception.groupId)) &&
     (profile & exception.requiredModifiers) === exception.requiredModifiers)) {
     return true;
   }
@@ -373,15 +401,15 @@ function isCoverageException(group, profile) {
       WALL_FREE_INSECT_FINE_COVERAGE_EXCEPTION_SET.has(canonicalGroup)));
 }
 
-export function isSelectionGroupAvailable(group, profile) {
-  return !isCoverageException(group, profile);
+export function isSelectionGroupAvailable(group, profile, catalogRevision = CURRENT_CATALOG_REVISION) {
+  return !isCoverageException(group, profile, catalogRevision);
 }
 
 
 export function getMinimumExercisesPerModifierPairStatePerGroup(minutes) {
-  return minutes === BROAD_COVERAGE_RESOLUTION_MINUTES
-    ? MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP
-    : MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP;
+  return minutes <= SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES
+    ? MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP
+    : MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP;
 }
 export const HARD_MUSCULAR_DEMAND = MAXIMUM_MUSCULAR_DEMAND;
 
@@ -465,7 +493,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 81;
+export const CURRENT_CATALOG_REVISION = 82;
 const HARD_FLOOR_SLIPPERINESS_CATALOG_REVISION = 53;
 const REUSED_SHY_AUDIT_CATALOG_REVISION = 70;
 const REUSED_SHY_AUDIT_EXERCISE_IDS = new Set([202, 204, 205]);
@@ -4196,6 +4224,7 @@ export function inferLegacyCompletedTrainingDays(
 }
 
 export const HAND_POSITION_EXERCISE_IDS = Object.freeze([32, 216, 224, 510, 740, 1012]);
+export const SLOT_VARIETY_EXERCISE_IDS = Object.freeze([1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302]);
 const SHY_CORRECTION_IDS = new Set([
   432, 435, 436, 437, 438, 439, 440, 441, 443, 446, 447, 452, 453, 458,
   460, 461, 468, 469, 471, 472, 476, 479, 494, 496, 547, 1002,
@@ -4203,6 +4232,11 @@ const SHY_CORRECTION_IDS = new Set([
 ]);
 
 export function getWorkoutCatalog(catalog, activeRevision) {
+  if (activeRevision > 0 && activeRevision < 82) {
+    catalog = catalog.filter(exercise => !SLOT_VARIETY_EXERCISE_IDS.includes(exercise.id))
+      .map(exercise => exercise.id === 906
+        ? { ...exercise, secondaryCanonicalGroups: ["HipFlexors"] } : exercise);
+  }
   if (activeRevision < 73 || activeRevision >= 80) return catalog;
   const jackIds = [459, 468, 469];
   const hasJackSeries = jackIds.every(id => catalog.some(e => e.id === id));
@@ -4832,7 +4866,7 @@ export class WorkoutSession {
       protectedBaseGroupIds,
     );
     const retainedUnavailableSelectionGroupIds = selectionGroups
-      .filter((group) => !isSelectionGroupAvailable(group, modifiers))
+      .filter((group) => !isSelectionGroupAvailable(group, modifiers, this.state.activeCatalogRevision))
       .map((group) => group.id);
     const currentSelectionGroupAvailable = selectionGroups.some((group) =>
       group.id === getSelectionKey(currentRound));
@@ -5081,6 +5115,7 @@ export class WorkoutSession {
         ).groups).filter((group) => isSelectionGroupAvailable(
           group,
           modifiers,
+          this.state.activeCatalogRevision,
         ) || retained.has(group.id))
       : [];
   }

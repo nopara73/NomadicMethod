@@ -436,7 +436,7 @@
     886 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
     887 = @{ Primary = 'LateralKneeExtensors'; Secondary = @('MedialAndDeepKneeExtensors') }
     905 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors', 'MajorHipAdductors', 'AbdominalWall') }
-    906 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors') }
+    906 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors', 'HipAbductors') }
     910 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors') }
     914 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors', 'ShoulderAbductors') }
     915 = @{ Primary = 'HipFlexors'; Secondary = @('ShoulderAbductors') }
@@ -818,4 +818,13 @@
     1291 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors') }
     1292 = @{ Primary = 'MajorHipAdductors'; Secondary = @() }
     1293 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors') }
+    1294 = @{ Primary = 'IntrinsicHand'; Secondary = @() }
+    1295 = @{ Primary = 'CalfDeepPosteriorLegAndPlantarFoot'; Secondary = @('AnteriorLateralLowerLegAndDorsalFoot') }
+    1296 = @{ Primary = 'ForearmFlexorsAndPronators'; Secondary = @('IntrinsicHand') }
+    1297 = @{ Primary = 'DeepHipRotators'; Secondary = @('HipFlexors', 'HipAbductors') }
+    1298 = @{ Primary = 'GlutealExtensors'; Secondary = @('DeepHipRotators') }
+    1299 = @{ Primary = 'AnteriorLateralLowerLegAndDorsalFoot'; Secondary = @('CalfDeepPosteriorLegAndPlantarFoot') }
+    1300 = @{ Primary = 'ScapularGirdle'; Secondary = @() }
+    1301 = @{ Primary = 'ElbowFlexors'; Secondary = @() }
+    1302 = @{ Primary = 'BreathingMuscles'; Secondary = @() }
 }

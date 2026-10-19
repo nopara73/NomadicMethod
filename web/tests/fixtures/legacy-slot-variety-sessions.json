@@ -1,0 +1,2912 @@
+[
+  {
+    "minutes": 10,
+    "modifiers": 1,
+    "target": "r10.anterior-lateral-lower-leg-dorsal-foot",
+    "baselineCommit": "459bcb387574988527657f1c1a1c1af5419e48fd",
+    "state": {
+      "version": 27,
+      "catalogRevision": 81,
+      "catalogIdentities": {},
+      "selectedExerciseIds": {
+        "r3.head-neck-upper-limbs": 418,
+        "r3.torso-pelvic-complex": 21,
+        "r3.lower-limbs": 440,
+        "p1|r10.anterior-lateral-lower-leg-dorsal-foot": 1029,
+        "p1|r10.upper-limbs": 1026,
+        "p1|r10.posterior-lower-leg-plantar-foot": 441,
+        "p1|r10.head-neck-scapular-chest-breathing": 444,
+        "p1|r10.lateral-knee-extensors": 110,
+        "p1|r10.back-abdominal-pelvic-floor": 917,
+        "p1|r10.gluteals-deep-hip": 825,
+        "p1|r10.hip-flexors-adductors": 242,
+        "p1|r10.posterior-thigh-knee-flexors": 17,
+        "p1|r10.medial-deep-knee-extensors": 121
+      },
+      "scores": {},
+      "outcomes": {},
+      "lastKeptExerciseIds": [
+        418,
+        21,
+        440
+      ],
+      "keptExerciseRootIdsBySelectionGroupId": {
+        "r3.head-neck-upper-limbs": [
+          418
+        ],
+        "r3.torso-pelvic-complex": [
+          21
+        ],
+        "r3.lower-limbs": [
+          440
+        ]
+      },
+      "exerciseScoreAdjustmentsBySelectionGroupId": {},
+      "exerciseScoreAdjustmentsByPhase": {},
+      "lastHardWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000
+      },
+      "lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000,
+        "CranialMuscles": 1792303200000
+      },
+      "legacyCompletedTrainingDayUnixMilliseconds": [],
+      "nextWorkoutSessionId": 3,
+      "activeWorkoutSession": {
+        "sessionId": 2,
+        "startedAtUnixMilliseconds": 1792303200000,
+        "endedAtUnixMilliseconds": 0,
+        "workoutMinutes": 10,
+        "modifiers": 1,
+        "isLightDay": false,
+        "status": "InProgress",
+        "startedBeforeLogging": false,
+        "keptExerciseIdsAtStart": [
+          21,
+          418,
+          440
+        ],
+        "keptExerciseRootIdsBySelectionGroupIdAtStart": {
+          "r3.head-neck-upper-limbs": [
+            418
+          ],
+          "r3.torso-pelvic-complex": [
+            21
+          ],
+          "r3.lower-limbs": [
+            440
+          ]
+        },
+        "initialSelections": [
+          {
+            "selectionGroupId": "r10.upper-limbs",
+            "coveredWorkoutGroupIds": [
+              "r10.upper-limbs"
+            ],
+            "rootExerciseId": 1026,
+            "rootExerciseName": "Alternating Teacup Arm Circles",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.back-abdominal-pelvic-floor",
+            "coveredWorkoutGroupIds": [
+              "r10.back-abdominal-pelvic-floor"
+            ],
+            "rootExerciseId": 917,
+            "rootExerciseName": "Standing Spinal Wave",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.posterior-thigh-knee-flexors",
+            "coveredWorkoutGroupIds": [
+              "r10.posterior-thigh-knee-flexors"
+            ],
+            "rootExerciseId": 17,
+            "rootExerciseName": "Alternating Toe Touch with Overhead Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.medial-deep-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r10.medial-deep-knee-extensors"
+            ],
+            "rootExerciseId": 121,
+            "rootExerciseName": "Alternating Forward Lunge",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+            "coveredWorkoutGroupIds": [
+              "r10.anterior-lateral-lower-leg-dorsal-foot"
+            ],
+            "rootExerciseId": 1029,
+            "rootExerciseName": "Alternating Heel Digs",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.posterior-lower-leg-plantar-foot",
+            "coveredWorkoutGroupIds": [
+              "r10.posterior-lower-leg-plantar-foot"
+            ],
+            "rootExerciseId": 441,
+            "rootExerciseName": "Hook Punches to Rope-Free Jumps",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.head-neck-scapular-chest-breathing",
+            "coveredWorkoutGroupIds": [
+              "r10.head-neck-scapular-chest-breathing"
+            ],
+            "rootExerciseId": 444,
+            "rootExerciseName": "Pogo Bounces with Fixed-Gaze Head Tilts",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.lateral-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r10.lateral-knee-extensors"
+            ],
+            "rootExerciseId": 110,
+            "rootExerciseName": "Squat Pulse",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.gluteals-deep-hip",
+            "coveredWorkoutGroupIds": [
+              "r10.gluteals-deep-hip"
+            ],
+            "rootExerciseId": 825,
+            "rootExerciseName": "Alternating Deadlift with Body Twist",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r10.hip-flexors-adductors",
+            "coveredWorkoutGroupIds": [
+              "r10.hip-flexors-adductors"
+            ],
+            "rootExerciseId": 242,
+            "rootExerciseName": "Jazz Square",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          }
+        ],
+        "selectionChanges": [],
+        "modifierChanges": [],
+        "durationChanges": [],
+        "blocks": [],
+        "decisions": []
+      },
+      "workoutHistory": [
+        {
+          "sessionId": 1,
+          "startedAtUnixMilliseconds": 1792303200000,
+          "endedAtUnixMilliseconds": 1792303200000,
+          "workoutMinutes": 3,
+          "modifiers": 0,
+          "isLightDay": false,
+          "status": "Completed",
+          "startedBeforeLogging": false,
+          "keptExerciseIdsAtStart": [],
+          "keptExerciseRootIdsBySelectionGroupIdAtStart": {},
+          "initialSelections": [
+            {
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "coveredWorkoutGroupIds": [
+                "r3.torso-pelvic-complex"
+              ],
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.lower-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.lower-limbs"
+              ],
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.head-neck-upper-limbs"
+              ],
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ],
+          "selectionChanges": [],
+          "modifierChanges": [],
+          "durationChanges": [],
+          "blocks": [
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.torso-pelvic-complex",
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "order": 1,
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "exerciseId": 21,
+              "exerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
+              "secondaryCanonicalGroups": [
+                "GlutealExtensors",
+                "SpinalExtensors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.lower-limbs",
+              "selectionGroupId": "r3.lower-limbs",
+              "order": 2,
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "exerciseId": 440,
+              "exerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+              "secondaryCanonicalGroups": [
+                "LateralKneeExtensors",
+                "GlutealExtensors",
+                "HipFlexors",
+                "CalfDeepPosteriorLegAndPlantarFoot",
+                "Soleus",
+                "Chest",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.head-neck-upper-limbs",
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "order": 3,
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "exerciseId": 418,
+              "exerciseName": "Look Between Fingers with Head Turns",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 1,
+              "primaryCanonicalGroup": "CranialMuscles",
+              "secondaryCanonicalGroups": [
+                "AnteriorLateralNeckAndHyoidMuscles",
+                "PosteriorNeckAndSuboccipitalMuscles",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            }
+          ],
+          "decisions": [
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceExerciseIds": [
+                21
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.lower-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceExerciseIds": [
+                440
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "sequenceExerciseIds": [
+                418
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ]
+        }
+      ],
+      "nextWorkoutExcludedExerciseIds": [],
+      "activeExtraSetSelectionGroupIds": [],
+      "activeSetCountsBySelectionGroupId": {
+        "r10.medial-deep-knee-extensors": 1,
+        "r10.posterior-thigh-knee-flexors": 1,
+        "r10.hip-flexors-adductors": 1,
+        "r10.gluteals-deep-hip": 1,
+        "r10.back-abdominal-pelvic-floor": 1,
+        "r10.lateral-knee-extensors": 1,
+        "r10.head-neck-scapular-chest-breathing": 1,
+        "r10.posterior-lower-leg-plantar-foot": 1,
+        "r10.upper-limbs": 1,
+        "r10.anterior-lateral-lower-leg-dorsal-foot": 1
+      },
+      "activeSelectionGroupOrder": [
+        "r10.anterior-lateral-lower-leg-dorsal-foot",
+        "r10.upper-limbs",
+        "r10.back-abdominal-pelvic-floor",
+        "r10.posterior-thigh-knee-flexors",
+        "r10.medial-deep-knee-extensors",
+        "r10.posterior-lower-leg-plantar-foot",
+        "r10.head-neck-scapular-chest-breathing",
+        "r10.lateral-knee-extensors",
+        "r10.gluteals-deep-hip",
+        "r10.hip-flexors-adductors"
+      ],
+      "activeDurationSelectionGroupIds": null,
+      "activeSimpleRoundSelectionGroupIds": [],
+      "activeModifierRetainedSelectionGroupIds": [],
+      "activeModifierProtectedSelectionGroupId": null,
+      "activeDirectionPartnerExerciseIds": {},
+      "activeFullSideRoundIds": [],
+      "pendingMovementGroupId": null,
+      "pendingMovementMillisecondsRemaining": 0,
+      "pendingMovementEndsAtUnixMilliseconds": 0,
+      "pendingMovementPausedByUser": false,
+      "pendingRestGroupId": null,
+      "pendingRestEndsAtUnixMilliseconds": 0,
+      "pendingRestMillisecondsRemaining": 0,
+      "pendingRestPausedByUser": false,
+      "pendingRestKept": false,
+      "lastWorkoutMinutes": 10,
+      "lastWorkoutModifiers": 1,
+      "activeCatalogRevision": 81,
+      "activeWorkoutMinutes": 10,
+      "activeWorkoutModifiers": 1,
+      "activeWorkoutIsLightDay": false,
+      "workoutCompleted": false,
+      "completionAcknowledged": false
+    },
+    "rounds": [
+      {
+        "id": "r10.anterior-lateral-lower-leg-dorsal-foot",
+        "displayName": "Anterior/lateral lower leg and dorsal foot",
+        "order": 1,
+        "canonicalGroups": [
+          "AnteriorLateralLowerLegAndDorsalFoot"
+        ]
+      },
+      {
+        "id": "r10.upper-limbs",
+        "displayName": "Upper limbs",
+        "order": 2,
+        "canonicalGroups": [
+          "ShoulderAdductorsAndExtensors",
+          "ElbowExtensors",
+          "ShoulderAbductors",
+          "ForearmFlexorsAndPronators",
+          "ElbowFlexors",
+          "ForearmExtensorsAndSupinators",
+          "RotatorCuff",
+          "IntrinsicHand"
+        ]
+      },
+      {
+        "id": "r10.back-abdominal-pelvic-floor",
+        "displayName": "Back, abdominal wall and pelvic floor",
+        "order": 3,
+        "canonicalGroups": [
+          "SpinalExtensors",
+          "AbdominalWall",
+          "DeepAndIntersegmentalBack",
+          "PelvicFloorAndPerineum"
+        ]
+      },
+      {
+        "id": "r10.posterior-thigh-knee-flexors",
+        "displayName": "Posterior thigh and knee flexors",
+        "order": 4,
+        "canonicalGroups": [
+          "PosteriorThighAndKneeFlexors"
+        ]
+      },
+      {
+        "id": "r10.medial-deep-knee-extensors",
+        "displayName": "Medial and deep knee extensors",
+        "order": 5,
+        "canonicalGroups": [
+          "MedialAndDeepKneeExtensors"
+        ]
+      },
+      {
+        "id": "r10.posterior-lower-leg-plantar-foot",
+        "displayName": "Posterior lower leg and plantar foot",
+        "order": 6,
+        "canonicalGroups": [
+          "CalfDeepPosteriorLegAndPlantarFoot",
+          "Soleus"
+        ]
+      },
+      {
+        "id": "r10.head-neck-scapular-chest-breathing",
+        "displayName": "Head, neck, scapular girdle, chest and breathing",
+        "order": 7,
+        "canonicalGroups": [
+          "ScapularGirdle",
+          "Chest",
+          "BreathingMuscles",
+          "PosteriorNeckAndSuboccipitalMuscles",
+          "CranialMuscles",
+          "AnteriorLateralNeckAndHyoidMuscles"
+        ]
+      },
+      {
+        "id": "r10.lateral-knee-extensors",
+        "displayName": "Lateral knee extensors",
+        "order": 8,
+        "canonicalGroups": [
+          "LateralKneeExtensors"
+        ]
+      },
+      {
+        "id": "r10.gluteals-deep-hip",
+        "displayName": "Gluteals and deep hip stabilizers",
+        "order": 9,
+        "canonicalGroups": [
+          "GlutealExtensors",
+          "HipAbductors",
+          "DeepHipRotators"
+        ]
+      },
+      {
+        "id": "r10.hip-flexors-adductors",
+        "displayName": "Hip flexors and adductors",
+        "order": 10,
+        "canonicalGroups": [
+          "MajorHipAdductors",
+          "HipFlexors",
+          "AccessoryHipAdductors"
+        ]
+      }
+    ],
+    "selectedIds": [
+      1029,
+      1026,
+      917,
+      17,
+      121,
+      441,
+      444,
+      110,
+      825,
+      242
+    ]
+  },
+  {
+    "minutes": 15,
+    "modifiers": 1,
+    "target": "r15.anterior-lateral-lower-leg-dorsal-foot",
+    "baselineCommit": "459bcb387574988527657f1c1a1c1af5419e48fd",
+    "state": {
+      "version": 27,
+      "catalogRevision": 81,
+      "catalogIdentities": {},
+      "selectedExerciseIds": {
+        "r3.head-neck-upper-limbs": 418,
+        "r3.torso-pelvic-complex": 21,
+        "r3.lower-limbs": 440,
+        "p1|r15.head-neck": 444,
+        "p1|r15.anterior-lateral-lower-leg-dorsal-foot": 1029,
+        "p1|r15.hip-flexors": 262,
+        "p1|r15.shoulder": 1026,
+        "p1|r15.abdominal-pelvic-floor": 825,
+        "p1|r15.arm-forearm-hand": 248,
+        "p1|r15.lateral-deep-hip-stabilizers": 654,
+        "p1|r15.back-spinal-stabilization": 917,
+        "p1|r15.posterior-lower-leg-plantar-foot": 458,
+        "p1|r15.gluteal-extensors": 146,
+        "p1|r15.lateral-knee-extensors": 1009,
+        "p1|r15.hip-adductors": 242,
+        "p1|r15.posterior-thigh-knee-flexors": 17,
+        "p1|r15.medial-deep-knee-extensors": 836
+      },
+      "scores": {},
+      "outcomes": {},
+      "lastKeptExerciseIds": [
+        418,
+        21,
+        440
+      ],
+      "keptExerciseRootIdsBySelectionGroupId": {
+        "r3.head-neck-upper-limbs": [
+          418
+        ],
+        "r3.torso-pelvic-complex": [
+          21
+        ],
+        "r3.lower-limbs": [
+          440
+        ]
+      },
+      "exerciseScoreAdjustmentsBySelectionGroupId": {},
+      "exerciseScoreAdjustmentsByPhase": {},
+      "lastHardWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000
+      },
+      "lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000,
+        "CranialMuscles": 1792303200000
+      },
+      "legacyCompletedTrainingDayUnixMilliseconds": [],
+      "nextWorkoutSessionId": 3,
+      "activeWorkoutSession": {
+        "sessionId": 2,
+        "startedAtUnixMilliseconds": 1792303200000,
+        "endedAtUnixMilliseconds": 0,
+        "workoutMinutes": 15,
+        "modifiers": 1,
+        "isLightDay": false,
+        "status": "InProgress",
+        "startedBeforeLogging": false,
+        "keptExerciseIdsAtStart": [
+          21,
+          418,
+          440
+        ],
+        "keptExerciseRootIdsBySelectionGroupIdAtStart": {
+          "r3.head-neck-upper-limbs": [
+            418
+          ],
+          "r3.torso-pelvic-complex": [
+            21
+          ],
+          "r3.lower-limbs": [
+            440
+          ]
+        },
+        "initialSelections": [
+          {
+            "selectionGroupId": "r15.shoulder",
+            "coveredWorkoutGroupIds": [
+              "r15.shoulder"
+            ],
+            "rootExerciseId": 1026,
+            "rootExerciseName": "Alternating Teacup Arm Circles",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.back-spinal-stabilization",
+            "coveredWorkoutGroupIds": [
+              "r15.back-spinal-stabilization"
+            ],
+            "rootExerciseId": 917,
+            "rootExerciseName": "Standing Spinal Wave",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.posterior-thigh-knee-flexors",
+            "coveredWorkoutGroupIds": [
+              "r15.posterior-thigh-knee-flexors"
+            ],
+            "rootExerciseId": 17,
+            "rootExerciseName": "Alternating Toe Touch with Overhead Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.posterior-lower-leg-plantar-foot",
+            "coveredWorkoutGroupIds": [
+              "r15.posterior-lower-leg-plantar-foot"
+            ],
+            "rootExerciseId": 458,
+            "rootExerciseName": "Single-Leg Rotational Hops",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 2,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.medial-deep-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r15.medial-deep-knee-extensors"
+            ],
+            "rootExerciseId": 836,
+            "rootExerciseName": "Alternating Side-Step Squat with Back Squeeze",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.head-neck",
+            "coveredWorkoutGroupIds": [
+              "r15.head-neck"
+            ],
+            "rootExerciseId": 444,
+            "rootExerciseName": "Pogo Bounces with Fixed-Gaze Head Tilts",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+            "coveredWorkoutGroupIds": [
+              "r15.anterior-lateral-lower-leg-dorsal-foot"
+            ],
+            "rootExerciseId": 1029,
+            "rootExerciseName": "Alternating Heel Digs",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.hip-flexors",
+            "coveredWorkoutGroupIds": [
+              "r15.hip-flexors"
+            ],
+            "rootExerciseId": 262,
+            "rootExerciseName": "Standing Bicycle Crunches",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.abdominal-pelvic-floor",
+            "coveredWorkoutGroupIds": [
+              "r15.abdominal-pelvic-floor"
+            ],
+            "rootExerciseId": 825,
+            "rootExerciseName": "Alternating Deadlift with Body Twist",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.arm-forearm-hand",
+            "coveredWorkoutGroupIds": [
+              "r15.arm-forearm-hand"
+            ],
+            "rootExerciseId": 248,
+            "rootExerciseName": "Alternating Side-Tap Palm Pushes",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.lateral-deep-hip-stabilizers",
+            "coveredWorkoutGroupIds": [
+              "r15.lateral-deep-hip-stabilizers"
+            ],
+            "rootExerciseId": 654,
+            "rootExerciseName": "Alternating Side Leg Lifts and Heel Curls",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.gluteal-extensors",
+            "coveredWorkoutGroupIds": [
+              "r15.gluteal-extensors"
+            ],
+            "rootExerciseId": 146,
+            "rootExerciseName": "Bodyweight Good Morning",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.lateral-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r15.lateral-knee-extensors"
+            ],
+            "rootExerciseId": 1009,
+            "rootExerciseName": "Lunge Sideways and Reach Both Arms Overhead",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.hip-adductors",
+            "coveredWorkoutGroupIds": [
+              "r15.hip-adductors"
+            ],
+            "rootExerciseId": 242,
+            "rootExerciseName": "Jazz Square",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          }
+        ],
+        "selectionChanges": [],
+        "modifierChanges": [],
+        "durationChanges": [],
+        "blocks": [],
+        "decisions": []
+      },
+      "workoutHistory": [
+        {
+          "sessionId": 1,
+          "startedAtUnixMilliseconds": 1792303200000,
+          "endedAtUnixMilliseconds": 1792303200000,
+          "workoutMinutes": 3,
+          "modifiers": 0,
+          "isLightDay": false,
+          "status": "Completed",
+          "startedBeforeLogging": false,
+          "keptExerciseIdsAtStart": [],
+          "keptExerciseRootIdsBySelectionGroupIdAtStart": {},
+          "initialSelections": [
+            {
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "coveredWorkoutGroupIds": [
+                "r3.torso-pelvic-complex"
+              ],
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.lower-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.lower-limbs"
+              ],
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.head-neck-upper-limbs"
+              ],
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ],
+          "selectionChanges": [],
+          "modifierChanges": [],
+          "durationChanges": [],
+          "blocks": [
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.torso-pelvic-complex",
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "order": 1,
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "exerciseId": 21,
+              "exerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
+              "secondaryCanonicalGroups": [
+                "GlutealExtensors",
+                "SpinalExtensors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.lower-limbs",
+              "selectionGroupId": "r3.lower-limbs",
+              "order": 2,
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "exerciseId": 440,
+              "exerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+              "secondaryCanonicalGroups": [
+                "LateralKneeExtensors",
+                "GlutealExtensors",
+                "HipFlexors",
+                "CalfDeepPosteriorLegAndPlantarFoot",
+                "Soleus",
+                "Chest",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.head-neck-upper-limbs",
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "order": 3,
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "exerciseId": 418,
+              "exerciseName": "Look Between Fingers with Head Turns",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 1,
+              "primaryCanonicalGroup": "CranialMuscles",
+              "secondaryCanonicalGroups": [
+                "AnteriorLateralNeckAndHyoidMuscles",
+                "PosteriorNeckAndSuboccipitalMuscles",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            }
+          ],
+          "decisions": [
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceExerciseIds": [
+                21
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.lower-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceExerciseIds": [
+                440
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "sequenceExerciseIds": [
+                418
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ]
+        }
+      ],
+      "nextWorkoutExcludedExerciseIds": [],
+      "activeExtraSetSelectionGroupIds": [],
+      "activeSetCountsBySelectionGroupId": {
+        "r15.medial-deep-knee-extensors": 1,
+        "r15.posterior-lower-leg-plantar-foot": 1,
+        "r15.posterior-thigh-knee-flexors": 1,
+        "r15.hip-adductors": 1,
+        "r15.lateral-knee-extensors": 1,
+        "r15.gluteal-extensors": 1,
+        "r15.back-spinal-stabilization": 1,
+        "r15.lateral-deep-hip-stabilizers": 1,
+        "r15.arm-forearm-hand": 1,
+        "r15.abdominal-pelvic-floor": 1,
+        "r15.shoulder": 1,
+        "r15.hip-flexors": 1,
+        "r15.anterior-lateral-lower-leg-dorsal-foot": 1,
+        "r15.head-neck": 1
+      },
+      "activeSelectionGroupOrder": [
+        "r15.anterior-lateral-lower-leg-dorsal-foot",
+        "r15.shoulder",
+        "r15.back-spinal-stabilization",
+        "r15.posterior-thigh-knee-flexors",
+        "r15.posterior-lower-leg-plantar-foot",
+        "r15.medial-deep-knee-extensors",
+        "r15.head-neck",
+        "r15.hip-flexors",
+        "r15.abdominal-pelvic-floor",
+        "r15.arm-forearm-hand",
+        "r15.lateral-deep-hip-stabilizers",
+        "r15.gluteal-extensors",
+        "r15.lateral-knee-extensors",
+        "r15.hip-adductors"
+      ],
+      "activeDurationSelectionGroupIds": null,
+      "activeSimpleRoundSelectionGroupIds": [],
+      "activeModifierRetainedSelectionGroupIds": [],
+      "activeModifierProtectedSelectionGroupId": null,
+      "activeDirectionPartnerExerciseIds": {},
+      "activeFullSideRoundIds": [],
+      "pendingMovementGroupId": null,
+      "pendingMovementMillisecondsRemaining": 0,
+      "pendingMovementEndsAtUnixMilliseconds": 0,
+      "pendingMovementPausedByUser": false,
+      "pendingRestGroupId": null,
+      "pendingRestEndsAtUnixMilliseconds": 0,
+      "pendingRestMillisecondsRemaining": 0,
+      "pendingRestPausedByUser": false,
+      "pendingRestKept": false,
+      "lastWorkoutMinutes": 15,
+      "lastWorkoutModifiers": 1,
+      "activeCatalogRevision": 81,
+      "activeWorkoutMinutes": 15,
+      "activeWorkoutModifiers": 1,
+      "activeWorkoutIsLightDay": false,
+      "workoutCompleted": false,
+      "completionAcknowledged": false
+    },
+    "rounds": [
+      {
+        "id": "r15.anterior-lateral-lower-leg-dorsal-foot",
+        "displayName": "Anterior/lateral lower leg and dorsal foot",
+        "order": 1,
+        "canonicalGroups": [
+          "AnteriorLateralLowerLegAndDorsalFoot"
+        ]
+      },
+      {
+        "id": "r15.shoulder",
+        "displayName": "Shoulder",
+        "order": 2,
+        "canonicalGroups": [
+          "ShoulderAdductorsAndExtensors",
+          "ShoulderAbductors",
+          "RotatorCuff"
+        ]
+      },
+      {
+        "id": "r15.back-spinal-stabilization",
+        "displayName": "Back and spinal stabilization",
+        "order": 3,
+        "canonicalGroups": [
+          "SpinalExtensors",
+          "DeepAndIntersegmentalBack"
+        ]
+      },
+      {
+        "id": "r15.posterior-thigh-knee-flexors",
+        "displayName": "Posterior thigh and knee flexors",
+        "order": 4,
+        "canonicalGroups": [
+          "PosteriorThighAndKneeFlexors"
+        ]
+      },
+      {
+        "id": "r15.posterior-lower-leg-plantar-foot.set1.block1",
+        "displayName": "Posterior lower leg and plantar foot",
+        "order": 5,
+        "canonicalGroups": [
+          "CalfDeepPosteriorLegAndPlantarFoot",
+          "Soleus"
+        ],
+        "selectionGroupId": "r15.posterior-lower-leg-plantar-foot",
+        "exerciseOverrideId": 458,
+        "sequenceBlockIndex": 0,
+        "sequenceBlockCount": 2,
+        "setNumber": 1,
+        "setCount": 1,
+        "sequenceSideCue": "ScreenRight",
+        "sequenceDirectionCue": "None",
+        "mirrorSequenceMedia": false,
+        "sequenceMediaSegment": "Full"
+      },
+      {
+        "id": "r15.posterior-lower-leg-plantar-foot.set1.block2",
+        "displayName": "Posterior lower leg and plantar foot",
+        "order": 6,
+        "canonicalGroups": [
+          "CalfDeepPosteriorLegAndPlantarFoot",
+          "Soleus"
+        ],
+        "selectionGroupId": "r15.posterior-lower-leg-plantar-foot",
+        "exerciseOverrideId": 458,
+        "sequenceBlockIndex": 1,
+        "sequenceBlockCount": 2,
+        "setNumber": 1,
+        "setCount": 1,
+        "sequenceSideCue": "ScreenLeft",
+        "sequenceDirectionCue": "None",
+        "mirrorSequenceMedia": true,
+        "sequenceMediaSegment": "Full"
+      },
+      {
+        "id": "r15.medial-deep-knee-extensors",
+        "displayName": "Medial and deep knee extensors",
+        "order": 7,
+        "canonicalGroups": [
+          "MedialAndDeepKneeExtensors"
+        ]
+      },
+      {
+        "id": "r15.head-neck",
+        "displayName": "Head and neck",
+        "order": 8,
+        "canonicalGroups": [
+          "PosteriorNeckAndSuboccipitalMuscles",
+          "CranialMuscles",
+          "AnteriorLateralNeckAndHyoidMuscles"
+        ]
+      },
+      {
+        "id": "r15.hip-flexors",
+        "displayName": "Hip flexors",
+        "order": 9,
+        "canonicalGroups": [
+          "HipFlexors"
+        ]
+      },
+      {
+        "id": "r15.abdominal-pelvic-floor",
+        "displayName": "Abdominal wall and pelvic floor",
+        "order": 10,
+        "canonicalGroups": [
+          "AbdominalWall",
+          "PelvicFloorAndPerineum"
+        ]
+      },
+      {
+        "id": "r15.arm-forearm-hand",
+        "displayName": "Arm, forearm and hand",
+        "order": 11,
+        "canonicalGroups": [
+          "ElbowExtensors",
+          "ForearmFlexorsAndPronators",
+          "ElbowFlexors",
+          "ForearmExtensorsAndSupinators",
+          "IntrinsicHand"
+        ]
+      },
+      {
+        "id": "r15.lateral-deep-hip-stabilizers",
+        "displayName": "Lateral and deep hip stabilizers",
+        "order": 12,
+        "canonicalGroups": [
+          "HipAbductors",
+          "DeepHipRotators"
+        ]
+      },
+      {
+        "id": "r15.gluteal-extensors",
+        "displayName": "Gluteal extensors",
+        "order": 13,
+        "canonicalGroups": [
+          "GlutealExtensors"
+        ]
+      },
+      {
+        "id": "r15.lateral-knee-extensors",
+        "displayName": "Lateral knee extensors",
+        "order": 14,
+        "canonicalGroups": [
+          "LateralKneeExtensors"
+        ]
+      },
+      {
+        "id": "r15.hip-adductors",
+        "displayName": "Hip adductors",
+        "order": 15,
+        "canonicalGroups": [
+          "MajorHipAdductors",
+          "AccessoryHipAdductors"
+        ]
+      }
+    ],
+    "selectedIds": [
+      1029,
+      1026,
+      917,
+      17,
+      458,
+      458,
+      836,
+      444,
+      262,
+      825,
+      248,
+      654,
+      146,
+      1009,
+      242
+    ]
+  },
+  {
+    "minutes": 15,
+    "modifiers": 513,
+    "target": "r15.head-neck",
+    "baselineCommit": "459bcb387574988527657f1c1a1c1af5419e48fd",
+    "state": {
+      "version": 27,
+      "catalogRevision": 81,
+      "catalogIdentities": {},
+      "selectedExerciseIds": {
+        "r3.head-neck-upper-limbs": 418,
+        "r3.torso-pelvic-complex": 21,
+        "r3.lower-limbs": 440,
+        "p513|r15.head-neck": 202,
+        "p513|r15.anterior-lateral-lower-leg-dorsal-foot": 1029,
+        "p513|r15.hip-flexors": 168,
+        "p513|r15.shoulder": 417,
+        "p513|r15.abdominal-pelvic-floor": 954,
+        "p513|r15.arm-forearm-hand": 204,
+        "p513|r15.lateral-deep-hip-stabilizers": 311,
+        "p513|r15.back-spinal-stabilization": 1021,
+        "p513|r15.posterior-lower-leg-plantar-foot": 428,
+        "p513|r15.gluteal-extensors": 251,
+        "p513|r15.lateral-knee-extensors": 836,
+        "p513|r15.hip-adductors": 105,
+        "p513|r15.posterior-thigh-knee-flexors": 17,
+        "p513|r15.medial-deep-knee-extensors": 174
+      },
+      "scores": {},
+      "outcomes": {},
+      "lastKeptExerciseIds": [
+        418,
+        21,
+        440
+      ],
+      "keptExerciseRootIdsBySelectionGroupId": {
+        "r3.head-neck-upper-limbs": [
+          418
+        ],
+        "r3.torso-pelvic-complex": [
+          21
+        ],
+        "r3.lower-limbs": [
+          440
+        ]
+      },
+      "exerciseScoreAdjustmentsBySelectionGroupId": {},
+      "exerciseScoreAdjustmentsByPhase": {},
+      "lastHardWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000
+      },
+      "lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000,
+        "CranialMuscles": 1792303200000
+      },
+      "legacyCompletedTrainingDayUnixMilliseconds": [],
+      "nextWorkoutSessionId": 3,
+      "activeWorkoutSession": {
+        "sessionId": 2,
+        "startedAtUnixMilliseconds": 1792303200000,
+        "endedAtUnixMilliseconds": 0,
+        "workoutMinutes": 15,
+        "modifiers": 513,
+        "isLightDay": false,
+        "status": "InProgress",
+        "startedBeforeLogging": false,
+        "keptExerciseIdsAtStart": [
+          21,
+          418,
+          440
+        ],
+        "keptExerciseRootIdsBySelectionGroupIdAtStart": {
+          "r3.head-neck-upper-limbs": [
+            418
+          ],
+          "r3.torso-pelvic-complex": [
+            21
+          ],
+          "r3.lower-limbs": [
+            440
+          ]
+        },
+        "initialSelections": [
+          {
+            "selectionGroupId": "r15.head-neck",
+            "coveredWorkoutGroupIds": [
+              "r15.head-neck"
+            ],
+            "rootExerciseId": 202,
+            "rootExerciseName": "Fixed-Gaze Head-Turn March",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.hip-flexors",
+            "coveredWorkoutGroupIds": [
+              "r15.hip-flexors"
+            ],
+            "rootExerciseId": 168,
+            "rootExerciseName": "Toy Soldier March",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.shoulder",
+            "coveredWorkoutGroupIds": [
+              "r15.shoulder"
+            ],
+            "rootExerciseId": 417,
+            "rootExerciseName": "Narrow-Stance Overhead-to-Toe Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.back-spinal-stabilization",
+            "coveredWorkoutGroupIds": [
+              "r15.back-spinal-stabilization"
+            ],
+            "rootExerciseId": 1021,
+            "rootExerciseName": "Standing Spinal Roll-Down",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.gluteal-extensors",
+            "coveredWorkoutGroupIds": [
+              "r15.gluteal-extensors"
+            ],
+            "rootExerciseId": 251,
+            "rootExerciseName": "Forward Fold to Overhead Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.posterior-thigh-knee-flexors",
+            "coveredWorkoutGroupIds": [
+              "r15.posterior-thigh-knee-flexors"
+            ],
+            "rootExerciseId": 17,
+            "rootExerciseName": "Alternating Toe Touch with Overhead Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.lateral-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r15.lateral-knee-extensors"
+            ],
+            "rootExerciseId": 836,
+            "rootExerciseName": "Alternating Side-Step Squat with Back Squeeze",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+            "coveredWorkoutGroupIds": [
+              "r15.anterior-lateral-lower-leg-dorsal-foot"
+            ],
+            "rootExerciseId": 1029,
+            "rootExerciseName": "Alternating Heel Digs",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.abdominal-pelvic-floor",
+            "coveredWorkoutGroupIds": [
+              "r15.abdominal-pelvic-floor"
+            ],
+            "rootExerciseId": 954,
+            "rootExerciseName": "Alternating Torso Rotation with Side Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.arm-forearm-hand",
+            "coveredWorkoutGroupIds": [
+              "r15.arm-forearm-hand"
+            ],
+            "rootExerciseId": 204,
+            "rootExerciseName": "Jab-Cross-Hook-Uppercut Combo",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 2,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.lateral-deep-hip-stabilizers",
+            "coveredWorkoutGroupIds": [
+              "r15.lateral-deep-hip-stabilizers"
+            ],
+            "rootExerciseId": 311,
+            "rootExerciseName": "Low-Impact Standing Jack",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.posterior-lower-leg-plantar-foot",
+            "coveredWorkoutGroupIds": [
+              "r15.posterior-lower-leg-plantar-foot"
+            ],
+            "rootExerciseId": 428,
+            "rootExerciseName": "Pogo Jumps with Arm Swing",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.hip-adductors",
+            "coveredWorkoutGroupIds": [
+              "r15.hip-adductors"
+            ],
+            "rootExerciseId": 105,
+            "rootExerciseName": "Wide Turned-Out Squat",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r15.medial-deep-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r15.medial-deep-knee-extensors"
+            ],
+            "rootExerciseId": 174,
+            "rootExerciseName": "Alternating Front Kick Toe Touch",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          }
+        ],
+        "selectionChanges": [],
+        "modifierChanges": [],
+        "durationChanges": [],
+        "blocks": [],
+        "decisions": []
+      },
+      "workoutHistory": [
+        {
+          "sessionId": 1,
+          "startedAtUnixMilliseconds": 1792303200000,
+          "endedAtUnixMilliseconds": 1792303200000,
+          "workoutMinutes": 3,
+          "modifiers": 0,
+          "isLightDay": false,
+          "status": "Completed",
+          "startedBeforeLogging": false,
+          "keptExerciseIdsAtStart": [],
+          "keptExerciseRootIdsBySelectionGroupIdAtStart": {},
+          "initialSelections": [
+            {
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "coveredWorkoutGroupIds": [
+                "r3.torso-pelvic-complex"
+              ],
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.lower-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.lower-limbs"
+              ],
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.head-neck-upper-limbs"
+              ],
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ],
+          "selectionChanges": [],
+          "modifierChanges": [],
+          "durationChanges": [],
+          "blocks": [
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.torso-pelvic-complex",
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "order": 1,
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "exerciseId": 21,
+              "exerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
+              "secondaryCanonicalGroups": [
+                "GlutealExtensors",
+                "SpinalExtensors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.lower-limbs",
+              "selectionGroupId": "r3.lower-limbs",
+              "order": 2,
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "exerciseId": 440,
+              "exerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+              "secondaryCanonicalGroups": [
+                "LateralKneeExtensors",
+                "GlutealExtensors",
+                "HipFlexors",
+                "CalfDeepPosteriorLegAndPlantarFoot",
+                "Soleus",
+                "Chest",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.head-neck-upper-limbs",
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "order": 3,
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "exerciseId": 418,
+              "exerciseName": "Look Between Fingers with Head Turns",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 1,
+              "primaryCanonicalGroup": "CranialMuscles",
+              "secondaryCanonicalGroups": [
+                "AnteriorLateralNeckAndHyoidMuscles",
+                "PosteriorNeckAndSuboccipitalMuscles",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            }
+          ],
+          "decisions": [
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceExerciseIds": [
+                21
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.lower-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceExerciseIds": [
+                440
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "sequenceExerciseIds": [
+                418
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ]
+        }
+      ],
+      "nextWorkoutExcludedExerciseIds": [],
+      "activeExtraSetSelectionGroupIds": [],
+      "activeSetCountsBySelectionGroupId": {
+        "r15.lateral-knee-extensors": 1,
+        "r15.medial-deep-knee-extensors": 1,
+        "r15.posterior-thigh-knee-flexors": 1,
+        "r15.hip-adductors": 1,
+        "r15.gluteal-extensors": 1,
+        "r15.posterior-lower-leg-plantar-foot": 1,
+        "r15.back-spinal-stabilization": 1,
+        "r15.lateral-deep-hip-stabilizers": 1,
+        "r15.arm-forearm-hand": 1,
+        "r15.abdominal-pelvic-floor": 1,
+        "r15.shoulder": 1,
+        "r15.hip-flexors": 1,
+        "r15.anterior-lateral-lower-leg-dorsal-foot": 1,
+        "r15.head-neck": 1
+      },
+      "activeSelectionGroupOrder": [
+        "r15.head-neck",
+        "r15.hip-flexors",
+        "r15.shoulder",
+        "r15.back-spinal-stabilization",
+        "r15.gluteal-extensors",
+        "r15.posterior-thigh-knee-flexors",
+        "r15.lateral-knee-extensors",
+        "r15.anterior-lateral-lower-leg-dorsal-foot",
+        "r15.abdominal-pelvic-floor",
+        "r15.arm-forearm-hand",
+        "r15.lateral-deep-hip-stabilizers",
+        "r15.posterior-lower-leg-plantar-foot",
+        "r15.hip-adductors",
+        "r15.medial-deep-knee-extensors"
+      ],
+      "activeDurationSelectionGroupIds": null,
+      "activeSimpleRoundSelectionGroupIds": [],
+      "activeModifierRetainedSelectionGroupIds": [],
+      "activeModifierProtectedSelectionGroupId": null,
+      "activeDirectionPartnerExerciseIds": {},
+      "activeFullSideRoundIds": [],
+      "pendingMovementGroupId": null,
+      "pendingMovementMillisecondsRemaining": 0,
+      "pendingMovementEndsAtUnixMilliseconds": 0,
+      "pendingMovementPausedByUser": false,
+      "pendingRestGroupId": null,
+      "pendingRestEndsAtUnixMilliseconds": 0,
+      "pendingRestMillisecondsRemaining": 0,
+      "pendingRestPausedByUser": false,
+      "pendingRestKept": false,
+      "lastWorkoutMinutes": 15,
+      "lastWorkoutModifiers": 513,
+      "activeCatalogRevision": 81,
+      "activeWorkoutMinutes": 15,
+      "activeWorkoutModifiers": 513,
+      "activeWorkoutIsLightDay": false,
+      "workoutCompleted": false,
+      "completionAcknowledged": false
+    },
+    "rounds": [
+      {
+        "id": "r15.head-neck",
+        "displayName": "Head and neck",
+        "order": 1,
+        "canonicalGroups": [
+          "PosteriorNeckAndSuboccipitalMuscles",
+          "CranialMuscles",
+          "AnteriorLateralNeckAndHyoidMuscles"
+        ]
+      },
+      {
+        "id": "r15.hip-flexors",
+        "displayName": "Hip flexors",
+        "order": 2,
+        "canonicalGroups": [
+          "HipFlexors"
+        ]
+      },
+      {
+        "id": "r15.shoulder",
+        "displayName": "Shoulder",
+        "order": 3,
+        "canonicalGroups": [
+          "ShoulderAdductorsAndExtensors",
+          "ShoulderAbductors",
+          "RotatorCuff"
+        ]
+      },
+      {
+        "id": "r15.back-spinal-stabilization",
+        "displayName": "Back and spinal stabilization",
+        "order": 4,
+        "canonicalGroups": [
+          "SpinalExtensors",
+          "DeepAndIntersegmentalBack"
+        ]
+      },
+      {
+        "id": "r15.gluteal-extensors",
+        "displayName": "Gluteal extensors",
+        "order": 5,
+        "canonicalGroups": [
+          "GlutealExtensors"
+        ]
+      },
+      {
+        "id": "r15.posterior-thigh-knee-flexors",
+        "displayName": "Posterior thigh and knee flexors",
+        "order": 6,
+        "canonicalGroups": [
+          "PosteriorThighAndKneeFlexors"
+        ]
+      },
+      {
+        "id": "r15.lateral-knee-extensors",
+        "displayName": "Lateral knee extensors",
+        "order": 7,
+        "canonicalGroups": [
+          "LateralKneeExtensors"
+        ]
+      },
+      {
+        "id": "r15.anterior-lateral-lower-leg-dorsal-foot",
+        "displayName": "Anterior/lateral lower leg and dorsal foot",
+        "order": 8,
+        "canonicalGroups": [
+          "AnteriorLateralLowerLegAndDorsalFoot"
+        ]
+      },
+      {
+        "id": "r15.abdominal-pelvic-floor",
+        "displayName": "Abdominal wall and pelvic floor",
+        "order": 9,
+        "canonicalGroups": [
+          "AbdominalWall",
+          "PelvicFloorAndPerineum"
+        ]
+      },
+      {
+        "id": "r15.arm-forearm-hand.set1.block1",
+        "displayName": "Arm, forearm and hand",
+        "order": 10,
+        "canonicalGroups": [
+          "ElbowExtensors",
+          "ForearmFlexorsAndPronators",
+          "ElbowFlexors",
+          "ForearmExtensorsAndSupinators",
+          "IntrinsicHand"
+        ],
+        "selectionGroupId": "r15.arm-forearm-hand",
+        "exerciseOverrideId": 204,
+        "sequenceBlockIndex": 0,
+        "sequenceBlockCount": 2,
+        "setNumber": 1,
+        "setCount": 1,
+        "sequenceSideCue": "ShownLeadStance",
+        "sequenceDirectionCue": "None",
+        "mirrorSequenceMedia": false,
+        "sequenceMediaSegment": "Full"
+      },
+      {
+        "id": "r15.arm-forearm-hand.set1.block2",
+        "displayName": "Arm, forearm and hand",
+        "order": 11,
+        "canonicalGroups": [
+          "ElbowExtensors",
+          "ForearmFlexorsAndPronators",
+          "ElbowFlexors",
+          "ForearmExtensorsAndSupinators",
+          "IntrinsicHand"
+        ],
+        "selectionGroupId": "r15.arm-forearm-hand",
+        "exerciseOverrideId": 204,
+        "sequenceBlockIndex": 1,
+        "sequenceBlockCount": 2,
+        "setNumber": 1,
+        "setCount": 1,
+        "sequenceSideCue": "OppositeLeadStance",
+        "sequenceDirectionCue": "None",
+        "mirrorSequenceMedia": true,
+        "sequenceMediaSegment": "Full"
+      },
+      {
+        "id": "r15.lateral-deep-hip-stabilizers",
+        "displayName": "Lateral and deep hip stabilizers",
+        "order": 12,
+        "canonicalGroups": [
+          "HipAbductors",
+          "DeepHipRotators"
+        ]
+      },
+      {
+        "id": "r15.posterior-lower-leg-plantar-foot",
+        "displayName": "Posterior lower leg and plantar foot",
+        "order": 13,
+        "canonicalGroups": [
+          "CalfDeepPosteriorLegAndPlantarFoot",
+          "Soleus"
+        ]
+      },
+      {
+        "id": "r15.hip-adductors",
+        "displayName": "Hip adductors",
+        "order": 14,
+        "canonicalGroups": [
+          "MajorHipAdductors",
+          "AccessoryHipAdductors"
+        ]
+      },
+      {
+        "id": "r15.medial-deep-knee-extensors",
+        "displayName": "Medial and deep knee extensors",
+        "order": 15,
+        "canonicalGroups": [
+          "MedialAndDeepKneeExtensors"
+        ]
+      }
+    ],
+    "selectedIds": [
+      202,
+      168,
+      417,
+      1021,
+      251,
+      17,
+      836,
+      1029,
+      954,
+      204,
+      204,
+      311,
+      428,
+      105,
+      174
+    ]
+  },
+  {
+    "minutes": 30,
+    "modifiers": 0,
+    "target": null,
+    "baselineCommit": "459bcb387574988527657f1c1a1c1af5419e48fd",
+    "state": {
+      "version": 27,
+      "catalogRevision": 81,
+      "catalogIdentities": {},
+      "selectedExerciseIds": {
+        "r3.head-neck-upper-limbs": 418,
+        "r3.torso-pelvic-complex": 21,
+        "r3.lower-limbs": 440,
+        "r30.pelvic-floor-perineum": 918,
+        "r30.intrinsic-hand": 290,
+        "r30.anterior-lateral-neck-hyoid": 307,
+        "r30.cranial-muscles": 497,
+        "r30.posterior-neck-suboccipital": 307,
+        "r30.accessory-hip-adductors": 1009,
+        "r30.rotator-cuff": 683,
+        "r30.forearm-extensors-supinators": 573,
+        "r30.breathing-muscles": 518,
+        "r30.elbow-flexors": 1030,
+        "r30.deep-intersegmental-back": 1014,
+        "r30.forearm-flexors-pronators": 238,
+        "r30.shoulder-abductors": 480,
+        "r30.deep-hip-rotators": 453,
+        "r30.anterior-lateral-lower-leg-dorsal-foot": 191,
+        "r30.hip-flexors": 1029,
+        "r30.elbow-extensors": 237,
+        "r30.chest": 712,
+        "r30.hip-abductors": 436,
+        "r30.abdominal-wall": 1017,
+        "r30.shoulder-adductors-extensors": 525,
+        "r30.scapular-girdle": 588,
+        "r30.soleus": 430,
+        "r30.calf-deep-posterior-leg-plantar-foot": 284,
+        "r30.spinal-extensors": 1021,
+        "r30.gluteal-extensors": 146,
+        "r30.lateral-knee-extensors": 150,
+        "r30.major-hip-adductors": 242,
+        "r30.posterior-thigh-knee-flexors": 17,
+        "r30.medial-deep-knee-extensors": 110
+      },
+      "scores": {},
+      "outcomes": {},
+      "lastKeptExerciseIds": [
+        418,
+        21,
+        440
+      ],
+      "keptExerciseRootIdsBySelectionGroupId": {
+        "r3.head-neck-upper-limbs": [
+          418
+        ],
+        "r3.torso-pelvic-complex": [
+          21
+        ],
+        "r3.lower-limbs": [
+          440
+        ]
+      },
+      "exerciseScoreAdjustmentsBySelectionGroupId": {},
+      "exerciseScoreAdjustmentsByPhase": {},
+      "lastHardWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000
+      },
+      "lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle": {
+        "PosteriorThighAndKneeFlexors": 1792303200000,
+        "MedialAndDeepKneeExtensors": 1792303200000,
+        "CranialMuscles": 1792303200000
+      },
+      "legacyCompletedTrainingDayUnixMilliseconds": [],
+      "nextWorkoutSessionId": 3,
+      "activeWorkoutSession": {
+        "sessionId": 2,
+        "startedAtUnixMilliseconds": 1792303200000,
+        "endedAtUnixMilliseconds": 0,
+        "workoutMinutes": 30,
+        "modifiers": 0,
+        "isLightDay": false,
+        "status": "InProgress",
+        "startedBeforeLogging": false,
+        "keptExerciseIdsAtStart": [
+          21,
+          418,
+          440
+        ],
+        "keptExerciseRootIdsBySelectionGroupIdAtStart": {
+          "r3.head-neck-upper-limbs": [
+            418
+          ],
+          "r3.torso-pelvic-complex": [
+            21
+          ],
+          "r3.lower-limbs": [
+            440
+          ]
+        },
+        "initialSelections": [
+          {
+            "selectionGroupId": "r30.intrinsic-hand",
+            "coveredWorkoutGroupIds": [
+              "r30.intrinsic-hand"
+            ],
+            "rootExerciseId": 290,
+            "rootExerciseName": "Thumb and Little-Finger Switches",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.cranial-muscles",
+            "coveredWorkoutGroupIds": [
+              "r30.cranial-muscles"
+            ],
+            "rootExerciseId": 497,
+            "rootExerciseName": "Eyebrow Raise",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.forearm-extensors-supinators",
+            "coveredWorkoutGroupIds": [
+              "r30.forearm-extensors-supinators"
+            ],
+            "rootExerciseId": 573,
+            "rootExerciseName": "Backs-of-Hands Wrist Stretch",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.breathing-muscles",
+            "coveredWorkoutGroupIds": [
+              "r30.breathing-muscles"
+            ],
+            "rootExerciseId": 518,
+            "rootExerciseName": "Standing Throat Hee Laughter",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.elbow-flexors",
+            "coveredWorkoutGroupIds": [
+              "r30.elbow-flexors"
+            ],
+            "rootExerciseId": 1030,
+            "rootExerciseName": "Reverse Rowing with Knee Bends",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.forearm-flexors-pronators",
+            "coveredWorkoutGroupIds": [
+              "r30.forearm-flexors-pronators"
+            ],
+            "rootExerciseId": 238,
+            "rootExerciseName": "Prayer-Hand Stretch",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.shoulder-abductors",
+            "coveredWorkoutGroupIds": [
+              "r30.shoulder-abductors"
+            ],
+            "rootExerciseId": 480,
+            "rootExerciseName": "Three-Part Arm Inhale with Forceful Fold Exhale",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.chest",
+            "coveredWorkoutGroupIds": [
+              "r30.chest"
+            ],
+            "rootExerciseId": 712,
+            "rootExerciseName": "Standing Arms-Back Chest-Opener Hold",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.spinal-extensors",
+            "coveredWorkoutGroupIds": [
+              "r30.spinal-extensors"
+            ],
+            "rootExerciseId": 1021,
+            "rootExerciseName": "Standing Spinal Roll-Down",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.posterior-thigh-knee-flexors",
+            "coveredWorkoutGroupIds": [
+              "r30.posterior-thigh-knee-flexors"
+            ],
+            "rootExerciseId": 17,
+            "rootExerciseName": "Alternating Toe Touch with Overhead Reach",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.anterior-lateral-neck-hyoid",
+            "coveredWorkoutGroupIds": [
+              "r30.anterior-lateral-neck-hyoid",
+              "r30.posterior-neck-suboccipital"
+            ],
+            "rootExerciseId": 307,
+            "rootExerciseName": "Self-Resisted Neck Flexion Isometric",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 2,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.lateral-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r30.lateral-knee-extensors"
+            ],
+            "rootExerciseId": 150,
+            "rootExerciseName": "Side-to-Side Lunge",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.pelvic-floor-perineum",
+            "coveredWorkoutGroupIds": [
+              "r30.pelvic-floor-perineum"
+            ],
+            "rootExerciseId": 918,
+            "rootExerciseName": "Standing Pelvic-Floor Slow Squeeze and Release",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.accessory-hip-adductors",
+            "coveredWorkoutGroupIds": [
+              "r30.accessory-hip-adductors"
+            ],
+            "rootExerciseId": 1009,
+            "rootExerciseName": "Lunge Sideways and Reach Both Arms Overhead",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.rotator-cuff",
+            "coveredWorkoutGroupIds": [
+              "r30.rotator-cuff"
+            ],
+            "rootExerciseId": 683,
+            "rootExerciseName": "Alternating Palm-Up Shoulder Rotations",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.deep-intersegmental-back",
+            "coveredWorkoutGroupIds": [
+              "r30.deep-intersegmental-back"
+            ],
+            "rootExerciseId": 1014,
+            "rootExerciseName": "Step Forward, Round Back and Reach Both Hands",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.deep-hip-rotators",
+            "coveredWorkoutGroupIds": [
+              "r30.deep-hip-rotators"
+            ],
+            "rootExerciseId": 453,
+            "rootExerciseName": "Ski Twists",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.anterior-lateral-lower-leg-dorsal-foot",
+            "coveredWorkoutGroupIds": [
+              "r30.anterior-lateral-lower-leg-dorsal-foot"
+            ],
+            "rootExerciseId": 191,
+            "rootExerciseName": "Unsupported Standing Toe Raises",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.hip-flexors",
+            "coveredWorkoutGroupIds": [
+              "r30.hip-flexors"
+            ],
+            "rootExerciseId": 1029,
+            "rootExerciseName": "Alternating Heel Digs",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.elbow-extensors",
+            "coveredWorkoutGroupIds": [
+              "r30.elbow-extensors"
+            ],
+            "rootExerciseId": 237,
+            "rootExerciseName": "Standing Overhead Elbow Extensions",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.hip-abductors",
+            "coveredWorkoutGroupIds": [
+              "r30.hip-abductors"
+            ],
+            "rootExerciseId": 436,
+            "rootExerciseName": "Punch Jacks",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.abdominal-wall",
+            "coveredWorkoutGroupIds": [
+              "r30.abdominal-wall"
+            ],
+            "rootExerciseId": 1017,
+            "rootExerciseName": "Scoop Torso Side to Side with Alternating Heel Curls",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.shoulder-adductors-extensors",
+            "coveredWorkoutGroupIds": [
+              "r30.shoulder-adductors-extensors"
+            ],
+            "rootExerciseId": 525,
+            "rootExerciseName": "Front Lat-Spread Posing",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.scapular-girdle",
+            "coveredWorkoutGroupIds": [
+              "r30.scapular-girdle"
+            ],
+            "rootExerciseId": 588,
+            "rootExerciseName": "Belly-Dance Alternating Shoulder Rolls",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.soleus",
+            "coveredWorkoutGroupIds": [
+              "r30.soleus"
+            ],
+            "rootExerciseId": 430,
+            "rootExerciseName": "Butt-Kick Run in Place",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.calf-deep-posterior-leg-plantar-foot",
+            "coveredWorkoutGroupIds": [
+              "r30.calf-deep-posterior-leg-plantar-foot"
+            ],
+            "rootExerciseId": 284,
+            "rootExerciseName": "Side-to-Side Ankle Rocks",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.gluteal-extensors",
+            "coveredWorkoutGroupIds": [
+              "r30.gluteal-extensors"
+            ],
+            "rootExerciseId": 146,
+            "rootExerciseName": "Bodyweight Good Morning",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.major-hip-adductors",
+            "coveredWorkoutGroupIds": [
+              "r30.major-hip-adductors"
+            ],
+            "rootExerciseId": 242,
+            "rootExerciseName": "Jazz Square",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          },
+          {
+            "selectionGroupId": "r30.medial-deep-knee-extensors",
+            "coveredWorkoutGroupIds": [
+              "r30.medial-deep-knee-extensors"
+            ],
+            "rootExerciseId": 110,
+            "rootExerciseName": "Squat Pulse",
+            "selectionScoreAtStart": 0,
+            "sequenceBlockCount": 1,
+            "setCount": 1,
+            "wasKeptAtWorkoutStart": false
+          }
+        ],
+        "selectionChanges": [],
+        "modifierChanges": [],
+        "durationChanges": [],
+        "blocks": [],
+        "decisions": []
+      },
+      "workoutHistory": [
+        {
+          "sessionId": 1,
+          "startedAtUnixMilliseconds": 1792303200000,
+          "endedAtUnixMilliseconds": 1792303200000,
+          "workoutMinutes": 3,
+          "modifiers": 0,
+          "isLightDay": false,
+          "status": "Completed",
+          "startedBeforeLogging": false,
+          "keptExerciseIdsAtStart": [],
+          "keptExerciseRootIdsBySelectionGroupIdAtStart": {},
+          "initialSelections": [
+            {
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "coveredWorkoutGroupIds": [
+                "r3.torso-pelvic-complex"
+              ],
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.lower-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.lower-limbs"
+              ],
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "coveredWorkoutGroupIds": [
+                "r3.head-neck-upper-limbs"
+              ],
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "selectionScoreAtStart": 0,
+              "sequenceBlockCount": 1,
+              "setCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ],
+          "selectionChanges": [],
+          "modifierChanges": [],
+          "durationChanges": [],
+          "blocks": [
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.torso-pelvic-complex",
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "order": 1,
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "exerciseId": 21,
+              "exerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
+              "secondaryCanonicalGroups": [
+                "GlutealExtensors",
+                "SpinalExtensors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.lower-limbs",
+              "selectionGroupId": "r3.lower-limbs",
+              "order": 2,
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "exerciseId": 440,
+              "exerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 2,
+              "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+              "secondaryCanonicalGroups": [
+                "LateralKneeExtensors",
+                "GlutealExtensors",
+                "HipFlexors",
+                "CalfDeepPosteriorLegAndPlantarFoot",
+                "Soleus",
+                "Chest",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            },
+            {
+              "completedAtUnixMilliseconds": 1792303200000,
+              "workoutGroupId": "r3.head-neck-upper-limbs",
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "order": 3,
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "exerciseId": 418,
+              "exerciseName": "Look Between Fingers with Head Turns",
+              "sequenceBlockNumber": 1,
+              "sequenceBlockCount": 1,
+              "setNumber": 1,
+              "setCount": 1,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full",
+              "muscularDemand": 1,
+              "primaryCanonicalGroup": "CranialMuscles",
+              "secondaryCanonicalGroups": [
+                "AnteriorLateralNeckAndHyoidMuscles",
+                "PosteriorNeckAndSuboccipitalMuscles",
+                "ShoulderAbductors"
+              ],
+              "wasSequenceKeptAtWorkoutStart": false
+            }
+          ],
+          "decisions": [
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.torso-pelvic-complex",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 21,
+              "rootExerciseName": "Alternating Single-Leg Hinge with Forward Reach",
+              "sequenceExerciseIds": [
+                21
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.lower-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 440,
+              "rootExerciseName": "Hook Punches to Tuck Jumps",
+              "sequenceExerciseIds": [
+                440
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            },
+            {
+              "decidedAtUnixMilliseconds": 1792303200000,
+              "selectionGroupId": "r3.head-neck-upper-limbs",
+              "exercisePhase": "Warmup",
+              "rootExerciseId": 418,
+              "rootExerciseName": "Look Between Fingers with Head Turns",
+              "sequenceExerciseIds": [
+                418
+              ],
+              "outcome": "tick",
+              "selectionScoreBeforeDecision": 0,
+              "completedBlockCount": 1,
+              "plannedBlockCount": 1,
+              "wasKeptAtWorkoutStart": false
+            }
+          ]
+        }
+      ],
+      "nextWorkoutExcludedExerciseIds": [],
+      "activeExtraSetSelectionGroupIds": [],
+      "activeSetCountsBySelectionGroupId": {
+        "r30.lateral-knee-extensors": 1,
+        "r30.anterior-lateral-neck-hyoid": 1,
+        "r30.medial-deep-knee-extensors": 1,
+        "r30.posterior-thigh-knee-flexors": 1,
+        "r30.major-hip-adductors": 1,
+        "r30.gluteal-extensors": 1,
+        "r30.spinal-extensors": 1,
+        "r30.calf-deep-posterior-leg-plantar-foot": 1,
+        "r30.soleus": 1,
+        "r30.scapular-girdle": 1,
+        "r30.shoulder-adductors-extensors": 1,
+        "r30.abdominal-wall": 1,
+        "r30.hip-abductors": 1,
+        "r30.chest": 1,
+        "r30.elbow-extensors": 1,
+        "r30.hip-flexors": 1,
+        "r30.anterior-lateral-lower-leg-dorsal-foot": 1,
+        "r30.deep-hip-rotators": 1,
+        "r30.shoulder-abductors": 1,
+        "r30.forearm-flexors-pronators": 1,
+        "r30.deep-intersegmental-back": 1,
+        "r30.elbow-flexors": 1,
+        "r30.breathing-muscles": 1,
+        "r30.forearm-extensors-supinators": 1,
+        "r30.rotator-cuff": 1,
+        "r30.accessory-hip-adductors": 1,
+        "r30.cranial-muscles": 1,
+        "r30.intrinsic-hand": 1,
+        "r30.pelvic-floor-perineum": 1
+      },
+      "activeSelectionGroupOrder": [],
+      "activeDurationSelectionGroupIds": null,
+      "activeSimpleRoundSelectionGroupIds": [],
+      "activeModifierRetainedSelectionGroupIds": [],
+      "activeModifierProtectedSelectionGroupId": null,
+      "activeDirectionPartnerExerciseIds": {},
+      "activeFullSideRoundIds": [],
+      "pendingMovementGroupId": null,
+      "pendingMovementMillisecondsRemaining": 0,
+      "pendingMovementEndsAtUnixMilliseconds": 0,
+      "pendingMovementPausedByUser": false,
+      "pendingRestGroupId": null,
+      "pendingRestEndsAtUnixMilliseconds": 0,
+      "pendingRestMillisecondsRemaining": 0,
+      "pendingRestPausedByUser": false,
+      "pendingRestKept": false,
+      "lastWorkoutMinutes": 30,
+      "lastWorkoutModifiers": 0,
+      "activeCatalogRevision": 81,
+      "activeWorkoutMinutes": 30,
+      "activeWorkoutModifiers": 0,
+      "activeWorkoutIsLightDay": false,
+      "workoutCompleted": false,
+      "completionAcknowledged": false
+    },
+    "rounds": [
+      {
+        "id": "r30.intrinsic-hand",
+        "displayName": "Intrinsic hand",
+        "order": 1,
+        "canonicalGroups": [
+          "IntrinsicHand"
+        ]
+      },
+      {
+        "id": "r30.cranial-muscles",
+        "displayName": "Cranial muscles",
+        "order": 2,
+        "canonicalGroups": [
+          "CranialMuscles"
+        ]
+      },
+      {
+        "id": "r30.forearm-extensors-supinators",
+        "displayName": "Forearm extensors and supinators",
+        "order": 3,
+        "canonicalGroups": [
+          "ForearmExtensorsAndSupinators"
+        ]
+      },
+      {
+        "id": "r30.breathing-muscles",
+        "displayName": "Breathing muscles",
+        "order": 4,
+        "canonicalGroups": [
+          "BreathingMuscles"
+        ]
+      },
+      {
+        "id": "r30.elbow-flexors",
+        "displayName": "Elbow flexors",
+        "order": 5,
+        "canonicalGroups": [
+          "ElbowFlexors"
+        ]
+      },
+      {
+        "id": "r30.forearm-flexors-pronators",
+        "displayName": "Forearm flexors and pronators",
+        "order": 6,
+        "canonicalGroups": [
+          "ForearmFlexorsAndPronators"
+        ]
+      },
+      {
+        "id": "r30.shoulder-abductors",
+        "displayName": "Shoulder abductors",
+        "order": 7,
+        "canonicalGroups": [
+          "ShoulderAbductors"
+        ]
+      },
+      {
+        "id": "r30.chest",
+        "displayName": "Chest",
+        "order": 8,
+        "canonicalGroups": [
+          "Chest"
+        ]
+      },
+      {
+        "id": "r30.spinal-extensors",
+        "displayName": "Spinal extensors",
+        "order": 9,
+        "canonicalGroups": [
+          "SpinalExtensors"
+        ]
+      },
+      {
+        "id": "r30.posterior-thigh-knee-flexors",
+        "displayName": "Posterior thigh and knee flexors",
+        "order": 10,
+        "canonicalGroups": [
+          "PosteriorThighAndKneeFlexors"
+        ]
+      },
+      {
+        "id": "r30.anterior-lateral-neck-hyoid.set1.block1",
+        "displayName": "Anterior/lateral neck and hyoid muscles",
+        "order": 11,
+        "canonicalGroups": [
+          "AnteriorLateralNeckAndHyoidMuscles"
+        ],
+        "selectionGroupId": "r30.anterior-lateral-neck-hyoid",
+        "exerciseOverrideId": 307,
+        "sequenceBlockIndex": 0,
+        "sequenceBlockCount": 2,
+        "setNumber": 1,
+        "setCount": 1,
+        "sequenceSideCue": "None",
+        "sequenceDirectionCue": "None",
+        "mirrorSequenceMedia": false,
+        "sequenceMediaSegment": "Full"
+      },
+      {
+        "id": "r30.anterior-lateral-neck-hyoid.set1.block2",
+        "displayName": "Posterior neck and suboccipital muscles",
+        "order": 12,
+        "canonicalGroups": [
+          "PosteriorNeckAndSuboccipitalMuscles"
+        ],
+        "selectionGroupId": "r30.anterior-lateral-neck-hyoid",
+        "exerciseOverrideId": 310,
+        "sequenceBlockIndex": 1,
+        "sequenceBlockCount": 2,
+        "setNumber": 1,
+        "setCount": 1,
+        "sequenceSideCue": "None",
+        "sequenceDirectionCue": "None",
+        "mirrorSequenceMedia": false,
+        "sequenceMediaSegment": "Full"
+      },
+      {
+        "id": "r30.lateral-knee-extensors",
+        "displayName": "Lateral knee extensors",
+        "order": 13,
+        "canonicalGroups": [
+          "LateralKneeExtensors"
+        ]
+      },
+      {
+        "id": "r30.pelvic-floor-perineum",
+        "displayName": "Pelvic floor and perineum",
+        "order": 14,
+        "canonicalGroups": [
+          "PelvicFloorAndPerineum"
+        ]
+      },
+      {
+        "id": "r30.accessory-hip-adductors",
+        "displayName": "Accessory hip adductors",
+        "order": 15,
+        "canonicalGroups": [
+          "AccessoryHipAdductors"
+        ]
+      },
+      {
+        "id": "r30.rotator-cuff",
+        "displayName": "Rotator cuff",
+        "order": 16,
+        "canonicalGroups": [
+          "RotatorCuff"
+        ]
+      },
+      {
+        "id": "r30.deep-intersegmental-back",
+        "displayName": "Deep and intersegmental back",
+        "order": 17,
+        "canonicalGroups": [
+          "DeepAndIntersegmentalBack"
+        ]
+      },
+      {
+        "id": "r30.deep-hip-rotators",
+        "displayName": "Deep hip rotators",
+        "order": 18,
+        "canonicalGroups": [
+          "DeepHipRotators"
+        ]
+      },
+      {
+        "id": "r30.anterior-lateral-lower-leg-dorsal-foot",
+        "displayName": "Anterior/lateral lower leg and dorsal foot",
+        "order": 19,
+        "canonicalGroups": [
+          "AnteriorLateralLowerLegAndDorsalFoot"
+        ]
+      },
+      {
+        "id": "r30.hip-flexors",
+        "displayName": "Hip flexors",
+        "order": 20,
+        "canonicalGroups": [
+          "HipFlexors"
+        ]
+      },
+      {
+        "id": "r30.elbow-extensors",
+        "displayName": "Elbow extensors",
+        "order": 21,
+        "canonicalGroups": [
+          "ElbowExtensors"
+        ]
+      },
+      {
+        "id": "r30.hip-abductors",
+        "displayName": "Hip abductors",
+        "order": 22,
+        "canonicalGroups": [
+          "HipAbductors"
+        ]
+      },
+      {
+        "id": "r30.abdominal-wall",
+        "displayName": "Abdominal wall",
+        "order": 23,
+        "canonicalGroups": [
+          "AbdominalWall"
+        ]
+      },
+      {
+        "id": "r30.shoulder-adductors-extensors",
+        "displayName": "Shoulder adductors and extensors",
+        "order": 24,
+        "canonicalGroups": [
+          "ShoulderAdductorsAndExtensors"
+        ]
+      },
+      {
+        "id": "r30.scapular-girdle",
+        "displayName": "Scapular girdle",
+        "order": 25,
+        "canonicalGroups": [
+          "ScapularGirdle"
+        ]
+      },
+      {
+        "id": "r30.soleus",
+        "displayName": "Soleus",
+        "order": 26,
+        "canonicalGroups": [
+          "Soleus"
+        ]
+      },
+      {
+        "id": "r30.calf-deep-posterior-leg-plantar-foot",
+        "displayName": "Calf, deep posterior leg and plantar foot",
+        "order": 27,
+        "canonicalGroups": [
+          "CalfDeepPosteriorLegAndPlantarFoot"
+        ]
+      },
+      {
+        "id": "r30.gluteal-extensors",
+        "displayName": "Gluteal extensors",
+        "order": 28,
+        "canonicalGroups": [
+          "GlutealExtensors"
+        ]
+      },
+      {
+        "id": "r30.major-hip-adductors",
+        "displayName": "Major hip adductors",
+        "order": 29,
+        "canonicalGroups": [
+          "MajorHipAdductors"
+        ]
+      },
+      {
+        "id": "r30.medial-deep-knee-extensors",
+        "displayName": "Medial and deep knee extensors",
+        "order": 30,
+        "canonicalGroups": [
+          "MedialAndDeepKneeExtensors"
+        ]
+      }
+    ],
+    "selectedIds": [
+      290,
+      497,
+      573,
+      518,
+      1030,
+      238,
+      480,
+      712,
+      1021,
+      17,
+      307,
+      310,
+      150,
+      918,
+      1009,
+      683,
+      1014,
+      453,
+      191,
+      1029,
+      237,
+      436,
+      1017,
+      525,
+      588,
+      430,
+      284,
+      146,
+      242,
+      110
+    ]
+  }
+]

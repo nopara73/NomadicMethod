@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 82,
+  "scope": "Nine new demonstration records, one direct-training metadata correction, and two explicit existing movement-family IDs. Unchanged existing media reviews remain in their original evidence records.",
+  "entries": [
+    {
+      "id": 1294,
+      "metadataSha256": "d70550f8e3fe953c2941cce81f6df1c237211c411a42eb9ebf4bf3f2b0cd2865",
+      "assets": {
+        "exercise_videos/exercise_1294.mp4": "50155cd7efca52ecbfb4ce024861beb5e3d9f6298ebaab1e4de6623c2b4ca59d"
+      },
+      "reviewedAt": "2026-10-19T12:49:04.3391197+08:00",
+      "method": "Explicit public-source, complete packaged-loop, crop and actual-workout visual inspection; unaccelerated 5/45/15 playback in an isolated browser fixture.",
+      "observedAction": "Both unsupported hands repeatedly bend at the MCP knuckles while the interphalangeal joints stay straight, pause naturally, then straighten.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1294/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1294/ready.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1294/work-3.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1294/rest-start.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1294/next-ready.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "IntrinsicHand primary: deliberate MCP flexion with IP extension trains lumbrical/interosseous range and coordination. No secondary bracing claims. Demand 0; Continuous bilateral one-block repetition. Isolated hand mobility is Insect-incompatible, ordinary and Shy-compatible, silent and hard-floor-compatible. No equipment, clothing dependency or mirror requirement.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "One uninterrupted natural bilateral MCP-bend-and-return cycle. Both hands are straight at the seam; the demonstrated pause is retained.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The square crop removes the unrelated source diagram and title while retaining both complete working hands, wrists and unsupported forearms throughout their range.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "One uninterrupted natural bilateral MCP-bend-and-return cycle. Both hands are straight at the seam; the demonstrated pause is retained.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "The reviewed source retains natural chronology. The final 20-fps packaged MP4 played at rate 1 through repeated loops in a real 45-second workout block; the application clock was not accelerated.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The source already demonstrates both hands or both feet together. Media remains unmirrored; no spurious side or direction cue is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The complete action stays at its station. No advancing, retreating or room crossing is introduced by the crop or loop.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media uses the full moving demonstration, including its natural pauses; no hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The actual hand movement uses free hands without a table, object, wall or other support. The movement is directly copyable while standing in ordinary shoes within the existing small footprint.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Reviewed the actual local web workout at 390 by 844: Ready, preparation, the complete real-time 45-second movement, the 15-second rest and the next Ready screen. Fourteen viewport snapshots and video state records show normal-speed media, consistent naming and phase transitions, with no page or asset errors. The fixture used isolated browser state and did not read or modify user workout data. This is media/workout approval only; Android, catalog availability and release validation remain pending.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1295,
+      "metadataSha256": "472124ad4bc56f60d440704903b01dfd46351b6a6b0566ff274f25ce4924b878",
+      "assets": {
+        "exercise_videos/exercise_1295.mp4": "f824704756d4f52468923d1f0aa0ecc9028bee0d06df871fa95a52dcf1ba4909"
+      },
+      "reviewedAt": "2026-10-19T12:49:04.4492555+08:00",
+      "method": "Explicit public-source, complete packaged-loop, crop and actual-workout visual inspection; unaccelerated 5/45/15 playback in an isolated browser fixture.",
+      "observedAction": "Unsupported standing with hands at the waist; both heels lift, lower, and then both forefeet lift while the heels stay down, returning to flat feet.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1295/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1295/ready.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1295/work-3.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1295/rest-start.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1295/next-ready.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "CalfDeepPosteriorLegAndPlantarFoot primary for the body-weight heel raise; AnteriorLateralLowerLegAndDorsalFoot secondary for repeated deliberate forefoot dorsiflexion, rather than balance or incidental bracing. Demand 1; Continuous bilateral one-block repetition. Small ankle-driven displacement remains Insect-incompatible. Controlled vertical rocking requires neither impact cushioning nor lateral traction; Shy-compatible, silent, shoe-agnostic and equipment-free.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "A complete heel-rise/forefoot-rise rocking cycle is preserved in natural chronology and at natural speed. No reverse, ping-pong or manufactured movement is used.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The complete human view retains the head, hands on waist, knees and both shoes, including their ground contact and full heel/forefoot lift.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "A complete heel-rise/forefoot-rise rocking cycle is preserved in natural chronology and at natural speed. No reverse, ping-pong or manufactured movement is used.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "The reviewed source retains natural chronology. The final 20-fps packaged MP4 played at rate 1 through repeated loops in a real 45-second workout block; the application clock was not accelerated.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The source already demonstrates both hands or both feet together. Media remains unmirrored; no spurious side or direction cue is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The complete action stays at its station. No advancing, retreating or room crossing is introduced by the crop or loop.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media uses the full moving demonstration, including its natural pauses; no hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "Only the demonstrated shoes contact the ground. The performer stays unsupported at the same station, with no wall or other equipment touched or required.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Reviewed the actual local web workout at 390 by 844: Ready, preparation, the complete real-time 45-second movement, the 15-second rest and the next Ready screen. Fourteen viewport snapshots and video state records show normal-speed media, consistent naming and phase transitions, with no page or asset errors. The fixture used isolated browser state and did not read or modify user workout data. This is media/workout approval only; Android, catalog availability and release validation remain pending.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1296,
+      "metadataSha256": "27c2452d41a99ee37618280c8ff680b76df6746b1e9def300b51386de719acd4",
+      "assets": {
+        "exercise_videos/exercise_1296.mp4": "e9b0119d5737e09951f708ef5ed3b814971602024c29cda5fe9d1c56917bf928"
+      },
+      "reviewedAt": "2026-10-19T12:49:04.4794262+08:00",
+      "method": "Explicit public-source, complete packaged-loop, crop and actual-workout visual inspection; unaccelerated 5/45/15 playback in an isolated browser fixture.",
+      "observedAction": "Both unsupported hands cycle together through straight fingers, hook fist, full fist, tabletop and flat fist, then return to straight fingers.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1296/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1296/ready.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1296/work-3.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1296/rest-start.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1296/next-ready.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "ForearmFlexorsAndPronators primary for the deliberate finger-flexor tendon excursion through the five positions. IntrinsicHand secondary: the repeated tabletop position actively combines MCP flexion with IP extension, and the hook phase lengthens the intrinsics. These are purposeful hand-range and coordination actions, not wrist bracing credit. Demand 0; one continuous bilateral repetition block, with all five positions shown in the complete 26-second cycle. Insect-incompatible, Shy-compatible, silent, hard-floor-compatible and equipment-free.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "All five distinct postures and the return to straight fingers occur in one uninterrupted source interval. The natural position holds are retained, and the seam returns from straight fingers to straight fingers.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The complete working hands, fingers, wrists and unsupported forearms remain visible through every posture. The unrelated source labels and anatomical drawing are excluded.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "All five distinct postures and the return to straight fingers occur in one uninterrupted source interval. The natural position holds are retained, and the seam returns from straight fingers to straight fingers.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "The reviewed source retains natural chronology. The final 20-fps packaged MP4 played at rate 1 through repeated loops in a real 45-second workout block; the application clock was not accelerated.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The source already demonstrates both hands or both feet together. Media remains unmirrored; no spurious side or direction cue is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The complete action stays at its station. No advancing, retreating or room crossing is introduced by the crop or loop.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media uses the full moving demonstration, including its natural pauses; no hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The demonstrated five-position cycle uses free hands; it does not use the separate tabletop-supported examples elsewhere in the source video. No equipment or support is needed, and it is copyable while standing in ordinary shoes.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Reviewed the actual local web workout at 390 by 844: Ready, preparation, the complete real-time 45-second movement, the 15-second rest and the next Ready screen. Fourteen viewport snapshots and video state records show normal-speed media, consistent naming and phase transitions, with no page or asset errors. The fixture used isolated browser state and did not read or modify user workout data. This is media/workout approval only; Android, catalog availability and release validation remain pending.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1297,
+      "metadataSha256": "e53f3aa4c751b6e411c764ad0c8347e2fe54ebb02fbf71295a940120229b71cc",
+      "assets": {
+        "exercise_videos/exercise_1297.mp4": "ee66f707970b0abdc338ca4a0d0abc9554020013bf2c4a4c493cddd5bde5e674"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.1057768+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "Standing gate openers: the raised knee rotates outward, the foot returns to the floor, and the other leg performs the same complete action.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1297/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1297/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1297/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1297/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "DeepHipRotators primary, HipFlexors and HipAbductors secondary for deliberate knee lift and outward hip excursion. Demand 0. Naturally alternating one-block repetition, Insect-incompatible. Hard Floor/Shy compatible, silent, feet-only, no equipment or travel. Shares movement family 161 with the sequential gate-opener demonstration.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "One uninterrupted natural cycle includes the complete left and right gate opener and returns to two-foot stance. The final frame was inspected separately to confirm the second foot has returned.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The full human head, free hands, both knees and both shoes remain visible throughout the square crop.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "One uninterrupted natural cycle includes the complete left and right gate opener and returns to two-foot stance. The final frame was inspected separately to confirm the second foot has returned.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1298,
+      "metadataSha256": "45609909fdcc99ac383664a5be666b0f5ac1718197fa29b85c05a198cbcf268f",
+      "assets": {
+        "exercise_videos/exercise_1298.mp4": "444dc6db657b04368083113f9e72d84fdf3ff3b94123d48ecc57d987336750bc"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.1330142+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "Stand upright, hold the raised foot and knee in both hands, draw the leg toward the chest, lower it, and alternate to the other leg.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1298/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1298/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1298/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1298/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "GlutealExtensors primary and DeepHipRotators secondary for the demonstrated hip-flexion/external-rotation stretch. Demand 0. Naturally alternating one-block repetition. Insect-incompatible; Hard Floor/Shy compatible and silent. The stationary upright cradle differs from the walking cradle and the ankle-on-opposite-thigh figure-four squat; no travel or phantom equipment is assigned.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "Both leg cradles, natural brief stretch pauses, and both returns to stance occur in the original chronology. No mirrored or invented opposite-side footage is used.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The complete hands, held knees and feet, head and supporting shoe remain visible without hiding the support conditions.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "Both leg cradles, natural brief stretch pauses, and both returns to stance occur in the original chronology. No mirrored or invented opposite-side footage is used.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1299,
+      "metadataSha256": "9bbded9ce0016a57fbba11a3ef89167537f81576f8a7207f00ee1bf95df50a8b",
+      "assets": {
+        "exercise_videos/exercise_1299.mp4": "5caa252fc3fe6904a97eaa53321b9742fc34514189330530932d231bfac6fa4b"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.1697653+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "With hands on hips, lift one forefoot and make ankle circles in both directions; then exchange legs and repeat both directions before returning to stance.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1299/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1299/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1299/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1299/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "AnteriorLateralLowerLegAndDorsalFoot primary; CalfDeepPosteriorLegAndPlantarFoot secondary for deliberate plantarflexion/inversion/eversion through the complete ankle range. Demand 0. Both legs and both directions are naturally contained in one alternating block, so no extra timed side or direction is manufactured. Insect-incompatible, Hard Floor/Shy compatible and silent. Shares family 288 with existing ankle-circle work and counts once.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "The original 15-second sequence contains both directions on both ankles and the final two-foot return. No ping-pong, time compression or synthetic alternation is used.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The human head, unsupported hands on hips, knees and both shoes remain visible, including full forefoot circles and all ground contacts.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "The original 15-second sequence contains both directions on both ankles and the final two-foot return. No ping-pong, time compression or synthetic alternation is used.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1300,
+      "metadataSha256": "1c79f879c52d6a80f5c7f487645d48aeb36d162d05717a81f8f6462f211d6798",
+      "assets": {
+        "exercise_videos/exercise_1300.mp4": "0460c6ac3e894675559824f32bc39fb74ff0db6708bd148d66086a0a2a79fb3e"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.1856873+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "The standing British Heart Foundation instructor continuously marches in place while both shoulders circle up, back and down.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1300/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1300/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1300/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1300/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "ScapularGirdle primary for purposeful shoulder-roll mobility; no incidental secondary bracing claim. Demand 0. Repeated upper-body circles plus genuine alternating foot lifts and knee motion satisfy Insect. Controlled gentle vertical marching is Hard Floor compatible, ordinary/Shy compatible and silent. Shares shoulder-roll family 588; the new compatible demonstration does not create an extra global movement identity.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "The complete natural shoulder circles and alternating steps are retained without changing speed or borrowing movement from another interval.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "One complete standing instructor is retained. A narrow source crop and plain pillar bars exclude the separate seated alternative without concealing the standing hands, head, knees or shoes. No human movement is composited.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "The complete natural shoulder circles and alternating steps are retained without changing speed or borrowing movement from another interval.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1301,
+      "metadataSha256": "5a15adc02ff05cddb2eb07280e7035f0039edd78be3c5abfd77d28795ec270b5",
+      "assets": {
+        "exercise_videos/exercise_1301.mp4": "01ed696ce973bc2fe466111f33b99e3fca94d28fd8117c03ab0609b436373ed6"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.2103414+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "The NHS cardiac rehabilitation instructor marches continuously on the spot while repeatedly bending and straightening both elbows, palms facing upward.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1301/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1301/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1301/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1301/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "ElbowFlexors primary for deliberate repeated unweighted elbow-flexion range and coordination. Demand 0; no added secondary claim. Simultaneous arm curls with genuine alternating steps and knee motion are Insect compatible, Hard Floor compatible, Shy compatible, silent and feet-only. This is the movement actually demonstrated by the NHS team, not a manufactured combination.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "The uninterrupted frontal interval contains multiple complete bilateral curls and alternating marches. It excludes the source camera close-ups and does not splice isolated arm work onto separate marching footage.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The complete head, hands, elbows, hips, knees and both shoes stay visible. The background chair is not touched or required.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "The uninterrupted frontal interval contains multiple complete bilateral curls and alternating marches. It excludes the source camera close-ups and does not splice isolated arm work onto separate marching footage.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 1302,
+      "metadataSha256": "3061731860b884c39c0b564a8a790d0a7c08442456bd1032c602b695db842e52",
+      "assets": {
+        "exercise_videos/exercise_1302.mp4": "fd2824e24fd2f2212050c71ba72abf509de3a00f889f1549de8baa72a9bbf939"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.2305049+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "Deborah Bernal MD raises joined hands, inhales, then swings the arms down between the legs while folding with the instructed loud ha exhale, and repeats.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1302/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1302/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1302/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/1302/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "BreathingMuscles primary for the explicit forceful coordinated exhale. No incidental abdominal or postural claim. Demand 0. Naturally vocal execution is NonSilent and Shy-incompatible; Silence excludes it. Conservative Insect-incompatible rating retains the natural overhead inhalation pause. Feet remain planted with controlled sagittal folding: no impact cushioning, lateral step, pivot or dependable lateral traction is required. No equipment, hand-ground contact or travel. The single overhead chop differs from Breath of Joy three-part inhalation arm sweeps.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "The accepted 74.1-to-77.3-second side-view interval contains a full fold-to-raise-to-fold breathing cycle at normal speed. All 64 packaged frames were inspected. The initially considered frontal interval was rejected because the raised fingertips left the source frame; that rejected clip is not packaged.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The side view keeps the complete hands, including the overhead fingertips and backswing, head, torso, bent knees and planted feet in frame. The final crop was inspected through all 64 frames and actual workout playback.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "The accepted 74.1-to-77.3-second side-view interval contains a full fold-to-raise-to-fold breathing cycle at normal speed. All 64 packaged frames were inspected. The initially considered frontal interval was rejected because the raised fingertips left the source frame; that rejected clip is not packaged.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 906,
+      "metadataSha256": "f3e4a1e2e54b6c3b51cda9455d97960280c853c360085c6d6e8160501d8bb340",
+      "assets": {
+        "exercise_videos/exercise_0906.mp4": "748c77aa44e17d29086a71dda732c7b5aa1ad67060561612120fc1eab9a11018"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.2563004+08:00",
+      "method": "Explicit source, complete packaged action, crop, loop seam and actual unaccelerated workout review.",
+      "observedAction": "Alternate a cross-body knee-to-elbow crunch with a lateral raised knee-to-elbow crunch, repeating both sides of the demonstrated cycle.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/906/playback.json",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/906/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/906/ready-clean.png",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/906/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "AbdominalWall primary and existing HipFlexors secondary retained. Add HipAbductors secondary: both lateral phases repeatedly abduct the raised thigh against gravity through visible purposeful range. This is direct active movement during the 45-second round, not support-leg balance or incidental bracing. Identity, score, Keeps, video, timing, demand and all physical classifications remain unchanged. Revision-81 unfinished workouts retain the prior association set.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "reason": "The unchanged 4.4-second packaged loop naturally contains both cross-body and both lateral knee lifts. The newly recognized training claim follows the actual movement; it does not alter or splice the demonstration.",
+          "status": "PASS"
+        },
+        "Crop": {
+          "reason": "The complete existing human view retains both lateral knee lifts, hands, torso and feet, with the same crop and bytes as the prior release.",
+          "status": "PASS"
+        },
+        "LoopSeam": {
+          "reason": "The unchanged 4.4-second packaged loop naturally contains both cross-body and both lateral knee lifts. The newly recognized training claim follows the actual movement; it does not alter or splice the demonstration.",
+          "status": "PASS"
+        },
+        "PlaybackSpeed": {
+          "reason": "Natural source chronology and cadence retained. The packaged 20-fps MP4 repeatedly played at rate 1 in an unaccelerated real-time 45-second movement block.",
+          "status": "PASS"
+        },
+        "Mirroring": {
+          "reason": "The original source contains the complete declared bilateral or naturally alternating action. It is unmirrored; no artificial opposite side or direction is introduced.",
+          "status": "PASS"
+        },
+        "Travel": {
+          "reason": "The full demonstrated movement remains at its station. No crossing the room, advancing or retreating is hidden by cropping.",
+          "status": "PASS"
+        },
+        "HoldFrame": {
+          "reason": "Repetition media retains its natural moving cycle and pauses. No frozen hold PNG is used.",
+          "status": "NOT_APPLICABLE"
+        },
+        "Equipment": {
+          "reason": "The action requires no object, chair, wall or mirror. Only the feet contact the ground; ordinary shoes and the existing small footprint are compatible with the demonstrated movement.",
+          "status": "PASS"
+        },
+        "Workout": {
+          "reason": "Explicitly inspected actual workout Ready, preparation, normal-speed movement, rest and next Ready. Fourteen timed viewport snapshots and video state records cover unaccelerated 5/45/15 timing with no page or asset errors. Any initial reveal transition has a separate clean loaded-Ready capture. Browser state was isolated from user data. This is media approval; release and physical-device verification are recorded separately.",
+          "status": "PASS"
+        }
+      }
+    },
+    {
+      "id": 161,
+      "metadataSha256": "07f7ebc5d13f5191f66c02d5d4c21238fb0b9be4c439a3f04fc2f79d971ec194",
+      "assets": {
+        "exercise_videos/exercise_0161.mp4": "73b83a092fb41fd221586cb888ae98d1554cdca2bdc13185b9b757407e6799c3"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.4661797+08:00",
+      "method": "Explicit movement-family metadata review and new packaged-loop inspection. Prior media/workout verdicts are retained only for identical verified asset bytes; no new timer review is claimed for these unchanged existing records.",
+      "observedAction": "A same-leg standing gate opener: raise the knee, rotate it outwards, and lower the foot.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-09-06/0161/0000-0031.jpg",
+        "docs/catalog-audit/evidence/2026-09-06/0161/playback.json",
+        "docs/catalog-audit/evidence/2026-09-06/0161/phase-sheet-2.jpg",
+        "docs/catalog-audit/evidence/2026-09-06/0161/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/161/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "The sole runtime change makes the pre-existing effective movement identity 161 explicit so its new natural demonstration counts once. Training, name, sequence, timing and physical compatibility remain unchanged. The old and new demonstrations show the same fundamental movement; no new global identity is claimed.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "All 32 frames show the full natural outward gate circle and feet-down return, without the former overlaid leg caption."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The complete human, hands, feet and working joints are visible in the native context, every packaged frame, and actual workout crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "All 32 frames show the full natural outward gate circle and feet-down return, without the former overlaid leg caption."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The 1.600000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The first-side cue agrees with the native working side; the second work block mirrors the full demonstration once."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstration stays within the same small footprint, under 2 m by 2 m. Only named kick and knee-drive foot placement changes occur."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only feet contact the ground. No equipment or physical mirror is required; background gym objects and mats are unused. Ordinary shoes suffice."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Inspected preparation, countdown, both work blocks, complete native-speed cycles and seams, side-change rest, final rest and next movement or completion. The name and side order agree throughout. The application clock skipped redundant waiting between explicitly inspected phase boundaries; each complete moving demonstration played in real time at normal speed. No full real-time 45-second wait is claimed. No page or asset errors were recorded. Final Android and release validation remain pending."
+        }
+      },
+      "inheritedMediaReviewAt": "2026-09-06T17:46:26.494611+08:00"
+    },
+    {
+      "id": 588,
+      "metadataSha256": "dcb4a1f56e8ad75ecee0b2b33900c269331c775c913ca95f9b0d8b58603fdb4e",
+      "assets": {
+        "exercise_videos/exercise_0588.mp4": "7079d6d55cf3845915c4cf6d2fea6ab5cf28c573c980f613f73579cedb3f7c80"
+      },
+      "reviewedAt": "2026-10-19T14:19:38.5720542+08:00",
+      "method": "Explicit movement-family metadata review and new packaged-loop inspection. Prior media/workout verdicts are retained only for identical verified asset bytes; no new timer review is claimed for these unchanged existing records.",
+      "observedAction": "Keep the arms open and alternately roll the shoulders in the native belly-dance rhythm.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-09-06/0588/0000-0030.jpg",
+        "docs/catalog-audit/evidence/2026-09-06/0588/playback.json",
+        "docs/catalog-audit/evidence/2026-09-06/0588/phase-sheet.jpg",
+        "docs/catalog-audit/evidence/2026-10-19/slot-variety/588/full-loop.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "reason": "The sole runtime change makes the pre-existing effective movement identity 588 explicit so its new natural demonstration counts once. Training, name, sequence, timing and physical compatibility remain unchanged. The old and new demonstrations show the same fundamental movement; no new global identity is claimed.",
+          "status": "PASS"
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Inspected all 31 frames of the native 1.55-second alternating-shoulder cycle, including the complete return and seam. No time reversal, interpolation or artificial opposite-direction demonstration remains."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Retained the complete native 4:3 view with padding. Both shoulders, elbows and whole arm motion are visible. The far non-training fingertips meet the native edge briefly; the shoulder action remains fully visible. Same-source standing setup was established before this excerpt."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Inspected all 31 frames of the native 1.55-second alternating-shoulder cycle, including the complete return and seam. No time reversal, interpolation or artificial opposite-direction demonstration remains."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The 1.550000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Alternation is native within the clip; neither an opposite-side block nor an invented opposite rolling direction is required."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Stationary unsupported standing."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "No equipment; quiet feet-only standing compatible with ordinary shoes."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Viewed all 18 actual-workout phase images: paused preview, preparation, both work blocks, complete natural loops and seams, endings, rests and following exercise. The final crop and name show the alternating shoulder exercise clearly. The application clock skipped redundant waiting between explicitly inspected phase boundaries; each complete moving demonstration played in real time at normal speed. No full real-time 45-second wait is claimed. No page or asset errors were recorded. Final Android and release validation remain pending."
+        }
+      },
+      "inheritedMediaReviewAt": "2026-09-09T16:32:02.807451+08:00"
+    }
+  ]
+}

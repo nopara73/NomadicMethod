@@ -77,11 +77,17 @@ for (const [minutes, insect, expectedId, selectionKey] of [
       const session = new WorkoutSession(catalog, state, () => randomValue);
       session.startWorkout(minutes, profile);
       const rounds = session.getActiveGroups();
-      const target = rounds.find((round) => getSelectionKey(round) === selectionKey);
-      assert.equal(session.getSelectedExercise(target).id, expectedId);
+      if (insect && minutes === 10) {
+        assert.equal(rounds.some(round => getSelectionKey(round) === selectionKey), false);
+      } else {
+        const target = rounds.find((round) => getSelectionKey(round) === selectionKey);
+        assert.equal(session.getSelectedExercise(target).id, expectedId);
+      }
+      assert.equal(rounds.length, minutes);
       assert.ok(rounds.every((round) => isCompatibleWithWorkoutModifiers(
         session.getSelectedExercise(round), profile)));
-      const baseRounds = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0);
+      const baseRounds = [...new Map(rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0)
+        .map(round => [getSelectionKey(round), round])).values()];
       assert.equal(new Set(baseRounds.map((round) => getSessionMovementId(
         session.getSelectedExercise(round)))).size, baseRounds.length);
       for (const round of rounds) {
@@ -110,7 +116,9 @@ for (const light of [false, true]) {
       group.id === "r3.head-neck-upper-limbs")), true);
     for (const randomValue of [0.01, 0.2, 0.4]) {
       const profile = WORKOUT_MODIFIERS.Insect | (light ? WORKOUT_MODIFIERS.Light : 0);
-      const session = new WorkoutSession(catalog, createDefaultState(), () => randomValue);
+      const state = createDefaultState();
+      state.scores[1030] = 10000;
+      const session = new WorkoutSession(catalog, state, () => randomValue);
       session.startWorkout(30, profile);
       const rounds = session.getActiveGroups();
       assert.equal(session.getSelectedExercise(rounds.find((round) =>

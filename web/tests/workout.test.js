@@ -30,8 +30,8 @@ import {
   MAXIMUM_MUSCULAR_DEMAND,
   MODERATE_MUSCULAR_DEMAND,
   MODERATE_RECOVERY_WINDOW_MS,
-  MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
-  MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP,
+  MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
+  MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP,
   MINIMUM_SOLE_WALL_CONTACT_REQUIRED_SESSION_MOVEMENTS,
   MINIMUM_WALL_REQUIRED_SESSION_MOVEMENTS,
@@ -50,6 +50,7 @@ import {
   WALL_EQUIPMENT,
   WORKOUT_MODIFIER_VALIDATION_PROFILES,
   SUPPORTED_MINUTES,
+  NEW_WORKOUT_MINUTES,
   WORKOUT_MODIFIERS,
   WORKOUT_EXERCISE_PHASE,
   WorkoutSession,
@@ -945,7 +946,7 @@ test("muscular demand is fully reviewed and independent of user scores", () => {
   assert.deepEqual(
     [0, 1, 2].map((rating) =>
       catalog.filter((exercise) => exercise.muscularDemand === rating).length),
-    [194, 394, 217],
+    [202, 395, 217],
   );
   assert.ok(catalog.every(hasReviewedMuscularDemand));
   assert.ok(catalog.every((exercise) => exercise.score === 0));
@@ -1400,7 +1401,7 @@ test("shy mode filters only reviewed incompatible exercises while enabled", () =
 test("hard floor catalog verdicts include slippery-floor traction", () => {
   assert.equal(catalog.filter((exercise) =>
       exercise.hardFloorCompatibility ===
-      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 370);
+      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 379);
   assert.equal(catalog.filter((exercise) =>
     exercise.hardFloorCompatibility ===
       EXERCISE_HARD_FLOOR_COMPATIBILITY.Incompatible).length, 435);
@@ -2933,11 +2934,11 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     .map((exercise) => exercise.id)), new Set([524, 525, 526, 527, 528, 790]));
   assert.equal(catalog.filter((exercise) =>
     exercise.upperBodyClothingRequirement ===
-      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 689);
+      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 698);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 620);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 628);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 185);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 186);
   for (const exerciseId of [56, 185, 377, 379, 401, 403, 557]) {
     assert.equal(catalog.find((exercise) => exercise.id === exerciseId).shyCompatibility,
       EXERCISE_SHY_COMPATIBILITY.Incompatible);
@@ -3001,7 +3002,7 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.BenefitsGreatly).length, 99);
   assert.equal(catalog.filter((exercise) =>
-    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 706);
+    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 715);
   assert.equal(catalog.filter((exercise) =>
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.MirrorOnly).length, 0);
@@ -3076,11 +3077,11 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
   assert.deepEqual(pairwiseDeficiencies, []);
   assert.equal(
     getMinimumExercisesPerModifierPairStatePerGroup(3),
-    MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
+    MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
   );
   assert.equal(
     getMinimumExercisesPerModifierPairStatePerGroup(30),
-    MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP,
+    MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
   );
 
   const hardFloorDeficiencies = findHardFloorCategoryCoverageDeficiencies(catalog);
@@ -3135,7 +3136,7 @@ test("pairwise availability requires five actual broad choices in every modifier
   assert.equal(intersection.matchingExerciseCount, 0);
   assert.equal(
     deficiencies[0].requiredExerciseCount,
-    MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
+    MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
   );
 
   for (let id = 8; id < 13; id += 1) exercises.push(exercise(
@@ -3148,6 +3149,32 @@ test("pairwise availability requires five actual broad choices in every modifier
       result.secondModifier === WORKOUT_MODIFIERS.Silence),
     [],
   );
+});
+
+for (const [minutes, count, required] of [
+  [5, 4, 5], [7, 4, 5], [10, 4, 5], [15, 4, 5], [15, 5, 5],
+]) test(`slot variety rejects thin pools and accepts the boundary (${minutes}m, ${count} choices)`, () => {
+  const group = RESOLUTIONS.get(minutes).groups[0];
+  const catalog = Array.from({ length: count }, (_, index) => exercise(
+    index + 1, group.canonicalGroups[0], [], 0,
+    EXERCISE_INSECT_COMPATIBILITY.Compatible));
+  const pairwise = findWorkoutModifierPairCoverageDeficiencies(catalog).filter((result) =>
+    result.minutes === minutes && result.groupId === group.id &&
+    result.firstModifier === WORKOUT_MODIFIERS.Insect && !result.firstModifierEnabled &&
+    result.secondModifier === WORKOUT_MODIFIERS.Silence && !result.secondModifierEnabled);
+  const hardFloor = findHardFloorCategoryCoverageDeficiencies(catalog).filter((result) =>
+    result.minutes === minutes && result.groupId === group.id &&
+    result.partnerModifier === WORKOUT_MODIFIERS.Insect && !result.partnerModifierEnabled);
+  if (count >= required) {
+    assert.deepEqual(pairwise, []);
+    assert.deepEqual(hardFloor, []);
+  } else {
+    for (const deficiencies of [pairwise, hardFloor]) {
+      assert.equal(deficiencies.length, 1);
+      assert.equal(deficiencies[0].matchingExerciseCount, count);
+      assert.equal(deficiencies[0].requiredExerciseCount, required);
+    }
+  }
 });
 
 test("hard-floor coverage requires safe choices without soft-only counterparts", () => {
@@ -3326,7 +3353,13 @@ test("fine pairwise buckets measure availability without forcing mirror preferen
   };
 
   assert.deepEqual(
-    findWorkoutModifierPairCoverageDeficiencies([agnosticExercise])
+    findWorkoutModifierPairCoverageDeficiencies([1, 2, 3].map((id) => ({
+      ...agnosticExercise,
+      id,
+      name: `Agnostic exercise ${id}`,
+      sequenceBlocks: [{ exerciseId: id, sideCue: "None", directionCue: "None",
+        mirrorMedia: false, mediaSegment: "Full" }],
+    })))
       .filter((result) =>
         result.minutes === 30 &&
         result.groupId === targetGroup.id &&
@@ -3337,7 +3370,7 @@ test("fine pairwise buckets measure availability without forcing mirror preferen
   );
   assert.equal(
     getMinimumExercisesPerModifierPairStatePerGroup(30),
-    MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP,
+    MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
   );
 });
 
@@ -5327,9 +5360,9 @@ test("mixed-demand sequence uses its highest demand and remains atomic", () => {
 });
 
 test("the reviewed catalog satisfies every roll-up and selects distinct exercises", () => {
-  assert.equal(catalog.length, 805);
-  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 805);
-  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 805);
+  assert.equal(catalog.length, 814);
+  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 814);
+  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 814);
   assert.equal(isSessionMovementMetadataValid(catalog), true);
   const actualSessionMovements = {};
   for (const exercise of catalog.filter((item) => item.sessionMovementId > 0)) {
@@ -5356,6 +5389,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       153: [153, 603],
       159: [159, 649],
       160: [160, 533],
+      161: [161, 1297],
       177: [177, 186],
       187: [187, 252, 253, 254, 562, 566, 581, 582],
       192: [192, 195],
@@ -5370,7 +5404,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       277: [261, 277],
       278: [278, 326],
       286: [286, 541],
-      288: [288, 758],
+      288: [288, 758, 1299],
       292: [148, 292, 542],
       311: [311, 321, 816],
       327: [327, 546],
@@ -5383,6 +5417,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       550: [550, 551],
       568: [568, 633],
       579: [579, 580],
+      588: [588, 1300],
       712: [712, 1012],
       625: [625, 1021],
       1010: [1010, 1018],
@@ -5415,7 +5450,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
   const breathingExercises = catalog.filter(
     (exercise) => exercise.primaryCanonicalGroup === "BreathingMuscles",
   );
-  assert.equal(breathingExercises.length, 7);
+  assert.equal(breathingExercises.length, 8);
   for (const exercise of breathingExercises) {
     assert.match(exercise.name, /\b(?:inhale|exhale|breath|laugh|laughter)/i);
   }
@@ -8095,7 +8130,7 @@ test("slippery hard-floor revision rebuilds placements without erasing feedback"
 
 test("sole-wall revision rebuilds changed workout state and resets scores", () => {
   const changedIds = [563, 564, 567, 568, 574];
-  assert.equal(CURRENT_CATALOG_REVISION, 81);
+  assert.equal(CURRENT_CATALOG_REVISION, 82);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(54)],
     changedIds,
@@ -8690,7 +8725,7 @@ test("bodybuilding posing revision replaces static work and resets feedback", ()
 
 test("material-training revision removes only anatomically invalid slots and keeps", () => {
   const addedIds = [911, 913, 916, 917];
-  assert.equal(CURRENT_CATALOG_REVISION, 81);
+  assert.equal(CURRENT_CATALOG_REVISION, 82);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(67)],
     addedIds,
@@ -8780,7 +8815,7 @@ test("material-training revision removes only anatomically invalid slots and kee
 
 test("training-claim revision removes only newly invalid slot feedback", () => {
   const addedIds = [918, 919];
-  assert.equal(CURRENT_CATALOG_REVISION, 81);
+  assert.equal(CURRENT_CATALOG_REVISION, 82);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(69)],
     addedIds,
@@ -8892,7 +8927,7 @@ test("complete-pose revision rebuilds affected placements without erasing feedba
 
 test("corrected two-sided revision rebuilds placements and preserves feedback", () => {
   const changedIds = new Set([32, 483, 493]);
-  assert.equal(CURRENT_CATALOG_REVISION, 81);
+  assert.equal(CURRENT_CATALOG_REVISION, 82);
   assert.deepEqual(SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(71), changedIds);
   assert.equal(SCOPED_SCORE_INVALIDATIONS_BY_REVISION.has(71), false);
 
@@ -9498,9 +9533,9 @@ test("initial document contains no exercise-media URL", async () => {
   const durationLabels = html.match(/id="duration-labels"[\s\S]+?<\/div>/)?.[0] ?? "";
   assert.deepEqual(
     [...durationLabels.matchAll(/<span>(\d+)<\/span>/g)].map((item) => Number(item[1])),
-    SUPPORTED_MINUTES,
+    NEW_WORKOUT_MINUTES,
   );
-  assert.match(html, new RegExp(`max="${SUPPORTED_MINUTES.length - 1}"`));
+  assert.match(html, new RegExp(`max="${NEW_WORKOUT_MINUTES.length - 1}"`));
 });
 
 test("browser shell pauses for buffering and keeps desktop layouts bounded", async () => {
@@ -9525,7 +9560,7 @@ test("browser shell pauses for buffering and keeps desktop layouts bounded", asy
   assert.match(stylesheet, /grid-template-columns: minmax\(360px, 500px\) minmax\(520px, 900px\);/);
   assert.match(stylesheet, /grid-column: 2;\s*grid-row: 1 \/ span 2;/);
   assert.match(stylesheet, /width: min\(100%, 78dvh, 900px\);/);
-  assert.match(stylesheet, new RegExp(`grid-template-columns: repeat\\(${SUPPORTED_MINUTES.length}, 1fr\\)`));
+  assert.match(stylesheet, /grid-template-columns: repeat\(var\(--duration-option-count, 5\), 1fr\)/);
 });
 
 for (const light of [false, true]) {

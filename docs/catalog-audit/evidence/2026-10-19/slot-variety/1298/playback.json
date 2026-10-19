@@ -1,0 +1,259 @@
+{
+  "id": 1298,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T04:51:47.548Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\nExercise 1 of 29. Alternating Standing Leg Cradles.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 1.192125,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T04:51:49.718Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 1.966933,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T04:51:54.338Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n44\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 3.169879,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T04:51:59.487Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n39\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 8.318115,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T04:52:04.589Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n34\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 4.593777,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T04:52:09.726Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n29\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 0.885261,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T04:52:14.899Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n24\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 6.057418,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T04:52:20.173Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 2.504708,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T04:52:25.306Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n13\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 7.637816,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T04:52:30.522Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n8\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 4.035487,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T04:52:35.780Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n3\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 0.342911,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T04:52:40.904Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n13\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 2.968935,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T04:52:52.041Z",
+      "name": "Alternating Standing Leg Cradles",
+      "text": "01 / 29\nAlternating Standing Leg Cradles\n2\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1298.mp4",
+          "time": 2.968935,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T04:52:57.215Z",
+      "name": "Thumb and Little-Finger Switches",
+      "text": "02 / 29\nThumb and Little-Finger Switches\nExercise 2 of 29. Thumb and Little-Finger Switches.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0290.mp4",
+          "time": 3.668589,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

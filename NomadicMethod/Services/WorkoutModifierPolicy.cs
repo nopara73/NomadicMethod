@@ -81,10 +81,14 @@ public sealed record WorkoutModifierMaterialityDeficiency(
 public static class WorkoutModifierPolicy
 {
     public const int BroadCoverageResolutionMinutes = 3;
-    // Broad groups need five real alternatives, with complete atomic blocks
-    // that fit the duration. Fine muscle groups still need at least one.
-    public const int MinimumExercisesPerBroadPairStatePerGroup = 5;
-    public const int MinimumExercisesPerFinePairStatePerGroup = 1;
+    // Short workouts need a larger pool because the exact duration leaves
+    // little room for longer atomic alternatives. Count complete movements
+    // that actually fit, never aliases, sides, directions, or repeated sets.
+    public const int ShortWorkoutCoverageMaximumMinutes = 15;
+    public const int MinimumExercisesPerShortPairStatePerGroup = 5;
+    // Preserve the prior coverage invariant for historical resolutions only.
+    // New-workout setup stops at 15 minutes; no extra sourcing quota exists above it.
+    public const int MinimumExercisesPerLegacyPairStatePerGroup = 1;
     // Historical demand targets are diagnostic inventories,
     // not admission requirements or release gates. Never fill them with
     // altered anatomy, demand ratings or invented variations.
@@ -129,7 +133,19 @@ public static class WorkoutModifierPolicy
             new("r30.shoulder-adductors-extensors", WorkoutModifiers.Insect | WorkoutModifiers.HardFloor),
             new("r30.breathing-muscles", WorkoutModifiers.Insect | WorkoutModifiers.Silence),
             new("r30.breathing-muscles", WorkoutModifiers.Insect | WorkoutModifiers.Shy),
+            // Owner-accepted short-workout variety gaps, 19 October 2026.
+            new("r10.anterior-lateral-lower-leg-dorsal-foot", WorkoutModifiers.Insect),
+            new("r15.anterior-lateral-lower-leg-dorsal-foot", WorkoutModifiers.Insect),
+            new("r15.head-neck", WorkoutModifiers.Insect | WorkoutModifiers.Shy),
         ]);
+
+    public static IReadOnlySet<string> SlotVarietyCoverageExceptionGroupIds { get; } =
+        new HashSet<string>(StringComparer.Ordinal)
+        {
+            "r10.anterior-lateral-lower-leg-dorsal-foot",
+            "r15.anterior-lateral-lower-leg-dorsal-foot",
+            "r15.head-neck",
+        };
 
     // Insect mode needs visible continuous whole-body movement. Pelvic-floor
     // isolation cannot honestly meet that contract under NomadicMethod's feet-only
@@ -685,10 +701,13 @@ public static class WorkoutModifierPolicy
 
     private static bool IsCoverageException(
         WorkoutGroup group,
-        WorkoutModifiers profile)
+        WorkoutModifiers profile,
+        int catalogRevision = CatalogMigrationRules.CurrentCatalogRevision)
     {
         if (AcceptedCoverageExceptions.Any(exception =>
             exception.GroupId == group.SelectionKey &&
+            (!(catalogRevision is > 0 and < 82) ||
+                !SlotVarietyCoverageExceptionGroupIds.Contains(exception.GroupId)) &&
             (profile & exception.RequiredModifiers) == exception.RequiredModifiers))
         {
             return true;
@@ -709,10 +728,11 @@ public static class WorkoutModifierPolicy
 
     public static bool IsSelectionGroupAvailable(
         WorkoutGroup group,
-        WorkoutModifiers profile)
+        WorkoutModifiers profile,
+        int catalogRevision = CatalogMigrationRules.CurrentCatalogRevision)
     {
         ArgumentNullException.ThrowIfNull(group);
-        return !IsCoverageException(group, profile);
+        return !IsCoverageException(group, profile, catalogRevision);
     }
 
     public static IReadOnlyList<WorkoutModifierMaterialityDeficiency>
@@ -854,9 +874,9 @@ public static class WorkoutModifierPolicy
     }
 
     public static int GetMinimumExercisesPerPairStatePerGroup(int minutes) =>
-        minutes == BroadCoverageResolutionMinutes
-            ? MinimumExercisesPerBroadPairStatePerGroup
-            : MinimumExercisesPerFinePairStatePerGroup;
+        minutes <= ShortWorkoutCoverageMaximumMinutes
+            ? MinimumExercisesPerShortPairStatePerGroup
+            : MinimumExercisesPerLegacyPairStatePerGroup;
 
     public static IReadOnlyList<WorkoutProfileLineupDeficiency>
         FindDistinctLineupDeficiencies(IReadOnlyCollection<Exercise> exercises)

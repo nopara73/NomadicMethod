@@ -1,0 +1,259 @@
+{
+  "id": 906,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T05:46:13.014Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\nExercise 1 of 15. Alternating Cross-and-Side Crunch.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 0.121043,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T05:46:14.151Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 0.176129,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T05:46:18.744Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n45\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 0.838635,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T05:46:23.812Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n40\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 1.542008,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T05:46:28.869Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n35\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 2.232669,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T05:46:33.949Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n30\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 2.951176,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T05:46:39.162Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n25\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 3.77203,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T05:46:44.261Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 0.156686,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T05:46:49.346Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n14\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 0.874105,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T05:46:54.425Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n9\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 1.582004,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T05:46:59.490Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n4\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 2.287459,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T05:47:04.563Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n14\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 1.62609,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T05:47:15.613Z",
+      "name": "Alternating Cross-and-Side Crunch",
+      "text": "01 / 15\nAlternating Cross-and-Side Crunch\n3\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0906.mp4",
+          "time": 1.62609,
+          "duration": 4.35,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T05:47:20.671Z",
+      "name": "Fixed-Gaze Head-Turn March",
+      "text": "02 / 15\nFixed-Gaze Head-Turn March\nExercise 2 of 15. Fixed-Gaze Head-Turn March.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0202.mp4",
+          "time": 2.371235,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

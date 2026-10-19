@@ -4,6 +4,8 @@ namespace NomadicMethod.Services;
 
 public static class WorkoutCatalogPolicy
 {
+    public static IReadOnlySet<int> SlotVarietyExerciseIds { get; } =
+        new HashSet<int> { 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302 };
     public static IReadOnlySet<int> HandPositionExerciseIds { get; } =
         new HashSet<int> { 32, 216, 224, 510, 740, 1012 };
     private static readonly IReadOnlySet<int> ShyCorrectionIds = new HashSet<int>
@@ -36,6 +38,17 @@ public static class WorkoutCatalogPolicy
     public static IReadOnlyList<Exercise> ForWorkout(
         IReadOnlyList<Exercise> catalog, int activeCatalogRevision)
     {
+        if (activeCatalogRevision is > 0 and < 82)
+        {
+            // Catalog additions and newly recognized lateral knee lifts must
+            // not change the lineup geometry of an unfinished older workout.
+            catalog = catalog.Where(exercise => !SlotVarietyExerciseIds.Contains(exercise.Id))
+                .Select(exercise => exercise.Id == 906
+                    ? exercise.WithWorkoutMetadata(exercise.SideSequence,
+                        exercise.SequenceBlocks, exercise.ShyCompatibility,
+                        [CanonicalMuscleGroup.HipFlexors])
+                    : exercise).ToArray();
+        }
         if (activeCatalogRevision is < 73 or >= 80) return catalog;
         int[] jackIds = [459, 468, 469];
         bool hasJackSeries = jackIds.All(id => catalog.Any(e => e.Id == id));

@@ -96,6 +96,7 @@
         )
 
         CalfDeepPosteriorLegAndPlantarFoot = @(
+        1299,
             1278, 1285,
             1086, 1087, 1189,
 
@@ -142,6 +143,10 @@
         )
 
         HipAbductors = @(
+            # The complete cross-and-side crunch includes both lateral knee
+            # lifts: repeated active hip abduction against gravity, not stance stabilization.
+            906,
+        1297,
             1072, 1110, 1145,
 
             1044,
@@ -167,6 +172,7 @@
         )
 
         HipFlexors = @(
+        1297,
             1273, 1293,
             1077, 1079, 1084, 1085, 1101, 1107, 1114, 1119, 1124, 1129, 1132, 1158, 1160, 1163,
             1166, 1171, 1172, 1179, 1187, 1193, 1199, 1211, 1221, 1223, 1229, 1230, 1232, 1235,
@@ -182,9 +188,11 @@
         # Each heel dig deliberately raises the forefoot against its own weight;
         # this is repeated ankle dorsiflexion, not an incidental gait claim.
         AnteriorLateralLowerLegAndDorsalFoot = @(
+        1295,
             1210,1029)
 
         DeepHipRotators = @(
+        1298,
             1272,
             1060, 1089, 1119, 1120, 1123, 1208, 1225,
 
@@ -272,7 +280,9 @@
             513, 561, 843
         )
 
-        IntrinsicHand = @()
+        IntrinsicHand = @(
+            1296
+        )
 
         PelvicFloorAndPerineum = @()
 

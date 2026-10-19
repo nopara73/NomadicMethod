@@ -1,0 +1,86 @@
+{
+  "catalogRevision": 82,
+  "catalogSha256": "c045f2885d92105818dfdac81b5d4c0d254d97ef935301749231544da8179b03",
+  "catalogRecordCount": 814,
+  "newWorkoutMinutes": [
+    3,
+    5,
+    7,
+    10,
+    15
+  ],
+  "policy": {
+    "shortWorkoutCoverageMaximumMinutes": 15,
+    "shortWorkoutModifierPairMinimumPerStatePerGroup": 5,
+    "legacyWorkoutModifierPairMinimumPerStatePerGroup": 1
+  },
+  "acceptedCoverageExceptions": [
+    {
+      "groupId": "r15.scapular-chest-breathing",
+      "requiredModifiers": 1
+    },
+    {
+      "groupId": "r15.shoulder",
+      "requiredModifiers": 17
+    },
+    {
+      "groupId": "r20.shoulder-adduction-extension",
+      "requiredModifiers": 17
+    },
+    {
+      "groupId": "r30.rotator-cuff",
+      "requiredModifiers": 17
+    },
+    {
+      "groupId": "r30.shoulder-adductors-extensors",
+      "requiredModifiers": 17
+    },
+    {
+      "groupId": "r30.breathing-muscles",
+      "requiredModifiers": 3
+    },
+    {
+      "groupId": "r30.breathing-muscles",
+      "requiredModifiers": 513
+    },
+    {
+      "groupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+      "requiredModifiers": 1
+    },
+    {
+      "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+      "requiredModifiers": 1
+    },
+    {
+      "groupId": "r15.head-neck",
+      "requiredModifiers": 513
+    }
+  ],
+  "gateSummary": {
+    "pairwiseDeficiencyCount": 0,
+    "pairwiseAffectedGroupCount": 0,
+    "hardFloorCategoryDeficiencyCount": 0,
+    "hardFloorCategoryAffectedGroupCount": 0,
+    "muscularDemandDeficiencyCount": 10,
+    "muscularDemandAffectedGroupCount": 2,
+    "demandZeroDeficiencyCount": 0,
+    "demandZeroAffectedGroupCount": 0,
+    "demandTwoDeficiencyCount": 10,
+    "demandTwoAffectedGroupCount": 2,
+    "materialityDeficiencyCount": 0,
+    "unacceptedMaterialityDeficiencyCount": 0,
+    "distinctLineupDeficiencyCount": 8,
+    "completeLineupDeficiencyCount": 0
+  },
+  "shortWorkoutDeficiencyCount": 0,
+  "legacyCompatibilityDeficiencyCount": 0,
+  "remainingShortWorkoutSlotCount": 0,
+  "targets": [],
+  "interpretation": [
+    "New workouts offer 3, 5, 7, 10 and 15 minutes. Longer durations remain only for existing sessions and history.",
+    "Each available short-workout slot requires five distinct selectable complete session movements, except the exact owner-approved omissions.",
+    "A grouped slot accepts a genuine primary or meaningful secondary association to any member muscle. It does not require every member muscle at once.",
+    "The maximum shortage in a slot is a sourcing target, not a count of approved new exercises. Overlapping slots and movement families must not be summed as independent additions.",
+    "Secondary balance, posture and incidental bracing never supply training credit. Refreshing this report never waives a release gate."
+  ]
+}

@@ -135,7 +135,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/duration_seek_description_default"
-                        android:max="9"
+                        android:max="4"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
                         android:progress="3"
@@ -195,31 +195,36 @@
                         style="@style/DurationOptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/duration_option_20" />
+                        android:text="@string/duration_option_20"
+                        android:visibility="gone" />
 
                     <TextView
                         style="@style/DurationOptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/duration_option_30" />
+                        android:text="@string/duration_option_30"
+                        android:visibility="gone" />
 
                     <TextView
                         style="@style/DurationOptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/duration_option_45" />
+                        android:text="@string/duration_option_45"
+                        android:visibility="gone" />
 
                     <TextView
                         style="@style/DurationOptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/duration_option_60" />
+                        android:text="@string/duration_option_60"
+                        android:visibility="gone" />
 
                     <TextView
                         style="@style/DurationOptionLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/duration_option_90" />
+                        android:text="@string/duration_option_90"
+                        android:visibility="gone" />
                 </FrameLayout>
 
                 <HorizontalScrollView

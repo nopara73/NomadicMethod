@@ -1,0 +1,259 @@
+{
+  "id": 1295,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T04:31:03.890Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\nExercise 1 of 29. Heel-to-Toe Rocking.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 1.162124,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T04:31:05.794Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 1.6901,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T04:31:10.537Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n44\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 2.797554,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T04:31:15.824Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n39\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 3.496233,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T04:31:21.078Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n34\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 4.18185,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T04:31:26.420Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n29\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 0.407805,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T04:31:31.626Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n23\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 1.047444,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T04:31:36.812Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n18\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 1.649445,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T04:31:42.139Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n13\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 2.398893,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T04:31:47.256Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n8\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 2.975873,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T04:31:52.447Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n3\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 3.587733,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T04:31:57.602Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n13\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 1.24903,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T04:32:08.798Z",
+      "name": "Heel-to-Toe Rocking",
+      "text": "01 / 29\nHeel-to-Toe Rocking\n1\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1295.mp4",
+          "time": 1.24903,
+          "duration": 4.55,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T04:32:14.236Z",
+      "name": "Thumb and Little-Finger Switches",
+      "text": "02 / 29\nThumb and Little-Finger Switches\nExercise 2 of 29. Thumb and Little-Finger Switches.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0290.mp4",
+          "time": 4.151749,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

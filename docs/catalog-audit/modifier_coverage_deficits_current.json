@@ -1,7 +1,7 @@
 {
-  "catalogRevision": 81,
-  "catalogRecordCount": 805,
-  "catalogSha256": "e06b254db0c2d3f0be6451fe736b19ba9e9c03808bfe18f6e333dd5bfceeac31",
+  "catalogRevision": 82,
+  "catalogRecordCount": 814,
+  "catalogSha256": "c045f2885d92105818dfdac81b5d4c0d254d97ef935301749231544da8179b03",
   "policy": {
     "treatment": "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
     "acceptedCoverageExceptions": [
@@ -32,6 +32,18 @@
       {
         "groupId": "r30.breathing-muscles",
         "requiredModifiers": 513
+      },
+      {
+        "groupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+        "requiredModifiers": 1
+      },
+      {
+        "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+        "requiredModifiers": 1
+      },
+      {
+        "groupId": "r15.head-neck",
+        "requiredModifiers": 513
       }
     ],
     "acceptedMaterialityExceptions": [
@@ -52,8 +64,9 @@
       "distinctLineup"
     ],
     "broadCoverageResolutionMinutes": 3,
-    "broadModifierPairMinimumPerStatePerGroup": 5,
-    "fineModifierPairMinimumPerStatePerGroup": 1,
+    "shortWorkoutCoverageMaximumMinutes": 15,
+    "shortWorkoutModifierPairMinimumPerStatePerGroup": 5,
+    "legacyWorkoutModifierPairMinimumPerStatePerGroup": 1,
     "muscularDemandMinimumPerCategoryPerGroup": 1
   },
   "summary": {
@@ -67,7 +80,7 @@
     "demandZeroAffectedGroupCount": 0,
     "demandTwoDeficiencyCount": 10,
     "demandTwoAffectedGroupCount": 2,
-    "materialityDeficiencyCount": 1,
+    "materialityDeficiencyCount": 0,
     "unacceptedMaterialityDeficiencyCount": 0,
     "distinctLineupDeficiencyCount": 8,
     "completeLineupDeficiencyCount": 0
@@ -166,19 +179,7 @@
       "requiredExerciseCount": 1
     }
   ],
-  "materiality": [
-    {
-      "baseProfile": 16,
-      "enabledModifier": 2,
-      "modifiedProfile": 18,
-      "baselineExerciseCount": 267,
-      "modifiedExerciseCount": 254,
-      "materialExerciseCount": 13,
-      "requiredMaterialExerciseCount": 14,
-      "affectedGroupCount": 7,
-      "requiredAffectedGroupCount": 3
-    }
-  ],
+  "materiality": [],
   "distinctLineup": [
     {
       "minutes": 30,

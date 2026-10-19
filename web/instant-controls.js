@@ -1,6 +1,8 @@
 (() => {
   const storageKey = "nomadic-method.workout.state.v1";
-  const durationOptions = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+  const newWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15]);
+  const legacyWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+  let durationOptions = newWorkoutMinutes;
   const modifierFlags = Object.freeze({
     insect: 1,
     silence: 2,
@@ -153,9 +155,12 @@
       recoveryLightMode = next;
       renderModifiers();
     },
-    setActiveWorkoutSetup(enabled, minimumMinutes = 3) {
+    setActiveWorkoutSetup(enabled, minimumMinutes = 3, activeMinutes = 0) {
       activeWorkoutSetup = enabled === true;
       minimumActiveMinutes = activeWorkoutSetup ? minimumMinutes : 3;
+      durationOptions = activeWorkoutSetup && activeMinutes > 15
+        ? legacyWorkoutMinutes.filter(minutes => minutes <= activeMinutes) : newWorkoutMinutes;
+      if (!activeWorkoutSetup) selectedMinutes = Math.min(selectedMinutes, 15);
       document.getElementById("duration-screen")?.classList.toggle(
         "active-workout-setup",
         activeWorkoutSetup,
@@ -228,8 +233,8 @@
       if (!raw || typeof raw !== "object") {
         return null;
       }
-      const selectedMinutes = durationOptions.includes(raw.lastWorkoutMinutes)
-        ? raw.lastWorkoutMinutes
+      const selectedMinutes = legacyWorkoutMinutes.includes(raw.lastWorkoutMinutes)
+        ? Math.min(raw.lastWorkoutMinutes, 15)
         : 10;
       let storedModifiers = Number.isInteger(raw.lastWorkoutModifiers)
         ? raw.lastWorkoutModifiers & ~modifierFlags.light
@@ -295,6 +300,13 @@
       "aria-label",
       `${selectedMinutes} minutes selected`,
     );
+    elements.range.max = String(durationOptions.length - 1);
+    const labels = document.getElementById("duration-labels");
+    if (elements.labels.length !== durationOptions.length) {
+      labels.replaceChildren(...durationOptions.map(value => { const label = document.createElement("span"); label.textContent = value; return label; }));
+      elements.labels = [...labels.children];
+    }
+    labels.style.setProperty("--duration-option-count", durationOptions.length);
     elements.range.value = String(index);
     elements.range.style.setProperty("--range-progress", progress);
     elements.range.setAttribute(

@@ -52,8 +52,9 @@ import {
   MAXIMUM_MUSCULAR_DEMAND,
   MODERATE_MUSCULAR_DEMAND,
   MODERATE_RECOVERY_WINDOW_MS,
-  MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
-  MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP,
+  SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
+  MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
+  MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP,
   MINIMUM_SOLE_WALL_CONTACT_REQUIRED_SESSION_MOVEMENTS,
   MINIMUM_WALL_REQUIRED_SESSION_MOVEMENTS,
@@ -76,6 +77,7 @@ import {
   SCOPED_CATALOG_INVALIDATIONS_BY_REVISION,
   SCOPED_SCORE_INVALIDATIONS_BY_REVISION,
   SUPPORTED_MINUTES,
+  NEW_WORKOUT_MINUTES,
   WORKOUT_MODIFIERS,
   WORKOUT_EXERCISE_PHASE,
   getMuscularDemandSchedulePriority,
@@ -211,7 +213,7 @@ test("accepted coverage exceptions have the exact same native and web conditions
         mask | WORKOUT_MODIFIERS[term.trim().replace("WorkoutModifiers.", "")], 0),
     }));
   assert.deepEqual(nativeRules, ACCEPTED_COVERAGE_EXCEPTIONS);
-  assert.equal(nativeRules.length, 7);
+  assert.equal(nativeRules.length, 10);
 });
 
 test("web duration choices match the mobile workout contract", () => {
@@ -223,6 +225,11 @@ test("web duration choices match the mobile workout contract", () => {
     [...RESOLUTIONS.keys()],
     integerArray(taxonomy, "SupportedMinutes"),
   );
+  assert.deepEqual(NEW_WORKOUT_MINUTES, integerArray(sessionService, "NewWorkoutMinutes"));
+  assert.deepEqual(NEW_WORKOUT_MINUTES, JSON.parse(instantControls.match(
+    /newWorkoutMinutes = Object\.freeze\((\[[^\]]+\])\)/)[1]));
+  assert.match(mainActivity, /NormalizeSetupMinutes\(_state\.LastWorkoutMinutes\)/);
+  assert.match(webApp, /minutes = normalizeSetupMinutes\(minutes, activeWorkoutSetup/);
 });
 
 test("web and mobile persist the same complete workout audit trail", () => {
@@ -647,7 +654,7 @@ test("web and mobile persist one combined duration and modifier selection contex
   );
   assert.match(
     modifierPolicy,
-    /BroadCoverageResolutionMinutes\s*=\s*3[\s\S]*MinimumExercisesPerBroadPairStatePerGroup\s*=\s*5[\s\S]*MinimumExercisesPerFinePairStatePerGroup\s*=\s*1[\s\S]*FindPairwiseCoverageDeficiencies[\s\S]*FindMaterialityDeficiencies/,
+    /BroadCoverageResolutionMinutes\s*=\s*3[\s\S]*MinimumExercisesPerShortPairStatePerGroup\s*=\s*5[\s\S]*MinimumExercisesPerLegacyPairStatePerGroup\s*=\s*1[\s\S]*FindPairwiseCoverageDeficiencies[\s\S]*FindMaterialityDeficiencies/,
   );
   assert.match(
     modifierPolicy,
@@ -663,12 +670,16 @@ test("web and mobile persist one combined duration and modifier selection contex
     integerConstant(modifierPolicy, "BroadCoverageResolutionMinutes"),
   );
   assert.equal(
-    MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP,
-    integerConstant(modifierPolicy, "MinimumExercisesPerBroadPairStatePerGroup"),
+    SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
+    integerConstant(modifierPolicy, "ShortWorkoutCoverageMaximumMinutes"),
   );
   assert.equal(
-    MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP,
-    integerConstant(modifierPolicy, "MinimumExercisesPerFinePairStatePerGroup"),
+    MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
+    integerConstant(modifierPolicy, "MinimumExercisesPerShortPairStatePerGroup"),
+  );
+  assert.equal(
+    MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
+    integerConstant(modifierPolicy, "MinimumExercisesPerLegacyPairStatePerGroup"),
   );
   assert.equal(
     MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP,
@@ -723,7 +734,7 @@ test("web and mobile persist one combined duration and modifier selection contex
   );
   assert.match(
     workoutModule,
-    /MODIFIER_RULES[\s\S]*BROAD_COVERAGE_RESOLUTION_MINUTES\s*=\s*3[\s\S]*MINIMUM_EXERCISES_PER_BROAD_MODIFIER_PAIR_STATE_PER_GROUP\s*=\s*5[\s\S]*MINIMUM_EXERCISES_PER_FINE_MODIFIER_PAIR_STATE_PER_GROUP\s*=\s*1[\s\S]*findWorkoutModifierPairCoverageDeficiencies[\s\S]*findWorkoutModifierMaterialityDeficiencies/,
+    /MODIFIER_RULES[\s\S]*BROAD_COVERAGE_RESOLUTION_MINUTES\s*=\s*3[\s\S]*MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP\s*=\s*5[\s\S]*MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP\s*=\s*1[\s\S]*findWorkoutModifierPairCoverageDeficiencies[\s\S]*findWorkoutModifierMaterialityDeficiencies/,
   );
   assert.match(
     workoutModule,
@@ -837,9 +848,9 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 620);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 628);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 185);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 186);
   assert.deepEqual(
     new Set(catalog.filter((exercise) =>
       exercise.upperBodyClothingRequirement === "ClothingRequired")
@@ -1158,7 +1169,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /DatabaseVersion\s*=\s*ExerciseDatabaseVersionPolicy\.CurrentVersion/,
   );
-  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*97/);
+  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*98/);
   assert.match(
     exerciseDatabase,
     /ExerciseDatabaseVersionPolicy\.IsSupportedNonDestructiveUpgrade\([\s\S]*oldVersion,[\s\S]*newVersion/,
@@ -1891,7 +1902,7 @@ test("mid-workout modifiers revalidate the active exercise on both platforms", (
     webRestore,
     /restorePendingMovement\(\)[\s\S]*showNextExercise\(\)/,
   );
-  assert.match(instantControls, /setActiveWorkoutSetup\(enabled, minimumMinutes = 3\)/);
+  assert.match(instantControls, /setActiveWorkoutSetup\(enabled, minimumMinutes = 3, activeMinutes = 0\)/);
   assert.match(instantControls, /elements\.range\.disabled = false/);
   assert.match(mainActivity, /_durationSeekBar.Enabled = true/);
   assert.match(preparationWorker, /mode === "reconfigure"[\s\S]*reconfigureActiveWorkout/);

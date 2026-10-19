@@ -1,0 +1,259 @@
+{
+  "id": 1294,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T04:29:39.512Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\nExercise 1 of 29. Flat-Finger Knuckle Bends.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 0.311259,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T04:29:40.850Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 0.525273,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T04:29:45.546Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n45\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 1.321634,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T04:29:50.744Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n39\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 6.520323,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T04:29:55.852Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n34\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 3.291379,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T04:30:00.942Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n29\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 0.048043,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T04:30:06.176Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n24\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 5.281749,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T04:30:11.402Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 2.180783,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T04:30:16.543Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n14\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 7.321526,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T04:30:21.673Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n9\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 4.105745,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T04:30:26.861Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n4\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 1.006386,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T04:30:32.017Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n13\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 4.039618,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T04:30:43.210Z",
+      "name": "Flat-Finger Knuckle Bends",
+      "text": "01 / 29\nFlat-Finger Knuckle Bends\n2\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1294.mp4",
+          "time": 4.039618,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T04:30:48.375Z",
+      "name": "Eyebrow Raise",
+      "text": "02 / 29\nEyebrow Raise\nExercise 2 of 29. Eyebrow Raise.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0497.mp4",
+          "time": 2.88817,
+          "duration": 6.65,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

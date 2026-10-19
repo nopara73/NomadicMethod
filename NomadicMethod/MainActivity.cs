@@ -186,6 +186,9 @@ public partial class MainActivity : Activity
     private int _revealedMediaGeneration = -1;
     private bool _hasRenderedScreen;
     private bool _editingActiveWorkoutSetup;
+    private IReadOnlyList<int> WorkoutMinuteOptions =>
+        ExerciseSessionService.GetWorkoutMinuteOptions(
+            _editingActiveWorkoutSetup ? _state.ActiveWorkoutMinutes : 0);
     private WorkoutPhase _workoutSetupReturnPhase = WorkoutPhase.Ready;
     private bool _workoutSetupShouldResume;
     private string? _workoutSetupCurrentGroupId;
@@ -216,7 +219,7 @@ public partial class MainActivity : Activity
         _stateStore = new SharedPreferencesWorkoutStateStore(this);
         _state = _stateStore.Load();
         InitializeOuraRecovery();
-        _selectedWorkoutMinutes = _state.LastWorkoutMinutes;
+        _selectedWorkoutMinutes = ExerciseSessionService.NormalizeSetupMinutes(_state.LastWorkoutMinutes);
         _selectedWorkoutModifiers = _state.LastWorkoutModifiers;
         ShowDurationSelection();
         _ = InitializeApplicationAsync();
@@ -737,7 +740,7 @@ public partial class MainActivity : Activity
             if (eventArgs.FromUser)
             {
                 SetSelectedWorkoutMinutes(
-                    ExerciseSessionService.SupportedWorkoutMinutes[eventArgs.Progress],
+                    WorkoutMinuteOptions[eventArgs.Progress],
                     userInitiated: true);
             }
         };
@@ -1292,10 +1295,10 @@ public partial class MainActivity : Activity
 
     private void AlignDurationOptionLabels()
     {
-        int optionCount = ExerciseSessionService.SupportedWorkoutMinutes.Count;
+        int optionCount = WorkoutMinuteOptions.Count;
         if (_durationOptionLabels.Width <= 0 ||
             _durationSeekBar.Width <= 0 ||
-            _durationOptionLabels.ChildCount != optionCount ||
+            _durationOptionLabels.ChildCount < optionCount ||
             optionCount < 2)
         {
             return;
@@ -1508,12 +1511,13 @@ public partial class MainActivity : Activity
     private void ConfigureAccessibility()
     {
         _durationSeekBar.Max =
-            ExerciseSessionService.SupportedWorkoutMinutes.Count - 1;
+            WorkoutMinuteOptions.Count - 1;
         _durationSeekAccessibilityDelegate = new DurationSeekAccessibilityDelegate(
             () => _selectedWorkoutMinutes,
             () => GetSupportedMinuteIndex(_selectedWorkoutMinutes),
+            () => WorkoutMinuteOptions,
             optionIndex => SetSelectedWorkoutMinutes(
-                ExerciseSessionService.SupportedWorkoutMinutes[optionIndex],
+                WorkoutMinuteOptions[optionIndex],
                 userInitiated: true));
         _durationSeekBar.SetAccessibilityDelegate(_durationSeekAccessibilityDelegate);
     }
@@ -1941,6 +1945,7 @@ public partial class MainActivity : Activity
     {
         _manualLightModeRequested = false;
         _editingActiveWorkoutSetup = false;
+        _selectedWorkoutMinutes = ExerciseSessionService.NormalizeSetupMinutes(_state.LastWorkoutMinutes);
         _workoutSetupCurrentGroupId = null;
         CancelCountdown(resetToStart: false);
         PauseRestCountdown();
@@ -2249,7 +2254,7 @@ public partial class MainActivity : Activity
             (editing ? _sessionService.GetMinimumActiveWorkoutMinutes(_state) : 3);
         _durationIncreaseButton.Enabled =
             GetSupportedMinuteIndex(_selectedWorkoutMinutes) <
-                ExerciseSessionService.SupportedWorkoutMinutes.Count - 1;
+                WorkoutMinuteOptions.Count - 1;
         _durationDecreaseButton.Alpha = _durationDecreaseButton.Enabled
             ? 1f
             : 0.34f;
@@ -2693,13 +2698,16 @@ public partial class MainActivity : Activity
 
     private void SetSelectedWorkoutMinutes(int minutes, bool userInitiated = false)
     {
-        int previousOptionIndex = GetSupportedMinuteIndex(_selectedWorkoutMinutes);
-        int normalizedMinutes = ExerciseSessionService.NormalizeLastWorkoutMinutes(minutes);
+        int activeMinutes = _editingActiveWorkoutSetup ? _state.ActiveWorkoutMinutes : 0;
+        int previousOptionIndex = GetSupportedMinuteIndex(
+            ExerciseSessionService.NormalizeSetupMinutes(_selectedWorkoutMinutes, activeMinutes));
+        int normalizedMinutes = ExerciseSessionService.NormalizeSetupMinutes(minutes, activeMinutes);
         if (_editingActiveWorkoutSetup)
             normalizedMinutes = Math.Max(normalizedMinutes, _sessionService.GetMinimumActiveWorkoutMinutes(_state));
         _selectedWorkoutMinutes = normalizedMinutes;
         int optionIndex = GetSupportedMinuteIndex(normalizedMinutes);
 
+        _durationSeekBar.Max = WorkoutMinuteOptions.Count - 1;
         if (_durationSeekBar.Progress != optionIndex)
         {
             _durationSeekBar.Progress = optionIndex;
@@ -2714,16 +2722,17 @@ public partial class MainActivity : Activity
             $"Continue with a {normalizedMinutes} {minuteLabel} workout";
         _durationSeekBar.ContentDescription =
             $"Workout duration, {normalizedMinutes} {minuteLabel}. " +
-            "Options: 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90 minutes";
+            $"Options: {string.Join(", ", WorkoutMinuteOptions)} minutes";
         _durationOptionSegments.ContentDescription =
             $"{normalizedMinutes} minute workout selected";
 
         UpdateLightModifierPresentation(
             (_selectedWorkoutModifiers & WorkoutModifiers.Light) != 0);
 
-        _durationDecreaseButton.Enabled = optionIndex > 0;
+        _durationDecreaseButton.Enabled = optionIndex > 0 &&
+            (!_editingActiveWorkoutSetup || normalizedMinutes > _sessionService.GetMinimumActiveWorkoutMinutes(_state));
         _durationIncreaseButton.Enabled =
-            optionIndex < ExerciseSessionService.SupportedWorkoutMinutes.Count - 1;
+            optionIndex < WorkoutMinuteOptions.Count - 1;
         _durationDecreaseButton.Alpha = _durationDecreaseButton.Enabled ? 1f : 0.42f;
         _durationIncreaseButton.Alpha = _durationIncreaseButton.Enabled ? 1f : 0.42f;
 
@@ -2738,12 +2747,14 @@ public partial class MainActivity : Activity
         {
             View segment = _durationOptionSegments.GetChildAt(index)
                 ?? throw new InvalidOperationException("A duration route segment is missing.");
+            segment.Visibility = index < WorkoutMinuteOptions.Count ? ViewStates.Visible : ViewStates.Gone;
             segment.SetBackgroundResource(index <= optionIndex
                 ? Resource.Drawable.duration_segment_active
                 : Resource.Drawable.duration_segment_inactive);
 
             if (_durationOptionLabels.GetChildAt(index) is TextView label)
             {
+                label.Visibility = index < WorkoutMinuteOptions.Count ? ViewStates.Visible : ViewStates.Gone;
                 label.Animate()?.Cancel();
                 bool selected = index == optionIndex;
                 label.SetTextColor(new Android.Graphics.Color(GetColor(
@@ -2756,6 +2767,7 @@ public partial class MainActivity : Activity
             }
         }
 
+        _durationOptionLabels.Post(AlignDurationOptionLabels);
         if (userInitiated && previousOptionIndex != optionIndex)
         {
             AnimateDurationSelectionChange(optionIndex);
@@ -2818,19 +2830,19 @@ public partial class MainActivity : Activity
         int nextIndex = Math.Clamp(
             currentIndex + direction,
             0,
-            ExerciseSessionService.SupportedWorkoutMinutes.Count - 1);
+            WorkoutMinuteOptions.Count - 1);
         SetSelectedWorkoutMinutes(
-            ExerciseSessionService.SupportedWorkoutMinutes[nextIndex],
+            WorkoutMinuteOptions[nextIndex],
             userInitiated: true);
     }
 
-    private static int GetSupportedMinuteIndex(int minutes)
+    private int GetSupportedMinuteIndex(int minutes)
     {
         for (int index = 0;
-             index < ExerciseSessionService.SupportedWorkoutMinutes.Count;
+             index < WorkoutMinuteOptions.Count;
              index++)
         {
-            if (ExerciseSessionService.SupportedWorkoutMinutes[index] == minutes)
+            if (WorkoutMinuteOptions[index] == minutes)
             {
                 return index;
             }
@@ -5049,6 +5061,7 @@ public partial class MainActivity : Activity
     private sealed class DurationSeekAccessibilityDelegate(
         Func<int> getMinutes,
         Func<int> getOptionIndex,
+        Func<IReadOnlyList<int>> getMinuteOptions,
         Action<int> setOptionIndex) : View.AccessibilityDelegate
     {
         public override void OnInitializeAccessibilityNodeInfo(
@@ -5063,12 +5076,12 @@ public partial class MainActivity : Activity
                 Android.Views.Accessibility.AccessibilityNodeInfo.RangeInfo.Obtain(
                     Android.Views.Accessibility.RangeType.Int,
                     0,
-                    ExerciseSessionService.SupportedWorkoutMinutes.Count - 1,
+                    getMinuteOptions().Count - 1,
                     optionIndex));
 #pragma warning restore CA1422
             info.ContentDescription =
                 $"Workout duration, {minutes} minutes. " +
-                "Options: 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90 minutes";
+                $"Options: {string.Join(", ", getMinuteOptions())} minutes";
         }
 
         public override bool PerformAccessibilityAction(
@@ -5085,7 +5098,7 @@ public partial class MainActivity : Activity
                 int optionIndex = Math.Clamp(
                     (int)MathF.Round(requestedOptionIndex),
                     0,
-                    ExerciseSessionService.SupportedWorkoutMinutes.Count - 1);
+                    getMinuteOptions().Count - 1);
                 setOptionIndex(optionIndex);
                 return true;
             }

@@ -597,13 +597,13 @@ public sealed class WorkoutModifierPolicyTests
     {
         WorkoutGroup group = MassGroupingTaxonomy.GetResolution(30).Groups[0];
         CanonicalMuscleGroup primary = group.CanonicalGroups.Single();
-        Exercise agnosticExercise = Exercise(
-            1,
-            primary,
-            mirrorRelationship: ExerciseMirrorRelationship.Agnostic);
+        Exercise[] agnosticExercises = Enumerable.Range(1, 3)
+            .Select(id => Exercise(id, primary,
+                mirrorRelationship: ExerciseMirrorRelationship.Agnostic))
+            .ToArray();
         Assert.DoesNotContain(
             WorkoutModifierPolicy.FindPairwiseCoverageDeficiencies(
-                [agnosticExercise]),
+                agnosticExercises),
             result => result.Minutes == 30 &&
                 result.GroupId == group.Id &&
                 result.FirstModifier == WorkoutModifiers.Insect &&
@@ -612,6 +612,44 @@ public sealed class WorkoutModifierPolicyTests
         Assert.Equal(
             1,
             WorkoutModifierPolicy.GetMinimumExercisesPerPairStatePerGroup(30));
+    }
+
+    [Theory]
+    [InlineData(5, 4, 5)]
+    [InlineData(7, 4, 5)]
+    [InlineData(10, 4, 5)]
+    [InlineData(15, 4, 5)]
+    [InlineData(15, 5, 5)]
+    public void AvailabilityFloorsRejectThinPoolsAndAcceptTheBoundary(
+        int minutes, int count, int required)
+    {
+        WorkoutGroup group = MassGroupingTaxonomy.GetResolution(minutes).Groups[0];
+        Exercise[] catalog = Enumerable.Range(1, count)
+            .Select(id => Exercise(id, group.CanonicalGroups.First()))
+            .ToArray();
+        var pairwise = WorkoutModifierPolicy.FindPairwiseCoverageDeficiencies(catalog)
+            .Where(result => result.Minutes == minutes && result.GroupId == group.Id &&
+                result.FirstModifier == WorkoutModifiers.Insect && !result.FirstModifierEnabled &&
+                result.SecondModifier == WorkoutModifiers.Silence && !result.SecondModifierEnabled)
+            .ToArray();
+        var hardFloor = WorkoutModifierPolicy.FindHardFloorCategoryCoverageDeficiencies(catalog)
+            .Where(result => result.Minutes == minutes && result.GroupId == group.Id &&
+                result.PartnerModifier == WorkoutModifiers.Insect && !result.PartnerModifierEnabled)
+            .ToArray();
+        if (count >= required)
+        {
+            Assert.Empty(pairwise);
+            Assert.Empty(hardFloor);
+        }
+        else
+        {
+            var pair = Assert.Single(pairwise);
+            Assert.Equal(count, pair.MatchingExerciseCount);
+            Assert.Equal(required, pair.RequiredExerciseCount);
+            var floor = Assert.Single(hardFloor);
+            Assert.Equal(count, floor.MatchingExerciseCount);
+            Assert.Equal(required, floor.RequiredExerciseCount);
+        }
     }
 
     [Fact]

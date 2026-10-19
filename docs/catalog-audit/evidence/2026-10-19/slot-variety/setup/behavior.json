@@ -1,0 +1,22 @@
+{
+  "isolatedBrowserState": true,
+  "results": [
+    {
+      "case": "Legacy last duration 90; new setup clamps to 15 and keyboard choices span 3 through 15",
+      "passed": true
+    },
+    {
+      "case": "Existing 30-minute session can shorten to 20 with the same session and untouched completed history",
+      "passed": true,
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15",
+        "20",
+        "30"
+      ]
+    }
+  ]
+}

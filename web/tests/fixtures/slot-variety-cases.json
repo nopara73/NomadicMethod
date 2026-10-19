@@ -1,0 +1,22 @@
+[
+  {
+    "minutes": 3,
+    "required": 5
+  },
+  {
+    "minutes": 5,
+    "required": 5
+  },
+  {
+    "minutes": 7,
+    "required": 5
+  },
+  {
+    "minutes": 10,
+    "required": 5
+  },
+  {
+    "minutes": 15,
+    "required": 5
+  }
+]

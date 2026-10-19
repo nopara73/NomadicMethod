@@ -263,8 +263,8 @@ public sealed class CatalogInvariantTests
                 soleWallContactRequired.GetBoolean() &&
                 !wallRequired.GetBoolean());
         });
-        Assert.Equal(194, exercises.Count(exercise => exercise.MuscularDemand == 0));
-        Assert.Equal(394, exercises.Count(exercise => exercise.MuscularDemand == 1));
+        Assert.Equal(202, exercises.Count(exercise => exercise.MuscularDemand == 0));
+        Assert.Equal(395, exercises.Count(exercise => exercise.MuscularDemand == 1));
         Assert.Equal(217, exercises.Count(exercise => exercise.MuscularDemand == 2));
         Assert.All(Enum.GetValues<CanonicalMuscleGroup>(), canonicalGroup =>
             Assert.Contains(exercises, exercise =>
@@ -478,6 +478,7 @@ public sealed class CatalogInvariantTests
             [153] = [153, 603],
             [159] = [159, 649],
             [160] = [160, 533],
+            [161] = [161, 1297],
             [177] = [177, 186],
             [187] = [187, 252, 253, 254, 562, 566, 581, 582],
             [192] = [192, 195],
@@ -492,7 +493,7 @@ public sealed class CatalogInvariantTests
             [277] = [261, 277],
             [278] = [278, 326],
             [286] = [286, 541],
-            [288] = [288, 758],
+            [288] = [288, 758, 1299],
             [292] = [148, 292, 542],
             [311] = [311, 321, 816],
             [327] = [327, 546],
@@ -505,6 +506,7 @@ public sealed class CatalogInvariantTests
             [550] = [550, 551],
             [568] = [568, 633],
             [579] = [579, 580],
+            [588] = [588, 1300],
             [625] = [625, 1021],
             [712] = [712, 1012],
             [1010] = [1010, 1018],
@@ -592,7 +594,7 @@ public sealed class CatalogInvariantTests
             exercise.InsectCompatibility == ExerciseInsectCompatibility.Unreviewed);
         Assert.DoesNotContain(exercises, exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Unreviewed);
-        Assert.Equal(370, exercises.Count(exercise =>
+        Assert.Equal(379, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Compatible));
         Assert.Equal(435, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Incompatible));
@@ -672,12 +674,13 @@ public sealed class CatalogInvariantTests
                         ExerciseUpperBodyClothingRequirement.BareUpperBodyRequired)
                 .Select(exercise => exercise.Id)
                 .ToHashSet());
-        Assert.Equal(689, exercises.Count(exercise =>
+        Assert.Equal(698, exercises.Count(exercise =>
             exercise.UpperBodyClothingRequirement == ExerciseUpperBodyClothingRequirement.Agnostic));
         Assert.DoesNotContain(exercises, exercise =>
             exercise.ShyCompatibility == ExerciseShyCompatibility.Unreviewed);
         HashSet<int> shyIncompatibleExerciseIds =
         [
+            1302,
             56, 58, 59, 92, 93, 98, 108, 176, 178, 181, 182, 183, 185, 188,
             190, 203, 220, 224, 231, 242, 258, 269, 276, 283, 285, 286, 290, 291,
             294, 327, 377, 379, 392, 398, 399, 400, 401, 402, 403, 404, 405, 408,
@@ -698,7 +701,7 @@ public sealed class CatalogInvariantTests
                         ExerciseShyCompatibility.Incompatible)
                 .Select(exercise => exercise.Id)
                 .ToHashSet());
-        Assert.Equal(620, exercises.Count(exercise =>
+        Assert.Equal(628, exercises.Count(exercise =>
             exercise.ShyCompatibility == ExerciseShyCompatibility.Compatible));
         Assert.All(
             new[] { 56, 185, 377, 379, 401, 403, 557 },
@@ -788,7 +791,7 @@ public sealed class CatalogInvariantTests
             exercise.MirrorRelationship == ExerciseMirrorRelationship.Unreviewed);
         Assert.Equal(99, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.BenefitsGreatly));
-        Assert.Equal(706, exercises.Count(exercise =>
+        Assert.Equal(715, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.Agnostic));
         Assert.Equal(0, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.MirrorOnly));
@@ -804,7 +807,7 @@ public sealed class CatalogInvariantTests
         Assert.Equal(59, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.BenefitsGreatly &&
             exercise.MinimumMirrorCoverage == ExerciseMirrorCoverage.FullBody));
-        Assert.Equal(706, exercises.Count(exercise =>
+        Assert.Equal(715, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.Agnostic &&
             exercise.MinimumMirrorCoverage == ExerciseMirrorCoverage.None));
         Assert.DoesNotContain(exercises, exercise => exercise.Id == 90);
@@ -932,7 +935,7 @@ public sealed class CatalogInvariantTests
             .Where(exercise =>
                 exercise.PrimaryCanonicalGroup == CanonicalMuscleGroup.BreathingMuscles)
             .ToArray();
-        Assert.Equal(7, breathingExercises.Length);
+        Assert.Equal(8, breathingExercises.Length);
         Assert.All(breathingExercises, exercise =>
             Assert.Matches(
                 "(?i)\\b(inhale|exhale|breath|laugh|laughter)",
@@ -1016,7 +1019,7 @@ public sealed class CatalogInvariantTests
             .Where(exercise =>
                 exercise.SideSequence == ExerciseSideSequence.Alternating)
             .ToArray();
-        Assert.Equal(246, alternatingExercises.Length);
+        Assert.Equal(249, alternatingExercises.Length);
         Assert.DoesNotContain(alternatingExercises, exercise => exercise.Id == 219);
         Assert.Contains(alternatingExercises, exercise => exercise.Id == 15);
         Assert.Contains(alternatingExercises, exercise => exercise.Id == 429);
@@ -1116,7 +1119,7 @@ public sealed class CatalogInvariantTests
         });
         Dictionary<int, int> expectedSequenceBlockDistribution = new()
         {
-            [1] = 488,
+            [1] = 497,
             [2] = 243,
             [3] = 20,
             [4] = 13,

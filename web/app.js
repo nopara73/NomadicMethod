@@ -6,7 +6,9 @@ import {
   WALL_EQUIPMENT,
   LOCOMOTION_SPACE,
   REST_DURATION_MS,
-  SUPPORTED_MINUTES,
+  NEW_WORKOUT_MINUTES,
+  getWorkoutMinuteOptions,
+  normalizeSetupMinutes,
   WORKOUT_MODIFIERS,
   WorkoutSession,
   findSoleWallContactRequiredCatalogDeficiencies,
@@ -462,16 +464,20 @@ function persistState() {
   }
 }
 
+function workoutMinuteOptions() {
+  return getWorkoutMinuteOptions(activeWorkoutSetup ? session?.state.activeWorkoutMinutes : 0);
+}
+
 function stepDuration(direction) {
-  const currentIndex = SUPPORTED_MINUTES.indexOf(selectedMinutes);
+  const currentIndex = workoutMinuteOptions().indexOf(selectedMinutes);
   selectDurationByIndex(
-    Math.max(0, Math.min(SUPPORTED_MINUTES.length - 1, currentIndex + direction)),
+    Math.max(0, Math.min(workoutMinuteOptions().length - 1, currentIndex + direction)),
     true,
   );
 }
 
 function selectDurationByIndex(index, userInitiated) {
-  const minutes = SUPPORTED_MINUTES[index];
+  const minutes = workoutMinuteOptions()[index];
   if (minutes !== undefined) {
     renderDuration(minutes, userInitiated);
   }
@@ -479,24 +485,33 @@ function selectDurationByIndex(index, userInitiated) {
 
 function renderDuration(minutes, userInitiated) {
   const previousMinutes = selectedMinutes;
+  minutes = normalizeSetupMinutes(minutes, activeWorkoutSetup ? session?.state.activeWorkoutMinutes : 0);
   if (activeWorkoutSetup && session)
     minutes = Math.max(minutes, session.getMinimumActiveWorkoutMinutes());
   selectedMinutes = minutes;
-  const index = SUPPORTED_MINUTES.indexOf(minutes);
-  const progress = `${(index / (SUPPORTED_MINUTES.length - 1)) * 100}%`;
+  const index = workoutMinuteOptions().indexOf(minutes);
+  const progress = `${(index / (workoutMinuteOptions().length - 1)) * 100}%`;
 
   elements.durationValue.value = String(minutes);
   elements.durationValue.textContent = String(minutes);
   elements.durationValue.setAttribute("aria-label", `${minutes} minutes selected`);
+  const options = workoutMinuteOptions();
+  elements.durationRange.max = String(options.length - 1);
+  if (elements.durationLabels.length !== options.length) {
+    const container = byId("duration-labels");
+    container.replaceChildren(...options.map(value => { const label = document.createElement("span"); label.textContent = value; return label; }));
+    elements.durationLabels = [...container.children];
+  }
+  byId("duration-labels").style.setProperty("--duration-option-count", options.length);
   elements.durationRange.value = String(index);
   elements.durationRange.style.setProperty("--range-progress", progress);
   elements.durationRange.setAttribute(
     "aria-valuetext",
-    `${minutes} minutes. Options: 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90 minutes`,
+    `${minutes} minutes. Options: ${options.join(", ")} minutes`,
   );
   elements.durationDecrease.disabled = activeWorkoutSetup && session
     ? minutes <= session.getMinimumActiveWorkoutMinutes() : index === 0;
-  elements.durationIncrease.disabled = index === SUPPORTED_MINUTES.length - 1;
+  elements.durationIncrease.disabled = index === workoutMinuteOptions().length - 1;
   elements.beginWorkout.setAttribute("aria-label", `Start a ${minutes} minute workout`);
 
   elements.durationLabels.forEach((label, labelIndex) => {
@@ -788,7 +803,7 @@ function renderLightModeCountdown() {
     ? session.getWorkoutsUntilLightWorkout(selectedMinutes)
     : startupControls?.lightWorkoutsRemaining;
   const maximumWorkoutCount = Math.ceil(
-    LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT / Math.min(...SUPPORTED_MINUTES));
+    LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT / Math.min(...NEW_WORKOUT_MINUTES));
   const workoutsRemaining = Number.isInteger(candidateWorkoutsRemaining) &&
       candidateWorkoutsRemaining >= 0 &&
       candidateWorkoutsRemaining <= maximumWorkoutCount
@@ -914,12 +929,12 @@ function showActiveWorkoutSetup() {
   selectedModifiers = session.state.activeWorkoutModifiers;
   renderDuration(selectedMinutes, false);
   renderWorkoutModifiers();
+  startupControls?.setActiveWorkoutSetup(true, session.getMinimumActiveWorkoutMinutes(), session.state.activeWorkoutMinutes);
   startupControls?.setSelection(selectedMinutes, selectedModifiers);
-  startupControls?.setActiveWorkoutSetup(true, session.getMinimumActiveWorkoutMinutes());
   elements.durationScreen.classList.add("active-workout-setup");
   if (!startupControls) {
     elements.durationDecrease.disabled = selectedMinutes <= session.getMinimumActiveWorkoutMinutes();
-    elements.durationIncrease.disabled = selectedMinutes === SUPPORTED_MINUTES.at(-1);
+    elements.durationIncrease.disabled = selectedMinutes === workoutMinuteOptions().at(-1);
     elements.durationRange.disabled = false;
     elements.beginWorkout.setAttribute("aria-label", "Resume workout");
   }

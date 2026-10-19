@@ -1,0 +1,259 @@
+{
+  "id": 1299,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T05:34:25.546Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\nExercise 1 of 15. Standing Ankle Circles Both Ways.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 0.252251,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T05:34:26.841Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 0.428874,
+          "duration": 15,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T05:34:31.442Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n45\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 1.138978,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T05:34:36.560Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n40\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 6.250414,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T05:34:41.747Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n35\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 11.443685,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T05:34:46.862Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n29\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 1.548428,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T05:34:51.960Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n24\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 6.644814,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T05:34:57.072Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 11.758204,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T05:35:02.153Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n14\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 1.822115,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T05:35:07.236Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n9\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 6.905739,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T05:35:12.318Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n4\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 11.98772,
+          "duration": 15,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T05:35:17.422Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n14\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 0.417642,
+          "duration": 15,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T05:35:28.523Z",
+      "name": "Standing Ankle Circles Both Ways",
+      "text": "01 / 15\nStanding Ankle Circles Both Ways\n3\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1299.mp4",
+          "time": 0.417642,
+          "duration": 15,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T05:35:33.597Z",
+      "name": "Fixed-Gaze Head-Turn March",
+      "text": "02 / 15\nFixed-Gaze Head-Turn March\nExercise 2 of 15. Fixed-Gaze Head-Turn March.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0202.mp4",
+          "time": 2.708445,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

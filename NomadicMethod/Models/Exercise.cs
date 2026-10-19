@@ -5,6 +5,7 @@ public sealed class Exercise
     private ExerciseSideSequence _sideSequence;
     private ExerciseSequenceBlock[] _sequenceBlocks = [];
     private ExerciseShyCompatibility _shyCompatibility = ExerciseShyCompatibility.Unreviewed;
+    private CanonicalMuscleGroup[] _secondaryCanonicalGroups = [];
     public const int MinimumMuscularDemand = 0;
 
     public const int ModerateMuscularDemand = 1;
@@ -21,7 +22,8 @@ public sealed class Exercise
 
     public required CanonicalMuscleGroup PrimaryCanonicalGroup { get; init; }
 
-    public required CanonicalMuscleGroup[] SecondaryCanonicalGroups { get; init; }
+    public required CanonicalMuscleGroup[] SecondaryCanonicalGroups
+        { get => _secondaryCanonicalGroups; init => _secondaryCanonicalGroups = value; }
 
     public required string Practice { get; init; }
 
@@ -85,12 +87,14 @@ public sealed class Exercise
     public required bool Silent { get; init; }
 
     public Exercise WithWorkoutMetadata(ExerciseSideSequence sides,
-        ExerciseSequenceBlock[] blocks, ExerciseShyCompatibility shy)
+        ExerciseSequenceBlock[] blocks, ExerciseShyCompatibility shy,
+        CanonicalMuscleGroup[]? secondaryGroups = null)
     {
         Exercise copy = (Exercise)MemberwiseClone();
         copy._sideSequence = sides;
         copy._sequenceBlocks = blocks;
         copy._shyCompatibility = shy;
+        copy._secondaryCanonicalGroups = secondaryGroups ?? _secondaryCanonicalGroups;
         return copy;
     }
 

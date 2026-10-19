@@ -14,7 +14,7 @@
     <string name="duration_increase">+</string>
     <string name="duration_decrease_description">Select previous workout duration</string>
     <string name="duration_increase_description">Select next workout duration</string>
-    <string name="duration_seek_description_default">Workout duration, 10 minutes. Options: 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90 minutes</string>
+    <string name="duration_seek_description_default">Workout duration, 10 minutes. Options: 3, 5, 7, 10, 15 minutes</string>
     <string name="duration_option_3">3</string>
     <string name="duration_option_5">5</string>
     <string name="duration_option_7">7</string>

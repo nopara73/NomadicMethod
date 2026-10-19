@@ -111,6 +111,9 @@ test("every changed standalone claim removes only impossible fine-slot selection
     const state = createDefaultState();
     state.catalogRevision = 72;
     state.activeWorkoutMinutes = 30;
+    // Exercise current-anatomy preference repair. Older frozen workout
+    // metadata and checkpoints have their own shared revision-81 fixtures.
+    state.activeCatalogRevision = CURRENT_CATALOG_REVISION;
     state.selectedExerciseIds = Object.fromEntries(slots.map(s => [s, e.id]));
     state.keptExerciseRootIdsBySelectionGroupId = Object.fromEntries(slots.map(s => [s, [e.id]]));
     state.exerciseScoreAdjustmentsBySelectionGroupId = Object.fromEntries(slots.map(s => [s, { [e.id]: -2 }]));

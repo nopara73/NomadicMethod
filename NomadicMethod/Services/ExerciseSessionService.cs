@@ -8,6 +8,7 @@ public sealed partial class ExerciseSessionService
 {
     public const int MinimumWorkoutMinutes = 3;
     public const int MaximumWorkoutMinutes = 90;
+    public const int MaximumNewWorkoutMinutes = 15;
     public const int DefaultWorkoutMinutes = 10;
     public const WorkoutModifiers DefaultWorkoutModifiers =
         WorkoutModifiers.UpperBodyClothing |
@@ -31,6 +32,22 @@ public sealed partial class ExerciseSessionService
     private const char SelectionProfileSeparator = '|';
     private static readonly IReadOnlyList<int> WorkoutMinutes =
         Array.AsReadOnly([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+
+    // Longer durations remain understood by the planner and persisted history.
+    // Setup offers them only while editing an already-existing longer session.
+    public static readonly IReadOnlyList<int> NewWorkoutMinutes =
+        Array.AsReadOnly([3, 5, 7, 10, 15]);
+
+    public static IReadOnlyList<int> GetWorkoutMinuteOptions(int activeWorkoutMinutes = 0) =>
+        activeWorkoutMinutes > MaximumNewWorkoutMinutes
+            ? WorkoutMinutes.Where(minutes => minutes <= activeWorkoutMinutes).ToArray()
+            : NewWorkoutMinutes;
+
+    public static int NormalizeSetupMinutes(int minutes, int activeWorkoutMinutes = 0) =>
+        GetWorkoutMinuteOptions(activeWorkoutMinutes)
+            .OrderBy(candidate => Math.Abs(candidate - minutes))
+            .ThenByDescending(candidate => candidate)
+            .First();
 
     private static readonly IReadOnlyDictionary<string, WorkoutGroup> KnownWorkoutGroups =
         MassGroupingTaxonomy.SupportedMinutes
@@ -591,7 +608,8 @@ public sealed partial class ExerciseSessionService
         HashSet<string> retainedUnavailableSelectionGroupIds = selectionGroups
             .Where(group => !WorkoutModifierPolicy.IsSelectionGroupAvailable(
                 group,
-                modifiers))
+                modifiers,
+                state.ActiveCatalogRevision))
             .Select(group => group.Id)
             .ToHashSet(StringComparer.Ordinal);
         bool currentSelectionGroupAvailable = selectionGroups.Any(group =>
@@ -5056,14 +5074,15 @@ public sealed partial class ExerciseSessionService
         IReadOnlySet<string>? retainedSelectionGroupIds) =>
         state.ActiveDurationSelectionGroupIds is { } groupIds
             ? groupIds.Select(id => KnownWorkoutGroups[id])
-                .Where(group => WorkoutModifierPolicy.IsSelectionGroupAvailable(group, modifiers) ||
+                .Where(group => WorkoutModifierPolicy.IsSelectionGroupAvailable(group, modifiers, state.ActiveCatalogRevision) ||
                     retainedSelectionGroupIds?.Contains(group.Id) == true).ToArray()
-            : GetSelectionGroups(state.ActiveWorkoutMinutes, modifiers, retainedSelectionGroupIds);
+            : GetSelectionGroups(state.ActiveWorkoutMinutes, modifiers, retainedSelectionGroupIds, state.ActiveCatalogRevision);
 
     private static IReadOnlyList<WorkoutGroup> GetSelectionGroups(
         int workoutMinutes,
         WorkoutModifiers modifiers,
-        IReadOnlySet<string>? retainedSelectionGroupIds = null)
+        IReadOnlySet<string>? retainedSelectionGroupIds = null,
+        int catalogRevision = CatalogMigrationRules.CurrentCatalogRevision)
     {
         retainedSelectionGroupIds ??=
             new HashSet<string>(StringComparer.Ordinal);
@@ -5072,7 +5091,8 @@ public sealed partial class ExerciseSessionService
                 .Where(group =>
                     WorkoutModifierPolicy.IsSelectionGroupAvailable(
                         group,
-                        modifiers) ||
+                        modifiers,
+                        catalogRevision) ||
                     retainedSelectionGroupIds.Contains(group.Id))
                 .ToArray()
             : [];

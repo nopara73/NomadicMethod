@@ -1,0 +1,153 @@
+{
+  "baseline": "459bcb387574988527657f1c1a1c1af5419e48fd",
+  "method": "Matched rendered setup: current shared catalog and native icons; before uses the baseline UI sources, after uses working UI sources. Fresh isolated storage, same fonts, viewport, scale and default setup.",
+  "results": [
+    {
+      "label": "before",
+      "name": "portrait",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15",
+        "20",
+        "30",
+        "45",
+        "60",
+        "90"
+      ],
+      "value": "10",
+      "max": "9",
+      "overflow": false,
+      "brokenImages": [
+        ""
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "name": "landscape",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15",
+        "20",
+        "30",
+        "45",
+        "60",
+        "90"
+      ],
+      "value": "10",
+      "max": "9",
+      "overflow": false,
+      "brokenImages": [
+        ""
+      ],
+      "errors": []
+    },
+    {
+      "label": "before",
+      "name": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15",
+        "20",
+        "30",
+        "45",
+        "60",
+        "90"
+      ],
+      "value": "10",
+      "max": "9",
+      "overflow": false,
+      "brokenImages": [
+        ""
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "name": "portrait",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15"
+      ],
+      "value": "10",
+      "max": "4",
+      "overflow": false,
+      "brokenImages": [
+        ""
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "name": "landscape",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15"
+      ],
+      "value": "10",
+      "max": "4",
+      "overflow": false,
+      "brokenImages": [
+        ""
+      ],
+      "errors": []
+    },
+    {
+      "label": "after",
+      "name": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "labels": [
+        "3",
+        "5",
+        "7",
+        "10",
+        "15"
+      ],
+      "value": "10",
+      "max": "4",
+      "overflow": false,
+      "brokenImages": [
+        ""
+      ],
+      "errors": []
+    }
+  ]
+}

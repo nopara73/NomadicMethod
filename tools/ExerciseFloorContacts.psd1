@@ -2,6 +2,15 @@
     # The existing human-reviewed catalog is feet-only. New identities must
     # explicitly declare every support contact, including transitions.
     FeetOnly = @(
+        1302,
+        1301,
+        1300,
+        1299,
+        1298,
+        1297,
+        1296,
+        1295,
+        1294,
         15, 16, 17, 19, 20, 21, 31, 32, 37, 41, 47, 56, 58, 59, 60, 92,
         93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 107, 108, 109,
         110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125,

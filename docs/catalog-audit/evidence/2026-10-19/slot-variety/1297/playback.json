@@ -1,0 +1,259 @@
+{
+  "id": 1297,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T04:51:49.852Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\nExercise 1 of 29. Alternating Standing Gate Openers.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 1.055854,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T04:51:51.516Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 1.479328,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T04:51:56.474Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n44\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 2.664461,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T04:52:01.597Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n39\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 1.978334,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T04:52:06.719Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n34\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 1.273785,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T04:52:11.952Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n29\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 0.656067,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T04:52:17.150Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n24\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 0.030413,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T04:52:22.303Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 5.159796,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T04:52:27.487Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n13\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 4.551034,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T04:52:32.743Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n8\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 3.987225,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T04:52:37.932Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n3\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 3.331011,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T04:52:43.192Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n13\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 0.032566,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T04:52:54.435Z",
+      "name": "Alternating Standing Gate Openers",
+      "text": "01 / 29\nAlternating Standing Gate Openers\n2\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1297.mp4",
+          "time": 0.032566,
+          "duration": 5.8,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T04:52:59.799Z",
+      "name": "Thumb and Little-Finger Switches",
+      "text": "02 / 29\nThumb and Little-Finger Switches\nExercise 2 of 29. Thumb and Little-Finger Switches.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0290.mp4",
+          "time": 3.956682,
+          "duration": 8.3,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

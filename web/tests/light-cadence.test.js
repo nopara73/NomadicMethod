@@ -219,6 +219,7 @@ function startup(history = [], duration = 10, now = atDay(4)) {
       setAttribute(name, value) { attributes.set(name, value); },
       getAttribute(name) { return attributes.get(name); },
       addEventListener(name, callback) { listeners.set(name, callback); },
+      replaceChildren(...children) { this.children = children; },
       fire(name) { listeners.get(name)?.(); },
     };
     elements.set(id, node);
@@ -227,7 +228,7 @@ function startup(history = [], duration = 10, now = atDay(4)) {
   class ClockDate extends Date { static now() { return now; } }
   const context = vm.createContext({
     Date: ClockDate,
-    document: { getElementById: element },
+    document: { getElementById: element, createElement: () => element(`created-${elements.size}`) },
     localStorage: { getItem: () => JSON.stringify({
       workoutHistory: history, lastWorkoutMinutes: duration,
       lastWorkoutModifiers: 0,
@@ -293,7 +294,8 @@ test("startup locks Light for the existing nearly completed hour history", () =>
 
 test("mid-workout settings allow duration edits without crossing the protected prefix", () => {
   const { controls, element } = startup([], 30);
-  controls.setActiveWorkoutSetup(true, 15);
+  controls.setActiveWorkoutSetup(true, 15, 30);
+  controls.setSelection(30, 0);
   assert.equal(element("duration-range").disabled, false);
   element("duration-decrease").fire("click");
   assert.equal(controls.selectedMinutes, 20);
@@ -303,6 +305,23 @@ test("mid-workout settings allow duration edits without crossing the protected p
   element("duration-increase").fire("click");
   assert.equal(controls.selectedMinutes, 20);
   assert.equal(element("begin-workout").getAttribute("aria-label"), "Resume workout");
+});
+
+test("instant setup caps new workouts at 15 and scopes longer choices to an existing session", () => {
+  const { controls, element } = startup([], 60);
+  assert.equal(controls.selectedMinutes, 15);
+  assert.equal(element("duration-range").max, "4");
+  element("duration-increase").fire("click");
+  assert.equal(controls.selectedMinutes, 15);
+  controls.setSelection(60, 0);
+  assert.equal(controls.selectedMinutes, 15);
+  controls.setActiveWorkoutSetup(true, 20, 60);
+  controls.setSelection(60, 0);
+  assert.equal(controls.selectedMinutes, 60);
+  assert.equal(element("duration-range").max, "8");
+  controls.setActiveWorkoutSetup(false);
+  assert.equal(controls.selectedMinutes, 15);
+  assert.equal(element("duration-range").max, "4");
 });
 
 test("startup countdown responds to duration and manual Light hides it", () => {

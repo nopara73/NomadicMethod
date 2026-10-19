@@ -1,0 +1,259 @@
+{
+  "id": 1302,
+  "fixture": "Isolated browser state; candidate reordered first. No user data used.",
+  "snapshots": [
+    {
+      "label": "ready",
+      "at": "2026-10-19T06:05:18.745Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\nExercise 1 of 15. Woodchopper Breath with Ha Exhale.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.773102,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "preparation",
+      "at": "2026-10-19T06:05:19.917Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n4\nPrepare, 5 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.839381,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-start",
+      "at": "2026-10-19T06:05:24.510Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n45\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 1.522556,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-1",
+      "at": "2026-10-19T06:05:29.599Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n40\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.156534,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-2",
+      "at": "2026-10-19T06:05:34.702Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n35\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 2.03726,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-3",
+      "at": "2026-10-19T06:05:39.789Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n30\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.673097,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-4",
+      "at": "2026-10-19T06:05:44.874Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n25\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 2.533922,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-5",
+      "at": "2026-10-19T06:05:49.959Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n19\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 1.193017,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-6",
+      "at": "2026-10-19T06:05:55.046Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n14\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 3.073137,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-7",
+      "at": "2026-10-19T06:06:00.124Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n9\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 1.719187,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "work-8",
+      "at": "2026-10-19T06:06:05.208Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n4\nMove, 45 seconds.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.372301,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-start",
+      "at": "2026-10-19T06:06:10.299Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n14\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.92798,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "rest-end",
+      "at": "2026-10-19T06:06:21.376Z",
+      "name": "Woodchopper Breath with Ha Exhale",
+      "text": "01 / 15\nWoodchopper Breath with Ha Exhale\n3\nRest, 15 seconds. Tap the heart to keep this sequence.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_1302.mp4",
+          "time": 0.92798,
+          "duration": 3.2,
+          "rate": 1,
+          "paused": true,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    },
+    {
+      "label": "next-ready",
+      "at": "2026-10-19T06:06:26.448Z",
+      "name": "Fixed-Gaze Head-Turn March",
+      "text": "02 / 15\nFixed-Gaze Head-Turn March\nExercise 2 of 15. Fixed-Gaze Head-Turn March.",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:4319/assets/exercise_videos/exercise_0202.mp4",
+          "time": 2.34031,
+          "duration": 8.8,
+          "rate": 1,
+          "paused": false,
+          "readyState": 4,
+          "videoWidth": 256,
+          "videoHeight": 256
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

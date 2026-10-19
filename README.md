@@ -323,8 +323,12 @@ repeated sets, aliases, and names cannot multiply either count. The current
 audited inventory contains 25 base-wall movements and five sole-wall movements.
 
 For every existing non-Wall modifier pair and real UI state, each applicable
-broad and fine anatomical bucket must retain at least one approved selectable
-movement. Every supported duration must admit a complete atomic lineup.
+anatomical slot must offer at least five distinct approved selectable movements
+at 3, 5, 7, 10 and 15 minutes. New-workout setup stops at 15 minutes.
+Unfinished longer sessions remain resumable, with their original progress and
+history; their settings permit shortening, never extending beyond the existing
+duration. The original one-choice invariant remains for historical resolutions. Every supported duration must
+admit a complete atomic lineup.
 Distinct movements are preferred; a complete movement may repeat in separately
 tracked slots when no distinct lineup fits. Sides, directions and atomic
 sequences must remain complete, and the selected duration is preserved.
@@ -341,10 +345,13 @@ Hard Floor requires compatible availability in applicable buckets; it does not
 require an incompatible counterpart. Demand-0/demand-2 inventories, mirror
 relationship populations are diagnostic results,
 not admission quotas or release gates. Ratings, anatomy and relationship
-criteria remain truthful and audited. Broad regions require five distinct selectable movements in every required
-modifier state; fine groups require one. The audit counts only whole sequences
+criteria remain truthful and audited. The audit counts distinct session-movement
+identities only, so aliases, sides, directions and repeated sets cannot inflate
+the five-choice availability floor. It counts only whole sequences
 that fit the selected duration, using the same reviewed training and physical
 restrictions as the planner.
+The [slot-variety audit](docs/SLOT_VARIETY_AUDIT.md) records the new requirement,
+current shortfalls and catalog sourcing status; a nonzero deficit blocks release.
 Upper-body clothing's exact catalog partition is recorded in
 [`docs/UPPER_BODY_CLOTHING_AUDIT.md`](docs/UPPER_BODY_CLOTHING_AUDIT.md).
 Shy's ordinary-observer review boundary and exhaustive catalog partition are
