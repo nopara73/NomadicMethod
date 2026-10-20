@@ -36,8 +36,16 @@ public static class WorkoutCatalogPolicy
     }
 
     public static IReadOnlyList<Exercise> ForWorkout(
-        IReadOnlyList<Exercise> catalog, int activeCatalogRevision)
+        IReadOnlyList<Exercise> catalog, int activeCatalogRevision,
+        IReadOnlySet<int>? singleDirectionExerciseIds = null)
     {
+        if (singleDirectionExerciseIds is { Count: > 0 })
+            catalog = catalog.Select(exercise => singleDirectionExerciseIds.Contains(exercise.Id) &&
+                    WorkoutSequencePolicy.CanUseSingleDirection(exercise)
+                ? exercise.WithWorkoutMetadata(exercise.SideSequence,
+                    [exercise.SequenceBlocks[0]], exercise.ShyCompatibility)
+                : exercise).ToArray();
+
         if (activeCatalogRevision is > 0 and < 82)
         {
             // Catalog additions and newly recognized lateral knee lifts must

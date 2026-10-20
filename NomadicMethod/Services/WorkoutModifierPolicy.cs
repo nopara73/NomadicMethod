@@ -975,6 +975,11 @@ public static class WorkoutModifierPolicy
 
         IReadOnlyDictionary<int, Exercise> exercisesById = exercises
             .ToDictionary(exercise => exercise.Id);
+        if (availableBlocks < 30)
+            exercises = exercises.Select(exercise => WorkoutSequencePolicy.CanUseSingleDirection(exercise)
+                    ? exercise.WithWorkoutMetadata(exercise.SideSequence,
+                        [exercise.SequenceBlocks[0]], exercise.ShyCompatibility)
+                    : exercise).ToArray();
         int oneBlockLineupSize = GetMaximumOneBlockLineupSize(
             exercises,
             exercisesById,
@@ -1175,11 +1180,13 @@ public static class WorkoutModifierPolicy
         WorkoutResolution resolution = MassGroupingTaxonomy.SupportedMinutes
             .Select(MassGroupingTaxonomy.GetResolution)
             .Single(candidate => candidate.Groups.Any(known => known.Id == group.Id));
+        int blockCount = WorkoutSequencePolicy.GetBlockCount(exercise, resolution.Minutes);
+        if (blockCount == 1) return true;
         WorkoutGroup[] available = resolution.Groups
             .Where(candidate => IsSelectionGroupAvailable(candidate, profile)).ToArray();
         return WorkoutSequencePolicy.GetPlacementOptions(exercise, exercisesById, available)
             .Any(option => option.Any(candidate => candidate.Id == group.Id) &&
-                exercise.SequenceBlocks.Length + available.Length - option.Length <= resolution.Minutes);
+                blockCount + available.Length - option.Length <= resolution.Minutes);
     }
 
     private static bool IsSequenceHardFloorCategory(

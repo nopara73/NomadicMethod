@@ -79,6 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\single-direction-cases.json" Link="Assets\single-direction-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\slot-variety-cases.json" Link="Assets\slot-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\legacy-slot-variety-sessions.json" Link="Assets\legacy-slot-variety-sessions.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\floor-contact-cases.json" Link="Assets\floor-contact-cases.json" CopyToOutputDirectory="PreserveNewest" />

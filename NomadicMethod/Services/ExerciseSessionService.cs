@@ -185,7 +185,8 @@ public sealed partial class ExerciseSessionService
         if (state.ActiveCatalogRevision == 0 && state.ActiveWorkoutMinutes > 0)
             state.ActiveCatalogRevision = state.CatalogRevision;
         SetExercises(state.ActiveWorkoutMinutes > 0
-            ? WorkoutCatalogPolicy.ForWorkout(_catalogExercises, state.ActiveCatalogRevision)
+            ? WorkoutCatalogPolicy.ForWorkout(_catalogExercises, state.ActiveCatalogRevision,
+                state.ActiveSingleDirectionExerciseIds)
             : _catalogExercises);
         NormalizeCollections(state);
         NormalizeWorkoutHistory(state);
@@ -418,8 +419,8 @@ public sealed partial class ExerciseSessionService
             throw new InvalidOperationException("A workout is already active.");
         }
 
-        SetExercises(_catalogExercises);
         state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
+        UpdateSequenceCatalog(state, minutes);
 
         int loadedStateVersion = state.Version;
         NormalizeCollections(state);
@@ -3200,6 +3201,7 @@ public sealed partial class ExerciseSessionService
 
     private static void NormalizeCollections(WorkoutState state)
     {
+        state.ActiveSingleDirectionExerciseIds ??= [];
         state.SelectedExerciseIds ??= [];
         state.Outcomes ??= [];
         state.LastKeptExerciseIds ??= [];
@@ -4941,6 +4943,7 @@ public sealed partial class ExerciseSessionService
             _catalogExercises, state.ActiveCatalogRevision);
         SetExercises(_catalogExercises);
         state.ActiveCatalogRevision = 0;
+        state.ActiveSingleDirectionExerciseIds.Clear();
         state.ActiveDurationSelectionGroupIds = null;
         state.ActiveSimpleRoundSelectionGroupIds.Clear();
         state.ActiveWorkoutSession = null;
@@ -6223,7 +6226,11 @@ public sealed partial class ExerciseSessionService
                         placement.Root.SequenceBlocks.Length == 1 &&
                         setCount == 1)
                     {
-                        rounds.Add(blockGroup with { Order = rounds.Count + 1 });
+                        rounds.Add(blockGroup with { Order = rounds.Count + 1,
+                            SequenceSideCue = block.SideCue,
+                            SequenceDirectionCue = block.DirectionCue,
+                            MirrorSequenceMedia = block.MirrorMedia,
+                            SequenceMediaSegment = block.MediaSegment });
                         continue;
                     }
 

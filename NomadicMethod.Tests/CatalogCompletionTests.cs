@@ -156,7 +156,7 @@ public sealed class CatalogCompletionTests
             WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
             Assert.Equal(1030, service.GetSelectedExercise(state,
                 rounds.Single(round => round.SelectionKey == "r30.elbow-flexors")).Id);
-            WorkoutGroup[] roots = rounds.Where(round => round.SequenceBlockIndex == 0).ToArray();
+            WorkoutGroup[] roots = rounds.Where(round => round.SequenceBlockIndex == 0 && round.SetNumber == 1).ToArray();
             Assert.Equal(roots.Length, roots.Select(round => WorkoutModifierPolicy.GetSessionMovementId(
                 service.GetSelectedExercise(state, round))).Distinct().Count());
             Assert.All(rounds, round => Assert.True(WorkoutModifierPolicy.IsCompatible(
@@ -199,7 +199,7 @@ public sealed class CatalogCompletionTests
             service.StartWorkout(state, 10, profile);
             WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
             Assert.Contains(rounds, round => service.GetSelectedExercise(state, round).Id == 1031);
-            WorkoutGroup[] roots = rounds.Where(round => round.SequenceBlockIndex == 0).ToArray();
+            WorkoutGroup[] roots = rounds.Where(round => round.SequenceBlockIndex == 0 && round.SetNumber == 1).ToArray();
             Assert.Equal(roots.Length, roots.Select(round => WorkoutModifierPolicy.GetSessionMovementId(
                 service.GetSelectedExercise(state, round))).Distinct().Count());
             Assert.All(rounds, round => Assert.True(WorkoutModifierPolicy.IsCompatible(
@@ -243,7 +243,7 @@ public sealed class CatalogCompletionTests
             service.StartWorkout(state, 10, profile);
             WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
             Assert.Contains(rounds, round => service.GetSelectedExercise(state, round).Id == 1032);
-            WorkoutGroup[] roots = rounds.Where(round => round.SequenceBlockIndex == 0).ToArray();
+            WorkoutGroup[] roots = rounds.Where(round => round.SequenceBlockIndex == 0 && round.SetNumber == 1).ToArray();
             Assert.Equal(roots.Length, roots.Select(round => WorkoutModifierPolicy.GetSessionMovementId(
                 service.GetSelectedExercise(state, round))).Distinct().Count());
             Assert.All(rounds, round => Assert.True(WorkoutModifierPolicy.IsCompatible(

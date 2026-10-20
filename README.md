@@ -43,10 +43,13 @@ remaining time according to the expansion rules below.
 
 Every new workout keeps the complete anatomical partition for its duration.
 Rejecting exercises changes movement choices, not the muscle-group structure.
-Three-, five- and seven-minute workouts have no spare blocks for separate sides
-or directions. A combined sequence may still fill different groups when each
-block has a genuine primary target in its own group. Every side and direction
-remains complete; saved unfinished workouts keep their original plans.
+Below 30 minutes, a non-sided multidirectional movement may use its first reviewed
+direction as one complete 45-second block. Left/right sequences still require
+both sides and enough space in the workout; their sides are never split. At 30 minutes and above, directional
+movements retain both directions. Combined sequences may fill different groups
+when each block has a genuine primary target in its own group. Saved unfinished
+workouts keep their original plans, and duration edits preserve every completed
+selection and the complete current selection.
 
 ### An exercise must genuinely train its target
 
@@ -407,7 +410,8 @@ Sequence structure is derived from the demonstrated movement:
 - A genuinely simultaneous bilateral or naturally alternating movement remains
   one block.
 - Side-specific or fixed-lead work uses consecutive side/stance blocks.
-- Direction-specific work uses consecutive direction blocks.
+- Direction-specific work uses consecutive direction blocks at 30 minutes and
+  above; shorter new workouts may select the first complete non-sided direction.
 - A side-by-direction movement may therefore require four blocks.
 - A worthwhile alternating integration may follow the two isolated sides;
   awkward or redundant variants are omitted.
