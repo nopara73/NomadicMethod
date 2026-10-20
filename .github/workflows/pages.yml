@@ -13,6 +13,7 @@ on:
       - "NomadicMethod/Resources/raw/**"
       - "NomadicMethod/NomadicMethod.csproj"
       - "NomadicMethod/MainActivity.cs"
+      - "NomadicMethod/ExerciseVideoView.cs"
       - "NomadicMethod/MainActivity.Recovery.cs"
       - "NomadicMethod/RecoveryPrivacyActivity.cs"
       - "NomadicMethod/AndroidManifest.xml"
@@ -45,6 +46,9 @@ on:
       - "tools/Test-ExerciseLocomotionAudit.ps1"
       - "tools/ExerciseFloorContacts.ps1"
       - "tools/ExerciseFloorContacts.psd1"
+      - "tools/ExerciseElevationRequirements.psd1"
+      - "tools/ExerciseElevationRequirements.ps1"
+      - "tools/Test-ExerciseElevationRequirementAudit.ps1"
       - "tools/Test-ExerciseFloorContactAudit.ps1"
       - "tools/ExerciseHardFloorCompatibility.psd1"
       - "tools/Test-ExerciseHardFloorCompatibilityAudit.ps1"
@@ -84,6 +88,7 @@ jobs:
             /NomadicMethod.Tests/CatalogInvariantTests.cs
             /NomadicMethod/NomadicMethod.csproj
             /NomadicMethod/MainActivity.cs
+            /NomadicMethod/ExerciseVideoView.cs
             /NomadicMethod/MainActivity.Recovery.cs
             /NomadicMethod/RecoveryPrivacyActivity.cs
             /NomadicMethod/AndroidManifest.xml
@@ -117,6 +122,9 @@ jobs:
             /tools/Test-ExerciseLocomotionAudit.ps1
             /tools/ExerciseFloorContacts.ps1
             /tools/ExerciseFloorContacts.psd1
+            /tools/ExerciseElevationRequirements.psd1
+            /tools/ExerciseElevationRequirements.ps1
+            /tools/Test-ExerciseElevationRequirementAudit.ps1
             /tools/Test-ExerciseFloorContactAudit.ps1
             /tools/ExerciseHardFloorCompatibility.psd1
             /tools/Test-ExerciseHardFloorCompatibilityAudit.ps1
@@ -150,6 +158,10 @@ jobs:
       - name: Validate floor contacts and combined equipment minimums
         shell: pwsh
         run: ./tools/Test-ExerciseFloorContactAudit.ps1
+
+      - name: Validate elevation equipment and combined floor minimums
+        shell: pwsh
+        run: ./tools/Test-ExerciseElevationRequirementAudit.ps1
 
       - name: Validate complete execution protocols and frozen workout media
         shell: pwsh

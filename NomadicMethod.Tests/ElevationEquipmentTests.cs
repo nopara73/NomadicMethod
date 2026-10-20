@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using NomadicMethod.Models;
 using NomadicMethod.Services;
 
@@ -6,6 +7,40 @@ namespace NomadicMethod.Tests;
 
 public sealed class ElevationEquipmentTests
 {
+    [Fact]
+    public void ReviewedCatalogContainsTheThreeDisjointPoolsAndExactExecutionContracts()
+    {
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new JsonStringEnumConverter() },
+        };
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
+        using JsonDocument review = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "elevation-admission.json")));
+        Assert.Equal(30, catalog.Count(e => e.ElevationRequired));
+        Assert.Empty(WorkoutModifierPolicy.FindElevationCatalogDeficiencies(catalog));
+        Assert.True(catalog.Count(e => e.WallRequired && !e.OnlyFeetTouchGround) >= 5);
+        foreach (JsonElement item in review.RootElement.EnumerateArray())
+        {
+            Exercise exercise = Assert.Single(catalog, e => e.Id == item.GetProperty("id").GetInt32());
+            Assert.Equal(item.GetProperty("name").GetString(), exercise.Name);
+            Assert.Equal(item.GetProperty("primary").GetString(), exercise.PrimaryCanonicalGroup.ToString());
+            Assert.Equal(item.GetProperty("side").GetString(), exercise.SideSequence.ToString());
+            Assert.Equal(item.GetProperty("floor").GetBoolean(), !exercise.OnlyFeetTouchGround);
+            Assert.Equal(item.GetProperty("platform").GetBoolean(), exercise.JumpPlatformRequired);
+            Assert.Equal(item.GetProperty("hold").GetBoolean(), exercise.Mode == ExerciseMode.Hold);
+            Assert.True(exercise.ElevationRequired);
+            WorkoutModifiers profile = WorkoutModifiers.UpperBodyClothing | WorkoutModifiers.Floor;
+            Assert.False(WorkoutModifierPolicy.IsCompatible(exercise, profile));
+            Assert.Equal(!exercise.JumpPlatformRequired, WorkoutModifierPolicy.IsCompatible(exercise,
+                profile | WorkoutModifiers.Elevation));
+            Assert.True(WorkoutModifierPolicy.IsCompatible(exercise,
+                profile | WorkoutModifiers.Elevation | WorkoutModifiers.JumpPlatform));
+        }
+    }
+
     private static Exercise Movement(int id, bool elevation = true, bool platform = false,
         ExerciseFloorContact contacts = ExerciseFloorContact.Feet, int family = 0) => new()
     {
@@ -104,6 +139,7 @@ public sealed class ElevationEquipmentTests
     {
         Exercise[] catalog = [Movement(1, elevation: false), Movement(2)];
         Assert.Single(WorkoutCatalogPolicy.ForWorkout(catalog, 82));
-        Assert.Equal(2, WorkoutCatalogPolicy.ForWorkout(catalog, 83).Count);
+        Assert.Single(WorkoutCatalogPolicy.ForWorkout(catalog, 83));
+        Assert.Equal(2, WorkoutCatalogPolicy.ForWorkout(catalog, 84).Count);
     }
 }

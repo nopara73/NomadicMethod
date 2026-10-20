@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1401,
+    "name": "Incline Push-Ups",
+    "primary": "Chest",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1402,
+    "name": "Close-Grip Incline Push-Ups",
+    "primary": "ElbowExtensors",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1403,
+    "name": "Single-Arm Incline Scapular Push-Ups",
+    "primary": "ScapularGirdle",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1404,
+    "name": "Bench Dips",
+    "primary": "ElbowExtensors",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1405,
+    "name": "Sit-to-Stands",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1406,
+    "name": "Single-Leg Sit-to-Stands",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "ScreenLeftThenRight",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1407,
+    "name": "Rear-Foot-Elevated Split Squats",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1408,
+    "name": "Seated Knee Extensions",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "ScreenLeftThenRight",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1409,
+    "name": "Seated Marching",
+    "primary": "HipFlexors",
+    "side": "Alternating",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1410,
+    "name": "Seated Heel-to-Toe Rocking",
+    "primary": "Soleus",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1411,
+    "name": "Seated Hamstring Stretch",
+    "primary": "PosteriorThighAndKneeFlexors",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1412,
+    "name": "Seated Figure-Four Stretch",
+    "primary": "DeepHipRotators",
+    "side": "ScreenLeftThenRight",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1413,
+    "name": "Seated Trunk Rotations",
+    "primary": "AbdominalWall",
+    "side": "Alternating",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1414,
+    "name": "Seated Side-Bend Stretch",
+    "primary": "AbdominalWall",
+    "side": "ScreenLeftThenRight",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1415,
+    "name": "Chair Press-Ups",
+    "primary": "ScapularGirdle",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1416,
+    "name": "Seated Knee-to-Elbow Twists",
+    "primary": "AbdominalWall",
+    "side": "Alternating",
+    "floor": false,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1417,
+    "name": "Elevated Hamstring Stretch",
+    "primary": "PosteriorThighAndKneeFlexors",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1418,
+    "name": "Foot-on-Chair Shin Stretch",
+    "primary": "AnteriorLateralLowerLegAndDorsalFoot",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1419,
+    "name": "Seated Inner-Thigh Stretch",
+    "primary": "MajorHipAdductors",
+    "side": "Continuous",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1420,
+    "name": "Standing Elevated Figure-Four Stretch",
+    "primary": "DeepHipRotators",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": false,
+    "hold": true
+  },
+  {
+    "id": 1421,
+    "name": "Box Jumps",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "Continuous",
+    "floor": false,
+    "platform": true,
+    "hold": false
+  },
+  {
+    "id": 1422,
+    "name": "Lateral Box Jumps",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "ScreenLeftThenRight",
+    "floor": false,
+    "platform": true,
+    "hold": false
+  },
+  {
+    "id": 1423,
+    "name": "Step-Ups",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": true,
+    "hold": false
+  },
+  {
+    "id": 1424,
+    "name": "Lateral Step-Ups",
+    "primary": "MedialAndDeepKneeExtensors",
+    "side": "ScreenRightThenLeft",
+    "floor": false,
+    "platform": true,
+    "hold": false
+  },
+  {
+    "id": 1425,
+    "name": "Calf Raises on a Step",
+    "primary": "CalfDeepPosteriorLegAndPlantarFoot",
+    "side": "Continuous",
+    "floor": false,
+    "platform": true,
+    "hold": false
+  },
+  {
+    "id": 1426,
+    "name": "Decline Push-Ups",
+    "primary": "Chest",
+    "side": "Continuous",
+    "floor": true,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1427,
+    "name": "Bench Hip Thrusts",
+    "primary": "GlutealExtensors",
+    "side": "Continuous",
+    "floor": true,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1428,
+    "name": "Single-Leg Elevated Glute Bridges",
+    "primary": "PosteriorThighAndKneeFlexors",
+    "side": "ScreenLeftThenRight",
+    "floor": true,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1429,
+    "name": "Copenhagen Adductions",
+    "primary": "MajorHipAdductors",
+    "side": "ScreenLeftThenRight",
+    "floor": true,
+    "platform": false,
+    "hold": false
+  },
+  {
+    "id": 1430,
+    "name": "Elevated Forearm Pike Scapular Push-Ups",
+    "primary": "ScapularGirdle",
+    "side": "Continuous",
+    "floor": true,
+    "platform": false,
+    "hold": false
+  }
+]

@@ -9,7 +9,7 @@ public static class CatalogMigrationRules
     private const string AlternatingPrefix = "Alternating ";
     // Revision 73 corrects catalog training claims and complete movement sequences.
     // Revalidate impossible slot choices while preserving exercise feedback.
-    public const int CurrentCatalogRevision = 83;
+    public const int CurrentCatalogRevision = 84;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;

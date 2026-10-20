@@ -82,9 +82,10 @@ public sealed class SqliteExerciseDatabaseMigrationTests
     [InlineData(96)]
     [InlineData(97)]
     [InlineData(98)]
+    [InlineData(99)]
     public void EverySupportedDatabaseCanUpgradeToTheCurrentCatalog(int oldVersion)
     {
-        Assert.Equal(99, ExerciseDatabaseVersionPolicy.CurrentVersion);
+        Assert.Equal(100, ExerciseDatabaseVersionPolicy.CurrentVersion);
         Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(
             oldVersion,
             ExerciseDatabaseVersionPolicy.CurrentVersion));
@@ -136,16 +137,16 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), CatalogJsonOptions)!;
         Dictionary<int, StoredExerciseSnapshot> prior = catalog
             .Where(e => !WorkoutCatalogPolicy.SlotVarietyExerciseIds.Contains(e.Id) &&
-                e.Id != WorkoutCatalogPolicy.BodyCircleExerciseId)
+                e.Id != WorkoutCatalogPolicy.BodyCircleExerciseId && !e.ElevationRequired)
             .ToDictionary(e => e.Id, e => new StoredExerciseSnapshot(e.Name, e.Video, e.Id % 17 - 8));
         IReadOnlySet<int> preserved = CatalogMigrationRules.ValidatePreservedCatalog(catalog, prior);
         Assert.Equal(805, prior.Count);
         Assert.Equal(prior.Keys.Order(), preserved.Order());
         Assert.DoesNotContain(preserved, WorkoutCatalogPolicy.SlotVarietyExerciseIds.Contains);
         Assert.DoesNotContain(WorkoutCatalogPolicy.BodyCircleExerciseId, preserved);
-        Assert.Equal(10, catalog.Length - preserved.Count);
+        Assert.Equal(40, catalog.Length - preserved.Count);
         Assert.All(prior, item => Assert.Equal(item.Key % 17 - 8, item.Value.Score));
-        Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(97, 99));
+        Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(97, 100));
     }
 
     [Fact]
@@ -197,7 +198,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion67);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(429, storedVersion67.Count);
         Assert.Equal(427, preserved.Count);
         Assert.DoesNotContain(520, preserved);
@@ -253,7 +254,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion69);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(448, storedVersion69.Count);
         Assert.Equal(storedVersion69.Keys.Order(), preserved.Order());
         Assert.All(storedVersion69, entry =>
@@ -360,7 +361,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion75);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(498, storedVersion75.Count);
         Assert.Equal(storedVersion75.Keys.Order(), preserved.Order());
         Assert.All(storedVersion75, entry =>
@@ -412,7 +413,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion81);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(500, storedVersion81.Count);
         Assert.Equal(storedVersion81.Keys.Order(), preserved.Order());
         Assert.All(storedVersion81, entry =>
@@ -454,7 +455,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion85);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(507, storedVersion85.Count);
         Assert.Equal(storedVersion85.Keys.Order(), preserved.Order());
         Assert.All(storedVersion85, entry =>
@@ -502,7 +503,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion87);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(511, storedVersion87.Count);
         Assert.Equal(storedVersion87.Keys.Order(), preserved.Order());
         Assert.All(storedVersion87, entry =>
@@ -561,7 +562,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
             catalog,
             storedVersion88);
 
-        Assert.Equal(815, catalog.Length);
+        Assert.Equal(845, catalog.Length);
         Assert.Equal(
             storedVersion88.Keys
                 .Except(ShyAuditReusedExerciseIds)
@@ -804,6 +805,36 @@ public sealed class SqliteExerciseDatabaseMigrationTests
         foreach (int invalid in new[] { -1, 2048 })
             Assert.Throws<SqliteException>(() => Execute(connection,
                 $"UPDATE {table} SET floor_contact_points = {invalid} WHERE id = 1"));
+    }
+
+    [Fact]
+    public void ElevationSchemaDefaultsPreserveScoresAndRejectOrphanPlatform()
+    {
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        connection.Open();
+        Execute(connection, ExerciseDatabaseMigrationSql.CreateRebuiltExerciseTable);
+        string table = ExerciseDatabaseMigrationSql.RebuiltExerciseTableName;
+        Execute(connection, $"""
+            INSERT INTO {table} (id, name, video, practice, motion_profile,
+                score, muscular_demand, insect_compatibility, hard_floor_compatibility,
+                mirror_relationship)
+            VALUES (1, 'Preserved movement', 'original.mp4', 'Test', 'Test',
+                -7, 1, 'Incompatible', 'Compatible', 'Agnostic')
+            """);
+        using SqliteCommand command = connection.CreateCommand();
+        command.CommandText = $"SELECT elevation_required, jump_platform_required, score FROM {table}";
+        using (SqliteDataReader reader = command.ExecuteReader())
+        {
+            Assert.True(reader.Read());
+            Assert.Equal(0, reader.GetInt32(0));
+            Assert.Equal(0, reader.GetInt32(1));
+            Assert.Equal(-7, reader.GetInt32(2));
+        }
+        Assert.Throws<SqliteException>(() => Execute(connection,
+            $"UPDATE {table} SET jump_platform_required = 1 WHERE id = 1"));
+        Execute(connection, $"UPDATE {table} SET elevation_required = 1, jump_platform_required = 1 WHERE id = 1");
+        command.CommandText = $"SELECT score FROM {table} WHERE id = 1";
+        Assert.Equal(-7L, command.ExecuteScalar());
     }
 
     private static void Execute(SqliteConnection connection, string sql)

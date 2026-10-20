@@ -12,6 +12,7 @@ namespace NomadicMethod;
     Name = "com.local.nomadicmethod.MainActivity",
     Label = "@string/app_name",
     MainLauncher = true,
+    HardwareAccelerated = true,
     ConfigurationChanges =
         Android.Content.PM.ConfigChanges.Orientation |
         Android.Content.PM.ConfigChanges.ScreenSize |
@@ -123,7 +124,7 @@ public partial class MainActivity : Activity
     private WorkoutBlockTimelineView _executionTimeline = null!;
     private FrameLayout _exerciseMediaArea = null!;
     private View _exerciseMediaCard = null!;
-    private VideoView _exerciseVideo = null!;
+    private ExerciseVideoView _exerciseVideo = null!;
     private ImageView _holdFrameImage = null!;
     private View _mediaScrim = null!;
     private ProgressBar _mediaLoadingIndicator = null!;
@@ -699,7 +700,7 @@ public partial class MainActivity : Activity
         _exerciseMediaArea = FindRequiredView<FrameLayout>(
             Resource.Id.exercise_media_area);
         _exerciseMediaCard = FindRequiredView<View>(Resource.Id.exercise_media_card);
-        _exerciseVideo = FindRequiredView<VideoView>(Resource.Id.exercise_video);
+        _exerciseVideo = FindRequiredView<ExerciseVideoView>(Resource.Id.exercise_video);
         _holdFrameImage = FindRequiredView<ImageView>(Resource.Id.hold_frame_image);
         _mediaScrim = FindRequiredView<View>(Resource.Id.media_scrim);
         _mediaLoadingIndicator = FindRequiredView<ProgressBar>(
@@ -3068,6 +3069,17 @@ public partial class MainActivity : Activity
 
     private void ConfigureVideoView()
     {
+        _exerciseVideo.SurfaceLost += (_, _) =>
+        {
+            if (_activityDestroyed || _holdFrameImage.Visibility == ViewStates.Visible) return;
+            _mediaReady = false;
+            _activeMediaPlayer = null;
+            if (_countdownActive) PauseCountdown();
+            if (_countdownPaused && !_countdownPausedByUser)
+                _countdownPausedForMediaError = true;
+            SetStartAvailability(available: false);
+            SetPlaybackControlsAvailability(available: false);
+        };
         _videoPreparedListener = new VideoPreparedListener(mediaPlayer =>
         {
             _mediaReady = true;

@@ -10,6 +10,7 @@ import {
   findMuscularDemandCoverageDeficiencies,
   findSoleWallContactRequiredCatalogDeficiencies,
   findWallRequiredCatalogDeficiencies,
+  findElevationCatalogDeficiencies,
   findLocomotionCatalogDeficiencies,
   findFloorCatalogDeficiencies,
   findFloorAndWallCatalogDeficiencies,
@@ -194,8 +195,8 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 815) {
-  throw new Error(`Expected 815 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 845) {
+  throw new Error(`Expected 845 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 
 const pairwiseDeficiencies =
@@ -285,6 +286,7 @@ const catalogInvariantChecks = [
   ["complete workout lineups", completeLineupDeficiencies.length === 0],
   ["modifier materiality", unacceptedMaterialityDeficiencies.length === 0],
   ["wall-required session-movement floor", wallCatalogDeficiencies.length === 0],
+  ["elevation support, platform and floor session-movement minimums", findElevationCatalogDeficiencies(catalog).length === 0],
   ["sole-wall session-movement floor", soleWallCatalogDeficiencies.length === 0],
   ["locomotion session-movement floors", findLocomotionCatalogDeficiencies(catalog).length === 0],
   ["floor session-movement minimum", findFloorCatalogDeficiencies(catalog).length === 0],

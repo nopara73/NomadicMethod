@@ -1,4 +1,4 @@
-# Explicitly reviewed screen-side order for movements that are not naturally
+﻿# Explicitly reviewed screen-side order for movements that are not naturally
 # alternating. The source demonstration shows the first listed screen side;
 # NomadicMethod mirrors that same human demonstration for the second 45-second side.
 # Review the complete pose, including a fixed supporting arm, crossed-arm
@@ -291,4 +291,21 @@
     1286 = 'ScreenRightThenLeft'
     1288 = 'ScreenLeftThenRight'
     1291 = 'ScreenLeftThenRight'
+
+    # Elevation equipment admissions.
+    1403 = 'ScreenRightThenLeft'
+    1406 = 'ScreenLeftThenRight'
+    1407 = 'ScreenRightThenLeft'
+    1408 = 'ScreenLeftThenRight'
+    1411 = 'ScreenRightThenLeft'
+    1412 = 'ScreenLeftThenRight'
+    1414 = 'ScreenLeftThenRight'
+    1417 = 'ScreenRightThenLeft'
+    1418 = 'ScreenRightThenLeft'
+    1420 = 'ScreenRightThenLeft'
+    1422 = 'ScreenLeftThenRight'
+    1423 = 'ScreenRightThenLeft'
+    1424 = 'ScreenRightThenLeft'
+    1428 = 'ScreenLeftThenRight'
+    1429 = 'ScreenLeftThenRight'
 }

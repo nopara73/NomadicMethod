@@ -10,7 +10,7 @@ import {
 const source = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(source("../../NomadicMethod/Assets/exercises.json")).find(e => e.id === 701);
 const movement = (id, extra = {}) => ({...fixture, id, sessionMovementId: id,
-  elevationRequired: true, jumpPlatformRequired: false, ...extra});
+  elevationRequired: true, jumpPlatformRequired: false, wallRequired: false, soleWallContactRequired: false, ...extra});
 
 function instantControls(state = createDefaultState()) {
   const elements = new Map();
@@ -118,5 +118,26 @@ test("20 support, 5 platform and 5 floor identities cannot be filled with aliase
 test("old unfinished workouts retain their original catalog", () => {
   const catalog = [movement(1, {elevationRequired: false}), movement(2)];
   assert.equal(getWorkoutCatalog(catalog, 82).length, 1);
-  assert.equal(getWorkoutCatalog(catalog, 83).length, 2);
+  assert.equal(getWorkoutCatalog(catalog, 83).length, 1);
+  assert.equal(getWorkoutCatalog(catalog, 84).length, 2);
+});
+
+test("reviewed catalog retains exact demos and independent floor and platform requirements", () => {
+  const catalog = JSON.parse(source("../../NomadicMethod/Assets/exercises.json"));
+  const review = JSON.parse(source("./fixtures/elevation-admission.json"));
+  assert.equal(catalog.filter(e => e.elevationRequired).length, 30);
+  assert.deepEqual(findElevationCatalogDeficiencies(catalog), []);
+  assert.ok(catalog.filter(e => e.wallRequired && !e.onlyFeetTouchGround).length >= 5);
+  for (const item of review) {
+    const exercise = catalog.find(e => e.id === item.id);
+    assert.deepEqual({name: exercise.name, primary: exercise.primaryCanonicalGroup,
+      side: exercise.sideSequence, floor: !exercise.onlyFeetTouchGround,
+      platform: exercise.jumpPlatformRequired, hold: exercise.mode === "Hold"},
+    {name: item.name, primary: item.primary, side: item.side, floor: item.floor,
+      platform: item.platform, hold: item.hold});
+    const base = WORKOUT_MODIFIERS.UpperBodyClothing | WORKOUT_MODIFIERS.Floor;
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, base), false);
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, base | WORKOUT_MODIFIERS.Elevation), !item.platform);
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, base | WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.JumpPlatform), true);
+  }
 });

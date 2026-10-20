@@ -56,7 +56,7 @@ test("three travel capacities preserve other settings and admit shorter travel",
     for (const exercise of catalog) {
       if (capacity[exercise.locomotionSpace] > capacity[space]) {
         assert.equal(isCompatibleWithWorkoutModifiers(exercise, profile), false);
-      } else if (exercise.onlyFeetTouchGround && !exercise.wallRequired && exercise.mirrorRelationship !== "MirrorOnly") {
+      } else if (exercise.onlyFeetTouchGround && !exercise.elevationRequired && !exercise.wallRequired && exercise.mirrorRelationship !== "MirrorOnly") {
         assert.equal(isCompatibleWithWorkoutModifiers(exercise,
           withLocomotionSpace(WORKOUT_MODIFIERS.None, space)), true);
       }

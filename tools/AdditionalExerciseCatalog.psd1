@@ -452,4 +452,36 @@
     1301 = @{ Name = 'March in Place with Arm Curls'; Region = 'ARMS'; Practice = 'Arm mobility'; MotionProfile = 'MarchingArmCurls' }
     1302 = @{ Name = 'Woodchopper Breath with Ha Exhale'; Region = 'CORE'; Practice = 'Breathing coordination'; MotionProfile = 'WoodchopperHaBreath' }
     1303 = @{ Name = 'Standing Body Circles'; Region = 'FEET'; Practice = 'Standing ankle mobility'; MotionProfile = 'StandingBodyCircles' }
+
+    # Elevation equipment admissions.
+    1401 = @{ Name = 'Incline Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationInclinePushUps' }
+    1402 = @{ Name = 'Close-Grip Incline Push-Ups'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationCloseGripInclinePushUps' }
+    1403 = @{ Name = 'Single-Arm Incline Scapular Push-Ups'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationSingleArmInclineScapularPushUps' }
+    1404 = @{ Name = 'Bench Dips'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationBenchDips' }
+    1405 = @{ Name = 'Sit-to-Stands'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationSittoStands' }
+    1406 = @{ Name = 'Single-Leg Sit-to-Stands'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationSingleLegSittoStands' }
+    1407 = @{ Name = 'Rear-Foot-Elevated Split Squats'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationRearFootElevatedSplitSquats' }
+    1408 = @{ Name = 'Seated Knee Extensions'; Region = 'LEGS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedKneeExtensions' }
+    1409 = @{ Name = 'Seated Marching'; Region = 'HIPS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedMarching' }
+    1410 = @{ Name = 'Seated Heel-to-Toe Rocking'; Region = 'FEET'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedHeeltoToeRocking' }
+    1411 = @{ Name = 'Seated Hamstring Stretch'; Region = 'LEGS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedHamstringStretch' }
+    1412 = @{ Name = 'Seated Figure-Four Stretch'; Region = 'HIPS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedFigureFourStretch' }
+    1413 = @{ Name = 'Seated Trunk Rotations'; Region = 'CORE'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedTrunkRotations' }
+    1414 = @{ Name = 'Seated Side-Bend Stretch'; Region = 'CORE'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedSideBendStretch' }
+    1415 = @{ Name = 'Chair Press-Ups'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationChairPressUps' }
+    1416 = @{ Name = 'Seated Knee-to-Elbow Twists'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationSeatedKneetoElbowTwists' }
+    1417 = @{ Name = 'Elevated Hamstring Stretch'; Region = 'LEGS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationElevatedHamstringStretch' }
+    1418 = @{ Name = 'Foot-on-Chair Shin Stretch'; Region = 'FEET'; Practice = 'Supported mobility'; MotionProfile = 'ElevationFootonChairShinStretch' }
+    1419 = @{ Name = 'Seated Inner-Thigh Stretch'; Region = 'LEGS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationSeatedInnerThighStretch' }
+    1420 = @{ Name = 'Standing Elevated Figure-Four Stretch'; Region = 'HIPS'; Practice = 'Supported mobility'; MotionProfile = 'ElevationStandingElevatedFigureFourStretch' }
+    1421 = @{ Name = 'Box Jumps'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationBoxJumps' }
+    1422 = @{ Name = 'Lateral Box Jumps'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationLateralBoxJumps' }
+    1423 = @{ Name = 'Step-Ups'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationStepUps' }
+    1424 = @{ Name = 'Lateral Step-Ups'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationLateralStepUps' }
+    1425 = @{ Name = 'Calf Raises on a Step'; Region = 'FEET'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationCalfRaisesonaStep' }
+    1426 = @{ Name = 'Decline Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationDeclinePushUps' }
+    1427 = @{ Name = 'Bench Hip Thrusts'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationBenchHipThrusts' }
+    1428 = @{ Name = 'Single-Leg Elevated Glute Bridges'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationSingleLegElevatedGluteBridges' }
+    1429 = @{ Name = 'Copenhagen Adductions'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationCopenhagenAdductions' }
+    1430 = @{ Name = 'Elevated Forearm Pike Scapular Push-Ups'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationElevatedForearmPikeScapularPushUps' }
 }

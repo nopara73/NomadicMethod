@@ -107,4 +107,13 @@
     1286 = $true
     1290 = $true
     1292 = $true
+
+    # Elevation equipment admissions.
+    1411 = $true
+    1412 = $true
+    1414 = $true
+    1417 = $true
+    1418 = $true
+    1419 = $true
+    1420 = $true
 }

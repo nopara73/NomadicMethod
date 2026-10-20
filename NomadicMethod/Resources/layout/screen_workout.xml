@@ -139,11 +139,10 @@
                 android:outlineProvider="background"
                 android:padding="4dp">
 
-                <VideoView
+                <NomadicMethod.ExerciseVideoView
                     android:id="@+id/exercise_video"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
                     android:importantForAccessibility="no" />
 
                 <ImageView

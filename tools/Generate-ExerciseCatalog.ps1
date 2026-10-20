@@ -17,6 +17,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ExerciseCatalogDefinitions.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseLocomotionSpaces.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseFloorContacts.ps1')
+. (Join-Path $PSScriptRoot 'ExerciseElevationRequirements.ps1')
 $sourceDefinitions = @(Get-ExerciseCatalogDefinitions)
 $sourceExerciseIds = @($sourceDefinitions | ForEach-Object { [int]$_.Id })
 
@@ -262,6 +263,7 @@ $retainedExerciseIds = @(
         ForEach-Object { [int]$_ } |
         Sort-Object -Unique)
 $expectedExerciseCount = $retainedExerciseIds.Count
+$elevationReview = Get-ExerciseElevationReview -RetainedExerciseIds $retainedExerciseIds
 $floorContactsByExerciseId = Get-ExerciseFloorContactReview `
     -ExpectedExerciseIds $retainedExerciseIds
 $locomotionSpaceByExerciseId = Get-ExerciseLocomotionReview `
@@ -3496,6 +3498,8 @@ foreach ($definition in $sourceDefinitions) {
             'Incompatible'
         }
         wallRequired = $exerciseId -in $wallRequiredExerciseIds
+        elevationRequired = $exerciseId -in $elevationReview.Required
+        jumpPlatformRequired = $exerciseId -in $elevationReview.JumpPlatformRequired
         soleWallContactRequired =
             $exerciseId -in $soleWallContactRequiredExerciseIds
         mirrorRelationship = if (
@@ -3805,6 +3809,9 @@ $constraintViolations = $records | Where-Object {
     $_['shyCompatibility'] -notin @(
         'Compatible', 'Incompatible') -or
     -not ($_['wallRequired'] -is [bool]) -or
+    -not ($_['elevationRequired'] -is [bool]) -or
+    -not ($_['jumpPlatformRequired'] -is [bool]) -or
+    ([bool]$_['jumpPlatformRequired'] -and -not [bool]$_['elevationRequired']) -or
     -not ($_['soleWallContactRequired'] -is [bool]) -or
     ([bool]$_['soleWallContactRequired'] -and
         -not [bool]$_['wallRequired']) -or
@@ -3901,6 +3908,10 @@ foreach ($root in $records | Where-Object { @($_['sequenceBlocks']).Count -gt 0 
             $sequenceViolations.Add($rootId)
         }
         if ([bool]$member['wallRequired'] -ne [bool]$root['wallRequired']) {
+            $sequenceViolations.Add($rootId)
+        }
+        if ([bool]$member['elevationRequired'] -ne [bool]$root['elevationRequired'] -or
+            [bool]$member['jumpPlatformRequired'] -ne [bool]$root['jumpPlatformRequired']) {
             $sequenceViolations.Add($rootId)
         }
         if ([bool]$member['soleWallContactRequired'] -ne
@@ -4060,6 +4071,7 @@ if ($MaxExercises -eq 0 -and $ExerciseIds.Count -eq 0) {
 }
 
 $floorInventory = Assert-ExerciseFloorInventory @($records)
+$elevationInventory = Assert-ExerciseElevationInventory @($records)
 $records | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $catalogPath -Encoding utf8
 
 $resolvedTempRoot = [IO.Path]::GetFullPath($tempRoot)

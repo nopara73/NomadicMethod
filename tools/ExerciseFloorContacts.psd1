@@ -2,6 +2,9 @@
     # The existing human-reviewed catalog is feet-only. New identities must
     # explicitly declare every support contact, including transitions.
     FeetOnly = @(
+        1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
+        1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420,
+        1421, 1422, 1423, 1424, 1425,
         1303,
         1302,
         1301,
@@ -50,6 +53,11 @@
         1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056
     )
     FloorRequired = @{
+        1426 = @('Hands')
+        1427 = @('Feet', 'Hips')
+        1428 = @('Hands', 'Forearms', 'Elbows', 'Head', 'Torso', 'Shoulders', 'Hips')
+        1429 = @('Feet', 'Hands', 'Forearms', 'Elbows', 'Hips', 'LowerLegs')
+        1430 = @('Hands', 'Forearms', 'Elbows', 'Knees', 'LowerLegs')
 
     # Floor admissions, 15 October 2026.
         1057 = @('Feet', 'Head', 'Torso', 'Shoulders', 'Hips')

@@ -4,6 +4,9 @@
     # shared space without asking the user to perform, mime, vocalize, or make
     # a conspicuous therapeutic gesture.
     Compatible = @(
+        1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
+        1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420,
+        1421, 1422, 1423, 1424, 1425, 1426, 1428, 1429, 1430,
         1303,
         1301,
         1300,
@@ -105,6 +108,8 @@
         )
 
         PelvicOrBodyWave = @(
+
+            1427,
             1093, 1118, 1160, 1170,
         1018,
         1017,

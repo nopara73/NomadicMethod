@@ -4,6 +4,27 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
+test("moving videos and held poses support the same mirrored side on both platforms", async () => {
+  const root = new URL("../../", import.meta.url);
+  const nativeView = await readFile(new URL("NomadicMethod/ExerciseVideoView.cs", root), "utf8");
+  const nativeActivity = await readFile(new URL("NomadicMethod/MainActivity.cs", root), "utf8");
+  const layout = await readFile(new URL("NomadicMethod/Resources/layout/screen_workout.xml", root), "utf8");
+  assert.match(nativeView, /class ExerciseVideoView : TextureView/);
+  assert.match(nativeView, /player\.SetSurface\(_surface\)/);
+  const parity = await readFile(new URL("web/scripts/check-mobile-parity.mjs", root), "utf8");
+  assert.ok(parity.includes("NomadicMethod/ExerciseVideoView.cs"));
+  assert.match(nativeActivity, /HardwareAccelerated = true/);
+  assert.match(layout, /<NomadicMethod\.ExerciseVideoView/);
+  assert.doesNotMatch(layout.match(/<NomadicMethod\.ExerciseVideoView[\s\S]*?\/>/)[0], /android:background=/);
+  assert.doesNotMatch(layout, /<VideoView\b/);
+  assert.match(nativeActivity, /_exerciseVideo\.ScaleX = scale;[\s\S]*_holdFrameImage\.ScaleX = scale;/);
+  assert.match(nativeActivity, /SurfaceLost[\s\S]*_mediaReady = false;[\s\S]*PauseCountdown\(\)/);
+  const webStyles = await readFile(new URL("web/styles.css", root), "utf8");
+  const webApp = await readFile(new URL("web/app.js", root), "utf8");
+  assert.match(webApp, /const scale = mirrored \? "-1" : "1";[\s\S]*elements\.video\.style\.setProperty\("--media-scale-x", scale\);[\s\S]*elements\.holdFrame\.style\.setProperty\("--media-scale-x", scale\);/);
+  assert.match(webStyles, /scaleX\(var\(--media-scale-x, 1\)\)/);
+});
+
 test("Oura is an explicit Android-only capability with a read-only private bridge", async () => {
   const root = new URL("../../", import.meta.url);
   const manifest = await readFile(new URL("NomadicMethod/AndroidManifest.xml", root), "utf8");
@@ -848,14 +869,14 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 629);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 658);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 186);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 187);
   assert.deepEqual(
     new Set(catalog.filter((exercise) =>
       exercise.upperBodyClothingRequirement === "ClothingRequired")
       .map((exercise) => exercise.id)),
-    new Set([134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293]),
+    new Set([134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428]),
   );
   assert.deepEqual(
     new Set(catalog.filter((exercise) =>
@@ -1169,7 +1190,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /DatabaseVersion\s*=\s*ExerciseDatabaseVersionPolicy\.CurrentVersion/,
   );
-  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*99/);
+  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*100/);
   assert.match(
     exerciseDatabase,
     /ExerciseDatabaseVersionPolicy\.IsSupportedNonDestructiveUpgrade\([\s\S]*oldVersion,[\s\S]*newVersion/,

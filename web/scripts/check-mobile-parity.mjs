@@ -16,6 +16,7 @@ const sourceTargets = [
   "NomadicMethod/RecoveryPrivacyActivity.cs",
   "NomadicMethod/AndroidManifest.xml",
   "NomadicMethod/WorkoutBlockTimelineView.cs",
+  "NomadicMethod/ExerciseVideoView.cs",
   "NomadicMethod/Data",
   "NomadicMethod/Models",
   "NomadicMethod/Services",
