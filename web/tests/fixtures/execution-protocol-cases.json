@@ -1,0 +1,146 @@
+[
+  {
+    "id": 236,
+    "previousSide": "Continuous",
+    "side": "Continuous",
+    "direction": "InwardThenOutward",
+    "blocks": 2,
+    "previousVideoSha256": "c11240369e241c1706753f1fec9fc90c101c20c9d6de7976d7b8c4e6ff02625f"
+  },
+  {
+    "id": 275,
+    "previousSide": "Continuous",
+    "side": "Continuous",
+    "direction": "ForwardThenBackward",
+    "blocks": 2,
+    "previousVideoSha256": "957d5a46fea86843ab5410150a25e62ea3f1482e3902cff6e143575322b159f9"
+  },
+  {
+    "id": 516,
+    "previousSide": "Continuous",
+    "side": "Continuous",
+    "direction": "ForwardThenBackward",
+    "blocks": 2,
+    "previousVideoSha256": "72fbd567ce2d4642bd437094def9c57c57e6392a4a32f8264285c3d9b461c512"
+  },
+  {
+    "id": 588,
+    "previousSide": "Alternating",
+    "side": "Alternating",
+    "direction": "BackwardThenForward",
+    "blocks": 2,
+    "previousVideoSha256": "7079d6d55cf3845915c4cf6d2fea6ab5cf28c573c980f613f73579cedb3f7c80"
+  },
+  {
+    "id": 743,
+    "previousSide": "Continuous",
+    "side": "Continuous",
+    "direction": "BackwardThenForward",
+    "blocks": 2,
+    "previousVideoSha256": "6cba3b8b1264da802c2c74dbbb336ae26de7d94f2ba3bd911598b7fbf8e4ff15"
+  },
+  {
+    "id": 1097,
+    "previousSide": "Alternating",
+    "side": "ScreenRightThenLeft",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "7b1a9e3363a1914bb84d0cc0dafa7b54b59f2f2f8555c496eb175d484f5fee2b"
+  },
+  {
+    "id": 1109,
+    "previousSide": "Alternating",
+    "side": "ScreenRightThenLeft",
+    "direction": "ForwardThenBackward",
+    "blocks": 4,
+    "previousVideoSha256": "73a00e0345d18c78a0069867e704d056c594d9b64cfa31ebd6b8f8dfeac6ece9"
+  },
+  {
+    "id": 1112,
+    "previousSide": "Alternating",
+    "side": "ScreenLeftThenRight",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "cb5f0827d9f87b6f36ddd07dc692b10eefe929735b0008e648a84cc0f07a698d"
+  },
+  {
+    "id": 1117,
+    "previousSide": "Alternating",
+    "side": "ScreenRightThenLeft",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "e3283968917a240a9b20adc353bdd566d876babe0390222f93cc7b16b6ca82f6"
+  },
+  {
+    "id": 1139,
+    "previousSide": "Alternating",
+    "side": "ScreenLeftThenRight",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "21e7e45a78fec3c31befc9faefb92481371c937deefca4d9e398e30f9b4ed503"
+  },
+  {
+    "id": 1162,
+    "previousSide": "Alternating",
+    "side": "ScreenLeftThenRight",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "76b082fe35c823be633aba8a3ab413f263a26472fb603152cb81eb11a0ae76c1"
+  },
+  {
+    "id": 1177,
+    "previousSide": "Alternating",
+    "side": "ScreenLeftThenRight",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "ac497ef8de944a776faa6ca1a6406e3c490ba8ecc186abe281153841954a802d"
+  },
+  {
+    "id": 1180,
+    "previousSide": "Alternating",
+    "side": "Continuous",
+    "direction": "ClockwiseThenCounterclockwise",
+    "blocks": 2,
+    "previousVideoSha256": "08c4ca84e670876fc513babd693549e1b6bca023477fd3d9beab4212bf4fd9dd"
+  },
+  {
+    "id": 1214,
+    "previousSide": "Alternating",
+    "side": "ScreenLeftThenRight",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "ba73c303317cdf26157cb009a7d433ca66c11442f82dbd6865512eee39e1c2c4"
+  },
+  {
+    "id": 1225,
+    "previousSide": "Alternating",
+    "side": "ScreenRightThenLeft",
+    "direction": "ForwardThenBackward",
+    "blocks": 4,
+    "previousVideoSha256": "229db0397c08e4d86764ce71afcdca66c85b14fcd5e9f331ab8a7ed850f5fa11"
+  },
+  {
+    "id": 1230,
+    "previousSide": "Alternating",
+    "side": "ScreenRightThenLeft",
+    "direction": "ForwardThenBackward",
+    "blocks": 4,
+    "previousVideoSha256": "152885c2a363375a283b63762b24662e783f44127db181a714b8127623e07395"
+  },
+  {
+    "id": 1244,
+    "previousSide": "Alternating",
+    "side": "ScreenRightThenLeft",
+    "direction": "None",
+    "blocks": 2,
+    "previousVideoSha256": "25d6ec7291f372e52cb8b9a4c1b2f74843d727a99e719a331ce45e57904fc0ab"
+  },
+  {
+    "id": 1299,
+    "previousSide": "Alternating",
+    "side": "ScreenLeftThenRight",
+    "direction": "ClockwiseThenCounterclockwise",
+    "blocks": 4,
+    "previousVideoSha256": "5caa252fc3fe6904a97eaa53321b9742fc34514189330530932d231bfac6fa4b"
+  }
+]

@@ -48,6 +48,11 @@ on:
       - "tools/Test-ExerciseFloorContactAudit.ps1"
       - "tools/ExerciseHardFloorCompatibility.psd1"
       - "tools/Test-ExerciseHardFloorCompatibilityAudit.ps1"
+      - "tools/ExerciseExecutionCorrections.psd1"
+      - "tools/ExerciseDirectionMediaTransforms.psd1"
+      - "tools/Generate-ExerciseCatalog.ps1"
+      - "tools/Test-ExerciseExecutionProtocols.ps1"
+      - "tools/Test-ExerciseSideSequenceOverrides.ps1"
   workflow_dispatch:
 
 permissions:
@@ -115,6 +120,11 @@ jobs:
             /tools/Test-ExerciseFloorContactAudit.ps1
             /tools/ExerciseHardFloorCompatibility.psd1
             /tools/Test-ExerciseHardFloorCompatibilityAudit.ps1
+            /tools/ExerciseExecutionCorrections.psd1
+            /tools/ExerciseDirectionMediaTransforms.psd1
+            /tools/Generate-ExerciseCatalog.ps1
+            /tools/Test-ExerciseExecutionProtocols.ps1
+            /tools/Test-ExerciseSideSequenceOverrides.ps1
           sparse-checkout-cone-mode: false
 
       - name: Validate mirror relationship audit
@@ -140,6 +150,12 @@ jobs:
       - name: Validate floor contacts and combined equipment minimums
         shell: pwsh
         run: ./tools/Test-ExerciseFloorContactAudit.ps1
+
+      - name: Validate complete execution protocols and frozen workout media
+        shell: pwsh
+        run: |
+          ./tools/Test-ExerciseExecutionProtocols.ps1
+          ./tools/Test-ExerciseSideSequenceOverrides.ps1
 
       - name: Set up Node.js
         uses: actions/setup-node@v6

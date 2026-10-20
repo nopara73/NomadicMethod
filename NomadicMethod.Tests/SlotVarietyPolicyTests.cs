@@ -29,6 +29,9 @@ public sealed class SlotVarietyPolicyTests
             WorkoutState state = fixture.GetProperty("state").Deserialize<WorkoutState>(JsonOptions)!;
             Exercise[] catalog = Catalog();
             var service = new ExerciseSessionService(catalog, new Random(7), () => now);
+            // Match app startup: initialization selects the frozen catalog
+            // before a saved workout's sequence geometry is queried.
+            service.Initialize(state);
             WorkoutGroup current = service.GetNextGroup(state)!;
             if (phase == "Movement") service.BeginMovement(state, current, 28_000, now.ToUnixTimeMilliseconds() + 28_000);
             if (phase == "Rest") service.BeginRest(state, current, now.ToUnixTimeMilliseconds() + 14_000);

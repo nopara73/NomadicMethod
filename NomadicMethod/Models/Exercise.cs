@@ -3,6 +3,8 @@ namespace NomadicMethod.Models;
 public sealed class Exercise
 {
     private ExerciseSideSequence _sideSequence;
+    private ExerciseDirectionSequence _directionSequence;
+    private string _video = "";
     private ExerciseSequenceBlock[] _sequenceBlocks = [];
     private ExerciseShyCompatibility _shyCompatibility = ExerciseShyCompatibility.Unreviewed;
     private CanonicalMuscleGroup[] _secondaryCanonicalGroups = [];
@@ -18,7 +20,7 @@ public sealed class Exercise
 
     public string? RetiredName { get; init; }
 
-    public required string Video { get; init; }
+    public required string Video { get => _video; init => _video = value; }
 
     public required CanonicalMuscleGroup PrimaryCanonicalGroup { get; init; }
 
@@ -37,8 +39,8 @@ public sealed class Exercise
 
     public required ExerciseSideSequence SideSequence { get => _sideSequence; init => _sideSequence = value; }
 
-    public ExerciseDirectionSequence DirectionSequence { get; init; } =
-        ExerciseDirectionSequence.None;
+    public ExerciseDirectionSequence DirectionSequence
+        { get => _directionSequence; init => _directionSequence = value; }
 
     public ExerciseSequenceBlock[] SequenceBlocks { get => _sequenceBlocks; init => _sequenceBlocks = value; }
 
@@ -88,13 +90,16 @@ public sealed class Exercise
 
     public Exercise WithWorkoutMetadata(ExerciseSideSequence sides,
         ExerciseSequenceBlock[] blocks, ExerciseShyCompatibility shy,
-        CanonicalMuscleGroup[]? secondaryGroups = null)
+        CanonicalMuscleGroup[]? secondaryGroups = null,
+        ExerciseDirectionSequence? directions = null, string? video = null)
     {
         Exercise copy = (Exercise)MemberwiseClone();
         copy._sideSequence = sides;
         copy._sequenceBlocks = blocks;
         copy._shyCompatibility = shy;
         copy._secondaryCanonicalGroups = secondaryGroups ?? _secondaryCanonicalGroups;
+        copy._directionSequence = directions ?? _directionSequence;
+        copy._video = video ?? _video;
         return copy;
     }
 

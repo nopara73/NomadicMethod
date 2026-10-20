@@ -1,5 +1,6 @@
 param(
-    [string]$AssetsRoot = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets')
+    [string]$AssetsRoot = (Join-Path $PSScriptRoot '..\NomadicMethod\Assets'),
+    [int[]]$ExerciseIds = @()
 )
 
 $ErrorActionPreference = 'Stop'
@@ -9,6 +10,11 @@ $definedExerciseIds = @(Get-ExerciseCatalogDefinitions | ForEach-Object { [int]$
 $resolvedAssetsRoot = [IO.Path]::GetFullPath($AssetsRoot)
 $catalogPath = Join-Path $resolvedAssetsRoot 'exercises.json'
 $catalog = @(Get-Content -LiteralPath $catalogPath -Raw | ConvertFrom-Json)
+$unknownRequestedIds = @($ExerciseIds | Where-Object { $_ -notin $catalog.id })
+if ($unknownRequestedIds.Count) {
+    throw "Unknown media-audit exercise IDs: $($unknownRequestedIds -join ', ')."
+}
+$mediaAuditCount = if ($ExerciseIds.Count) { @($ExerciseIds | Sort-Object -Unique).Count } else { $catalog.Count }
 $failures = [System.Collections.Generic.List[string]]::new()
 $motionFreezeFilter = 'freezedetect=n=-60dB:d=2'
 $maximumMotionFreezeSeconds = 2.0
@@ -108,7 +114,10 @@ $actualHoldNames = @(Get-ChildItem -LiteralPath (
         Select-Object -ExpandProperty Name)
 $directionExercises = @($catalog | Where-Object directionSequence -ne 'None')
 $invalidDirectionExercises = @($directionExercises | Where-Object {
-        [string]$_.sideSequence -notin @('Continuous', 'Alternating') -or
+        [string]$_.sideSequence -notin @('Continuous', 'Alternating',
+            'ScreenLeftThenRight', 'ScreenRightThenLeft',
+            'ScreenLeftLeadThenRightLead', 'ScreenRightLeadThenLeftLead',
+            'ShownHandPositionThenOpposite') -or
         [string]$_.mode -ne 'Repetition' -or
         [string]$_.presentation -ne 'Motion' -or
         [string]$_.directionSequence -notin @(
@@ -154,6 +163,7 @@ $directionTransforms = Import-PowerShellDataFile -LiteralPath (
     Join-Path $PSScriptRoot 'ExerciseDirectionMediaTransforms.psd1')
 
 foreach ($exercise in $directionExercises) {
+    if ($ExerciseIds.Count -gt 0 -and [int]$exercise.id -notin $ExerciseIds) { continue }
     $directionVideoPath = Join-Path $resolvedAssetsRoot (
         'exercise_direction_videos/exercise_{0:D4}.mp4' -f [int]$exercise.id)
     $directionProbeJson = & ffprobe `
@@ -186,6 +196,9 @@ foreach ($exercise in $directionExercises) {
     }
     $sourceDuration = [double]::Parse([string]$sourceDurationText,
         [Globalization.CultureInfo]::InvariantCulture)
+    if ($transform.Mode -eq 'ReviewedSourceSegment') {
+        $sourceDuration = [double]$transform.DurationSeconds
+    }
     if ($directionVideoStreams.Count -ne 1 -or
         $directionVideoStreams[0].codec_name -ne 'h264' -or
         $directionVideoStreams[0].width -ne 256 -or
@@ -236,7 +249,6 @@ $renderedVideoHashes = [System.Collections.Generic.List[object]]::new(
 
 try {
     foreach ($exercise in $catalog) {
-        $checkedCount++
         $videoPath = Join-Path $resolvedAssetsRoot ([string]$exercise.video)
         if (-not (Test-Path -LiteralPath $videoPath)) {
             $failures.Add("$($exercise.id): missing $videoPath")
@@ -250,6 +262,11 @@ try {
                 Id = [int]$exercise.id
                 Name = [string]$exercise.name
             })
+
+        # All catalog identities, inventories, source assignments and duplicate
+        # hashes remain audited. An explicit batch limits only media decoding.
+        if ($ExerciseIds.Count -gt 0 -and [int]$exercise.id -notin $ExerciseIds) { continue }
+        $checkedCount++
 
         $probeJson = & ffprobe `
             -v error `
@@ -389,7 +406,7 @@ try {
         }
 
         if ($checkedCount % 25 -eq 0) {
-            Write-Output "Verified $checkedCount / $($catalog.Count) MP4 files"
+            Write-Output "Verified $checkedCount / $mediaAuditCount MP4 files"
         }
     }
 }
@@ -432,5 +449,5 @@ if ($failures.Count -gt 0) {
     throw ("$($failures.Count) exercise MP4 verification checks failed:`n" + ($failures -join "`n"))
 }
 
-Write-Output "Verified: $($catalog.Count) / $($catalog.Count) MP4 assets"
-Write-Output 'Holds: every final video frame matches its reviewed static target'
+Write-Output "Verified: $checkedCount / $mediaAuditCount MP4 assets; full catalog inventory: $($catalog.Count)"
+Write-Output 'Checked hold videos match their reviewed static targets'

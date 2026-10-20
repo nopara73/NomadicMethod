@@ -493,7 +493,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 82;
+export const CURRENT_CATALOG_REVISION = 83;
 const HARD_FLOOR_SLIPPERINESS_CATALOG_REVISION = 53;
 const REUSED_SHY_AUDIT_CATALOG_REVISION = 70;
 const REUSED_SHY_AUDIT_EXERCISE_IDS = new Set([202, 204, 205]);
@@ -4225,6 +4225,11 @@ export function inferLegacyCompletedTrainingDays(
 
 export const HAND_POSITION_EXERCISE_IDS = Object.freeze([32, 216, 224, 510, 740, 1012]);
 export const SLOT_VARIETY_EXERCISE_IDS = Object.freeze([1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302]);
+export const EXECUTION_CORRECTION_EXERCISE_IDS = Object.freeze([
+  236, 275, 516, 588, 743, 1097, 1109, 1112, 1117, 1139, 1162, 1177,
+  1180, 1214, 1225, 1230, 1244, 1299,
+]);
+const PREVIOUSLY_CONTINUOUS_EXECUTION_IDS = new Set([236, 275, 516, 743]);
 const SHY_CORRECTION_IDS = new Set([
   432, 435, 436, 437, 438, 439, 440, 441, 443, 446, 447, 452, 453, 458,
   460, 461, 468, 469, 471, 472, 476, 479, 494, 496, 547, 1002,
@@ -4232,6 +4237,17 @@ const SHY_CORRECTION_IDS = new Set([
 ]);
 
 export function getWorkoutCatalog(catalog, activeRevision) {
+  if (activeRevision > 0 && activeRevision < 83) {
+    catalog = catalog.map(exercise => EXECUTION_CORRECTION_EXERCISE_IDS.includes(exercise.id)
+      ? { ...exercise,
+        catalogVideo: exercise.catalogVideo ?? exercise.video,
+        sideSequence: PREVIOUSLY_CONTINUOUS_EXECUTION_IDS.has(exercise.id) ? "Continuous" : "Alternating",
+        directionSequence: "None",
+        sequenceBlocks: [{ exerciseId: exercise.id, sideCue: "None", directionCue: "None",
+          mirrorMedia: false, mediaSegment: "Full" }],
+        video: `exercise_videos/revision82/exercise_${String(exercise.id).padStart(4, "0")}.mp4`,
+      } : exercise);
+  }
   if (activeRevision > 0 && activeRevision < 82) {
     catalog = catalog.filter(exercise => !SLOT_VARIETY_EXERCISE_IDS.includes(exercise.id))
       .map(exercise => exercise.id === 906
@@ -8838,7 +8854,8 @@ export class WorkoutSession {
 }
 
 function catalogIdentity(exercise) {
-  return `${exercise.name}\u001f${exercise.video}`;
+  // Workout-specific archived footage does not create a new exercise identity.
+  return `${exercise.name}\u001f${exercise.catalogVideo ?? exercise.video}`;
 }
 
 function catalogInvalidationIdsSince(
@@ -8885,7 +8902,7 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
     return false;
   }
   const previousVideo = previousIdentity.slice(separatorIndex + 1);
-  if (previousVideo !== currentExercise.video) {
+  if (previousVideo !== (currentExercise.catalogVideo ?? currentExercise.video)) {
     return false;
   }
 

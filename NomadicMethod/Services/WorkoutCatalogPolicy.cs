@@ -4,6 +4,11 @@ namespace NomadicMethod.Services;
 
 public static class WorkoutCatalogPolicy
 {
+    public static IReadOnlySet<int> ExecutionCorrectionExerciseIds { get; } =
+        new HashSet<int> { 236, 275, 516, 588, 743, 1097, 1109, 1112, 1117,
+            1139, 1162, 1177, 1180, 1214, 1225, 1230, 1244, 1299 };
+    private static readonly IReadOnlySet<int> PreviouslyContinuousExecutionIds =
+        new HashSet<int> { 236, 275, 516, 743 };
     public static IReadOnlySet<int> SlotVarietyExerciseIds { get; } =
         new HashSet<int> { 1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302 };
     public static IReadOnlySet<int> HandPositionExerciseIds { get; } =
@@ -38,6 +43,20 @@ public static class WorkoutCatalogPolicy
     public static IReadOnlyList<Exercise> ForWorkout(
         IReadOnlyList<Exercise> catalog, int activeCatalogRevision)
     {
+        if (activeCatalogRevision is > 0 and < 83)
+        {
+            // Freeze both the old phase geometry and its original footage.
+            // A corrected one-side loop cannot replace an old full-loop phase.
+            catalog = catalog.Select(exercise =>
+                ExecutionCorrectionExerciseIds.Contains(exercise.Id)
+                    ? exercise.WithWorkoutMetadata(
+                        PreviouslyContinuousExecutionIds.Contains(exercise.Id)
+                            ? ExerciseSideSequence.Continuous : ExerciseSideSequence.Alternating,
+                        [new ExerciseSequenceBlock { ExerciseId = exercise.Id, MirrorMedia = false }],
+                        exercise.ShyCompatibility, directions: ExerciseDirectionSequence.None,
+                        video: $"exercise_videos/revision82/exercise_{exercise.Id:D4}.mp4")
+                    : exercise).ToArray();
+        }
         if (activeCatalogRevision is > 0 and < 82)
         {
             // Catalog additions and newly recognized lateral knee lifts must

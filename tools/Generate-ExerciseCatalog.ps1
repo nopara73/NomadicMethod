@@ -493,6 +493,38 @@ foreach ($exerciseId in $replacementExerciseIds) {
     }
 }
 
+# Apply the reviewed execution protocol after historical replacement overrides.
+# These are media/timing repairs, never new exercise identities or anatomy.
+$executionCorrections = Import-PowerShellDataFile -LiteralPath (
+    Join-Path $PSScriptRoot 'ExerciseExecutionCorrections.psd1')
+foreach ($entry in $executionCorrections.GetEnumerator()) {
+    $exerciseId = [int]$entry.Key
+    $protocol = $entry.Value
+    if ($exerciseId -notin $retainedExerciseIds) {
+        throw "Execution correction $exerciseId has no retained exercise."
+    }
+    $exerciseSideSequences.Remove($exerciseId)
+    $alternatingExerciseIds = @($alternatingExerciseIds | Where-Object { $_ -ne $exerciseId })
+    $reviewedContinuousExerciseIds = @($reviewedContinuousExerciseIds | Where-Object { $_ -ne $exerciseId })
+    if ($protocol.SideSequence -in @('Continuous', 'Alternating')) {
+        $reviewedContinuousExerciseIds += $exerciseId
+        if ($protocol.SideSequence -eq 'Alternating') { $alternatingExerciseIds += $exerciseId }
+    } else {
+        $exerciseSideSequences[$exerciseId] = [string]$protocol.SideSequence
+    }
+    if ($protocol.DirectionSequence -eq 'None') {
+        $exerciseDirectionSequences.Remove($exerciseId)
+    } else {
+        $exerciseDirectionSequences[$exerciseId] = [string]$protocol.DirectionSequence
+    }
+    if ($protocol.ContainsKey('StartSeconds')) {
+        $media = $externalExerciseMedia[$exerciseId].Clone()
+        $media.StartSeconds = $protocol.StartSeconds
+        $media.DurationSeconds = $protocol.DurationSeconds
+        $externalExerciseMedia[$exerciseId] = $media
+    }
+}
+
 $reviewedContinuousExerciseIds = @(
     $reviewedContinuousExerciseIds | Where-Object {
         -not $exerciseDirectionSequences.ContainsKey($_) -or
@@ -804,7 +836,11 @@ $invalidDirectionMediaTransforms = @(
         [int]$_.Key -notin $retainedExerciseIds -or
         $transform -isnot [System.Collections.IDictionary] -or
         [string]$transform.Mode -notin @(
-            'HorizontalMirror', 'TemporalReverse', 'ExactExercise') -or
+            'HorizontalMirror', 'TemporalReverse', 'ExactExercise', 'ReviewedSourceSegment') -or
+        ([string]$transform.Mode -eq 'ReviewedSourceSegment' -and (
+            -not $externalExerciseMedia[[int]$_.Key].ContainsKey('LocalSourceFile') -or
+            [double]$transform.StartSeconds -lt 0 -or
+            [double]$transform.DurationSeconds -le 0)) -or
         ([string]$transform.Mode -eq 'ExactExercise' -and (
             -not $transform.ContainsKey('SecondExerciseId') -or
             [int]$transform.SecondExerciseId -notin $retainedExerciseIds -or
@@ -3233,7 +3269,16 @@ function New-ExerciseSequenceBlocks {
             $blocks += [ordered]@{
                 exerciseId = $ExerciseId
                 sideCue = [string]$sideBlock.SideCue
-                directionCue = [string]$directionCues[$directionIndex]
+                # A horizontal side mirror also reverses screen-clockwise
+                # motion. Anatomical forward/backward and inward/outward cues
+                # retain their meaning on the opposite side.
+                directionCue = if ($sideBlock.MirrorMedia -and
+                    $directionCues[$directionIndex] -eq 'Clockwise') {
+                    'Counterclockwise'
+                } elseif ($sideBlock.MirrorMedia -and
+                    $directionCues[$directionIndex] -eq 'Counterclockwise') {
+                    'Clockwise'
+                } else { [string]$directionCues[$directionIndex] }
                 mirrorMedia = [bool]$sideBlock.MirrorMedia
                 mediaSegment = if ($directionCues.Count -eq 1) {
                     'Full'
@@ -3705,10 +3750,26 @@ foreach ($entry in $exerciseDirectionSequences.GetEnumerator()) {
         (Test-Path -LiteralPath $directionVideoPath)) {
         continue
     }
+    $directionTransform = [string]$transform.Mode
+    if ($directionTransform -eq 'ReviewedSourceSegment') {
+        $oppositeMedia = $externalExerciseMedia[$exerciseId].Clone()
+        $oppositeMedia.StartSeconds = $transform.StartSeconds
+        $oppositeMedia.DurationSeconds = $transform.DurationSeconds
+        $oppositeGifPath = Join-Path $tempRoot "opposite-$exerciseId.gif"
+        $exactSecondVideoPath = Join-Path $tempRoot "opposite-$exerciseId.mp4"
+        New-ExternalExerciseGif -ExerciseId $exerciseId `
+            -ExerciseName "Opposite direction $exerciseId" `
+            -SideSequence ([string]$recordsById[$exerciseId].sideSequence) `
+            -Media $oppositeMedia -GifPath $oppositeGifPath `
+            -WorkingRoot (Join-Path $tempRoot "opposite-$exerciseId")
+        New-ExerciseMp4 -GifPath $oppositeGifPath `
+            -VideoPath $exactSecondVideoPath -HoldFramePercent 0 -Overwrite
+        $directionTransform = 'ExactExercise'
+    }
     New-DirectionSequenceMp4 `
         -SourceVideoPath $sourceVideoPath `
         -OutputPath $directionVideoPath `
-        -Transform ([string]$transform.Mode) `
+        -Transform $directionTransform `
         -ExactSecondVideoPath $exactSecondVideoPath
 }
 

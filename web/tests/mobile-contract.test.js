@@ -1169,7 +1169,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /DatabaseVersion\s*=\s*ExerciseDatabaseVersionPolicy\.CurrentVersion/,
   );
-  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*98/);
+  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*99/);
   assert.match(
     exerciseDatabase,
     /ExerciseDatabaseVersionPolicy\.IsSupportedNonDestructiveUpgrade\([\s\S]*oldVersion,[\s\S]*newVersion/,
@@ -2341,7 +2341,7 @@ test("all bilateral, directional, linked, and repeated work uses one sequence mo
     catalog
       .filter((exercise) => exercise.directionSequence !== "None")
       .map((exercise) => exercise.id),
-    [406, 409, 561, 608, 611, 1018],
+    [236, 275, 406, 409, 516, 561, 588, 608, 611, 743, 1018, 1109, 1180, 1225, 1230, 1299],
   );
   assert.ok(catalog.every((exercise) =>
     !Object.hasOwn(exercise, "directionPartnerExerciseId")));

@@ -8130,7 +8130,7 @@ test("slippery hard-floor revision rebuilds placements without erasing feedback"
 
 test("sole-wall revision rebuilds changed workout state and resets scores", () => {
   const changedIds = [563, 564, 567, 568, 574];
-  assert.equal(CURRENT_CATALOG_REVISION, 82);
+  assert.equal(CURRENT_CATALOG_REVISION, 83);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(54)],
     changedIds,
@@ -8725,7 +8725,7 @@ test("bodybuilding posing revision replaces static work and resets feedback", ()
 
 test("material-training revision removes only anatomically invalid slots and keeps", () => {
   const addedIds = [911, 913, 916, 917];
-  assert.equal(CURRENT_CATALOG_REVISION, 82);
+  assert.equal(CURRENT_CATALOG_REVISION, 83);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(67)],
     addedIds,
@@ -8815,7 +8815,7 @@ test("material-training revision removes only anatomically invalid slots and kee
 
 test("training-claim revision removes only newly invalid slot feedback", () => {
   const addedIds = [918, 919];
-  assert.equal(CURRENT_CATALOG_REVISION, 82);
+  assert.equal(CURRENT_CATALOG_REVISION, 83);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(69)],
     addedIds,
@@ -8927,7 +8927,7 @@ test("complete-pose revision rebuilds affected placements without erasing feedba
 
 test("corrected two-sided revision rebuilds placements and preserves feedback", () => {
   const changedIds = new Set([32, 483, 493]);
-  assert.equal(CURRENT_CATALOG_REVISION, 82);
+  assert.equal(CURRENT_CATALOG_REVISION, 83);
   assert.deepEqual(SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(71), changedIds);
   assert.equal(SCOPED_SCORE_INVALIDATIONS_BY_REVISION.has(71), false);
 
@@ -9490,7 +9490,10 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
         .filter((segment) => segment !== "Full");
       assert.deepEqual(
         directionSegments,
-        ["FirstDirection", "SecondDirection"],
+        Array.from({ length: ["ScreenLeftThenRight", "ScreenRightThenLeft",
+          "ScreenLeftLeadThenRightLead", "ScreenRightLeadThenLeftLead",
+          "ShownHandPositionThenOpposite"].includes(item.sideSequence) ? 2 : 1 },
+        () => ["FirstDirection", "SecondDirection"]).flat(),
       );
       for (const segment of directionSegments) {
         const directionVideoPath = getExerciseVideoPath(item, segment);
@@ -9509,7 +9512,8 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
     }
   }
 
-  assert.deepEqual(directionIds, [406, 409, 561, 608, 611, 1018]);
+  assert.deepEqual(directionIds, [236, 275, 406, 409, 516, 561, 588, 608, 611, 743,
+    1018, 1109, 1180, 1225, 1230, 1299]);
   assert.ok(catalog.every((item) =>
     !Object.hasOwn(item, "directionPartnerExerciseId")));
   const multiExerciseSequenceRoots = catalog

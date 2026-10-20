@@ -978,7 +978,7 @@ public sealed class CatalogInvariantTests
         Exercise[] timedSideExercises = exercises
             .Where(exercise => exercise.SideSequence.UsesTimedSides())
             .ToArray();
-        Assert.Equal(275, timedSideExercises.Length);
+        Assert.Equal(287, timedSideExercises.Length);
         Dictionary<int, (string Name, ExerciseSideSequence SideSequence)>
             auditedMirroredSideSequences = new()
             {
@@ -1019,7 +1019,7 @@ public sealed class CatalogInvariantTests
             .Where(exercise =>
                 exercise.SideSequence == ExerciseSideSequence.Alternating)
             .ToArray();
-        Assert.Equal(249, alternatingExercises.Length);
+        Assert.Equal(236, alternatingExercises.Length);
         Assert.DoesNotContain(alternatingExercises, exercise => exercise.Id == 219);
         Assert.Contains(alternatingExercises, exercise => exercise.Id == 15);
         Assert.Contains(alternatingExercises, exercise => exercise.Id == 429);
@@ -1032,6 +1032,16 @@ public sealed class CatalogInvariantTests
             .ToArray();
         Dictionary<int, ExerciseDirectionSequence> auditedDirectionSequences = new()
         {
+            [236] = ExerciseDirectionSequence.InwardThenOutward,
+            [275] = ExerciseDirectionSequence.ForwardThenBackward,
+            [516] = ExerciseDirectionSequence.ForwardThenBackward,
+            [588] = ExerciseDirectionSequence.BackwardThenForward,
+            [743] = ExerciseDirectionSequence.BackwardThenForward,
+            [1109] = ExerciseDirectionSequence.ForwardThenBackward,
+            [1180] = ExerciseDirectionSequence.ClockwiseThenCounterclockwise,
+            [1225] = ExerciseDirectionSequence.ForwardThenBackward,
+            [1230] = ExerciseDirectionSequence.ForwardThenBackward,
+            [1299] = ExerciseDirectionSequence.ClockwiseThenCounterclockwise,
             [406] = ExerciseDirectionSequence.ClockwiseThenCounterclockwise,
             [409] = ExerciseDirectionSequence.ClockwiseThenCounterclockwise,
             [561] = ExerciseDirectionSequence.ClockwiseThenCounterclockwise,
@@ -1119,10 +1129,10 @@ public sealed class CatalogInvariantTests
         });
         Dictionary<int, int> expectedSequenceBlockDistribution = new()
         {
-            [1] = 497,
-            [2] = 243,
+            [1] = 479,
+            [2] = 257,
             [3] = 20,
-            [4] = 13,
+            [4] = 17,
         };
         Dictionary<int, int> actualSequenceBlockDistribution = exercises
             .Where(exercise => exercise.SequenceBlocks.Length > 0)

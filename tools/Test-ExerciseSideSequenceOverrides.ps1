@@ -62,3 +62,45 @@ if ($continuous.Count -ne 1 -or $continuous[0].sideCue -ne 'None' -or
     throw 'A replacement generated the wrong workout phases.'
 }
 Write-Output 'Replacement side membership and workout phase regression checks passed.'
+
+$executionOverlay = $syntax.Find({
+    param($node)
+    $node -is [Management.Automation.Language.ForEachStatementAst] -and
+        $node.Condition.Extent.Text -eq '$executionCorrections.GetEnumerator()'
+}, $false)
+if ($null -eq $executionOverlay) { throw 'Cannot locate the production execution overlay.' }
+$executionCorrections = @{
+    1 = @{ SideSequence = 'Continuous'; DirectionSequence = 'None' }
+    2 = @{ SideSequence = 'Alternating'; DirectionSequence = 'BackwardThenForward' }
+    3 = @{ SideSequence = 'ScreenLeftThenRight'; DirectionSequence = 'None' }
+    4 = @{ SideSequence = 'Continuous'; DirectionSequence = 'None'; StartSeconds = 1.0; DurationSeconds = 2.8 }
+}
+$retainedExerciseIds = @(1, 2, 3, 4)
+$exerciseDirectionSequences = @{ 1 = 'ClockwiseThenCounterclockwise' }
+$originalMedia = @{ LocalSourceFile = 'reviewed.mp4'; StartSeconds = 0.0; DurationSeconds = 9.0 }
+$externalExerciseMedia[4] = $originalMedia
+. ([scriptblock]::Create($executionOverlay.Extent.Text))
+if ($exerciseDirectionSequences.ContainsKey(1) -or
+    $exerciseDirectionSequences[2] -ne 'BackwardThenForward' -or
+    $exerciseSideSequences[3] -ne 'ScreenLeftThenRight' -or
+    ($alternatingExerciseIds | Sort-Object) -join ',' -ne '2,99' -or
+    $externalExerciseMedia[4].DurationSeconds -ne 2.8 -or
+    $originalMedia.DurationSeconds -ne 9.0) {
+    throw 'Execution corrections retained stale phases or modified the original source descriptor.'
+}
+Write-Output 'Execution overlay replaces stale sides/directions and preserves its source descriptor.'
+
+# The first combined side/direction protocol must contain the full Cartesian
+# product. Mirroring a side reverses a screen-clockwise cue as well as footage.
+$combined = @(New-ExerciseSequenceBlocks -ExerciseId 1299 `
+    -SideSequence 'ScreenLeftThenRight' `
+    -DirectionSequence 'ClockwiseThenCounterclockwise')
+if ($combined.Count -ne 4 -or
+    ($combined.directionCue -join ',') -ne 'Clockwise,Counterclockwise,Counterclockwise,Clockwise' -or
+    ($combined.sideCue -join ',') -ne 'ScreenLeft,ScreenLeft,ScreenRight,ScreenRight' -or
+    ($combined.mediaSegment -join ',') -ne 'FirstDirection,SecondDirection,FirstDirection,SecondDirection' -or
+    $combined[0].mirrorMedia -or $combined[1].mirrorMedia -or
+    -not $combined[2].mirrorMedia -or -not $combined[3].mirrorMedia) {
+    throw 'Combined sides and directions lost a phase or mislabeled mirrored motion.'
+}
+Write-Output 'Combined side/direction execution regression checks passed.'

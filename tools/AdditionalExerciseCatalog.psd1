@@ -447,7 +447,7 @@
     1296 = @{ Name = 'Five-Position Finger Tendon Glides'; Region = 'HANDS'; Practice = 'Hand mobility'; MotionProfile = 'BilateralFivePositionTendonGlides' }
     1297 = @{ Name = 'Alternating Standing Gate Openers'; Region = 'HIPS'; Practice = 'Hip mobility'; MotionProfile = 'AlternatingPlantedGateOpeners' }
     1298 = @{ Name = 'Alternating Standing Leg Cradles'; Region = 'HIPS'; Practice = 'Hip mobility'; MotionProfile = 'AlternatingPlantedLegCradle' }
-    1299 = @{ Name = 'Standing Ankle Circles Both Ways'; Region = 'FEET'; Practice = 'Ankle mobility'; MotionProfile = 'AlternatingStandingAnkleCirclesBothWays' }
+    1299 = @{ Name = 'Standing Ankle Circles Both Ways'; Region = 'FEET'; Practice = 'Ankle mobility'; MotionProfile = 'StandingAnkleCirclesBothWays' }
     1300 = @{ Name = 'March in Place with Shoulder Rolls'; Region = 'SHOULDERS'; Practice = 'Shoulder mobility'; MotionProfile = 'MarchingShoulderRolls' }
     1301 = @{ Name = 'March in Place with Arm Curls'; Region = 'ARMS'; Practice = 'Arm mobility'; MotionProfile = 'MarchingArmCurls' }
     1302 = @{ Name = 'Woodchopper Breath with Ha Exhale'; Region = 'CORE'; Practice = 'Breathing coordination'; MotionProfile = 'WoodchopperHaBreath' }
