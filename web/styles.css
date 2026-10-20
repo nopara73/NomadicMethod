@@ -462,6 +462,10 @@ button.modifier-tile:not(:disabled):active {
   stroke-width: 1.8;
 }
 
+.elevation-icon .modifier-icon-stroke {
+  stroke-width: 1.9;
+}
+
 .light-mode-glyph {
   background: currentColor;
   mask-image: url("./assets/ic_light_workout.png");
