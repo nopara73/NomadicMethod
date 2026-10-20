@@ -3,6 +3,7 @@
     # None keeps each repetition at its station. Room traverses a short lane.
     # Field requires space for sustained running or long traveling bounds.
     None = @(
+        1303,
         1302,
         1301,
         1300,

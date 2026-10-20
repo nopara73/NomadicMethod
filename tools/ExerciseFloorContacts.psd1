@@ -2,6 +2,7 @@
     # The existing human-reviewed catalog is feet-only. New identities must
     # explicitly declare every support contact, including transitions.
     FeetOnly = @(
+        1303,
         1302,
         1301,
         1300,

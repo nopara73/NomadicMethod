@@ -22,6 +22,7 @@
     # demonstrated exercise. Keep this exhaustive so new catalog records fail
     # generation until they receive a real review.
     Agnostic = @(
+        1303,
         1302,
         1301,
         1300,

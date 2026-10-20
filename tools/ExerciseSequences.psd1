@@ -47,6 +47,7 @@
     # These records were reviewed and deliberately remain complete one-member
     # scheduling units. Sequence roots and hidden members must not appear here.
     StandaloneIds = @(
+        1303,
         1302,
         1301,
         1300,

@@ -134,6 +134,33 @@ public sealed class ExecutionProtocolTests
         }
     }
 
+    [Fact]
+    public void BodyCircleVariantKeepsOneIdentityAndDoesNotEnterOlderWorkouts()
+    {
+        using JsonDocument document = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "body-circle-admission.json")));
+        JsonElement c = document.RootElement;
+        int id = c.GetProperty("exerciseId").GetInt32();
+        Exercise[] catalog = LoadCatalog();
+        Exercise exercise = catalog.Single(e => e.Id == id);
+        Assert.Equal(WorkoutCatalogPolicy.BodyCircleExerciseId, id);
+        Assert.Equal(c.GetProperty("sessionMovementId").GetInt32(), exercise.SessionMovementId);
+        Assert.Equal(c.GetProperty("side").GetString(), exercise.SideSequence.ToString());
+        Assert.Equal(c.GetProperty("direction").GetString(), exercise.DirectionSequence.ToString());
+        Assert.Equal(2, exercise.SequenceBlocks.Length);
+        Assert.All(exercise.SequenceBlocks, b => Assert.Equal(ExerciseSequenceSideCue.None, b.SideCue));
+        Assert.Equal(catalog.Single(e => e.Id == 1299).SessionMovementId, exercise.SessionMovementId);
+        foreach (JsonElement minutes in c.GetProperty("shortMinutes").EnumerateArray())
+            Assert.Equal(1, WorkoutSequencePolicy.GetBlockCount(exercise, minutes.GetInt32()));
+        foreach (JsonElement minutes in c.GetProperty("completeMinutes").EnumerateArray())
+            Assert.Equal(2, WorkoutSequencePolicy.GetBlockCount(exercise, minutes.GetInt32()));
+        foreach (JsonElement revision in c.GetProperty("preservedRevisions").EnumerateArray())
+            Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, revision.GetInt32()), e => e.Id == id);
+        Assert.Contains(WorkoutCatalogPolicy.ForWorkout(catalog,
+            c.GetProperty("introducedRevision").GetInt32()), e => e.Id == id);
+        Assert.Equal(4, catalog.Single(e => e.Id == 1299).SequenceBlocks.Length);
+    }
+
     private static Exercise[] LoadCatalog() => JsonSerializer.Deserialize<Exercise[]>(
         File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), JsonOptions)!;
     private static JsonDocument LoadCases() => JsonDocument.Parse(File.ReadAllText(

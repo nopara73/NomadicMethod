@@ -4,6 +4,7 @@ namespace NomadicMethod.Services;
 
 public static class WorkoutCatalogPolicy
 {
+    public const int BodyCircleExerciseId = 1303;
     public static IReadOnlySet<int> ExecutionCorrectionExerciseIds { get; } =
         new HashSet<int> { 236, 275, 516, 588, 743, 1097, 1109, 1112, 1117,
             1139, 1162, 1177, 1180, 1214, 1225, 1230, 1244, 1299 };
@@ -48,7 +49,7 @@ public static class WorkoutCatalogPolicy
         {
             // Freeze both the old phase geometry and its original footage.
             // A corrected one-side loop cannot replace an old full-loop phase.
-            catalog = catalog.Select(exercise =>
+            catalog = catalog.Where(exercise => exercise.Id != BodyCircleExerciseId).Select(exercise =>
                 ExecutionCorrectionExerciseIds.Contains(exercise.Id)
                     ? exercise.WithWorkoutMetadata(
                         PreviouslyContinuousExecutionIds.Contains(exercise.Id)

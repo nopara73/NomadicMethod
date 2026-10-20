@@ -946,7 +946,7 @@ test("muscular demand is fully reviewed and independent of user scores", () => {
   assert.deepEqual(
     [0, 1, 2].map((rating) =>
       catalog.filter((exercise) => exercise.muscularDemand === rating).length),
-    [202, 395, 217],
+    [203, 395, 217],
   );
   assert.ok(catalog.every(hasReviewedMuscularDemand));
   assert.ok(catalog.every((exercise) => exercise.score === 0));
@@ -1401,7 +1401,7 @@ test("shy mode filters only reviewed incompatible exercises while enabled", () =
 test("hard floor catalog verdicts include slippery-floor traction", () => {
   assert.equal(catalog.filter((exercise) =>
       exercise.hardFloorCompatibility ===
-      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 379);
+      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 380);
   assert.equal(catalog.filter((exercise) =>
     exercise.hardFloorCompatibility ===
       EXERCISE_HARD_FLOOR_COMPATIBILITY.Incompatible).length, 435);
@@ -2934,9 +2934,9 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     .map((exercise) => exercise.id)), new Set([524, 525, 526, 527, 528, 790]));
   assert.equal(catalog.filter((exercise) =>
     exercise.upperBodyClothingRequirement ===
-      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 698);
+      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 699);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 628);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 629);
   assert.equal(catalog.filter((exercise) =>
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 186);
   for (const exerciseId of [56, 185, 377, 379, 401, 403, 557]) {
@@ -3002,7 +3002,7 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.BenefitsGreatly).length, 99);
   assert.equal(catalog.filter((exercise) =>
-    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 715);
+    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 716);
   assert.equal(catalog.filter((exercise) =>
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.MirrorOnly).length, 0);
@@ -5360,9 +5360,9 @@ test("mixed-demand sequence uses its highest demand and remains atomic", () => {
 });
 
 test("the reviewed catalog satisfies every roll-up and selects distinct exercises", () => {
-  assert.equal(catalog.length, 814);
-  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 814);
-  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 814);
+  assert.equal(catalog.length, 815);
+  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 815);
+  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 815);
   assert.equal(isSessionMovementMetadataValid(catalog), true);
   const actualSessionMovements = {};
   for (const exercise of catalog.filter((item) => item.sessionMovementId > 0)) {
@@ -5404,7 +5404,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       277: [261, 277],
       278: [278, 326],
       286: [286, 541],
-      288: [288, 758, 1299],
+      288: [288, 758, 1299, 1303],
       292: [148, 292, 542],
       311: [311, 321, 816],
       327: [327, 546],
@@ -9513,7 +9513,7 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
   }
 
   assert.deepEqual(directionIds, [236, 275, 406, 409, 516, 561, 588, 608, 611, 743,
-    1018, 1109, 1180, 1225, 1230, 1299]);
+    1018, 1109, 1180, 1225, 1230, 1299, 1303]);
   assert.ok(catalog.every((item) =>
     !Object.hasOwn(item, "directionPartnerExerciseId")));
   const multiExerciseSequenceRoots = catalog

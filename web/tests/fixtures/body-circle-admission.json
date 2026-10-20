@@ -1,0 +1,10 @@
+{
+  "exerciseId": 1303,
+  "sessionMovementId": 288,
+  "introducedRevision": 83,
+  "side": "Continuous",
+  "direction": "ClockwiseThenCounterclockwise",
+  "shortMinutes": [3, 5, 7, 10, 15, 20],
+  "completeMinutes": [30, 45, 60, 90],
+  "preservedRevisions": [81, 82]
+}

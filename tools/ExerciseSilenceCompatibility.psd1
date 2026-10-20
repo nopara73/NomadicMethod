@@ -1,6 +1,7 @@
 @{
     # Natural execution can stay quiet. This is independent of muted media audio.
     Silent = @(
+        1303,
         1301,
         1300,
         1299,

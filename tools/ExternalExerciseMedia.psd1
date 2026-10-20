@@ -10567,4 +10567,21 @@
         PingPong = $false
         MirrorForAlternation = $false
     }
+    1303 = @{
+        LocalSourceFile = 'body-circles-mbodies-66.28-3.76.mp4'
+        LocalSourceSha256 = '4189da4666ff523eade19bf215c7a739c7ec96999e8679e7517bae9ca345e9e0'
+        File = 'body-circles-mbodies-66.28-3.76.mp4'
+        Url = 'https://www.youtube.com/watch?v=T8Ew_ghNgy0'
+        SourcePage = 'https://www.youtube.com/watch?v=T8Ew_ghNgy0'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 0
+        DurationSeconds = 3.76
+        FramesPerSecond = 25
+        Crop = 'crop=660:660:310:30'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
 }

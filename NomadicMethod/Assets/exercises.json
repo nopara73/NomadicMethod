@@ -37521,5 +37521,56 @@
     "maxSpaceMeters": 2,
     "equipment": "None",
     "silent": false
+  },
+  {
+    "id": 1303,
+    "name": "Standing Body Circles",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1303.mp4",
+    "primaryCanonicalGroup": "AnteriorLateralLowerLegAndDorsalFoot",
+    "secondaryCanonicalGroups": [
+      "CalfDeepPosteriorLegAndPlantarFoot"
+    ],
+    "practice": "Standing ankle mobility",
+    "motionProfile": "StandingBodyCircles",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "ClockwiseThenCounterclockwise",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1303,
+        "sideCue": "None",
+        "directionCue": "Clockwise",
+        "mirrorMedia": false,
+        "mediaSegment": "FirstDirection"
+      },
+      {
+        "exerciseId": 1303,
+        "sideCue": "None",
+        "directionCue": "Counterclockwise",
+        "mirrorMedia": false,
+        "mediaSegment": "SecondDirection"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 0,
+    "onlyFeetTouchGround": true,
+    "floorContactPoints": "Feet",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true,
+    "sessionMovementId": 288
   }
 ]

@@ -451,4 +451,5 @@
     1300 = @{ Name = 'March in Place with Shoulder Rolls'; Region = 'SHOULDERS'; Practice = 'Shoulder mobility'; MotionProfile = 'MarchingShoulderRolls' }
     1301 = @{ Name = 'March in Place with Arm Curls'; Region = 'ARMS'; Practice = 'Arm mobility'; MotionProfile = 'MarchingArmCurls' }
     1302 = @{ Name = 'Woodchopper Breath with Ha Exhale'; Region = 'CORE'; Practice = 'Breathing coordination'; MotionProfile = 'WoodchopperHaBreath' }
+    1303 = @{ Name = 'Standing Body Circles'; Region = 'FEET'; Practice = 'Standing ankle mobility'; MotionProfile = 'StandingBodyCircles' }
 }

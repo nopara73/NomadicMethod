@@ -4242,6 +4242,7 @@ export function inferLegacyCompletedTrainingDays(
 
 export const HAND_POSITION_EXERCISE_IDS = Object.freeze([32, 216, 224, 510, 740, 1012]);
 export const SLOT_VARIETY_EXERCISE_IDS = Object.freeze([1294, 1295, 1296, 1297, 1298, 1299, 1300, 1301, 1302]);
+export const BODY_CIRCLE_EXERCISE_ID = 1303;
 export const EXECUTION_CORRECTION_EXERCISE_IDS = Object.freeze([
   236, 275, 516, 588, 743, 1097, 1109, 1112, 1117, 1139, 1162, 1177,
   1180, 1214, 1225, 1230, 1244, 1299,
@@ -4270,7 +4271,8 @@ export function getSequenceBlockCount(exercise, minutes) {
 
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
   if (activeRevision > 0 && activeRevision < 83) {
-    catalog = catalog.map(exercise => EXECUTION_CORRECTION_EXERCISE_IDS.includes(exercise.id)
+    catalog = catalog.filter(exercise => exercise.id !== BODY_CIRCLE_EXERCISE_ID)
+      .map(exercise => EXECUTION_CORRECTION_EXERCISE_IDS.includes(exercise.id)
       ? { ...exercise,
         catalogVideo: exercise.catalogVideo ?? exercise.video,
         sideSequence: PREVIOUSLY_CONTINUOUS_EXECUTION_IDS.has(exercise.id) ? "Continuous" : "Alternating",

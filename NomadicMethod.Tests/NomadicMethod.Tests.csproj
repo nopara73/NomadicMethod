@@ -80,6 +80,7 @@
 
   <ItemGroup>
     <None Include="..\web\tests\fixtures\execution-protocol-cases.json" Link="Assets\execution-protocol-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\body-circle-admission.json" Link="Assets\body-circle-admission.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\legacy-execution-session.json" Link="Assets\legacy-execution-session.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\single-direction-cases.json" Link="Assets\single-direction-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\slot-variety-cases.json" Link="Assets\slot-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />

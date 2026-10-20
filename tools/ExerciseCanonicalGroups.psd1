@@ -827,4 +827,5 @@
     1300 = @{ Primary = 'ScapularGirdle'; Secondary = @() }
     1301 = @{ Primary = 'ElbowFlexors'; Secondary = @() }
     1302 = @{ Primary = 'BreathingMuscles'; Secondary = @() }
+    1303 = @{ Primary = 'AnteriorLateralLowerLegAndDorsalFoot'; Secondary = @('CalfDeepPosteriorLegAndPlantarFoot') }
 }

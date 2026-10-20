@@ -2,11 +2,30 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import test from "node:test";
-import { getWorkoutCatalog, EXECUTION_CORRECTION_EXERCISE_IDS,
+import { getWorkoutCatalog, EXECUTION_CORRECTION_EXERCISE_IDS, BODY_CIRCLE_EXERCISE_ID,
+  getSessionMovementId, getSequenceBlockCount,
   WorkoutSession, createDefaultState } from "../workout.js";
 
 const catalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 const cases = JSON.parse(await readFile(new URL("./fixtures/execution-protocol-cases.json", import.meta.url), "utf8"));
+
+test("body-circle admission keeps one identity and excludes frozen older workouts", async () => {
+  const c = JSON.parse(await readFile(new URL("./fixtures/body-circle-admission.json", import.meta.url), "utf8"));
+  const exercise = catalog.find(e => e.id === c.exerciseId);
+  assert.equal(exercise.id, BODY_CIRCLE_EXERCISE_ID);
+  assert.equal(getSessionMovementId(exercise), c.sessionMovementId);
+  assert.equal(getSessionMovementId(exercise), getSessionMovementId(catalog.find(e => e.id === 1299)));
+  assert.equal(exercise.sideSequence, c.side);
+  assert.equal(exercise.directionSequence, c.direction);
+  assert.equal(exercise.sequenceBlocks.length, 2);
+  assert.ok(exercise.sequenceBlocks.every(b => b.sideCue === "None"));
+  for (const minutes of c.shortMinutes) assert.equal(getSequenceBlockCount(exercise, minutes), 1);
+  for (const minutes of c.completeMinutes) assert.equal(getSequenceBlockCount(exercise, minutes), 2);
+  for (const revision of c.preservedRevisions)
+    assert.equal(getWorkoutCatalog(catalog, revision).some(e => e.id === c.exerciseId), false);
+  assert.ok(getWorkoutCatalog(catalog, c.introducedRevision).some(e => e.id === c.exerciseId));
+  assert.equal(catalog.find(e => e.id === 1299).sequenceBlocks.length, 4);
+});
 
 test("reviewed execution protocols include complete sides and directions", () => {
   assert.deepEqual(cases.map(c => c.id), EXECUTION_CORRECTION_EXERCISE_IDS);

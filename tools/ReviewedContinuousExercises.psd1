@@ -3,6 +3,7 @@
 # all other members are symmetric, bilateral, or side-neutral.
 @{
     Ids = @(
+        1303,
         1302,
         1301,
         1300,

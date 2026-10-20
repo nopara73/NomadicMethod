@@ -1,7 +1,7 @@
 # Exercise execution corrections â€” 20 October 2026
 
-Status: implementation preserved as an unpublished draft. Catalog availability
-validation fails; this is not a validated release.
+Status: implementation validated. Publication and device-installation receipts
+are recorded separately from this source audit.
 
 ## Correction
 
@@ -42,8 +42,11 @@ reviewed source segment or a reversed simple cyclic mobility loop. Mirrored
 footage reverses screen-clockwise cues. The phase model remains shared between
 Android and web.
 
-The catalog still contains 814 exercises. No identity, anatomy, muscular-demand,
-equipment or compatibility claims were changed to compensate for lost choices.
+The catalog now contains 815 exercises. The 814 existing records retain their
+identity, anatomy, muscular-demand, equipment and compatibility claims. A reviewed
+Standing Body Circles variant supplies a fitting member of existing ankle-circle
+family 288; it does not create another movement identity. Its source, admission,
+anatomy and physical review are recorded in standing-body-circles-2026-10-20.md.
 One obsolete unreferenced GIF (1023) was removed from the runtime inventory;
 its original bytes are retained in the local audit artifacts.
 
@@ -59,32 +62,48 @@ Shared fixtures cover revision 81/82 metadata, original video hashes and a
 synthetic revision-82 ankle workout restored from Ready, movement and rest after
 two year-long gaps. The fixture includes an existing Keep and phase score.
 
-## Validation and release blocker
+## Validation
 
-The validation checkout excludes concurrent short-workout planner changes from
-another chat. Its Android suite passes 1,042 of 1,043 tests and its web suite
-passes 597 of 598 tests. The single failing test on each platform is the required
-catalog coverage gate. Focused execution/restoration tests pass on both
-platforms. The 18 corrected primary clips and their directional media pass media
-decoding/timing checks, while inventory and identity checks cover all 814 records.
-Execution-overlay and mirrored four-phase generator regression checks pass.
+The release includes the published planner correction at e3c0f13c. Complete timed
+sides retain their existing capacity rules; pure directional exercises may use
+their first reviewed direction below 30 minutes. The body-circle variant uses that
+existing rule and shares SessionMovementId 288 with the ankle-circle family.
+The five fitting lower-leg/foot movements are 191, 284, 1029, 1295 and family 288.
 
-Corrected availability is four rather than the required five distinct selectable
-movements for `r10.anterior-lateral-lower-leg-dorsal-foot` and
-`r15.anterior-lateral-lower-leg-dorsal-foot` in affected profiles. This produces
-174 pairwise rows and eight compatible-hard-floor rows. Modifier materiality and
-complete-workout lineup checks have no deficits. The four fitting movements are
-unsupported toe raises (191), side-to-side ankle rocks (284), alternating heel
-digs (1029) and heel-to-toe rocking (1295).
+The current revision-83 ledger has zero pairwise, compatible-hard-floor,
+materiality and complete-lineup deficits. No quota was reduced and no exception
+was added. The separate demand-2 and distinct-lineup diagnostics remain diagnostics,
+as required by the existing contract. The ledger was refreshed only after the
+independent availability checks reached zero deficits.
 
-The production web build rejects those deficits and the stale diagnostic ledger.
-The ledger was not refreshed to waive the gate. A fifth genuinely eligible
-movement with verified media, or an explicit owner-approved rule change, is
-still required. Additional head/neck and hip shortages observed with the other
-chat's new short-workout policy are outside this isolated change.
+All 1,062 Android checks were validated: the full suite passed 1,061 checks, then
+the sole remaining metadata-population test passed after its exact catalog pins
+were reviewed. All 618 web checks were validated: the full suite passed 615,
+including all eight production workout-profile batches; the three metadata-pin
+checks subsequently passed after deliberate count and direction-list updates.
+No production behavior changed between the full run and those focused reruns.
 
-Actual-workout visual verification is also pending: the preview browser could
-not attach. No deployment or phone installation has been performed.
+The production web build succeeds with 815 exercises, 1,000 files and no GIFs.
+The Debug Android build succeeds with zero warnings and zero errors. The reviewed
+native/web migration filter and shared admission fixture preserve pre-83 sessions.
+The parity lock covers 144 native source files, SHA-256 f24b2086814f… .
 
-Local evidence is under `.artifacts/sequence-audit-20261020/`; the isolated
-validation checkout and its parity lock are under that folder's `validation/`.
+Source audits cover all 815 records: 1,287 exact secondary training claims, genuine
+primary work for every canonical group, the complete physical/equipment partitions,
+and 60 identity families covering 149 records. The 18 corrected clips and the new
+body-circle clip pass decoding/timing checks. Inventory, source assignment,
+primary hashes and identity checks still cover the entire catalog. The original
+18 workout clips remain byte-identical in the revision82 archive.
+
+Actual-workout visual review covers 142 screens for the 18 corrections and 13
+screens for the body-circle addition: Ready, preparation, every movement/rest
+phase and the final Keep control. All inspected media loaded successfully; final
+Keep controls were visible and enabled. The source loops, opposite-direction
+clips and mirrored sides matched their phases. The body-circle loop was refined
+before packaging; its complete circular path and both feet remain visible in
+short and long workouts at normal playback speed.
+
+The synthetic review workouts were created through the normal workout API and
+contain no user data. Local screenshots, DOM/media observations and build/test
+logs are under .artifacts/sequence-audit-20261020/. No phone installation is claimed:
+ADB discovers no connected or wireless device.

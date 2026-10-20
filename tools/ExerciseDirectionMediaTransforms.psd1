@@ -19,4 +19,5 @@
     1225 = @{ Mode = 'TemporalReverse' }
     1230 = @{ Mode = 'TemporalReverse' }
     1299 = @{ Mode = 'ReviewedSourceSegment'; StartSeconds = 4.1; DurationSeconds = 2.8 }
+    1303 = @{ Mode = 'TemporalReverse' }
 }

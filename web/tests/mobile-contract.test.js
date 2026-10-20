@@ -848,7 +848,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 628);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 629);
   assert.equal(catalog.filter((exercise) =>
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 186);
   assert.deepEqual(
@@ -2341,7 +2341,7 @@ test("all bilateral, directional, linked, and repeated work uses one sequence mo
     catalog
       .filter((exercise) => exercise.directionSequence !== "None")
       .map((exercise) => exercise.id),
-    [236, 275, 406, 409, 516, 561, 588, 608, 611, 743, 1018, 1109, 1180, 1225, 1230, 1299],
+    [236, 275, 406, 409, 516, 561, 588, 608, 611, 743, 1018, 1109, 1180, 1225, 1230, 1299, 1303],
   );
   assert.ok(catalog.every((exercise) =>
     !Object.hasOwn(exercise, "directionPartnerExerciseId")));

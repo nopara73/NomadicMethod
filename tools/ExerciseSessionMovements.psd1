@@ -20,7 +20,7 @@
         '579' = @(579, 580) # Standing back-to-wall shoulder slides and wall-angel range variant
         '266' = @(266, 301) # Standing straight-arm lateral raises through complementary ranges
         '264' = @(264, 275) # Standing shoulder-height arm circles and their small-circle naming variant
-        '288' = @(288, 758, 1299) # Supported knee-and-ankle circles in opposite directions
+        '288' = @(288, 758, 1299, 1303) # Open- and closed-chain ankle circles; sides and directions never multiply identity
         '948' = @(948, 949) # Natural diagonal wood chop, upward and downward naming variants
         '568' = @(568, 633) # Toes-on-wall calf stretch
         '143' = @(143, 538) # Reverse lunge followed by a front kick
