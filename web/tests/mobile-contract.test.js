@@ -2176,7 +2176,7 @@ test("backgrounding pauses movement and rest until playback is resumed", () => {
 test("lead-stance exercises use the same two-block sequence cues on mobile and web", () => {
   const expectedLeadStanceIds = [
     204, 205, 245, 265, 279, 473, 528, 538, 575, 578, 583, 591,
-    884, 885, 886, 887, 1024, 1042, 1044,
+    884, 885, 886, 887, 1024, 1042, 1044, 1433,
   ];
   assert.deepEqual(
     catalog
