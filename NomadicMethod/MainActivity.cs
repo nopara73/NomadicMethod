@@ -89,6 +89,8 @@ public partial class MainActivity : Activity
     private CheckBox _locomotionModifierButton = null!;
     private CheckBox _floorModifierButton = null!;
     private CheckBox _mirrorModifierButton = null!;
+    private CheckBox _elevationEquipmentButton = null!;
+    private bool _elevationEquipmentChangedDuringStartup;
     private TextView _durationModifierFeedback = null!;
     private int _modifierFeedbackGeneration;
     private FrameLayout _durationActionBar = null!;
@@ -218,6 +220,7 @@ public partial class MainActivity : Activity
 
         _stateStore = new SharedPreferencesWorkoutStateStore(this);
         _state = _stateStore.Load();
+        SetElevationEquipmentEnabled(_state.ElevationEquipmentEnabled);
         InitializeOuraRecovery();
         _selectedWorkoutMinutes = ExerciseSessionService.NormalizeSetupMinutes(_state.LastWorkoutMinutes);
         _selectedWorkoutModifiers = _state.LastWorkoutModifiers;
@@ -293,6 +296,11 @@ public partial class MainActivity : Activity
         _exerciseDatabase = startup.Database;
         _sessionService = startup.SessionService;
         _applicationStartupCompleted = true;
+        if (_elevationEquipmentChangedDuringStartup)
+        {
+            _stateStore.Save(_state);
+            _elevationEquipmentChangedDuringStartup = false;
+        }
 
         if (_state.WorkoutCompleted && !_state.CompletionAcknowledged)
         {
@@ -638,6 +646,8 @@ public partial class MainActivity : Activity
             Resource.Id.floor_modifier_button);
         _mirrorModifierButton = FindRequiredView<CheckBox>(
             Resource.Id.mirror_modifier_button);
+        _elevationEquipmentButton = FindRequiredView<CheckBox>(
+            Resource.Id.elevation_equipment_button);
         _durationModifierFeedback = FindRequiredView<TextView>(
             Resource.Id.duration_modifier_feedback);
         _durationActionBar = FindRequiredView<FrameLayout>(
@@ -895,6 +905,8 @@ public partial class MainActivity : Activity
             ShowModifierFeedback(
                 GetMirrorFeedbackResourceId(nextEquipment));
         };
+        _elevationEquipmentButton.Click += (_, _) =>
+            SetElevationEquipmentEnabled(_elevationEquipmentButton.Checked, userInitiated: true);
         _beginWorkoutButton.Click += (_, _) => StartSelectedWorkout();
         _endSessionButton.Click += (_, _) => ConfirmEndSession();
         _workoutSetupButton.Click += (_, _) => ShowActiveWorkoutSetup();
@@ -1751,6 +1763,7 @@ public partial class MainActivity : Activity
                      _locomotionModifierButton,
                      _floorModifierButton,
                      _mirrorModifierButton,
+                     _elevationEquipmentButton,
                  })
         {
             tile.LayoutParameters = CreateModifierTileLayout(size);
@@ -2323,6 +2336,7 @@ public partial class MainActivity : Activity
                 return copy;
             });
             if (_activityDestroyed || !_editingActiveWorkoutSetup) return;
+            ended.ElevationEquipmentEnabled = _state.ElevationEquipmentEnabled;
             _stateStore.Save(ended);
             _state = ended;
             _editingActiveWorkoutSetup = false;
@@ -2399,6 +2413,28 @@ public partial class MainActivity : Activity
 
         _workoutSetupCurrentGroupId = null;
         _workoutSetupShouldResume = false;
+    }
+
+    private void SetElevationEquipmentEnabled(bool enabled, bool userInitiated = false)
+    {
+        _state.ElevationEquipmentEnabled = enabled;
+        _elevationEquipmentButton.Checked = enabled;
+        int feedback = enabled ? Resource.String.elevation_equipment_enabled_feedback
+            : Resource.String.elevation_equipment_disabled_feedback;
+        _elevationEquipmentButton.ContentDescription = GetString(feedback);
+        if (OperatingSystem.IsAndroidVersionAtLeast(26))
+            _elevationEquipmentButton.TooltipText = GetString(feedback);
+        if (OperatingSystem.IsAndroidVersionAtLeast(30))
+            _elevationEquipmentButton.StateDescription = GetString(enabled
+                ? Resource.String.elevation_equipment_on : Resource.String.elevation_equipment_off);
+        if (!userInitiated) return;
+
+        // This capability has no catalog behavior yet. Save it without preparing
+        // a workout, changing a profile, or touching an active checkpoint.
+        if (_applicationStartupCompleted) _stateStore.Save(_state);
+        else _elevationEquipmentChangedDuringStartup = true;
+        AnimateModifierTile(_elevationEquipmentButton);
+        ShowModifierFeedback(feedback);
     }
 
     private void SetSelectedWorkoutModifier(
@@ -2919,6 +2955,7 @@ public partial class MainActivity : Activity
                 return;
             }
             WorkoutState nextState = prepared.State;
+            nextState.ElevationEquipmentEnabled = _state.ElevationEquipmentEnabled;
             nextState.OuraRecovery = GetAvailableOuraSnapshot();
             if (prepared.IsReconfiguration)
             {

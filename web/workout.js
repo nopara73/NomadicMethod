@@ -3475,6 +3475,7 @@ export function createDefaultState() {
     pendingRestPausedByUser: false,
     pendingRestKept: false,
     lastWorkoutMinutes: 10,
+    elevationEquipmentEnabled: false,
     lastWorkoutModifiers: DEFAULT_WORKOUT_MODIFIERS,
     activeCatalogRevision: 0,
     activeWorkoutMinutes: 0,
@@ -3514,6 +3515,7 @@ function normalizeStateShape(raw) {
   state.activeCatalogRevision = Number.isInteger(raw.activeCatalogRevision)
     ? raw.activeCatalogRevision : 0;
   state.lastWorkoutMinutes = normalizeMinutes(raw.lastWorkoutMinutes);
+  state.elevationEquipmentEnabled = raw.elevationEquipmentEnabled === true;
   state.lastWorkoutModifiers = raw.lastWorkoutModifiers === undefined
     ? state.lastWorkoutModifiers
     : normalizeWorkoutModifiers(raw.lastWorkoutModifiers);
