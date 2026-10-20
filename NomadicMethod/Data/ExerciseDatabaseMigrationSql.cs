@@ -92,6 +92,10 @@ internal static class ExerciseDatabaseMigrationSql
                 CHECK (wall_required IN (0, 1)),
             sole_wall_contact_required INTEGER NOT NULL DEFAULT 0
                 CHECK (sole_wall_contact_required IN (0, 1)),
+            elevation_required INTEGER NOT NULL DEFAULT 0
+                CHECK (elevation_required IN (0, 1)),
+            jump_platform_required INTEGER NOT NULL DEFAULT 0
+                CHECK (jump_platform_required IN (0, 1)),
             session_movement_id INTEGER NOT NULL DEFAULT 0
                 CHECK (session_movement_id >= 0),
             CHECK ((locomotion_space = 'None' AND max_space_meters <= 2) OR
@@ -99,6 +103,7 @@ internal static class ExerciseDatabaseMigrationSql
                 (locomotion_space = 'Field' AND max_space_meters > 10)),
             CHECK (
                 sole_wall_contact_required = 0 OR wall_required = 1),
+            CHECK (jump_platform_required = 0 OR elevation_required = 1),
             CHECK (
                 (mirror_relationship = 'MirrorOnly' AND
                     equipment = 'Mirror' AND

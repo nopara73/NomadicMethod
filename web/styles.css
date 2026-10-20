@@ -466,6 +466,15 @@ button.modifier-tile:not(:disabled):active {
   stroke-width: 1.9;
 }
 
+.elevation-glyph-platform,
+[data-elevation-equipment="platform"] .elevation-glyph-support {
+  display: none;
+}
+
+[data-elevation-equipment="platform"] .elevation-glyph-platform {
+  display: block;
+}
+
 .light-mode-glyph {
   background: currentColor;
   mask-image: url("./assets/ic_light_workout.png");

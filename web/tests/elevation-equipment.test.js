@@ -2,26 +2,15 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import test from "node:test";
-import { createDefaultState, parseStoredState, WorkoutSession } from "../workout.js";
-
-const source = (file) => readFileSync(new URL(file, import.meta.url), "utf8");
-
-test("elevation is an optional saved capability with no catalog or profile changes", () => {
-  assert.equal(createDefaultState().elevationEquipmentEnabled, false);
-  for (const enabled of [true, false]) {
-    const state = createDefaultState();
-    state.elevationEquipmentEnabled = enabled;
-    const restored = new WorkoutSession([], parseStoredState(JSON.stringify(state))).state;
-    assert.equal(restored.elevationEquipmentEnabled, enabled);
-    restored.elevationEquipmentEnabled = false;
-    assert.deepEqual(restored, new WorkoutSession([], createDefaultState()).state);
-  }
-  for (const invalid of ["true", 1, null, {}, undefined]) {
-    assert.equal(parseStoredState(JSON.stringify({
-      ...createDefaultState(), elevationEquipmentEnabled: invalid,
-    })).elevationEquipmentEnabled, false);
-  }
-});
+import {
+  createDefaultState, parseStoredState, getElevationEquipment, withElevationEquipment,
+  ELEVATION_EQUIPMENT, WORKOUT_MODIFIERS, isCompatibleWithWorkoutModifiers,
+  normalizeWorkoutModifiers, findElevationCatalogDeficiencies, getWorkoutCatalog,
+} from "../workout.js";
+const source = file => readFileSync(new URL(file, import.meta.url), "utf8");
+const fixture = JSON.parse(source("../../NomadicMethod/Assets/exercises.json")).find(e => e.id === 701);
+const movement = (id, extra = {}) => ({...fixture, id, sessionMovementId: id,
+  elevationRequired: true, jumpPlatformRequired: false, ...extra});
 
 function instantControls(state = createDefaultState()) {
   const elements = new Map();
@@ -50,57 +39,84 @@ function instantControls(state = createDefaultState()) {
     button: element("elevation-equipment"), feedback: element("modifier-feedback") };
 }
 
-test("instant elevation toggles before startup, hands off its value, and never prepares a lineup", () => {
-  const { control, button, feedback } = instantControls();
+
+test("elevation cycles Off, Support, Platform and hands the actual profile to startup", () => {
+  const {control, button, feedback} = instantControls();
+  const baseline = control.selectedModifiers;
   assert.equal(button.attributes["aria-pressed"], "false");
-  assert.equal(button.attributes["aria-label"], "equipment OFF: elevation");
-  const modifiers = control.selectedModifiers;
   button.handlers.click();
-  assert.equal(control.elevationEquipmentEnabled, true);
+  assert.equal(getElevationEquipment(control.selectedModifiers), ELEVATION_EQUIPMENT.Support);
+  assert.equal(feedback.textContent, "equipment ON: elevation · support only");
+  const changes = [];
+  control.connect({selectionChanged: (selection, user) => {
+    if (user) changes.push(selection.selectedModifiers);
+  }});
+  button.handlers.click();
+  assert.equal(getElevationEquipment(control.selectedModifiers), ELEVATION_EQUIPMENT.JumpPlatform);
+  assert.equal(button.dataset.elevationEquipment, "platform");
   assert.equal(feedback.textContent, "equipment ON: elevation");
-  let preparations = 0;
-  const changed = [];
-  control.connect({ selectionChanged: () => preparations++,
-    elevationEquipmentChanged: (enabled) => changed.push(enabled) });
-  assert.equal(control.elevationEquipmentEnabled, true);
-  preparations = 0;
   button.handlers.click();
-  button.handlers.click();
-  assert.deepEqual(changed, [false, true]);
-  assert.equal(preparations, 0);
-  assert.equal(control.selectedModifiers, modifiers);
-  assert.equal(control.selectionChanged, false);
-  assert.equal(button.attributes["title"], "equipment ON: elevation");
-  control.setSelection(5, modifiers);
-  assert.equal(button.attributes["aria-pressed"], "true");
-});
-
-test("instant controls restore elevation independently of the workout", () => {
-  const state = { ...createDefaultState(), elevationEquipmentEnabled: true };
-  const { control, button } = instantControls(state);
-  assert.equal(control.elevationEquipmentEnabled, true);
-  assert.equal(button.attributes["aria-label"], "equipment ON: elevation");
-  button.handlers.click();
-  assert.equal(button.attributes["aria-pressed"], "false");
+  assert.equal(control.selectedModifiers, baseline);
   assert.equal(button.attributes["aria-label"], "equipment OFF: elevation");
+  assert.equal(changes.length, 2);
+  assert.equal(control.selectionChanged, true);
+  control.setSelection(5, withElevationEquipment(baseline, ELEVATION_EQUIPMENT.JumpPlatform));
+  assert.equal(button.dataset.elevationEquipment, "platform");
 });
 
-test("Android and web retain the same labels and protect a background prepared workout", () => {
-  const nativeState = source("../../NomadicMethod/Models/WorkoutState.cs");
-  const activity = source("../../NomadicMethod/MainActivity.cs");
-  const strings = source("../../NomadicMethod/Resources/values/strings.xml");
-  const layout = source("../../NomadicMethod/Resources/layout/screen_duration.xml");
-  const html = source("../index.html");
-  const app = source("../app.js");
-  assert.match(nativeState, /public bool ElevationEquipmentEnabled/);
-  for (const state of ["ON", "OFF"]) assert.ok(strings.includes(`equipment ${state}: elevation`));
-  assert.match(layout, /duration_equipment_modifier_group[\s\S]*elevation_equipment_button/);
-  assert.match(html, /modifier-equipment-group[\s\S]*id="elevation-equipment"/);
-  assert.match(activity, /nextState\.ElevationEquipmentEnabled = _state\.ElevationEquipmentEnabled/);
-  assert.match(activity, /ended\.ElevationEquipmentEnabled = _state\.ElevationEquipmentEnabled/);
-  assert.match(activity, /if \(_applicationStartupCompleted\) _stateStore\.Save\(_state\);\s*else _elevationEquipmentChangedDuringStartup = true/);
-  assert.match(app, /nextSession\.state\.elevationEquipmentEnabled = elevationEquipmentEnabled/);
-  const setter = activity.split("private void SetElevationEquipmentEnabled")[1]
-    .split("private void SetSelectedWorkoutModifier")[0];
-  assert.doesNotMatch(setter, /QueueWorkoutPreparation/);
+test("legacy ON restores as Support without changing active checkpoints or history", () => {
+  const raw = {...createDefaultState(), elevationEquipmentEnabled: true,
+    activeWorkoutModifiers: WORKOUT_MODIFIERS.Wall,
+    pendingMovementGroupId: "r10.upper-limbs", pendingMovementMillisecondsRemaining: 12345};
+  const restored = parseStoredState(JSON.stringify(raw));
+  assert.equal(getElevationEquipment(restored.lastWorkoutModifiers), ELEVATION_EQUIPMENT.Support);
+  assert.equal(restored.elevationEquipmentEnabled, false);
+  assert.equal(restored.activeWorkoutModifiers, WORKOUT_MODIFIERS.Wall);
+  assert.equal(restored.pendingMovementMillisecondsRemaining, 12345);
+  assert.deepEqual(parseStoredState(JSON.stringify(restored)), restored);
+  const {control, button} = instantControls(raw);
+  assert.equal(getElevationEquipment(control.selectedModifiers), ELEVATION_EQUIPMENT.Support);
+  assert.equal(button.dataset.elevationEquipment, "support");
+  for (const invalid of ["true", 1, null, {}, undefined])
+    assert.equal(getElevationEquipment(parseStoredState(JSON.stringify({elevationEquipmentEnabled: invalid})).lastWorkoutModifiers), ELEVATION_EQUIPMENT.None);
+});
+
+test("elevation admits nested equipment capabilities and keeps Floor independent", () => {
+  const ordinary = movement(1, {elevationRequired: false});
+  const support = movement(2);
+  const platform = movement(3, {jumpPlatformRequired: true});
+  const floor = movement(4, {onlyFeetTouchGround: false, floorContactPoints: "Hands"});
+  for (const [equipment, expectedSupport, expectedPlatform] of [
+    [ELEVATION_EQUIPMENT.None, false, false],
+    [ELEVATION_EQUIPMENT.Support, true, false],
+    [ELEVATION_EQUIPMENT.JumpPlatform, true, true],
+  ]) {
+    const profile = withElevationEquipment(WORKOUT_MODIFIERS.UpperBodyClothing, equipment);
+    assert.equal(isCompatibleWithWorkoutModifiers(ordinary, profile), true);
+    assert.equal(isCompatibleWithWorkoutModifiers(support, profile), expectedSupport);
+    assert.equal(isCompatibleWithWorkoutModifiers(platform, profile), expectedPlatform);
+    assert.equal(isCompatibleWithWorkoutModifiers(floor, profile), false);
+    assert.equal(isCompatibleWithWorkoutModifiers(floor, profile | WORKOUT_MODIFIERS.Floor), expectedSupport);
+  }
+  assert.equal(normalizeWorkoutModifiers(WORKOUT_MODIFIERS.Silence | WORKOUT_MODIFIERS.JumpPlatform), WORKOUT_MODIFIERS.Silence);
+});
+
+test("20 support, 5 platform and 5 floor identities cannot be filled with aliases", () => {
+  const catalog = Array.from({length: 19}, (_, i) => movement(i + 1));
+  catalog.push(...Array.from({length: 5}, (_, i) => movement(20 + i, {jumpPlatformRequired: true})));
+  catalog.push(...Array.from({length: 5}, (_, i) => movement(25 + i, {onlyFeetTouchGround: false, floorContactPoints: "Hands"})));
+  assert.equal(findElevationCatalogDeficiencies(catalog)[0].pool, "Support");
+  catalog.push(movement(30, {sessionMovementId: 1}));
+  assert.equal(findElevationCatalogDeficiencies(catalog).length, 1);
+  catalog.push(movement(31));
+  assert.deepEqual(findElevationCatalogDeficiencies(catalog), []);
+  catalog.splice(catalog.findIndex(e => e.id === 29), 1);
+  catalog.push(movement(32, {sessionMovementId: 1, onlyFeetTouchGround: false, floorContactPoints: "Hands"}));
+  assert.equal(findElevationCatalogDeficiencies(catalog)[0].pool, "FloorAndElevation");
+});
+
+test("old unfinished workouts retain their original catalog", () => {
+  const catalog = [movement(1, {elevationRequired: false}), movement(2)];
+  assert.equal(getWorkoutCatalog(catalog, 82).length, 1);
+  assert.equal(getWorkoutCatalog(catalog, 83).length, 2);
 });

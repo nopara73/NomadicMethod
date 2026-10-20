@@ -112,6 +112,7 @@
     <string name="floor_disabled_feedback">floor OFF</string>
     <string name="movement_context_category">Movement context</string>
     <string name="elevation_equipment_enabled_feedback">equipment ON: elevation</string>
+    <string name="elevation_support_enabled_feedback">equipment ON: elevation · support only</string>
     <string name="elevation_equipment_disabled_feedback">equipment OFF: elevation</string>
     <string name="elevation_equipment_on">Elevation available</string>
     <string name="elevation_equipment_off">No elevation available</string>

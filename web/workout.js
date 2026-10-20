@@ -30,6 +30,8 @@ export const WORKOUT_MODIFIERS = Object.freeze({
   RoomLocomotion: 1024,
   FieldLocomotion: 2048,
   Floor: 4096,
+  Elevation: 8192,
+  JumpPlatform: 16384,
 });
 export const EXERCISE_FLOOR_CONTACT = Object.freeze({
   Unreviewed: 0, Feet: 1, Hands: 2, Forearms: 4, Elbows: 8,
@@ -95,6 +97,9 @@ export const WALL_EQUIPMENT = Object.freeze({
   None: "None",
   SolesStayOff: "SolesStayOff",
   SolesMayTouch: "SolesMayTouch",
+});
+export const ELEVATION_EQUIPMENT = Object.freeze({
+  None: "None", Support: "Support", JumpPlatform: "JumpPlatform",
 });
 export const LOCOMOTION_SPACE = Object.freeze({ None: "None", Room: "Room", Field: "Field" });
 const locomotionSpaceRank = (space) =>
@@ -295,6 +300,8 @@ export const SUPPORTED_WORKOUT_MODIFIER_MASK = MODIFIER_RULES.reduce(
   WORKOUT_MODIFIERS.TallMirror |
     WORKOUT_MODIFIERS.Wall |
     WORKOUT_MODIFIERS.SoleWallContact |
+    WORKOUT_MODIFIERS.Elevation |
+    WORKOUT_MODIFIERS.JumpPlatform |
     WORKOUT_MODIFIERS.FieldLocomotion |
     WORKOUT_MODIFIERS.Light,
 );
@@ -310,6 +317,9 @@ export const MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP = 1;
 export const MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP = 1;
 export const MINIMUM_WALL_REQUIRED_SESSION_MOVEMENTS = 20;
 export const MINIMUM_SOLE_WALL_CONTACT_REQUIRED_SESSION_MOVEMENTS = 5;
+export const MINIMUM_ELEVATION_SUPPORT_SESSION_MOVEMENTS = 20;
+export const MINIMUM_JUMP_PLATFORM_SESSION_MOVEMENTS = 5;
+export const MINIMUM_FLOOR_AND_ELEVATION_SESSION_MOVEMENTS = 5;
 export const MINIMUM_ROOM_LOCOMOTION_SESSION_MOVEMENTS = 25;
 export const MINIMUM_FIELD_LOCOMOTION_SESSION_MOVEMENTS = 5;
 export const MINIMUM_MODIFIER_MATERIALITY_EXERCISES = 5;
@@ -2129,6 +2139,9 @@ export function isModifierMetadataComplete(exercises) {
     typeof exercise.wallRequired === "boolean" &&
     typeof exercise.soleWallContactRequired === "boolean" &&
     (!exercise.soleWallContactRequired || exercise.wallRequired) &&
+    (exercise.elevationRequired === undefined || typeof exercise.elevationRequired === "boolean") &&
+    (exercise.jumpPlatformRequired === undefined || typeof exercise.jumpPlatformRequired === "boolean") &&
+    (!exercise.jumpPlatformRequired || exercise.elevationRequired === true) &&
     MODIFIER_RULES.every((rule) => rule.isReviewed(exercise)));
 }
 
@@ -2229,10 +2242,13 @@ export function isSessionMovementMetadataValid(exercises) {
 export function isCompatibleWithWorkoutModifiers(exercise, modifiers) {
   const normalized = normalizeWorkoutModifiers(modifiers);
   const wallEquipment = getWallEquipment(normalized);
+  const elevationEquipment = getElevationEquipment(normalized);
   return (exercise.wallRequired !== true ||
       wallEquipment !== WALL_EQUIPMENT.None) &&
     (exercise.soleWallContactRequired !== true ||
       wallEquipment === WALL_EQUIPMENT.SolesMayTouch) &&
+    (exercise.elevationRequired !== true || elevationEquipment !== ELEVATION_EQUIPMENT.None) &&
+    (exercise.jumpPlatformRequired !== true || elevationEquipment === ELEVATION_EQUIPMENT.JumpPlatform) &&
     MODIFIER_RULES.every((rule) =>
     rule.isCompatibleForProfile(exercise, normalized));
 }
@@ -2244,6 +2260,7 @@ export function isWallPreferred(exercise, modifiers) {
 
 export function getEquipmentPreferenceCount(exercise, modifiers) {
   return Number(isWallPreferred(exercise, modifiers)) +
+    Number(exercise.elevationRequired === true && getElevationEquipment(modifiers) !== ELEVATION_EQUIPMENT.None) +
     Number(isMirrorPreferred(exercise, modifiers));
 }
 
@@ -3250,6 +3267,9 @@ export function normalizeWorkoutModifiers(modifiers) {
   if ((normalized & WORKOUT_MODIFIERS.Wall) === 0) {
     normalized &= ~WORKOUT_MODIFIERS.SoleWallContact;
   }
+  if ((normalized & WORKOUT_MODIFIERS.Elevation) === 0) {
+    normalized &= ~WORKOUT_MODIFIERS.JumpPlatform;
+  }
   if ((normalized & WORKOUT_MODIFIERS.RoomLocomotion) === 0) {
     normalized &= ~WORKOUT_MODIFIERS.FieldLocomotion;
   }
@@ -3385,6 +3405,39 @@ export function withWallEquipment(modifiers, equipment) {
       WORKOUT_MODIFIERS.SoleWallContact;
   }
   throw new RangeError(`Unknown wall equipment: ${equipment}`);
+}
+
+export function getElevationEquipment(modifiers) {
+  const normalized = normalizeWorkoutModifiers(modifiers);
+  return (normalized & WORKOUT_MODIFIERS.Elevation) === 0 ? ELEVATION_EQUIPMENT.None
+    : (normalized & WORKOUT_MODIFIERS.JumpPlatform) !== 0 ? ELEVATION_EQUIPMENT.JumpPlatform
+    : ELEVATION_EQUIPMENT.Support;
+}
+
+export function withElevationEquipment(modifiers, equipment) {
+  const without = normalizeWorkoutModifiers(modifiers) &
+    ~(WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.JumpPlatform);
+  if (equipment === ELEVATION_EQUIPMENT.None) return without;
+  if (equipment === ELEVATION_EQUIPMENT.Support) return without | WORKOUT_MODIFIERS.Elevation;
+  if (equipment === ELEVATION_EQUIPMENT.JumpPlatform)
+    return without | WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.JumpPlatform;
+  throw new RangeError(`Unknown elevation equipment: ${equipment}`);
+}
+
+export function findElevationCatalogDeficiencies(exercises) {
+  const movements = exercises.filter(exercise => exercise.id === getSessionMovementId(exercise));
+  const pools = [
+    ["Support", MINIMUM_ELEVATION_SUPPORT_SESSION_MOVEMENTS,
+      e => e.elevationRequired === true && e.jumpPlatformRequired !== true && !requiresFloor(e)],
+    ["JumpPlatform", MINIMUM_JUMP_PLATFORM_SESSION_MOVEMENTS,
+      e => e.elevationRequired === true && e.jumpPlatformRequired === true && !requiresFloor(e)],
+    ["FloorAndElevation", MINIMUM_FLOOR_AND_ELEVATION_SESSION_MOVEMENTS,
+      e => e.elevationRequired === true && requiresFloor(e)],
+  ];
+  return pools.map(([pool, requiredSessionMovementCount, matches]) => ({
+    pool, requiredSessionMovementCount,
+    matchingSessionMovementCount: new Set(movements.filter(matches).map(getSessionMovementId)).size,
+  })).filter(result => result.matchingSessionMovementCount < result.requiredSessionMovementCount);
 }
 
 export function getMovementCountdownDurationMs(group) {
@@ -3529,10 +3582,12 @@ function normalizeStateShape(raw) {
     ? raw.activeCatalogRevision : 0;
   state.activeSingleDirectionExerciseIds = uniquePositiveIntegers(raw.activeSingleDirectionExerciseIds);
   state.lastWorkoutMinutes = normalizeMinutes(raw.lastWorkoutMinutes);
-  state.elevationEquipmentEnabled = raw.elevationEquipmentEnabled === true;
   state.lastWorkoutModifiers = raw.lastWorkoutModifiers === undefined
     ? state.lastWorkoutModifiers
     : normalizeWorkoutModifiers(raw.lastWorkoutModifiers);
+  if (raw.elevationEquipmentEnabled === true &&
+      getElevationEquipment(state.lastWorkoutModifiers) === ELEVATION_EQUIPMENT.None)
+    state.lastWorkoutModifiers = withElevationEquipment(state.lastWorkoutModifiers, ELEVATION_EQUIPMENT.Support);
   state.activeWorkoutMinutes = Number.isInteger(raw.activeWorkoutMinutes)
     ? raw.activeWorkoutMinutes
     : 0;
@@ -4269,6 +4324,8 @@ export function getSequenceBlockCount(exercise, minutes) {
 }
 
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
+  if (activeRevision > 0 && activeRevision < 84)
+    catalog = catalog.filter(exercise => exercise.elevationRequired !== true);
   if (activeRevision > 0 && activeRevision < 83) {
     catalog = catalog.filter(exercise => exercise.id !== BODY_CIRCLE_EXERCISE_ID)
       .map(exercise => EXECUTION_CORRECTION_EXERCISE_IDS.includes(exercise.id)

@@ -127,6 +127,8 @@ public sealed class WorkoutState
 
     // Equipment setup only until elevation catalog rules are approved. Keeping
     // this outside selection profiles preserves every existing lineup and Keep.
+    // Migration input for the former binary furniture switch. New setup uses
+    // the elevation capability bits in LastWorkoutModifiers, like Wall.
     public bool ElevationEquipmentEnabled { get; set; }
 
     public WorkoutModifiers LastWorkoutModifiers { get; set; } =

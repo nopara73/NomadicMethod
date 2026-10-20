@@ -67,6 +67,10 @@ public sealed class Exercise
 
     public bool SoleWallContactRequired { get; init; }
 
+    public bool ElevationRequired { get; init; }
+
+    public bool JumpPlatformRequired { get; init; }
+
     public int MuscularDemand { get; init; }
 
     public int Score { get; set; } = 0;

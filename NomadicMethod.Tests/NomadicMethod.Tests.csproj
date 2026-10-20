@@ -54,6 +54,7 @@
     <Compile Include="..\NomadicMethod\Models\WorkoutSessionLog.cs" Link="Production\Models\WorkoutSessionLog.cs" />
     <Compile Include="..\NomadicMethod\Models\MirrorEquipment.cs" Link="Production\Models\MirrorEquipment.cs" />
     <Compile Include="..\NomadicMethod\Models\WallEquipment.cs" Link="Production\Models\WallEquipment.cs" />
+    <Compile Include="..\NomadicMethod\Models\ElevationEquipment.cs" Link="Production\Models\ElevationEquipment.cs" />
     <Compile Include="..\NomadicMethod\Models\LocomotionSpace.cs" Link="Production\Models\LocomotionSpace.cs" />
     <Compile Include="..\NomadicMethod\Models\ExerciseFloorContact.cs" Link="Production\Models\ExerciseFloorContact.cs" />
     <Compile Include="..\NomadicMethod\Services\FloorContactPolicy.cs" Link="Production\Services\FloorContactPolicy.cs" />

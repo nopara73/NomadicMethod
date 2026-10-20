@@ -6,44 +6,104 @@ namespace NomadicMethod.Tests;
 
 public sealed class ElevationEquipmentTests
 {
-    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
+    private static Exercise Movement(int id, bool elevation = true, bool platform = false,
+        ExerciseFloorContact contacts = ExerciseFloorContact.Feet, int family = 0) => new()
+    {
+        Id = id, Name = $"Elevation contract {id}", Video = $"fixture-{id}.mp4",
+        PrimaryCanonicalGroup = CanonicalMuscleGroup.AbdominalWall,
+        SecondaryCanonicalGroups = [], Practice = "Contract fixture", MotionProfile = "Fixture",
+        Mode = default, Presentation = default, HoldFramePercent = 0, SideSequence = default,
+        OnlyFeetTouchGround = contacts == ExerciseFloorContact.Feet, FloorContactPoints = contacts,
+        ShoeAgnostic = true, MaxSpaceMeters = 2, Equipment = "None", Silent = true,
+        InsectCompatibility = ExerciseInsectCompatibility.Incompatible,
+        HardFloorCompatibility = ExerciseHardFloorCompatibility.Compatible,
+        UpperBodyClothingRequirement = ExerciseUpperBodyClothingRequirement.Agnostic,
+        ShyCompatibility = ExerciseShyCompatibility.Compatible,
+        MirrorRelationship = ExerciseMirrorRelationship.Agnostic,
+        ElevationRequired = elevation, JumpPlatformRequired = platform,
+        SessionMovementId = family > 0 ? family : id,
+        SequenceBlocks = [new() { ExerciseId = id, MirrorMedia = false }],
+    };
 
     [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public void EquipmentSurvivesStateCopiesAndReopenWithoutChangingWorkout(bool enabled)
+    [InlineData(ElevationEquipment.None, false, false)]
+    [InlineData(ElevationEquipment.Support, true, false)]
+    [InlineData(ElevationEquipment.JumpPlatform, true, true)]
+    public void CapabilitiesAreNestedAndOtherEquipmentSurvives(
+        ElevationEquipment equipment, bool support, bool platform)
     {
-        var state = new WorkoutState
-        {
-            ElevationEquipmentEnabled = enabled,
-            CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
-            LastWorkoutMinutes = 10,
-            LastWorkoutModifiers = ExerciseSessionService.DefaultWorkoutModifiers,
-            SelectedExerciseIds = new() { ["p146|r10.upper-limbs"] = 101 },
-            KeptExerciseRootIdsBySelectionGroupId = new() { ["r10.upper-limbs"] = [101] },
-            PendingMovementGroupId = "r10.upper-limbs",
-            PendingMovementMillisecondsRemaining = 12_345,
-        };
-
-        string json = JsonSerializer.Serialize(state, JsonOptions);
-        WorkoutState restored = JsonSerializer.Deserialize<WorkoutState>(json, JsonOptions)!;
-        new ExerciseSessionService([]).RestoreAfterReopen(restored);
-
-        Assert.Equal(enabled, restored.ElevationEquipmentEnabled);
-        Assert.Equal(state.LastWorkoutModifiers, restored.LastWorkoutModifiers);
-
-        WorkoutState withoutElevation = JsonSerializer.Deserialize<WorkoutState>(json, JsonOptions)!;
-        withoutElevation.ElevationEquipmentEnabled = false;
-        new ExerciseSessionService([]).RestoreAfterReopen(withoutElevation);
-        restored.ElevationEquipmentEnabled = false;
-        Assert.Equal(JsonSerializer.Serialize(withoutElevation, JsonOptions),
-            JsonSerializer.Serialize(restored, JsonOptions));
+        WorkoutModifiers baseline = WorkoutModifiers.Wall | WorkoutModifiers.SoleWallContact |
+            WorkoutModifiers.Floor | WorkoutModifiers.Silence;
+        WorkoutModifiers profile = WorkoutModifierPolicy.WithElevationEquipment(baseline, equipment);
+        Assert.Equal(equipment, WorkoutModifierPolicy.GetElevationEquipment(profile));
+        Assert.Equal(baseline, profile & baseline);
+        Assert.True(WorkoutModifierPolicy.IsCompatible(Movement(1, elevation: false), profile));
+        Assert.Equal(support, WorkoutModifierPolicy.IsCompatible(Movement(2), profile));
+        Assert.Equal(platform, WorkoutModifierPolicy.IsCompatible(Movement(3, platform: true), profile));
+        Assert.Equal(ElevationEquipment.None, WorkoutModifierPolicy.GetElevationEquipment(
+            WorkoutModifierPolicy.WithElevationEquipment(profile, ElevationEquipment.None)));
     }
 
     [Fact]
-    public void ExistingStateDefaultsElevationToOff()
+    public void FloorPermissionClothingAndSurfaceRulesRemainIndependent()
     {
-        WorkoutState restored = JsonSerializer.Deserialize<WorkoutState>("{\"version\":30}", JsonOptions)!;
-        Assert.False(restored.ElevationEquipmentEnabled);
+        WorkoutModifiers profile = WorkoutModifierPolicy.WithElevationEquipment(
+            WorkoutModifiers.None, ElevationEquipment.Support);
+        Exercise hands = Movement(1, contacts: ExerciseFloorContact.Hands);
+        Exercise torso = Movement(2, contacts: ExerciseFloorContact.Torso | ExerciseFloorContact.Shoulders);
+        Assert.False(WorkoutModifierPolicy.IsCompatible(hands, profile));
+        Assert.True(WorkoutModifierPolicy.IsCompatible(hands, profile | WorkoutModifiers.Floor));
+        Assert.False(WorkoutModifierPolicy.IsCompatible(torso, profile | WorkoutModifiers.Floor));
+        Assert.True(WorkoutModifierPolicy.IsCompatible(torso,
+            profile | WorkoutModifiers.Floor | WorkoutModifiers.UpperBodyClothing));
+        Assert.False(WorkoutModifierPolicy.IsCompatible(torso, profile | WorkoutModifiers.Floor |
+            WorkoutModifiers.UpperBodyClothing | WorkoutModifiers.HardFloor));
+        Assert.Equal(WorkoutModifiers.Silence, WorkoutModifierPolicy.Normalize(
+            WorkoutModifiers.Silence | WorkoutModifiers.JumpPlatform));
+    }
+
+    [Fact]
+    public void LegacyOnBecomesSupportAndNeverChangesAnActiveWorkout()
+    {
+        var state = new WorkoutState { ElevationEquipmentEnabled = true,
+            LastWorkoutModifiers = WorkoutModifiers.Silence,
+            ActiveWorkoutModifiers = WorkoutModifiers.Wall, ActiveWorkoutMinutes = 10,
+            PendingMovementGroupId = "r10.upper-limbs", PendingMovementMillisecondsRemaining = 12_345,
+            KeptExerciseRootIdsBySelectionGroupId = new() { ["r10.upper-limbs"] = [701] } };
+        WorkoutModifierPolicy.MigrateLegacyElevationSetup(state);
+        Assert.Equal(ElevationEquipment.Support, WorkoutModifierPolicy.GetElevationEquipment(state.LastWorkoutModifiers));
+        Assert.False(state.ElevationEquipmentEnabled);
+        Assert.Equal(WorkoutModifiers.Wall, state.ActiveWorkoutModifiers);
+        Assert.Equal(12_345, state.PendingMovementMillisecondsRemaining);
+        Assert.Contains(701, state.KeptExerciseRootIdsBySelectionGroupId["r10.upper-limbs"]);
+        string serialized = JsonSerializer.Serialize(state);
+        WorkoutModifierPolicy.MigrateLegacyElevationSetup(state);
+        Assert.Equal(serialized, JsonSerializer.Serialize(state));
+        Assert.Equal(ElevationEquipment.None, WorkoutModifierPolicy.GetElevationEquipment(new WorkoutState().LastWorkoutModifiers));
+    }
+
+    [Fact]
+    public void CatalogFloorsCountSeparateMovementIdentitiesWithoutAliasInflation()
+    {
+        List<Exercise> catalog = Enumerable.Range(1, 19).Select(id => Movement(id)).ToList();
+        catalog.AddRange(Enumerable.Range(20, 5).Select(id => Movement(id, platform: true)));
+        catalog.AddRange(Enumerable.Range(25, 5).Select(id => Movement(id, contacts: ExerciseFloorContact.Hands)));
+        Assert.Equal("Support", Assert.Single(WorkoutModifierPolicy.FindElevationCatalogDeficiencies(catalog)).Pool);
+        catalog.Add(Movement(30, family: 1));
+        Assert.Single(WorkoutModifierPolicy.FindElevationCatalogDeficiencies(catalog));
+        catalog.Add(Movement(31));
+        Assert.Empty(WorkoutModifierPolicy.FindElevationCatalogDeficiencies(catalog));
+        catalog.RemoveAll(e => e.Id == 29);
+        catalog.Add(Movement(32, contacts: ExerciseFloorContact.Hands, family: 1));
+        Assert.Equal("FloorAndElevation", Assert.Single(
+            WorkoutModifierPolicy.FindElevationCatalogDeficiencies(catalog)).Pool);
+    }
+
+    [Fact]
+    public void OldUnfinishedWorkoutsKeepTheirOriginalCatalog()
+    {
+        Exercise[] catalog = [Movement(1, elevation: false), Movement(2)];
+        Assert.Single(WorkoutCatalogPolicy.ForWorkout(catalog, 82));
+        Assert.Equal(2, WorkoutCatalogPolicy.ForWorkout(catalog, 83).Count);
     }
 }

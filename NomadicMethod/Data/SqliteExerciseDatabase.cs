@@ -49,6 +49,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         "session_movement_id",
         "locomotion_space",
         "floor_contact_points",
+        "elevation_required",
+        "jump_platform_required",
     ];
 
     private readonly Context _context;
@@ -271,6 +273,10 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                     CHECK (wall_required IN (0, 1)),
                 sole_wall_contact_required INTEGER NOT NULL DEFAULT 0
                     CHECK (sole_wall_contact_required IN (0, 1)),
+                elevation_required INTEGER NOT NULL DEFAULT 0
+                    CHECK (elevation_required IN (0, 1)),
+                jump_platform_required INTEGER NOT NULL DEFAULT 0
+                    CHECK (jump_platform_required IN (0, 1)),
                 session_movement_id INTEGER NOT NULL DEFAULT 0
                     CHECK (session_movement_id >= 0),
                 CHECK ((locomotion_space = 'None' AND max_space_meters <= 2) OR
@@ -278,6 +284,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                     (locomotion_space = 'Field' AND max_space_meters > 10)),
                 CHECK (
                     sole_wall_contact_required = 0 OR wall_required = 1),
+                CHECK (jump_platform_required = 0 OR elevation_required = 1),
                 CHECK (
                     (mirror_relationship = 'MirrorOnly' AND
                         equipment = 'Mirror' AND
@@ -633,6 +640,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         values.Put("session_movement_id", exercise.SessionMovementId);
         values.Put("locomotion_space", exercise.LocomotionSpace.ToString());
         values.Put("floor_contact_points", (int)exercise.FloorContactPoints);
+        values.Put("elevation_required", exercise.ElevationRequired ? 1 : 0);
+        values.Put("jump_platform_required", exercise.JumpPlatformRequired ? 1 : 0);
         return values;
     }
 
@@ -828,6 +837,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 SessionMovementId = cursor.GetInt(25),
                 LocomotionSpace = Enum.Parse<LocomotionSpace>(cursor.GetString(26)!, ignoreCase: false),
                 FloorContactPoints = (ExerciseFloorContact)cursor.GetInt(27),
+                ElevationRequired = cursor.GetInt(28) == 1,
+                JumpPlatformRequired = cursor.GetInt(29) == 1,
             });
         }
 
@@ -1052,6 +1063,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 sequenceOwnerByExerciseId[member.Id] = root.Id;
                 if (member.Id != root.Id && member.SequenceBlocks.Length > 0 ||
                     member.WallRequired != root.WallRequired ||
+                    member.ElevationRequired != root.ElevationRequired ||
+                    member.JumpPlatformRequired != root.JumpPlatformRequired ||
                     member.SoleWallContactRequired !=
                         root.SoleWallContactRequired ||
                     member.UpperBodyClothingRequirement !=
@@ -1094,6 +1107,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         }
 
         if (hasUndersizedWallCatalog ||
+            WorkoutModifierPolicy.FindElevationCatalogDeficiencies(exercises).Count > 0 ||
             hasUndersizedSoleWallCatalog ||
             hasUndersizedLocomotionCatalog ||
             hasUndersizedFloorCatalog ||

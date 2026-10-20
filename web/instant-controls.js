@@ -17,6 +17,8 @@
     roomLocomotion: 1024,
     fieldLocomotion: 2048,
     floor: 4096,
+    elevation: 8192,
+    jumpPlatform: 16384,
   });
   const feedbackDurationMs = 2_040;
   const elements = {
@@ -58,7 +60,6 @@
     (Number(elements.value.textContent) || 10);
   let selectedModifiers = persistedSetup?.selectedModifiers ??
     readInitialModifiers();
-  let elevationEquipmentEnabled = persistedSetup?.elevationEquipmentEnabled ?? false;
   let lightWorkoutsRemaining = persistedSetup?.lightWorkoutsRemaining ??
     Math.ceil(180 / Math.min(selectedMinutes, 60));
   let automaticLightMode = persistedSetup?.automaticLightMode ?? false;
@@ -88,25 +89,13 @@
   elements.wall.addEventListener("click", cycleWallEquipment);
   elements.locomotion?.addEventListener("click", cycleLocomotionSpace);
   elements.mirror.addEventListener("click", cycleMirrorEquipment);
-  elements.elevation?.addEventListener("click", () => {
-    elevationEquipmentEnabled = !elevationEquipmentEnabled;
-    renderElevationEquipment();
-    showFeedback(elevationFeedbackLabel());
-    handlers?.elevationEquipmentChanged?.(elevationEquipmentEnabled);
-  });
+  elements.elevation?.addEventListener("click", cycleElevationEquipment);
 
   renderDuration();
   renderModifiers();
   performance.mark?.("nomadic-method-controls-ready");
 
   const controller = {
-    get elevationEquipmentEnabled() {
-      return elevationEquipmentEnabled;
-    },
-    setElevationEquipmentEnabled(enabled) {
-      elevationEquipmentEnabled = enabled === true;
-      renderElevationEquipment();
-    },
     get selectedMinutes() {
       return selectedMinutes;
     },
@@ -256,6 +245,10 @@
       if ((storedModifiers & modifierFlags.roomLocomotion) === 0) {
         storedModifiers &= ~modifierFlags.fieldLocomotion;
       }
+      if (raw.elevationEquipmentEnabled === true && (storedModifiers & modifierFlags.elevation) === 0)
+        storedModifiers |= modifierFlags.elevation;
+      if ((storedModifiers & modifierFlags.elevation) === 0)
+        storedModifiers &= ~modifierFlags.jumpPlatform;
       const lightWorkoutsRemaining = globalThis.nomadicMethodLightCadence.workoutsRemaining(
         raw.workoutHistory, selectedMinutes, Date.now(),
         raw.legacyCompletedTrainingDayUnixMilliseconds,
@@ -265,7 +258,6 @@
       );
       return {
         selectedMinutes,
-        elevationEquipmentEnabled: raw.elevationEquipmentEnabled === true,
         selectedModifiers: automaticLightMode
           ? storedModifiers | modifierFlags.light
           : storedModifiers,
@@ -465,12 +457,29 @@
   }
 
   function elevationFeedbackLabel() {
-    return `equipment ${elevationEquipmentEnabled ? "ON" : "OFF"}: elevation`;
+    return (selectedModifiers & modifierFlags.elevation) === 0 ? "equipment OFF: elevation"
+      : (selectedModifiers & modifierFlags.jumpPlatform) === 0 ? "equipment ON: elevation · support only"
+      : "equipment ON: elevation";
+  }
+
+  function cycleElevationEquipment() {
+    const hasSupport = (selectedModifiers & modifierFlags.elevation) !== 0;
+    const hasPlatform = (selectedModifiers & modifierFlags.jumpPlatform) !== 0;
+    selectedModifiers &= ~(modifierFlags.elevation | modifierFlags.jumpPlatform);
+    if (!hasSupport) selectedModifiers |= modifierFlags.elevation;
+    else if (!hasPlatform) selectedModifiers |= modifierFlags.elevation | modifierFlags.jumpPlatform;
+    selectionChanged = true;
+    renderModifiers();
+    showFeedback(elevationFeedbackLabel());
+    notifySelection(true);
   }
 
   function renderElevationEquipment() {
     if (!elements.elevation) return;
-    elements.elevation.setAttribute("aria-pressed", String(elevationEquipmentEnabled));
+    const hasSupport = (selectedModifiers & modifierFlags.elevation) !== 0;
+    const hasPlatform = hasSupport && (selectedModifiers & modifierFlags.jumpPlatform) !== 0;
+    elements.elevation.setAttribute("aria-pressed", String(hasSupport));
+    elements.elevation.dataset.elevationEquipment = hasPlatform ? "platform" : hasSupport ? "support" : "none";
     elements.elevation.setAttribute("aria-label", elevationFeedbackLabel());
     elements.elevation.setAttribute("title", elevationFeedbackLabel());
   }

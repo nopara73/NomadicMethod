@@ -45,6 +45,8 @@ public static class WorkoutCatalogPolicy
         IReadOnlyList<Exercise> catalog, int activeCatalogRevision,
         IReadOnlySet<int>? singleDirectionExerciseIds = null)
     {
+        if (activeCatalogRevision is > 0 and < 84)
+            catalog = catalog.Where(exercise => !exercise.ElevationRequired).ToArray();
         if (activeCatalogRevision is > 0 and < 83)
         {
             // Freeze both the old phase geometry and its original footage.

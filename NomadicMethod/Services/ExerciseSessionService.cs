@@ -181,6 +181,7 @@ public sealed partial class ExerciseSessionService
         ArgumentNullException.ThrowIfNull(state);
 
         int loadedStateVersion = state.Version;
+        WorkoutModifierPolicy.MigrateLegacyElevationSetup(state);
         if (state.ActiveCatalogRevision == 0 && state.ActiveWorkoutMinutes > 0)
             state.ActiveCatalogRevision = state.CatalogRevision;
         SetExercises(state.ActiveWorkoutMinutes > 0

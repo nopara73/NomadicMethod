@@ -38,4 +38,8 @@ public enum WorkoutModifiers
     // Permits reviewed contact beyond the feet. Clothing and Hard Floor keep
     // their independent physical restrictions even while this is enabled.
     Floor = 4096,
+    // One elevated furniture support. JumpPlatform additionally permits
+    // standing, stepping and jumping onto a platform designed for that use.
+    Elevation = 8192,
+    JumpPlatform = 16384,
 }

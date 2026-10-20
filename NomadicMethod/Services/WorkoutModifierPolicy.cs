@@ -51,6 +51,11 @@ public sealed record WorkoutFloorCatalogDeficiency(
     int MatchingSessionMovementCount,
     int RequiredSessionMovementCount);
 
+public sealed record WorkoutElevationCatalogDeficiency(
+    string Pool,
+    int MatchingSessionMovementCount,
+    int RequiredSessionMovementCount);
+
 public sealed record WorkoutProfileLineupDeficiency(
     int Minutes,
     WorkoutModifiers Profile,
@@ -99,6 +104,9 @@ public static class WorkoutModifierPolicy
     public const int MinimumFieldLocomotionSessionMovements = 5;
     public const int MinimumFloorRequiredSessionMovements = 201;
     public const int MinimumFloorAndWallRequiredSessionMovements = 21;
+    public const int MinimumElevationSupportSessionMovements = 20;
+    public const int MinimumJumpPlatformSessionMovements = 5;
+    public const int MinimumFloorAndElevationSessionMovements = 5;
     public const int MinimumMaterialExercises = 5;
     public const int MinimumMaterialExercisePercent = 5;
     public const int MinimumAffectedBucketPercent = 10;
@@ -233,6 +241,8 @@ public static class WorkoutModifierPolicy
             WorkoutModifiers.TallMirror |
                 WorkoutModifiers.Wall |
                 WorkoutModifiers.SoleWallContact |
+                WorkoutModifiers.Elevation |
+                WorkoutModifiers.JumpPlatform |
                 WorkoutModifiers.FieldLocomotion |
                 WorkoutModifiers.Light,
             (mask, rule) => mask | rule.Flag);
@@ -267,6 +277,10 @@ public static class WorkoutModifierPolicy
         if (!normalized.HasFlag(WorkoutModifiers.Wall))
         {
             normalized &= ~WorkoutModifiers.SoleWallContact;
+        }
+        if (!normalized.HasFlag(WorkoutModifiers.Elevation))
+        {
+            normalized &= ~WorkoutModifiers.JumpPlatform;
         }
         if (!normalized.HasFlag(WorkoutModifiers.RoomLocomotion))
         {
@@ -433,6 +447,62 @@ public static class WorkoutModifierPolicy
         };
     }
 
+    public static ElevationEquipment GetElevationEquipment(WorkoutModifiers profile)
+    {
+        WorkoutModifiers normalized = Normalize(profile);
+        return !normalized.HasFlag(WorkoutModifiers.Elevation) ? ElevationEquipment.None
+            : normalized.HasFlag(WorkoutModifiers.JumpPlatform) ? ElevationEquipment.JumpPlatform
+            : ElevationEquipment.Support;
+    }
+
+    public static WorkoutModifiers WithElevationEquipment(
+        WorkoutModifiers profile, ElevationEquipment equipment)
+    {
+        if (!Enum.IsDefined(equipment))
+            throw new ArgumentOutOfRangeException(nameof(equipment), equipment, null);
+        WorkoutModifiers withoutElevation = Normalize(profile) &
+            ~(WorkoutModifiers.Elevation | WorkoutModifiers.JumpPlatform);
+        return equipment switch
+        {
+            ElevationEquipment.None => withoutElevation,
+            ElevationEquipment.Support => withoutElevation | WorkoutModifiers.Elevation,
+            ElevationEquipment.JumpPlatform => withoutElevation |
+                WorkoutModifiers.Elevation | WorkoutModifiers.JumpPlatform,
+            _ => throw new ArgumentOutOfRangeException(nameof(equipment), equipment, null),
+        };
+    }
+
+    public static void MigrateLegacyElevationSetup(WorkoutState state)
+    {
+        // The former switch described ordinary furniture, never a jump platform.
+        // Migrate setup only: an unfinished workout keeps its original profile.
+        if (state.ElevationEquipmentEnabled &&
+            GetElevationEquipment(state.LastWorkoutModifiers) == ElevationEquipment.None)
+            state.LastWorkoutModifiers = WithElevationEquipment(
+                state.LastWorkoutModifiers, ElevationEquipment.Support);
+        state.ElevationEquipmentEnabled = false;
+    }
+
+    public static IReadOnlyList<WorkoutElevationCatalogDeficiency>
+        FindElevationCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises)
+    {
+        ArgumentNullException.ThrowIfNull(exercises);
+        Exercise[] movements = exercises.Where(e => e.Id == GetSessionMovementId(e)).ToArray();
+        var pools = new (string Name, int Minimum, Func<Exercise, bool> Matches)[]
+        {
+            ("Support", MinimumElevationSupportSessionMovements,
+                e => e.ElevationRequired && !e.JumpPlatformRequired && !FloorContactPolicy.RequiresFloor(e)),
+            ("JumpPlatform", MinimumJumpPlatformSessionMovements,
+                e => e.ElevationRequired && e.JumpPlatformRequired && !FloorContactPolicy.RequiresFloor(e)),
+            ("FloorAndElevation", MinimumFloorAndElevationSessionMovements,
+                e => e.ElevationRequired && FloorContactPolicy.RequiresFloor(e)),
+        };
+        return pools.Select(pool => new WorkoutElevationCatalogDeficiency(pool.Name,
+                movements.Where(pool.Matches).Select(GetSessionMovementId).Distinct().Count(), pool.Minimum))
+            .Where(result => result.MatchingSessionMovementCount < result.RequiredSessionMovementCount)
+            .ToArray();
+    }
+
     public static bool IsSpaceMetadataValid(Exercise exercise) =>
         exercise.LocomotionSpace switch
         {
@@ -448,6 +518,7 @@ public static class WorkoutModifierPolicy
         ArgumentNullException.ThrowIfNull(exercises);
         return exercises.All(exercise =>
             (!exercise.SoleWallContactRequired || exercise.WallRequired) &&
+            (!exercise.JumpPlatformRequired || exercise.ElevationRequired) &&
             Rules.All(rule => rule.IsReviewed(exercise)));
     }
 
@@ -458,10 +529,13 @@ public static class WorkoutModifierPolicy
         ArgumentNullException.ThrowIfNull(exercise);
         WorkoutModifiers normalized = Normalize(profile);
         WallEquipment wallEquipment = GetWallEquipment(normalized);
+        ElevationEquipment elevationEquipment = GetElevationEquipment(normalized);
         return (!exercise.WallRequired ||
                 wallEquipment != WallEquipment.None) &&
             (!exercise.SoleWallContactRequired ||
                 wallEquipment == WallEquipment.SolesMayTouch) &&
+            (!exercise.ElevationRequired || elevationEquipment != ElevationEquipment.None) &&
+            (!exercise.JumpPlatformRequired || elevationEquipment == ElevationEquipment.JumpPlatform) &&
             Rules.All(rule =>
             rule.IsCompatibleForProfile(exercise, normalized));
     }
@@ -479,6 +553,7 @@ public static class WorkoutModifierPolicy
         Exercise exercise,
         WorkoutModifiers profile) =>
         (IsWallPreferred(exercise, profile) ? 1 : 0) +
+        (exercise.ElevationRequired && GetElevationEquipment(profile) != ElevationEquipment.None ? 1 : 0) +
         (IsMirrorPreferred(exercise, profile) ? 1 : 0);
 
     public static IReadOnlyList<WorkoutWallRequiredCatalogDeficiency>
