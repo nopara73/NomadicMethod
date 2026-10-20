@@ -4,6 +4,19 @@ namespace NomadicMethod.Services;
 
 public static class WorkoutSequencePolicy
 {
+    public static bool CanUseSingleDirection(Exercise exercise) =>
+        exercise.DirectionSequence != ExerciseDirectionSequence.None &&
+        !exercise.SideSequence.UsesTimedSides() &&
+        exercise.SequenceBlocks.Length == 2 &&
+        exercise.SequenceBlocks.All(block => block.ExerciseId == exercise.Id &&
+            block.SideCue == ExerciseSequenceSideCue.None &&
+            block.DirectionCue != ExerciseSequenceDirectionCue.None) &&
+        exercise.SequenceBlocks[0].DirectionCue != exercise.SequenceBlocks[1].DirectionCue;
+
+    public static int GetBlockCount(Exercise exercise, int minutes) =>
+        minutes is > 0 and < 30 && CanUseSingleDirection(exercise)
+            ? 1 : exercise.SequenceBlocks.Length;
+
     public static Exercise[] GetMembers(
         Exercise root,
         IReadOnlyDictionary<int, Exercise> exercisesById)

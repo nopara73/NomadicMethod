@@ -1,0 +1,8 @@
+{
+  "shortMinutes": [3, 5, 7, 10, 15, 20],
+  "completeMinutes": [30, 45, 60, 90],
+  "directionalRoots": [409, 561, 608, 611, 1018],
+  "preferredRoot": 608,
+  "directionCue": "Counterclockwise",
+  "mediaSegment": "FirstDirection"
+}

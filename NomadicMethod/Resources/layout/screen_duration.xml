@@ -478,6 +478,21 @@
                             android:gravity="center"
                             android:text=""
                             android:tooltipText="@string/mirror_equipment_disabled_feedback" />
+                        <CheckBox
+                            android:id="@+id/elevation_equipment_button"
+                            style="@style/DurationModifierTile"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_margin="5dp"
+                            android:layout_gravity="center"
+                            android:button="@null"
+                            android:checked="false"
+                            android:contentDescription="@string/elevation_equipment_disabled_feedback"
+                            android:drawableTint="@color/duration_modifier_icon_tint"
+                            android:drawableTop="@drawable/ic_elevation"
+                            android:gravity="center"
+                            android:text=""
+                            android:tooltipText="@string/elevation_equipment_disabled_feedback" />
                     </LinearLayout>
                     </LinearLayout>
                 </HorizontalScrollView>

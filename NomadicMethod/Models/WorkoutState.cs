@@ -15,6 +15,10 @@ public sealed class WorkoutState
     // bundled revision. New sessions always use the current contract.
     public int ActiveCatalogRevision { get; set; }
 
+    // Missing fields retain the complete sequences of an older unfinished
+    // workout. Direction choices are frozen independently of later duration edits.
+    public HashSet<int> ActiveSingleDirectionExerciseIds { get; set; } = [];
+
     public Dictionary<string, int> SelectedExerciseIds { get; set; } = [];
 
     public Dictionary<string, ExerciseOutcome> Outcomes { get; set; } = [];
@@ -120,6 +124,10 @@ public sealed class WorkoutState
     public Dictionary<int, int> PendingScoreUpdates { get; set; } = [];
 
     public int LastWorkoutMinutes { get; set; } = 10;
+
+    // Equipment setup only until elevation catalog rules are approved. Keeping
+    // this outside selection profiles preserves every existing lineup and Keep.
+    public bool ElevationEquipmentEnabled { get; set; }
 
     public WorkoutModifiers LastWorkoutModifiers { get; set; } =
         WorkoutModifiers.UpperBodyClothing |

@@ -1660,6 +1660,14 @@ export function createWorkoutSchedule(
           rounds.push(Object.freeze({
             ...blockGroup,
             order: rounds.length + 1,
+            ...((block.directionCue ?? "None") !== "None" ||
+                (block.sideCue ?? "None") !== "None" || block.mirrorMedia === true ||
+                (block.mediaSegment ?? "Full") !== "Full" ? {
+              sequenceSideCue: block.sideCue ?? "None",
+              sequenceDirectionCue: block.directionCue ?? "None",
+              mirrorSequenceMedia: block.mirrorMedia === true,
+              sequenceMediaSegment: block.mediaSegment ?? "Full",
+            } : {}),
           }));
           continue;
         }
@@ -2309,10 +2317,12 @@ function isSequenceUnitEligible(
   if (!requireDurationFit || exercise.sequenceBlocks.length === 1) return true;
   const resolution = [...RESOLUTIONS.values()].find(candidate =>
     candidate.groups.some(known => known.id === group.id));
+  const blockCount = getSequenceBlockCount(exercise, resolution.minutes);
+  if (blockCount === 1) return true;
   const available = resolution.groups.filter(candidate => isSelectionGroupAvailable(candidate, modifiers));
   return getSequencePlacementOptions(exercise, exercisesById, available).some(option =>
     option.some(candidate => candidate.id === group.id) &&
-    exercise.sequenceBlocks.length + available.length - option.length <= resolution.groups.length);
+    blockCount + available.length - option.length <= resolution.groups.length);
 }
 
 function isSequenceCompatible(exercise, exercisesById, modifiers) {
@@ -2661,6 +2671,9 @@ function getMaximumLineupSize(exercises, groups, modifiers, workoutMinutes, allo
   }
   const exercisesById = new Map(exercises.map((exercise) =>
     [exercise.id, exercise]));
+  if (workoutMinutes < 30) exercises = exercises
+    .map(exercise => canUseSingleDirection(exercise)
+      ? { ...exercise, sequenceBlocks: [exercise.sequenceBlocks[0]] } : exercise);
   const candidateOneBlockMovementsByGroupId = new Map(groups.map((group) =>
     [group.id, new Set()]));
   for (const exercise of exercises) {
@@ -3475,8 +3488,10 @@ export function createDefaultState() {
     pendingRestPausedByUser: false,
     pendingRestKept: false,
     lastWorkoutMinutes: 10,
+    elevationEquipmentEnabled: false,
     lastWorkoutModifiers: DEFAULT_WORKOUT_MODIFIERS,
     activeCatalogRevision: 0,
+    activeSingleDirectionExerciseIds: [],
     activeWorkoutMinutes: 0,
     activeWorkoutModifiers: WORKOUT_MODIFIERS.None,
     activeWorkoutIsLightDay: false,
@@ -3513,7 +3528,9 @@ function normalizeStateShape(raw) {
     : 0;
   state.activeCatalogRevision = Number.isInteger(raw.activeCatalogRevision)
     ? raw.activeCatalogRevision : 0;
+  state.activeSingleDirectionExerciseIds = uniquePositiveIntegers(raw.activeSingleDirectionExerciseIds);
   state.lastWorkoutMinutes = normalizeMinutes(raw.lastWorkoutMinutes);
+  state.elevationEquipmentEnabled = raw.elevationEquipmentEnabled === true;
   state.lastWorkoutModifiers = raw.lastWorkoutModifiers === undefined
     ? state.lastWorkoutModifiers
     : normalizeWorkoutModifiers(raw.lastWorkoutModifiers);
@@ -4236,7 +4253,22 @@ const SHY_CORRECTION_IDS = new Set([
   1025, 1026, 1027,
 ]);
 
-export function getWorkoutCatalog(catalog, activeRevision) {
+export function canUseSingleDirection(exercise) {
+  return typeof exercise.directionSequence === "string" && exercise.directionSequence !== "None" &&
+    !["ScreenLeftThenRight", "ScreenRightThenLeft", "ScreenLeftLeadThenRightLead",
+      "ScreenRightLeadThenLeftLead", "ShownHandPositionThenOpposite"].includes(exercise.sideSequence) &&
+    exercise.sequenceBlocks.length === 2 &&
+    exercise.sequenceBlocks.every(block => block.exerciseId === exercise.id &&
+      (block.sideCue ?? "None") === "None" && block.directionCue && block.directionCue !== "None") &&
+    exercise.sequenceBlocks[0].directionCue !== exercise.sequenceBlocks[1].directionCue;
+}
+
+export function getSequenceBlockCount(exercise, minutes) {
+  return minutes > 0 && minutes < 30 && canUseSingleDirection(exercise)
+    ? 1 : exercise.sequenceBlocks.length;
+}
+
+export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
   if (activeRevision > 0 && activeRevision < 83) {
     catalog = catalog.map(exercise => EXECUTION_CORRECTION_EXERCISE_IDS.includes(exercise.id)
       ? { ...exercise,
@@ -4248,6 +4280,10 @@ export function getWorkoutCatalog(catalog, activeRevision) {
         video: `exercise_videos/revision82/exercise_${String(exercise.id).padStart(4, "0")}.mp4`,
       } : exercise);
   }
+  const singleDirections = new Set(singleDirectionExerciseIds);
+  if (singleDirections.size > 0) catalog = catalog.map(exercise =>
+    singleDirections.has(exercise.id) && canUseSingleDirection(exercise)
+      ? { ...exercise, sequenceBlocks: [exercise.sequenceBlocks[0]] } : exercise);
   if (activeRevision > 0 && activeRevision < 82) {
     catalog = catalog.filter(exercise => !SLOT_VARIETY_EXERCISE_IDS.includes(exercise.id))
       .map(exercise => exercise.id === 906
@@ -4290,7 +4326,8 @@ export class WorkoutSession {
       this.state.activeCatalogRevision = this.state.catalogRevision;
     }
     this.setExercises(this.state.activeWorkoutMinutes > 0
-      ? getWorkoutCatalog(exercises, this.state.activeCatalogRevision) : exercises);
+      ? getWorkoutCatalog(exercises, this.state.activeCatalogRevision,
+        this.state.activeSingleDirectionExerciseIds) : exercises);
     this.loadedStateVersion = this.state[SOURCE_STATE_VERSION] ?? this.state.version;
     this.random = random;
     this.nowProvider = nowProvider;
@@ -4343,6 +4380,17 @@ export class WorkoutSession {
       throw new TypeError("Time provider must return positive Unix milliseconds.");
     }
     return value;
+  }
+
+  updateSequenceCatalog(minutes, protectedRootIds = new Set()) {
+    this.state.activeSingleDirectionExerciseIds = this.catalogExercises
+      .filter(exercise => canUseSingleDirection(exercise) &&
+        (protectedRootIds.has(exercise.id)
+          ? this.state.activeSingleDirectionExerciseIds.includes(exercise.id)
+          : minutes < 30))
+      .map(exercise => exercise.id);
+    this.setExercises(getWorkoutCatalog(this.catalogExercises,
+      this.state.activeCatalogRevision, this.state.activeSingleDirectionExerciseIds));
   }
 
   getDefaultWorkoutModifiers() {
@@ -4483,8 +4531,8 @@ export class WorkoutSession {
       throw new Error("A workout is already active.");
     }
 
-    this.setExercises(this.catalogExercises);
     this.state.activeCatalogRevision = CURRENT_CATALOG_REVISION;
+    this.updateSequenceCatalog(minutes);
     this.normalizeSlotPreferences();
     const workoutStartedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     if (this.loadedStateVersion < LEGACY_TRAINING_DAY_INFERENCE_STATE_VERSION) {
@@ -4748,9 +4796,11 @@ export class WorkoutSession {
       activeExtraSetSelectionGroupIds: this.state.activeExtraSetSelectionGroupIds,
       activeSelectionGroupOrder: this.state.activeSelectionGroupOrder,
       activeModifierRetainedSelectionGroupIds: this.state.activeModifierRetainedSelectionGroupIds,
+      activeSingleDirectionExerciseIds: this.state.activeSingleDirectionExerciseIds,
     };
     try {
       this.state.activeWorkoutMinutes = minutes;
+      this.updateSequenceCatalog(minutes, new Set(prefix.map(p => p.root.id)));
       this.state.activeSimpleRoundSelectionGroupIds = priorRounds
         .filter(r => r.id === getSelectionKey(r) && locked.has(getSelectionKey(r)))
         .map(getSelectionKey);
@@ -4794,7 +4844,12 @@ export class WorkoutSession {
         changedAtUnixMilliseconds: this.getCurrentUnixTimeMilliseconds(), previousMinutes: before.activeWorkoutMinutes,
         newMinutes: minutes, plannedSelections: this.createCurrentSelectionSnapshots(session),
       });
-    } catch (error) { Object.assign(this.state, before); throw error; }
+    } catch (error) {
+      Object.assign(this.state, before);
+      this.setExercises(getWorkoutCatalog(this.catalogExercises,
+        this.state.activeCatalogRevision, this.state.activeSingleDirectionExerciseIds));
+      throw error;
+    }
   }
 
   setEditedSelectionOrder(prefixOrder) {
@@ -8832,6 +8887,7 @@ export class WorkoutSession {
     this.migrateSplitJackPreferences(this.state.activeCatalogRevision, this.catalogExercises);
     this.setExercises(this.catalogExercises);
     this.state.activeCatalogRevision = 0;
+    this.state.activeSingleDirectionExerciseIds = [];
     this.state.activeDurationSelectionGroupIds = null;
     this.state.activeSimpleRoundSelectionGroupIds = [];
     this.state.activeWorkoutSession = null;

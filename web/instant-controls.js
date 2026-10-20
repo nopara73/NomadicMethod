@@ -38,6 +38,7 @@
     wall: document.getElementById("wall-modifier"),
     locomotion: document.getElementById("locomotion-modifier"),
     mirror: document.getElementById("mirror-modifier"),
+    elevation: document.getElementById("elevation-equipment"),
     feedback: document.getElementById("modifier-feedback"),
     status: document.getElementById("status"),
   };
@@ -57,6 +58,7 @@
     (Number(elements.value.textContent) || 10);
   let selectedModifiers = persistedSetup?.selectedModifiers ??
     readInitialModifiers();
+  let elevationEquipmentEnabled = persistedSetup?.elevationEquipmentEnabled ?? false;
   let lightWorkoutsRemaining = persistedSetup?.lightWorkoutsRemaining ??
     Math.ceil(180 / Math.min(selectedMinutes, 60));
   let automaticLightMode = persistedSetup?.automaticLightMode ?? false;
@@ -86,12 +88,25 @@
   elements.wall.addEventListener("click", cycleWallEquipment);
   elements.locomotion?.addEventListener("click", cycleLocomotionSpace);
   elements.mirror.addEventListener("click", cycleMirrorEquipment);
+  elements.elevation?.addEventListener("click", () => {
+    elevationEquipmentEnabled = !elevationEquipmentEnabled;
+    renderElevationEquipment();
+    showFeedback(elevationFeedbackLabel());
+    handlers?.elevationEquipmentChanged?.(elevationEquipmentEnabled);
+  });
 
   renderDuration();
   renderModifiers();
   performance.mark?.("nomadic-method-controls-ready");
 
   const controller = {
+    get elevationEquipmentEnabled() {
+      return elevationEquipmentEnabled;
+    },
+    setElevationEquipmentEnabled(enabled) {
+      elevationEquipmentEnabled = enabled === true;
+      renderElevationEquipment();
+    },
     get selectedMinutes() {
       return selectedMinutes;
     },
@@ -251,6 +266,7 @@
       );
       return {
         selectedMinutes,
+        elevationEquipmentEnabled: raw.elevationEquipmentEnabled === true,
         selectedModifiers: automaticLightMode
           ? storedModifiers | modifierFlags.light
           : storedModifiers,
@@ -398,6 +414,7 @@
   }
 
   function renderModifiers() {
+    renderElevationEquipment();
     if (elements.locomotion) {
       const room = (selectedModifiers & modifierFlags.roomLocomotion) !== 0;
       const field = room && (selectedModifiers & modifierFlags.fieldLocomotion) !== 0;
@@ -446,6 +463,17 @@
         ? "Mirror equipment: no mirror available"
         : `Mirror equipment: ${equipment} mirror available`,
     );
+  }
+
+  function elevationFeedbackLabel() {
+    return `equipment ${elevationEquipmentEnabled ? "ON" : "OFF"}: elevation`;
+  }
+
+  function renderElevationEquipment() {
+    if (!elements.elevation) return;
+    elements.elevation.setAttribute("aria-pressed", String(elevationEquipmentEnabled));
+    elements.elevation.setAttribute("aria-label", elevationFeedbackLabel());
+    elements.elevation.setAttribute("title", elevationFeedbackLabel());
   }
 
   function renderBinaryModifier(element, name) {

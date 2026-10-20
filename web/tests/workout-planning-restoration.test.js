@@ -42,7 +42,8 @@ for (const item of cases) {
       assert.ok(log.initialSelections.every(s => !item.excludedRoots.includes(s.rootExerciseId)));
       assert.equal(log.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.minutes);
       for (const selection of log.initialSelections) {
-        const root = catalog.find(e => e.id === selection.rootExerciseId);
+        const root = session.getSelectedExercise(rounds.find(g =>
+          (g.selectionGroupId ?? g.id) === selection.selectionGroupId));
         if (item.minutes <= 7) {
           assert.equal(selection.sequenceBlockCount, 1);
           assert.equal(selection.setCount, 1);
@@ -107,8 +108,8 @@ for (const minutes of [3, 5, 7]) {
         assert.equal(rounds.length, minutes);
         assert.deepEqual(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
           getResolution(minutes).groups.map(g => g.id).sort());
-        assert.ok(rounds.every(g => session.getSelectedExercise(g).sequenceBlocks.every(b =>
-          (b.sideCue ?? "None") === "None" && (b.directionCue ?? "None") === "None")));
+        assert.ok(rounds.every(g => session.getSelectedExercise(g).sequenceBlocks.length === 1 &&
+          session.getSelectedExercise(g).sequenceBlocks.every(b => (b.sideCue ?? "None") === "None")));
       }
     });
   }

@@ -56,7 +56,8 @@ public sealed class WorkoutPlanningRestorationTests
         Assert.Equal(item.Minutes, selections.Sum(s => s.SequenceBlockCount * s.SetCount));
         foreach (var selection in selections)
         {
-            Exercise root = catalog.Single(e => e.Id == selection.RootExerciseId);
+            Exercise root = service.GetSelectedExercise(state, service.GetActiveGroups(state)
+                .First(g => g.SelectionKey == selection.SelectionGroupId));
             if (item.Minutes <= 7)
             {
                 Assert.Equal(1, selection.SequenceBlockCount);
@@ -120,8 +121,8 @@ public sealed class WorkoutPlanningRestorationTests
             Assert.Equal(minutes, rounds.Count);
             var roots = rounds.Select(g => service.GetSelectedExercise(state, g)).DistinctBy(e => e.Id);
             Assert.All(roots, root => Assert.DoesNotContain(root.SequenceBlocks,
-                block => block.SideCue != ExerciseSequenceSideCue.None ||
-                    block.DirectionCue != ExerciseSequenceDirectionCue.None));
+                block => block.SideCue != ExerciseSequenceSideCue.None));
+            Assert.All(roots, root => Assert.Single(root.SequenceBlocks));
             Assert.Equal(MassGroupingTaxonomy.GetResolution(minutes).Groups.Select(g => g.Id).Order(),
                 state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
         }

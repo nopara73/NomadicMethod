@@ -132,6 +132,7 @@ const sounds = Object.fromEntries(
 );
 
 const startupControls = window.nomadicMethodStartupControls ?? null;
+let elevationEquipmentEnabled = startupControls?.elevationEquipmentEnabled ?? false;
 let session = null;
 let exerciseCatalog = null;
 let assetVersions = Object.freeze({});
@@ -224,6 +225,8 @@ async function bootstrap() {
       throw new Error("Catalog does not satisfy workout invariants.");
     }
     session = new WorkoutSession(exercises, loadState());
+    if (!startupControls) elevationEquipmentEnabled = session.state.elevationEquipmentEnabled;
+    session.state.elevationEquipmentEnabled = elevationEquipmentEnabled;
     session.restoreAfterReopen();
     const pendingRestGroup = session.getPendingRestGroup();
     const pendingMovementGroup = session.getPendingMovementGroup();
@@ -288,6 +291,7 @@ function bindEvents() {
         }
       },
       startRequested: startWorkout,
+      elevationEquipmentChanged: setElevationEquipmentEnabled,
     });
   } else {
     elements.durationDecrease.addEventListener("click", () => stepDuration(-1));
@@ -302,6 +306,10 @@ function bindEvents() {
     elements.wallModifier.addEventListener("click", cycleWallEquipment);
     elements.locomotionModifier.addEventListener("click", cycleLocomotionSpace);
     elements.mirrorModifier.addEventListener("click", cycleMirrorEquipment);
+    document.getElementById("elevation-equipment").addEventListener("click", () => {
+      setElevationEquipmentEnabled(!elevationEquipmentEnabled);
+      showWorkoutModifierFeedback(elevationFeedbackLabel());
+    });
   }
   elements.shuffleExercise.addEventListener("click", shuffleCurrentExercise);
   elements.workoutSetup.addEventListener("click", showActiveWorkoutSetup);
@@ -701,7 +709,29 @@ function showWorkoutModifierFeedback(message, detail = "") {
   }, detail ? 3240 : MODIFIER_FEEDBACK_DURATION_MS);
 }
 
+function elevationFeedbackLabel() {
+  return `equipment ${elevationEquipmentEnabled ? "ON" : "OFF"}: elevation`;
+}
+
+function setElevationEquipmentEnabled(enabled) {
+  elevationEquipmentEnabled = enabled === true;
+  if (session) {
+    session.state.elevationEquipmentEnabled = elevationEquipmentEnabled;
+    persistState();
+  }
+  renderElevationEquipment();
+}
+
+function renderElevationEquipment() {
+  const element = document.getElementById("elevation-equipment");
+  element.setAttribute("aria-pressed", String(elevationEquipmentEnabled));
+  element.setAttribute("aria-label", elevationFeedbackLabel());
+  element.setAttribute("title", elevationFeedbackLabel());
+  startupControls?.setElevationEquipmentEnabled(elevationEquipmentEnabled);
+}
+
 function renderWorkoutModifiers() {
+  renderElevationEquipment();
   const automatic = isAutomaticLightModeLocked();
   if (automatic) {
     selectedModifiers |= WORKOUT_MODIFIERS.Light;
@@ -1222,6 +1252,7 @@ async function startWorkout() {
     }
     cancelWorkoutPreparation();
     const nextSession = new WorkoutSession(exerciseCatalog, prepared.state);
+    nextSession.state.elevationEquipmentEnabled = elevationEquipmentEnabled;
     if (prepared.isReconfiguration) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSession.state));
       session = nextSession;

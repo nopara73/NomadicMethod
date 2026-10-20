@@ -123,7 +123,7 @@ for (const light of [false, true]) {
       const rounds = session.getActiveGroups();
       assert.equal(session.getSelectedExercise(rounds.find((round) =>
         getSelectionKey(round) === "r30.elbow-flexors")).id, 1030);
-      const roots = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0);
+      const roots = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0 && (round.setNumber ?? 1) === 1);
       assert.equal(new Set(roots.map((round) => getSessionMovementId(
         session.getSelectedExercise(round)))).size, roots.length);
       assert.ok(rounds.every((round) => isCompatibleWithWorkoutModifiers(
@@ -159,7 +159,7 @@ for (const light of [false, true]) {
       session.startWorkout(10, profile);
       const rounds = session.getActiveGroups();
       assert.ok(rounds.some((round) => session.getSelectedExercise(round).id === 1031));
-      const roots = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0);
+      const roots = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0 && (round.setNumber ?? 1) === 1);
       assert.equal(new Set(roots.map((round) => getSessionMovementId(
         session.getSelectedExercise(round)))).size, roots.length);
       assert.ok(rounds.every((round) => isCompatibleWithWorkoutModifiers(
@@ -195,7 +195,7 @@ for (const light of [false, true]) {
       session.startWorkout(10, profile);
       const rounds = session.getActiveGroups();
       assert.ok(rounds.some((round) => session.getSelectedExercise(round).id === 1032));
-      const roots = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0);
+      const roots = rounds.filter((round) => (round.sequenceBlockIndex ?? 0) === 0 && (round.setNumber ?? 1) === 1);
       assert.equal(new Set(roots.map((round) => getSessionMovementId(
         session.getSelectedExercise(round)))).size, roots.length);
       assert.ok(rounds.every((round) => isCompatibleWithWorkoutModifiers(

@@ -4,6 +4,20 @@ namespace NomadicMethod.Services;
 
 public sealed partial class ExerciseSessionService
 {
+    private void UpdateSequenceCatalog(WorkoutState state, int minutes,
+        IReadOnlySet<int>? protectedRootIds = null)
+    {
+        state.ActiveSingleDirectionExerciseIds ??= [];
+        state.ActiveSingleDirectionExerciseIds = _catalogExercises
+            .Where(exercise => WorkoutSequencePolicy.CanUseSingleDirection(exercise) &&
+                (protectedRootIds?.Contains(exercise.Id) == true
+                    ? state.ActiveSingleDirectionExerciseIds.Contains(exercise.Id)
+                    : minutes < 30))
+            .Select(exercise => exercise.Id).ToHashSet();
+        SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises,
+            state.ActiveCatalogRevision, state.ActiveSingleDirectionExerciseIds));
+    }
+
     // Cold starts never interpret time outside the app as completed exercise.
     // A running checkpoint may survive abrupt process death without OnPause.
     public void RestoreAfterReopen(WorkoutState state)
@@ -89,10 +103,12 @@ public sealed partial class ExerciseSessionService
         var previousExtra = state.ActiveExtraSetSelectionGroupIds;
         var previousOrder = state.ActiveSelectionGroupOrder;
         var previousRetained = state.ActiveModifierRetainedSelectionGroupIds;
+        var previousSingleDirections = state.ActiveSingleDirectionExerciseIds;
         bool applied = false;
         try
         {
             state.ActiveWorkoutMinutes = minutes;
+            UpdateSequenceCatalog(state, minutes, prefix.Select(p => p.Root.Id).ToHashSet());
             state.ActiveSimpleRoundSelectionGroupIds = priorRounds
                 .Where(r => r.Id == r.SelectionKey && locked.Contains(r.SelectionKey))
                 .Select(r => r.SelectionKey).ToHashSet(StringComparer.Ordinal);
@@ -163,6 +179,9 @@ public sealed partial class ExerciseSessionService
             state.ActiveExtraSetSelectionGroupIds = previousExtra;
             state.ActiveSelectionGroupOrder = previousOrder;
             state.ActiveModifierRetainedSelectionGroupIds = previousRetained;
+            state.ActiveSingleDirectionExerciseIds = previousSingleDirections;
+            SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises,
+                state.ActiveCatalogRevision, previousSingleDirections));
             throw;
         }
     }
