@@ -340,7 +340,7 @@ button:disabled {
 .duration-labels {
   margin: -8px 80px 0;
   display: grid;
-  grid-template-columns: repeat(var(--duration-option-count, 5), 1fr);
+  grid-template-columns: repeat(var(--duration-option-count, 10), 1fr);
   color: var(--secondary);
   font-size: 10px;
   font-weight: 600;

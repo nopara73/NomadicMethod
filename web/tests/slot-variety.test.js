@@ -15,10 +15,10 @@ import {
   RESOLUTIONS, isSelectionGroupAvailable,
 } from "../workout.js";
 
-test("slot variety uses the shared duration contract, with new workouts capped at 15 minutes", async () => {
+test("slot variety retains the five-choice floor for short durations", async () => {
   const cases = JSON.parse(await readFile(
     new URL("./fixtures/slot-variety-cases.json", import.meta.url), "utf8"));
-  assert.deepEqual(cases.map(({ minutes }) => minutes), NEW_WORKOUT_MINUTES);
+  assert.deepEqual(cases.map(({ minutes }) => minutes), NEW_WORKOUT_MINUTES.filter(minutes => minutes <= 15));
   assert.equal(SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES, 15);
   assert.equal(MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP, 5);
   assert.equal(MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP, 1);
@@ -74,9 +74,13 @@ test("new choices, hip anatomy and exact exceptions do not alter frozen catalogs
   }
 });
 
-test("new setup caps at 15 without reinterpreting stored longer durations", () => {
-  assert.deepEqual(getWorkoutMinuteOptions(), [3, 5, 7, 10, 15]);
-  assert.equal(normalizeSetupMinutes(90), 15);
+test("new workouts offer every duration and active workouts only shorten", () => {
+  assert.deepEqual(getWorkoutMinuteOptions(), [3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+  for (const minutes of NEW_WORKOUT_MINUTES) {
+    assert.equal(normalizeSetupMinutes(minutes), minutes);
+    assert.equal(Math.max(...getWorkoutMinuteOptions(minutes)), minutes);
+  }
+  assert.equal(normalizeSetupMinutes(90), 90);
   assert.equal(normalizeMinutes(90), 90);
   assert.deepEqual(getWorkoutMinuteOptions(30), [3, 5, 7, 10, 15, 20, 30]);
   assert.equal(normalizeSetupMinutes(90, 30), 30);

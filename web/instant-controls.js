@@ -1,6 +1,6 @@
 (() => {
   const storageKey = "nomadic-method.workout.state.v1";
-  const newWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15]);
+  const newWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
   const legacyWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
   let durationOptions = newWorkoutMinutes;
   const modifierFlags = Object.freeze({
@@ -173,9 +173,8 @@
     setActiveWorkoutSetup(enabled, minimumMinutes = 3, activeMinutes = 0) {
       activeWorkoutSetup = enabled === true;
       minimumActiveMinutes = activeWorkoutSetup ? minimumMinutes : 3;
-      durationOptions = activeWorkoutSetup && activeMinutes > 15
+      durationOptions = activeWorkoutSetup && activeMinutes > 0
         ? legacyWorkoutMinutes.filter(minutes => minutes <= activeMinutes) : newWorkoutMinutes;
-      if (!activeWorkoutSetup) selectedMinutes = Math.min(selectedMinutes, 15);
       document.getElementById("duration-screen")?.classList.toggle(
         "active-workout-setup",
         activeWorkoutSetup,
@@ -249,7 +248,7 @@
         return null;
       }
       const selectedMinutes = legacyWorkoutMinutes.includes(raw.lastWorkoutMinutes)
-        ? Math.min(raw.lastWorkoutMinutes, 15)
+        ? raw.lastWorkoutMinutes
         : 10;
       let storedModifiers = Number.isInteger(raw.lastWorkoutModifiers)
         ? raw.lastWorkoutModifiers & ~modifierFlags.light
@@ -309,7 +308,7 @@
 
   function renderDuration(animate = false) {
     const index = durationOptions.indexOf(selectedMinutes);
-    const progress = `${(index / (durationOptions.length - 1)) * 100}%`;
+    const progress = `${(index / Math.max(1, durationOptions.length - 1)) * 100}%`;
     elements.value.value = String(selectedMinutes);
     elements.value.textContent = String(selectedMinutes);
     elements.value.setAttribute(

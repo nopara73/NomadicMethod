@@ -1,12 +1,11 @@
 import "./light-cadence.js";
 
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
-export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15]);
+export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 
-// Keep the historical planner durations so an unfinished longer workout is
-// restored intact. Setup cannot create or lengthen a workout beyond 15 minutes.
+// New workouts offer the full supported range. Active sessions may shorten.
 export function getWorkoutMinuteOptions(activeWorkoutMinutes = 0) {
-  return activeWorkoutMinutes > 15
+  return activeWorkoutMinutes > 0
     ? SUPPORTED_MINUTES.filter(minutes => minutes <= activeWorkoutMinutes)
     : NEW_WORKOUT_MINUTES;
 }

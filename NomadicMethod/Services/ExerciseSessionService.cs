@@ -8,7 +8,7 @@ public sealed partial class ExerciseSessionService
 {
     public const int MinimumWorkoutMinutes = 3;
     public const int MaximumWorkoutMinutes = 90;
-    public const int MaximumNewWorkoutMinutes = 15;
+    public const int MaximumNewWorkoutMinutes = MaximumWorkoutMinutes;
     public const int DefaultWorkoutMinutes = 10;
     public const WorkoutModifiers DefaultWorkoutModifiers =
         WorkoutModifiers.UpperBodyClothing |
@@ -33,13 +33,12 @@ public sealed partial class ExerciseSessionService
     private static readonly IReadOnlyList<int> WorkoutMinutes =
         Array.AsReadOnly([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 
-    // Longer durations remain understood by the planner and persisted history.
-    // Setup offers them only while editing an already-existing longer session.
+    // New workouts offer the full supported range. Active sessions may shorten.
     public static readonly IReadOnlyList<int> NewWorkoutMinutes =
-        Array.AsReadOnly([3, 5, 7, 10, 15]);
+        Array.AsReadOnly([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 
     public static IReadOnlyList<int> GetWorkoutMinuteOptions(int activeWorkoutMinutes = 0) =>
-        activeWorkoutMinutes > MaximumNewWorkoutMinutes
+        activeWorkoutMinutes > 0
             ? WorkoutMinutes.Where(minutes => minutes <= activeWorkoutMinutes).ToArray()
             : NewWorkoutMinutes;
 

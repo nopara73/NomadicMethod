@@ -87,10 +87,15 @@ public sealed class SlotVarietyPolicyTests
     }
 
     [Fact]
-    public void NewWorkoutLimitDoesNotInvalidateHistoricalDurations()
+    public void NewWorkoutsOfferEveryDurationAndActiveWorkoutsOnlyShorten()
     {
-        Assert.Equal(new[] { 3, 5, 7, 10, 15 }, ExerciseSessionService.NewWorkoutMinutes);
-        Assert.Equal(15, ExerciseSessionService.NormalizeSetupMinutes(90));
+        Assert.Equal(new[] { 3, 5, 7, 10, 15, 20, 30, 45, 60, 90 }, ExerciseSessionService.NewWorkoutMinutes);
+        foreach (int minutes in ExerciseSessionService.NewWorkoutMinutes)
+        {
+            Assert.Equal(minutes, ExerciseSessionService.NormalizeSetupMinutes(minutes));
+            Assert.Equal(minutes, ExerciseSessionService.GetWorkoutMinuteOptions(minutes).Max());
+        }
+        Assert.Equal(90, ExerciseSessionService.NormalizeSetupMinutes(90));
         Assert.Equal(90, ExerciseSessionService.NormalizeLastWorkoutMinutes(90));
         Assert.True(ExerciseSessionService.IsValidWorkoutMinutes(90));
         Assert.Equal(new[] { 3, 5, 7, 10, 15, 20, 30 },
@@ -104,7 +109,7 @@ public sealed class SlotVarietyPolicyTests
     {
         using JsonDocument cases = JsonDocument.Parse(File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "Assets", "slot-variety-cases.json")));
-        Assert.Equal(ExerciseSessionService.NewWorkoutMinutes,
+        Assert.Equal(ExerciseSessionService.NewWorkoutMinutes.Where(minutes => minutes <= 15),
             cases.RootElement.EnumerateArray()
                 .Select(row => row.GetProperty("minutes").GetInt32()).ToArray());
         foreach (JsonElement row in cases.RootElement.EnumerateArray())

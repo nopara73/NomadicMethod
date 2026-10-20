@@ -210,7 +210,7 @@ function startup(history = [], duration = 10, now = atDay(4)) {
     const node = {
       textContent: id === "duration-value" ? "10" : "",
       children: [], dataset: {}, hidden: false, disabled: false,
-      style: { setProperty() {} },
+      style: { values: {}, setProperty(name, value) { this.values[name] = value; } },
       classList: {
         add(name) { classes.add(name); },
         remove(name) { classes.delete(name); },
@@ -307,21 +307,26 @@ test("mid-workout settings allow duration edits without crossing the protected p
   assert.equal(element("begin-workout").getAttribute("aria-label"), "Resume workout");
 });
 
-test("instant setup caps new workouts at 15 and scopes longer choices to an existing session", () => {
+test("instant setup retains long durations and limits edits to the active duration", () => {
   const { controls, element } = startup([], 60);
-  assert.equal(controls.selectedMinutes, 15);
-  assert.equal(element("duration-range").max, "4");
+  assert.equal(controls.selectedMinutes, 60);
+  assert.equal(element("duration-range").max, "9");
   element("duration-increase").fire("click");
-  assert.equal(controls.selectedMinutes, 15);
+  assert.equal(controls.selectedMinutes, 90);
   controls.setSelection(60, 0);
-  assert.equal(controls.selectedMinutes, 15);
+  assert.equal(controls.selectedMinutes, 60);
   controls.setActiveWorkoutSetup(true, 20, 60);
   controls.setSelection(60, 0);
   assert.equal(controls.selectedMinutes, 60);
   assert.equal(element("duration-range").max, "8");
   controls.setActiveWorkoutSetup(false);
-  assert.equal(controls.selectedMinutes, 15);
-  assert.equal(element("duration-range").max, "4");
+  assert.equal(controls.selectedMinutes, 60);
+  assert.equal(element("duration-range").max, "9");
+  controls.setActiveWorkoutSetup(true, 3, 3);
+  controls.setSelection(3, 0);
+  assert.equal(controls.selectedMinutes, 3);
+  assert.equal(element("duration-range").max, "0");
+  assert.equal(element("duration-range").style.values["--range-progress"], "0%");
 });
 
 test("startup countdown responds to duration and manual Light hides it", () => {
