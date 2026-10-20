@@ -860,4 +860,14 @@
     1428 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('GlutealExtensors') }
     1429 = @{ Primary = 'MajorHipAdductors'; Secondary = @('AbdominalWall') }
     1430 = @{ Primary = 'ScapularGirdle'; Secondary = @() }
+
+    # Floor and locomotion admissions.
+    1431 = @{ Primary = 'AbdominalWall'; Secondary = @() }
+    1432 = @{ Primary = 'ElbowExtensors'; Secondary = @() }
+    1433 = @{ Primary = 'AbdominalWall'; Secondary = @() }
+    1434 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1435 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1436 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors', 'Chest', 'ElbowExtensors') }
+    1437 = @{ Primary = 'AbdominalWall'; Secondary = @() }
+    1438 = @{ Primary = 'DeepAndIntersegmentalBack'; Secondary = @() }
 }

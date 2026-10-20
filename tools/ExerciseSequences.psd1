@@ -47,6 +47,7 @@
     # These records were reviewed and deliberately remain complete one-member
     # scheduling units. Sequence roots and hidden members must not appear here.
     StandaloneIds = @(
+        1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
         1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420,
         1421, 1422, 1423, 1424, 1425, 1426, 1427, 1428, 1429, 1430,

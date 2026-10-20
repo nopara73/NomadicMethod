@@ -73,7 +73,7 @@ public sealed class SlotVarietyPolicyTests
         Assert.DoesNotContain(old, e => WorkoutCatalogPolicy.SlotVarietyExerciseIds.Contains(e.Id));
         Assert.Equal(new[] { CanonicalMuscleGroup.HipFlexors }, old.Single(e => e.Id == 906).SecondaryCanonicalGroups);
         Assert.Contains(CanonicalMuscleGroup.HipAbductors, catalog.Single(e => e.Id == 906).SecondaryCanonicalGroups);
-        Assert.Equal(catalog.Count(e => !e.ElevationRequired && e.Id != WorkoutCatalogPolicy.BodyCircleExerciseId),
+        Assert.Equal(catalog.Count(e => !e.ElevationRequired && !WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(e.Id) && e.Id != WorkoutCatalogPolicy.BodyCircleExerciseId),
             WorkoutCatalogPolicy.ForWorkout(catalog, 82).Count);
         Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, 82),
             e => e.Id == WorkoutCatalogPolicy.BodyCircleExerciseId);

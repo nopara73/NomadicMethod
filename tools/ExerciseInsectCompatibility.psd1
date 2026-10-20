@@ -4,6 +4,7 @@
     # sufficient by itself; assess the complete action, pace and range.
     # The two lists must partition the retained catalog.
     Compatible = @(
+        1431, 1432, 1433, 1434, 1435, 1436,
         1401, 1402, 1404, 1405, 1407, 1421, 1422, 1423, 1424, 1426,
         1301,
         1300,
@@ -49,6 +50,7 @@
         1002, 1008, 1009, 1011
     )
     Incompatible = @(
+        1437, 1438,
         1403, 1406, 1408, 1409, 1410, 1411, 1412, 1413, 1414, 1415,
         1416, 1417, 1418, 1419, 1420, 1425, 1427, 1428, 1429, 1430,
         1303,

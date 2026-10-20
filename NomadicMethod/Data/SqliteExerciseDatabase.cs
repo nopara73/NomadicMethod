@@ -976,6 +976,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         bool hasUndersizedFloorAndWallCatalog =
             WorkoutModifierPolicy.FindFloorAndWallCatalogDeficiencies(exercises)
                 .Count > 0;
+        bool hasUndersizedFloorAndLocomotionCatalog =
+            WorkoutModifierPolicy.FindFloorAndLocomotionCatalogDeficiencies(exercises)
+                .Count > 0;
         bool violatesRequirements = exercises.Any(exercise =>
             !Enum.IsDefined(exercise.PrimaryCanonicalGroup) ||
             exercise.SecondaryCanonicalGroups.Distinct().Count() !=
@@ -1112,6 +1115,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             hasUndersizedLocomotionCatalog ||
             hasUndersizedFloorCatalog ||
             hasUndersizedFloorAndWallCatalog ||
+            hasUndersizedFloorAndLocomotionCatalog ||
             !WorkoutModifierPolicy.IsCatalogMetadataComplete(exercises) ||
             exercises.Select(exercise => exercise.Id).Distinct().Count() != exercises.Count ||
             exercises.Select(exercise => exercise.Name).Distinct().Count() != exercises.Count ||

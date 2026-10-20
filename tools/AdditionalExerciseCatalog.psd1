@@ -484,4 +484,14 @@
     1428 = @{ Name = 'Single-Leg Elevated Glute Bridges'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationSingleLegElevatedGluteBridges' }
     1429 = @{ Name = 'Copenhagen Adductions'; Region = 'LEGS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationCopenhagenAdductions' }
     1430 = @{ Name = 'Elevated Forearm Pike Scapular Push-Ups'; Region = 'SHOULDERS'; Practice = 'Bodyweight strength'; MotionProfile = 'ElevationElevatedForearmPikeScapularPushUps' }
+
+    # Floor and locomotion admissions.
+    1431 = @{ Name = 'Sideways Bear Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelSidewaysBearCrawl' }
+    1432 = @{ Name = 'Sideways Crab Walk'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelSidewaysCrabWalk' }
+    1433 = @{ Name = 'Sideways Gorilla Crawl'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelSidewaysGorillaCrawl' }
+    1434 = @{ Name = 'Frog Jumps'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelFrogJumps' }
+    1435 = @{ Name = 'Bunny Hops'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelBunnyHops' }
+    1436 = @{ Name = 'Burpee Broad Jumps'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelBurpeeBroadJumps' }
+    1437 = @{ Name = 'Log Rolls'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelLogRolls' }
+    1438 = @{ Name = 'Seated Buttock Walks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelSeatedButtockWalks' }
 }

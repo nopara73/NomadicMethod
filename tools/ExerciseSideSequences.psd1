@@ -4,6 +4,7 @@
 # Review the complete pose, including a fixed supporting arm, crossed-arm
 # order, held target, or lead stance; primary-limb alternation is not enough.
 @{
+    1433 = 'ScreenLeftLeadThenRightLead'
     614 = 'ScreenLeftThenRight'
     395 = 'Alternating'
     519 = 'ScreenLeftThenRight'

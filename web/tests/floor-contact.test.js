@@ -4,6 +4,8 @@ import test from "node:test";
 import {
   WORKOUT_MODIFIERS, isFloorContactCompatible, isFloorContactMetadataReviewed,
   findFloorCatalogDeficiencies, findFloorAndWallCatalogDeficiencies,
+  findFloorAndLocomotionCatalogDeficiencies,
+  FLOOR_LOCOMOTION_EXERCISE_IDS, getWorkoutCatalog,
   isCompatibleWithWorkoutModifiers,
   WorkoutSession, createDefaultState, parseStoredState, DEFAULT_WORKOUT_MODIFIERS,
   WORKOUT_EXERCISE_PHASE,
@@ -68,6 +70,30 @@ test("floor-and-wall cannot be fabricated by combining separate equipment member
   assert.equal(findFloorCatalogDeficiencies([floor, wall])[0].matchingSessionMovementCount, 0);
 });
 
+for (const [count, enough] of [[20, false], [21, true], [22, true]]) {
+  test(`floor-and-locomotion minimum counts ${count} distinct Room or Field movements`, () => {
+    const exercises = Array.from({ length: count }, (_, i) => floorExercise(i + 1, {
+      locomotionSpace: i % 2 ? "Room" : "Field", maxSpaceMeters: i % 2 ? 6 : 20,
+    }));
+    assert.equal(findFloorAndLocomotionCatalogDeficiencies(exercises).length === 0, enough);
+    assert.equal(findFloorAndLocomotionCatalogDeficiencies(exercises.map(e => ({
+      ...e, sessionMovementId: 1 })))[0].matchingSessionMovementCount, 1);
+  });
+}
+
+test("floor-and-locomotion needs both in one member and one consistent clothing profile", () => {
+  const floor = floorExercise(1, { sequenceBlocks: [{ exerciseId: 1 }, { exerciseId: 2 }] });
+  const travel = floorExercise(2, { onlyFeetTouchGround: true, floorContactPoints: "Feet",
+    locomotionSpace: "Room", maxSpaceMeters: 6, sequenceBlocks: [] });
+  assert.equal(findFloorAndLocomotionCatalogDeficiencies([floor, travel])[0].matchingSessionMovementCount, 0);
+  floor.locomotionSpace = "Room";
+  floor.floorContactPoints = "Torso";
+  floor.upperBodyClothingRequirement = "ClothingRequired";
+  travel.upperBodyClothingRequirement = "BareUpperBodyRequired";
+  assert.equal(findFloorAndLocomotionCatalogDeficiencies([floor, travel])[0].matchingSessionMovementCount, 0);
+  assert.equal(findFloorAndLocomotionCatalogDeficiencies([floorExercise(1)])[0].matchingSessionMovementCount, 0);
+});
+
 test("both equipment switches and sole permission are enforced independently", () => {
   const exercise = floorExercise(1, { wallRequired: true, soleWallContactRequired: true });
   for (const floor of [0, WORKOUT_MODIFIERS.Floor])
@@ -80,9 +106,28 @@ test("both equipment switches and sole permission are enforced independently", (
 
 const catalog = JSON.parse(readFileSync(new URL(
   "../../NomadicMethod/Assets/exercises.json", import.meta.url)));
-test("the admitted catalog satisfies both distinct floor minimums", () => {
+test("the admitted catalog satisfies all distinct floor minimums", () => {
   assert.deepEqual(findFloorCatalogDeficiencies(catalog), []);
   assert.deepEqual(findFloorAndWallCatalogDeficiencies(catalog), []);
+  assert.deepEqual(findFloorAndLocomotionCatalogDeficiencies(catalog), []);
+});
+
+test("new floor travel stays out of unfinished earlier workouts and losing one breaches the quota", () => {
+  assert.equal(FLOOR_LOCOMOTION_EXERCISE_IDS.length, 8);
+  assert.equal(getWorkoutCatalog(catalog, 84)
+    .some(e => FLOOR_LOCOMOTION_EXERCISE_IDS.includes(e.id)), false);
+  assert.equal(getWorkoutCatalog(catalog, 85)
+    .filter(e => FLOOR_LOCOMOTION_EXERCISE_IDS.includes(e.id)).length, 8);
+  assert.deepEqual(findFloorAndLocomotionCatalogDeficiencies(catalog.filter(e => e.id !== 1431)), [{
+    matchingSessionMovementCount: 20, requiredSessionMovementCount: 21,
+  }]);
+  for (const id of FLOOR_LOCOMOTION_EXERCISE_IDS) {
+    const exercise = catalog.find(e => e.id === id);
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, 0), false);
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, WORKOUT_MODIFIERS.Floor), false);
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, WORKOUT_MODIFIERS.Floor |
+      WORKOUT_MODIFIERS.UpperBodyClothing | WORKOUT_MODIFIERS.RoomLocomotion), true);
+  }
 });
 
 for (const phase of ["Ready", "Movement", "Rest"]) {

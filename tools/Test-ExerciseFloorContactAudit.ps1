@@ -12,4 +12,4 @@ foreach ($exercise in $catalog) {
     }
 }
 $inventory = Assert-ExerciseFloorInventory $catalog
-Write-Output "Floor contacts audited: $($catalog.Count) exercises, $($inventory.Floor) distinct floor movements, $($inventory.FloorAndWall) requiring both Floor and Wall."
+Write-Output "Floor contacts audited: $($catalog.Count) exercises, $($inventory.Floor) distinct floor movements, $($inventory.FloorAndWall) requiring both Floor and Wall, $($inventory.FloorAndLocomotion) requiring both Floor and locomotion."

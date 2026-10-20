@@ -67,6 +67,7 @@ function Get-ExerciseFloorInventory {
     foreach ($exercise in $Exercises) { $byId[[int]$exercise.id] = $exercise }
     $floor = [Collections.Generic.HashSet[int]]::new()
     $floorAndWall = [Collections.Generic.HashSet[int]]::new()
+    $floorAndLocomotion = [Collections.Generic.HashSet[int]]::new()
     foreach ($root in $Exercises) {
         $blocks = @($root.sequenceBlocks)
         if ($blocks.Count -eq 0) { continue }
@@ -91,8 +92,14 @@ function Get-ExerciseFloorInventory {
         if (@($members | Where-Object { -not $_.onlyFeetTouchGround -and $_.wallRequired }).Count -gt 0) {
             [void]$floorAndWall.Add($movementId)
         }
+        if (@($members | Where-Object {
+            -not $_.onlyFeetTouchGround -and $_.locomotionSpace -in @('Room', 'Field')
+        }).Count -gt 0) {
+            [void]$floorAndLocomotion.Add($movementId)
+        }
     }
-    return @{ Floor = $floor.Count; FloorAndWall = $floorAndWall.Count }
+    return @{ Floor = $floor.Count; FloorAndWall = $floorAndWall.Count
+        FloorAndLocomotion = $floorAndLocomotion.Count }
 }
 
 function Assert-ExerciseFloorInventory {
@@ -104,6 +111,9 @@ function Assert-ExerciseFloorInventory {
     }
     if ($inventory.FloorAndWall -lt 21) {
         throw "At least 21 distinct movements requiring both Floor and Wall are required; found $($inventory.FloorAndWall)."
+    }
+    if ($inventory.FloorAndLocomotion -lt 21) {
+        throw "At least 21 distinct movements requiring both Floor and locomotion are required; found $($inventory.FloorAndLocomotion)."
     }
     return $inventory
 }

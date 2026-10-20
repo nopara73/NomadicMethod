@@ -1,0 +1,170 @@
+{
+  "catalogRevision": 85,
+  "catalogRecords": 853,
+  "minimumFloorAndLocomotionSessionMovements": 21,
+  "floorAndLocomotionSessionMovements": 21,
+  "reviewMethod": "Original human footage, final packaged crop and natural-speed loop, and the actual web workout using isolated state at 390x844. Ready, five-second preparation, 45-second continuous work, natural Rest, and the gorilla opposite-lead continuation were reviewed.",
+  "reviewedAt": "2026-10-20T13:27:45.279Z",
+  "addedMovements": [
+    {
+      "id": 1431,
+      "name": "Sideways Bear Crawl",
+      "primaryCanonicalGroup": "AbdominalWall",
+      "floorContactPoints": "Feet, Hands, Knees",
+      "locomotionSpace": "Room",
+      "sideSequence": "Alternating",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+      "sourceSha256": "034f4ae8dddb08a9893185b1d0dee8ca10ef2693c1eb8a2c9d88887afa904a11",
+      "runtimeSha256": "14b096ce8d73918e63e9ede761fa85c2e282a65ddf3df5e40386c8e88b2ed41a",
+      "loopSeconds": 9.5,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    },
+    {
+      "id": 1432,
+      "name": "Sideways Crab Walk",
+      "primaryCanonicalGroup": "ElbowExtensors",
+      "floorContactPoints": "Feet, Hands",
+      "locomotionSpace": "Room",
+      "sideSequence": "Alternating",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+      "sourceSha256": "034f4ae8dddb08a9893185b1d0dee8ca10ef2693c1eb8a2c9d88887afa904a11",
+      "runtimeSha256": "a0041b1042f71f164803e3124bf47412e66bf5c984a88d10f6e25dd19fa2debb",
+      "loopSeconds": 15.5,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    },
+    {
+      "id": 1433,
+      "name": "Sideways Gorilla Crawl",
+      "primaryCanonicalGroup": "AbdominalWall",
+      "floorContactPoints": "Feet, Hands",
+      "locomotionSpace": "Room",
+      "sideSequence": "ScreenLeftLeadThenRightLead",
+      "sequenceBlockCount": 2,
+      "sourcePage": "https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/",
+      "sourceSha256": "034f4ae8dddb08a9893185b1d0dee8ca10ef2693c1eb8a2c9d88887afa904a11",
+      "runtimeSha256": "5f2581f4b76987d48d8a225686418ffab12d740c4a3c52e4e5817304221c5e83",
+      "loopSeconds": 3.5,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": true
+    },
+    {
+      "id": 1434,
+      "name": "Frog Jumps",
+      "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+      "floorContactPoints": "Feet, Hands",
+      "locomotionSpace": "Room",
+      "sideSequence": "Continuous",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://na.physitrack.com/home-exercise-video/frog-jumps",
+      "sourceSha256": "216b258a98713594f1d40fe825e784eef0d22e43af15c8b421e455e5beda3d3a",
+      "runtimeSha256": "9cf3b70c5c9865932240fe4decfad357e6e4bbc725ee0fb504f12b050fcdd4d4",
+      "loopSeconds": 5.8,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    },
+    {
+      "id": 1435,
+      "name": "Bunny Hops",
+      "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+      "floorContactPoints": "Feet, Hands, Knees",
+      "locomotionSpace": "Room",
+      "sideSequence": "Continuous",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://us.physitrack.com/home-exercise-video/bunny-jumps",
+      "sourceSha256": "03cc84f5a5f000e1b61b043ccaf431c616482295e62f3679b1ea5f2ed8527f2d",
+      "runtimeSha256": "fe637f37014043604ed6d7463e7f9b1dfd6cae1a26bd87393768174cff317527",
+      "loopSeconds": 7.2,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    },
+    {
+      "id": 1436,
+      "name": "Burpee Broad Jumps",
+      "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+      "floorContactPoints": "Feet, Hands",
+      "locomotionSpace": "Room",
+      "sideSequence": "Continuous",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://www.puregym.com/exercises/plyometrics/burpees/burpee-broad-jump/",
+      "sourceSha256": "5f3345f849cdfcf235367d364ed97d3c2287fa07dfb2be78e67eebaab642fc74",
+      "runtimeSha256": "44483c91bd7c5edcb1a6ce7db3c3d98465984c3aa70c44d768e19270e6d146fa",
+      "loopSeconds": 10.55,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    },
+    {
+      "id": 1437,
+      "name": "Log Rolls",
+      "primaryCanonicalGroup": "AbdominalWall",
+      "floorContactPoints": "Feet, Hands, Forearms, Head, Torso, Shoulders, Hips, Thighs, LowerLegs",
+      "locomotionSpace": "Room",
+      "sideSequence": "Continuous",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://www.functionalmovement.com/Exercises/853/log_roll",
+      "sourceSha256": "379325f259395a244e467eacacdadde0f89b374864f54365457befd5cc691b42",
+      "runtimeSha256": "8d1e1f0ceaae2352739e8a2a0fd0134161d9c01de73ec574107a6bacefea18f2",
+      "loopSeconds": 22,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    },
+    {
+      "id": 1438,
+      "name": "Seated Buttock Walks",
+      "primaryCanonicalGroup": "DeepAndIntersegmentalBack",
+      "floorContactPoints": "Feet, Hips, Thighs, LowerLegs",
+      "locomotionSpace": "Room",
+      "sideSequence": "Alternating",
+      "sequenceBlockCount": 1,
+      "sourcePage": "https://www.youtube.com/watch?v=Z2SKPIyvX8E",
+      "sourceSha256": "4fed648ad4667d30aa19c9a0bd7fe82fe3c246f54e1e91fd0d998295defd035c",
+      "runtimeSha256": "c92f4e4b7a421d1761542bedd82bcd04a09ef2db7998f0a71aa639e6c03be4da",
+      "loopSeconds": 14,
+      "actualWorkoutPhases": [
+        "Ready",
+        "Preparation",
+        "Continuous",
+        "Rest"
+      ],
+      "oppositeLeadReviewed": false
+    }
+  ]
+}

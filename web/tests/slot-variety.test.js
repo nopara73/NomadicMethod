@@ -64,7 +64,7 @@ test("new choices, hip anatomy and exact exceptions do not alter frozen catalogs
   assert.ok(old.every(e => !SLOT_VARIETY_EXERCISE_IDS.includes(e.id)));
   assert.deepEqual(old.find(e => e.id === 906).secondaryCanonicalGroups, ["HipFlexors"]);
   assert.ok(catalog.find(e => e.id === 906).secondaryCanonicalGroups.includes("HipAbductors"));
-  assert.equal(getWorkoutCatalog(catalog, 82).length, catalog.filter(e => !e.elevationRequired && e.id !== BODY_CIRCLE_EXERCISE_ID).length);
+  assert.equal(getWorkoutCatalog(catalog, 82).length, catalog.filter(e => !e.elevationRequired && e.id < 1431 && e.id !== BODY_CIRCLE_EXERCISE_ID).length);
   assert.equal(getWorkoutCatalog(catalog, 82).some(e => e.id === BODY_CIRCLE_EXERCISE_ID), false);
   for (const id of SLOT_VARIETY_COVERAGE_EXCEPTION_GROUP_IDS) {
     const group = [...RESOLUTIONS.values()].flatMap(r => r.groups).find(g => g.id === id);

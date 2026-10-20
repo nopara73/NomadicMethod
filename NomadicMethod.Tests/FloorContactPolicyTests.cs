@@ -49,14 +49,17 @@ public sealed class FloorContactPolicyTests
     private static Exercise FloorExercise(int id, bool wall = false, int family = 0,
         ExerciseFloorContact contacts = ExerciseFloorContact.Feet | ExerciseFloorContact.Hands,
         ExerciseUpperBodyClothingRequirement clothing = ExerciseUpperBodyClothingRequirement.Agnostic,
-        ExerciseSequenceBlock[]? blocks = null, bool soles = false) => new()
+        ExerciseSequenceBlock[]? blocks = null, bool soles = false,
+        LocomotionSpace locomotion = LocomotionSpace.None) => new()
     {
         Id = id, Name = $"Floor contract {id}", Video = $"fixture-{id}.mp4",
         PrimaryCanonicalGroup = CanonicalMuscleGroup.AbdominalWall,
         SecondaryCanonicalGroups = [], Practice = "Contract fixture", MotionProfile = "Fixture",
         Mode = default, Presentation = default, HoldFramePercent = 0, SideSequence = default,
         OnlyFeetTouchGround = contacts == ExerciseFloorContact.Feet, FloorContactPoints = contacts,
-        ShoeAgnostic = true, MaxSpaceMeters = 2, Equipment = "None", Silent = true,
+        ShoeAgnostic = true, LocomotionSpace = locomotion,
+        MaxSpaceMeters = locomotion switch { LocomotionSpace.Room => 6, LocomotionSpace.Field => 50, _ => 2 },
+        Equipment = "None", Silent = true,
         InsectCompatibility = ExerciseInsectCompatibility.Incompatible,
         HardFloorCompatibility = ExerciseHardFloorCompatibility.Incompatible,
         UpperBodyClothingRequirement = clothing, ShyCompatibility = ExerciseShyCompatibility.Compatible,
@@ -94,6 +97,43 @@ public sealed class FloorContactPolicyTests
     }
 
     [Fact]
+    public void FloorAndLocomotionCountsRoomAndFieldOncePerWholeMovement()
+    {
+        foreach (int count in new[] { 20, 21, 22 })
+        {
+            Exercise[] movements = Enumerable.Range(1, count).Select(id =>
+                FloorExercise(id, locomotion: id % 2 == 0 ? LocomotionSpace.Room : LocomotionSpace.Field)).ToArray();
+            Assert.Equal(count >= 21,
+                WorkoutModifierPolicy.FindFloorAndLocomotionCatalogDeficiencies(movements).Count == 0);
+            Exercise[] aliases = Enumerable.Range(1, count).Select(id =>
+                FloorExercise(id, family: 1, locomotion: LocomotionSpace.Room)).ToArray();
+            Assert.Equal(1, Assert.Single(WorkoutModifierPolicy
+                .FindFloorAndLocomotionCatalogDeficiencies(aliases)).MatchingSessionMovementCount);
+        }
+    }
+
+    [Fact]
+    public void FloorAndLocomotionMustOccurInTheSameMemberOfASelectableSequence()
+    {
+        ExerciseSequenceBlock[] blocks = [new() { ExerciseId = 1, MirrorMedia = false },
+            new() { ExerciseId = 2, MirrorMedia = false }];
+        Exercise floor = FloorExercise(1, blocks: blocks);
+        Exercise travel = FloorExercise(2, contacts: ExerciseFloorContact.Feet,
+            blocks: [], locomotion: LocomotionSpace.Room);
+        Assert.Equal(0, Assert.Single(WorkoutModifierPolicy
+            .FindFloorAndLocomotionCatalogDeficiencies([floor, travel])).MatchingSessionMovementCount);
+        floor = FloorExercise(1, contacts: ExerciseFloorContact.Torso,
+            clothing: ExerciseUpperBodyClothingRequirement.ClothingRequired,
+            blocks: blocks, locomotion: LocomotionSpace.Room);
+        travel = FloorExercise(2, clothing: ExerciseUpperBodyClothingRequirement.BareUpperBodyRequired,
+            blocks: [], locomotion: LocomotionSpace.Room);
+        Assert.Equal(0, Assert.Single(WorkoutModifierPolicy
+            .FindFloorAndLocomotionCatalogDeficiencies([floor, travel])).MatchingSessionMovementCount);
+        Assert.Equal(0, Assert.Single(WorkoutModifierPolicy
+            .FindFloorAndLocomotionCatalogDeficiencies([FloorExercise(1)])).MatchingSessionMovementCount);
+    }
+
+    [Fact]
     public void SeparateEquipmentMembersCannotFabricateTheCombinedRequirement()
     {
         ExerciseSequenceBlock[] blocks = [new() { ExerciseId = 1, MirrorMedia = false },
@@ -110,6 +150,28 @@ public sealed class FloorContactPolicyTests
             clothing: ExerciseUpperBodyClothingRequirement.BareUpperBodyRequired, blocks: []);
         Assert.Equal(0, Assert.Single(WorkoutModifierPolicy.FindFloorCatalogDeficiencies([floor, wall]))
             .MatchingSessionMovementCount);
+    }
+
+    [Fact]
+    public void FloorLocomotionAdmissionsDoNotEnterAnUnfinishedEarlierWorkout()
+    {
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new JsonStringEnumConverter() },
+        };
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
+        Assert.Equal(8, WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Count);
+        Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, 84),
+            exercise => WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(exercise.Id));
+        Assert.Equal(8, WorkoutCatalogPolicy.ForWorkout(catalog, 85).Count(
+            exercise => WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(exercise.Id)));
+        Exercise[] withOneRemoved = catalog.Where(exercise => exercise.Id != 1431).ToArray();
+        WorkoutFloorCatalogDeficiency deficit = Assert.Single(WorkoutModifierPolicy
+            .FindFloorAndLocomotionCatalogDeficiencies(withOneRemoved));
+        Assert.Equal(20, deficit.MatchingSessionMovementCount);
+        Assert.Equal(21, deficit.RequiredSessionMovementCount);
     }
 
     [Fact]

@@ -53,6 +53,14 @@
         1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056
     )
     FloorRequired = @{
+        1431 = @('Feet', 'Hands', 'Knees')
+        1432 = @('Feet', 'Hands')
+        1433 = @('Feet', 'Hands')
+        1434 = @('Feet', 'Hands')
+        1435 = @('Feet', 'Hands', 'Knees')
+        1436 = @('Feet', 'Hands')
+        1437 = @('Feet', 'Hands', 'Forearms', 'Head', 'Torso', 'Shoulders', 'Hips', 'Thighs', 'LowerLegs')
+        1438 = @('Feet', 'Hips', 'Thighs', 'LowerLegs')
         1426 = @('Hands')
         1427 = @('Feet', 'Hips')
         1428 = @('Hands', 'Forearms', 'Elbows', 'Head', 'Torso', 'Shoulders', 'Hips')

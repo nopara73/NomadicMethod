@@ -6,8 +6,11 @@ remain available. Wall and sole-on-wall permissions remain independent.
 
 The Android and web catalogs must contain at least **201 distinct floor session
 movements**, including at least **21 distinct movements that require both Floor
-and Wall**. A floor-only member and a wall-only member in one sequence do not
-satisfy the combined requirement. Sides, directions, repetitions, holds, aliases,
+and Wall**, plus at least **21 distinct movements that require both Floor and
+locomotion** (Room or Field travel). Both requirements must occur in the same
+sequence member: pairing a stationary floor exercise with a standing walk does
+not satisfy Floor + Locomotion. A floor-only member and a wall-only member in one
+sequence do not satisfy Floor + Wall. Sides, directions, repetitions, holds, aliases,
 sets, and blocks never increase either count. The entire atomic sequence must be
 selectable under one consistent, relaxed equipment and clothing profile.
 
@@ -48,7 +51,7 @@ workout settings on Android and web.
 
 `tools/ExerciseFloorContacts.psd1` is the explicit contact partition for the full
 catalog. Generation and `tools/Test-ExerciseFloorContactAudit.ps1` enforce the
-partition, physical restrictions, and both inventory minimums. Android database
+partition, physical restrictions, and all three inventory minimums. Android database
 validation, web startup, native tests, web tests, and the Pages workflow enforce
 the same minimums.
 

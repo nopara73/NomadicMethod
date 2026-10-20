@@ -76,6 +76,7 @@
     IncompatibleByReason = @{
         # Visually conspicuous turning jumps, claps and coordinated hybrids.
         ConspicuousConditioningOrHandChoreography = @(
+            1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,
             1282, 1284, 1289,
             1063, 1076, 1122, 1142, 1156, 1199, 1212, 1235, 1254, 1260, 1261, 1263, 1264, 1265,
             1266, 1267, 1268, 1269, 1270, 1271,

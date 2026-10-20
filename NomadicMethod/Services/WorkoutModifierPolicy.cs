@@ -104,6 +104,7 @@ public static class WorkoutModifierPolicy
     public const int MinimumFieldLocomotionSessionMovements = 5;
     public const int MinimumFloorRequiredSessionMovements = 201;
     public const int MinimumFloorAndWallRequiredSessionMovements = 21;
+    public const int MinimumFloorAndLocomotionRequiredSessionMovements = 21;
     public const int MinimumElevationSupportSessionMovements = 20;
     public const int MinimumJumpPlatformSessionMovements = 5;
     public const int MinimumFloorAndElevationSessionMovements = 5;
@@ -349,8 +350,13 @@ public static class WorkoutModifierPolicy
         FindFloorAndWallCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises)
         => FindFloorCatalogDeficiencies(exercises, requireWall: true);
 
+    public static IReadOnlyList<WorkoutFloorCatalogDeficiency>
+        FindFloorAndLocomotionCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises)
+        => FindFloorCatalogDeficiencies(exercises, requireWall: false, requireLocomotion: true);
+
     private static IReadOnlyList<WorkoutFloorCatalogDeficiency>
-        FindFloorCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises, bool requireWall)
+        FindFloorCatalogDeficiencies(IReadOnlyCollection<Exercise> exercises, bool requireWall,
+            bool requireLocomotion = false)
     {
         ArgumentNullException.ThrowIfNull(exercises);
         IReadOnlyDictionary<int, Exercise> byId = exercises.ToDictionary(exercise => exercise.Id);
@@ -365,9 +371,11 @@ public static class WorkoutModifierPolicy
                 profiles.Any(profile => IsSequenceCompatible(exercise, byId, profile)) &&
                 exercise.SequenceBlocks.Any(block => byId.TryGetValue(block.ExerciseId,
                     out Exercise? member) && FloorContactPolicy.RequiresFloor(member) &&
-                    (!requireWall || member.WallRequired)))
+                    (!requireWall || member.WallRequired) &&
+                    (!requireLocomotion || member.LocomotionSpace > LocomotionSpace.None)))
             .Select(GetSessionMovementId).Distinct().Count();
         int minimum = requireWall ? MinimumFloorAndWallRequiredSessionMovements
+            : requireLocomotion ? MinimumFloorAndLocomotionRequiredSessionMovements
             : MinimumFloorRequiredSessionMovements;
         return count >= minimum ? [] : [new(count, minimum)];
     }

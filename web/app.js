@@ -18,6 +18,7 @@ import {
   findLocomotionCatalogDeficiencies,
   findFloorCatalogDeficiencies,
   findFloorAndWallCatalogDeficiencies,
+  findFloorAndLocomotionCatalogDeficiencies,
   getExerciseVideoPath,
   getHoldFramePath,
   getMovementCountdownDurationMs,
@@ -225,6 +226,7 @@ async function bootstrap() {
         findLocomotionCatalogDeficiencies(exercises).length > 0 ||
         findFloorCatalogDeficiencies(exercises).length > 0 ||
         findFloorAndWallCatalogDeficiencies(exercises).length > 0 ||
+        findFloorAndLocomotionCatalogDeficiencies(exercises).length > 0 ||
         findElevationCatalogDeficiencies(exercises).length > 0) {
       throw new Error("Catalog does not satisfy workout invariants.");
     }

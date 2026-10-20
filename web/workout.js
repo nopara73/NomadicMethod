@@ -40,6 +40,7 @@ export const EXERCISE_FLOOR_CONTACT = Object.freeze({
 });
 export const MINIMUM_FLOOR_REQUIRED_SESSION_MOVEMENTS = 201;
 export const MINIMUM_FLOOR_AND_WALL_REQUIRED_SESSION_MOVEMENTS = 21;
+export const MINIMUM_FLOOR_AND_LOCOMOTION_REQUIRED_SESSION_MOVEMENTS = 21;
 const knownFloorContacts = Object.values(EXERCISE_FLOOR_CONTACT)
   .reduce((mask, value) => mask | value, 0);
 const clothingRequiredFloorContacts = EXERCISE_FLOOR_CONTACT.Torso |
@@ -502,7 +503,10 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 84;
+export const CURRENT_CATALOG_REVISION = 85;
+export const FLOOR_LOCOMOTION_EXERCISE_IDS = Object.freeze([
+  1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,
+]);
 const HARD_FLOOR_SLIPPERINESS_CATALOG_REVISION = 53;
 const REUSED_SHY_AUDIT_CATALOG_REVISION = 70;
 const REUSED_SHY_AUDIT_EXERCISE_IDS = new Set([202, 204, 205]);
@@ -3306,7 +3310,11 @@ export function findFloorAndWallCatalogDeficiencies(exercises) {
   return findFloorMovementDeficiencies(exercises, true);
 }
 
-function findFloorMovementDeficiencies(exercises, requireWall) {
+export function findFloorAndLocomotionCatalogDeficiencies(exercises) {
+  return findFloorMovementDeficiencies(exercises, false, true);
+}
+
+function findFloorMovementDeficiencies(exercises, requireWall, requireLocomotion = false) {
   const byId = new Map(exercises.map(exercise => [exercise.id, exercise]));
   const profiles = [WORKOUT_MODIFIERS.Floor,
     WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.UpperBodyClothing]
@@ -3315,9 +3323,11 @@ function findFloorMovementDeficiencies(exercises, requireWall) {
   const count = new Set(exercises.filter(exercise =>
     profiles.some(profile => isSequenceCompatible(exercise, byId, profile)) &&
     exercise.sequenceBlocks.some(block => requiresFloor(byId.get(block.exerciseId)) &&
-      (!requireWall || byId.get(block.exerciseId).wallRequired === true)))
+      (!requireWall || byId.get(block.exerciseId).wallRequired === true) &&
+      (!requireLocomotion || locomotionSpaceRank(byId.get(block.exerciseId).locomotionSpace) > 0)))
     .map(getSessionMovementId)).size;
   const minimum = requireWall ? MINIMUM_FLOOR_AND_WALL_REQUIRED_SESSION_MOVEMENTS
+    : requireLocomotion ? MINIMUM_FLOOR_AND_LOCOMOTION_REQUIRED_SESSION_MOVEMENTS
     : MINIMUM_FLOOR_REQUIRED_SESSION_MOVEMENTS;
   return count >= minimum ? [] : [{
     matchingSessionMovementCount: count,
@@ -4324,6 +4334,8 @@ export function getSequenceBlockCount(exercise, minutes) {
 }
 
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
+  if (activeRevision > 0 && activeRevision < 85)
+    catalog = catalog.filter(exercise => !FLOOR_LOCOMOTION_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 84)
     catalog = catalog.filter(exercise => exercise.elevationRequired !== true);
   if (activeRevision > 0 && activeRevision < 83) {

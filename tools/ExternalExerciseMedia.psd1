@@ -11096,4 +11096,142 @@
         PingPong = $false
         MirrorForAlternation = $false
     }
+
+    # Floor and locomotion admissions.
+    1431 = @{
+        File = 'floor-travel-1431.mp4'
+        Url = 'https://www.youtube.com/watch?v=kjFb40DwwLs'
+        SourcePage = 'https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/'
+        LocalSourceFile = 'floor-travel-crawls-full-source.mp4'
+        LocalSourceSha256 = '034f4ae8dddb08a9893185b1d0dee8ca10ef2693c1eb8a2c9d88887afa904a11'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 67
+        DurationSeconds = 9.5
+        FramesPerSecond = 20
+        Crop = 'crop=1280:620:0:100'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1432 = @{
+        File = 'floor-travel-1432.mp4'
+        Url = 'https://www.youtube.com/watch?v=kjFb40DwwLs'
+        SourcePage = 'https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/'
+        LocalSourceFile = 'floor-travel-crawls-full-source.mp4'
+        LocalSourceSha256 = '034f4ae8dddb08a9893185b1d0dee8ca10ef2693c1eb8a2c9d88887afa904a11'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 116
+        DurationSeconds = 15.5
+        FramesPerSecond = 20
+        Crop = 'crop=1280:620:0:100'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1433 = @{
+        File = 'floor-travel-1433.mp4'
+        Url = 'https://www.youtube.com/watch?v=kjFb40DwwLs'
+        SourcePage = 'https://redefiningstrength.com/crawling-exercises-21-fun-crawls-to-include-in-your-workouts/'
+        LocalSourceFile = 'floor-travel-crawls-full-source.mp4'
+        LocalSourceSha256 = '034f4ae8dddb08a9893185b1d0dee8ca10ef2693c1eb8a2c9d88887afa904a11'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 156.5
+        DurationSeconds = 3.5
+        FramesPerSecond = 20
+        Crop = 'crop=1280:720:0:0'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1434 = @{
+        File = 'floor-travel-1434.mp4'
+        Url = 'https://media.physitrack.com/exercises/bbd843dc-8155-495b-86c0-2f51b6304fdf/en/video_720p.mp4'
+        SourcePage = 'https://na.physitrack.com/home-exercise-video/frog-jumps'
+        LocalSourceFile = 'floor-travel-frog-source.mp4'
+        LocalSourceSha256 = '216b258a98713594f1d40fe825e784eef0d22e43af15c8b421e455e5beda3d3a'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 13.4
+        DurationSeconds = 5.8
+        FramesPerSecond = 20
+        Crop = 'crop=1280:720:0:0'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1435 = @{
+        File = 'floor-travel-1435.mp4'
+        Url = 'https://media.physitrack.com/exercises/95b72af2-d254-45f0-9dc4-72ca9a34b909/en/video_720p.mp4'
+        SourcePage = 'https://us.physitrack.com/home-exercise-video/bunny-jumps'
+        LocalSourceFile = 'floor-travel-bunny-source.mp4'
+        LocalSourceSha256 = '03cc84f5a5f000e1b61b043ccaf431c616482295e62f3679b1ea5f2ed8527f2d'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 22.6
+        DurationSeconds = 7.2
+        FramesPerSecond = 20
+        Crop = 'crop=1280:720:0:0'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1436 = @{
+        File = 'floor-travel-1436.mp4'
+        Url = 'https://www.youtube.com/watch?v=4JjCzeWN_Z4'
+        SourcePage = 'https://www.puregym.com/exercises/plyometrics/burpees/burpee-broad-jump/'
+        LocalSourceFile = 'floor-travel-burpee-puregym-source.mp4'
+        LocalSourceSha256 = '5f3345f849cdfcf235367d364ed97d3c2287fa07dfb2be78e67eebaab642fc74'
+        SourceWidth = 1280
+        SourceHeight = 676
+        Human = $true
+        Video = $true
+        StartSeconds = 0.1
+        DurationSeconds = 10.6
+        FramesPerSecond = 20
+        Crop = 'crop=1280:676:0:0'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1437 = @{
+        File = 'floor-travel-1437.mp4'
+        Url = 'https://cdn.jwplayer.com/videos/ayxRohPq-PU8Jog9W.mp4?exp=1792535484&sig=563944c128cb11f4a57b6effb812abe3'
+        SourcePage = 'https://www.functionalmovement.com/Exercises/853/log_roll'
+        LocalSourceFile = 'floor-travel-roll-human-source.mp4'
+        LocalSourceSha256 = '379325f259395a244e467eacacdadde0f89b374864f54365457befd5cc691b42'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 2
+        DurationSeconds = 22
+        FramesPerSecond = 20
+        Crop = 'crop=1280:500:0:200'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
+    1438 = @{
+        File = 'floor-travel-1438.mp4'
+        Url = 'https://www.youtube.com/watch?v=Z2SKPIyvX8E'
+        SourcePage = 'https://www.youtube.com/watch?v=Z2SKPIyvX8E'
+        LocalSourceFile = 'floor-travel-butt-walk-source.mp4'
+        LocalSourceSha256 = '4fed648ad4667d30aa19c9a0bd7fe82fe3c246f54e1e91fd0d998295defd035c'
+        SourceWidth = 1280
+        SourceHeight = 720
+        Human = $true
+        Video = $true
+        StartSeconds = 17
+        DurationSeconds = 14
+        FramesPerSecond = 20
+        Crop = 'crop=800:620:480:100'
+        PingPong = $false
+        MirrorForAlternation = $false
+    }
 }
