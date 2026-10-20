@@ -503,7 +503,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 85;
+export const CURRENT_CATALOG_REVISION = 86;
 export const FLOOR_LOCOMOTION_EXERCISE_IDS = Object.freeze([
   1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,
 ]);

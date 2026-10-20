@@ -131,6 +131,46 @@ test("new floor travel stays out of unfinished earlier workouts and losing one b
 });
 
 for (const phase of ["Ready", "Movement", "Rest"]) {
+  test(`chest-contact correction retains the version-85 ${phase} session and completed work`, () => {
+    const now = Date.UTC(2026, 9, 20, 6);
+    const oldCatalog = catalog.map(e => ({ ...e, score: e.id === 1436 ? 1_000_000 : 0,
+      ...(e.id === 1436 ? { floorContactPoints: "Feet, Hands", upperBodyClothingRequirement: "Agnostic" } : {}) }));
+    const profile = WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.RoomLocomotion;
+    const original = new WorkoutSession(oldCatalog, createDefaultState(), () => 0.4, () => now);
+    original.startWorkout(60, profile);
+    const target = original.exercisesById.get(1436);
+    const slot = original.getSelectionGroups().find(g => original.isSavedSelectionValid(target, g, profile));
+    original.state.selectedExerciseIds[original.getSelectionStorageKey(slot.id, profile)] = 1436;
+    for (let i = 0; i < 80; i++) {
+      const next = original.getNextGroup();
+      if (original.getSelectedExercise(next).id === 1436) break;
+      if (original.isIntermediateSequenceBlock(next)) original.advanceSequence(next);
+      else original.recordOutcome(next, true);
+    }
+    const current = original.getNextGroup();
+    assert.equal(original.getSelectedExercise(current).id, 1436);
+    if (phase === "Movement") original.beginMovement(current, 28_000, now + 28_000);
+    if (phase === "Rest") {
+      original.beginRest(current, now + 14_000);
+      original.state.pendingRestMillisecondsRemaining = 14_000;
+    }
+    original.state.catalogRevision = original.state.activeCatalogRevision = 85;
+    original.keepSequenceInSlot(slot.id, target);
+    original.state.exerciseScoreAdjustmentsByPhase[WORKOUT_EXERCISE_PHASE.PeakPerformance] = { 1436: -3 };
+    const before = structuredClone(original.state);
+    const completed = before.activeWorkoutSession.blocks.filter(b => b.completedAtUnixMilliseconds);
+    if (phase === "Rest") assert.ok(completed.length > 0);
+    const restored = new WorkoutSession(catalog, parseStoredState(JSON.stringify(before)), () => 0.4, () => now + 86_400_000);
+    restored.restoreAfterReopen();
+    assert.equal(restored.state.activeWorkoutSession.sessionId, before.activeWorkoutSession.sessionId);
+    assert.deepEqual(restored.state.keptExerciseRootIdsBySelectionGroupId,
+      before.keptExerciseRootIdsBySelectionGroupId);
+    assert.equal(restored.state.exerciseScoreAdjustmentsByPhase[WORKOUT_EXERCISE_PHASE.PeakPerformance][1436], -3);
+    assert.deepEqual(restored.state.activeWorkoutSession.blocks.filter(b => b.completedAtUnixMilliseconds), completed);
+    assert.equal(isCompatibleWithWorkoutModifiers(restored.getSelectedExercise(restored.getNextGroup()), profile), true);
+    assert.equal(isCompatibleWithWorkoutModifiers(catalog.find(e => e.id === 1436), profile), false);
+  });
+
   test(`floor expansion preserves an unfinished version-80 ${phase} workout`, () => {
     const now = Date.UTC(2026, 9, 15, 6);
     const original = new WorkoutSession(catalog.filter(e => e.id < 1057),

@@ -58,7 +58,7 @@
         1433 = @('Feet', 'Hands')
         1434 = @('Feet', 'Hands')
         1435 = @('Feet', 'Hands', 'Knees')
-        1436 = @('Feet', 'Hands')
+        1436 = @('Feet', 'Hands', 'Torso')
         1437 = @('Feet', 'Hands', 'Forearms', 'Head', 'Torso', 'Shoulders', 'Hips', 'Thighs', 'LowerLegs')
         1438 = @('Feet', 'Hips', 'Thighs', 'LowerLegs')
         1426 = @('Hands')

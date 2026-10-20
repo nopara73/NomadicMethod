@@ -175,6 +175,25 @@ public sealed class FloorContactPolicyTests
     }
 
     [Fact]
+    public void BroadJumpBurpeeRequiresCoveredTorsoForItsChestToFloorContact()
+    {
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new JsonStringEnumConverter() },
+        };
+        Exercise exercise = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!
+            .Single(exercise => exercise.Id == 1436);
+        Assert.True(exercise.FloorContactPoints.HasFlag(ExerciseFloorContact.Torso));
+        Assert.Equal(ExerciseUpperBodyClothingRequirement.ClothingRequired,
+            exercise.UpperBodyClothingRequirement);
+        WorkoutModifiers profile = WorkoutModifiers.Floor | WorkoutModifiers.RoomLocomotion;
+        Assert.False(WorkoutModifierPolicy.IsCompatible(exercise, profile));
+        Assert.True(WorkoutModifierPolicy.IsCompatible(exercise, profile | WorkoutModifiers.UpperBodyClothing));
+    }
+
+    [Fact]
     public void BothEquipmentSwitchesAndSolePermissionAreRequired()
     {
         Exercise exercise = FloorExercise(1, wall: true, soles: true);

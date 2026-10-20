@@ -1,5 +1,5 @@
 {
-  "catalogRevision": 85,
+  "catalogRevision": 86,
   "catalogRecords": 853,
   "minimumFloorAndLocomotionSessionMovements": 21,
   "floorAndLocomotionSessionMovements": 21,
@@ -110,7 +110,7 @@
       "id": 1436,
       "name": "Burpee Broad Jumps",
       "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
-      "floorContactPoints": "Feet, Hands",
+      "floorContactPoints": "Feet, Hands, Torso",
       "locomotionSpace": "Room",
       "sideSequence": "Continuous",
       "sequenceBlockCount": 1,
@@ -124,7 +124,8 @@
         "Continuous",
         "Rest"
       ],
-      "oppositeLeadReviewed": false
+      "oppositeLeadReviewed": false,
+      "upperBodyClothingRequirement": "ClothingRequired"
     },
     {
       "id": 1437,
@@ -166,5 +167,7 @@
       ],
       "oppositeLeadReviewed": false
     }
-  ]
+  ],
+  "admittedAtCatalogRevision": 85,
+  "contactCorrection": "Revision 86 records the demonstrated chest-to-floor burpee contact as Torso and requires upper-body clothing, matching the existing burpee rules. Ready, movement and Rest migration checks preserve earlier session identity and completed blocks."
 }
