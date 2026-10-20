@@ -4659,6 +4659,9 @@ export class WorkoutSession {
         "The workout state does not contain an activatable prepared workout.",
       );
     }
+    // A worker may have prepared this state using different sequence geometry.
+    this.setExercises(getWorkoutCatalog(this.catalogExercises,
+      this.state.activeCatalogRevision, this.state.activeSingleDirectionExerciseIds));
     const workoutStartedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     if ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0 &&
         this.isAutomaticLightDayDue()) {

@@ -1707,6 +1707,21 @@ test("Start activates an off-thread prepared workout on Android and web", () => 
   );
 });
 
+test("prepared Android state retains its planner and cancellation survives rapid setup changes", () => {
+  const preparation = methodBody(mainActivity, "private void QueueWorkoutPreparation()",
+    "private async Task ObserveWorkoutPreparationAsync(");
+  const start = methodBody(mainActivity, "private async void StartSelectedWorkout()",
+    "private static void RecoverPendingScoreUpdate(");
+  const background = preparation.slice(preparation.indexOf("Task.Run("));
+  assert.match(preparation, /CancellationToken cancellationToken = cancellation\.Token;/);
+  assert.doesNotMatch(background, /cancellation\.Token/);
+  assert.match(background, /cancellationToken\.ThrowIfCancellationRequested\(\)/);
+  assert.match(background, /new PreparedWorkout\([\s\S]*preparationService\)/);
+  assert.match(start, /prepared\.SessionService\.ActivatePreparedWorkout\(nextState\)/);
+  assert.equal((start.match(/_sessionService = prepared\.SessionService;/g) ?? []).length, 2);
+  assert.match(webApp, /new WorkoutSession\(exerciseCatalog, prepared\.state\)/);
+});
+
 test("Android persistence rejects malformed stored shapes without crashing launch", async () => {
   const stateStore = await source(
     "NomadicMethod",

@@ -378,6 +378,7 @@ public partial class MainActivity : Activity
         _workoutPreparationCancellation?.Cancel();
         _workoutPreparationCancellation?.Dispose();
         var cancellation = new CancellationTokenSource();
+        CancellationToken cancellationToken = cancellation.Token;
         _workoutPreparationCancellation = cancellation;
         _preparedWorkout = null;
         _preparingWorkoutMinutes = minutes;
@@ -391,7 +392,7 @@ public partial class MainActivity : Activity
         IReadOnlyList<Exercise> exercises = _exerciseDatabase.Exercises;
         _workoutPreparationTask = Task.Run(() =>
         {
-            cancellation.Token.ThrowIfCancellationRequested();
+            cancellationToken.ThrowIfCancellationRequested();
             WorkoutState preparedState = JsonSerializer.Deserialize(
                     stateJson,
                     WorkoutJsonContext.Default.WorkoutState)
@@ -414,14 +415,15 @@ public partial class MainActivity : Activity
                     minutes,
                     modifiers);
             }
-            cancellation.Token.ThrowIfCancellationRequested();
+            cancellationToken.ThrowIfCancellationRequested();
             return new PreparedWorkout(
                 preparedState,
                 minutes,
                 modifiers,
                 isReconfiguration,
-                currentWorkoutGroupId);
-        }, cancellation.Token);
+                currentWorkoutGroupId,
+                preparationService);
+        }, cancellationToken);
         _ = ObserveWorkoutPreparationAsync(
             _workoutPreparationTask,
             cancellation);
@@ -2973,13 +2975,15 @@ public partial class MainActivity : Activity
             if (prepared.IsReconfiguration)
             {
                 _stateStore.Save(nextState);
+                _sessionService = prepared.SessionService;
                 _state = nextState;
                 RestoreWorkoutAfterSetup();
                 return;
             }
 
-            _sessionService.ActivatePreparedWorkout(nextState);
+            prepared.SessionService.ActivatePreparedWorkout(nextState);
             _stateStore.Save(nextState);
+            _sessionService = prepared.SessionService;
             _state = nextState;
             LogOuraDecision(workoutStarted: true);
             ShowNextExercise();
@@ -5111,7 +5115,8 @@ public partial class MainActivity : Activity
         int Minutes,
         WorkoutModifiers Modifiers,
         bool IsReconfiguration,
-        string? CurrentWorkoutGroupId);
+        string? CurrentWorkoutGroupId,
+        ExerciseSessionService SessionService);
 
     private sealed record ApplicationStartupResult(
         SqliteExerciseDatabase Database,

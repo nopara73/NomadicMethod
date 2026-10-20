@@ -488,6 +488,10 @@ public sealed partial class ExerciseSessionService
                 "The workout state does not contain an activatable prepared workout.");
         }
 
+        // Preparation may run on another service. Resolve the saved plan with
+        // its frozen catalog and directions before counting or logging blocks.
+        SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises,
+            state.ActiveCatalogRevision, state.ActiveSingleDirectionExerciseIds));
         long workoutStartedAtUnixMilliseconds =
             GetCurrentUnixTimeMilliseconds();
         if (!state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) &&

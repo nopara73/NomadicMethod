@@ -50,6 +50,44 @@ public sealed class SingleDirectionTests
         }
     }
 
+    [Theory]
+    [InlineData(30, 3)]
+    [InlineData(30, 5)]
+    [InlineData(30, 7)]
+    [InlineData(30, 10)]
+    [InlineData(30, 15)]
+    [InlineData(30, 20)]
+    [InlineData(10, 30)]
+    public void IndependentPreparedWorkoutUsesItsOwnFrozenSequences(int previousMinutes, int minutes)
+    {
+        var (service, state) = Start(previousMinutes);
+        while (service.GetNextGroup(state) is not null) Finish(service, state);
+        service.AcknowledgeCompletion(state);
+        string history = JsonSerializer.Serialize(state.WorkoutHistory);
+        WorkoutState preparedState = Reload(state);
+        Exercise[] catalog = Catalog();
+        catalog.Single(e => e.Id == Cases.PreferredRoot).Score = 10000;
+        var preparationService = new ExerciseSessionService(catalog, new Random(1), () => Now.AddDays(1));
+        preparationService.PrepareWorkout(preparedState, minutes, WorkoutModifiers.None);
+        string keeps = JsonSerializer.Serialize(preparedState.KeptExerciseRootIdsBySelectionGroupId);
+        WorkoutGroup[] preparedRounds = preparationService.GetActiveGroups(preparedState).ToArray();
+        string selections = JsonSerializer.Serialize(preparedState.SelectedExerciseIds);
+
+        service.ActivatePreparedWorkout(preparedState);
+
+        Assert.Equal(preparedRounds, service.GetActiveGroups(preparedState));
+        Assert.Equal(minutes, preparedRounds.Length);
+        Assert.Equal(selections, JsonSerializer.Serialize(preparedState.SelectedExerciseIds));
+        Assert.Equal(history, JsonSerializer.Serialize(preparedState.WorkoutHistory));
+        Assert.Equal(keeps, JsonSerializer.Serialize(preparedState.KeptExerciseRootIdsBySelectionGroupId));
+        Assert.Empty(preparedState.ActiveWorkoutSession!.Blocks);
+        Assert.Equal(minutes, preparedState.ActiveWorkoutSession.InitialSelections.Sum(s => s.SequenceBlockCount * s.SetCount));
+        AssertCompleteSides(service, preparedState);
+        WorkoutState reopened = Reload(preparedState);
+        service.RestoreAfterReopen(reopened);
+        Assert.Equal(preparedRounds, service.GetActiveGroups(reopened));
+    }
+
     [Fact]
     public void SharedDirectionsKeepTheirIdentityAndNeverSplitSides()
     {

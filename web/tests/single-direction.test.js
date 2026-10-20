@@ -33,6 +33,35 @@ function assertCompleteSides(session) {
   }
 }
 
+for (const [previousMinutes, minutes] of [[30, 3], [30, 5], [30, 7], [30, 10], [30, 15], [30, 20], [10, 30]]) {
+  test(`independently prepared ${minutes}-minute workout replaces the completed ${previousMinutes}-minute catalog`, () => {
+    const session = sessionFor(previousMinutes);
+    while (session.getNextGroup()) finish(session);
+    session.acknowledgeCompletion();
+    const history = structuredClone(session.state.workoutHistory);
+    const preparation = new WorkoutSession(catalog, structuredClone(session.state), () => 0.5, () => now + 86400000);
+    preparation.prepareWorkout(minutes, M.None);
+    const keeps = structuredClone(preparation.state.keptExerciseRootIdsBySelectionGroupId);
+    const rounds = preparation.getActiveGroups();
+    const selections = structuredClone(preparation.state.selectedExerciseIds);
+    session.state = structuredClone(preparation.state);
+
+    session.activatePreparedWorkout();
+
+    assert.deepEqual(session.getActiveGroups(), rounds);
+    assert.equal(rounds.length, minutes);
+    assert.deepEqual(session.state.selectedExerciseIds, selections);
+    assert.deepEqual(session.state.workoutHistory, history);
+    assert.deepEqual(session.state.keptExerciseRootIdsBySelectionGroupId, keeps);
+    assert.deepEqual(session.state.activeWorkoutSession.blocks, []);
+    assert.equal(session.state.activeWorkoutSession.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), minutes);
+    assertCompleteSides(session);
+    const reopened = new WorkoutSession(catalog, structuredClone(session.state), () => 0.5, () => now + 86400000);
+    reopened.restoreAfterReopen();
+    assert.deepEqual(reopened.getActiveGroups(), rounds);
+  });
+}
+
 test("shared directions retain their identity and both reviewed media segments", () => {
   assert.ok(contract.directionalRoots.every(id => canUseSingleDirection(catalog.find(e => e.id === id))));
   for (const minutes of [...contract.shortMinutes, ...contract.completeMinutes]) {
