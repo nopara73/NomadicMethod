@@ -1,8 +1,9 @@
 # Exercise catalog audit artifacts
 
-Nomadic Method models a first-time user standing in a 2 m × 2 m space with no external
-support, equipment, or spoken instruction except where a stable wall or
-physical mirror is explicitly declared. The final packaged silent human demonstration is authoritative for
+Nomadic Method includes beginner through advanced and expert exercises. Prior
+skill, strength, balance, or mobility is allowed; immediate execution by a
+first-time user is not an admission requirement. Apply each movement's declared
+space, ground-contact, and equipment restrictions. The final packaged silent human demonstration is authoritative for
 the action, name, muscular demand, anatomy, structure, and presentation.
 
 ## Current audit status — 2026-09-11
