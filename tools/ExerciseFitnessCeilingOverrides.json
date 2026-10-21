@@ -1,0 +1,110 @@
+{
+  "scoringVersion": 1,
+  "overrides": {
+    "134": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "reason": "Reviewed anchor: Wall Sit"
+    },
+    "217": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "reason": "Reviewed anchor: Tree Pose Hold"
+    },
+    "420": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "reason": "Reviewed anchor: Jumping Jacks"
+    },
+    "432": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 3,
+        "balance": 2,
+        "coordination": 3,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "reason": "Reviewed anchor: 180-Degree Squat Jumps"
+    },
+    "434": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 3,
+        "balance": 2,
+        "coordination": 2,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "reason": "Reviewed anchor: Lateral Line Hops"
+    },
+    "568": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "reason": "Reviewed anchor: Toes-on-Wall Calf Stretch"
+    },
+    "701": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "reason": "Reviewed anchor: Wall Push-Up"
+    }
+  }
+}

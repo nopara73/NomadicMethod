@@ -1,0 +1,854 @@
+scoringVersion,catalogRevision,id,name,cardiorespiratoryEndurance,muscularStrength,muscularEndurance,flexibility,agility,balance,coordination,power,reactionTime,speed,reviewStatus,basis
+1,86,15,Alternating Standing Hamstring Curls,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,16,Split-Stance Calf Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,17,Alternating Toe Touch with Overhead Reach,0,0,0,2,0,0,1,0,0,0,rule-derived,combined-alternating-actions;directed-mobility;range-of-motion-practice
+1,86,19,Wide Squat with Hands on Hips,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,20,Standing Rear-Leg Raises,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,21,Alternating Single-Leg Hinge with Forward Reach,1,2,3,0,0,2,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,31,Alternating Knee Raises with Two-Arm Pull-Down,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,32,Tandem Walk Forward and Back,0,0,0,0,0,2,0,0,0,0,rule-derived,reduced-base-control
+1,86,37,Side Shuffle,2,0,1,0,2,0,0,0,0,2,rule-derived,local-loading;planned-direction-change;rapid-whole-body-action;whole-body-conditioning
+1,86,41,Alternating Reverse Lunge with Knee Drive,1,2,3,0,0,1,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,47,Tandem-Stance Head Turns,0,0,0,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;reduced-base-control;sensory-challenged-balance
+1,86,56,Shibashi Shallow Squat with Arm Float,1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,58,Bhangra Chaal,1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,59,Shibashi Side Shift with Rainbow Reach,0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,60,Low-Impact Skater Step,2,0,1,0,1,0,0,0,0,0,rule-derived,body-repositioning;local-loading;rhythmic-loading;whole-body-conditioning
+1,86,92,Capoeira Ginga,1,0,1,0,1,0,2,0,0,0,rule-derived,body-repositioning;local-loading;rhythmic-loading;sequenced-movement-form
+1,86,93,Capoeira Esquiva Lateral,1,2,3,0,0,0,2,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;sequenced-movement-form
+1,86,94,Lateral Weight Shift,0,0,0,0,0,2,0,0,0,0,rule-derived,moving-base-control;reduced-base-control
+1,86,95,Single-Leg Knee-Raise Hold,0,0,2,0,0,2,0,0,0,0,rule-derived,local-loading;reduced-base-control;sustained-local-work
+1,86,96,Dynamic Figure-Four Squat Balance,1,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,97,Knee Raise and Side-Kick Reach,0,0,1,0,0,2,0,1,0,1,rule-derived,local-loading;moving-base-control;rapid-limb-action;reduced-base-control;unloaded-ballistic-action
+1,86,98,Shibashi Side Shift with Overhead Scoop,0,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;sequenced-movement-form
+1,86,99,Bent-Knee Front-to-Back Leg Swing,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,100,Bent-Knee Leg Swing with Pause,0,0,1,0,0,2,0,0,0,0,rule-derived,local-loading;reduced-base-control
+1,86,101,Bodyweight Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,102,Squat with Overhead Arm Sweep,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,103,Wide Squat Pulse,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,104,Sumo Squat with Pause,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,105,Wide Turned-Out Squat,1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,107,Wide Plie Squats,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,108,Second-Position Plié with Arm Sweep,0,2,3,0,0,0,2,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;sequenced-movement-form
+1,86,109,One-and-a-Half Sumo Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,110,Squat Pulse,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,111,Squat with Overhead Reach and Arm Sweep,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,112,Wide Squat with Arms Held Overhead,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,113,Bodyweight Overhead Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,114,Hindu Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,115,Pistol Squat with Bottom Pause,1,4,3,0,0,3,0,0,0,0,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;high-skill-bodyweight-strength;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,116,Alternating Lateral Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,117,Side-Lunge Hold,0,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control
+1,86,118,Squat to Knee Drive,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,119,Tiptoe Walking Back and Forth,0,0,1,1,0,2,0,0,0,0,rule-derived,local-loading;moving-base-control;range-of-motion-practice;reduced-base-control
+1,86,120,Split Squat Pulse,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,121,Alternating Forward Lunge,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,122,Alternating Reverse Lunge,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,123,Lateral Lunge,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,124,Alternating Curtsy Lunge with Side Crunch,1,2,3,0,2,1,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;planned-direction-change;rhythmic-loading
+1,86,125,Split Squat with Torso Twist,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,126,Squat with Side Kick,1,2,3,0,0,1,0,1,0,1,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rapid-limb-action;rhythmic-loading;unloaded-ballistic-action
+1,86,127,Alternating Lunge with Overhead Stretch,1,2,3,2,0,1,1,0,0,0,rule-derived,combined-alternating-actions;directed-mobility;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;range-of-motion-practice;rhythmic-loading
+1,86,128,Curtsy Squat with Arm Sweep,1,2,3,0,2,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;planned-direction-change;rhythmic-loading
+1,86,129,Squat with Front Kick,1,2,3,0,0,1,0,1,0,1,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rapid-limb-action;rhythmic-loading;unloaded-ballistic-action
+1,86,130,Squat to Alternating Side Leg Lift,1,2,3,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,131,Squat with Rear Leg Lift,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,132,Squat to Alternating Oblique Crunch,1,2,3,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,133,Lateral Lunge with Overhead Reach,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,134,Wall Sit,0,2,3,0,0,0,0,0,0,0,anchor-reviewed,Reviewed anchor: Wall Sit
+1,86,135,Wide Overhead Squat Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,136,Wide Squat Hold with Hands on Thighs,0,2,3,3,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;sustained-end-range
+1,86,137,Shallow Wall Squat,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,138,Narrow Squat to Calf Raise,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,139,Wide-Squat Alternating Heel Raises,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,140,Tiptoe Sumo Squat,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,141,Squat Hold with Alternating Heel Raises,1,2,3,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,142,Lateral Squat Walk,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,143,Reverse Lunge to Front Kick,1,2,3,0,0,1,0,1,0,1,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rapid-limb-action;rhythmic-loading;unloaded-ballistic-action
+1,86,144,Standing Knee Lift,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,145,Wall-Supported Standing Knee-Extension Hold,0,0,2,3,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;sustained-end-range;sustained-local-work
+1,86,146,Bodyweight Good Morning,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,147,Shallow Squat with Overhead Reach,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,148,Bent-Over Standing Bird Dog,0,0,1,1,0,2,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;reduced-base-control
+1,86,149,Isometric Hip Abduction Against Wall,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,150,Side-to-Side Lunge,1,2,3,1,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;range-of-motion-practice;rhythmic-loading
+1,86,151,Straight-Leg Front Raise,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,152,Alternating Side-Leg Raise Pulses,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,153,Wall-Supported Standing Hip Extension,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,154,Standing Fire Hydrant,0,0,1,1,0,2,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;reduced-base-control
+1,86,156,Alternating Curtsy-Lunge-to-Squat,1,2,3,0,2,1,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;planned-direction-change;rhythmic-loading
+1,86,159,Standing Fire-Hydrant Kick,0,1,2,0,0,2,0,1,0,1,rule-derived,local-loading;meaningful-resistance;moving-base-control;rapid-limb-action;reduced-base-control;sustained-local-work;unloaded-ballistic-action
+1,86,160,Standing Donkey Kick,0,0,1,1,0,1,0,1,0,1,rule-derived,local-loading;moving-base-control;range-of-motion-practice;rapid-limb-action;unloaded-ballistic-action
+1,86,161,Standing Gate Opener,0,0,0,1,0,2,0,0,0,0,rule-derived,range-of-motion-practice;reduced-base-control
+1,86,162,Wall-Leaning Calf Raise,0,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control
+1,86,163,Wall Soleus Stretch,0,0,0,3,0,2,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,165,Wall Tibialis Raise,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,166,Wall Drill March,2,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;whole-body-conditioning
+1,86,167,High-Knee March,2,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;whole-body-conditioning
+1,86,168,Toy Soldier March,0,0,0,1,0,0,0,0,0,1,rule-derived,range-of-motion-practice;rapid-limb-action
+1,86,169,High-Knee Pulldown March,1,1,2,0,0,0,0,0,0,1,rule-derived,local-loading;meaningful-resistance;rapid-limb-action;rhythmic-loading;sustained-local-work
+1,86,170,Standing Cross-Body Knee Drive,0,0,1,1,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;local-loading;range-of-motion-practice
+1,86,171,Standing Hamstring Sweep,0,0,0,1,0,2,0,0,0,0,rule-derived,range-of-motion-practice;reduced-base-control
+1,86,172,Wall Knee Drive,2,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;whole-body-conditioning
+1,86,173,Standing Side Knee Lift,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,174,Alternating Front Kick Toe Touch,0,0,1,1,0,1,0,1,0,1,rule-derived,local-loading;moving-base-control;range-of-motion-practice;rapid-limb-action;unloaded-ballistic-action
+1,86,175,Wall Sit March,1,2,3,0,0,0,0,0,0,1,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rapid-limb-action;rhythmic-loading
+1,86,176,Shibashi Squat with Diagonal Torso Turn,1,0,1,0,2,0,2,0,0,0,rule-derived,local-loading;planned-direction-change;rhythmic-loading;sequenced-movement-form
+1,86,177,Standing Hip Airplane,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,178,Outside Crescent Kick,0,0,1,1,0,1,0,1,0,1,rule-derived,local-loading;moving-base-control;range-of-motion-practice;rapid-limb-action;unloaded-ballistic-action
+1,86,179,Standing Rear Leg Raise,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,180,Standing Front Snap Kicks,0,0,1,0,0,1,2,0,0,2,rule-derived,local-loading;moving-base-control;rapid-whole-body-action;sequenced-movement-form
+1,86,181,Karate Side Thrust Kick,0,0,1,0,0,1,2,1,0,2,rule-derived,local-loading;moving-base-control;rapid-limb-action;rapid-whole-body-action;sequenced-movement-form;unloaded-ballistic-action
+1,86,182,Capoeira Meia-Lua de Frente,1,0,1,0,0,1,2,0,0,0,rule-derived,local-loading;moving-base-control;rhythmic-loading;sequenced-movement-form
+1,86,183,Capoeira Queixada,1,0,1,0,0,1,2,0,0,0,rule-derived,local-loading;moving-base-control;rhythmic-loading;sequenced-movement-form
+1,86,184,Split-Squat Pulse,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,185,Shibashi Side-to-Side Cloud Hands,0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,186,Hip-Airplane Hold,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,187,Standing Heel Raise,0,1,2,0,0,1,0,0,0,0,rule-derived,local-loading;meaningful-resistance;moving-base-control;sustained-local-work
+1,86,188,Narrow Turned-Out Shallow Squat,1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,190,Ballet Grand Plie,0,2,3,0,0,0,2,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;sequenced-movement-form
+1,86,191,Unsupported Standing Toe Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,192,Alternating Lateral Lunge with Knee Drive,1,2,3,0,0,1,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,193,Hip Hinge with Overhead Reach,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,194,Heel Walks,0,0,1,0,0,2,0,0,0,0,rule-derived,local-loading;reduced-base-control
+1,86,195,Side Lunge to Knee-Up Balance,1,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;reduced-base-control;rhythmic-loading
+1,86,196,B-Stance Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,197,Squat to Calf Raise,1,2,3,0,0,0,2,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;sequenced-movement-form
+1,86,198,Wide Squat to Feet-Together Calf Raise,1,2,3,0,0,0,2,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;sequenced-movement-form
+1,86,199,Horse-Stance Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,200,Good Morning to Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,201,Sumo Squat to Calf Raise,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,202,Fixed-Gaze Head-Turn March,0,0,0,0,2,3,2,0,0,1,rule-derived,explicit-sensorimotor-pattern;planned-direction-change;rapid-limb-action;reduced-base-control;sensory-challenged-balance
+1,86,203,Shibashi Split-Stance Wing Open,0,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;sequenced-movement-form
+1,86,204,Jab-Cross-Hook-Uppercut Combo,1,0,1,0,0,0,3,0,0,2,rule-derived,complex-interlimb-sequence;local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,205,Jab-Cross-Speed-Bag Combo,1,0,1,0,0,0,3,0,0,2,rule-derived,complex-interlimb-sequence;local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,211,Assisted Standing Wrist-Flexion Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,212,Unsupported Sissy Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,213,Assisted Standing Wrist-Extension Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,214,Single-Arm Wrist Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,215,Forearm Pronation-Supination Flow,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,216,Interlaced-Finger Palm-Out Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,217,Tree Pose Hold,0,0,1,0,0,3,0,0,0,0,anchor-reviewed,Reviewed anchor: Tree Pose Hold
+1,86,218,Fingertip Wall Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,219,High-Knee Cross-Body Pull,1,1,2,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,220,Karate Rising Block,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,223,Controlled Wrist Circles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,224,Qigong Interlaced Wrist Rolls,0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,225,Opposite-Hand Fist-Down Wrist Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,227,Arm Swings with Trunk Rotation,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,228,Single-Arm Bent-Elbow External Rotation,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,230,Prayer Press Raise,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,231,Step-In Karate Reverse Punch,1,1,2,0,0,0,2,1,0,2,rule-derived,local-loading;meaningful-resistance;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form;sustained-local-work;unloaded-ballistic-action
+1,86,232,Extended Side Angle Hold,0,2,3,3,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;sustained-end-range
+1,86,233,Standing Wrist Flexion Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,234,Standing W Extensions,1,1,2,1,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;range-of-motion-practice;rhythmic-loading;sustained-local-work
+1,86,236,Bilateral Wrist Circles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,237,Standing Overhead Elbow Extensions,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,238,Prayer-Hand Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,239,Back-of-Hands Wrist Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,240,Grapevine Step,2,0,1,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;whole-body-conditioning
+1,86,241,Isometric Palm Press Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,242,Jazz Square,1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,245,Jab-Jab-Cross-Shovel-Hook Combo,1,0,1,0,0,0,3,0,0,2,rule-derived,complex-interlimb-sequence;local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,246,Bodyweight Cuban Rotation,1,1,2,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;meaningful-resistance;range-of-motion-practice;rhythmic-loading;sustained-local-work
+1,86,248,Alternating Side-Tap Palm Pushes,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,251,Forward Fold to Overhead Reach,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,252,Internally Rotated Double Calf Raise,0,0,1,1,0,1,0,0,0,0,rule-derived,local-loading;moving-base-control;range-of-motion-practice
+1,86,253,Parallel Double Calf Raise,0,0,1,1,0,1,0,0,0,0,rule-derived,local-loading;moving-base-control;range-of-motion-practice
+1,86,254,Turned-Out Double Calf Raise,0,0,1,1,0,1,0,0,0,0,rule-derived,local-loading;moving-base-control;range-of-motion-practice
+1,86,255,Deep-Squat Calf Raise,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,256,Overhead Side-Stretch Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,257,Finger Spreading with Arms Held Forward,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,258,Alternating Karate Downward Blocks,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,260,Dancer Pose Hold,0,0,2,3,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;sustained-end-range;sustained-local-work
+1,86,261,Standing Bent-Elbow Chest Squeeze,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,262,Standing Bicycle Crunches,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,263,Bent-Over Straight-Arm Pressback Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,264,Standing Arm Circles,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,265,Standing Speed-Bag Punches,1,1,2,0,0,0,0,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sustained-local-work
+1,86,266,Alternating Overhead Arm Raises,0,0,1,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading
+1,86,268,Goalpost-to-T Arm Extensions,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,269,Wall-Supported Leg-Resistance Biceps Curl,0,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,270,Goalpost Arm Hold,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,271,Standing Lumbar Extension Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,272,Unsupported Single-Leg Bent-Knee Calf Raise,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,273,Wall-Supported Bent-Knee Calf Raise Hold,0,2,3,3,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;range-of-motion-practice;sustained-end-range
+1,86,274,Alternating Standing Uppercut Punches,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,275,Small Arm Circles,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,276,Muay Thai Upward Elbow Strike,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,277,Standing Elbow-to-Elbow Chest Squeeze,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,278,Staggered-Stance Straight Punch,1,1,2,0,0,0,0,1,0,2,rule-derived,local-loading;meaningful-resistance;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action
+1,86,279,Staggered-Stance Jab-Cross,1,1,2,0,0,0,2,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form;sustained-local-work
+1,86,280,Rear-Hand Boxing Hook,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,281,Alternating Overhead Punch,1,1,2,0,0,0,1,1,0,1,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rapid-limb-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action
+1,86,282,Side-Step Knee Drive with Alternating Side Punches,1,1,2,0,1,0,1,0,0,2,rule-derived,body-repositioning;combined-alternating-actions;local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sustained-local-work
+1,86,283,Rear-Hand Palm Strike,1,1,2,0,0,0,2,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form;sustained-local-work
+1,86,284,Side-to-Side Ankle Rocks,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,285,Karate Outward Forearm Block,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,286,Alternating Karate Inward Forearm Blocks,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,287,Wide-Stance Alternating Uppercuts,1,1,2,0,0,0,0,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sustained-local-work
+1,86,288,Standing Knee-and-Ankle Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,289,Fist Opening and Closing with Arms Held Forward,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,290,Thumb and Little-Finger Switches,0,0,0,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern
+1,86,291,Inward Knife-Hand Strikes,1,1,2,0,0,0,2,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form;sustained-local-work
+1,86,292,Standing Bird Dog,0,0,1,0,0,2,0,0,0,0,rule-derived,local-loading;reduced-base-control
+1,86,293,Opposite-Hand Thumb-Web Stretch,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,294,Rear-Hand Outward Knife-Hand Strike,1,1,2,0,0,0,2,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form;sustained-local-work
+1,86,295,Alternating Bent-Knee Heel Raises,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,296,Single-Leg Sprinter March,1,1,2,0,0,2,0,0,0,1,rule-derived,local-loading;meaningful-resistance;rapid-limb-action;reduced-base-control;rhythmic-loading;sustained-local-work
+1,86,301,Standing Side Arm Raises,0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,302,Marching Forward Arm Circles,1,1,2,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;meaningful-resistance;range-of-motion-practice;rhythmic-loading;sustained-local-work
+1,86,303,Alternating Arm-Circle Squat with Cross Tap,1,2,3,2,0,0,1,0,0,0,rule-derived,combined-alternating-actions;directed-mobility;force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;rhythmic-loading
+1,86,304,Marching Backward Arm Circles,1,1,2,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;meaningful-resistance;range-of-motion-practice;rhythmic-loading;sustained-local-work
+1,86,305,Standing March with Torso Twist,1,1,2,0,0,0,0,0,0,1,rule-derived,local-loading;meaningful-resistance;rapid-limb-action;rhythmic-loading;sustained-local-work
+1,86,307,Self-Resisted Neck Flexion Isometric,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,308,Self-Resisted Neck Side-Bend Isometric,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,309,Self-Resisted Neck Rotation Hold with Head Turned,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,310,Self-Resisted Neck Extension Isometric,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,311,Low-Impact Standing Jack,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,314,Alternating Forward Lunge Pulses,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,315,Side-Step Squat with Overhead Reach,1,2,3,0,1,0,0,0,0,0,rule-derived,body-repositioning;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,321,Alternating Side Taps with Overhead Arm Raises,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,326,Rear-Hand Straight Punch,1,1,2,0,0,0,0,1,0,2,rule-derived,local-loading;meaningful-resistance;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action
+1,86,327,Muay Thai Horizontal Elbow Strike,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,329,Standing Shoulder CAR,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,338,Overhead Triceps Stretch with Side Bend,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,340,Low-Impact Jack with Alternating Punches,0,0,1,1,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;range-of-motion-practice
+1,86,341,Squat with Alternating Straight Punches,1,2,3,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,367,Single-Leg Bodyweight Deadlift,1,3,3,0,0,3,0,0,0,0,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,377,Qigong Lifting the Sky,0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,379,Qigong Drawing the Bow,0,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;sequenced-movement-form
+1,86,389,Toes-Out Heel Raise with Elbow Pull-Down,0,0,1,0,0,2,2,0,0,0,rule-derived,local-loading;moving-base-control;reduced-base-control;sequenced-movement-form
+1,86,390,Step-Touch with Goalpost Arm Openings,1,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;rhythmic-loading
+1,86,391,Alternating High-Knee Inner-Foot Taps,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,392,Exhale-Down Inhale-Up Breathing Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,393,Single-Leg Deadlift to Runner March,1,3,3,0,0,3,0,0,0,1,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;rapid-limb-action;reduced-base-control;rhythmic-loading
+1,86,394,Alternating Cross-Body Knee with Arm Sweep,1,1,2,0,0,0,3,0,0,0,rule-derived,combined-alternating-actions;complex-interlimb-sequence;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,395,Alternating Knee Lift and Overhead Reach,1,1,2,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,396,Standing Front-to-Side Knee Lifts,0,0,1,0,0,2,0,0,0,0,rule-derived,local-loading;reduced-base-control
+1,86,397,Alternating Side Tap with Diagonal Reach,1,1,2,0,2,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;planned-direction-change;rhythmic-loading;sustained-local-work
+1,86,398,"Inhale Arms Open, Exhale Arms Together",0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,399,"Inhale Chest Open, Exhale Arms Close with Shallow Squat",1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,400,"Inhale Rise and Lift Arms, Exhale Squat and Sweep Down",1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,401,"Alternating Inhale-Twist, Exhale-Push",0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,402,Shallow Squat with Rowing Arm Circle,1,0,1,2,0,0,2,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sequenced-movement-form
+1,86,403,Alternating Palm Press with Weight Shift,0,0,0,0,0,1,2,0,0,0,rule-derived,moving-base-control;sequenced-movement-form
+1,86,404,Wide-Stance Alternating Slow Punch,0,0,1,0,0,0,2,1,0,1,rule-derived,local-loading;rapid-limb-action;sequenced-movement-form;unloaded-ballistic-action
+1,86,405,Shallow Squat with Wing Arm Raise,1,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;rhythmic-loading;sequenced-movement-form
+1,86,406,Standing Wheel Arm Circles,0,0,1,2,0,0,2,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;sequenced-movement-form
+1,86,407,"Inhale-Up, Exhale-Down Arm Circles",0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,408,Staggered-Stance Torso Rotation with Hand Tracking,0,0,1,2,0,0,2,0,0,0,rule-derived,directed-mobility;explicit-sensorimotor-pattern;local-loading;range-of-motion-practice
+1,86,409,Full Neck Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,410,Squat with Upward Thumb Tracking,1,2,3,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;sensory-challenged-balance
+1,86,411,Squat with Downward Thumb Tracking,1,2,3,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;sensory-challenged-balance
+1,86,413,March in Place with Sideward Eye Shifts Between Thumbs,1,0,1,0,0,0,0,0,0,1,rule-derived,local-loading;rapid-limb-action;rhythmic-loading
+1,86,414,Tiptoe Fixed-Thumb Head Turns,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;moving-base-control;sensory-challenged-balance
+1,86,415,Tiptoe Fixed-Thumb Head Nods,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;moving-base-control;sensory-challenged-balance
+1,86,416,Tiptoe Fixed-Thumb Head Tilts,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;moving-base-control;sensory-challenged-balance
+1,86,417,Narrow-Stance Overhead-to-Toe Reach,0,0,0,2,0,1,0,0,0,0,rule-derived,directed-mobility;moving-base-control;range-of-motion-practice
+1,86,418,Look Between Fingers with Head Turns,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;sensory-challenged-balance
+1,86,419,Track Thumb While Nodding the Opposite Way,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;sensory-challenged-balance
+1,86,420,Jumping Jacks,2,0,2,0,0,0,2,0,0,1,anchor-reviewed,Reviewed anchor: Jumping Jacks
+1,86,421,Seal Jacks,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,422,Turn Head Left and Right,0,0,0,1,2,3,0,0,0,0,rule-derived,planned-direction-change;range-of-motion-practice;sensory-challenged-balance
+1,86,423,Ear-to-Shoulder Neck Tilts,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,424,Squat Jacks,2,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,425,Feet-Together Head Turns,0,0,0,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;reduced-base-control;sensory-challenged-balance
+1,86,426,Cross Jacks,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,427,Jumping Lunges with Alternating Overhead Reach,2,2,3,0,0,1,1,3,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;moving-base-control;rhythmic-loading;whole-body-conditioning
+1,86,428,Pogo Jumps with Arm Swing,1,1,2,0,0,0,0,2,0,0,rule-derived,ballistic-action;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,429,High-Knee Run in Place,3,0,2,0,0,0,0,0,0,3,rule-derived,high-cadence-locomotion;local-loading;rhythmic-loading;sustained-local-work;vigorous-interval;whole-body-conditioning
+1,86,430,Butt-Kick Run in Place,2,0,2,0,0,1,0,1,0,1,rule-derived,local-loading;moving-base-control;rapid-limb-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action;whole-body-conditioning
+1,86,431,Bodyweight Jump Squats,1,2,3,0,0,0,0,2,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;local-fatigue;rapid-whole-body-action;rhythmic-loading
+1,86,432,180-Degree Squat Jumps,3,2,3,0,3,2,3,3,0,2,anchor-reviewed,Reviewed anchor: 180-Degree Squat Jumps
+1,86,433,Alternating Jumping Lunges,1,2,3,0,0,1,0,3,0,0,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;moving-base-control;rhythmic-loading
+1,86,434,Lateral Line Hops,2,0,2,0,3,2,2,2,0,2,anchor-reviewed,Reviewed anchor: Lateral Line Hops
+1,86,435,Running High-Knee Punches,3,0,2,0,0,0,0,0,0,3,rule-derived,high-cadence-locomotion;local-loading;rapid-whole-body-action;rhythmic-loading;sustained-local-work;vigorous-interval;whole-body-conditioning
+1,86,436,Punch Jacks,2,0,2,0,0,0,0,1,0,2,rule-derived,local-loading;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action;whole-body-conditioning
+1,86,437,Hopping High-Knee Under-Thigh Claps,3,0,1,0,0,0,2,0,0,3,rule-derived,explicit-sensorimotor-pattern;high-cadence-locomotion;local-loading;vigorous-interval;whole-body-conditioning
+1,86,438,Fast Feet with Alternating Straight Punches,1,1,2,0,0,0,1,0,0,2,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;sustained-local-work
+1,86,439,Pogo Bounces with Fixed-Gaze Head Turns,1,1,2,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;meaningful-resistance;rhythmic-loading;sensory-challenged-balance;sustained-local-work
+1,86,440,Hook Punches to Tuck Jumps,1,2,3,0,0,0,0,3,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rapid-whole-body-action;rhythmic-loading
+1,86,441,Hook Punches to Rope-Free Jumps,2,0,2,0,0,0,0,2,0,2,rule-derived,ballistic-action;local-loading;rapid-whole-body-action;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,442,Pogo Bounces with Fixed-Gaze Head Nods,1,1,2,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;meaningful-resistance;rhythmic-loading;sensory-challenged-balance;sustained-local-work
+1,86,443,Squat Jump with Double Punch,1,2,3,0,0,0,0,3,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;unloaded-ballistic-action
+1,86,444,Pogo Bounces with Fixed-Gaze Head Tilts,1,1,2,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;meaningful-resistance;rhythmic-loading;sensory-challenged-balance;sustained-local-work
+1,86,445,Imaginary Jump Rope with Changing Feet,2,0,2,0,0,0,0,2,0,2,rule-derived,ballistic-action;local-loading;rapid-whole-body-action;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,446,Overhead Arm Claps,0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,447,Standing Seal Claps,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,448,Tuck Jump with Stick Landing,3,2,3,0,0,2,0,3,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rapid-whole-body-action;reduced-base-control;vigorous-interval
+1,86,449,Qigong Waist-Twist Body Taps,0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,450,Vertical Jump with Controlled Landing,0,2,3,0,0,0,0,3,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rapid-whole-body-action
+1,86,451,Power Jacks,1,2,3,0,0,0,0,3,0,0,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rhythmic-loading
+1,86,452,Squat Jump with Quarter Turn,1,2,3,0,2,0,0,3,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;planned-direction-change;rapid-whole-body-action;rhythmic-loading
+1,86,453,Ski Twists,1,1,2,0,0,0,0,2,0,0,rule-derived,ballistic-action;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,454,Alternating Lateral Bounds with Stick Landings,0,2,3,0,0,2,1,2,0,0,rule-derived,ballistic-action;combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,455,High-Impact Standing Mountain Climbers,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,456,Alternating High-Knee Pulldown Run,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,457,Switch Lunge Uppercuts,2,2,3,0,0,1,0,0,0,2,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rapid-whole-body-action;rhythmic-loading;whole-body-conditioning
+1,86,458,Single-Leg Rotational Hops,1,2,3,0,0,4,0,4,0,0,rule-derived,advanced-ballistic-control;ballistic-action;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading;rotational-single-leg-landing
+1,86,459,Goal Post Jacks,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,460,Jogging in Place with Arm Circles,2,0,2,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,461,High Knees with Bent-Arm Circles,2,0,2,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,462,Two-Foot Fake Jump Rope,2,0,2,0,0,0,0,2,0,2,rule-derived,ballistic-action;local-loading;rapid-whole-body-action;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,463,Fake Jump Rope with High Knees,2,0,2,0,0,0,0,2,0,2,rule-derived,ballistic-action;local-loading;rapid-whole-body-action;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,464,Fake Jump Rope with Heel Taps,2,0,2,0,0,0,0,2,0,2,rule-derived,ballistic-action;local-loading;rapid-whole-body-action;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,465,Single-Leg Imaginary Jump Rope,2,2,3,0,0,3,0,4,0,2,rule-derived,advanced-ballistic-control;ballistic-action;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;rapid-whole-body-action;reduced-base-control;rhythmic-loading;whole-body-conditioning
+1,86,466,Alternating Sumo-Squat Stomps,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,467,Standing Chin-to-Chest Nods,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,468,Scarecrow Jacks,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,469,Arm-Circle Jumping Jacks,2,0,2,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,470,Alternating Windmill Toe Touch,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,471,Single-Leg Quarter-Turn Jumps with Stick Landings,0,2,3,0,2,4,0,4,0,0,rule-derived,advanced-ballistic-control;ballistic-action;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;planned-direction-change;reduced-base-control;rotational-single-leg-landing
+1,86,472,Hinge Jumps,1,2,3,0,0,0,0,3,0,0,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rhythmic-loading
+1,86,473,Boxing Lead-Hand Parry,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,474,Chin Tucks with Hands Pulling Forward at Base of Neck,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,475,March in Place with Head Turns,0,0,0,1,0,3,0,0,0,1,rule-derived,range-of-motion-practice;rapid-limb-action;reduced-base-control;sensory-challenged-balance
+1,86,476,Single-Side High-Knee Pulls with Hop,2,2,3,0,0,0,0,2,0,2,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;local-fatigue;rapid-whole-body-action;rhythmic-loading;whole-body-conditioning
+1,86,477,Feet-Together Head Nods,0,0,0,1,0,2,0,0,0,0,rule-derived,range-of-motion-practice;reduced-base-control
+1,86,478,Step-Out Pivot with Thumb Tracking,1,1,2,0,2,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;meaningful-resistance;planned-direction-change;rhythmic-loading;sensory-challenged-balance;sustained-local-work
+1,86,479,Cross-Body Punch Jacks,2,0,2,0,0,0,3,1,0,2,rule-derived,complex-interlimb-sequence;local-loading;rapid-limb-action;rapid-whole-body-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action;whole-body-conditioning
+1,86,480,Three-Part Arm Inhale with Forceful Fold Exhale,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,481,Head Glide Side to Side,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,482,Feet-Together Head Tilts,0,0,0,1,0,2,0,0,0,0,rule-derived,range-of-motion-practice;reduced-base-control
+1,86,483,Standing Diagonal Head Turns,0,0,0,1,2,3,0,0,0,0,rule-derived,planned-direction-change;range-of-motion-practice;sensory-challenged-balance
+1,86,484,Wide Squat with Tongue-Out Exhale,1,0,1,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading
+1,86,485,Alternating Back Taps with Rowing Arms,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,486,Alternating Knee Lift with Two-Arm Pull-Down,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,487,Squat-Jack Uppercuts,3,2,3,0,0,0,0,0,0,2,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rapid-whole-body-action;rhythmic-loading;vigorous-interval;whole-body-conditioning
+1,86,488,Single-Leg Vertical Jump with Stick Landing,0,2,3,0,0,3,0,4,0,2,rule-derived,advanced-ballistic-control;ballistic-action;dynamic-single-leg-control;force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;rapid-whole-body-action;reduced-base-control
+1,86,489,Standing Side-Leg Tapping Roll-Down,0,0,0,0,0,0,2,0,0,0,rule-derived,sequenced-movement-form
+1,86,490,"Track Finger Side to Side, Head Still",0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,491,Keep Eyes on Finger While Nodding,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;sensory-challenged-balance
+1,86,492,Track One Thumb Up and Down,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,493,Diagonal Finger Tracking,0,0,1,0,2,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;planned-direction-change
+1,86,494,Front Clap with Backward Arm Swing,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,495,Track Finger Toward and Away from Nose,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,496,Standing Wide-Arm Claps,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,497,Eyebrow Raise,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,498,Firm Eye Closure,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,499,Track Finger in a Near-Far Spiral,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,500,Straight Jaw Opening,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,501,Keep Eyes on Finger While Turning Head,0,0,1,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;sensory-challenged-balance
+1,86,502,Standing Levator-Scapulae Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,503,Overhead-Assisted Upper-Trapezius Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,504,Hands-on-Head Posterior-Neck Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,505,Jaw Side Glide and Relax,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,506,Jaw Forward Glide and Relax,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,507,Alternating Cross-Body Knee-to-Elbow Crunch,1,1,2,0,0,0,3,0,0,0,rule-derived,combined-alternating-actions;complex-interlimb-sequence;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,508,Alternating Side Taps with Forward Overhead Raises,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,509,Split-Stance Lunge Pulse with Overhead Reach,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,510,Clasped-Hands Chest-Opening Forward-Fold Hold,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,511,Lip Pucker,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,512,Standing Upper-Back and Neck Hug Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,513,Single-Leg Head Nods,0,0,0,1,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;range-of-motion-practice;reduced-base-control;sensory-challenged-balance
+1,86,514,Symmetric Smile,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,515,Raise Upper Lip and Scrunch Nose,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,516,Bent-Elbow Shoulder Circles,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,517,Standing Breath of Joy with Ha Exhale,0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,518,Standing Throat Hee Laughter,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,519,Push Forearm Outward Against Other Hand,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,520,"Raise Arms, Exhale Choo as Hips Sink",0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,521,Stretch and Scrunch Face,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,522,Tutting Box Sequence,0,0,1,0,0,0,4,0,0,0,rule-derived,advanced-sequenced-coordination;complex-interlimb-sequence;local-loading;sequenced-movement-form
+1,86,523,Pass an Arm Wave from Hand to Hand,0,0,1,0,0,0,4,0,0,0,rule-derived,advanced-sequenced-coordination;local-loading;sequenced-movement-form
+1,86,524,Front Double-Biceps Posing,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,525,Front Lat-Spread Posing,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,526,Side-Chest Posing,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,527,Side-Triceps Posing,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,528,Abdominals-and-Thighs Posing,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,529,Alternating Single-Leg Bodyweight Deadlifts,1,3,3,0,0,3,0,0,0,0,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,530,Alternating Standing Lateral Leg Raises,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,531,Single-Arm Shoulder CAR,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,532,Alternating Pistol Squats,1,3,3,0,0,3,0,0,0,0,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,533,Standing Bent-Knee Hip Extension,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,534,Alternating Standing Front Snap Kicks,1,1,2,0,0,1,0,0,0,0,rule-derived,local-loading;meaningful-resistance;moving-base-control;rhythmic-loading;sustained-local-work
+1,86,535,Alternating Crescent Kicks,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,536,Alternating Standing Side Thrust Kicks,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,537,Alternating Single-Leg Deadlifts to Runner March,1,2,3,0,0,3,1,0,0,1,rule-derived,combined-alternating-actions;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;rapid-limb-action;reduced-base-control;rhythmic-loading
+1,86,538,Reverse Lunge with Front Kick,1,2,3,0,0,1,0,1,0,1,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rapid-limb-action;rhythmic-loading;unloaded-ballistic-action
+1,86,539,Alternating Hip-Hinge Rear-Leg Raises,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,540,Alternating Figure-Four Squats,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,541,Alternating Karate Cross-Body Forearm Blocks,0,0,1,0,0,0,3,0,0,2,rule-derived,complex-interlimb-sequence;local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,542,Standing Bird-Dog Reach,0,0,1,0,0,2,0,0,0,0,rule-derived,local-loading;reduced-base-control
+1,86,543,Alternating Karate Rising Blocks,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,544,Standing Overhead Slam,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,545,Alternating Karate Outward Forearm Blocks,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,546,Alternating Muay Thai Horizontal Elbow Strikes,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,547,Standing Rotational Reach and Clap,2,0,0,0,0,0,0,0,0,0,rule-derived,whole-body-conditioning
+1,86,548,Marching Cross-Body Knee Taps,0,0,1,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;explicit-sensorimotor-pattern;local-loading
+1,86,549,Calf Raise with Arm Swings,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,550,Squat to Calf Raise with Overhead Reach,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,551,Squat to Overhead Reach and Calf Raise,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,552,Lateral Arm Raise to Calf Raise,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,554,Arm Raises in Shallow Squat,1,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;rhythmic-loading
+1,86,555,Heel Raise with Walking Arms,0,0,1,0,0,1,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading;moving-base-control
+1,86,556,Single-Arm Backfist,1,1,2,0,0,0,2,0,0,2,rule-derived,local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form;sustained-local-work
+1,86,557,Calf Raise with Double Forward Punch,0,0,1,0,0,1,2,1,0,1,rule-derived,local-loading;moving-base-control;rapid-limb-action;sequenced-movement-form;unloaded-ballistic-action
+1,86,560,Try to Turn Palm Up Against Other Hand,0,2,3,0,2,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;planned-direction-change
+1,86,561,Tiptoe Turn with Head Spot,0,0,1,0,2,1,2,0,0,0,rule-derived,local-loading;moving-base-control;planned-direction-change;sequenced-movement-form
+1,86,562,First-Position Calf Raises,0,1,2,0,0,1,0,0,0,0,rule-derived,local-loading;meaningful-resistance;moving-base-control;sustained-local-work
+1,86,563,Hip Airplane with Back Foot on Wall,0,0,1,0,0,1,0,0,0,0,rule-derived,local-loading;reduced-base-control
+1,86,564,Standing Foot-to-Wall Press Hold,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,565,Mini-Squat Calf Raises with Forward Reach,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,566,Parallel Calf Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,567,Rear-Foot-on-Wall Split Squat,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,568,Toes-on-Wall Calf Stretch,0,0,0,3,0,0,0,0,0,0,anchor-reviewed,Reviewed anchor: Toes-on-Wall Calf Stretch
+1,86,569,Unsupported Single-Leg Straight-Knee Calf Raise,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,570,Calf Raise with Arm Reach and Fist Close,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,571,Hip Hinge to Squat and Calf Raise,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,572,Standing Side-Lunge Adductor Stretch,0,0,0,3,0,1,0,0,0,0,rule-derived,directed-mobility;moving-base-control;range-of-motion-practice;sustained-end-range
+1,86,573,Backs-of-Hands Wrist Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,574,Wall Toe Taps,0,0,0,0,0,2,0,0,0,0,rule-derived,reduced-base-control
+1,86,575,Boxer Bounce to Jab-Cross,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,576,Side-Step Rainbow Reach,1,1,2,0,1,0,0,0,0,0,rule-derived,body-repositioning;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,577,Standing Side Crunch and Side Kick,1,1,2,0,0,1,0,1,0,1,rule-derived,local-loading;meaningful-resistance;moving-base-control;rapid-limb-action;rhythmic-loading;sustained-local-work;unloaded-ballistic-action
+1,86,578,Bounce-Step Jab,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,579,Wall Shoulder Slides,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,580,Wall Angel,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,581,Toes-In Calf Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,582,Toes-Out Calf Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,583,Bounce-Step Cross,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,584,Wall Scapular Push-Up,0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,585,Isometric Shoulder Abduction Against Wall,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,586,Isometric Shoulder Flexion Against Wall,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,587,Isometric Shoulder External Rotation Against Wall,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,588,Belly-Dance Alternating Shoulder Rolls,1,0,1,2,0,0,2,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sequenced-movement-form
+1,86,591,Shadow Boxing,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,603,Wall-Supported Glute Kickback,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,608,Hip Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,609,First-Position Plié Squat and Rise,1,1,2,0,0,0,2,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sequenced-movement-form;sustained-local-work
+1,86,610,Warrior II Hold,0,2,3,3,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,611,Wide-Stance Hip Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,612,Standing Lateral Leg Lift,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,613,Balance March,1,0,1,0,0,2,0,0,0,1,rule-derived,local-loading;rapid-limb-action;reduced-base-control;rhythmic-loading
+1,86,614,Push Forearm Down Against Other Hand,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,615,Alternating Hamstring Curl with Prayer-to-Open Arms,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,616,Standing Overhead Chop,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,617,Standing Forward Side-Leg Circles,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,618,Single-Side Knee Raise with Torso Twist,0,0,1,1,0,2,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;reduced-base-control
+1,86,619,Mini Squat with Forward Scoop,1,0,1,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading
+1,86,620,Standing Backward Side-Leg Circles,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,625,Standing Roll-Down with Halfway Lift,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,626,Sumo Squat Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,632,Hip-Flexor Side Stretch,0,0,2,3,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;sustained-end-range;sustained-local-work
+1,86,633,Straight-Knee Toes-on-Wall Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,636,Curtsy Lunge to Alternating Side Crunch,1,2,3,0,2,1,1,0,0,0,rule-derived,combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;planned-direction-change;rhythmic-loading
+1,86,647,Alternating Heel Curl with Overhead Reach,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,648,Standing Back-Leg Lift,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,649,Standing Side-Leg Raise with Knee Extension,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,654,Alternating Side Leg Lifts and Heel Curls,0,1,2,0,0,2,0,0,0,0,rule-derived,local-loading;meaningful-resistance;reduced-base-control;sustained-local-work
+1,86,666,Ballet Arabesque,0,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;sequenced-movement-form
+1,86,677,Standing Goalpost Arm Hold,0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,678,Overhead Arm Sways,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,681,Downward Elbow Strike,0,0,1,0,0,0,2,0,0,2,rule-derived,local-loading;rapid-whole-body-action;sequenced-movement-form
+1,86,683,Alternating Palm-Up Shoulder Rotations,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,684,Knee Strike to Horizontal Elbow Strike,1,1,2,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,685,Static-Stance Karate Reverse Punch,0,0,1,0,0,0,2,1,0,2,rule-derived,local-loading;rapid-limb-action;rapid-whole-body-action;sequenced-movement-form;unloaded-ballistic-action
+1,86,686,Standing Knee-to-Chest Glute Stretch,0,0,0,3,0,2,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,687,Horse-Stance Alternating Straight Punches,1,2,3,0,0,0,2,0,0,2,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rapid-whole-body-action;rhythmic-loading;sequenced-movement-form
+1,86,701,Wall Push-Up,0,1,2,0,0,0,0,0,0,0,anchor-reviewed,Reviewed anchor: Wall Push-Up
+1,86,702,Wall Triceps Push-Up,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,703,Wall Push-Up with Shoulder Tap,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,704,Wall Pectoral Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,712,Standing Arms-Back Chest-Opener Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,733,Alternating Side Lunge with Forward Arm Reach,1,1,2,0,0,1,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;moving-base-control;rhythmic-loading;sustained-local-work
+1,86,740,Clasped-Hand Upper-Back Stretch,0,0,0,3,0,2,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,741,Cross-Body Shoulder Stretch,0,0,0,3,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,742,Overhead Triceps Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,743,Standing Large Arm Circles,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,744,Standing Figure-Four Glute Stretch,0,0,2,3,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;sustained-end-range;sustained-local-work
+1,86,745,One-Arm Curl Against Other Hand,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,746,Staggered Calf-and-Ankle Stretch,0,0,0,3,0,2,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,747,Standing Quad Stretch,0,0,0,3,0,2,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,748,Wide-Stance Groin and Hamstring Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,750,Heel-Forward Hamstring Stretch,0,0,0,3,0,2,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,751,Standing Neck Half Rolls,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,752,Straight-Arm Wrist Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,755,Outward Wrist Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,756,Outward Controlled Wrist Circles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,758,Backward Knee-and-Ankle Circles,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,784,Extended Mountain Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,790,"Most-Muscular Posing, Hands on Thighs",0,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;sustained-local-work
+1,86,801,Wall Roll-Down,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,804,Alternating Arms-Spread Torso Twist,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,816,Low-Impact Side-Step Jacks,1,0,1,0,1,0,2,0,0,0,rule-derived,body-repositioning;explicit-sensorimotor-pattern;local-loading;rhythmic-loading
+1,86,818,Standing Cat-Cow,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,825,Alternating Deadlift with Body Twist,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,831,Alternating Knee-Up Reverse Fly,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,834,Single-Side Diagonal Knee Drive with Overhead Pull,1,1,2,0,2,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;planned-direction-change;rhythmic-loading;sustained-local-work
+1,86,835,Wall Lat Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,836,Alternating Side-Step Squat with Back Squeeze,1,2,3,0,1,0,1,0,0,0,rule-derived,body-repositioning;combined-alternating-actions;force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,843,Arm-Behind-Back Assisted Side Neck Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,845,Overhead Side-Bend Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,884,Boxing Slip,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,885,Boxing Roll,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,886,Boxing Duck,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,887,Boxing Pullback,1,0,1,0,0,0,0,0,0,2,rule-derived,local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,905,Wide-Plié Alternating Side Bend,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,906,Alternating Cross-and-Side Crunch,1,1,2,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,910,Standing Pilates Knee-Lift Twist,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,911,Wall-Supported High-Knee Raise,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,913,Shallow Wall Sit with Overhead Arm Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,914,Single-Side Diagonal Knee Pull-Down,0,0,1,1,2,0,0,0,0,0,rule-derived,local-loading;planned-direction-change;range-of-motion-practice
+1,86,915,Single-Side Split-Stance Knee Drive with Overhead Reach,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,916,Standing Pelvic-Tilt Repetitions,0,0,0,0,0,2,0,0,0,0,rule-derived,reduced-base-control
+1,86,917,Standing Spinal Wave,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,918,Standing Pelvic-Floor Slow Squeeze and Release,0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,919,Marching in Place with Head Turns,0,0,0,0,0,3,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;sensory-challenged-balance
+1,86,939,Split-Stance Knee-to-Hand Crunch,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,943,Alternating Knee-Up Arms Raise,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,948,Standing Wood Chop,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,949,Standing Low-to-High Wood Chop,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,954,Alternating Torso Rotation with Side Reach,0,0,1,2,0,0,1,0,0,0,rule-derived,combined-alternating-actions;directed-mobility;local-loading;range-of-motion-practice
+1,86,958,Standing Overhead Side-Stretch Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,960,Alternating Heel Tap with Opposite Hand,0,0,1,0,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading
+1,86,962,Alternating Standing Knee Taps,0,0,1,1,0,0,0,0,0,0,rule-derived,local-loading;range-of-motion-practice
+1,86,969,Chair-Pose Hold,0,2,3,3,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;reduced-base-control;sustained-end-range
+1,86,971,Wide-Squat Alternating Knee Raise,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,973,Alternating Reverse-Lunge Torso Twist,1,2,3,0,0,1,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rhythmic-loading
+1,86,986,Deep-Squat Side-to-Side Shift,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,987,Wide-Plié Alternating Heel Lifts,1,2,3,0,0,0,2,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;sequenced-movement-form
+1,86,993,"Standing Stomach Vacuum, Then Release",0,0,1,0,0,0,0,0,0,0,rule-derived,local-loading
+1,86,996,Partial Pistol Squat,1,3,3,0,0,3,0,0,0,0,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,997,Bottom Pistol Squat Hold,0,4,3,0,0,3,0,0,0,0,rule-derived,advanced-bodyweight-leverage;dynamic-single-leg-control;force-limited-block;hard-45-second-set;high-skill-bodyweight-strength;local-fatigue;reduced-base-control
+1,86,998,Deep-Squat Thoracic Rotation,1,2,3,4,0,0,0,0,0,0,rule-derived,advanced-end-range;directed-mobility;force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;rhythmic-loading;sustained-end-range
+1,86,999,Deep-Squat Walk,1,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading
+1,86,1000,Standing Forward-Fold Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1001,Press Raised Knee Inward and Up Against Hands,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1002,Knee Lifts with Overhead and Under-Leg Claps,0,0,1,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern;local-loading
+1,86,1003,"Open Arms, Exhale Sss as Arms Close",0,0,1,0,0,0,2,0,0,0,rule-derived,local-loading;sequenced-movement-form
+1,86,1004,Heels-Down Bent-Knee Calf Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1005,"Breathe Into Belly Through Nose, Out Through Mouth",0,0,0,0,0,0,0,0,0,0,rule-derived,
+1,86,1006,Palm-Up Diagonal Curl Across Chest,0,0,0,2,2,0,0,0,0,0,rule-derived,directed-mobility;planned-direction-change;range-of-motion-practice
+1,86,1007,"Close Fists, Raise and Open Palms Overhead",0,0,0,1,0,0,2,0,0,0,rule-derived,range-of-motion-practice;sequenced-movement-form
+1,86,1008,"Round Back, Curl Hands, Then Step and Reach",1,0,1,2,0,0,2,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sequenced-movement-form
+1,86,1009,Lunge Sideways and Reach Both Arms Overhead,1,0,1,2,1,1,0,0,0,0,rule-derived,body-repositioning;directed-mobility;local-loading;moving-base-control;range-of-motion-practice;rhythmic-loading
+1,86,1010,Roll Torso Side to Side with Overhead Arm Sweeps,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,1011,Rock in Split Stance and Circle Bent Arms,0,0,1,2,0,0,0,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice
+1,86,1012,Squeeze Shoulder Blades with Hands Clasped Behind,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1013,Twist and Sway as Joined Hands Sweep Down and Up,0,0,0,1,0,0,2,0,0,0,rule-derived,range-of-motion-practice;sequenced-movement-form
+1,86,1014,"Step Forward, Round Back and Reach Both Hands",1,0,1,2,0,0,2,0,0,0,rule-derived,directed-mobility;local-loading;range-of-motion-practice;rhythmic-loading;sequenced-movement-form
+1,86,1015,"Curl, Turn and Reach Diagonally Up",0,0,0,2,2,0,0,0,0,0,rule-derived,directed-mobility;planned-direction-change;range-of-motion-practice
+1,86,1017,Scoop Torso Side to Side with Alternating Heel Curls,0,0,1,1,0,0,1,0,0,0,rule-derived,combined-alternating-actions;local-loading;range-of-motion-practice
+1,86,1018,Standing Torso Circles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1020,Alternating Airplane Side Bends,1,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control;rhythmic-loading
+1,86,1021,Standing Spinal Roll-Down,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,1022,Single-Leg Windmill Toe Reach,0,2,3,2,0,3,0,0,0,0,rule-derived,directed-mobility;dynamic-single-leg-control;force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;reduced-base-control
+1,86,1024,Jab-Cross-Lead-Hook Combo,1,0,1,0,0,0,3,0,0,2,rule-derived,complex-interlimb-sequence;local-loading;rapid-whole-body-action;rhythmic-loading
+1,86,1025,Standing Back Claps,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1026,Alternating Teacup Arm Circles,0,0,0,1,0,0,2,0,0,0,rule-derived,range-of-motion-practice;sequenced-movement-form
+1,86,1027,Teacup Arm Circles,0,0,0,1,0,0,2,0,0,0,rule-derived,range-of-motion-practice;sequenced-movement-form
+1,86,1028,Chair-Pose Thigh Squeeze Hold,0,2,3,3,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice;sustained-end-range
+1,86,1029,Alternating Heel Digs,2,0,1,0,0,0,0,0,0,0,rule-derived,local-loading;whole-body-conditioning
+1,86,1030,Reverse Rowing with Knee Bends,0,0,0,1,0,0,2,0,0,0,rule-derived,range-of-motion-practice;sequenced-movement-form
+1,86,1031,Chair Squats with Thigh Squeeze,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1032,Spinal Wave with Arm Spirals,0,0,0,1,0,0,2,0,0,0,rule-derived,range-of-motion-practice;sequenced-movement-form
+1,86,1033,Walking Knee Hugs,2,0,0,0,0,0,0,0,0,0,rule-derived,whole-body-conditioning
+1,86,1034,Walking Quad Stretch,2,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;whole-body-conditioning
+1,86,1035,Walking Figure-Four Stretch,2,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;whole-body-conditioning
+1,86,1036,Walking Straight-Leg Kicks,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1037,Walking Lunges,2,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,1038,Walking Lunges with Trunk Twist,2,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,1039,Walking Lunges with Overhead Side Reach,2,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,1040,Walking Hip Circles,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1041,Lateral Skipping,2,0,2,0,0,0,0,2,0,0,rule-derived,ballistic-action;local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1042,Lateral Crossover Skipping,2,0,2,0,2,0,0,2,0,0,rule-derived,ballistic-action;local-loading;planned-direction-change;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1043,Side Shuffle with Arm Swings,2,0,2,0,2,0,0,0,0,2,rule-derived,local-loading;planned-direction-change;rapid-whole-body-action;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1044,Carioca with Knee Drive,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1045,Crossover Squat Walk,2,2,3,0,2,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;planned-direction-change;rhythmic-loading;whole-body-conditioning
+1,86,1046,Diagonal Walking Lunges,2,2,3,0,2,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;planned-direction-change;rhythmic-loading;whole-body-conditioning
+1,86,1047,Walking Crossover Lunges,2,2,3,0,2,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;planned-direction-change;rhythmic-loading;whole-body-conditioning
+1,86,1048,Power Skipping for Height,2,2,3,0,0,0,0,3,0,3,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-cadence-locomotion;high-force-ballistic-action;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,1049,Walking Lunge to Power Skip,2,2,3,0,0,1,0,3,0,2,rule-derived,force-limited-block;hard-45-second-set;high-force-ballistic-action;local-fatigue;moving-base-control;rapid-whole-body-action;rhythmic-loading;whole-body-conditioning
+1,86,1050,Backward Walking,2,0,0,0,0,0,0,0,0,0,rule-derived,whole-body-conditioning
+1,86,1051,Forward Two-Foot Hops,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1052,Sprinting,4,2,3,0,0,0,0,3,0,5,rule-derived,force-limited-block;hard-45-second-set;high-cadence-locomotion;high-force-ballistic-action;local-fatigue;maximal-repeatable-interval;maximal-sprinting;rhythmic-loading;whole-body-conditioning
+1,86,1053,Backward Running,2,0,2,0,1,0,0,0,0,3,rule-derived,body-repositioning;high-cadence-locomotion;local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1054,Straight-Leg Bounds,2,0,2,0,0,0,0,0,0,0,rule-derived,local-loading;rhythmic-loading;sustained-local-work;whole-body-conditioning
+1,86,1055,Alternating Forward Bounds,2,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,1056,Power Skipping for Distance,2,2,3,0,0,0,0,3,0,3,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;high-cadence-locomotion;high-force-ballistic-action;local-fatigue;rhythmic-loading;whole-body-conditioning
+1,86,1057,Abdominal Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1058,Lying 90-Degree Hamstring Extensions,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1059,Up-Down Planks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1060,Lying Figure-Four Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1061,Archer Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1062,Back-Bow Jacks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1063,Bear Crawl,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1064,Lying Bent-Knee Openers,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1065,Bent-Knee Side Plank,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1066,Bird Dogs,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1067,Bridge Pose,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1068,Knee Push-Up Burpees,4,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;maximal-repeatable-interval
+1,86,1069,Seated Butterfly Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1070,Cat Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1071,Child's Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1072,Side-Lying Clamshells,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1073,Plank with Cross-Body Toe Touch,0,2,3,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1074,Cobra Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1075,Prone Arm Sweeps,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1076,Crab Walk,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1077,Reverse Tabletop Knee-to-Elbow Crunches,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1078,Figure-Four Straight-Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1079,Dead Bug Leg Extensions,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1080,Diamond Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1081,Dive-Bomber Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1082,Donkey Kicks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1083,Double Knee-to-Chest Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1084,Pilates Double-Leg Stretch,0,2,3,2,0,0,0,0,0,0,rule-derived,directed-mobility;force-limited-block;hard-45-second-set;local-fatigue;range-of-motion-practice
+1,86,1085,Downward Dog to Knee Drive,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1086,Downward Dog Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1087,Plank to Downward Dog,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1088,Tabletop Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1089,Fire Hydrants,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1090,Prone Frog Hip Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1091,Frog Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1092,Reverse Nordic Curls,0,3,3,0,0,0,0,0,0,0,rule-derived,advanced-bodyweight-leverage;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1093,Glute Bridges,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1094,Seated Spinal Twist Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1095,Quadruped Straight-Leg Pulses,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1096,Seated Head-to-Knee Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1097,Lying Heel Slides,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1098,Side-Lying Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1099,Prone Single-Leg Lifts,0,1,2,0,0,2,0,0,0,0,rule-derived,local-loading;meaningful-resistance;reduced-base-control;sustained-local-work
+1,86,1100,Kneeling Hip Flexor Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1101,Hollow-Body Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1102,Side-to-Side Hover Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1103,Seated Hurdler Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1104,Burpees with Plank Jacks,4,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;maximal-repeatable-interval
+1,86,1105,Lying Thigh-Down Press into Hands Hold,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1106,Lying Knee-to-Palms Press Hold,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1107,Plank Hops In and Out,3,2,4,0,0,0,0,0,0,0,rule-derived,advanced-whole-body-endurance;force-limited-block;hard-45-second-set;local-fatigue;vigorous-interval
+1,86,1108,Push-Ups with Knee Tuck,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1109,Side-Kneeling Leg Circles,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1110,Side Crunches with Top-Leg Lift,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1111,Alternating Side Planks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1112,Side-Lying Front-and-Back Kicks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1113,Hands-Down Low Lunge Hold,0,0,0,3,0,1,0,0,0,0,rule-derived,moving-base-control;range-of-motion-practice;sustained-end-range
+1,86,1114,Lunge with Upper-Body Rotation,0,0,0,2,0,1,0,0,0,0,rule-derived,directed-mobility;moving-base-control;range-of-motion-practice
+1,86,1115,Prone Elbow Pullbacks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1116,Mountain Climbers,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1117,Side-Lying One-Arm Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1118,Glute Bridge Heel Walkouts,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1119,Pigeon Stretch,0,0,0,4,0,0,0,0,0,0,rule-derived,advanced-end-range;directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1120,Pigeon Stretch with Circular Reaches,0,0,0,4,0,0,0,0,0,0,rule-derived,advanced-end-range;directed-mobility;range-of-motion-practice
+1,86,1121,Pike Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1122,Pilates Open-Leg Rocker,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1123,Lying Crossed-Knee Glute Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1124,Forearm Plank Knee Crunch to Kickback,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1125,Forearm Plank Hip Dips,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1126,Plank Jacks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1127,Plank Jump to Squat,1,1,2,0,0,0,0,2,0,2,rule-derived,ballistic-action;local-loading;meaningful-resistance;rapid-whole-body-action;rhythmic-loading;sustained-local-work
+1,86,1128,Forearm Plank Knee Taps,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1129,Forearm Plank Knee Tucks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1130,High Plank,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1131,Sideways Plank Walk,0,1,2,0,1,0,0,0,0,0,rule-derived,body-repositioning;local-loading;meaningful-resistance;sustained-local-work
+1,86,1132,Plank Knee Drive to Leg Lift,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1133,Downward Dog Calf Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1134,Long-Lever Plank Walkouts,0,3,3,0,0,0,0,0,0,0,rule-derived,advanced-bodyweight-leverage;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1135,Plank Arm Raises,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1136,Forearm Plank Reach-Backs,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1137,Forearm Plank,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1138,Prone I Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1139,Prone Hip Internal and External Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1140,Sphinx Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1141,Prone W Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1142,Clapping Push-Ups,0,2,3,0,0,0,0,4,0,0,rule-derived,advanced-ballistic-control;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1143,Push-Up to Side Plank,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1144,Knee Push-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1145,Push-Ups with Side Leg Lift,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1146,Single-Leg Push-Ups,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,1147,Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1148,Lying Knee-Over-Side Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1149,Prone Quadriceps Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1150,Side-Lying Quadriceps Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1151,Quadruped Straight-Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1152,Half-Kneeling Knee Drives,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1153,Reverse Plank,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1154,Russian Twists with Feet Down,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1155,Pilates Roll-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1156,Rolling Like a Ball,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1157,Vertical Scissor Kicks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1158,Prone Scorpion Stretch,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,1159,Pilates Seated Spine Twist,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1160,Glute Bridge with Straight-Leg Kicks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1161,Push-Ups with Shoulder Taps,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1162,Side V-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1163,Twisting Plank Knee Drives,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1164,Side Plank with Two-Way Leg Raise,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1165,Side Plank with Top-Leg Raises,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1166,Straight-Arm Side Plank Knee Drives,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1167,Side Plank,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1168,Side-Lying Arm Raises,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1169,Side-Lying Shoulder External Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1170,Single-Leg Glute Bridges,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,1171,Pilates Single-Leg Stretch,0,1,2,2,0,2,0,0,0,0,rule-derived,directed-mobility;local-loading;meaningful-resistance;range-of-motion-practice;reduced-base-control;sustained-local-work
+1,86,1172,Sit-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1173,Sleeper Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1174,Spiderman Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1175,Pilates Spine Stretch Forward,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,1176,Turned-Out Straight-Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1177,Lying Single-Leg Raises,0,1,2,0,0,2,0,0,0,0,rule-derived,local-loading;meaningful-resistance;reduced-base-control;sustained-local-work
+1,86,1178,Supermans,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1179,Bicycle Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1180,Lying Straight-Arm Circles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1181,Lying Serratus Punches,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1182,Lying Shoulder Flexion,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,1183,Bent-Knee Windshield Wipers,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1184,Prone Swimmers,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1185,Lying Upper-Trunk Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1186,Reverse Tabletop Kicks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1187,Straight-Leg V-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1188,Quadruped Thread-the-Needle Reaches,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1189,Three-Legged Downward Dog Pose,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1190,Floor Triceps Dips,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1191,Twisting Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1192,Plank Opposite Arm-and-Leg Raises,0,2,3,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1193,Bent-Knee V-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1194,W-Arm Supermans,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1195,Wide-Grip Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1196,World's Greatest Stretch,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,1197,Seated 90/90 Hip Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1198,Barre Pretzel Leg Lifts,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1199,Sit-Throughs,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1200,Cat-Cow,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1201,Lying Head-Lift Rotations,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1202,Lying Chin Tucks,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1203,Cow Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1204,Lying Chin-Tuck Head Hold,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1205,Pilates Double-Leg Kicks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1206,Hands-on-Floor Forward Fold Hold,0,0,0,4,0,0,0,0,0,0,rule-derived,advanced-end-range;range-of-motion-practice;sustained-end-range
+1,86,1207,Low Push-Up Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1208,Prone Frog Leg Lifts,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1209,Happy Baby Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1210,Kneeling Sit-on-Heels Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1211,Seated In-and-Out Knee Tucks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1212,Inchworm Crawl,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1213,Standing Hand Walkouts,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1214,Side-Lying Inner-Thigh Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1215,90/90 Hip Switch to Kneeling,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1216,Single Knee-to-Chest Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1217,Prone Back Extensions,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1218,Lying Double-Leg Raises,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1219,Plank Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1220,Reverse Plank Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1221,Horizontal Scissor Kicks,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1222,Lying Vertical Leg Opens,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1223,Russian Twists with Feet Raised,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1224,McGill Curl-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1225,Lying Single-Leg Circles,0,1,2,0,0,2,0,0,0,0,rule-derived,local-loading;meaningful-resistance;reduced-base-control;sustained-local-work
+1,86,1226,Supine Marching,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1227,Supine March with Opposite Arm Reach,0,0,0,2,0,0,3,0,0,1,rule-derived,complex-interlimb-sequence;directed-mobility;range-of-motion-practice;rapid-limb-action
+1,86,1228,Quadruped Chin Tucks,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1229,Extended Side-Angle Pose,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1230,Side-Lying Leg Circles,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1231,Six-Inch Leg Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1232,Side-to-Side Plank Hops,3,2,4,0,0,0,0,0,0,0,rule-derived,advanced-whole-body-endurance;force-limited-block;hard-45-second-set;local-fatigue;vigorous-interval
+1,86,1233,Lying Snow Angels,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1234,Spiderman Lunges,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1235,Crab-to-Bear Switches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1236,Alternating Crab Kicks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1237,Reverse Tabletop Rocks,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1238,Pilates Hundred,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1239,Pilates Saw,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1240,Side-Lying Open-Book Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1241,Triangle Pose with Hand on Floor,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1242,Pyramid Pose with Hands on Floor,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1243,Seated Bent-Knee Leg Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1244,Quadruped Side Bends,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1245,Hands-on-Floor Straddle Fold Hold,0,0,0,3,0,0,0,0,0,0,rule-derived,range-of-motion-practice;sustained-end-range
+1,86,1246,Prone Y-to-T Arm Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1247,Seated 90/90 Hip Switches,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1248,Prone Snow Angels,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1249,Lying Toe-Reach Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1250,One-Arm High Plank,0,3,3,0,0,0,0,0,0,0,rule-derived,advanced-bodyweight-leverage;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1251,Reverse Tabletop Hold,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1252,Dead Bugs with Opposite Arm Reach,0,1,2,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;local-loading;meaningful-resistance;sustained-local-work
+1,86,1253,Reverse Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1254,Plyometric Push-Ups,0,2,3,0,0,0,0,2,0,0,rule-derived,ballistic-action;force-limited-block;hard-45-second-set;local-fatigue
+1,86,1255,Close-Grip Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1256,Knuckle Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1257,Bird Dog Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1258,Push-Ups with Cross-Body Leg Kick,0,2,3,0,0,1,3,1,0,1,rule-derived,complex-interlimb-sequence;force-limited-block;hard-45-second-set;local-fatigue;moving-base-control;rapid-limb-action;unloaded-ballistic-action
+1,86,1259,Push-Up to Forearm Plank,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1260,Alternating Staggered Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1261,Mountain Climber Push-Ups,3,2,4,0,0,0,0,0,0,3,rule-derived,advanced-whole-body-endurance;force-limited-block;hard-45-second-set;high-cadence-locomotion;local-fatigue;vigorous-interval;whole-body-conditioning
+1,86,1262,Hand-Release Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1263,Walking Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1264,Hands-and-Knees Crawl,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1265,Low Bear Crawl,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1266,Gorilla Crawl,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1267,Alligator Crawl,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1268,Low Alligator Crawl,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1269,Army Crawl,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1270,Kneeling Crawl with Sit-Through,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1271,Forward-and-Backward Plank Walk,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1272,Wall-Supported Figure-Four Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1273,Kneeling Wall Quadriceps Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1274,Seated Wall Angels,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1276,Side-Lying Wall Hip Abductions,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1277,Kneeling Knee-to-Wall Rocks,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1278,Kneeling Wall Hamstring and Calf Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1279,Single-Arm Kneeling Wall Scapular Rockbacks,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1280,Half-Kneeling Wall Thoracic Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1281,Wall-Press Dead Bugs,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1282,Feet-on-Wall Forearm Plank,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1283,Wall Glute Bridge Hold,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1284,Wall Glute Bridge Marches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1285,Wall Bridge Heel Raises,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1286,Single-Leg Wall Glute Bridge Hold,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,1287,Wall-Supported Abdominal Crunches,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1288,Wall-Supported Cross-Body Crunches,0,1,2,0,0,0,3,0,0,0,rule-derived,complex-interlimb-sequence;local-loading;meaningful-resistance;sustained-local-work
+1,86,1289,High Plank to Wall Reaches,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1290,Feet-on-Wall Pike Hold,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1291,Supine Wall Heel Slides,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1292,Wall Straddle Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1293,Wall-Supported Roll-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1294,Flat-Finger Knuckle Bends,0,0,0,2,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice
+1,86,1295,Heel-to-Toe Rocking,0,0,1,1,0,2,0,0,0,0,rule-derived,local-loading;range-of-motion-practice;reduced-base-control
+1,86,1296,Five-Position Finger Tendon Glides,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1297,Alternating Standing Gate Openers,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1298,Alternating Standing Leg Cradles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1299,Standing Ankle Circles Both Ways,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1300,March in Place with Shoulder Rolls,0,0,0,1,0,0,0,0,0,1,rule-derived,range-of-motion-practice;rapid-limb-action
+1,86,1301,March in Place with Arm Curls,0,0,0,1,0,0,0,0,0,1,rule-derived,range-of-motion-practice;rapid-limb-action
+1,86,1302,Woodchopper Breath with Ha Exhale,0,0,0,0,0,0,2,0,0,0,rule-derived,explicit-sensorimotor-pattern
+1,86,1303,Standing Body Circles,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1401,Incline Push-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1402,Close-Grip Incline Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1403,Single-Arm Incline Scapular Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1404,Bench Dips,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1405,Sit-to-Stands,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1406,Single-Leg Sit-to-Stands,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,1407,Rear-Foot-Elevated Split Squats,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1408,Seated Knee Extensions,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1409,Seated Marching,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1410,Seated Heel-to-Toe Rocking,0,0,0,1,0,1,0,0,0,0,rule-derived,range-of-motion-practice;reduced-base-control
+1,86,1411,Seated Hamstring Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1412,Seated Figure-Four Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1413,Seated Trunk Rotations,0,0,0,1,0,0,0,0,0,0,rule-derived,range-of-motion-practice
+1,86,1414,Seated Side-Bend Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1415,Chair Press-Ups,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1416,Seated Knee-to-Elbow Twists,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1417,Elevated Hamstring Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1418,Foot-on-Chair Shin Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1419,Seated Inner-Thigh Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1420,Standing Elevated Figure-Four Stretch,0,0,0,3,0,0,0,0,0,0,rule-derived,directed-mobility;range-of-motion-practice;sustained-end-range
+1,86,1421,Box Jumps,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1422,Lateral Box Jumps,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1423,Step-Ups,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,1424,Lateral Step-Ups,1,1,2,0,2,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;planned-direction-change;rhythmic-loading;sustained-local-work
+1,86,1425,Calf Raises on a Step,1,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;rhythmic-loading;sustained-local-work
+1,86,1426,Decline Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1427,Bench Hip Thrusts,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1428,Single-Leg Elevated Glute Bridges,0,2,3,0,0,2,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue;reduced-base-control
+1,86,1429,Copenhagen Adductions,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1430,Elevated Forearm Pike Scapular Push-Ups,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1431,Sideways Bear Crawl,0,1,2,0,1,0,0,0,0,0,rule-derived,body-repositioning;local-loading;meaningful-resistance;sustained-local-work
+1,86,1432,Sideways Crab Walk,0,1,2,0,1,0,0,0,0,0,rule-derived,body-repositioning;local-loading;meaningful-resistance;sustained-local-work
+1,86,1433,Sideways Gorilla Crawl,0,1,2,0,1,0,0,0,0,0,rule-derived,body-repositioning;local-loading;meaningful-resistance;sustained-local-work
+1,86,1434,Frog Jumps,0,2,3,0,0,0,0,0,0,0,rule-derived,force-limited-block;hard-45-second-set;local-fatigue
+1,86,1435,Bunny Hops,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1436,Burpee Broad Jumps,4,2,4,0,0,0,0,4,0,3,rule-derived,advanced-ballistic-control;advanced-whole-body-endurance;force-limited-block;hard-45-second-set;high-cadence-locomotion;local-fatigue;maximal-repeatable-interval;vigorous-interval;whole-body-conditioning
+1,86,1437,Log Rolls,0,1,2,0,0,0,0,0,0,0,rule-derived,local-loading;meaningful-resistance;sustained-local-work
+1,86,1438,Seated Buttock Walks,0,0,0,0,0,0,0,0,0,0,rule-derived,
