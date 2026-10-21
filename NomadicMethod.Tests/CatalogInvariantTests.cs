@@ -267,6 +267,22 @@ public sealed class CatalogInvariantTests
         Assert.Equal(215, exercises.Count(exercise => exercise.MuscularDemand == 0));
         Assert.Equal(407, exercises.Count(exercise => exercise.MuscularDemand == 1));
         Assert.Equal(231, exercises.Count(exercise => exercise.MuscularDemand == 2));
+        foreach (int level in Enumerable.Range(1, 5))
+        {
+            Exercise[] reactive = exercises.Where(exercise =>
+                exercise.ReactionCueLevel == level).ToArray();
+            Assert.True(
+                reactive
+                    .Select(WorkoutModifierPolicy.GetSessionMovementId)
+                    .Distinct()
+                    .Count() >= 6,
+                $"Reaction cue level {level} must contain at least six distinct session movements.");
+            Assert.All(reactive, exercise =>
+            {
+                Assert.Equal(ExerciseMode.Repetition, exercise.Mode);
+                Assert.Equal(ExercisePresentation.Motion, exercise.Presentation);
+            });
+        }
         Assert.All(Enum.GetValues<CanonicalMuscleGroup>(), canonicalGroup =>
             Assert.Contains(exercises, exercise =>
                 exercise.PrimaryCanonicalGroup == canonicalGroup));

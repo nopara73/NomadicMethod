@@ -205,6 +205,21 @@ $mirrorAgnosticExerciseIds = @(
     $mirrorRelationshipReview.Agnostic | ForEach-Object { [int]$_ })
 $muscularDemandReview = Import-PowerShellDataFile -LiteralPath (
     Join-Path $PSScriptRoot 'ExerciseMuscularDemand.psd1') -SkipLimitCheck
+$fitnessCeilingCoverageOverrides = Get-Content -Raw -LiteralPath (
+    Join-Path $PSScriptRoot 'ExerciseFitnessCeilingCoverageOverrides.json') |
+    ConvertFrom-Json -AsHashtable
+$reactionCueLevelByExerciseId = @{}
+foreach ($entry in $fitnessCeilingCoverageOverrides.overrides.GetEnumerator()) {
+    $exerciseId = [int]$entry.Key
+    $scores = $entry.Value.scores
+    if ($scores.ContainsKey('reactionTime') -and [int]$scores.reactionTime -gt 0) {
+        $reactionCueLevelByExerciseId[$exerciseId] = [int]$scores.reactionTime
+    }
+}
+if (@($reactionCueLevelByExerciseId.Keys | Where-Object {
+        $_ -notin $sourceExerciseIds }).Count -gt 0) {
+    throw 'Reaction cue review contains an exercise outside the source catalog.'
+}
 $sessionMovementReview = Import-PowerShellDataFile -LiteralPath (
     Join-Path $PSScriptRoot 'ExerciseSessionMovements.psd1') -SkipLimitCheck
 $sessionMovementByExerciseId = @{}
@@ -225,6 +240,23 @@ foreach ($entry in $sessionMovementReview.Families.GetEnumerator()) {
             throw "Exercise $exerciseId belongs to more than one session-movement family."
         }
         $sessionMovementByExerciseId[$exerciseId] = $rootId
+    }
+}
+foreach ($level in 1..5) {
+    $levelMovementIds = @($reactionCueLevelByExerciseId.GetEnumerator() |
+        Where-Object { [int]$_.Value -eq $level } |
+        ForEach-Object {
+            $exerciseId = [int]$_.Key
+            if ($sessionMovementByExerciseId.ContainsKey($exerciseId)) {
+                [int]$sessionMovementByExerciseId[$exerciseId]
+            }
+            else {
+                $exerciseId
+            }
+        } |
+        Sort-Object -Unique)
+    if ($levelMovementIds.Count -lt 6) {
+        throw "Reaction cue level $level must contain at least six distinct session movements; found $($levelMovementIds.Count)."
     }
 }
 $muscularDemandByExerciseId = @{}
@@ -3521,6 +3553,12 @@ foreach ($definition in $sourceDefinitions) {
         }
         score = 0
         muscularDemand = [int]$muscularDemandByExerciseId[$exerciseId]
+        reactionCueLevel = if ($reactionCueLevelByExerciseId.ContainsKey($exerciseId)) {
+            [int]$reactionCueLevelByExerciseId[$exerciseId]
+        }
+        else {
+            0
+        }
         onlyFeetTouchGround = $floorContactsByExerciseId[$exerciseId] -eq 'Feet'
         floorContactPoints = [string]$floorContactsByExerciseId[$exerciseId]
         shoeAgnostic = $true
@@ -3855,7 +3893,10 @@ $constraintViolations = $records | Where-Object {
     $_['score'] -ne 0 -or
     $_['muscularDemand'] -isnot [int] -or
     $_['muscularDemand'] -lt 0 -or
-    $_['muscularDemand'] -gt 2
+    $_['muscularDemand'] -gt 2 -or
+    $_['reactionCueLevel'] -isnot [int] -or
+    $_['reactionCueLevel'] -lt 0 -or
+    $_['reactionCueLevel'] -gt 5
 }
 $recordsById = @{}
 foreach ($record in $records) {

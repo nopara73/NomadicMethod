@@ -28,6 +28,7 @@
     <Compile Include="..\NomadicMethod\Models\OuraRecoverySnapshot.cs" Link="Production\Models\OuraRecoverySnapshot.cs" />
     <Compile Include="..\NomadicMethod\Services\OuraRecoveryPolicy.cs" Link="Production\Services\OuraRecoveryPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\RestFeedback.cs" Link="Production\Services\RestFeedback.cs" />
+    <Compile Include="..\NomadicMethod\Services\ReactionCuePolicy.cs" Link="Production\Services\ReactionCuePolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\OuraNightBuilder.cs" Link="Production\Services\OuraNightBuilder.cs" />
     <Compile Include="..\NomadicMethod\Data\ExerciseDatabaseMigrationSql.cs" Link="Production\Data\ExerciseDatabaseMigrationSql.cs" />
     <Compile Include="..\NomadicMethod\Data\ExerciseDatabaseVersionPolicy.cs" Link="Production\Data\ExerciseDatabaseVersionPolicy.cs" />

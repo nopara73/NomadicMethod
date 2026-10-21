@@ -1,7 +1,8 @@
 # ACSM fitness-ceiling scoring
 
-Status: provisional catalog audit, scoring version 1. It is not used by workout
-selection, scoring, recovery, or the Android/web runtime.
+Status: provisional catalog audit, scoring version 2. The ten ceiling scores do
+not affect workout selection, preference scores, or recovery. Reaction-time
+placements are backed by the Android/web cue protocol described below.
 
 This audit scores every exercise against the traditional ACSM fitness
 components except body composition:
@@ -52,22 +53,24 @@ plausibly contribute to the directly matched capacity.
   a cardiorespiratory score.
 - Agility uses the traditional planned-repositioning definition. A rehearsed
   turn can train agility without training reaction time.
-- Reaction time requires an unpredictable external cue. All current catalog
-  demonstrations are known repeating loops, so all 853 reaction-time scores
-  are zero.
+- Reaction time requires an unpredictable external cue. A repeating video by
+  itself receives zero. Thirty exercises now add a random visual stop/go cue:
+  the demonstrator pauses under a red pause symbol and resumes under a green
+  play symbol. Existing workouts from before catalog revision 87 retain their
+  original continuous playback.
 
 Training outcomes still depend on weekly dose, intensity, recovery, starting
 ability, technique, and individual response. The catalog has no longitudinal
 intervention data proving these ceilings. The values are structured estimates
 for product discussion and later review.
 
-## Version 1 method
+## Version 2 method
 
 The generated audit is
 [`catalog-audit/acsm-fitness-ceiling-scores.csv`](catalog-audit/acsm-fitness-ceiling-scores.csv).
-It covers catalog revision 86 at source commit
-`089172327c9dd16131988f9a8d30909eec03888a`, with 853 records and source-catalog
-SHA-256 `ca3c19ef014457a0999b4cdfaec4cf7d3ae61d3ef2c48229ad8497ec4ff2035a`.
+It covers catalog revision 87, with 853 records and catalog SHA-256 after
+normalizing CRLF line endings to LF
+`22eef7cef689707c629fb58a5acb041eebb0ed8f2be8ae810b7e13e61cd4b657`.
 
 Seven exercises previously discussed are explicit reviewed anchors. Their ten
 scores live in
@@ -83,17 +86,48 @@ scores live in
 | Toes-on-Wall Calf Stretch | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
 | Wall Push-Up | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-The remaining 846 rows are rule-derived from the canonical catalog's name,
+Another 115 exercises have reviewed exact-level placements in
+[`../tools/ExerciseFitnessCeilingCoverageOverrides.json`](../tools/ExerciseFitnessCeilingCoverageOverrides.json).
+The remaining 731 rows are rule-derived from the canonical catalog's name,
 practice, motion profile, mode, muscular demand, support, and locomotor cues.
 The rules are readable in
 [`../tools/generate-exercise-fitness-ceiling-scores.mjs`](../tools/generate-exercise-fitness-ceiling-scores.mjs),
 and each CSV row records the rules that fired in its `basis` field. Reviewed
 exercise-specific judgments can replace derived values by adding an override.
 
-The first version intentionally leaves most dimensions below level 5. Fixed
-45-second, largely unweighted exercises usually cannot justify an expert
-ceiling. Sprinting is the only current direct match assigned level-5 speed.
-An unused level is valid; scores are not quotas.
+## Exact-level catalog rule
+
+Every one of the 50 exact characteristic-level cells must contain at least six
+distinct session movements. A level-5 movement does not count again at levels
+1–4, and aliases or members of the same `SessionMovementId` count once. This is
+a Nomadic Method catalog-diversity rule; it is not an ACSM recommendation and
+does not make six a physiological threshold.
+
+The generated
+[`catalog-audit/acsm-fitness-ceiling-coverage.json`](catalog-audit/acsm-fitness-ceiling-coverage.json)
+records both exercise rows and deduplicated session-movement IDs. Generation
+and CI fail on any cell below six. Version 2 currently has no deficits.
+
+High-tier placements remain task-specific. For example, level-5 pistol work is
+a claim about the directly trained unilateral squat task, not a claim that it
+creates level-5 strength in every muscle or movement.
+
+## Reaction cue levels
+
+The 30 cue-backed exercises contain six distinct session movements at each
+level. Each 45-second block alternates random move and freeze windows:
+
+| Level | Move window | Freeze window |
+|---:|---:|---:|
+| 1 | 5.5–8.0 s | 1.6–2.2 s |
+| 2 | 4.0–6.5 s | 1.2–1.8 s |
+| 3 | 3.0–5.0 s | 0.9–1.4 s |
+| 4 | 2.0–3.5 s | 0.7–1.1 s |
+| 5 | 1.2–2.5 s | 0.45–0.85 s |
+
+The base movements are all reviewed motion/repetition exercises; no hold or
+still-image exercise receives a reaction score. The cue density supplies the
+level distinction, while the random transition supplies the external stimulus.
 
 ## Rebuild and verify
 
@@ -105,8 +139,9 @@ node tools/generate-exercise-fitness-ceiling-scores.mjs --check
 ```
 
 The check fails if the catalog changes, an override points to a missing
-exercise, a score leaves the 0–5 range, or the committed CSV no longer matches
-the scoring rules.
+exercise, a score leaves the 0–5 range, a reaction score differs from the
+runtime cue level, a characteristic-level cell has fewer than six distinct
+session movements, or either committed audit file is stale.
 
 Before any runtime use, every rule-derived row should receive exercise-specific
 review, the benchmark battery should be finalized for each relevant movement

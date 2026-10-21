@@ -73,6 +73,8 @@ public sealed class Exercise
 
     public int MuscularDemand { get; init; }
 
+    public int ReactionCueLevel { get; init; }
+
     public int Score { get; set; } = 0;
 
     public required bool OnlyFeetTouchGround { get; init; }

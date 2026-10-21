@@ -33,6 +33,7 @@ public partial class MainActivity : Activity
     private const long ModifierFeedbackFadeDurationMilliseconds = 700L;
     private const float PlaybackControlEnabledAlpha = 1f;
     private const float PlaybackControlDisabledAlpha = 0.35f;
+    private const long ReactionCueMoveFlashMilliseconds = 560L;
 
     private enum AppScreen
     {
@@ -126,6 +127,7 @@ public partial class MainActivity : Activity
     private View _exerciseMediaCard = null!;
     private ExerciseVideoView _exerciseVideo = null!;
     private ImageView _holdFrameImage = null!;
+    private ImageView _reactionCueIndicator = null!;
     private View _mediaScrim = null!;
     private ProgressBar _mediaLoadingIndicator = null!;
     private View _mediaErrorPanel = null!;
@@ -173,6 +175,10 @@ public partial class MainActivity : Activity
     private bool _countdownPausedForMediaError;
     private bool _countdownPausedByUser;
     private bool _automaticSequenceStartPending;
+    private bool _reactionCueActive;
+    private bool _reactionCueMoving = true;
+    private long _reactionCueEndsAtElapsedMilliseconds;
+    private long _reactionCueMoveFlashEndsAtElapsedMilliseconds;
     private bool _applicationStartupCompleted;
     private bool _startWorkoutWhenReady;
     private CancellationTokenSource? _workoutPreparationCancellation;
@@ -704,6 +710,8 @@ public partial class MainActivity : Activity
         _exerciseMediaCard = FindRequiredView<View>(Resource.Id.exercise_media_card);
         _exerciseVideo = FindRequiredView<ExerciseVideoView>(Resource.Id.exercise_video);
         _holdFrameImage = FindRequiredView<ImageView>(Resource.Id.hold_frame_image);
+        _reactionCueIndicator = FindRequiredView<ImageView>(
+            Resource.Id.reaction_cue_indicator);
         _mediaScrim = FindRequiredView<View>(Resource.Id.media_scrim);
         _mediaLoadingIndicator = FindRequiredView<ProgressBar>(
             Resource.Id.media_loading_indicator);
@@ -4000,6 +4008,7 @@ public partial class MainActivity : Activity
 
     private void StopCountdownTimer()
     {
+        ClearReactionCue();
         _countdownActive = false;
         _countdownPaused = false;
         _countdownPausedForMediaError = false;
@@ -4020,6 +4029,7 @@ public partial class MainActivity : Activity
             return;
         }
 
+        ClearReactionCue();
         _countdownMillisecondsRemaining = Math.Max(
             1,
             _countdownEndsAtElapsedMilliseconds -
@@ -4159,6 +4169,7 @@ public partial class MainActivity : Activity
         }
         _countdownProgress.Progress = (int)boundedMilliseconds;
         ApplyMovementPhase(state);
+        UpdateReactionCue();
     }
 
     private int GetCurrentMovementDurationMilliseconds() =>
@@ -4203,6 +4214,7 @@ public partial class MainActivity : Activity
 
         if (state.Phase == MovementPhase.Preparation)
         {
+            ClearReactionCue();
             SetExerciseMediaMirrored(mirrored: false);
             RenderPreparationPhase();
             RenderFullWorkoutPhase(Resource.Color.rest_surface);
@@ -4231,7 +4243,10 @@ public partial class MainActivity : Activity
             CueMovementRestart();
             AnnouncePhaseForAccessibility(
                 _countdownPanel,
-                $"{GetMovementCueDescription(presentation)}, 45 seconds.");
+                IsCurrentReactionCueEnabled()
+                    ? $"{GetMovementCueDescription(presentation)}, 45 seconds. " +
+                        "Move on green. Freeze on red."
+                    : $"{GetMovementCueDescription(presentation)}, 45 seconds.");
         }
         else
         {
@@ -4248,6 +4263,117 @@ public partial class MainActivity : Activity
         }
 
         ApplyCurrentMediaPlaybackState();
+    }
+
+    private bool IsCurrentReactionCueEnabled() =>
+        _currentExercise is not null &&
+        ReactionCuePolicy.IsEnabled(
+            _currentExercise,
+            _state.ActiveCatalogRevision);
+
+    private void StartReactionCue(long nowElapsedMilliseconds)
+    {
+        ClearReactionCue();
+        if (!_countdownActive ||
+            _lastMovementPhase != MovementPhase.Continuous ||
+            !IsCurrentReactionCueEnabled())
+        {
+            return;
+        }
+
+        _reactionCueActive = true;
+        _reactionCueMoving = true;
+        _reactionCueEndsAtElapsedMilliseconds = nowElapsedMilliseconds +
+            ReactionCuePolicy.GetNextDurationMilliseconds(
+                _currentExercise!.ReactionCueLevel,
+                moving: true,
+                Random.Shared.NextDouble());
+        _reactionCueMoveFlashEndsAtElapsedMilliseconds =
+            nowElapsedMilliseconds + ReactionCueMoveFlashMilliseconds;
+        RenderReactionCue(nowElapsedMilliseconds);
+    }
+
+    private void UpdateReactionCue()
+    {
+        if (!_countdownActive ||
+            _lastMovementPhase != MovementPhase.Continuous ||
+            !IsCurrentReactionCueEnabled())
+        {
+            ClearReactionCue();
+            return;
+        }
+
+        long nowElapsedMilliseconds = Android.OS.SystemClock.ElapsedRealtime();
+        if (!_reactionCueActive)
+        {
+            StartReactionCue(nowElapsedMilliseconds);
+            return;
+        }
+
+        bool changed = false;
+        int transitions = 0;
+        while (nowElapsedMilliseconds >= _reactionCueEndsAtElapsedMilliseconds &&
+            transitions < 8)
+        {
+            long transitionAt = _reactionCueEndsAtElapsedMilliseconds;
+            _reactionCueMoving = !_reactionCueMoving;
+            _reactionCueEndsAtElapsedMilliseconds = transitionAt +
+                ReactionCuePolicy.GetNextDurationMilliseconds(
+                    _currentExercise!.ReactionCueLevel,
+                    _reactionCueMoving,
+                    Random.Shared.NextDouble());
+            if (_reactionCueMoving)
+            {
+                _reactionCueMoveFlashEndsAtElapsedMilliseconds =
+                    nowElapsedMilliseconds + ReactionCueMoveFlashMilliseconds;
+            }
+            changed = true;
+            transitions++;
+        }
+
+        if (changed)
+        {
+            ApplyCurrentMediaPlaybackState();
+        }
+        RenderReactionCue(nowElapsedMilliseconds);
+    }
+
+    private void RenderReactionCue(long nowElapsedMilliseconds)
+    {
+        bool visible = _reactionCueActive &&
+            (!_reactionCueMoving ||
+                nowElapsedMilliseconds <
+                    _reactionCueMoveFlashEndsAtElapsedMilliseconds);
+        _reactionCueIndicator.Visibility = visible
+            ? ViewStates.Visible
+            : ViewStates.Gone;
+        if (!visible)
+        {
+            return;
+        }
+
+        _reactionCueIndicator.SetImageResource(
+            _reactionCueMoving
+                ? Resource.Drawable.ic_phase_active
+                : Resource.Drawable.ic_phase_pause);
+        _reactionCueIndicator.SetBackgroundResource(
+            _reactionCueMoving
+                ? Resource.Drawable.reaction_cue_move_background
+                : Resource.Drawable.reaction_cue_freeze_background);
+        _reactionCueIndicator.ContentDescription =
+            _reactionCueMoving ? "Move" : "Freeze";
+    }
+
+    private void ClearReactionCue()
+    {
+        _reactionCueActive = false;
+        _reactionCueMoving = true;
+        _reactionCueEndsAtElapsedMilliseconds = 0;
+        _reactionCueMoveFlashEndsAtElapsedMilliseconds = 0;
+        if (_reactionCueIndicator is not null)
+        {
+            _reactionCueIndicator.Visibility = ViewStates.Gone;
+        }
     }
 
     private void RestartExerciseMediaForPhase(MovementPhase phase)
@@ -4359,7 +4485,8 @@ public partial class MainActivity : Activity
                 _previewingUpcomingSequenceBlock) ||
             (_workoutPhase == WorkoutPhase.Move &&
                 _countdownActive &&
-                _lastMovementPhase == MovementPhase.Continuous);
+                _lastMovementPhase == MovementPhase.Continuous &&
+                (!_reactionCueActive || _reactionCueMoving));
     }
 
     private void ApplyCurrentMediaPlaybackState()
@@ -4516,6 +4643,7 @@ public partial class MainActivity : Activity
 
     private void ResetMovementVisuals()
     {
+        ClearReactionCue();
         _lastMovementPhase = null;
         RenderCountdownPhase();
         SetExerciseMediaMirrored(mirrored: false);
@@ -4531,6 +4659,7 @@ public partial class MainActivity : Activity
 
     private void BeginRest()
     {
+        ClearReactionCue();
         _sessionService.BeginRest(
             _state,
             _currentWorkoutGroup,

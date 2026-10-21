@@ -93,6 +93,7 @@ import {
   MIRROR_EQUIPMENT,
   MOVEMENT_DURATION_MS,
   PREPARATION_DURATION_MS,
+  REACTION_CUE_CATALOG_REVISION,
   RESOLUTIONS,
   REST_DURATION_MS,
   SCOPED_CATALOG_INVALIDATIONS_BY_REVISION,
@@ -102,6 +103,7 @@ import {
   WORKOUT_MODIFIERS,
   WORKOUT_EXERCISE_PHASE,
   getMuscularDemandSchedulePriority,
+  getReactionCueTiming,
   getWorkoutExercisePhase,
 } from "../workout.js";
 
@@ -126,6 +128,7 @@ const [
   muscleBalancePolicy,
   recoveryPolicy,
   recoveryLightPolicy,
+  reactionCuePolicy,
   lightDayPolicy,
   exerciseDatabase,
   catalogInvariantTests,
@@ -182,6 +185,7 @@ const [
   source("NomadicMethod", "Services", "WorkoutMuscleBalancePolicy.cs"),
   source("NomadicMethod", "Services", "WorkoutRecoveryPolicy.cs"),
   source("NomadicMethod", "Services", "WorkoutRecoveryLightPolicy.cs"),
+  source("NomadicMethod", "Services", "ReactionCuePolicy.cs"),
   source("NomadicMethod", "Services", "WorkoutLightDayPolicy.cs"),
   source("NomadicMethod", "Data", "SqliteExerciseDatabase.cs"),
   source("NomadicMethod.Tests", "CatalogInvariantTests.cs"),
@@ -1184,7 +1188,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /DatabaseVersion\s*=\s*ExerciseDatabaseVersionPolicy\.CurrentVersion/,
   );
-  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*102/);
+  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*103/);
   assert.match(
     exerciseDatabase,
     /ExerciseDatabaseVersionPolicy\.IsSupportedNonDestructiveUpgrade\([\s\S]*oldVersion,[\s\S]*newVersion/,
@@ -1211,6 +1215,11 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /muscular_demand INTEGER NOT NULL[\s\S]*CHECK \(muscular_demand BETWEEN 0 AND 2\)/,
   );
+  assert.match(
+    exerciseDatabase,
+    /reaction_cue_level INTEGER NOT NULL DEFAULT 0[\s\S]*CHECK \(reaction_cue_level BETWEEN 0 AND 5\)/,
+  );
+  assert.match(exerciseDatabase, /values\.Put\("reaction_cue_level"/);
   assert.match(exerciseDatabase, /max_space_meters > 0 AND max_space_meters <= 100/);
   assert.match(exerciseDatabase, /equipment IN \('None', 'Mirror'\)/);
   assert.match(exerciseDatabase, /mirror_relationship TEXT NOT NULL/);
@@ -1244,6 +1253,34 @@ test("muscular demand is a separate reviewed catalog score on both platforms", (
     exercise.muscularDemand >= MINIMUM_MUSCULAR_DEMAND &&
     exercise.muscularDemand <= MAXIMUM_MUSCULAR_DEMAND));
   assert.ok(catalog.every((exercise) => exercise.score === 0));
+});
+
+test("reaction cues use the same five schedules and legacy gate on both platforms", () => {
+  assert.equal(
+    REACTION_CUE_CATALOG_REVISION,
+    integerConstant(reactionCuePolicy, "IntroducedCatalogRevision"),
+  );
+  const nativeTimings = [...reactionCuePolicy.matchAll(
+    /new\(([\d_]+),\s*([\d_]+),\s*([\d_]+),\s*([\d_]+)\)/g,
+  )].slice(0, 5).map(match => match.slice(1).map(value =>
+    Number(value.replaceAll("_", ""))));
+  assert.equal(nativeTimings.length, 5);
+  for (let level = 1; level <= 5; level++) {
+    const webTiming = getReactionCueTiming(level);
+    assert.deepEqual(nativeTimings[level - 1], [
+      webTiming.minimumMoveMilliseconds,
+      webTiming.maximumMoveMilliseconds,
+      webTiming.minimumFreezeMilliseconds,
+      webTiming.maximumFreezeMilliseconds,
+    ]);
+  }
+  assert.match(exerciseModel, /int ReactionCueLevel/);
+  assert.match(mainActivity, /UpdateReactionCue\(\)[\s\S]*ApplyCurrentMediaPlaybackState\(\)/);
+  assert.match(mainActivity, /Move on green\. Freeze on red\./);
+  assert.match(webApp, /updateReactionCue\(\)[\s\S]*elements\.video\.pause\(\)/);
+  assert.match(webApp, /Move on green; freeze on red/);
+  assert.match(workoutLayout, /reaction_cue_indicator/);
+  assert.match(webIndex, /id="reaction-cue"/);
 });
 
 test("web and mobile schedule demand zero then two then one before muscle order", () => {

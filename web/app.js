@@ -25,6 +25,7 @@ import {
   getMovementDurationMs,
   getMovementPhaseState,
   getMovementPresentation,
+  getNextReactionCueDurationMilliseconds,
   getMirrorEquipment,
   getWallEquipment,
   getElevationEquipment,
@@ -33,6 +34,7 @@ import {
   getWorkoutExecutionTimeline,
   isModifierMetadataComplete,
   isSessionMovementMetadataValid,
+  isReactionCueEnabled,
   parseStoredState,
   withMirrorEquipment,
   withWallEquipment,
@@ -46,6 +48,7 @@ const MEDIA_RECOVERY_TIMEOUT_MS = 12_000;
 const MODIFIER_FEEDBACK_DURATION_MS = 2_040;
 const EXERCISE_NAME_LONG_PRESS_MS = 500;
 const EXERCISE_NAME_LONG_PRESS_MOVE_TOLERANCE_PX = 12;
+const REACTION_CUE_MOVE_FLASH_MS = 560;
 const MODIFIER_FEEDBACK_LABELS = Object.freeze({
   floorEnabled: "floor ON",
   floorDisabled: "floor OFF",
@@ -104,6 +107,7 @@ const elements = {
   video: byId("exercise-video"),
   holdFrame: byId("hold-frame"),
   holdBadge: byId("hold-badge"),
+  reactionCue: byId("reaction-cue"),
   executionSignifier: byId("execution-signifier"),
   executionBlockTrack: byId("execution-block-track"),
   mediaScrim: byId("media-scrim"),
@@ -155,6 +159,10 @@ let mediaGeneration = 0;
 let mediaReady = false;
 let mediaRecoveryTimer = null;
 let lastMovementPhase = null;
+let reactionCueActive = false;
+let reactionCueMoving = true;
+let reactionCueEndsAt = 0;
+let reactionCueMoveFlashEndsAt = 0;
 let movementTimer = null;
 let movementEndsAt = 0;
 let movementRemaining = 0;
@@ -1828,6 +1836,7 @@ function updateMovement() {
   if (state.phase !== lastMovementPhase && state.phase !== "Complete") {
     applyMovementPhase(state.phase);
   }
+  updateReactionCue();
   if (movementRemaining <= 0) {
     completeMovement();
   }
@@ -1845,6 +1854,7 @@ function applyMovementPhase(phase) {
   );
 
   if (phase === "Preparation") {
+    clearReactionCue();
     setMediaMirrored(false);
     setFullPhaseSurface("rest");
     elements.mediaCard.classList.add("resting");
@@ -1864,7 +1874,9 @@ function applyMovementPhase(phase) {
   setFullPhaseSurface("move");
   restartMediaForPhase();
 
-  elements.status.textContent = `${description}, 45 seconds.`;
+  elements.status.textContent = isCurrentReactionCueEnabled()
+    ? `${description}. Move on green; freeze on red. 45 seconds.`
+    : `${description}, 45 seconds.`;
 
   if (previousPhase === "Preparation") {
     playSound("start");
@@ -1886,6 +1898,91 @@ function restartMediaForPhase() {
     mediaExercise.mode !== "Hold";
   prepareSequenceMediaSegment(true);
   playVideo();
+  startReactionCue();
+}
+
+function isCurrentReactionCueEnabled() {
+  return Boolean(currentExercise && session && isReactionCueEnabled(
+    currentExercise,
+    session.state.activeCatalogRevision,
+  ));
+}
+
+function startReactionCue(now = performance.now()) {
+  clearReactionCue();
+  if (!movementRunning || !isCurrentReactionCueEnabled() ||
+      lastMovementPhase !== "Continuous") {
+    return;
+  }
+  reactionCueActive = true;
+  reactionCueMoving = true;
+  reactionCueEndsAt = now + getNextReactionCueDurationMilliseconds(
+    currentExercise.reactionCueLevel,
+    true,
+  );
+  reactionCueMoveFlashEndsAt = now + REACTION_CUE_MOVE_FLASH_MS;
+  renderReactionCue(now);
+}
+
+function updateReactionCue(now = performance.now()) {
+  if (!movementRunning || lastMovementPhase !== "Continuous" ||
+      !isCurrentReactionCueEnabled()) {
+    clearReactionCue();
+    return;
+  }
+  if (!reactionCueActive) {
+    startReactionCue(now);
+    return;
+  }
+
+  let changed = false;
+  let transitions = 0;
+  while (now >= reactionCueEndsAt && transitions < 8) {
+    const transitionAt = reactionCueEndsAt;
+    reactionCueMoving = !reactionCueMoving;
+    reactionCueEndsAt = transitionAt + getNextReactionCueDurationMilliseconds(
+      currentExercise.reactionCueLevel,
+      reactionCueMoving,
+    );
+    if (reactionCueMoving) {
+      reactionCueMoveFlashEndsAt = now + REACTION_CUE_MOVE_FLASH_MS;
+    }
+    changed = true;
+    transitions++;
+  }
+
+  if (changed) {
+    if (reactionCueMoving) {
+      playVideo();
+    } else {
+      elements.video.pause();
+    }
+  }
+  renderReactionCue(now);
+}
+
+function renderReactionCue(now) {
+  const visible = reactionCueActive &&
+    (!reactionCueMoving || now < reactionCueMoveFlashEndsAt);
+  elements.reactionCue.hidden = !visible;
+  if (!visible) {
+    return;
+  }
+  const state = reactionCueMoving ? "move" : "freeze";
+  elements.reactionCue.dataset.state = state;
+  elements.reactionCue.setAttribute(
+    "aria-label",
+    reactionCueMoving ? "Move" : "Freeze",
+  );
+}
+
+function clearReactionCue() {
+  reactionCueActive = false;
+  reactionCueMoving = true;
+  reactionCueEndsAt = 0;
+  reactionCueMoveFlashEndsAt = 0;
+  elements.reactionCue.hidden = true;
+  delete elements.reactionCue.dataset.state;
 }
 
 function prepareSequenceMediaSegment(force = false) {
@@ -1939,6 +2036,7 @@ function pauseMovement(reason) {
   movementTimer = null;
   movementRunning = false;
   movementPauseReason = reason;
+  clearReactionCue();
   if (session && currentGroup) {
     session.pauseMovement(
       currentGroup,
@@ -2245,6 +2343,7 @@ function stopMovementTimer(clearPendingMovement = true) {
   movementPauseReason = null;
   movementEndsAt = 0;
   movementRemaining = 0;
+  clearReactionCue();
   if (clearPendingMovement && session?.state.pendingMovementGroupId) {
     session.clearPendingMovement();
     persistState();
@@ -2261,6 +2360,7 @@ function stopRuntimeTimers(preservePendingMovement = false) {
 }
 
 function resetMovementVisuals() {
+  clearReactionCue();
   lastMovementPhase = null;
   movementPauseReason = null;
   setPlaybackControlsEnabled(false);

@@ -8130,7 +8130,7 @@ test("slippery hard-floor revision rebuilds placements without erasing feedback"
 
 test("sole-wall revision rebuilds changed workout state and resets scores", () => {
   const changedIds = [563, 564, 567, 568, 574];
-  assert.equal(CURRENT_CATALOG_REVISION, 86);
+  assert.equal(CURRENT_CATALOG_REVISION, 87);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(54)],
     changedIds,
@@ -8725,7 +8725,7 @@ test("bodybuilding posing revision replaces static work and resets feedback", ()
 
 test("material-training revision removes only anatomically invalid slots and keeps", () => {
   const addedIds = [911, 913, 916, 917];
-  assert.equal(CURRENT_CATALOG_REVISION, 86);
+  assert.equal(CURRENT_CATALOG_REVISION, 87);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(67)],
     addedIds,
@@ -8815,7 +8815,7 @@ test("material-training revision removes only anatomically invalid slots and kee
 
 test("training-claim revision removes only newly invalid slot feedback", () => {
   const addedIds = [918, 919];
-  assert.equal(CURRENT_CATALOG_REVISION, 86);
+  assert.equal(CURRENT_CATALOG_REVISION, 87);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(69)],
     addedIds,
@@ -8927,7 +8927,7 @@ test("complete-pose revision rebuilds affected placements without erasing feedba
 
 test("corrected two-sided revision rebuilds placements and preserves feedback", () => {
   const changedIds = new Set([32, 483, 493]);
-  assert.equal(CURRENT_CATALOG_REVISION, 86);
+  assert.equal(CURRENT_CATALOG_REVISION, 87);
   assert.deepEqual(SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(71), changedIds);
   assert.equal(SCOPED_SCORE_INVALIDATIONS_BY_REVISION.has(71), false);
 

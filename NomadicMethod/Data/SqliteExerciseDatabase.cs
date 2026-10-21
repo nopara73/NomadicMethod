@@ -51,6 +51,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         "floor_contact_points",
         "elevation_required",
         "jump_platform_required",
+        "reaction_cue_level",
     ];
 
     private readonly Context _context;
@@ -199,6 +200,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 score INTEGER NOT NULL DEFAULT 0,
                 muscular_demand INTEGER NOT NULL
                     CHECK (muscular_demand BETWEEN 0 AND 2),
+                reaction_cue_level INTEGER NOT NULL DEFAULT 0
+                    CHECK (reaction_cue_level BETWEEN 0 AND 5),
                 only_feet_touch_ground INTEGER NOT NULL DEFAULT 1
                     CHECK (only_feet_touch_ground IN (0, 1)),
                 floor_contact_points INTEGER NOT NULL DEFAULT 1
@@ -613,6 +616,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         values.Put("practice", exercise.Practice);
         values.Put("motion_profile", exercise.MotionProfile);
         values.Put("muscular_demand", exercise.MuscularDemand);
+        values.Put("reaction_cue_level", exercise.ReactionCueLevel);
         values.Put("only_feet_touch_ground", exercise.OnlyFeetTouchGround ? 1 : 0);
         values.Put("shoe_agnostic", exercise.ShoeAgnostic ? 1 : 0);
         values.Put("max_space_meters", exercise.MaxSpaceMeters);
@@ -839,6 +843,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 FloorContactPoints = (ExerciseFloorContact)cursor.GetInt(27),
                 ElevationRequired = cursor.GetInt(28) == 1,
                 JumpPlatformRequired = cursor.GetInt(29) == 1,
+                ReactionCueLevel = cursor.GetInt(30),
             });
         }
 
@@ -994,6 +999,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                 : exercise.Equipment != "None") ||
             exercise.MuscularDemand < Exercise.MinimumMuscularDemand ||
             exercise.MuscularDemand > Exercise.MaximumMuscularDemand ||
+            exercise.ReactionCueLevel is < 0 or > 5 ||
             string.IsNullOrWhiteSpace(exercise.Practice) ||
             string.IsNullOrWhiteSpace(exercise.MotionProfile) ||
             !Enum.IsDefined(exercise.Mode) ||

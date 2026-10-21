@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -15,6 +16,7 @@ const dimensions = [
   'reactionTime',
   'speed',
 ];
+const minimumExercisesPerCharacteristicLevel = 6;
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(scriptDirectory, '..');
@@ -26,6 +28,16 @@ const defaultOutputPath = path.join(
   'acsm-fitness-ceiling-scores.csv',
 );
 const defaultOverridePath = path.join(scriptDirectory, 'ExerciseFitnessCeilingOverrides.json');
+const defaultCoverageOverridePath = path.join(
+  scriptDirectory,
+  'ExerciseFitnessCeilingCoverageOverrides.json',
+);
+const defaultCoveragePath = path.join(
+  repositoryRoot,
+  'docs',
+  'catalog-audit',
+  'acsm-fitness-ceiling-coverage.json',
+);
 
 function argumentValue(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -35,7 +47,13 @@ function argumentValue(name, fallback) {
 const catalogPath = argumentValue('--catalog', defaultCatalogPath);
 const outputPath = argumentValue('--output', defaultOutputPath);
 const overridePath = argumentValue('--overrides', defaultOverridePath);
+const coverageOverridePath = argumentValue(
+  '--coverage-overrides',
+  defaultCoverageOverridePath,
+);
+const coveragePath = argumentValue('--coverage-output', defaultCoveragePath);
 const checkOnly = process.argv.includes('--check');
+const allowDeficits = process.argv.includes('--allow-deficits');
 
 function normalize(value) {
   return String(value ?? '')
@@ -236,8 +254,25 @@ function scoreExercise(exercise) {
   return { scores, basis: [...basis].sort() };
 }
 
-const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+const catalogSource = fs.readFileSync(catalogPath, 'utf8');
+const catalog = JSON.parse(catalogSource);
+const catalogSha256 = createHash('sha256')
+  .update(catalogSource.replaceAll('\r\n', '\n'))
+  .digest('hex');
 const overrideDocument = JSON.parse(fs.readFileSync(overridePath, 'utf8'));
+const coverageOverrideDocument = JSON.parse(fs.readFileSync(coverageOverridePath, 'utf8'));
+if (overrideDocument.scoringVersion !== coverageOverrideDocument.scoringVersion) {
+  throw new Error('Fitness-ceiling override files use different scoring versions.');
+}
+const overrides = {
+  ...Object.fromEntries(Object.entries(overrideDocument.overrides).map(
+    ([id, override]) => [id, {
+      ...override,
+      reviewStatus: override.reviewStatus ?? 'anchor-reviewed',
+    }],
+  )),
+  ...coverageOverrideDocument.overrides,
+};
 const workoutSource = fs.readFileSync(path.join(repositoryRoot, 'web', 'workout.js'), 'utf8');
 const revisionMatch = workoutSource.match(/CURRENT_CATALOG_REVISION\s*=\s*(\d+)/);
 if (!revisionMatch) throw new Error('Could not read CURRENT_CATALOG_REVISION from web/workout.js.');
@@ -248,27 +283,52 @@ const ids = catalog.map((exercise) => Number(exercise.id));
 if (new Set(ids).size !== ids.length) throw new Error('Exercise catalog contains duplicate IDs.');
 
 const knownIds = new Set(ids.map(String));
-for (const overrideId of Object.keys(overrideDocument.overrides)) {
+for (const overrideId of Object.keys(overrides)) {
   if (!knownIds.has(overrideId)) throw new Error(`Score override ${overrideId} is not present in the catalog.`);
+  const override = overrides[overrideId];
+  const scoreEntries = Object.entries(override.scores ?? {});
+  if (scoreEntries.length === 0) throw new Error(`Score override ${overrideId} has no scores.`);
+  for (const [dimension, score] of scoreEntries) {
+    if (!dimensions.includes(dimension)) {
+      throw new Error(`Score override ${overrideId} uses unknown dimension ${dimension}.`);
+    }
+    if (!Number.isInteger(score) || score < 0 || score > 5) {
+      throw new Error(`Score override ${overrideId} has an invalid ${dimension} score.`);
+    }
+  }
 }
 
 const rows = catalog
   .map((exercise) => {
     const derived = scoreExercise(exercise);
-    const override = overrideDocument.overrides[String(exercise.id)];
-    const scores = override ? override.scores : derived.scores;
+    const override = overrides[String(exercise.id)];
+    const scores = override
+      ? { ...derived.scores, ...override.scores }
+      : derived.scores;
     for (const dimension of dimensions) {
       if (!Number.isInteger(scores[dimension]) || scores[dimension] < 0 || scores[dimension] > 5) {
         throw new Error(`Exercise ${exercise.id} has an invalid ${dimension} score.`);
       }
     }
+    const reactionCueLevel = Number(exercise.reactionCueLevel ?? 0);
+    if (scores.reactionTime !== reactionCueLevel) {
+      throw new Error(
+        `Exercise ${exercise.id} reaction-time score ${scores.reactionTime} does not match ` +
+        `its runtime reaction cue level ${reactionCueLevel}.`,
+      );
+    }
     return {
       scoringVersion: overrideDocument.scoringVersion,
       catalogRevision,
       id: Number(exercise.id),
+      sessionMovementId: Number(exercise.sessionMovementId) > 0
+        ? Number(exercise.sessionMovementId)
+        : Number(exercise.id),
       name: exercise.name,
       ...scores,
-      reviewStatus: override ? 'anchor-reviewed' : 'rule-derived',
+      reviewStatus: override
+        ? (override.reviewStatus ?? 'reviewed-override')
+        : 'rule-derived',
       basis: override ? override.reason : derived.basis.join(';'),
     };
   })
@@ -278,6 +338,7 @@ const headers = [
   'scoringVersion',
   'catalogRevision',
   'id',
+  'sessionMovementId',
   'name',
   ...dimensions,
   'reviewStatus',
@@ -289,15 +350,77 @@ const generated = [
   '',
 ].join('\n');
 
+const coverage = Object.fromEntries(dimensions.map((dimension) => [
+  dimension,
+  Object.fromEntries([1, 2, 3, 4, 5].map((level) => {
+    const matchingRows = rows.filter((row) => row[dimension] === level);
+    const sessionMovementIds = [...new Set(
+      matchingRows.map((row) => row.sessionMovementId),
+    )].sort((left, right) => left - right);
+    return [String(level), {
+      count: sessionMovementIds.length,
+      exerciseCount: matchingRows.length,
+      exerciseIds: matchingRows.map((row) => row.id),
+      sessionMovementIds,
+    }];
+  })),
+]));
+const deficits = dimensions.flatMap((dimension) => [1, 2, 3, 4, 5]
+  .map((level) => ({
+    characteristic: dimension,
+    level,
+    count: coverage[dimension][String(level)].count,
+    required: minimumExercisesPerCharacteristicLevel,
+    missing: Math.max(
+      0,
+      minimumExercisesPerCharacteristicLevel - coverage[dimension][String(level)].count,
+    ),
+  }))
+  .filter((entry) => entry.missing > 0));
+const generatedCoverage = `${JSON.stringify({
+  scoringVersion: overrideDocument.scoringVersion,
+  catalogRevision,
+  catalogSha256,
+  minimumExercisesPerCharacteristicLevel,
+  coverage,
+  deficits,
+}, null, 2)}\n`;
+
+function formatDeficits() {
+  return deficits
+    .map((entry) => `${entry.characteristic} level ${entry.level}: ${entry.count}/${entry.required}`)
+    .join('\n');
+}
+
 if (checkOnly) {
   if (!fs.existsSync(outputPath)) throw new Error(`Score file is missing: ${outputPath}`);
   const existing = fs.readFileSync(outputPath, 'utf8').replaceAll('\r\n', '\n');
   if (existing !== generated) {
     throw new Error('Fitness-ceiling scores are stale. Run the generator without --check.');
   }
+  if (!fs.existsSync(coveragePath)) throw new Error(`Coverage file is missing: ${coveragePath}`);
+  const existingCoverage = fs.readFileSync(coveragePath, 'utf8').replaceAll('\r\n', '\n');
+  if (existingCoverage !== generatedCoverage) {
+    throw new Error('Fitness-ceiling coverage is stale. Run the generator without --check.');
+  }
+  if (deficits.length > 0 && !allowDeficits) {
+    throw new Error(
+      `Fitness-ceiling coverage requires at least ${minimumExercisesPerCharacteristicLevel} ` +
+      `distinct session movements at every exact characteristic-level combination:\n${formatDeficits()}`,
+    );
+  }
   process.stdout.write(`Verified ${rows.length} exercise fitness-ceiling rows for catalog revision ${catalogRevision}.\n`);
 } else {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, generated, 'utf8');
+  fs.mkdirSync(path.dirname(coveragePath), { recursive: true });
+  fs.writeFileSync(coveragePath, generatedCoverage, 'utf8');
   process.stdout.write(`Wrote ${rows.length} exercise fitness-ceiling rows to ${outputPath}.\n`);
+  process.stdout.write(`Wrote exact-level coverage to ${coveragePath}.\n`);
+  if (deficits.length > 0 && !allowDeficits) {
+    throw new Error(
+      `Fitness-ceiling coverage requires at least ${minimumExercisesPerCharacteristicLevel} ` +
+      `distinct session movements at every exact characteristic-level combination:\n${formatDeficits()}`,
+    );
+  }
 }

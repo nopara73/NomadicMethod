@@ -18,6 +18,8 @@ internal static class ExerciseDatabaseMigrationSql
             score INTEGER NOT NULL DEFAULT 0,
             muscular_demand INTEGER NOT NULL
                 CHECK (muscular_demand BETWEEN 0 AND 2),
+            reaction_cue_level INTEGER NOT NULL DEFAULT 0
+                CHECK (reaction_cue_level BETWEEN 0 AND 5),
             only_feet_touch_ground INTEGER NOT NULL DEFAULT 1
                 CHECK (only_feet_touch_ground IN (0, 1)),
             floor_contact_points INTEGER NOT NULL DEFAULT 1

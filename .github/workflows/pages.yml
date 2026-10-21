@@ -57,6 +57,12 @@ on:
       - "tools/Generate-ExerciseCatalog.ps1"
       - "tools/Test-ExerciseExecutionProtocols.ps1"
       - "tools/Test-ExerciseSideSequenceOverrides.ps1"
+      - "tools/generate-exercise-fitness-ceiling-scores.mjs"
+      - "tools/ExerciseFitnessCeilingOverrides.json"
+      - "tools/ExerciseFitnessCeilingCoverageOverrides.json"
+      - "docs/ACSM_FITNESS_CEILING_SCORING.md"
+      - "docs/catalog-audit/acsm-fitness-ceiling-scores.csv"
+      - "docs/catalog-audit/acsm-fitness-ceiling-coverage.json"
   workflow_dispatch:
 
 permissions:
@@ -133,6 +139,12 @@ jobs:
             /tools/Generate-ExerciseCatalog.ps1
             /tools/Test-ExerciseExecutionProtocols.ps1
             /tools/Test-ExerciseSideSequenceOverrides.ps1
+            /tools/generate-exercise-fitness-ceiling-scores.mjs
+            /tools/ExerciseFitnessCeilingOverrides.json
+            /tools/ExerciseFitnessCeilingCoverageOverrides.json
+            /docs/ACSM_FITNESS_CEILING_SCORING.md
+            /docs/catalog-audit/acsm-fitness-ceiling-scores.csv
+            /docs/catalog-audit/acsm-fitness-ceiling-coverage.json
           sparse-checkout-cone-mode: false
 
       - name: Validate mirror relationship audit

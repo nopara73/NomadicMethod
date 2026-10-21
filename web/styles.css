@@ -986,6 +986,46 @@ button.modifier-tile:not(:disabled):active {
   letter-spacing: 0.12em;
 }
 
+.reaction-cue {
+  width: clamp(64px, 24%, 92px);
+  aspect-ratio: 1;
+  position: absolute;
+  z-index: 5;
+  inset: 50% auto auto 50%;
+  display: grid;
+  place-items: center;
+  border: 3px solid rgb(255 255 255 / 92%);
+  border-radius: 50%;
+  color: white;
+  background: #257a49;
+  box-shadow: 0 7px 24px rgb(18 20 22 / 38%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.reaction-cue[hidden] {
+  display: none;
+}
+
+.reaction-cue[data-state="freeze"] {
+  background: #a42e3a;
+}
+
+.reaction-cue svg {
+  width: 48%;
+  height: 48%;
+  fill: currentColor;
+}
+
+.reaction-cue-freeze,
+.reaction-cue[data-state="freeze"] .reaction-cue-move {
+  display: none;
+}
+
+.reaction-cue[data-state="freeze"] .reaction-cue-freeze {
+  display: block;
+}
+
 .media-scrim,
 .media-error {
   position: absolute;

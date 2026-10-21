@@ -5,8 +5,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check:parity": "node scripts/check-mobile-parity.mjs",
+    "check:fitness-ceilings": "node ../tools/generate-exercise-fitness-ceiling-scores.mjs --check",
     "refresh:catalog-deficit-ledger": "node scripts/refresh-catalog-deficit-ledger.mjs",
     "audit:slot-variety": "node scripts/report-slot-variety.mjs",
-    "test": "npm run check:parity && node --test --test-concurrency=4 tests/*.test.js"
+    "test": "npm run check:parity && npm run check:fitness-ceilings && node --test --test-concurrency=4 tests/*.test.js"
   }
 }

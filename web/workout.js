@@ -501,7 +501,52 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 86;
+export const CURRENT_CATALOG_REVISION = 87;
+export const REACTION_CUE_CATALOG_REVISION = 87;
+const REACTION_CUE_TIMINGS = Object.freeze([
+  Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
+    minimumFreezeMilliseconds: 1_600, maximumFreezeMilliseconds: 2_200 }),
+  Object.freeze({ minimumMoveMilliseconds: 4_000, maximumMoveMilliseconds: 6_500,
+    minimumFreezeMilliseconds: 1_200, maximumFreezeMilliseconds: 1_800 }),
+  Object.freeze({ minimumMoveMilliseconds: 3_000, maximumMoveMilliseconds: 5_000,
+    minimumFreezeMilliseconds: 900, maximumFreezeMilliseconds: 1_400 }),
+  Object.freeze({ minimumMoveMilliseconds: 2_000, maximumMoveMilliseconds: 3_500,
+    minimumFreezeMilliseconds: 700, maximumFreezeMilliseconds: 1_100 }),
+  Object.freeze({ minimumMoveMilliseconds: 1_200, maximumMoveMilliseconds: 2_500,
+    minimumFreezeMilliseconds: 450, maximumFreezeMilliseconds: 850 }),
+]);
+
+export function isReactionCueEnabled(exercise, activeCatalogRevision) {
+  return activeCatalogRevision >= REACTION_CUE_CATALOG_REVISION &&
+    Number.isInteger(exercise?.reactionCueLevel) &&
+    exercise.reactionCueLevel >= 1 && exercise.reactionCueLevel <= 5;
+}
+
+export function getReactionCueTiming(level) {
+  if (!Number.isInteger(level) || level < 1 || level > 5) {
+    throw new RangeError("Reaction cue level must be an integer from 1 through 5.");
+  }
+  return REACTION_CUE_TIMINGS[level - 1];
+}
+
+export function getNextReactionCueDurationMilliseconds(
+  level,
+  moving,
+  randomUnitInterval = Math.random(),
+) {
+  if (!Number.isFinite(randomUnitInterval) ||
+      randomUnitInterval < 0 || randomUnitInterval >= 1) {
+    throw new RangeError("Reaction cue randomness must be in [0, 1).");
+  }
+  const timing = getReactionCueTiming(level);
+  const minimum = moving
+    ? timing.minimumMoveMilliseconds
+    : timing.minimumFreezeMilliseconds;
+  const maximum = moving
+    ? timing.maximumMoveMilliseconds
+    : timing.maximumFreezeMilliseconds;
+  return minimum + Math.floor(randomUnitInterval * (maximum - minimum + 1));
+}
 export const FLOOR_LOCOMOTION_EXERCISE_IDS = Object.freeze([
   1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,
 ]);
