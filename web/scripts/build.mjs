@@ -78,13 +78,6 @@ const hardFloorIconPath = path.join(
   "drawable-xxhdpi",
   "ic_hard_floor.png",
 );
-const softFloorIconPath = path.join(
-  repositoryRoot,
-  "NomadicMethod",
-  "Resources",
-  "drawable-xxhdpi",
-  "ic_soft_floor.png",
-);
 const wallNoSoleIconPath = path.join(
   repositoryRoot,
   "NomadicMethod",
@@ -100,18 +93,12 @@ const lightWorkoutIconPath = path.join(
   "ic_light_workout.png",
 );
 const hardFloorIconSource = await readFile(hardFloorIconPath);
-const softFloorIconSource = await readFile(softFloorIconPath);
 const wallNoSoleIconSource = await readFile(wallNoSoleIconPath);
 const lightWorkoutIconSource = await readFile(lightWorkoutIconPath);
 const hardFloorIconName = fingerprintedName(
   "ic_hard_floor",
   "png",
   hardFloorIconSource,
-);
-const softFloorIconName = fingerprintedName(
-  "ic_soft_floor",
-  "png",
-  softFloorIconSource,
 );
 const wallNoSoleIconName = fingerprintedName(
   "ic_wall_no_sole",
@@ -126,12 +113,10 @@ const lightWorkoutIconName = fingerprintedName(
 const stylesTemplate = await readFile(path.join(webRoot, "styles.css"), "utf8");
 const stylesSource = stylesTemplate
   .replaceAll("./assets/ic_hard_floor.png", `./assets/${hardFloorIconName}`)
-  .replaceAll("./assets/ic_soft_floor.png", `./assets/${softFloorIconName}`)
   .replaceAll("./assets/ic_wall_no_sole.png", `./assets/${wallNoSoleIconName}`)
   .replaceAll("./assets/ic_light_workout.png", `./assets/${lightWorkoutIconName}`);
 if (stylesSource === stylesTemplate ||
     stylesSource.includes("./assets/ic_hard_floor.png") ||
-    stylesSource.includes("./assets/ic_soft_floor.png") ||
     stylesSource.includes("./assets/ic_wall_no_sole.png") ||
     stylesSource.includes("./assets/ic_light_workout.png")) {
   throw new Error("Could not fingerprint the modifier icons.");
@@ -141,10 +126,6 @@ await writeFile(path.join(outputRoot, stylesOutputName), stylesSource, "utf8");
 await copyInto(
   hardFloorIconPath,
   path.join(outputRoot, "assets", hardFloorIconName),
-);
-await copyInto(
-  softFloorIconPath,
-  path.join(outputRoot, "assets", softFloorIconName),
 );
 await copyInto(
   wallNoSoleIconPath,

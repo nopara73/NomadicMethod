@@ -457,8 +457,8 @@
 
   function elevationFeedbackLabel() {
     return (selectedModifiers & modifierFlags.elevation) === 0 ? "equipment OFF: elevation"
-      : (selectedModifiers & modifierFlags.jumpPlatform) === 0 ? "equipment ON: elevation · support only"
-      : "equipment ON: elevation";
+      : (selectedModifiers & modifierFlags.jumpPlatform) === 0 ? "equipment ON: support"
+      : "equipment ON: jump platform";
   }
 
   function cycleElevationEquipment() {

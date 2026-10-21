@@ -712,8 +712,8 @@ function showWorkoutModifierFeedback(message, detail = "") {
 function elevationFeedbackLabel() {
   const equipment = getElevationEquipment(selectedModifiers);
   return equipment === ELEVATION_EQUIPMENT.None ? "equipment OFF: elevation"
-    : equipment === ELEVATION_EQUIPMENT.Support ? "equipment ON: elevation · support only"
-    : "equipment ON: elevation";
+    : equipment === ELEVATION_EQUIPMENT.Support ? "equipment ON: support"
+    : "equipment ON: jump platform";
 }
 
 function cycleElevationEquipment() {

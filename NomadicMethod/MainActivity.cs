@@ -1795,9 +1795,7 @@ public partial class MainActivity : Activity
             size);
         UpdateLocomotionModifierPresentation(
             WorkoutModifierPolicy.GetLocomotionSpace(_selectedWorkoutModifiers));
-        UpdateHardFloorModifierPresentation(
-            _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.HardFloor),
-            size);
+        UpdateHardFloorModifierPresentation(size);
         UpdateFloorModifierPresentation();
     }
 
@@ -1815,8 +1813,7 @@ public partial class MainActivity : Activity
         int drawableResourceId = equipment switch
         {
             MirrorEquipment.Compact => Resource.Drawable.ic_mirror_compact,
-            MirrorEquipment.Tall => Resource.Drawable.ic_mirror_tall,
-            _ => Resource.Drawable.ic_mirror,
+            _ => Resource.Drawable.ic_mirror_tall,
         };
         _mirrorModifierButton.SetCompoundDrawablesWithIntrinsicBounds(
             0,
@@ -1836,15 +1833,11 @@ public partial class MainActivity : Activity
             padding);
     }
 
-    private void UpdateHardFloorModifierPresentation(
-        bool hardFloorEnabled,
-        int? tileSize = null)
+    private void UpdateHardFloorModifierPresentation(int? tileSize = null)
     {
         _hardFloorModifierButton.SetCompoundDrawablesWithIntrinsicBounds(
             0,
-            hardFloorEnabled
-                ? Resource.Drawable.ic_hard_floor
-                : Resource.Drawable.ic_soft_floor,
+            Resource.Drawable.ic_hard_floor,
             0,
             0);
         _hardFloorModifierButton.SetTextSize(
@@ -1865,12 +1858,11 @@ public partial class MainActivity : Activity
         bool floor = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.Floor);
         bool hard = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.HardFloor);
         bool clothing = _selectedWorkoutModifiers.HasFlag(WorkoutModifiers.UpperBodyClothing);
-        int icon = floor ? Resource.Drawable.ic_floor_on : Resource.Drawable.ic_floor_off;
         int description = !floor ? Resource.String.floor_modifier_off
             : hard ? Resource.String.floor_modifier_hard
             : clothing ? Resource.String.floor_modifier_on : Resource.String.floor_modifier_unclothed;
         _floorModifierButton.Checked = floor;
-        _floorModifierButton.SetCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0);
+        _floorModifierButton.SetCompoundDrawablesWithIntrinsicBounds(0, Resource.Drawable.ic_floor_on, 0, 0);
         _floorModifierButton.SetTextSize(Android.Util.ComplexUnitType.Sp, 0f);
         _floorModifierButton.ContentDescription = GetString(description);
         if (OperatingSystem.IsAndroidVersionAtLeast(30))
@@ -1881,9 +1873,8 @@ public partial class MainActivity : Activity
     {
         int icon = space switch
         {
-            LocomotionSpace.Room => Resource.Drawable.ic_locomotion_room,
             LocomotionSpace.Field => Resource.Drawable.ic_locomotion_field,
-            _ => Resource.Drawable.ic_locomotion_none,
+            _ => Resource.Drawable.ic_locomotion_room,
         };
         _locomotionModifierButton.SetCompoundDrawablesWithIntrinsicBounds(0, icon, 0, 0);
         _locomotionModifierButton.SetTextSize(Android.Util.ComplexUnitType.Sp, 0f);
@@ -1895,10 +1886,8 @@ public partial class MainActivity : Activity
     {
         int drawableResourceId = equipment switch
         {
-            WallEquipment.None => Resource.Drawable.ic_wall_off,
             WallEquipment.SolesStayOff => Resource.Drawable.ic_wall_no_sole,
-            WallEquipment.SolesMayTouch => Resource.Drawable.ic_wall,
-            _ => Resource.Drawable.ic_wall_off,
+            _ => Resource.Drawable.ic_wall,
         };
         _wallModifierButton.SetCompoundDrawablesWithIntrinsicBounds(
             0,
@@ -2424,14 +2413,16 @@ public partial class MainActivity : Activity
         _elevationEquipmentButton.Checked = equipment != ElevationEquipment.None;
         int feedback = GetElevationFeedbackResourceId(equipment);
         _elevationEquipmentButton.SetCompoundDrawablesWithIntrinsicBounds(0,
-            equipment == ElevationEquipment.JumpPlatform ? Resource.Drawable.ic_elevation_platform
-                : Resource.Drawable.ic_elevation, 0, 0);
+            equipment switch
+            {
+                ElevationEquipment.JumpPlatform => Resource.Drawable.ic_elevation_platform,
+                _ => Resource.Drawable.ic_elevation,
+            }, 0, 0);
         _elevationEquipmentButton.ContentDescription = GetString(feedback);
         if (OperatingSystem.IsAndroidVersionAtLeast(26))
             _elevationEquipmentButton.TooltipText = GetString(feedback);
         if (OperatingSystem.IsAndroidVersionAtLeast(30))
-            _elevationEquipmentButton.StateDescription = GetString(equipment != ElevationEquipment.None
-                ? Resource.String.elevation_equipment_on : Resource.String.elevation_equipment_off);
+            _elevationEquipmentButton.StateDescription = GetString(feedback);
         UpdateLightModifierPresentation(
             (_selectedWorkoutModifiers & WorkoutModifiers.Light) != 0);
         if (!userInitiated) return;
@@ -2443,7 +2434,7 @@ public partial class MainActivity : Activity
     private static int GetElevationFeedbackResourceId(ElevationEquipment equipment) => equipment switch
     {
         ElevationEquipment.Support => Resource.String.elevation_support_enabled_feedback,
-        ElevationEquipment.JumpPlatform => Resource.String.elevation_equipment_enabled_feedback,
+        ElevationEquipment.JumpPlatform => Resource.String.elevation_platform_enabled_feedback,
         _ => Resource.String.elevation_equipment_disabled_feedback,
     };
 
@@ -2470,7 +2461,7 @@ public partial class MainActivity : Activity
         button.Checked = enabled;
         if (modifier == WorkoutModifiers.HardFloor)
         {
-            UpdateHardFloorModifierPresentation(enabled);
+            UpdateHardFloorModifierPresentation();
         }
         button.ContentDescription = GetString(descriptionResourceId);
         if (modifier == WorkoutModifiers.Light)
@@ -2695,7 +2686,6 @@ public partial class MainActivity : Activity
         TextView feedback = _durationModifierFeedback;
         feedback.Animate()?.Cancel();
         string message = GetString(messageResourceId);
-        feedback.SetMaxLines(detail is null ? 1 : 4);
         feedback.SetMaxWidth(Math.Max(1, _durationInsetContent.Width - DpInt(32)));
         if (detail is null) feedback.Text = message;
         else

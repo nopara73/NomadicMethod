@@ -46,7 +46,7 @@ test("elevation cycles Off, Support, Platform and hands the actual profile to st
   assert.equal(button.attributes["aria-pressed"], "false");
   button.handlers.click();
   assert.equal(getElevationEquipment(control.selectedModifiers), ELEVATION_EQUIPMENT.Support);
-  assert.equal(feedback.textContent, "equipment ON: elevation · support only");
+  assert.equal(feedback.textContent, "equipment ON: support");
   const changes = [];
   control.connect({selectionChanged: (selection, user) => {
     if (user) changes.push(selection.selectedModifiers);
@@ -54,14 +54,38 @@ test("elevation cycles Off, Support, Platform and hands the actual profile to st
   button.handlers.click();
   assert.equal(getElevationEquipment(control.selectedModifiers), ELEVATION_EQUIPMENT.JumpPlatform);
   assert.equal(button.dataset.elevationEquipment, "platform");
-  assert.equal(feedback.textContent, "equipment ON: elevation");
+  assert.equal(feedback.textContent, "equipment ON: jump platform");
   button.handlers.click();
   assert.equal(control.selectedModifiers, baseline);
+  assert.equal(button.dataset.elevationEquipment, "none");
+  assert.equal(button.attributes["aria-pressed"], "false");
+  assert.equal(feedback.textContent, "equipment OFF: elevation");
   assert.equal(button.attributes["aria-label"], "equipment OFF: elevation");
   assert.equal(changes.length, 2);
   assert.equal(control.selectionChanged, true);
   control.setSelection(5, withElevationEquipment(baseline, ELEVATION_EQUIPMENT.JumpPlatform));
   assert.equal(button.dataset.elevationEquipment, "platform");
+});
+
+test("each elevation capability has the same distinct feedback on Android, startup and the loaded web app", () => {
+  const strings = source("../../NomadicMethod/Resources/values/strings.xml");
+  const android = source("../../NomadicMethod/MainActivity.cs");
+  const feedbackFunction = source("../app.js").match(/function elevationFeedbackLabel\(\) \{[\s\S]*?\n\}/)[0];
+  const {control, button, feedback} = instantControls();
+  for (const [equipment, resource, label] of [
+    [ELEVATION_EQUIPMENT.Support, "elevation_support_enabled_feedback", "equipment ON: support"],
+    [ELEVATION_EQUIPMENT.JumpPlatform, "elevation_platform_enabled_feedback", "equipment ON: jump platform"],
+    [ELEVATION_EQUIPMENT.None, "elevation_equipment_disabled_feedback", "equipment OFF: elevation"],
+  ]) {
+    button.handlers.click();
+    assert.equal(getElevationEquipment(control.selectedModifiers), equipment);
+    assert.equal(feedback.textContent, label);
+    assert.equal(vm.runInNewContext(`${feedbackFunction}; elevationFeedbackLabel()`, {
+      selectedModifiers: control.selectedModifiers, getElevationEquipment, ELEVATION_EQUIPMENT,
+    }), label);
+    assert.equal(strings.match(new RegExp(`<string name="${resource}">([^<]+)</string>`))[1], label);
+    assert.ok(android.includes(`Resource.String.${resource}`), `Android must present ${equipment}`);
+  }
 });
 
 test("legacy ON restores as Support without changing active checkpoints or history", () => {

@@ -153,12 +153,10 @@ const [
   compactMirrorIcon,
   tallMirrorIcon,
   hardFloorIcon,
-  softFloorIcon,
   upperBodyClothingIcon,
   shyIcon,
   lightWorkoutIcon,
   wallIcon,
-  wallOffIcon,
   wallNoSoleIcon,
   atomicSequenceLineupSolver,
   workoutSequencePolicy,
@@ -211,12 +209,10 @@ const [
   source("NomadicMethod", "Resources", "drawable", "ic_mirror_compact.xml"),
   source("NomadicMethod", "Resources", "drawable", "ic_mirror_tall.xml"),
   binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_hard_floor.png"),
-  binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_soft_floor.png"),
   source("NomadicMethod", "Resources", "drawable", "ic_upper_body_clothing.xml"),
   source("NomadicMethod", "Resources", "drawable", "ic_shy.xml"),
   binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_light_workout.png"),
   source("NomadicMethod", "Resources", "drawable", "ic_wall.xml"),
-  source("NomadicMethod", "Resources", "drawable", "ic_wall_off.xml"),
   binarySource("NomadicMethod", "Resources", "drawable-xxhdpi", "ic_wall_no_sole.png"),
   source("NomadicMethod", "Services", "AtomicSequenceLineupSolver.cs"),
   source("NomadicMethod", "Services", "WorkoutSequencePolicy.cs"),
@@ -941,21 +937,20 @@ test("web and mobile persist one combined duration and modifier selection contex
       webIndex.indexOf('id="wall-modifier"') <
       webIndex.indexOf('id="mirror-modifier"'),
   );
-  assert.match(durationLayout, /@drawable\/ic_wall_off/);
+  assert.match(durationLayout, /@drawable\/ic_wall"/);
   assert.match(wallIcon, /<vector[\s\S]*pathData=/);
-  assert.match(wallOffIcon, /<vector[\s\S]*pathData=/);
   assert.deepEqual(
     [...wallNoSoleIcon.subarray(0, 8)],
     [137, 80, 78, 71, 13, 10, 26, 10],
   );
-  assert.notEqual(wallIcon, wallOffIcon);
+  assert.doesNotMatch(mainActivity, /Resource\.Drawable\.ic_wall_off/);
   assert.match(
     mainActivity,
-    /UpdateWallModifierPresentation[\s\S]*WallEquipment\.None\s*=>\s*Resource\.Drawable\.ic_wall_off[\s\S]*WallEquipment\.SolesStayOff\s*=>\s*Resource\.Drawable\.ic_wall_no_sole[\s\S]*WallEquipment\.SolesMayTouch\s*=>\s*Resource\.Drawable\.ic_wall/,
+    /UpdateWallModifierPresentation[\s\S]*WallEquipment\.SolesStayOff\s*=>\s*Resource\.Drawable\.ic_wall_no_sole[\s\S]*_\s*=>\s*Resource\.Drawable\.ic_wall,/,
   );
   assert.match(
     webStyles,
-    /data-wall-equipment="none"[\s\S]*wall-glyph-none[\s\S]*data-wall-equipment="soles-stay-off"[\s\S]*wall-glyph-soles-stay-off[\s\S]*data-wall-equipment="soles-may-touch"[\s\S]*wall-glyph-soles-may-touch/,
+    /data-wall-equipment="none"[\s\S]*wall-glyph-soles-may-touch[\s\S]*data-wall-equipment="soles-stay-off"[\s\S]*wall-glyph-soles-stay-off[\s\S]*data-wall-equipment="soles-may-touch"[\s\S]*wall-glyph-soles-may-touch/,
   );
   assert.match(
     webIndex,
@@ -988,23 +983,22 @@ test("web and mobile persist one combined duration and modifier selection contex
     webStyles,
     /\.light-mode-glyph[\s\S]*mask-image:\s*url\("\.\/assets\/ic_light_workout\.png"\)/,
   );
-  assert.notDeepEqual(hardFloorIcon, softFloorIcon);
   assert.deepEqual([...hardFloorIcon.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
-  assert.deepEqual([...softFloorIcon.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
   assert.match(
     mainActivity,
-    /UpdateHardFloorModifierPresentation[\s\S]*Resource\.Drawable\.ic_hard_floor[\s\S]*Resource\.Drawable\.ic_soft_floor/,
+    /UpdateHardFloorModifierPresentation[\s\S]*Resource\.Drawable\.ic_hard_floor/,
   );
   assert.match(webIndex, /class="floor-glyph floor-glyph-hard"/);
-  assert.match(webIndex, /class="floor-glyph floor-glyph-soft"/);
-  assert.match(webStyles, /data-hard-floor="hard"[\s\S]*floor-glyph-hard[\s\S]*data-hard-floor="soft"[\s\S]*floor-glyph-soft/);
+  assert.doesNotMatch(webIndex, /floor-glyph-soft/);
+  assert.doesNotMatch(mainActivity, /Resource\.Drawable\.ic_soft_floor/);
   assert.match(webStyles, /mask-image:\s*url\("\.\/assets\/ic_hard_floor\.png"\)/);
-  assert.match(webStyles, /mask-image:\s*url\("\.\/assets\/ic_soft_floor\.png"\)/);
-  assert.match(webBuild, /drawable-xxhdpi[\s\S]*ic_hard_floor\.png[\s\S]*ic_soft_floor\.png[\s\S]*ic_wall_no_sole\.png[\s\S]*ic_light_workout\.png/);
-  assert.match(webBuild, /fingerprintedName\([\s\S]*"ic_hard_floor"[\s\S]*"ic_soft_floor"[\s\S]*"ic_wall_no_sole"[\s\S]*"ic_light_workout"/);
+  assert.doesNotMatch(webStyles, /ic_soft_floor/);
+  assert.doesNotMatch(webBuild, /ic_soft_floor/);
+  assert.match(webBuild, /drawable-xxhdpi[\s\S]*ic_hard_floor\.png[\s\S]*ic_wall_no_sole\.png[\s\S]*ic_light_workout\.png/);
+  assert.match(webBuild, /fingerprintedName\([\s\S]*"ic_hard_floor"[\s\S]*"ic_wall_no_sole"[\s\S]*"ic_light_workout"/);
   assert.match(
     durationLayout,
-    /mirror_modifier_button(?:(?!\/>)[\s\S])*drawableTop="@drawable\/ic_mirror"/,
+    /mirror_modifier_button(?:(?!\/>)[\s\S])*drawableTop="@drawable\/ic_mirror_tall"/,
   );
   assert.doesNotMatch(
     durationLayout,
@@ -1012,7 +1006,7 @@ test("web and mobile persist one combined duration and modifier selection contex
   );
   assert.match(
     mainActivity,
-    /UpdateMirrorModifierPresentation[\s\S]*MirrorEquipment\.Compact\s*=>\s*Resource\.Drawable\.ic_mirror_compact[\s\S]*MirrorEquipment\.Tall\s*=>\s*Resource\.Drawable\.ic_mirror_tall[\s\S]*Resource\.Drawable\.ic_mirror/,
+    /UpdateMirrorModifierPresentation[\s\S]*MirrorEquipment\.Compact\s*=>\s*Resource\.Drawable\.ic_mirror_compact[\s\S]*_\s*=>\s*Resource\.Drawable\.ic_mirror_tall/,
   );
   assert.doesNotMatch(mainActivity, /_mirrorModifierButton\.Text\s*=\s*equipment\s+switch/);
   assert.notEqual(compactMirrorIcon, tallMirrorIcon);
@@ -1020,7 +1014,7 @@ test("web and mobile persist one combined duration and modifier selection contex
   assert.match(tallMirrorIcon, /pathData="M8,2\.5H16/);
   assert.match(
     webStyles,
-    /data-mirror-equipment="none"[\s\S]*mirror-glyph-none[\s\S]*data-mirror-equipment="compact"[\s\S]*mirror-glyph-compact[\s\S]*data-mirror-equipment="tall"[\s\S]*mirror-glyph-tall/,
+    /data-mirror-equipment="none"[\s\S]*mirror-glyph-tall[\s\S]*data-mirror-equipment="compact"[\s\S]*mirror-glyph-compact[\s\S]*data-mirror-equipment="tall"[\s\S]*mirror-glyph-tall/,
   );
   assert.match(durationLayout, /@drawable\/ic_no_clap/);
   assert.doesNotMatch(
@@ -2025,12 +2019,12 @@ test("setup categories and the binary Floor icon match across platforms", async 
     assert.match(shell, /"locomotion OFF"/);
     assert.doesNotMatch(shell, /"no locomotion"/);
   }
-  assert.match(mainActivity, /int icon = floor \? Resource\.Drawable\.ic_floor_on : Resource\.Drawable\.ic_floor_off;/);
+  assert.match(mainActivity, /_floorModifierButton\.SetCompoundDrawablesWithIntrinsicBounds\(0, Resource\.Drawable\.ic_floor_on, 0, 0\)/);
   for (const shell of [webApp, instantControls])
     assert.match(shell, /element\.dataset\.floorPresentation = enabled \? "on" : "off";/);
   assert.deepEqual([...webIndex.matchAll(/floor-contact-glyph floor-contact-([a-z-]+)/g)]
-    .map(match => match[1]), ["off", "on"]);
-  for (const state of ["off", "on"]) {
+    .map(match => match[1]), ["on"]);
+  for (const state of ["on"]) {
     const native = await source("NomadicMethod", "Resources", "drawable", `ic_floor_${state}.xml`);
     const web = webIndex.match(new RegExp('floor-contact-' + state + '">([\\s\\S]*?)</g>'))[1];
     const normalize = path => path.replaceAll(",", " ").trim().replace(/\s+/g, " ");

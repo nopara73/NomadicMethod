@@ -466,11 +466,12 @@ button.modifier-tile:not(:disabled):active {
   stroke-width: 1.9;
 }
 
-.elevation-glyph-platform,
-[data-elevation-equipment="platform"] .elevation-glyph-support {
+.elevation-glyph {
   display: none;
 }
 
+[data-elevation-equipment="none"] .elevation-glyph-support,
+[data-elevation-equipment="support"] .elevation-glyph-support,
 [data-elevation-equipment="platform"] .elevation-glyph-platform {
   display: block;
 }
@@ -513,7 +514,7 @@ button.modifier-tile:not(:disabled):active {
 }
 
 .floor-glyph {
-  display: none;
+  display: block;
   width: 100%;
   height: 100%;
   background: currentColor;
@@ -528,16 +529,6 @@ button.modifier-tile:not(:disabled):active {
 .floor-glyph-hard {
   mask-image: url("./assets/ic_hard_floor.png");
   -webkit-mask-image: url("./assets/ic_hard_floor.png");
-}
-
-.floor-glyph-soft {
-  mask-image: url("./assets/ic_soft_floor.png");
-  -webkit-mask-image: url("./assets/ic_soft_floor.png");
-}
-
-.modifier-tile[data-hard-floor="hard"] .floor-glyph-hard,
-.modifier-tile[data-hard-floor="soft"] .floor-glyph-soft {
-  display: block;
 }
 
 .mirror-detail {
@@ -563,7 +554,7 @@ button.modifier-tile:not(:disabled):active {
   -webkit-mask-size: contain;
 }
 
-.modifier-tile[data-wall-equipment="none"] .wall-glyph-none,
+.modifier-tile[data-wall-equipment="none"] .wall-glyph-soles-may-touch,
 .modifier-tile[data-wall-equipment="soles-stay-off"] .wall-glyph-soles-stay-off,
 .modifier-tile[data-wall-equipment="soles-may-touch"] .wall-glyph-soles-may-touch {
   display: inline;
@@ -572,15 +563,13 @@ button.modifier-tile:not(:disabled):active {
 .locomotion-icon .modifier-icon-stroke { stroke-width: 1.9; }
 .floor-contact-icon .modifier-icon-stroke { stroke-width: 2.05; }
 .floor-contact-icon .floor-contact-ground { stroke-width: 1.5; }
-.floor-contact-glyph { display: none; }
-.modifier-tile[data-floor-presentation="off"] .floor-contact-off,
-.modifier-tile[data-floor-presentation="on"] .floor-contact-on { display: inline; }
+.floor-contact-glyph { display: inline; }
 .locomotion-glyph { display: none; }
-.modifier-tile[data-locomotion-space="none"] .locomotion-glyph-none,
+.modifier-tile[data-locomotion-space="none"] .locomotion-glyph-room,
 .modifier-tile[data-locomotion-space="room"] .locomotion-glyph-room,
 .modifier-tile[data-locomotion-space="field"] .locomotion-glyph-field { display: inline; }
 
-.modifier-tile[data-mirror-equipment="none"] .mirror-glyph-none,
+.modifier-tile[data-mirror-equipment="none"] .mirror-glyph-tall,
 .modifier-tile[data-mirror-equipment="compact"] .mirror-glyph-compact,
 .modifier-tile[data-mirror-equipment="tall"] .mirror-glyph-tall {
   display: inline;
@@ -591,6 +580,8 @@ button.modifier-tile:not(:disabled):active {
   z-index: 20;
   top: 50%;
   left: 50%;
+  box-sizing: border-box;
+  width: max-content;
   max-width: calc(100% - 32px);
   padding: 15px 24px;
   border: 2px solid var(--chartreuse);
@@ -603,17 +594,14 @@ button.modifier-tile:not(:disabled):active {
   letter-spacing: 0.04em;
   line-height: 1.15;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
 
 .modifier-feedback.show {
   animation: modifier-feedback-blink 2040ms ease-out both;
-}
-
-.modifier-feedback[data-detail]:not([data-detail=""]) {
-  width: max-content;
 }
 
 .modifier-feedback[data-detail]:not([data-detail=""])::after {
