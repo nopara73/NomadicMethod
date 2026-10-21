@@ -1977,7 +1977,7 @@ test("session continuity, editable duration, and explicit end stay in parity", a
   assert.match(mainActivity, /ConfirmEndSession[\s\S]*SetNegativeButton[\s\S]*SetPositiveButton/);
   assert.match(webIndex, /<dialog id="end-session-dialog"/);
   assert.match(webApp, /returnValue === "end"\) endActiveWorkout/);
-  const nativeEnd = methodBody(mainActivity, "private async void EndActiveWorkout()", "private void RestoreWorkoutAfterSetup()");
+  const nativeEnd = methodBody(mainActivity, "private void EndActiveWorkout()", "private void RestoreWorkoutAfterSetup()");
   assert.match(nativeEnd, /ShowDurationSelection\(\)/);
   assert.doesNotMatch(nativeEnd, /ActivatePreparedWorkout|PrepareWorkout|LogOuraDecision/);
   const webEnd = methodBody(webApp, "function endActiveWorkout()", "function restoreWorkoutAfterSetup()");

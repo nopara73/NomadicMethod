@@ -327,10 +327,10 @@ audited inventory contains 25 base-wall movements and five sole-wall movements.
 
 For every existing non-Wall modifier pair and real UI state, each applicable
 anatomical slot must offer at least five distinct approved selectable movements
-at 3, 5, 7, 10 and 15 minutes. New-workout setup stops at 15 minutes.
-Unfinished longer sessions remain resumable, with their original progress and
-history; their settings permit shortening, never extending beyond the existing
-duration. The original one-choice invariant remains for historical resolutions. Every supported duration must
+at 3, 5, 7, 10 and 15 minutes. Setup offers all supported durations through 90 minutes.
+Unfinished sessions remain resumable, with their original progress and history.
+Settings can shorten or extend a session while preserving completed work and the
+whole current atomic selection. The original one-choice invariant remains for historical resolutions. Every supported duration must
 admit a complete atomic lineup.
 Distinct movements are preferred; a complete movement may repeat in separately
 tracked slots when no distinct lineup fits. Sides, directions and atomic

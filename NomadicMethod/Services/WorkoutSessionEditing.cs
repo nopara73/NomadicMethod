@@ -14,14 +14,14 @@ public sealed partial class ExerciseSessionService
                     ? state.ActiveSingleDirectionExerciseIds.Contains(exercise.Id)
                     : minutes < 30))
             .Select(exercise => exercise.Id).ToHashSet();
-        SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises,
-            state.ActiveCatalogRevision, state.ActiveSingleDirectionExerciseIds));
+        UseWorkoutCatalog(state);
     }
 
     // Cold starts never interpret time outside the app as completed exercise.
     // A running checkpoint may survive abrupt process death without OnPause.
     public void RestoreAfterReopen(WorkoutState state)
     {
+        UseWorkoutCatalog(state);
         if (state.PendingMovementMillisecondsRemaining > 0)
         {
             state.PendingMovementEndsAtUnixMilliseconds = 0;
@@ -41,6 +41,7 @@ public sealed partial class ExerciseSessionService
 
     public int GetMinimumActiveWorkoutMinutes(WorkoutState state)
     {
+        UseWorkoutCatalog(state);
         WorkoutGroup? current = GetNextGroup(state);
         if (current is null) return MinimumWorkoutMinutes;
         int protectedBlocks = GetActiveGroups(state)
@@ -53,13 +54,22 @@ public sealed partial class ExerciseSessionService
     // lifecycle event. Unfinished work is not a rejection or a completed block.
     public void EndActiveWorkout(WorkoutState state)
     {
+        UseWorkoutCatalog(state);
         if (state.ActiveWorkoutMinutes == 0 || state.WorkoutCompleted)
             return;
-        FinalizeCurrentWorkout(state);
+        if (state.ActiveWorkoutSession is null)
+        {
+            FinalizeCurrentWorkout(state);
+            return;
+        }
+        // Stop archives recorded work; it never needs to solve the unfinished lineup.
+        FinalizeActiveWorkoutSession(state, WorkoutSessionStatus.Interrupted);
+        ResetToDurationSelection(state);
     }
 
     public void ResizeActiveWorkout(WorkoutState state, int minutes)
     {
+        UseWorkoutCatalog(state);
         if (state.ActiveWorkoutMinutes == minutes) return;
         if (!IsValidWorkoutMinutes(minutes) || state.WorkoutCompleted ||
             state.ActiveWorkoutMinutes == 0 || minutes < GetMinimumActiveWorkoutMinutes(state))
@@ -180,8 +190,7 @@ public sealed partial class ExerciseSessionService
             state.ActiveSelectionGroupOrder = previousOrder;
             state.ActiveModifierRetainedSelectionGroupIds = previousRetained;
             state.ActiveSingleDirectionExerciseIds = previousSingleDirections;
-            SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises,
-                state.ActiveCatalogRevision, previousSingleDirections));
+            UseWorkoutCatalog(state);
             throw;
         }
     }

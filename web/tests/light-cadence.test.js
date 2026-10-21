@@ -307,7 +307,7 @@ test("mid-workout settings allow duration edits without crossing the protected p
   assert.equal(element("begin-workout").getAttribute("aria-label"), "Resume workout");
 });
 
-test("instant setup retains long durations and limits edits to the active duration", () => {
+test("instant setup supports extending active workouts and preserves the protected minimum", () => {
   const { controls, element } = startup([], 60);
   assert.equal(controls.selectedMinutes, 60);
   assert.equal(element("duration-range").max, "9");
@@ -318,14 +318,17 @@ test("instant setup retains long durations and limits edits to the active durati
   controls.setActiveWorkoutSetup(true, 20, 60);
   controls.setSelection(60, 0);
   assert.equal(controls.selectedMinutes, 60);
-  assert.equal(element("duration-range").max, "8");
+  assert.equal(element("duration-range").max, "9");
+  element("duration-increase").fire("click");
+  assert.equal(controls.selectedMinutes, 90);
+  controls.setSelection(60, 0);
   controls.setActiveWorkoutSetup(false);
   assert.equal(controls.selectedMinutes, 60);
   assert.equal(element("duration-range").max, "9");
   controls.setActiveWorkoutSetup(true, 3, 3);
   controls.setSelection(3, 0);
   assert.equal(controls.selectedMinutes, 3);
-  assert.equal(element("duration-range").max, "0");
+  assert.equal(element("duration-range").max, "9");
   assert.equal(element("duration-range").style.values["--range-progress"], "0%");
 });
 

@@ -2325,7 +2325,7 @@ public partial class MainActivity : Activity
         dialog.Show();
     }
 
-    private async void EndActiveWorkout()
+    private void EndActiveWorkout()
     {
         if (!_editingActiveWorkoutSetup || !_beginWorkoutButton.Enabled) return;
         _beginWorkoutButton.Enabled = false;
@@ -2334,17 +2334,11 @@ public partial class MainActivity : Activity
         _preparedWorkout = null;
         string json = JsonSerializer.Serialize(_state, WorkoutJsonContext.Default.WorkoutState);
         OuraRecoverySnapshot? recovery = _state.OuraRecovery;
-        IReadOnlyList<Exercise> exercises = _exerciseDatabase.Exercises;
         try
         {
-            WorkoutState ended = await Task.Run(() =>
-            {
-                WorkoutState copy = JsonSerializer.Deserialize(json, WorkoutJsonContext.Default.WorkoutState)!;
-                copy.OuraRecovery = recovery;
-                new ExerciseSessionService(exercises).EndActiveWorkout(copy);
-                return copy;
-            });
-            if (_activityDestroyed || !_editingActiveWorkoutSetup) return;
+            WorkoutState ended = JsonSerializer.Deserialize(json, WorkoutJsonContext.Default.WorkoutState)!;
+            ended.OuraRecovery = recovery;
+            _sessionService.EndActiveWorkout(ended);
             _stateStore.Save(ended);
             _state = ended;
             _editingActiveWorkoutSetup = false;

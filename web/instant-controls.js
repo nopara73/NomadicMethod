@@ -162,8 +162,7 @@
     setActiveWorkoutSetup(enabled, minimumMinutes = 3, activeMinutes = 0) {
       activeWorkoutSetup = enabled === true;
       minimumActiveMinutes = activeWorkoutSetup ? minimumMinutes : 3;
-      durationOptions = activeWorkoutSetup && activeMinutes > 0
-        ? legacyWorkoutMinutes.filter(minutes => minutes <= activeMinutes) : newWorkoutMinutes;
+      durationOptions = newWorkoutMinutes;
       document.getElementById("duration-screen")?.classList.toggle(
         "active-workout-setup",
         activeWorkoutSetup,

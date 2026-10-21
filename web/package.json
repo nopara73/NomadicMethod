@@ -7,6 +7,6 @@
     "check:parity": "node scripts/check-mobile-parity.mjs",
     "refresh:catalog-deficit-ledger": "node scripts/refresh-catalog-deficit-ledger.mjs",
     "audit:slot-variety": "node scripts/report-slot-variety.mjs",
-    "test": "npm run check:parity && node --test tests/*.test.js"
+    "test": "npm run check:parity && node --test --test-concurrency=4 tests/*.test.js"
   }
 }

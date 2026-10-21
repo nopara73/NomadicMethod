@@ -3,11 +3,9 @@ import "./light-cadence.js";
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 
-// New workouts offer the full supported range. Active sessions may shorten.
+// Duration edits can shorten or extend; completed/current atomic work sets the minimum.
 export function getWorkoutMinuteOptions(activeWorkoutMinutes = 0) {
-  return activeWorkoutMinutes > 0
-    ? SUPPORTED_MINUTES.filter(minutes => minutes <= activeWorkoutMinutes)
-    : NEW_WORKOUT_MINUTES;
+  return NEW_WORKOUT_MINUTES;
 }
 
 export function normalizeSetupMinutes(minutes, activeWorkoutMinutes = 0) {
@@ -4395,9 +4393,7 @@ export class WorkoutSession {
     if (!this.state.activeCatalogRevision && this.state.activeWorkoutMinutes > 0) {
       this.state.activeCatalogRevision = this.state.catalogRevision;
     }
-    this.setExercises(this.state.activeWorkoutMinutes > 0
-      ? getWorkoutCatalog(exercises, this.state.activeCatalogRevision,
-        this.state.activeSingleDirectionExerciseIds) : exercises);
+    this.useWorkoutCatalog();
     this.loadedStateVersion = this.state[SOURCE_STATE_VERSION] ?? this.state.version;
     this.random = random;
     this.nowProvider = nowProvider;
@@ -4414,6 +4410,16 @@ export class WorkoutSession {
       this.migratePhaseScopedDownvotes();
     }
     this.normalizeSlotPreferences();
+  }
+
+  useWorkoutCatalog() {
+    const active = this.state.activeWorkoutMinutes > 0 || this.state.activeCatalogRevision > 0;
+    const revision = active ? this.state.activeCatalogRevision : 0;
+    const directions = active ? this.state.activeSingleDirectionExerciseIds ?? [] : [];
+    const key = `${revision}:${[...directions].sort((a, b) => a - b).join(",")}`;
+    if (this.workoutCatalogKey === key) return;
+    this.setExercises(getWorkoutCatalog(this.catalogExercises, revision, directions));
+    this.workoutCatalogKey = key;
   }
 
   setExercises(exercises) {
@@ -4459,11 +4465,11 @@ export class WorkoutSession {
           ? this.state.activeSingleDirectionExerciseIds.includes(exercise.id)
           : minutes < 30))
       .map(exercise => exercise.id);
-    this.setExercises(getWorkoutCatalog(this.catalogExercises,
-      this.state.activeCatalogRevision, this.state.activeSingleDirectionExerciseIds));
+    this.useWorkoutCatalog();
   }
 
   getDefaultWorkoutModifiers() {
+    this.useWorkoutCatalog();
     return getDefaultWorkoutModifiers(
       this.state.lastWorkoutModifiers,
       this.state.workoutHistory,
@@ -4482,6 +4488,7 @@ export class WorkoutSession {
   }
 
   isAutomaticLightDayDue() {
+    this.useWorkoutCatalog();
     return isLightWorkoutDayDue(
       this.state.workoutHistory,
       this.getCurrentUnixTimeMilliseconds(),
@@ -4490,6 +4497,7 @@ export class WorkoutSession {
   }
 
   initialize() {
+    this.useWorkoutCatalog();
     const currentUnixTimeMilliseconds = this.getCurrentUnixTimeMilliseconds();
     if (this.loadedStateVersion < LEGACY_TRAINING_DAY_INFERENCE_STATE_VERSION) {
       this.migrateLegacyCompletedTrainingDays(currentUnixTimeMilliseconds);
@@ -4589,11 +4597,13 @@ export class WorkoutSession {
   }
 
   startWorkout(minutes, modifiers = DEFAULT_WORKOUT_MODIFIERS) {
+    this.useWorkoutCatalog();
     this.prepareWorkout(minutes, modifiers);
     this.activatePreparedWorkout();
   }
 
   prepareWorkout(minutes, modifiers = DEFAULT_WORKOUT_MODIFIERS) {
+    this.useWorkoutCatalog();
     if (!SUPPORTED_MINUTES.includes(minutes)) {
       throw new RangeError("Unsupported workout duration.");
     }
@@ -4648,6 +4658,7 @@ export class WorkoutSession {
   }
 
   activatePreparedWorkout() {
+    this.useWorkoutCatalog();
     if (!SUPPORTED_MINUTES.includes(this.state.activeWorkoutMinutes) ||
         this.state.activeWorkoutSession ||
         Object.keys(this.state.outcomes).length !== 0 ||
@@ -4659,9 +4670,7 @@ export class WorkoutSession {
         "The workout state does not contain an activatable prepared workout.",
       );
     }
-    // A worker may have prepared this state using different sequence geometry.
-    this.setExercises(getWorkoutCatalog(this.catalogExercises,
-      this.state.activeCatalogRevision, this.state.activeSingleDirectionExerciseIds));
+    this.useWorkoutCatalog();
     const workoutStartedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     if ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0 &&
         this.isAutomaticLightDayDue()) {
@@ -4806,6 +4815,7 @@ export class WorkoutSession {
   }
 
   restoreAfterReopen() {
+    this.useWorkoutCatalog();
     if (this.state.pendingMovementMillisecondsRemaining > 0) {
       this.state.pendingMovementEndsAtUnixMilliseconds = 0;
       this.state.pendingMovementPausedByUser = true;
@@ -4820,6 +4830,7 @@ export class WorkoutSession {
   }
 
   getMinimumActiveWorkoutMinutes() {
+    this.useWorkoutCatalog();
     const current = this.getNextGroup();
     if (!current) return SUPPORTED_MINUTES[0];
     const end = Math.max(...this.getActiveGroups()
@@ -4828,11 +4839,18 @@ export class WorkoutSession {
   }
 
   endActiveWorkout() {
+    this.useWorkoutCatalog();
     if (!this.state.activeWorkoutMinutes || this.state.workoutCompleted) return;
-    this.finalizeCurrentWorkout();
+    if (!this.state.activeWorkoutSession) {
+      this.finalizeCurrentWorkout();
+      return;
+    }
+    this.finalizeActiveWorkoutSession("Interrupted");
+    this.resetTransientState();
   }
 
   resizeActiveWorkout(minutes) {
+    this.useWorkoutCatalog();
     if (this.state.activeWorkoutMinutes === minutes) return;
     if (!SUPPORTED_MINUTES.includes(minutes) || this.state.workoutCompleted ||
         !this.state.activeWorkoutMinutes || minutes < this.getMinimumActiveWorkoutMinutes()) {
@@ -4919,8 +4937,7 @@ export class WorkoutSession {
       });
     } catch (error) {
       Object.assign(this.state, before);
-      this.setExercises(getWorkoutCatalog(this.catalogExercises,
-        this.state.activeCatalogRevision, this.state.activeSingleDirectionExerciseIds));
+      this.useWorkoutCatalog();
       throw error;
     }
   }
@@ -4935,6 +4952,7 @@ export class WorkoutSession {
   }
 
   reconfigureActiveWorkout(modifiers, currentWorkoutGroupId) {
+    this.useWorkoutCatalog();
     if (!SUPPORTED_MINUTES.includes(this.state.activeWorkoutMinutes) ||
         this.state.workoutCompleted || this.state.completionAcknowledged) {
       throw new Error("Only an in-progress workout can be reconfigured.");
@@ -5161,6 +5179,7 @@ export class WorkoutSession {
   }
 
   getActiveGroups() {
+    this.useWorkoutCatalog();
     if (!SUPPORTED_MINUTES.includes(this.state.activeWorkoutMinutes)) {
       return [];
     }
@@ -5265,6 +5284,7 @@ export class WorkoutSession {
   }
 
   getRecoveryLightStatus(modifiers = this.state.activeWorkoutModifiers) {
+    this.useWorkoutCatalog();
     return evaluateRecoveryLightMode(
       this.exercises,
       modifiers,
@@ -5275,14 +5295,17 @@ export class WorkoutSession {
   }
 
   getNextGroup() {
+    this.useWorkoutCatalog();
     return this.getActiveGroups().find((group) => this.state.outcomes[group.id] === undefined) ?? null;
   }
 
   isIntermediateSequenceBlock(group) {
+    this.useWorkoutCatalog();
     return this.getNextSequenceBlock(group) !== null;
   }
 
   getNextSequenceBlock(group) {
+    this.useWorkoutCatalog();
     const activeGroups = this.getActiveGroups();
     const groupIndex = activeGroups.findIndex((activeGroup) =>
       activeGroup.id === group?.id);
@@ -5296,6 +5319,7 @@ export class WorkoutSession {
   }
 
   isSequenceContinuationBlock(group) {
+    this.useWorkoutCatalog();
     if (!group) {
       return false;
     }
@@ -5307,12 +5331,14 @@ export class WorkoutSession {
   }
 
   canShuffleNextExercise(group) {
+    this.useWorkoutCatalog();
     return this.getNextGroup()?.id === group.id &&
       !this.isSequenceContinuationBlock(group) &&
       this.getCompatibleShuffleCandidates(group).length > 0;
   }
 
   shuffleNextExercise(group) {
+    this.useWorkoutCatalog();
     if (this.getNextGroup()?.id !== group.id) {
       throw new Error(`${group.displayName} is not the next workout group.`);
     }
@@ -5393,6 +5419,7 @@ export class WorkoutSession {
   }
 
   getSelectedExercise(group) {
+    this.useWorkoutCatalog();
     if (Number.isInteger(group.exerciseOverrideId) && group.exerciseOverrideId > 0) {
       const overrideExercise = this.exercisesById.get(group.exerciseOverrideId);
       if (!overrideExercise || !this.isSequenceOverrideValid(
@@ -5553,6 +5580,7 @@ export class WorkoutSession {
   }
 
   beginMovement(group, millisecondsRemaining, endsAtUnixMilliseconds) {
+    this.useWorkoutCatalog();
     const normalizedRemaining = Math.trunc(millisecondsRemaining);
     const normalizedDeadline = Math.trunc(endsAtUnixMilliseconds);
     this.validatePendingMovement(
@@ -5569,6 +5597,7 @@ export class WorkoutSession {
   }
 
   pauseMovement(group, millisecondsRemaining, pausedByUser) {
+    this.useWorkoutCatalog();
     const normalizedRemaining = Math.trunc(millisecondsRemaining);
     this.validatePendingMovement(group, normalizedRemaining, 0, true);
     this.clearPendingRest();
@@ -5579,6 +5608,7 @@ export class WorkoutSession {
   }
 
   getPendingMovementGroup() {
+    this.useWorkoutCatalog();
     const pendingGroup = this.getActiveGroups().find(
       (group) => group.id === this.state.pendingMovementGroupId,
     );
@@ -5603,6 +5633,7 @@ export class WorkoutSession {
   }
 
   getPendingRestGroup() {
+    this.useWorkoutCatalog();
     const pendingGroup = this.getValidPendingRestGroup();
     return pendingGroup && this.getNextGroup()?.id === pendingGroup.id
       ? pendingGroup
@@ -5641,6 +5672,7 @@ export class WorkoutSession {
   }
 
   getPendingMovementMillisecondsRemaining(nowUnixMilliseconds) {
+    this.useWorkoutCatalog();
     if (!Number.isSafeInteger(nowUnixMilliseconds) || nowUnixMilliseconds <= 0) {
       throw new RangeError("Current time must be positive Unix milliseconds.");
     }
@@ -5663,6 +5695,7 @@ export class WorkoutSession {
   }
 
   clearPendingMovement() {
+    this.useWorkoutCatalog();
     this.state.pendingMovementGroupId = null;
     this.state.pendingMovementMillisecondsRemaining = 0;
     this.state.pendingMovementEndsAtUnixMilliseconds = 0;
@@ -5694,6 +5727,7 @@ export class WorkoutSession {
   }
 
   beginRest(group, endsAtUnixMilliseconds) {
+    this.useWorkoutCatalog();
     const nextGroup = this.getNextGroup();
     if (!nextGroup || nextGroup.id !== group.id) {
       throw new Error(`${group.displayName} is not the next workout group.`);
@@ -5735,6 +5769,7 @@ export class WorkoutSession {
   }
 
   keepPendingRest() {
+    this.useWorkoutCatalog();
     const pendingGroup = this.getPendingRestGroup();
     if (!pendingGroup ||
         this.isIntermediateSequenceBlock(pendingGroup)) {
@@ -5745,6 +5780,7 @@ export class WorkoutSession {
   }
 
   pauseRest(group, millisecondsRemaining) {
+    this.useWorkoutCatalog();
     const pendingGroup = this.getPendingRestGroup();
     if (!pendingGroup || pendingGroup.id !== group.id ||
         this.state.pendingRestPausedByUser) {
@@ -5762,6 +5798,7 @@ export class WorkoutSession {
   }
 
   resumeRest(group, endsAtUnixMilliseconds) {
+    this.useWorkoutCatalog();
     const pendingGroup = this.getPendingRestGroup();
     if (!pendingGroup || pendingGroup.id !== group.id ||
         !this.state.pendingRestPausedByUser) {
@@ -5778,6 +5815,7 @@ export class WorkoutSession {
   }
 
   getPendingRestMillisecondsRemaining(nowUnixMilliseconds) {
+    this.useWorkoutCatalog();
     if (!Number.isSafeInteger(nowUnixMilliseconds) || nowUnixMilliseconds <= 0) {
       throw new RangeError("Current time must be positive Unix milliseconds.");
     }
@@ -5792,6 +5830,7 @@ export class WorkoutSession {
   }
 
   clearPendingRest() {
+    this.useWorkoutCatalog();
     this.state.pendingRestGroupId = null;
     this.state.pendingRestEndsAtUnixMilliseconds = 0;
     this.state.pendingRestMillisecondsRemaining = 0;
@@ -5800,6 +5839,7 @@ export class WorkoutSession {
   }
 
   recordOutcome(group, keep) {
+    this.useWorkoutCatalog();
     const nextGroup = this.getNextGroup();
     if (!nextGroup || nextGroup.id !== group.id) {
       throw new Error(`${group.displayName} is not the next workout group.`);
@@ -5813,6 +5853,7 @@ export class WorkoutSession {
   }
 
   rejectCurrentSequence(group) {
+    this.useWorkoutCatalog();
     const nextGroup = this.getNextGroup();
     if (!nextGroup || nextGroup.id !== group.id) {
       throw new Error(`${group.displayName} is not the next workout group.`);
@@ -5837,6 +5878,7 @@ export class WorkoutSession {
   }
 
   advanceSequence(group) {
+    this.useWorkoutCatalog();
     const nextGroup = this.getNextGroup();
     if (!nextGroup || nextGroup.id !== group.id) {
       throw new Error(`${group.displayName} is not the next workout group.`);
@@ -5890,6 +5932,7 @@ export class WorkoutSession {
   }
 
   acknowledgeCompletion() {
+    this.useWorkoutCatalog();
     if (!this.state.workoutCompleted) {
       throw new Error("Workout is not complete.");
     }
@@ -5898,6 +5941,7 @@ export class WorkoutSession {
   }
 
   finishInterruptedWorkout() {
+    this.useWorkoutCatalog();
     if (!SUPPORTED_MINUTES.includes(this.state.activeWorkoutMinutes)) {
       this.finalizeActiveWorkoutSession("Interrupted");
       this.resetTransientState();
@@ -8958,7 +9002,6 @@ export class WorkoutSession {
 
   resetTransientState() {
     this.migrateSplitJackPreferences(this.state.activeCatalogRevision, this.catalogExercises);
-    this.setExercises(this.catalogExercises);
     this.state.activeCatalogRevision = 0;
     this.state.activeSingleDirectionExerciseIds = [];
     this.state.activeDurationSelectionGroupIds = null;
@@ -8979,6 +9022,7 @@ export class WorkoutSession {
     this.state.completionAcknowledged = false;
     this.clearPendingMovement();
     this.clearPendingRest();
+    this.useWorkoutCatalog();
   }
 }
 

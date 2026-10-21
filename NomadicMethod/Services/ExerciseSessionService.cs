@@ -38,9 +38,7 @@ public sealed partial class ExerciseSessionService
         Array.AsReadOnly([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 
     public static IReadOnlyList<int> GetWorkoutMinuteOptions(int activeWorkoutMinutes = 0) =>
-        activeWorkoutMinutes > 0
-            ? WorkoutMinutes.Where(minutes => minutes <= activeWorkoutMinutes).ToArray()
-            : NewWorkoutMinutes;
+        NewWorkoutMinutes;
 
     public static int NormalizeSetupMinutes(int minutes, int activeWorkoutMinutes = 0) =>
         GetWorkoutMinuteOptions(activeWorkoutMinutes)
@@ -53,6 +51,9 @@ public sealed partial class ExerciseSessionService
             .SelectMany(minutes => MassGroupingTaxonomy.GetResolution(minutes).Groups)
             .ToDictionary(group => group.Id, StringComparer.Ordinal);
     private readonly IReadOnlyList<Exercise> _catalogExercises;
+    private int _boundCatalogRevision;
+    private readonly HashSet<int> _boundSingleDirectionExerciseIds = [];
+    private static readonly IReadOnlySet<int> NoSingleDirections = new HashSet<int>();
     private IReadOnlyList<Exercise> _exercises = [];
     private IReadOnlyDictionary<int, Exercise> _exercisesById = null!;
     private IReadOnlyDictionary<int, Exercise> _sequenceRootByExerciseId = null!;
@@ -75,6 +76,23 @@ public sealed partial class ExerciseSessionService
         _random = random ?? Random.Shared;
         _utcNowProvider = utcNowProvider ?? (() => DateTimeOffset.UtcNow);
         _localTimeZone = localTimeZone ?? TimeZoneInfo.Local;
+    }
+
+    // Every public state operation crosses this boundary. A service can be
+    // created on a worker or reused for another state without caller setup.
+    // Cache only the derived catalog; the saved state remains authoritative.
+    private void UseWorkoutCatalog(WorkoutState state)
+    {
+        ArgumentNullException.ThrowIfNull(state);
+        bool hasWorkout = state.ActiveWorkoutMinutes > 0 || state.ActiveCatalogRevision > 0;
+        int revision = hasWorkout ? state.ActiveCatalogRevision : 0;
+        IReadOnlySet<int> directions = hasWorkout && state.ActiveSingleDirectionExerciseIds is { } ids
+            ? ids : NoSingleDirections;
+        if (_boundCatalogRevision == revision && _boundSingleDirectionExerciseIds.SetEquals(directions)) return;
+        SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises, revision, directions));
+        _boundCatalogRevision = revision;
+        _boundSingleDirectionExerciseIds.Clear();
+        _boundSingleDirectionExerciseIds.UnionWith(directions);
     }
 
     private void SetExercises(IReadOnlyList<Exercise> exercises)
@@ -123,7 +141,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         long? nowUnixMilliseconds = null)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         WorkoutModifiers setup = WorkoutModifierPolicy.GetPersistentSetupModifiers(state.LastWorkoutModifiers);
         return IsLightDayDue(state, nowUnixMilliseconds ?? GetCurrentUnixTimeMilliseconds())
             ? setup | WorkoutModifiers.Light : setup;
@@ -134,7 +152,7 @@ public sealed partial class ExerciseSessionService
         int prospectiveWorkoutMinutes,
         long? nowUnixMilliseconds = null)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         return WorkoutLightDayPolicy.GetWorkoutsUntilLightDay(
             state.WorkoutHistory,
             prospectiveWorkoutMinutes,
@@ -147,7 +165,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         long? nowUnixMilliseconds = null)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         return IsLightDayDue(
             state,
             nowUnixMilliseconds ?? GetCurrentUnixTimeMilliseconds());
@@ -158,7 +176,7 @@ public sealed partial class ExerciseSessionService
         WorkoutModifiers modifiers,
         long? nowUnixMilliseconds = null)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         WorkoutModifiers physicalProfile = WorkoutModifierPolicy.Normalize(
             modifiers & ~WorkoutModifiers.Light);
         Exercise[] selectableExercises = _exercises
@@ -178,16 +196,13 @@ public sealed partial class ExerciseSessionService
 
     public void Initialize(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         int loadedStateVersion = state.Version;
         WorkoutModifierPolicy.MigrateLegacyElevationSetup(state);
         if (state.ActiveCatalogRevision == 0 && state.ActiveWorkoutMinutes > 0)
             state.ActiveCatalogRevision = state.CatalogRevision;
-        SetExercises(state.ActiveWorkoutMinutes > 0
-            ? WorkoutCatalogPolicy.ForWorkout(_catalogExercises, state.ActiveCatalogRevision,
-                state.ActiveSingleDirectionExerciseIds)
-            : _catalogExercises);
+        UseWorkoutCatalog(state);
         NormalizeCollections(state);
         NormalizeWorkoutHistory(state);
         long currentUnixTimeMilliseconds = GetCurrentUnixTimeMilliseconds();
@@ -395,6 +410,7 @@ public sealed partial class ExerciseSessionService
         int minutes,
         WorkoutModifiers modifiers = DefaultWorkoutModifiers)
     {
+        UseWorkoutCatalog(state);
         PrepareWorkout(state, minutes, modifiers);
         ActivatePreparedWorkout(state);
     }
@@ -404,7 +420,7 @@ public sealed partial class ExerciseSessionService
         int minutes,
         WorkoutModifiers modifiers = DefaultWorkoutModifiers)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         if (!IsValidWorkoutMinutes(minutes))
         {
@@ -475,7 +491,7 @@ public sealed partial class ExerciseSessionService
 
     public void ActivatePreparedWorkout(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         if (!IsValidWorkoutMinutes(state.ActiveWorkoutMinutes) ||
             state.ActiveWorkoutSession is not null ||
             state.Outcomes.Count != 0 ||
@@ -488,10 +504,7 @@ public sealed partial class ExerciseSessionService
                 "The workout state does not contain an activatable prepared workout.");
         }
 
-        // Preparation may run on another service. Resolve the saved plan with
-        // its frozen catalog and directions before counting or logging blocks.
-        SetExercises(WorkoutCatalogPolicy.ForWorkout(_catalogExercises,
-            state.ActiveCatalogRevision, state.ActiveSingleDirectionExerciseIds));
+        UseWorkoutCatalog(state);
         long workoutStartedAtUnixMilliseconds =
             GetCurrentUnixTimeMilliseconds();
         if (!state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) &&
@@ -518,7 +531,7 @@ public sealed partial class ExerciseSessionService
         WorkoutModifiers modifiers,
         string currentWorkoutGroupId)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentException.ThrowIfNullOrWhiteSpace(currentWorkoutGroupId);
         if (!IsValidWorkoutMinutes(state.ActiveWorkoutMinutes) ||
             state.WorkoutCompleted ||
@@ -798,7 +811,7 @@ public sealed partial class ExerciseSessionService
 
     public IReadOnlyList<WorkoutGroup> GetActiveGroups(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         return IsValidWorkoutMinutes(state.ActiveWorkoutMinutes)
             ? CreateWorkoutSchedule(
                 state,
@@ -808,7 +821,7 @@ public sealed partial class ExerciseSessionService
 
     public Exercise GetSelectedExercise(WorkoutState state, WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         if (group.ExerciseOverrideId > 0)
@@ -851,7 +864,7 @@ public sealed partial class ExerciseSessionService
 
     public WorkoutGroup? GetNextGroup(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         return GetActiveGroups(state)
             .FirstOrDefault(group => !state.Outcomes.ContainsKey(group.Id));
@@ -861,6 +874,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
+        UseWorkoutCatalog(state);
         return GetNextSequenceBlock(state, group) is not null;
     }
 
@@ -868,7 +882,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         IReadOnlyList<WorkoutGroup> activeGroups = GetActiveGroups(state);
@@ -893,7 +907,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         IReadOnlyList<WorkoutGroup> activeGroups = GetActiveGroups(state);
@@ -911,7 +925,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         return GetNextGroup(state)?.Id == group.Id &&
@@ -923,7 +937,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         if (GetNextGroup(state)?.Id != group.Id)
@@ -1006,7 +1020,7 @@ public sealed partial class ExerciseSessionService
 
     public bool IsFinalPendingGroup(WorkoutState state, WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         IReadOnlyList<WorkoutGroup> activeGroups = GetActiveGroups(state);
@@ -1021,7 +1035,7 @@ public sealed partial class ExerciseSessionService
         WorkoutGroup group,
         long endsAtUnixMilliseconds)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         WorkoutGroup? nextGroup = GetNextGroup(state);
@@ -1060,7 +1074,7 @@ public sealed partial class ExerciseSessionService
         long millisecondsRemaining,
         long endsAtUnixMilliseconds)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         ValidatePendingMovement(
@@ -1082,7 +1096,7 @@ public sealed partial class ExerciseSessionService
         long millisecondsRemaining,
         bool pausedByUser)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         ValidatePendingMovement(
@@ -1100,13 +1114,13 @@ public sealed partial class ExerciseSessionService
 
     public WorkoutGroup? GetPendingMovementGroup(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         return GetValidPendingMovementGroup(state);
     }
 
     public WorkoutGroup? GetPendingRestGroup(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         WorkoutGroup? pendingGroup = GetValidPendingRestGroup(state);
         return pendingGroup is not null &&
             GetNextGroup(state)?.Id == pendingGroup.Id
@@ -1116,7 +1130,7 @@ public sealed partial class ExerciseSessionService
 
     public bool KeepPendingRest(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         WorkoutGroup? pendingGroup = GetPendingRestGroup(state);
         if (pendingGroup is null ||
@@ -1134,7 +1148,7 @@ public sealed partial class ExerciseSessionService
         WorkoutGroup group,
         long millisecondsRemaining)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         WorkoutGroup? pendingGroup = GetPendingRestGroup(state);
@@ -1159,7 +1173,7 @@ public sealed partial class ExerciseSessionService
         WorkoutGroup group,
         long endsAtUnixMilliseconds)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         WorkoutGroup? pendingGroup = GetPendingRestGroup(state);
@@ -1182,7 +1196,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         long nowUnixMilliseconds)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         if (nowUnixMilliseconds <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(nowUnixMilliseconds));
@@ -1202,7 +1216,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         long nowUnixMilliseconds)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         if (nowUnixMilliseconds <= 0)
         {
             throw new ArgumentOutOfRangeException(nameof(nowUnixMilliseconds));
@@ -1233,7 +1247,7 @@ public sealed partial class ExerciseSessionService
 
     public void ClearPendingMovement(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         state.PendingMovementGroupId = null;
         state.PendingMovementMillisecondsRemaining = 0;
         state.PendingMovementEndsAtUnixMilliseconds = 0;
@@ -1251,7 +1265,7 @@ public sealed partial class ExerciseSessionService
         WorkoutGroup group,
         bool keep)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         WorkoutGroup? nextGroup = GetNextGroup(state);
@@ -1274,7 +1288,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         if (GetNextGroup(state)?.Id != group.Id)
@@ -1309,7 +1323,7 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
         WorkoutGroup? nextGroup = GetNextGroup(state);
@@ -1404,7 +1418,7 @@ public sealed partial class ExerciseSessionService
 
     public void AcknowledgeCompletion(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         if (!state.WorkoutCompleted)
         {
@@ -1421,7 +1435,7 @@ public sealed partial class ExerciseSessionService
     public IReadOnlyList<Exercise> FinishInterruptedWorkoutWithScoreUpdates(
         WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         if (state.LegacySelectedExerciseNames.Count > 0)
         {
@@ -1475,7 +1489,7 @@ public sealed partial class ExerciseSessionService
 
     public (int Replaced, int Kept) GetOutcomeCounts(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         ExerciseOutcome[] decisionOutcomes = GetActiveGroups(state)
             .GroupBy(group => group.SelectionKey)
@@ -1492,7 +1506,7 @@ public sealed partial class ExerciseSessionService
 
     public void ClearPendingRest(WorkoutState state)
     {
-        ArgumentNullException.ThrowIfNull(state);
+        UseWorkoutCatalog(state);
 
         state.PendingRestGroupId = null;
         state.PendingRestEndsAtUnixMilliseconds = 0;
@@ -4945,7 +4959,6 @@ public sealed partial class ExerciseSessionService
     {
         WorkoutCatalogPolicy.MigrateSplitJackPreferences(state,
             _catalogExercises, state.ActiveCatalogRevision);
-        SetExercises(_catalogExercises);
         state.ActiveCatalogRevision = 0;
         state.ActiveSingleDirectionExerciseIds.Clear();
         state.ActiveDurationSelectionGroupIds = null;
@@ -4973,6 +4986,7 @@ public sealed partial class ExerciseSessionService
         state.PendingRestMillisecondsRemaining = 0;
         state.PendingRestPausedByUser = false;
         state.PendingRestKept = false;
+        UseWorkoutCatalog(state);
     }
 
     public static int NormalizeLastWorkoutMinutes(int minutes)

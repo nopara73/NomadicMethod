@@ -58,6 +58,10 @@ internal sealed class FakeWorkoutStateStore : IWorkoutStateStore
         {
             Version = state.Version,
             CatalogRevision = state.CatalogRevision,
+            ActiveCatalogRevision = state.ActiveCatalogRevision,
+            ActiveSingleDirectionExerciseIds = [.. state.ActiveSingleDirectionExerciseIds],
+            ActiveModifierRetainedSelectionGroupIds = [.. state.ActiveModifierRetainedSelectionGroupIds],
+            ElevationEquipmentEnabled = state.ElevationEquipmentEnabled,
             SelectedExerciseIds = new Dictionary<string, int>(
                 state.SelectedExerciseIds,
                 StringComparer.Ordinal),
