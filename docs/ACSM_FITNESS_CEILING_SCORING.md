@@ -1,160 +1,117 @@
-# ACSM fitness-ceiling scoring
+# Provisional exercise training ceilings
 
-Status: provisional catalog audit, scoring version 2. The ten ceiling scores do
-not affect workout selection, preference scores, or recovery. Reaction-time
-placements are backed by the Android/web cue protocol described below.
+Status: **fresh assessment, version 3, 21 October 2026**. All 853 exercises in
+catalog revision 87 have explicit assessments across ten characteristics.
+The prior ratings, anchor scores, keyword scoring rules, coverage overrides,
+and requirement to fill every characteristic/level cell have been discarded.
+These estimates are saved for later discussion; they do not rank workouts,
+change user preference scores, or alter recovery or exercise playback.
 
-This audit scores every exercise against the traditional ACSM fitness
-components except body composition:
+## Read the scores
 
-1. cardiorespiratory endurance;
-2. muscular strength;
-3. muscular endurance;
-4. flexibility;
-5. agility;
-6. balance;
-7. coordination;
-8. power;
-9. reaction time; and
-10. speed.
+A score estimates the highest ability tier to which repeated practice of this
+specific exercise could meaningfully contribute. It is **not an entry
+requirement**, a difficulty score, a user's current ability, or a guaranteed
+outcome. Every work block lasts **45 seconds**, at the demonstrated range,
+cadence, support and resistance. Repeated appearances in normal workouts are
+allowed; added weights, faster unshown execution and harder variations are not.
+An atomic side/direction sequence still consists of separate 45-second blocks;
+its duration does not silently become an uninterrupted endurance set.
 
-The component names and definitions come from the traditional ACSM framework.
-The five levels do not. Dreyfus describes stages of acquiring a skill, not
-universal physical-performance thresholds. Nomadic Method therefore uses the
-numbers as an explicit product hypothesis:
+| Value | Interpretation |
+| ---: | --- |
+| 0 | No meaningful direct training claim on this characteristic. This is absence, not a sixth ability tier. |
+| 1 | Novice: elementary capacity in the directly trained task. |
+| 2 | Advanced beginner: useful basic capacity beyond initial familiarization. |
+| 3 | Competent: substantial, repeatable task-specific capacity. |
+| 4 | Proficient: advanced capacity in that particular movement or task. |
+| 5 | Expert: specialist capacity requiring a particularly strong training case. |
 
-| Score | Label | Meaning in this audit |
-|---:|---|---|
-| 0 | No meaningful stimulus | The demonstrated exercise does not materially train this component. |
-| 1 | Novice | Estimated to contribute meaningfully through the first fixed benchmark tier. |
-| 2 | Advanced beginner | Estimated ceiling is the second benchmark tier. |
-| 3 | Competent | Estimated ceiling is the third benchmark tier. |
-| 4 | Proficient | Estimated ceiling is the fourth benchmark tier. |
-| 5 | Expert | Estimated ceiling is the fifth benchmark tier. |
+The same criteria apply to everyone, without age/sex percentiles. These are
+judgment-based NM tiers. ACSM supplies the component definitions and Dreyfus
+supplies the familiar five names; neither validates these ceilings. The earlier
+proposed numerical test cutoffs are not used to justify or regenerate ratings.
+No exercise currently receives a 5. Empty high tiers are an honest outcome of
+this pass and do not constitute catalog deficits.
 
-A score is an estimated **training ceiling**, not the skill required to start
-the exercise, its difficulty, its value, or a promise that one block produces
-the result. It asks how far repeated use of that particular exercise could
-plausibly contribute to the directly matched capacity.
+## Characteristic-specific interpretation
 
-## Fixed interpretation
+| Characteristic | What earns a rating | How this pass distinguishes higher tiers |
+| --- | --- | --- |
+| Cardiorespiratory endurance | Repeated work involving substantial muscle mass and sustained oxygen demand. | Gentle rhythmic steps begin at 1; jacks/shuffles at 2; vigorous running/jumping/full-body intervals at 3; actual sprinting or especially demanding whole-body transitions can reach 4. Breathing exercises and isolated muscle fatigue do not automatically qualify. |
+| Muscular strength | Meaningful direct resistance for the named local action. | Mild supported/unloaded resistance starts at 1, ordinary loaded bodyweight actions at 2, demanding unilateral/asymmetric leverage at 3, deep pistol work at 4. Merely coordinating an advanced movement does not establish high strength. |
+| Muscular endurance | Repeated or sustained meaningful local force during the block. | Mild local work is 1–2; substantial bodyweight sets/holds generally reach 3. Particularly demanding repeated whole-body resistance can reach 4. This estimates local trainability, not a promise of a multi-minute hold. |
+| Flexibility | Deliberate practice of joint range. | Gentle joint motion is 1; active directed mobility is 2; sustained ordinary end-range work is 3; comparatively large specific hip/fold positions can reach 4. More range is not universally better. |
+| Agility | Rapid, accurate planned repositioning under the traditional definition. | Basic footwork is 1, quick lateral steps/small hops 2, deliberate airborne turns or forceful lateral landings 3. Slow lunges and merely changing an arm's direction do not qualify. |
+| Balance | Meaningful control of a reduced/changing support base. | Basic shifting support is 1, ordinary unsupported single-leg/tandem tasks 2, substantial dynamic single-leg or head-motion challenges 3. Wall support reduces the claim; ordinary bracing is omitted. |
+| Coordination | Deliberate timing or independent control of multiple segments. | Simple coupled patterns are 1, independent/cross-body patterns 2, linked technical sequences or isolated waves 3, the precise tutting sequence 4. Coordination remains task-specific. |
+| Power | Deliberate rapid force production. | Unloaded strikes/small jacks are 1; elastic short hops 2; substantial jumps 3; demanding unilateral takeoffs/bounds or ballistic pushing 4. Holds and slow resistance receive 0. |
+| Reaction time | Responding to an unpredictable external event. | A predictable demonstration loop earns 0. The existing random visual stop/go protocol earns a provisional 2 for its elementary response task. A denser cue schedule does not demonstrate faster response latency or justify tiers 3–5. |
+| Speed | Deliberate rapid limb cycles or locomotion. | Basic cadence is 1, rapid limb/footwork patterns 2, traveling running/bounding 3, actual sprinting 4. High knees in place do not establish maximal overground sprint ability. |
 
-- Every work block is 45 seconds.
-- Form, range, cadence, resistance, support, equipment, and cues are those in
-  the packaged demonstration.
-- Repeated appearances in ordinary Nomadic Method workouts are allowed, but no
-  external load or harder unshown variation is assumed.
-- Scores are fixed abilities rather than age- or sex-relative percentiles.
-- Strength, endurance, flexibility, balance, coordination, power, and speed are
-  interpreted in the exercise's directly trained movement, joint, limb, or
-  task. A calf stretch does not claim whole-body flexibility, and a tree pose
-  does not claim universal balance transfer.
-- Cardiorespiratory endurance is whole-body. Local fatigue alone does not earn
-  a cardiorespiratory score.
-- Agility uses the traditional planned-repositioning definition. A rehearsed
-  turn can train agility without training reaction time.
-- Reaction time requires an unpredictable external cue. A repeating video by
-  itself receives zero. Thirty exercises now add a random visual stop/go cue:
-  the demonstrator pauses under a red pause symbol and resumes under a green
-  play symbol. Existing workouts from before catalog revision 87 retain their
-  original continuous playback.
+These distinctions are explicit assessment choices, not physiological laws or
+validated thresholds. Strength, endurance, flexibility, balance, coordination,
+power and speed refer to the particular joint, muscle group, support condition
+or action being trained. A calf stretch does not confer whole-body flexibility;
+a finger pattern does not confer boxing coordination; a floor-supported trunk
+task does not automatically confer standing balance. The CSV includes the
+catalog's primary muscle group for context, not as a substitute for these
+task-specific scopes.
 
-Training outcomes still depend on weekly dose, intensity, recovery, starting
-ability, technique, and individual response. The catalog has no longitudinal
-intervention data proving these ceilings. The values are structured estimates
-for product discussion and later review.
+## Source and review status
 
-## Version 2 method
+- [`catalog-audit/acsm-fitness-ceiling-scores.csv`](catalog-audit/acsm-fitness-ceiling-scores.csv)
+  is the readable per-exercise export: stable ID, current name, all ten scores,
+  assessment profile, primary muscle group, provisional status, and rationale.
+- [`../tools/ExerciseFitnessCeilingScores.json`](../tools/ExerciseFitnessCeilingScores.json)
+  is the source. Every ID is explicitly assigned to one rationale/score profile.
+  Similar movements can share a judgment, but an unassigned new ID fails
+  validation rather than inheriting ratings from its name or practice label.
+- [`catalog-audit/acsm-fitness-ceiling-coverage.json`](catalog-audit/acsm-fitness-ceiling-coverage.json)
+  reports exact-level counts and deduplicates session movement identities.
+  Counts are diagnostic only: there are no required populations or deficits.
 
-The generated audit is
-[`catalog-audit/acsm-fitness-ceiling-scores.csv`](catalog-audit/acsm-fitness-ceiling-scores.csv).
-It covers catalog revision 87, with 853 records and catalog SHA-256 after
-normalizing CRLF line endings to LF
-`22eef7cef689707c629fb58a5acb041eebb0ed8f2be8ae810b7e13e61cd4b657`.
+Every row is marked `provisional-metadata-assessment`. This pass considered
+the current exercise names and movement/load/support metadata, and the actual
+presence of runtime reaction cues. It is **not** a new full video review,
+human expert approval, or longitudinal training validation. Shared profiles do
+not mean their members have identical mechanics or physiological effects.
 
-Seven exercises previously discussed are explicit reviewed anchors. Their ten
-scores live in
-[`../tools/ExerciseFitnessCeilingOverrides.json`](../tools/ExerciseFitnessCeilingOverrides.json):
+The assessment pins the normalized-LF catalog SHA-256. Any catalog change
+requires deliberate reassessment and a snapshot update; regenerating the CSV
+alone cannot silently award ratings to a changed movement. Existing canonical
+anatomy, muscular-demand ratings, media and scheduler behavior are independent.
 
-| Exercise | Cardio | Strength | Muscular endurance | Flexibility | Agility | Balance | Coordination | Power | Reaction | Speed |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Wall Sit | 0 | 2 | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| Tree Pose Hold | 0 | 0 | 1 | 0 | 0 | 3 | 0 | 0 | 0 | 0 |
-| Jumping Jacks | 2 | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 0 | 1 |
-| 180-Degree Squat Jumps | 3 | 2 | 3 | 0 | 3 | 2 | 3 | 3 | 0 | 2 |
-| Lateral Line Hops | 2 | 0 | 2 | 0 | 3 | 2 | 2 | 2 | 0 | 2 |
-| Toes-on-Wall Calf Stretch | 0 | 0 | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
-| Wall Push-Up | 0 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+## Existing reaction playback
 
-Another 115 exercises have reviewed exact-level placements in
-[`../tools/ExerciseFitnessCeilingCoverageOverrides.json`](../tools/ExerciseFitnessCeilingCoverageOverrides.json).
-The remaining 731 rows are rule-derived from the canonical catalog's name,
-practice, motion profile, mode, muscular demand, support, and locomotor cues.
-The rules are readable in
-[`../tools/generate-exercise-fitness-ceiling-scores.mjs`](../tools/generate-exercise-fitness-ceiling-scores.mjs),
-and each CSV row records the rules that fired in its `basis` field. Reviewed
-exercise-specific judgments can replace derived values by adding an override.
+The 30 existing stop/go exercises retain precisely their existing playback
+levels. Their independent configuration is now
+[`../tools/ExerciseReactionCues.json`](../tools/ExerciseReactionCues.json), sourced
+from the current runtime catalog. `Generate-ExerciseCatalog.ps1` reads this
+playback configuration rather than discarded fitness-score overrides.
+`reactionCueLevel` is a cue-density setting, **not a physical ability tier**.
+This assessment adds no cues and changes no cue timings or session behavior.
 
-## Exact-level catalog rule
-
-Every one of the 50 exact characteristic-level cells must contain at least six
-distinct session movements. A level-5 movement does not count again at levels
-1–4, and aliases or members of the same `SessionMovementId` count once. This is
-a Nomadic Method catalog-diversity rule; it is not an ACSM recommendation and
-does not make six a physiological threshold.
-
-The generated
-[`catalog-audit/acsm-fitness-ceiling-coverage.json`](catalog-audit/acsm-fitness-ceiling-coverage.json)
-records both exercise rows and deduplicated session-movement IDs. Generation
-and CI fail on any cell below six. Version 2 currently has no deficits.
-
-High-tier placements remain task-specific. For example, level-5 pistol work is
-a claim about the directly trained unilateral squat task, not a claim that it
-creates level-5 strength in every muscle or movement.
-
-## Reaction cue levels
-
-The 30 cue-backed exercises contain six distinct session movements at each
-level. Each 45-second block alternates random move and freeze windows:
-
-| Level | Move window | Freeze window |
-|---:|---:|---:|
-| 1 | 5.5–8.0 s | 1.6–2.2 s |
-| 2 | 4.0–6.5 s | 1.2–1.8 s |
-| 3 | 3.0–5.0 s | 0.9–1.4 s |
-| 4 | 2.0–3.5 s | 0.7–1.1 s |
-| 5 | 1.2–2.5 s | 0.45–0.85 s |
-
-The base movements are all reviewed motion/repetition exercises; no hold or
-still-image exercise receives a reaction score. The cue density supplies the
-level distinction, while the random transition supplies the external stimulus.
-
-## Rebuild and verify
+## Rebuild and check
 
 From the repository root:
 
 ```powershell
 node tools/generate-exercise-fitness-ceiling-scores.mjs
 node tools/generate-exercise-fitness-ceiling-scores.mjs --check
+node --test web/tests/fitness-ceiling-scores.test.js
 ```
 
-The check fails if the catalog changes, an override points to a missing
-exercise, a score leaves the 0–5 range, a reaction score differs from the
-runtime cue level, a characteristic-level cell has fewer than six distinct
-session movements, or either committed audit file is stale.
+Checks reject stale catalog snapshots, absent/duplicate/unknown IDs, missing
+characteristics, fractional/out-of-range scores, unsupported reaction claims,
+power/speed claims for still holds, and stale exports. Later revisions should
+review individual assignments and rationale profiles together. Before product
+use, finalize the relevant task benchmarks and test the ceiling estimates
+against observed adaptations and actual weekly exposure.
 
-Before any runtime use, every rule-derived row should receive exercise-specific
-review, the benchmark battery should be finalized for each relevant movement
-domain, and the resulting ceiling model should be tested against observed
-training data.
+## Framework references
 
-## References
-
-- American College of Sports Medicine, [The Components of Physical Fitness: A
-  Roundtable Statement](https://doi.org/10.1249/MSS.0000000000003997).
-- Dreyfus and Dreyfus, [A Five-Stage Model of the Mental Activities Involved in
-  Directed Skill Acquisition](https://www.bumc.bu.edu/facdev-medicine/files/2012/03/Dreyfus-skill-level.pdf).
-- Kümmel et al., [Specificity of Balance Training in Healthy Individuals: A
-  Systematic Review and Meta-Analysis](https://pubmed.ncbi.nlm.nih.gov/26993132/).
-- American College of Sports Medicine, [2026 resistance-training position-stand
-  summary](https://acsm.org/resistance-training-guidelines-update-2026/).
+- ACSM, [The Components of Physical Fitness: A Roundtable Statement](https://doi.org/10.1249/MSS.0000000000003997).
+- Dreyfus, [The Five-Stage Model of Adult Skill Acquisition](https://www.bumc.bu.edu/facdev-medicine/files/2012/03/Dreyfus-skill-level.pdf).
+- Kümmel et al., [Specificity of Balance Training in Healthy Individuals](https://pubmed.ncbi.nlm.nih.gov/26993132/).
+- ACSM, [2026 resistance-training guidance](https://acsm.org/resistance-training-guidelines-update-2026/).

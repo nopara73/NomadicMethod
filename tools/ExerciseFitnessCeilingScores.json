@@ -1,0 +1,3238 @@
+{
+  "scoringVersion": 3,
+  "status": "provisional",
+  "assessedOn": "2026-10-21",
+  "blockSeconds": 45,
+  "catalogRevision": 87,
+  "catalogSha256": "22eef7cef689707c629fb58a5acb041eebb0ed8f2be8ae810b7e13e61cd4b657",
+  "dimensions": [
+    "cardiorespiratoryEndurance",
+    "muscularStrength",
+    "muscularEndurance",
+    "flexibility",
+    "agility",
+    "balance",
+    "coordination",
+    "power",
+    "reactionTime",
+    "speed"
+  ],
+  "profiles": {
+    "unloaded-leg-isolation": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The moving leg supplies modest local resistance. Repeated 45-second sets can develop basic local strength and endurance; brief single support is incidental.",
+      "exerciseIds": [
+        15,
+        20,
+        151,
+        152,
+        153,
+        154,
+        159,
+        160,
+        173,
+        179,
+        530,
+        533,
+        603,
+        612,
+        648,
+        649
+      ]
+    },
+    "bilateral-calf-work": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Bilateral or split-stance heel raises repeatedly load the plantar flexors. The fixed bodyweight load has a modest strength ceiling and a useful local endurance stimulus.",
+      "exerciseIds": [
+        16,
+        187,
+        252,
+        253,
+        254,
+        295,
+        549,
+        562,
+        566,
+        570,
+        581,
+        582
+      ]
+    },
+    "wall-calf-strength": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The wall-supported calf action directly loads the plantar flexors without an unsupported balance challenge. Fixed leverage limits maximal-force progression.",
+      "exerciseIds": [
+        162,
+        273
+      ]
+    },
+    "unilateral-calf-strength": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "One leg bears bodyweight through the calf raise. This offers appreciable local strength and endurance work plus modest unsupported stance control.",
+      "exerciseIds": [
+        272,
+        569
+      ]
+    },
+    "tibialis-strength": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Wall-leaning toe raises load dorsiflexion directly. This is local force and endurance work; support removes the balance task.",
+      "exerciseIds": [
+        165
+      ]
+    },
+    "toe-and-heel-walking": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated forefoot or heel loading trains basic ankle endurance and controlled shifts of the support base.",
+      "exerciseIds": [
+        119,
+        191,
+        194,
+        284,
+        1295
+      ]
+    },
+    "hamstring-mobility-flow": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unweighted reach or straight-leg pattern repeatedly approaches posterior-chain range. Its principal contribution is active mobility, with simple movement sequencing.",
+      "exerciseIds": [
+        17,
+        171,
+        251,
+        417,
+        470,
+        625,
+        1036
+      ]
+    },
+    "ordinary-squat": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated bilateral or split-stance squatting supplies fixed bodyweight resistance. Forty-five-second sets train local endurance more strongly than high maximal strength.",
+      "exerciseIds": [
+        19,
+        101,
+        103,
+        104,
+        107,
+        109,
+        110,
+        120,
+        184,
+        199,
+        314,
+        1031
+      ]
+    },
+    "shallow-squat": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The shallow squat or assisted sit-to-stand offers entry-level leg loading and endurance; neither its range nor its fixed resistance establishes advanced strength.",
+      "exerciseIds": [
+        105,
+        137,
+        147,
+        188,
+        609,
+        1405
+      ]
+    },
+    "squat-arm-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Bodyweight squatting provides leg strength/endurance work while the arm or trunk action adds a simple coordinated pattern. Range is only credited where deliberately practiced.",
+      "exerciseIds": [
+        102,
+        108,
+        111,
+        112,
+        113,
+        114,
+        200,
+        303,
+        315,
+        341,
+        410,
+        411,
+        836
+      ]
+    },
+    "squat-calf-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Combining loaded knee bends with heel raises sustains leg work and requires elementary control of a changing support base.",
+      "exerciseIds": [
+        138,
+        139,
+        140,
+        141,
+        197,
+        198,
+        201,
+        255,
+        571,
+        987
+      ]
+    },
+    "light-squat-calf-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The shallow knee/heel action and arm pattern supply modest sustained local loading and basic interlimb timing.",
+      "exerciseIds": [
+        389,
+        550,
+        551,
+        552,
+        554,
+        555,
+        557,
+        565
+      ]
+    },
+    "lunge-and-reach": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The lunge or squat transition loads the legs through repeated 45-second sets. Reaching, turning, or raising a knee adds modest stance control and coordination; this is not rapid agility practice.",
+      "exerciseIds": [
+        41,
+        118,
+        121,
+        122,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        143,
+        156,
+        192,
+        195,
+        509,
+        538,
+        636,
+        973,
+        1037,
+        1038,
+        1039,
+        1046,
+        1047
+      ]
+    },
+    "lateral-lunge": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The lateral lunge directly loads the legs while exploring hip/adductor range. Controlled direction changes do not by themselves establish a speed or agility stimulus.",
+      "exerciseIds": [
+        116,
+        123,
+        150
+      ]
+    },
+    "deep-squat-mobility": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The deep loaded squat and side shift or thoracic turn combine appreciable local endurance with deliberate end-range hip/ankle/trunk mobility.",
+      "exerciseIds": [
+        986,
+        998
+      ]
+    },
+    "squat-locomotion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Travel in the low squat sustains leg loading and trains controlled foot placement. The deliberate pace limits speed and agility claims.",
+      "exerciseIds": [
+        142,
+        999,
+        1045
+      ]
+    },
+    "bilateral-leg-hold": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "A fixed bilateral or split stance holds the knee/hip extensors under sustained load. Forty-five seconds supports local isometric endurance and moderate angle-specific strength.",
+      "exerciseIds": [
+        117,
+        134,
+        135,
+        136,
+        626,
+        969,
+        1028
+      ]
+    },
+    "wall-sit-march": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Alternating feet during a wall sit increases unilateral leg loading and sequencing while the wall supplies trunk support.",
+      "exerciseIds": [
+        175
+      ]
+    },
+    "pistol-strength": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 4,
+        "muscularEndurance": 3,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "A deep unilateral squat or bottom hold loads one leg at demanding leverage and range. It supports advanced task-specific strength, local endurance, mobility, and single-leg control.",
+      "exerciseIds": [
+        115,
+        532,
+        997
+      ]
+    },
+    "partial-single-leg-squat": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Unilateral-biased knee extension supplies more local force demand than an ordinary bilateral squat, with a limited rather than specialist progression at the shown depth and support.",
+      "exerciseIds": [
+        196,
+        996,
+        1406,
+        1407
+      ]
+    },
+    "sissy-squat": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unsupported knee-dominant lean creates demanding quadriceps leverage. It is local strength/endurance work with deliberate stance control, not ballistic power.",
+      "exerciseIds": [
+        212
+      ]
+    },
+    "single-leg-hinge": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unsupported single-leg hinge or hip rotation challenges dynamic stance control and posterior-chain endurance. Bodyweight resistance limits the maximal-strength ceiling.",
+      "exerciseIds": [
+        21,
+        177,
+        186,
+        367,
+        393,
+        529,
+        537,
+        1022
+      ]
+    },
+    "light-single-leg-hinge": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unsupported reach/hinge practices single-leg control with modest posterior-chain loading and coordinated trunk/limb movement.",
+      "exerciseIds": [
+        148,
+        292,
+        539,
+        542,
+        825
+      ]
+    },
+    "supported-hip-hinge": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The rear foot against the wall reduces the balance task while hip rotation and the hinge practice useful active hip control.",
+      "exerciseIds": [
+        563
+      ]
+    },
+    "bodyweight-hinge": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "An unloaded bilateral hinge offers basic posterior-chain loading and active hip range; it does not provide progressive heavy resistance.",
+      "exerciseIds": [
+        146,
+        193
+      ]
+    },
+    "wall-hip-isometric": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Pressing the thigh into a wall permits sustained self-scaled hip-abductor force. It is local isometric strength/endurance rather than unsupported balance.",
+      "exerciseIds": [
+        149
+      ]
+    },
+    "local-self-resistance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Deliberate opposing force from the other hand, leg, or wall can meaningfully load the named local action. The estimate assumes active resistance throughout the 45-second block, without inferring a measured maximal load.",
+      "exerciseIds": [
+        241,
+        269,
+        307,
+        308,
+        309,
+        310,
+        519,
+        560,
+        614,
+        745,
+        1001
+      ]
+    },
+    "supported-light-hold": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The supported limb press/hold provides modest angle-specific local loading; support removes a meaningful postural balance requirement.",
+      "exerciseIds": [
+        145,
+        564,
+        585,
+        586,
+        587
+      ]
+    },
+    "arm-endurance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Holding or cycling the arms against gravity supplies modest shoulder/arm endurance and entry-level local strength. No external resistance or maximal-speed intent is assumed.",
+      "exerciseIds": [
+        230,
+        234,
+        237,
+        246,
+        261,
+        264,
+        266,
+        268,
+        270,
+        275,
+        277,
+        301,
+        398,
+        406,
+        446,
+        447,
+        494,
+        496,
+        516,
+        677,
+        678,
+        683,
+        743
+      ]
+    },
+    "hand-endurance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Opening or spreading the fingers while holding the arms forward supports basic hand control and local endurance, without a substantial maximal-force stimulus.",
+      "exerciseIds": [
+        257,
+        289
+      ]
+    },
+    "posing": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Voluntary posing sustains local contractions and practices body-position control. Unmeasured co-contraction is not equated with high external resistance.",
+      "exerciseIds": [
+        524,
+        525,
+        526,
+        527,
+        528,
+        790
+      ]
+    },
+    "arm-pressback-hold": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The bent-over arm hold sustains the shoulder extensors against gravity. It primarily trains angle-specific local endurance with limited fixed resistance.",
+      "exerciseIds": [
+        263
+      ]
+    },
+    "tree-and-knee-balance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "An unsupported eyes-open single-leg stance practices that static balance task. It offers limited stance endurance, with no implied transfer to perturbation recovery.",
+      "exerciseIds": [
+        95,
+        217,
+        613
+      ]
+    },
+    "dynamic-leg-balance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unsupported moving-leg pattern changes the center of mass and practices single-leg control, active hip range, and basic limb sequencing.",
+      "exerciseIds": [
+        96,
+        97,
+        99,
+        100,
+        161,
+        617,
+        620,
+        666,
+        1297
+      ]
+    },
+    "figure-four-squat-balance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unsupported figure-four squat adds substantial stance-leg work and hip range to a dynamic single-leg balance task.",
+      "exerciseIds": [
+        540
+      ]
+    },
+    "dancer-balance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unsupported dancer hold combines an extended single-leg posture with deliberate shoulder/hip range. Its ceiling is specific to this unperturbed pose.",
+      "exerciseIds": [
+        260
+      ]
+    },
+    "tandem-balance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Tandem or feet-together stance narrows the support base; stepping or head movement practices modest sensory/postural control without a rapid external perturbation.",
+      "exerciseIds": [
+        32,
+        47,
+        425,
+        477,
+        482
+      ]
+    },
+    "single-leg-head-motion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Head motion during unsupported single-leg stance adds a vestibular challenge to a narrow support base.",
+      "exerciseIds": [
+        513
+      ]
+    },
+    "tiptoe-head-motion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Rising onto the forefeet while moving the head and fixing gaze challenges a reduced support base and eye/head coordination.",
+      "exerciseIds": [
+        414,
+        415,
+        416
+      ]
+    },
+    "gentle-weight-shift": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "A controlled shift or backward step practices basic foot placement and postural control without sustained substantial loading or rapid direction changes.",
+      "exerciseIds": [
+        94,
+        403,
+        1050
+      ]
+    },
+    "gaze-march": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Marching while coordinating the eyes and head adds a modest visual/vestibular task to changing single support. It does not supply an unpredictable reaction stimulus.",
+      "exerciseIds": [
+        202,
+        413,
+        475,
+        919
+      ]
+    },
+    "gaze-isolation": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Prescribed eye/finger/head tracking directly practices visual-motor coordination. Predictable tracking is not reaction-time training; ordinary standing is not credited as balance work.",
+      "exerciseIds": [
+        408,
+        418,
+        419,
+        490,
+        491,
+        492,
+        493,
+        495,
+        499,
+        501
+      ]
+    },
+    "basic-neck-mobility": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Controlled unresisted cervical movement practices the demonstrated neck range. It does not establish a significant strength, aerobic, or reaction-time stimulus.",
+      "exerciseIds": [
+        409,
+        422,
+        423,
+        467,
+        474,
+        481,
+        483,
+        751
+      ]
+    },
+    "basic-joint-mobility": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Controlled unresisted joint movement practices basic available range. Activation, ordinary bracing, and merely moving a limb are not treated as substantial strength or endurance training.",
+      "exerciseIds": [
+        214,
+        215,
+        223,
+        228,
+        236,
+        288,
+        329,
+        531,
+        574,
+        608,
+        611,
+        755,
+        756,
+        758,
+        916,
+        1018,
+        1021,
+        1058,
+        1064,
+        1090,
+        1097,
+        1139,
+        1168,
+        1169,
+        1180,
+        1181,
+        1182,
+        1183,
+        1185,
+        1200,
+        1202,
+        1203,
+        1226,
+        1228,
+        1233,
+        1237,
+        1244,
+        1274,
+        1277,
+        1291,
+        1294,
+        1296,
+        1299,
+        1303,
+        1408,
+        1410,
+        1413,
+        1438
+      ]
+    },
+    "ordinary-static-stretch": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The held stretch directly practices the named joint or tissue range for 45 seconds. The rating is local to that range and assumes a controlled end position rather than specialist contortion.",
+      "exerciseIds": [
+        163,
+        211,
+        213,
+        216,
+        225,
+        233,
+        238,
+        239,
+        256,
+        271,
+        338,
+        502,
+        503,
+        504,
+        510,
+        512,
+        568,
+        572,
+        573,
+        633,
+        686,
+        704,
+        712,
+        740,
+        741,
+        742,
+        746,
+        748,
+        750,
+        752,
+        784,
+        835,
+        843,
+        845,
+        958,
+        1000,
+        1004,
+        1060,
+        1069,
+        1070,
+        1071,
+        1074,
+        1083,
+        1086,
+        1094,
+        1096,
+        1100,
+        1103,
+        1113,
+        1123,
+        1133,
+        1140,
+        1148,
+        1149,
+        1150,
+        1173,
+        1197,
+        1209,
+        1210,
+        1216,
+        1229,
+        1241,
+        1242,
+        1272,
+        1273,
+        1278,
+        1292,
+        1411,
+        1412,
+        1414,
+        1417,
+        1418,
+        1419
+      ]
+    },
+    "unsupported-standing-stretch": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The stretch directly practices local range while requiring basic single-leg or changing-support control. The balance contribution is secondary and limited.",
+      "exerciseIds": [
+        632,
+        744,
+        747,
+        1033,
+        1034,
+        1035,
+        1298,
+        1420
+      ]
+    },
+    "advanced-floor-stretch": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 4,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The pigeon or hands-on-floor fold practices a comparatively large hip/posterior-chain range. The claim is about that specific position, not universal flexibility.",
+      "exerciseIds": [
+        1119,
+        1206,
+        1245
+      ]
+    },
+    "active-mobility-sequence": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The controlled sequence intentionally explores local joint/trunk range with simple sequencing. It is not assigned substantial resistance or cardiorespiratory loading.",
+      "exerciseIds": [
+        224,
+        293,
+        377,
+        407,
+        449,
+        489,
+        547,
+        579,
+        580,
+        801,
+        818,
+        917,
+        1006,
+        1007,
+        1012,
+        1013,
+        1015,
+        1030,
+        1032,
+        1087,
+        1114,
+        1120,
+        1158,
+        1159,
+        1175,
+        1188,
+        1196,
+        1215,
+        1234,
+        1239,
+        1240,
+        1247,
+        1280
+      ]
+    },
+    "isolated-face-control": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The deliberate facial action practices elementary local motor control. The unresisted movement is not credited with general coordination, strength, or aerobic capacity.",
+      "exerciseIds": [
+        497,
+        498,
+        511,
+        514,
+        515,
+        521
+      ]
+    },
+    "jaw-mobility": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The controlled jaw movement practices available mandibular range. No meaningful external resistance or whole-body capacity stimulus is inferred.",
+      "exerciseIds": [
+        500,
+        505,
+        506
+      ]
+    },
+    "breathing-only": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Breathing control, vocalized exhalation, or abdominal drawing-in does not itself establish cardiorespiratory endurance or another substantial stimulus on these ten axes. Zero does not mean the practice has no other purpose.",
+      "exerciseIds": [
+        518,
+        1005
+      ]
+    },
+    "pelvic-floor-local": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The deliberate pelvic-floor squeeze directly practices a local contraction and sustained control. This is basic local strength/endurance, not a whole-body fitness claim.",
+      "exerciseIds": [
+        918
+      ]
+    },
+    "low-impact-whole-body": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated steps or knee raises recruit substantial lower-body muscle mass at a moderate pace. They can develop basic aerobic/local endurance and simple interlimb timing, without high-force or maximal-speed claims.",
+      "exerciseIds": [
+        144,
+        170,
+        219,
+        248,
+        302,
+        304,
+        311,
+        321,
+        340,
+        390,
+        391,
+        394,
+        396,
+        397,
+        486,
+        507,
+        615,
+        618,
+        647,
+        654,
+        831,
+        834,
+        906,
+        910,
+        914,
+        915,
+        939,
+        943,
+        960,
+        962,
+        1029,
+        1423,
+        1424
+      ]
+    },
+    "light-breath-led-squat": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Slow shallow knee bends provide mild local loading while arms and breathing follow a predictable pattern. Deliberate breathing alone is not an aerobic stimulus.",
+      "exerciseIds": [
+        56,
+        176,
+        399,
+        400,
+        402,
+        405,
+        484,
+        619,
+        913
+      ]
+    },
+    "gentle-mobility-and-coordination": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The gentle arm/trunk/step sequence explores modest range and basic movement timing. The shown movement does not justify substantial resistance, ballistic force, or vigorous aerobic claims.",
+      "exerciseIds": [
+        59,
+        98,
+        185,
+        203,
+        227,
+        379,
+        401,
+        404,
+        480,
+        517,
+        576,
+        588,
+        804,
+        954,
+        1008,
+        1009,
+        1010,
+        1011,
+        1014,
+        1017,
+        1025,
+        1040,
+        1302
+      ]
+    },
+    "breathing-arm-endurance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The raised or closing arms supply mild local endurance work and basic breath/movement timing. The prescribed exhalation does not imply aerobic conditioning.",
+      "exerciseIds": [
+        520,
+        1003
+      ]
+    },
+    "abdominal-drawing-in": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated abdominal drawing-in practices low-load local trunk control and endurance, without a measurable heavy-resistance or cardiorespiratory stimulus.",
+      "exerciseIds": [
+        993
+      ]
+    },
+    "marching-technique-supported": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Supported or seated knee lifting supplies modest hip-flexor loading and rhythmic limb practice. Support removes an important balance challenge and the pace is not sprinting.",
+      "exerciseIds": [
+        166,
+        172,
+        911,
+        1409
+      ]
+    },
+    "marching-on-one-leg": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated knee drive on one stance leg combines local endurance with an unsupported changing-center-of-mass task and elementary running-pattern timing.",
+      "exerciseIds": [
+        296
+      ]
+    },
+    "kick-mobility": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The large unweighted leg arc practices active hip range and controlled single-leg support. A large arc is not automatically a maximal-power strike.",
+      "exerciseIds": [
+        174,
+        178,
+        535
+      ]
+    },
+    "technical-kick": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "A deliberate martial kick coordinates trunk and limb acceleration over single-leg support. Unloaded striking supports modest limb speed and power, not heavy maximal-force training.",
+      "exerciseIds": [
+        180,
+        181,
+        182,
+        183,
+        534,
+        536
+      ]
+    },
+    "single-technical-strike": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "The rehearsed strike/block practices timed arm/trunk action and modest unloaded acceleration. A known loop supplies no reaction stimulus unless the runtime adds an external cue.",
+      "exerciseIds": [
+        220,
+        231,
+        274,
+        276,
+        278,
+        281,
+        283,
+        285,
+        291,
+        326,
+        327,
+        473,
+        541,
+        546,
+        556,
+        681,
+        685
+      ]
+    },
+    "boxing-combination": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 3,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "The linked boxing/striking sequence coordinates multiple arm, trunk, and sometimes foot actions. Repeated 45-second work can train basic aerobic endurance and competent task-specific sequencing with modest unloaded limb speed.",
+      "exerciseIds": [
+        265,
+        287,
+        575,
+        578,
+        583,
+        684
+      ]
+    },
+    "boxing-evasion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The rehearsed slip, roll, duck, or pullback practices accurate body repositioning and basic movement timing. There is no unpredictable opponent response in the demonstration.",
+      "exerciseIds": [
+        884,
+        885,
+        886,
+        887
+      ]
+    },
+    "slow-core-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Controlled trunk bending or rotation with limb motion supplies basic local endurance and intersegment timing. An unloaded chop is not assumed to be an explosive throw.",
+      "exerciseIds": [
+        262,
+        577,
+        616,
+        905,
+        948,
+        949
+      ]
+    },
+    "dance-and-steps": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 1,
+        "coordination": 3,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The repeated learned step pattern coordinates changing foot placements and arm/trunk rhythm. It supports modest aerobic conditioning, planned repositioning, and task-specific coordination.",
+      "exerciseIds": [
+        58,
+        240
+      ]
+    },
+    "capoeira-evasion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The low lateral evasion sustains leg loading while coordinating trunk position and a deliberate weight shift.",
+      "exerciseIds": [
+        93
+      ]
+    },
+    "ballet-grand-plie": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The deep turned-out knee bend loads the legs while deliberately exploring hip/ankle range and controlled alignment.",
+      "exerciseIds": [
+        190
+      ]
+    },
+    "yoga-loaded-standing-hold": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The wide stance sustains local leg work while holding the arms and trunk in a specific position. It offers basic posture control and useful local hip/trunk range.",
+      "exerciseIds": [
+        232,
+        610
+      ]
+    },
+    "leg-resistance-with-arm-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated loaded leg or trunk action supplies sustained local work and elementary multi-segment timing. Forceful naming or exhalation does not establish ballistic power.",
+      "exerciseIds": [
+        392,
+        466,
+        544,
+        687,
+        971,
+        1020
+      ]
+    },
+    "light-lateral-lunge-reach": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The shallow lateral lunge and reach give mild leg loading, active adductor/trunk range, and a simple coordinated weight shift.",
+      "exerciseIds": [
+        733
+      ]
+    },
+    "coordination-finger-switch": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 3,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Switching the thumb and little finger deliberately practices a nontrivial independent hand pattern. It makes a local dexterity claim, not a whole-body coordination claim.",
+      "exerciseIds": [
+        290
+      ]
+    },
+    "coordination-tutting": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 4,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The geometric hand/arm sequence deliberately practices precise independent segment positions and transitions. This is a comparatively advanced task-specific coordination pattern.",
+      "exerciseIds": [
+        522
+      ]
+    },
+    "coordination-arm-wave": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 1,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 3,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Passing a wave across both arms requires serial joint isolation and controlled timing; the stimulus is coordination rather than heavy resistance.",
+      "exerciseIds": [
+        523
+      ]
+    },
+    "coordination-teacup": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 3,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The continuous teacup path combines shoulder, elbow, wrist, and trunk orientation with constrained hand position. It practices local mobility and a complex learned sequence.",
+      "exerciseIds": [
+        1026,
+        1027
+      ]
+    },
+    "coordination-clap-and-knee": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Alternating overhead and under-leg claps with knee raises practices a linked arm/leg sequence and modest rhythmic whole-body endurance.",
+      "exerciseIds": [
+        1002
+      ]
+    },
+    "basic-wall-pushing": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The inclined wall/raised-support push supplies low-to-moderate local resistance and useful pushing endurance. Stable support and the fixed incline limit maximal-strength claims.",
+      "exerciseIds": [
+        584,
+        701,
+        702,
+        703,
+        1401
+      ]
+    },
+    "fingertip-wall-pushing": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The fingertip wall push-up deliberately loads finger support and pushing muscles. Its local strength claim is limited by the supported incline.",
+      "exerciseIds": [
+        218
+      ]
+    },
+    "rear-foot-wall-split-squat": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The wall positions the rear foot while the front leg performs substantial unilateral work. The exercise develops leg strength/endurance and modest stance control.",
+      "exerciseIds": [
+        567
+      ]
+    },
+    "lateral-skip": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 2,
+        "balance": 1,
+        "coordination": 2,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Traveling lateral skips coordinate repeated takeoffs and landings with planned lateral foot placement.",
+      "exerciseIds": [
+        1041
+      ]
+    },
+    "crossover-locomotion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 3,
+        "balance": 1,
+        "coordination": 3,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Crossing steps while traveling requires linked lateral footwork, planned repositioning, and relatively complex interlimb timing.",
+      "exerciseIds": [
+        1042,
+        1044
+      ]
+    },
+    "basic-jacks": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Repeated two-foot jacks provide rhythmic whole-body work and a simple synchronized arm/leg pattern. Small habitual bounces offer only entry-level elastic power and cadence practice.",
+      "exerciseIds": [
+        420,
+        421,
+        459,
+        468
+      ]
+    },
+    "complex-jacks": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Crossing or adding strikes/arm circles to jacks increases arm/leg sequencing while retaining moderate repeated aerobic and local endurance work.",
+      "exerciseIds": [
+        426,
+        436,
+        469,
+        479
+      ]
+    },
+    "squat-jacks": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Repeated jumping knee bends combine substantial leg endurance with vigorous whole-body work and moderate repeated lower-body power.",
+      "exerciseIds": [
+        424,
+        451,
+        487
+      ]
+    },
+    "running-in-place": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Rapid alternating steps recruit substantial muscle mass for the full block and practice limb-cycle speed. Running in place is not assigned maximal overground sprint ability.",
+      "exerciseIds": [
+        429,
+        430,
+        435,
+        438,
+        455,
+        456,
+        460,
+        461
+      ]
+    },
+    "basic-pogo": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Repeated short elastic hops load the ankle plantar flexors and practice basic takeoff/landing rhythm. The small displacement limits the high-force power claim.",
+      "exerciseIds": [
+        428,
+        462,
+        464,
+        1051,
+        1435
+      ]
+    },
+    "mixed-jump-rope-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Changing the feet or coordinating a clap/strike with repeated hops adds task-specific timing to rhythmic whole-body and elastic lower-leg work.",
+      "exerciseIds": [
+        437,
+        441,
+        445,
+        463
+      ]
+    },
+    "pogo-gaze-pattern": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Repeated bounces combined with head movement and fixed gaze add eye/head timing and modest landing control to elastic leg endurance work.",
+      "exerciseIds": [
+        439,
+        442,
+        444
+      ]
+    },
+    "bilateral-power-jump": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 1,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Deliberate substantial takeoffs and controlled landings train rapid lower-body force and local leg endurance. The repeated 45-second format limits maximal-quality power practice.",
+      "exerciseIds": [
+        431,
+        448,
+        450,
+        472,
+        1421,
+        1434
+      ]
+    },
+    "jump-and-strike": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 1,
+        "coordination": 2,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Combining substantial jumps with arm strikes trains repeated leg power and interlimb timing with vigorous whole-body work.",
+      "exerciseIds": [
+        440,
+        443
+      ]
+    },
+    "jumping-lunges": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Rapid split-stance takeoffs and alternating landings produce vigorous aerobic/local endurance work, substantial leg power, and controlled stance switching.",
+      "exerciseIds": [
+        427,
+        433,
+        457
+      ]
+    },
+    "rotating-two-leg-jump": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 3,
+        "balance": 2,
+        "coordination": 2,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "A deliberate airborne turn requires rapid accurate whole-body repositioning and landing control alongside lower-body power and endurance.",
+      "exerciseIds": [
+        432,
+        452
+      ]
+    },
+    "small-lateral-hops": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 2,
+        "balance": 1,
+        "coordination": 1,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Repeated small lateral hops or twists practice quick planned repositioning and elastic leg work. Small amplitude limits maximal-force power and balance claims.",
+      "exerciseIds": [
+        434,
+        453
+      ]
+    },
+    "lateral-power-bound": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 3,
+        "balance": 2,
+        "coordination": 2,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "The forceful lateral takeoff and controlled landing train lateral power, planned repositioning, and dynamic postural control.",
+      "exerciseIds": [
+        454,
+        1422
+      ]
+    },
+    "single-leg-rotational-jump": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 3,
+        "balance": 3,
+        "coordination": 3,
+        "power": 4,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "An unsupported unilateral takeoff with an airborne turn and controlled landing combines advanced local power with dynamic single-leg and spatial control.",
+      "exerciseIds": [
+        458,
+        471
+      ]
+    },
+    "single-leg-power-jump": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 3,
+        "coordination": 2,
+        "power": 4,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "A deliberate one-leg vertical takeoff and stick landing provide advanced task-specific unilateral power and substantial dynamic stance control.",
+      "exerciseIds": [
+        488
+      ]
+    },
+    "single-leg-repeated-hop": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Repeated unsupported one-leg hops sustain local leg work and elastic power while practicing repeated single-leg landing control.",
+      "exerciseIds": [
+        465,
+        476
+      ]
+    },
+    "pivot-and-gaze": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 2,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Turning while maintaining or resetting a visual target practices planned spatial repositioning, modest stance control, and head/eye sequencing.",
+      "exerciseIds": [
+        478,
+        561
+      ]
+    },
+    "power-skipping": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 2,
+        "coordination": 2,
+        "power": 4,
+        "reactionTime": 0,
+        "speed": 3
+      },
+      "basis": "Traveling bounds or forceful skips deliberately emphasize lower-body impulse and coordinated unilateral takeoff/landing. Repeated blocks also provide substantial whole-body work.",
+      "exerciseIds": [
+        1048,
+        1049,
+        1054,
+        1055,
+        1056
+      ]
+    },
+    "sprinting": {
+      "scores": {
+        "cardiorespiratoryEndurance": 4,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 4,
+        "reactionTime": 0,
+        "speed": 4
+      },
+      "basis": "Actual overground sprinting directly practices high running speed and rapid lower-body force. Repeated 45-second efforts give strong aerobic conditioning potential but do not establish an elite speed or VO2 ceiling.",
+      "exerciseIds": [
+        1052
+      ]
+    },
+    "backward-running": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 1,
+        "coordination": 2,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 3
+      },
+      "basis": "Backward running trains rhythmic whole-body endurance and competent task-specific locomotor timing/speed with modest spatial control.",
+      "exerciseIds": [
+        1053
+      ]
+    },
+    "floor-local-endurance": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The supported floor action repeatedly loads the named local muscle group against gravity or a short bodyweight lever. It supplies basic local strength/endurance without high whole-body aerobic demand.",
+      "exerciseIds": [
+        1057,
+        1072,
+        1075,
+        1078,
+        1079,
+        1082,
+        1088,
+        1089,
+        1093,
+        1095,
+        1098,
+        1099,
+        1110,
+        1112,
+        1115,
+        1138,
+        1141,
+        1151,
+        1152,
+        1154,
+        1171,
+        1172,
+        1176,
+        1177,
+        1178,
+        1190,
+        1191,
+        1194,
+        1198,
+        1201,
+        1204,
+        1205,
+        1208,
+        1211,
+        1214,
+        1217,
+        1222,
+        1224,
+        1243,
+        1246,
+        1248,
+        1249,
+        1253,
+        1276,
+        1279,
+        1283,
+        1285,
+        1287,
+        1293,
+        1416
+      ]
+    },
+    "floor-static-support": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The sustained plank or bridge supports bodyweight through a stable base. Its primary contribution is local isometric endurance and moderate task-specific strength, not standing balance.",
+      "exerciseIds": [
+        1065,
+        1067,
+        1130,
+        1137,
+        1153,
+        1167,
+        1251
+      ]
+    },
+    "floor-cross-limb-control": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Controlled limb paths over a stable floor-supported trunk develop local endurance and elementary independent limb timing. A stable support base does not justify a general balance rating.",
+      "exerciseIds": [
+        1066,
+        1184,
+        1225,
+        1227,
+        1230,
+        1252,
+        1281,
+        1284
+      ]
+    },
+    "floor-dynamic-support": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Changing limb support while maintaining a loaded trunk gives substantial local endurance, moderate bodyweight strength, and coordinated segment control. It is not treated as unsupported standing balance.",
+      "exerciseIds": [
+        1059,
+        1073,
+        1077,
+        1084,
+        1108,
+        1111,
+        1124,
+        1125,
+        1129,
+        1132,
+        1135,
+        1136,
+        1143,
+        1145,
+        1146,
+        1157,
+        1160,
+        1161,
+        1162,
+        1164,
+        1165,
+        1166,
+        1174,
+        1192,
+        1193,
+        1218,
+        1221,
+        1223,
+        1257,
+        1258,
+        1259,
+        1260,
+        1263,
+        1271,
+        1286,
+        1289
+      ]
+    },
+    "hard-floor-hold": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The long lever or low loaded position sustains substantial local force for the block. This is demanding isometric endurance with moderate task-specific maximal-force potential.",
+      "exerciseIds": [
+        1101,
+        1207,
+        1231,
+        1282,
+        1290
+      ]
+    },
+    "one-arm-plank": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Unilateral upper-body support creates a demanding fixed lever and anti-rotation task. It supports substantial local strength/endurance and modest multi-segment control.",
+      "exerciseIds": [
+        1250
+      ]
+    },
+    "standard-floor-push": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated pushing through a fixed bodyweight lever gives substantial local strength and endurance. Hand spacing or knuckle contact alone is not treated as a specialist strength progression.",
+      "exerciseIds": [
+        1080,
+        1147,
+        1195,
+        1255,
+        1256,
+        1262,
+        1402,
+        1404
+      ]
+    },
+    "advanced-floor-push": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The asymmetric, inclined, or low traveling pushing lever increases local force demand beyond a standard push-up. The fixed demonstrated variation supports substantial task-specific strength and endurance.",
+      "exerciseIds": [
+        1061,
+        1081,
+        1102,
+        1117,
+        1121,
+        1426
+      ]
+    },
+    "easier-floor-push": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Knee support or a short assisted pushing lever offers basic local pushing strength and endurance, without the load of a full or asymmetric push-up.",
+      "exerciseIds": [
+        1144,
+        1415
+      ]
+    },
+    "explosive-floor-push": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 4,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "A deliberate ballistic push that leaves the floor directly trains rapid upper-body force. Repeated 45-second execution adds local endurance while limiting fresh maximal-power repetitions.",
+      "exerciseIds": [
+        1142,
+        1254
+      ]
+    },
+    "knee-burpee": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated standing-to-floor transitions with an easier push-up recruit substantial muscle mass. They support vigorous aerobic/local endurance and basic sequencing; no unshown maximal jump is assumed.",
+      "exerciseIds": [
+        1068
+      ]
+    },
+    "burpee-plank-jacks": {
+      "scores": {
+        "cardiorespiratoryEndurance": 4,
+        "muscularStrength": 2,
+        "muscularEndurance": 4,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Repeated full-body floor-to-standing transitions and plank jacks sustain vigorous whole-body and local endurance demands, with moderate pushing strength and basic sequencing.",
+      "exerciseIds": [
+        1104
+      ]
+    },
+    "plank-hops": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 2,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Rapid hopping while supporting the trunk trains vigorous repeated local/aerobic work and coordinated foot placement. It offers modest lower-limb impulse rather than maximal jumping power.",
+      "exerciseIds": [
+        1107,
+        1126,
+        1127,
+        1232
+      ]
+    },
+    "mountain-climbers": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 1,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Repeated knee drives from a plank combine rhythmic whole-body work with local trunk/shoulder endurance and simple leg-cycle timing.",
+      "exerciseIds": [
+        1116,
+        1163
+      ]
+    },
+    "mountain-climber-push-up": {
+      "scores": {
+        "cardiorespiratoryEndurance": 3,
+        "muscularStrength": 2,
+        "muscularEndurance": 4,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 1
+      },
+      "basis": "Combining full push-ups and rapid knee drives produces substantial pushing/trunk endurance with vigorous whole-body work and linked limb sequencing.",
+      "exerciseIds": [
+        1261
+      ]
+    },
+    "floor-light-support-motion": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The moving limbs add local endurance and simple segment timing to floor support. The slow controlled action is not assigned a substantial aerobic or speed ceiling.",
+      "exerciseIds": [
+        1062,
+        1085,
+        1109,
+        1128,
+        1131,
+        1186,
+        1219,
+        1220,
+        1236,
+        1288
+      ]
+    },
+    "posterior-chain-hard-lever": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The demanding knee/hip lever or unilateral support directly loads the posterior chain/adductors. It supplies substantial local strength and endurance without implying a universal strength level.",
+      "exerciseIds": [
+        1092,
+        1118,
+        1170,
+        1427,
+        1428,
+        1429
+      ]
+    },
+    "opposed-floor-isometric": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Pressing the thigh or knee against the hands supplies self-scaled local opposing force and endurance; no measured maximal loading is inferred.",
+      "exerciseIds": [
+        1105,
+        1106
+      ]
+    },
+    "floor-rolling-coordination": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 3,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The roll, sit-through, or changing-support transition practices linked trunk/limb timing and some local endurance. Floor contact supplies a stable support context.",
+      "exerciseIds": [
+        1122,
+        1155,
+        1156,
+        1199,
+        1235,
+        1270,
+        1437
+      ]
+    },
+    "long-lever-walkout": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Walking the hands into a long lever increases trunk/shoulder force and local endurance while controlling a predictable changing support pattern.",
+      "exerciseIds": [
+        1134
+      ]
+    },
+    "mobility-loaded-floor": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 3,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The three-legged downward-dog position combines local shoulder/leg endurance with deliberate posterior-chain range and basic limb control.",
+      "exerciseIds": [
+        1189
+      ]
+    },
+    "bicycle-crunch": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 1,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Alternating opposite elbow/knee motion loads the trunk while practicing a clear cross-body sequence. The supported posture is not a balance or high-aerobic task.",
+      "exerciseIds": [
+        1179
+      ]
+    },
+    "v-up-strength": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 3,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Raising straight legs and trunk together creates demanding abdominal/hip-flexor leverage and moderate coordination.",
+      "exerciseIds": [
+        1187
+      ]
+    },
+    "pilates-hundred": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Sustained trunk/leg positioning with repeated arm pulses produces demanding local endurance. The prescribed breathing pattern is not treated as independent aerobic conditioning.",
+      "exerciseIds": [
+        1238
+      ]
+    },
+    "crawl-conditioning": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 1,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "Traveling on multiple supports recruits substantial muscle mass while practicing predictable contralateral foot/hand placement. This supports moderate aerobic and local endurance plus task-specific coordination.",
+      "exerciseIds": [
+        1063,
+        1076,
+        1212,
+        1213,
+        1264,
+        1265,
+        1266,
+        1267,
+        1431,
+        1432,
+        1433
+      ]
+    },
+    "low-loaded-crawl": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The low traveling support keeps the limbs and trunk under substantial load while coordinating advancing contacts.",
+      "exerciseIds": [
+        1268,
+        1269
+      ]
+    },
+    "large-floor-mobility": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 4,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The supported frog position directly practices comparatively large hip-abduction range. The score is specific to that joint position.",
+      "exerciseIds": [
+        1091
+      ]
+    },
+    "unilateral-incline-scapula": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The unilateral or elevated pike support increases direct scapular loading while maintaining a supported base. It supplies moderate local strength and endurance.",
+      "exerciseIds": [
+        1403,
+        1430
+      ]
+    },
+    "step-calf-raise": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 2,
+        "muscularEndurance": 3,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 0,
+        "power": 0,
+        "reactionTime": 0,
+        "speed": 0
+      },
+      "basis": "The step permits loaded calf work over a larger ankle range. The direct stimulus remains local strength/endurance, with a modest active-range contribution.",
+      "exerciseIds": [
+        1425
+      ]
+    },
+    "burpee-broad-jump": {
+      "scores": {
+        "cardiorespiratoryEndurance": 4,
+        "muscularStrength": 2,
+        "muscularEndurance": 4,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 3,
+        "reactionTime": 0,
+        "speed": 2
+      },
+      "basis": "Full-body transitions followed by deliberate horizontal takeoffs combine vigorous whole-body/local endurance with substantial repeated lower-body power and sequencing.",
+      "exerciseIds": [
+        1436
+      ]
+    },
+    "hamstring-mobility-flow-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 2,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 2,
+        "speed": 0
+      },
+      "basis": "The unweighted reach or straight-leg pattern repeatedly approaches posterior-chain range. Its principal contribution is active mobility, with simple movement sequencing. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        168
+      ]
+    },
+    "low-impact-whole-body-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 2,
+        "speed": 0
+      },
+      "basis": "Repeated steps or knee raises recruit substantial lower-body muscle mass at a moderate pace. They can develop basic aerobic/local endurance and simple interlimb timing, without high-force or maximal-speed claims. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        31,
+        60,
+        167,
+        169,
+        305,
+        395,
+        485,
+        508,
+        548,
+        816
+      ]
+    },
+    "gentle-mobility-and-coordination-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 0,
+        "flexibility": 1,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 2,
+        "speed": 0
+      },
+      "basis": "The gentle arm/trunk/step sequence explores modest range and basic movement timing. The shown movement does not justify substantial resistance, ballistic force, or vigorous aerobic claims. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        1300,
+        1301
+      ]
+    },
+    "single-technical-strike-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 0,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 2,
+        "speed": 2
+      },
+      "basis": "The rehearsed strike/block practices timed arm/trunk action and modest unloaded acceleration. A known loop supplies no reaction stimulus unless the runtime adds an external cue. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        258,
+        280,
+        286,
+        294,
+        543,
+        545
+      ]
+    },
+    "boxing-combination-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 0,
+        "balance": 0,
+        "coordination": 3,
+        "power": 1,
+        "reactionTime": 2,
+        "speed": 2
+      },
+      "basis": "The linked boxing/striking sequence coordinates multiple arm, trunk, and sometimes foot actions. Repeated 45-second work can train basic aerobic endurance and competent task-specific sequencing with modest unloaded limb speed. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        204,
+        205,
+        245,
+        279,
+        591,
+        1024
+      ]
+    },
+    "boxing-step-pattern-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 0,
+        "coordination": 2,
+        "power": 1,
+        "reactionTime": 2,
+        "speed": 1
+      },
+      "basis": "The side step and knee drive add sustained whole-body movement to rehearsed punches. Timing is practiced, but controlled foot placement does not imply high agility. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        282
+      ]
+    },
+    "dance-and-steps-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 1,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 1,
+        "balance": 1,
+        "coordination": 3,
+        "power": 0,
+        "reactionTime": 2,
+        "speed": 0
+      },
+      "basis": "The repeated learned step pattern coordinates changing foot placements and arm/trunk rhythm. It supports modest aerobic conditioning, planned repositioning, and task-specific coordination. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        92,
+        242
+      ]
+    },
+    "side-shuffle-stop-go": {
+      "scores": {
+        "cardiorespiratoryEndurance": 2,
+        "muscularStrength": 0,
+        "muscularEndurance": 2,
+        "flexibility": 0,
+        "agility": 2,
+        "balance": 0,
+        "coordination": 1,
+        "power": 0,
+        "reactionTime": 2,
+        "speed": 2
+      },
+      "basis": "Repeated lateral shuffles practice planned quick foot placement and direction changes. The shown pace supports moderate aerobic demand and limited foot speed. The existing unpredictable visual stop/go cue adds basic response practice; its frequency is not a measured reaction-time ceiling.",
+      "exerciseIds": [
+        37,
+        1043
+      ]
+    }
+  }
+}

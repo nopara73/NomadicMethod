@@ -205,16 +205,19 @@ $mirrorAgnosticExerciseIds = @(
     $mirrorRelationshipReview.Agnostic | ForEach-Object { [int]$_ })
 $muscularDemandReview = Import-PowerShellDataFile -LiteralPath (
     Join-Path $PSScriptRoot 'ExerciseMuscularDemand.psd1') -SkipLimitCheck
-$fitnessCeilingCoverageOverrides = Get-Content -Raw -LiteralPath (
-    Join-Path $PSScriptRoot 'ExerciseFitnessCeilingCoverageOverrides.json') |
+# Cue density is a playback setting, independent of provisional fitness ratings.
+$reactionCueConfiguration = Get-Content -Raw -LiteralPath (
+    Join-Path $PSScriptRoot 'ExerciseReactionCues.json') |
     ConvertFrom-Json -AsHashtable
 $reactionCueLevelByExerciseId = @{}
-foreach ($entry in $fitnessCeilingCoverageOverrides.overrides.GetEnumerator()) {
+foreach ($entry in $reactionCueConfiguration.cueLevelByExerciseId.GetEnumerator()) {
     $exerciseId = [int]$entry.Key
-    $scores = $entry.Value.scores
-    if ($scores.ContainsKey('reactionTime') -and [int]$scores.reactionTime -gt 0) {
-        $reactionCueLevelByExerciseId[$exerciseId] = [int]$scores.reactionTime
+    $level = $entry.Value
+    if (($level -isnot [int] -and $level -isnot [long]) -or
+        $level -lt 1 -or $level -gt 5) {
+        throw "Invalid reaction cue playback level for exercise $exerciseId."
     }
+    $reactionCueLevelByExerciseId[$exerciseId] = [int]$level
 }
 if (@($reactionCueLevelByExerciseId.Keys | Where-Object {
         $_ -notin $sourceExerciseIds }).Count -gt 0) {

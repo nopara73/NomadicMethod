@@ -58,8 +58,8 @@ on:
       - "tools/Test-ExerciseExecutionProtocols.ps1"
       - "tools/Test-ExerciseSideSequenceOverrides.ps1"
       - "tools/generate-exercise-fitness-ceiling-scores.mjs"
-      - "tools/ExerciseFitnessCeilingOverrides.json"
-      - "tools/ExerciseFitnessCeilingCoverageOverrides.json"
+      - "tools/ExerciseFitnessCeilingScores.json"
+      - "tools/ExerciseReactionCues.json"
       - "docs/ACSM_FITNESS_CEILING_SCORING.md"
       - "docs/catalog-audit/acsm-fitness-ceiling-scores.csv"
       - "docs/catalog-audit/acsm-fitness-ceiling-coverage.json"
@@ -140,8 +140,8 @@ jobs:
             /tools/Test-ExerciseExecutionProtocols.ps1
             /tools/Test-ExerciseSideSequenceOverrides.ps1
             /tools/generate-exercise-fitness-ceiling-scores.mjs
-            /tools/ExerciseFitnessCeilingOverrides.json
-            /tools/ExerciseFitnessCeilingCoverageOverrides.json
+            /tools/ExerciseFitnessCeilingScores.json
+            /tools/ExerciseReactionCues.json
             /docs/ACSM_FITNESS_CEILING_SCORING.md
             /docs/catalog-audit/acsm-fitness-ceiling-scores.csv
             /docs/catalog-audit/acsm-fitness-ceiling-coverage.json
