@@ -1,0 +1,53 @@
+{
+  "id": 1532,
+  "name": "Sprint to Backpedal",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock"
+  ],
+  "playback": [
+    {
+      "start": 0.993235,
+      "duration": 1.95,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 1.396988,
+      "duration": 1.95,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.830369,
+      "duration": 1.95,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.275073,
+      "duration": 1.95,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.716637,
+      "duration": 1.95,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.162386,
+      "duration": 1.95,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1532,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

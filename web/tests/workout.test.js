@@ -843,6 +843,7 @@ test("canonical training claims require direct primaries and material secondarie
   }
 
   const reviewedSecondaryIds = new Set([
+    1523,
     124, 125, 132, 176, 219, 338, 394, 408, 577, 636, 684, 790, 818, 825, 884, 885, 905, 917, 960, 973, 998, 1008, 1010, 1013, 1014, 1018, 1022, 1032,
     1108, 1116, 1143, 1157, 1164, 1165, 1174, 1200, 1212, 1218, 1219, 1221, 1231, 1243, 1429,
   ]);
@@ -946,7 +947,7 @@ test("muscular demand is fully reviewed and independent of user scores", () => {
   assert.deepEqual(
     [0, 1, 2].map((rating) =>
       catalog.filter((exercise) => exercise.muscularDemand === rating).length),
-    [215, 407, 231],
+    [219, 429, 236],
   );
   assert.ok(catalog.every(hasReviewedMuscularDemand));
   assert.ok(catalog.every((exercise) => exercise.score === 0));
@@ -1401,10 +1402,10 @@ test("shy mode filters only reviewed incompatible exercises while enabled", () =
 test("hard floor catalog verdicts include slippery-floor traction", () => {
   assert.equal(catalog.filter((exercise) =>
       exercise.hardFloorCompatibility ===
-      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 399);
+      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 406);
   assert.equal(catalog.filter((exercise) =>
     exercise.hardFloorCompatibility ===
-      EXERCISE_HARD_FLOOR_COMPATIBILITY.Incompatible).length, 454);
+      EXERCISE_HARD_FLOOR_COMPATIBILITY.Incompatible).length, 478);
 
   for (const exerciseId of [37, 194, 610, 326]) {
     assert.equal(
@@ -2927,18 +2928,18 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
   assert.deepEqual(new Set(catalog.filter((exercise) =>
     exercise.upperBodyClothingRequirement ===
       EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.ClothingRequired)
-    .map((exercise) => exercise.id)), new Set([134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428, 1436, 1437]));
+    .map((exercise) => exercise.id)), new Set([134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428, 1436, 1437, 1522, 1523]));
   assert.deepEqual(new Set(catalog.filter((exercise) =>
     exercise.upperBodyClothingRequirement ===
       EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.BareUpperBodyRequired)
     .map((exercise) => exercise.id)), new Set([524, 525, 526, 527, 528, 790]));
   assert.equal(catalog.filter((exercise) =>
     exercise.upperBodyClothingRequirement ===
-      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 733);
+      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 762);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 658);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 681);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 195);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 203);
   for (const exerciseId of [56, 185, 377, 379, 401, 403, 557]) {
     assert.equal(catalog.find((exercise) => exercise.id === exerciseId).shyCompatibility,
       EXERCISE_SHY_COMPATIBILITY.Incompatible);
@@ -3002,7 +3003,7 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.BenefitsGreatly).length, 99);
   assert.equal(catalog.filter((exercise) =>
-    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 754);
+    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 785);
   assert.equal(catalog.filter((exercise) =>
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.MirrorOnly).length, 0);
@@ -5360,9 +5361,9 @@ test("mixed-demand sequence uses its highest demand and remains atomic", () => {
 });
 
 test("the reviewed catalog satisfies every roll-up and selects distinct exercises", () => {
-  assert.equal(catalog.length, 853);
-  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 853);
-  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 853);
+  assert.equal(catalog.length, 884);
+  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 884);
+  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 884);
   assert.equal(isSessionMovementMetadataValid(catalog), true);
   const actualSessionMovements = {};
   for (const exercise of catalog.filter((item) => item.sessionMovementId > 0)) {
@@ -5399,10 +5400,10 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       256: [256, 845, 958],
       262: [262, 507],
       264: [264, 275],
-      266: [266, 301],
+      266: [266, 301, 1622, 1623, 1624],
       270: [270, 677],
       277: [261, 277],
-      278: [278, 326],
+      278: [278, 326, 1602, 1603, 1604],
       286: [286, 541],
       288: [288, 758, 1299, 1303],
       292: [148, 292, 542],
@@ -5435,6 +5436,11 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       1177: [1176, 1177],
       1154: [1154, 1223],
       1187: [1187, 1193],
+      144: [144, 1612, 1613, 1614],
+
+      180: [180, 534, 1632, 1633, 1634],
+      1516: [1516, 1642, 1643, 1644],
+      1206: [1206, 1521],
     },
   );
   const exercisesById = new Map(catalog.map((exercise) => [exercise.id, exercise]));
@@ -8130,7 +8136,7 @@ test("slippery hard-floor revision rebuilds placements without erasing feedback"
 
 test("sole-wall revision rebuilds changed workout state and resets scores", () => {
   const changedIds = [563, 564, 567, 568, 574];
-  assert.equal(CURRENT_CATALOG_REVISION, 87);
+  assert.equal(CURRENT_CATALOG_REVISION, 88);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(54)],
     changedIds,
@@ -8725,7 +8731,7 @@ test("bodybuilding posing revision replaces static work and resets feedback", ()
 
 test("material-training revision removes only anatomically invalid slots and keeps", () => {
   const addedIds = [911, 913, 916, 917];
-  assert.equal(CURRENT_CATALOG_REVISION, 87);
+  assert.equal(CURRENT_CATALOG_REVISION, 88);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(67)],
     addedIds,
@@ -8815,7 +8821,7 @@ test("material-training revision removes only anatomically invalid slots and kee
 
 test("training-claim revision removes only newly invalid slot feedback", () => {
   const addedIds = [918, 919];
-  assert.equal(CURRENT_CATALOG_REVISION, 87);
+  assert.equal(CURRENT_CATALOG_REVISION, 88);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(69)],
     addedIds,
@@ -8927,7 +8933,7 @@ test("complete-pose revision rebuilds affected placements without erasing feedba
 
 test("corrected two-sided revision rebuilds placements and preserves feedback", () => {
   const changedIds = new Set([32, 483, 493]);
-  assert.equal(CURRENT_CATALOG_REVISION, 87);
+  assert.equal(CURRENT_CATALOG_REVISION, 88);
   assert.deepEqual(SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(71), changedIds);
   assert.equal(SCOPED_SCORE_INVALIDATIONS_BY_REVISION.has(71), false);
 
@@ -9513,7 +9519,7 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
   }
 
   assert.deepEqual(directionIds, [236, 275, 406, 409, 516, 561, 588, 608, 611, 743,
-    1018, 1109, 1180, 1225, 1230, 1299, 1303]);
+    1018, 1109, 1180, 1225, 1230, 1299, 1303, 1508, 1533, 1535]);
   assert.ok(catalog.every((item) =>
     !Object.hasOwn(item, "directionPartnerExerciseId")));
   const multiExerciseSequenceRoots = catalog

@@ -2,6 +2,7 @@
     # The existing human-reviewed catalog is feet-only. New identities must
     # explicitly declare every support contact, including transitions.
     FeetOnly = @(
+        1521, 1531, 1532, 1533, 1535, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
         1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420,
         1421, 1422, 1423, 1424, 1425,
@@ -306,5 +307,21 @@
         1291 = @('Hands', 'Forearms', 'Elbows', 'Head', 'Torso', 'Shoulders', 'Hips')
         1292 = @('Hands', 'Forearms', 'Elbows', 'Head', 'Torso', 'Shoulders', 'Hips')
         1293 = @('Hands', 'Forearms', 'Elbows', 'Head', 'Torso', 'Shoulders', 'Hips')
+
+    # Fitness coverage admissions, 21 October 2026.
+    1506 = @('Hands', 'Head')
+    1507 = @('Hands')
+    1508 = @('Hands')
+    1509 = @('Feet', 'Hands')
+    1516 = @('Feet', 'Hands')
+    1522 = @('Hands', 'Torso', 'Hips', 'Thighs', 'LowerLegs', 'Feet')
+    1523 = @('Feet', 'Hands', 'Torso', 'Shoulders', 'Head', 'Hips')
+    1524 = @('Feet', 'Hands', 'Hips', 'Thighs', 'LowerLegs')
+    1525 = @('Feet', 'Hands', 'Hips', 'Thighs', 'LowerLegs')
+    1534 = @('Feet', 'Hands')
+    1540 = @('Hands')
+    1642 = @('Feet', 'Hands')
+    1643 = @('Feet', 'Hands')
+    1644 = @('Feet', 'Hands')
     }
 }

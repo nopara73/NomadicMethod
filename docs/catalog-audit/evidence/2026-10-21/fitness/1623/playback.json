@@ -1,0 +1,19 @@
+{
+  "id": 1623,
+  "name": "Arm Pattern Reactions \u00b7 Four Choices",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Prompt",
+    "Feedback",
+    "PausedReady",
+    "AfterBlock"
+  ],
+  "playback": [],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1623,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

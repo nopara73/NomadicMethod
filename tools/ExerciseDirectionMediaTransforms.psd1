@@ -20,4 +20,9 @@
     1230 = @{ Mode = 'TemporalReverse' }
     1299 = @{ Mode = 'ReviewedSourceSegment'; StartSeconds = 4.1; DurationSeconds = 2.8 }
     1303 = @{ Mode = 'TemporalReverse' }
+
+    # Fitness coverage admissions, 21 October 2026.
+    1508 = @{ Mode = 'HorizontalMirror' }
+    1533 = @{ Mode = 'HorizontalMirror' }
+    1535 = @{ Mode = 'HorizontalMirror' }
 }

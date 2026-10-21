@@ -1007,6 +1007,40 @@ button.modifier-tile:not(:disabled):active {
   display: none;
 }
 
+.reaction-drill {
+  position: absolute;
+  inset: 4px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--media);
+  color: var(--graphite);
+}
+.reaction-drill-context { padding: 8px; text-align: center; font-size: 12px; font-weight: 600; }
+.reaction-drill-stage { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; }
+.reaction-drill-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; }
+.reaction-drill-stage video.show { opacity: 1; }
+.reaction-drill-prompt { font-size: clamp(20px, 5vw, 32px); font-weight: 600; }
+.reaction-drill-prompt.number { font-size: clamp(56px, 14vw, 96px); color: #257a49; }
+.reaction-drill-prompt[hidden] { display: none; }
+.reaction-drill-cards { display: flex; gap: 5px; padding: 6px; justify-content: center; }
+.reaction-drill-card { position: relative; flex: 1; min-width: 0; max-width: 110px; padding: 0; overflow: hidden; border: 1px solid rgb(20 20 20 / 16%); border-radius: 9px; background: #fff; }
+.reaction-drill-card:disabled { opacity: 1; cursor: default; }
+.reaction-drill-card:focus-visible { outline: 3px solid var(--graphite); outline-offset: -3px; }
+.reaction-drill-card img { display: block; width: 100%; height: clamp(40px, 11vw, 75px); object-fit: contain; }
+.reaction-drill-card span { display: block; padding: 3px 2px 5px; font-size: 11px; line-height: 1.15; text-align: center; color: #202326; overflow-wrap: anywhere; }
+.reaction-drill-card .reaction-drill-number { position: absolute; top: 3px; left: 3px; display: grid; place-items: center; min-width: 20px; min-height: 20px; padding: 0 3px; border-radius: 6px; background: var(--graphite); color: #fff; font-size: 14px; font-weight: 700; }
+
+@media (orientation: portrait) and (max-width: 600px) {
+  .exercise-media-card:has(.reaction-drill) { width: min(calc(100vw - 40px), 45dvh, 380px); }
+}
+
+@media (orientation: landscape) and (max-width: 999px) {
+  .exercise-media-card:has(.reaction-drill) { width: min(100%, calc(100dvh - 40px), 420px); }
+}
+
 .reaction-cue[data-state="freeze"] {
   background: #a42e3a;
 }

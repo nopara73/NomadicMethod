@@ -870,4 +870,37 @@
     1436 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors', 'Chest', 'ElbowExtensors') }
     1437 = @{ Primary = 'AbdominalWall'; Secondary = @() }
     1438 = @{ Primary = 'DeepAndIntersegmentalBack'; Secondary = @() }
+
+    # Fitness coverage admissions, 21 October 2026.
+    1506 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1507 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1508 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1509 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1516 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1521 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @() }
+    1522 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PosteriorThighAndKneeFlexors') }
+    1523 = @{ Primary = 'ShoulderAdductorsAndExtensors'; Secondary = @('AbdominalWall', 'HipFlexors') }
+    1524 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('HipFlexors') }
+    1525 = @{ Primary = 'MajorHipAdductors'; Secondary = @() }
+    1531 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1532 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1533 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1534 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1535 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1540 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1602 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors', 'ShoulderAbductors') }
+    1603 = @{ Primary = 'Chest'; Secondary = @('ShoulderAbductors') }
+    1604 = @{ Primary = 'Chest'; Secondary = @('ShoulderAbductors') }
+    1612 = @{ Primary = 'HipFlexors'; Secondary = @() }
+    1613 = @{ Primary = 'HipFlexors'; Secondary = @() }
+    1614 = @{ Primary = 'HipFlexors'; Secondary = @() }
+    1622 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1623 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1624 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1632 = @{ Primary = 'HipFlexors'; Secondary = @('LateralKneeExtensors') }
+    1633 = @{ Primary = 'HipFlexors'; Secondary = @() }
+    1634 = @{ Primary = 'HipFlexors'; Secondary = @() }
+    1642 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1643 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1644 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
 }

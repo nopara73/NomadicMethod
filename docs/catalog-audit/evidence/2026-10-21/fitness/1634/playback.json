@@ -1,0 +1,41 @@
+{
+  "id": 1634,
+  "name": "Kick Reactions \u00b7 Context Choices",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Prompt",
+    "Feedback",
+    "PausedReady",
+    "AfterBlock",
+    "SecondSide"
+  ],
+  "playback": [
+    {
+      "response": 1,
+      "duration": 1.2,
+      "completeNormalSpeedPreview": true
+    },
+    {
+      "response": 2,
+      "duration": 2.5,
+      "completeNormalSpeedPreview": true
+    },
+    {
+      "response": 3,
+      "duration": 5.3,
+      "completeNormalSpeedPreview": true
+    },
+    {
+      "response": 4,
+      "duration": 2.6,
+      "completeNormalSpeedPreview": true
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1634,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

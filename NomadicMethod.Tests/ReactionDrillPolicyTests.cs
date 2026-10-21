@@ -1,0 +1,102 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Nodes;
+using NomadicMethod.Models;
+using NomadicMethod.Services;
+
+namespace NomadicMethod.Tests;
+
+public sealed class ReactionDrillPolicyTests
+{
+    private static ReactionPlan Plan() => new()
+    {
+        Protocol = "ContextChoice",
+        Actions = Enumerable.Range(0, 4).Select(i => new ReactionAction
+            { Label = $"Action {i}", DurationSeconds = 1 }).ToArray(),
+    };
+
+    [Fact]
+    public void SharedTracePreservesContextDecisionWindowAndDelayedFeedback()
+    {
+        using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "reaction-drill-trace.json")));
+        double[] values = fixture.RootElement.GetProperty("random").EnumerateArray().Select(e => e.GetDouble()).ToArray();
+        int index = 0;
+        var drill = new ReactionDrill(Plan(), () => values[index++]);
+        foreach (JsonElement step in fixture.RootElement.GetProperty("steps").EnumerateArray())
+        {
+            long now = step.GetProperty("now").GetInt64();
+            drill.Advance(now, 45000 - now);
+            Assert.Equal(step.GetProperty("phase").GetString(), drill.Phase);
+            Assert.Equal(step.GetProperty("reverse").GetBoolean(), drill.Reverse);
+            Assert.Equal(step.GetProperty("number").GetInt32(), drill.Number);
+            Assert.Equal(step.GetProperty("actionIndex").GetInt32(), drill.ActionIndex);
+            Assert.Equal(step.GetProperty("deadline").GetInt64(), drill.Deadline);
+            Assert.Equal(drill.Phase == "Feedback" ? drill.ActionIndex : -1, drill.DemoActionIndex);
+        }
+    }
+    [Fact]
+    public void BufferingAndPauseNeverSkipToAnAnswerOrCreditTime()
+    {
+        var drill = new ReactionDrill(Plan(), () => 0);
+        Assert.False(drill.Advance(0, 45000, false));
+        Assert.Equal("Idle", drill.Phase);
+        drill.Advance(0, 45000);
+        Assert.False(drill.Advance(5000, 40000, false));
+        Assert.Equal("Ready", drill.Phase);
+        var resumed = new ReactionDrill(Plan(), () => 0);
+        resumed.Advance(5000, 40000);
+        Assert.Equal("Ready", resumed.Phase);
+        Assert.Equal(6200, resumed.Deadline);
+        Assert.Equal(0, resumed.Number);
+    }
+    [Fact]
+    public void NearEndRequiresTimeForACompleteDecisionActionAndReset()
+    {
+        var drill = new ReactionDrill(Plan(), () => 0);
+        drill.Advance(0, 4049);
+        Assert.Equal("Complete", drill.Phase);
+        var delayed = new ReactionDrill(Plan(), () => 0);
+        delayed.Advance(0, 45000);
+        delayed.Advance(1200, 2500);
+        Assert.Equal("Complete", delayed.Phase);
+        Assert.Equal(-1, delayed.DemoActionIndex);
+    }
+    [Fact]
+    public void CanonicalAssetResolvesFifteenImmutableProtocolsAcrossFiveFamilies()
+    {
+        var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new JsonStringEnumConverter() } };
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
+        using Stream stream = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "reaction_drills.json"));
+        IReadOnlyDictionary<int, ReactionPlan> plans = ReactionDrill.Load(stream, catalog);
+        Assert.Equal(15, plans.Count);
+        Assert.Equal(5, plans.Values.Select(p => p.FamilyId).Distinct().Count());
+        foreach (var family in plans.Values.GroupBy(p => p.FamilyId))
+        {
+            Assert.Equal(new[] { 2, 4, 4 }, family.Select(p => p.Actions.Length));
+            Assert.Single(family.Select(p => catalog.Single(e => e.Id == p.ExerciseId).SessionMovementId).Distinct());
+        }
+    }
+    [Fact]
+    public void MissingPlansAndResponseMuscleMismatchesFailClosed()
+    {
+        var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new JsonStringEnumConverter() } };
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
+        using var empty = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(
+            "{\"version\":1,\"families\":[],\"plans\":[]}"));
+        Assert.Contains("Missing reaction plan", Assert.Throws<InvalidDataException>(() => ReactionDrill.Load(empty, catalog)).Message);
+        JsonNode document = JsonNode.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "reaction_drills.json")))!;
+        document["families"]![0]!["actions"]![0]!["sourceId"] = 151;
+        using var mismatch = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(document.ToJsonString()));
+        Assert.Contains("Invalid reaction training claim", Assert.Throws<InvalidDataException>(() => ReactionDrill.Load(mismatch, catalog)).Message);
+        IReadOnlyList<Exercise> old = WorkoutCatalogPolicy.ForWorkout(catalog, 87);
+        Assert.Equal(853, old.Count);
+        Assert.DoesNotContain(old, item => WorkoutCatalogPolicy.FitnessCoverageExerciseIds.Contains(item.Id));
+        Assert.Equal(884, WorkoutCatalogPolicy.ForWorkout(catalog, 88).Count);
+    }
+}

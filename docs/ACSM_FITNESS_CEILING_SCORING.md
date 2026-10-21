@@ -1,117 +1,137 @@
-# Provisional exercise training ceilings
+# Provisional exercise training levels
 
-Status: **fresh assessment, version 3, 21 October 2026**. All 853 exercises in
-catalog revision 87 have explicit assessments across ten characteristics.
-The prior ratings, anchor scores, keyword scoring rules, coverage overrides,
-and requirement to fill every characteristic/level cell have been discarded.
-These estimates are saved for later discussion; they do not rank workouts,
-change user preference scores, or alter recovery or exercise playback.
+Version 4, 21 October 2026. Each exercise now has **an explicit set of levels it
+can meaningfully train in each characteristic**. A single maximum is insufficient:
+an isometric palm press can use gentle or very strong opposing force without
+changing the exercise. Its strength and local-endurance sets are `[1,2,3,4,5]`.
+This corrects the earlier inference that unmeasured resistance meant low resistance.
 
-## Read the scores
+The ten characteristics remain cardiorespiratory endurance, muscular strength,
+muscular endurance, flexibility, agility, balance, coordination, power, reaction
+time and speed. Body composition and gait-speed biomarkers are not exercise
+scoring dimensions. ACSM supplies the component framework; the five NM ability
+tiers use the familiar Dreyfus names. **Neither source validates these exercise
+assignments or supplies physiological cutoffs for the NM numbers.**
 
-A score estimates the highest ability tier to which repeated practice of this
-specific exercise could meaningfully contribute. It is **not an entry
-requirement**, a difficulty score, a user's current ability, or a guaranteed
-outcome. Every work block lasts **45 seconds**, at the demonstrated range,
-cadence, support and resistance. Repeated appearances in normal workouts are
-allowed; added weights, faster unshown execution and harder variations are not.
-An atomic side/direction sequence still consists of separate 45-second blocks;
-its duration does not silently become an uninterrupted endurance set.
+## Interpret a set
 
-| Value | Interpretation |
-| ---: | --- |
-| 0 | No meaningful direct training claim on this characteristic. This is absence, not a sixth ability tier. |
-| 1 | Novice: elementary capacity in the directly trained task. |
-| 2 | Advanced beginner: useful basic capacity beyond initial familiarization. |
-| 3 | Competent: substantial, repeatable task-specific capacity. |
-| 4 | Proficient: advanced capacity in that particular movement or task. |
-| 5 | Expert: specialist capacity requiring a particularly strong training case. |
+Numbers 1–5 mean novice, advanced beginner, competent, proficient and expert
+capacity **in the directly trained action**. These are fixed, provisional ability
+categories, without age/sex percentiles. They are not entry requirements, current
+user abilities, workout preference scores, or guarantees of adaptation.
 
-The same criteria apply to everyone, without age/sex percentiles. These are
-judgment-based NM tiers. ACSM supplies the component definitions and Dreyfus
-supplies the familiar five names; neither validates these ceilings. The earlier
-proposed numerical test cutoffs are not used to justify or regenerate ratings.
-No exercise currently receives a 5. Empty high tiers are an honest outcome of
-this pass and do not constitute catalog deficits.
+- `[]`: no supported direct training claim. This replaces the old scalar zero.
+- `[1,2,3,4,5]`: the actual exercise can be scaled to meaningfully train all five.
+- `[3,4]`: two explicitly assessed useful levels; lower levels are not inferred.
+- `[1,3,4,5]`: a legitimate noncontiguous set. The context-choice reaction task
+  trains initiation and response selection, but contains no stop/no-go requirement
+  establishing inhibition level 2.
 
-## Characteristic-specific interpretation
+The maximum can be derived for display. It must never be used to reconstruct the
+set or count unlisted lower levels. Omitting a level means its training claim is
+not established in this assessment, rather than proof of a biological impossibility.
 
-| Characteristic | What earns a rating | How this pass distinguishes higher tiers |
+## Training conditions
+
+Every exercise block remains **45 seconds**. Clean repetitions, shorter holds,
+controlled force buildup, and deliberate recovery can share that opportunity.
+Repeated appearances across workouts are permitted. A side/direction sequence
+still consists of separate complete 45-second blocks.
+
+Keep the actual movement, range, support, resistance mechanism and equipment.
+Appropriate effort and execution pace may vary; a teaching demonstration is not
+a maximum-effort prescription. No hidden weights, harder leverage, closed eyes,
+unstable surfaces, new movements or unshown assistance are inferred. Physical
+prerequisites still matter even when an exercise supports several levels.
+
+| Mechanism | Meaningful scaling | Limit on the claim |
 | --- | --- | --- |
-| Cardiorespiratory endurance | Repeated work involving substantial muscle mass and sustained oxygen demand. | Gentle rhythmic steps begin at 1; jacks/shuffles at 2; vigorous running/jumping/full-body intervals at 3; actual sprinting or especially demanding whole-body transitions can reach 4. Breathing exercises and isolated muscle fatigue do not automatically qualify. |
-| Muscular strength | Meaningful direct resistance for the named local action. | Mild supported/unloaded resistance starts at 1, ordinary loaded bodyweight actions at 2, demanding unilateral/asymmetric leverage at 3, deep pistol work at 4. Merely coordinating an advanced movement does not establish high strength. |
-| Muscular endurance | Repeated or sustained meaningful local force during the block. | Mild local work is 1–2; substantial bodyweight sets/holds generally reach 3. Particularly demanding repeated whole-body resistance can reach 4. This estimates local trainability, not a promise of a multi-minute hold. |
-| Flexibility | Deliberate practice of joint range. | Gentle joint motion is 1; active directed mobility is 2; sustained ordinary end-range work is 3; comparatively large specific hip/fold positions can reach 4. More range is not universally better. |
-| Agility | Rapid, accurate planned repositioning under the traditional definition. | Basic footwork is 1, quick lateral steps/small hops 2, deliberate airborne turns or forceful lateral landings 3. Slow lunges and merely changing an arm's direction do not qualify. |
-| Balance | Meaningful control of a reduced/changing support base. | Basic shifting support is 1, ordinary unsupported single-leg/tandem tasks 2, substantial dynamic single-leg or head-motion challenges 3. Wall support reduces the claim; ordinary bracing is omitted. |
-| Coordination | Deliberate timing or independent control of multiple segments. | Simple coupled patterns are 1, independent/cross-body patterns 2, linked technical sequences or isolated waves 3, the precise tutting sequence 4. Coordination remains task-specific. |
-| Power | Deliberate rapid force production. | Unloaded strikes/small jacks are 1; elastic short hops 2; substantial jumps 3; demanding unilateral takeoffs/bounds or ballistic pushing 4. Holds and slow resistance receive 0. |
-| Reaction time | Responding to an unpredictable external event. | A predictable demonstration loop earns 0. The existing random visual stop/go protocol earns a provisional 2 for its elementary response task. A denser cue schedule does not demonstrate faster response latency or justify tiers 3–5. |
-| Speed | Deliberate rapid limb cycles or locomotion. | Basic cadence is 1, rapid limb/footwork patterns 2, traveling running/bounding 3, actual sprinting 4. High knees in place do not establish maximal overground sprint ability. |
+| Opposing palms, contralateral resistance, or pushing against a fixed wall | Voluntary opposing force; brief high-effort contractions with recovery for strength, or lower sustained/repeated force for endurance | Not 45 seconds of uninterrupted maximal force. Force is not measured. Specialist capability in a different exercise is not guaranteed. |
+| Fixed bodyweight loading | Appropriate clean repetition/hold dose within the existing movement | A pistol squat is assessed at strength `[3,4]`; it does not automatically supply novice loading or become a weighted pistol. |
+| Conditioning movements | Appropriate cadence and repeated weekly exposure | One breathless 45-second appearance does not establish aerobic adaptation. Breathing drills alone do not earn aerobic ratings. |
+| Power and speed | Fresh high-intent efforts with deliberate recovery | Continuous fatigued maximal output is not required; technical range and movement identity remain intact. |
+| Flexibility and balance | Practice the actual demonstrated range/support task using tolerable, clean attempts | Ordinary stretches do not silently become full splits; ordinary stance does not silently become inverted or eyes-closed balance. Transfer is task-specific. |
+| Coordination | Acquisition through fluent, precise execution of the actual pattern | Tutting and arm waves can support specialist coordination without requiring an aerial skill. No transfer to unrelated patterns is assumed. |
+| Reaction | An implemented unpredictable cue and its real response task | Cue density does not establish faster latency. The app does not measure response accuracy or reaction time. |
 
-These distinctions are explicit assessment choices, not physiological laws or
-validated thresholds. Strength, endurance, flexibility, balance, coordination,
-power and speed refer to the particular joint, muscle group, support condition
-or action being trained. A calf stretch does not confer whole-body flexibility;
-a finger pattern does not confer boxing coordination; a floor-supported trunk
-task does not automatically confer standing balance. The CSV includes the
-catalog's primary muscle group for context, not as a substitute for these
-task-specific scopes.
+Nine existing identities receive strength/endurance `[1,2,3,4,5]`: 241, 519,
+560, 614, 745, 149, 585, 586 and 587. IDs 269, 1001, 1105 and 1106 receive
+`[1,2,3,4]` because the resisting limb, bracing or position may limit the task.
+The four self-resisted neck exercises retain `[1,2,3]`; their current protocol
+does not establish a specialist maximal-loading prescription.
 
-## Source and review status
+Internally generated and isometric loading can produce training adaptations,
+but the studies do **not** validate the NM level assignments. See the primary
+[no-external-load experiment](https://pubmed.ncbi.nlm.nih.gov/27329807/) and
+[isometric training experiment](https://doi.org/10.1152/japplphysiol.00091.2016).
+The [balance-transfer experiment](https://pubmed.ncbi.nlm.nih.gov/26298214/)
+also cautions against treating task improvement as universal balance improvement.
 
-- [`catalog-audit/acsm-fitness-ceiling-scores.csv`](catalog-audit/acsm-fitness-ceiling-scores.csv)
-  is the readable per-exercise export: stable ID, current name, all ten scores,
-  assessment profile, primary muscle group, provisional status, and rationale.
-- [`../tools/ExerciseFitnessCeilingScores.json`](../tools/ExerciseFitnessCeilingScores.json)
-  is the source. Every ID is explicitly assigned to one rationale/score profile.
-  Similar movements can share a judgment, but an unassigned new ID fails
-  validation rather than inheriting ratings from its name or practice label.
-- [`catalog-audit/acsm-fitness-ceiling-coverage.json`](catalog-audit/acsm-fitness-ceiling-coverage.json)
-  reports exact-level counts and deduplicates session movement identities.
-  Counts are diagnostic only: there are no required populations or deficits.
+## Coverage and admissions
 
-Every row is marked `provisional-metadata-assessment`. This pass considered
-the current exercise names and movement/load/support metadata, and the actual
-presence of runtime reaction cues. It is **not** a new full video review,
-human expert approval, or longitudinal training validation. Shared profiles do
-not mean their members have identical mechanics or physiological effects.
+Require **at least five distinct approved session movements that can train each
+characteristic-level combination**. One exercise may count at several supported
+levels and for several characteristics. Deduplicate `SessionMovementId`
+independently in every cell. Sides, directions, sets, aliases and renamed
+duplicates never multiply identity. This is a global catalog rule, not an
+additional quota for every modifier combination.
 
-The assessment pins the normalized-LF catalog SHA-256. Any catalog change
-requires deliberate reassessment and a snapshot update; regenerating the CSV
-alone cannot silently award ratings to a changed movement. Existing canonical
-anatomy, muscular-demand ratings, media and scheduler behavior are independent.
+Reassessing the original 853 records reduced the deficits from 21 cells / 92
+placements to 7 cells / 33 placements before any admissions. Existing adjustable
+resistance removed the need to source specialist strength/endurance exercises.
+The selected release adds 16 actual movement records and 15 choice protocols,
+rather than the earlier pending 48-record package. Five of the movements also
+provide advanced balance, and three supply the remaining specialist-coordination
+claims. The full catalog contains 884 records at revision 88.
 
-## Existing reaction playback
+The existing 30 stop/go records retain their original playback and supply
+reaction levels `[1,2]`. The new five physical response families each provide
+two-choice `[1,3]`, four-choice `[1,3,4]`, and context-choice `[1,3,4,5]` protocols.
+Dedicated initiation records are unnecessary. All protocol variants of a physical
+response family share one session identity, including the original physical
+source where applicable. Lower-level coverage does not manufacture a new response task.
 
-The 30 existing stop/go exercises retain precisely their existing playback
-levels. Their independent configuration is now
-[`../tools/ExerciseReactionCues.json`](../tools/ExerciseReactionCues.json), sourced
-from the current runtime catalog. `Generate-ExerciseCatalog.ps1` reads this
-playback configuration rather than discarded fitness-score overrides.
-`reactionCueLevel` is a cue-density setting, **not a physical ability tier**.
-This assessment adds no cues and changes no cue timings or session behavior.
+New protocols use the canonical Android `reaction_drills.json` asset and exact
+human response clips. Every response and preview is prepared before cueing; the
+context is displayed before the unpredictable target, and feedback follows the
+decision window. A paused or interrupted trial restarts from Ready. No new cue
+is issued unless its complete response and reset fit in the remaining block.
+Existing unfinished workouts retain their prior catalog and selections.
 
-## Rebuild and check
+## Data and checks
 
-From the repository root:
+- [`ExerciseFitnessCeilingScores.json`](../tools/ExerciseFitnessCeilingScores.json):
+  explicit level sets, rationale, training conditions and assigned stable IDs.
+- [CSV export](catalog-audit/acsm-fitness-ceiling-scores.csv): supported numeric
+  levels separated by semicolons; an empty cell has no claim. Includes scope
+  through the primary muscle, rationale and training conditions.
+- [Coverage JSON](catalog-audit/acsm-fitness-ceiling-coverage.json) and
+  [readable report](catalog-audit/acsm-fitness-ceiling-gaps.md): supported-level
+  membership, deduplicated identities and every remaining deficit.
+- [Coverage policy](../tools/ExerciseFitnessCeilingCoveragePolicy.json): minimum
+  five, explicit supported-level matching and session-movement identity.
+- [Media and admission audit](catalog-audit/acsm-fitness-ceiling-candidates.json):
+  source provenance, review results and deferred candidates.
+
+Historical filenames retain “ceiling” for continuity. Version 4 data uses
+`representation: "trainable-level-sets"`. Nothing infers ratings from names,
+muscular demand, or a coverage quota. The normalized-LF catalog hash requires
+deliberate reassessment after catalog changes. Fitness ratings do not alter
+preference scores, Keeps, muscle-recovery timestamps or Light ranking.
 
 ```powershell
 node tools/generate-exercise-fitness-ceiling-scores.mjs
 node tools/generate-exercise-fitness-ceiling-scores.mjs --check
-node --test web/tests/fitness-ceiling-scores.test.js
+node tools/generate-reaction-drill-media.mjs --check
+node --test web/tests/fitness-ceiling-scores.test.js web/tests/reaction-drills.test.js
 ```
 
-Checks reject stale catalog snapshots, absent/duplicate/unknown IDs, missing
-characteristics, fractional/out-of-range scores, unsupported reaction claims,
-power/speed claims for still holds, and stale exports. Later revisions should
-review individual assignments and rationale profiles together. Before product
-use, finalize the relevant task benchmarks and test the ceiling estimates
-against observed adaptations and actual weekly exposure.
+Generation and `--check` reject any coverage deficit. `--report-only` can write
+an honest failing sourcing report, but cannot be combined with `--check`.
+Validation also rejects absent/duplicate IDs, missing dimensions or conditions,
+invalid/unsorted/repeated levels, unsupported reaction tasks, power/speed claims
+for still holds, changed response assets, and stale exports.
 
-## Framework references
-
-- ACSM, [The Components of Physical Fitness: A Roundtable Statement](https://doi.org/10.1249/MSS.0000000000003997).
-- Dreyfus, [The Five-Stage Model of Adult Skill Acquisition](https://www.bumc.bu.edu/facdev-medicine/files/2012/03/Dreyfus-skill-level.pdf).
-- Kümmel et al., [Specificity of Balance Training in Healthy Individuals](https://pubmed.ncbi.nlm.nih.gov/26993132/).
-- ACSM, [2026 resistance-training guidance](https://acsm.org/resistance-training-guidelines-update-2026/).
+Framework references: [ACSM roundtable](https://doi.org/10.1249/MSS.0000000000003997),
+[Dreyfus](https://www.bumc.bu.edu/facdev-medicine/files/2012/03/Dreyfus-skill-level.pdf),
+[NSCA speed-session design](https://www.nsca.com/education/articles/kinetic-select/designing-speed-training-sessions/).

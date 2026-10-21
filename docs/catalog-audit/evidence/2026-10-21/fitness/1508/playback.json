@@ -1,0 +1,54 @@
+{
+  "id": 1508,
+  "name": "Handstand Turns",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock",
+    "SecondDirection"
+  ],
+  "playback": [
+    {
+      "start": 0.730637,
+      "duration": 7.65,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 2.274359,
+      "duration": 7.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 3.864341,
+      "duration": 7.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 5.465807,
+      "duration": 7.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 7.069643,
+      "duration": 7.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.023668,
+      "duration": 7.65,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1508,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

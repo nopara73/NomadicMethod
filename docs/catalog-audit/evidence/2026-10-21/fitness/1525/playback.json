@@ -1,0 +1,18 @@
+{
+  "id": 1525,
+  "name": "Full Middle Split Hold",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "Hold",
+    "AfterBlock"
+  ],
+  "playback": [],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1525,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

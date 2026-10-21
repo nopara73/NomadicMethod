@@ -69,7 +69,37 @@ try {
     Assert-ReviewStatus 'PASS'
     [IO.File]::WriteAllText((Join-Path $testRoot 'exercise_direction_videos/exercise_0001.mp4'), 'changed direction')
     Assert-ReviewStatus 'STALE'
-    Write-Output 'Review evidence tests passed: missing, partial, failed, changed metadata, video, hold and direction assets.'
+    $exercise.mode = 'Repetition'
+    $exercise.directionSequence = 'None'
+    $exercise | Add-Member -NotePropertyName practice -NotePropertyValue 'Reaction training'
+    foreach ($directory in @('reaction_videos', 'reaction_previews')) {
+        New-Item -ItemType Directory -Force -Path (Join-Path $testRoot $directory) | Out-Null
+    }
+    $actions = @(1..4 | ForEach-Object {
+        $video = "reaction_videos/response-$_.mp4"
+        $preview = "reaction_previews/response-$_.png"
+        [IO.File]::WriteAllText((Join-Path $testRoot $video), 'response hash fixture')
+        [IO.File]::WriteAllText((Join-Path $testRoot $preview), 'preview hash fixture')
+        @{ video = $video; preview = $preview }
+    })
+    $definition = @{ version = 1; families = @(@{ id = 'test'; actions = $actions });
+        plans = @(@{ exerciseId = 1; familyId = 'test'; protocol = 'TwoChoice' }) } |
+        ConvertTo-Json -Depth 10 -Compress
+    $definitionPath = Join-Path $testRoot 'reaction_drills.json'
+    [IO.File]::WriteAllText($definitionPath, $definition)
+    $review.metadataSha256 = Get-CatalogMetadataHash -Exercise $exercise
+    $review.assets = Get-CatalogAssetHashes -Exercise $exercise -AssetsRoot $testRoot
+    $checks.HoldFrame.status = 'NOT_APPLICABLE'
+    Assert-ReviewStatus 'PASS'
+    foreach ($asset in @('reaction_videos/response-1.mp4', 'reaction_previews/response-2.png', 'reaction_drills.json')) {
+        $path = Join-Path $testRoot $asset
+        $original = [IO.File]::ReadAllText($path)
+        [IO.File]::WriteAllText($path, "$original ")
+        Assert-ReviewStatus 'STALE'
+        [IO.File]::WriteAllText($path, $original)
+        Assert-ReviewStatus 'PASS'
+    }
+    Write-Output 'Review evidence tests passed: missing, partial, failed, changed metadata, video, hold, direction, reaction response, preview and protocol assets.'
 }
 finally {
     $resolvedRoot = [IO.Path]::GetFullPath($testRoot)

@@ -1,0 +1,2854 @@
+{
+  "schemaVersion": 2,
+  "reviewedOn": "2026-10-21",
+  "status": "final-admissions-reviewed",
+  "catalogRevision": 88,
+  "exerciseCount": 884,
+  "representation": "trainable-level-sets",
+  "scope": "Reassess original 853 entries before sourcing additions; count each physical session identity once in every explicitly supported level.",
+  "fitnessCaveat": "Provisional NM task-specific training potential in repeated 45-second blocks; no validated ACSM/Dreyfus cutoffs, measured latency, or guaranteed adaptation is claimed.",
+  "coverageBeforeAdmissions": {
+    "exerciseCount": 853,
+    "missingCellCount": 7,
+    "missingPlacements": 33,
+    "deficits": [
+      {
+        "characteristic": "flexibility",
+        "level": 5,
+        "count": 0,
+        "required": 5,
+        "missing": 5
+      },
+      {
+        "characteristic": "agility",
+        "level": 5,
+        "count": 0,
+        "required": 5,
+        "missing": 5
+      },
+      {
+        "characteristic": "balance",
+        "level": 5,
+        "count": 0,
+        "required": 5,
+        "missing": 5
+      },
+      {
+        "characteristic": "coordination",
+        "level": 5,
+        "count": 2,
+        "required": 5,
+        "missing": 3
+      },
+      {
+        "characteristic": "reactionTime",
+        "level": 3,
+        "count": 0,
+        "required": 5,
+        "missing": 5
+      },
+      {
+        "characteristic": "reactionTime",
+        "level": 4,
+        "count": 0,
+        "required": 5,
+        "missing": 5
+      },
+      {
+        "characteristic": "reactionTime",
+        "level": 5,
+        "count": 0,
+        "required": 5,
+        "missing": 5
+      }
+    ]
+  },
+  "coverageAfterAdmissions": {
+    "requiredDistinctMovementsPerCell": 5,
+    "cellCount": 50,
+    "missingCellCount": 0,
+    "missingPlacements": 0
+  },
+  "admissionCount": 31,
+  "physicalMovementRecords": 16,
+  "choiceProtocolRecords": 15,
+  "previousPendingRecordCount": 48,
+  "avoidedPendingRecords": 17,
+  "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+  "workoutGallery": "docs/catalog-audit/evidence/2026-10-21/fitness/gallery.html",
+  "physicalAndroidInstall": "Pending: no connected device",
+  "admissions": [
+    {
+      "exerciseId": 1506,
+      "name": "Freestanding Handstand Push-Ups",
+      "sessionMovementId": 1506,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1506",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4,
+          5
+        ],
+        "muscularEndurance": [
+          4,
+          5
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4,
+          5
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "92273f30eeced4902cbb51852825e9051b8235b4d7eced232037ceb1e7ca5f82",
+      "assets": {
+        "exercise_videos/exercise_1506.mp4": "70ed237671bea3b23bc89eb1d55e53cb15abcf081d6c0400ff344f52287a33e3"
+      },
+      "observedAction": "A real athlete performs unassisted freestanding handstand push-ups through visible elbow flexion and extension. Both palms and the head contact the floor; the full body remains framed. Direct shoulder and elbow-extensor work, demanding loading, and no wall assistance.",
+      "source": {
+        "page": "https://www.caliverse.app/exercises/handstand-push-up-1395",
+        "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afcbf83d314.mp4",
+        "originalStartSeconds": 4.25,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1506-source.mp4",
+        "archiveSha256": "5c52ccbdb238ef7f4e4f28b6254a1cef4d527fd62dced83de1bbedf507142a0c"
+      }
+    },
+    {
+      "exerciseId": 1507,
+      "name": "Handstand Shoulder Taps",
+      "sessionMovementId": 1507,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1507",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3,
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4,
+          5
+        ],
+        "coordination": [
+          3,
+          4,
+          5
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "bc1138b134600418518ab9b3caac5286d8db27372f551f1d7081896ff8415876",
+      "assets": {
+        "exercise_videos/exercise_1507.mp4": "5ee13a1d2602ba288d416554d3c7e8ebb2d586d4a832d9fb50b6d1d70579bfff"
+      },
+      "observedAction": "A real athlete shifts support between palms and taps the opposite shoulder while maintaining a freestanding handstand. The natural alternating pair is intact. Direct supporting shoulder/elbow-extensor loading; hands require traction and concentrated-load compatibility.",
+      "source": {
+        "page": "https://www.caliverse.app/exercises/handstand-shoulder-taps-1392",
+        "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afc64f37f00.mp4",
+        "originalStartSeconds": 1.75,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1507-source.mp4",
+        "archiveSha256": "f9ff7907432604146b07a880dfdd4bdbaaf633e6f2cf5b76a3eac4fb3e7feda9"
+      }
+    },
+    {
+      "exerciseId": 1508,
+      "name": "Handstand Turns",
+      "sessionMovementId": 1508,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1508",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3,
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4,
+          5
+        ],
+        "coordination": [
+          3,
+          4,
+          5
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "84e3fef4e4ee0d1dcee2934fbad63092bcc141c25e45edc6125c9f2093e5bf43",
+      "assets": {
+        "exercise_videos/exercise_1508.mp4": "72945b63603bc795adef663adec89181bf37f88bdfcdd34a8ef2b634ea8b1400",
+        "exercise_direction_videos/exercise_1508.mp4": "ff596224a38f2e9838240ec81a616dc88b10de2a18f9ab911f01cfaccf7dbfe7"
+      },
+      "observedAction": "A real athlete steps the palms around a full handstand turn. The shown yaw progresses from screen-left facing through camera-facing to screen-right and away: counterclockwise from above. The second complete 45-second direction uses the horizontally mirrored loop and clockwise cue.",
+      "source": {
+        "page": "https://www.caliverse.app/exercises/handstand-360-rotation-1376",
+        "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-6597e780e673c.mp4",
+        "originalStartSeconds": 2.3,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1508-source.mp4",
+        "archiveSha256": "b6c108659c8aaecffe1f71d5263efe52a1aa664ce757177016ddaef596c4d68e"
+      }
+    },
+    {
+      "exerciseId": 1509,
+      "name": "Handstand Walk",
+      "sessionMovementId": 1509,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1509",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3,
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4,
+          5
+        ],
+        "coordination": [
+          3,
+          4,
+          5
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "d98d1bdc97c1f3ed7cee1b777b52a80af8f6a1d0d55356010988b9f1f676e52b",
+      "assets": {
+        "exercise_videos/exercise_1509.mp4": "273c3e1d93b75ac3272d36bf96e0975281165fab93d704da723f8521921f998e"
+      },
+      "observedAction": "A real athlete enters a handstand, walks forward on the palms, and returns the feet to the floor. Entry and exit contacts are included; travel is intrinsic to handstand walking and requires Room. Shoulders and elbow extensors receive direct support work.",
+      "source": {
+        "page": "https://www.caliverse.app/exercises/handstand-walks-1369",
+        "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-656f2b3ce99a9.mp4",
+        "originalStartSeconds": 0,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1509-source.mp4",
+        "archiveSha256": "4eee76ca009eee17d5672be880c4b7ec86be8b53b542c226d90c7df6d701a77d"
+      }
+    },
+    {
+      "exerciseId": 1516,
+      "name": "Crouching Reaches",
+      "sessionMovementId": 1516,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1516",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [
+          3
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "e73b9b16114b8cf11cab9717037177c6f0e50e10398c5d3f399aeb0761f85e9c",
+      "assets": {
+        "exercise_videos/exercise_1516.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7"
+      },
+      "observedAction": "The principal athlete maintains a crouched hands-and-feet support with the knees off the floor and reaches with each hand and foot. The widened crop retains the complete reaching limbs and support contacts; the background coach does not obscure the principal action. Direct shoulder support, no incidental trunk secondary claim.",
+      "source": {
+        "page": "https://www.acefitness.org/continuing-education/certified/july-2020/7585/multisport-agility-an-ace-integrated-fitness-training-model-workout/",
+        "mediaUrl": "https://www.youtube.com/watch?v=yOlILrlX2kw",
+        "originalStartSeconds": 5.35,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1516-source.mp4",
+        "archiveSha256": "40985c9bebd3f6d488814c8d957c2c8053dc762e14bcf98e46910c14211ab12b"
+      }
+    },
+    {
+      "exerciseId": 1521,
+      "name": "Full Standing Pike Hold",
+      "sessionMovementId": 1206,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1521",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [
+          3,
+          4,
+          5
+        ],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern. The static pose alone does not establish a separate timing/segment-coordination training claim.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "37a11f7959df3d3fd81d4a9d1d43b1ea360bbd6fe1ddbc47efe96fb413cb7114",
+      "assets": {
+        "exercise_videos/exercise_1521.mp4": "89cdc5185ea577f24e3d7e2d4fd2106ad86682b0c5becaa113a317773af2a8e0",
+        "exercise_hold_frames/exercise_1521.png": "1ef895c74a2892ec4c88ab7f7228876adf429bed4d7bfcabcfb83fd0ed310917"
+      },
+      "observedAction": "The real demonstrator holds a full straight-knee standing pike with the torso against the thighs and hands around the lower legs. The exact full-depth frame is held rather than animated. Direct posterior-thigh flexibility; same fundamental forward-fold family as 1206.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=58nxC7SVIto",
+        "mediaUrl": "https://www.youtube.com/watch?v=58nxC7SVIto",
+        "originalStartSeconds": 595.4,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1521-source.mp4",
+        "archiveSha256": "a1d8fad8458a297af6eaf7621888f47b492de6538f4f3bade45ed03e3d0878b6"
+      }
+    },
+    {
+      "exerciseId": 1522,
+      "name": "Full Pancake Stretch",
+      "sessionMovementId": 1522,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1522",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [
+          3,
+          4,
+          5
+        ],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern. The static pose alone does not establish a separate timing/segment-coordination training claim.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "9abd335bc22bba9b739a78d42f89016fa2fe7cc87756a9ce596024ebe0210b2a",
+      "assets": {
+        "exercise_videos/exercise_1522.mp4": "564a8f6dd4abe522b43dc67b2645e62c54a6827b9606ce20a420b488f16fad6f",
+        "exercise_hold_frames/exercise_1522.png": "09af78f202d83d8d97eeb63c92e58f92072d7c505fbed60e9a2be3632327a254"
+      },
+      "observedAction": "The real demonstrator holds a wide seated pancake with the chest reaching the floor between the legs. The complete legs and torso remain visible. Direct adductor and posterior-thigh stretching; seated thigh/hip/torso contacts and clothing requirement are explicit.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=brynxf5TIYk",
+        "mediaUrl": "https://www.youtube.com/watch?v=brynxf5TIYk",
+        "originalStartSeconds": 23.6,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1522-source.mp4",
+        "archiveSha256": "8ca3d74f96c4dad80718d8701d45b39619f7e454a4e11ba89c509922d13bb34c"
+      }
+    },
+    {
+      "exerciseId": 1523,
+      "name": "Full Floor Bridge Hold",
+      "sessionMovementId": 1523,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1523",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [
+          2
+        ],
+        "flexibility": [
+          3,
+          4,
+          5
+        ],
+        "agility": [],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "3497d698cf39d03c94ddb8421b1d08a20fc925eecd9d109409e6405a5383a2ea",
+      "assets": {
+        "exercise_videos/exercise_1523.mp4": "24774d3954ca1eab444f6631d93cd740e93c538ace5782dd14cfc3ae502254af",
+        "exercise_hold_frames/exercise_1523.png": "371c751247920510035dcd98b0d331c337c372fac037f75e15704af310614956"
+      },
+      "observedAction": "The real demonstrator raises into a full floor bridge, then the application freezes the exact fully raised bridge frame. The arch visibly opens the shoulders, anterior trunk and hips. Entry includes torso, shoulder, head and hip contacts; the final position is supported by palms and feet.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=U-cBuYnVJBI",
+        "mediaUrl": "https://www.youtube.com/watch?v=U-cBuYnVJBI",
+        "originalStartSeconds": 834.3,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1523-source.mp4",
+        "archiveSha256": "c3a899c7ed68ac18b3482b92872770e1092bad06024631118690bf9761e5f1ac"
+      }
+    },
+    {
+      "exerciseId": 1524,
+      "name": "Full Front Split Hold",
+      "sessionMovementId": 1524,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1524",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [
+          3,
+          4,
+          5
+        ],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern. The static pose alone does not establish a separate timing/segment-coordination training claim.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "8cefb7a874894b2edecf9a3af91370cbeae6aec7e0d3a48740975614ead8ead7",
+      "assets": {
+        "exercise_videos/exercise_1524.mp4": "5f65cff33bb02e12ff04f8a0a852b384de4cff705d02ccccd6d5ced308ed187d",
+        "exercise_hold_frames/exercise_1524.png": "3a372ed6773a63ff2b9afc6004f31a25888d0c4b35613fcd40215bd86ce7c7e7"
+      },
+      "observedAction": "The real demonstrator holds a complete front split with straight legs extended forward and backward and hips at floor level. The exact hold frame is used in both full timed sides, with horizontal mirroring for the second side. Posterior-thigh and hip-flexor stretching are directly visible.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=yxoNzkQ8QNo",
+        "mediaUrl": "https://www.youtube.com/watch?v=yxoNzkQ8QNo",
+        "originalStartSeconds": 40.3,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1524-source.mp4",
+        "archiveSha256": "483f6de43dd9a7ab0e9a54875074560811be0abb426d994792e908b4b7a467b5"
+      }
+    },
+    {
+      "exerciseId": 1525,
+      "name": "Full Middle Split Hold",
+      "sessionMovementId": 1525,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1525",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [
+          3,
+          4,
+          5
+        ],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern. The static pose alone does not establish a separate timing/segment-coordination training claim.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "c89aadc39f2fc13d481d9bc0401c3831427779e0af534f145d14ca2b90045c12",
+      "assets": {
+        "exercise_videos/exercise_1525.mp4": "e59b078fcd59c3df34e1034ef65f5bb1210f1ea2ef9458c23fb2aa9e2a528f68",
+        "exercise_hold_frames/exercise_1525.png": "de4f0f7fa4831cd0927606feb134fecb2e2989eeedb21ce71aed1a259b9f958d"
+      },
+      "observedAction": "The real demonstrator holds a full middle split with both legs extended laterally and hips at floor level. The entire pose is framed and retained as a static image. Direct adductor flexibility; no separate timing/coordination or ballistic claim from the still pose.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=58nxC7SVIto",
+        "mediaUrl": "https://www.youtube.com/watch?v=58nxC7SVIto",
+        "originalStartSeconds": 608.1,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1525-source.mp4",
+        "archiveSha256": "ce5ad2e9aabe7f4e393d2fd0ee884f0da8504f505f147f866fc41d998bc4698c"
+      }
+    },
+    {
+      "exerciseId": 1531,
+      "name": "Lateral Shuffle to Crossover Sprint",
+      "sessionMovementId": 1531,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1531",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          2
+        ],
+        "flexibility": [],
+        "agility": [
+          3,
+          4,
+          5
+        ],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": [
+          3,
+          4
+        ]
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "071d6b6479249030c12e6903bdf3c6ae3ed9937393d38b006c6fd9eb29fb4da2",
+      "assets": {
+        "exercise_videos/exercise_1531.mp4": "f3fa2f0e0d3de237a640d86abe3023261d4e275fbe83cfc943b30a86bbecc172"
+      },
+      "observedAction": "The athlete performs a lateral shuffle and naturally crosses over into a sprint before leaving the camera. Travel and braking are integral; the opposite lead has a separate mirrored 45-second block. Field space, ordinary footfall noise and traction-dependent lateral movement are classified explicitly.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=uXg7jO_mUJI",
+        "mediaUrl": "https://www.youtube.com/watch?v=uXg7jO_mUJI",
+        "originalStartSeconds": 26.0,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1531-source.mp4",
+        "archiveSha256": "c092dfbe62f0ff8a5aa53530cbcfc88b3bf89e3014b419e5bed2679045f35cad"
+      }
+    },
+    {
+      "exerciseId": 1532,
+      "name": "Sprint to Backpedal",
+      "sessionMovementId": 1532,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1532",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          2
+        ],
+        "flexibility": [],
+        "agility": [
+          3,
+          4,
+          5
+        ],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": [
+          3,
+          4
+        ]
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "6ab1a198c745bbbf336f7ec3f4a4c66aab601f215e299cc8c606dd754fa47167",
+      "assets": {
+        "exercise_videos/exercise_1532.mp4": "f94f59074561eb3864c7440d13278d7af6946185b42c365f01099ed6c717ff19"
+      },
+      "observedAction": "The athlete sprints forward, brakes, and backpedals to the starting area. The clip stops before the unrelated following sprint/camera exit. The complete forward/backward return is retained at normal speed, with Field and noisy running-impact requirements.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=nHIt6tLlfUY",
+        "mediaUrl": "https://www.youtube.com/watch?v=nHIt6tLlfUY",
+        "originalStartSeconds": 0.25,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1532-source.mp4",
+        "archiveSha256": "2311f98dac8429b938c820383a3263116519e640b261cd030ce01136a900413b"
+      }
+    },
+    {
+      "exerciseId": 1533,
+      "name": "Backpedal to Turn and Sprint",
+      "sessionMovementId": 1533,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1533",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          2
+        ],
+        "flexibility": [],
+        "agility": [
+          3,
+          4,
+          5
+        ],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": [
+          3,
+          4
+        ]
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "5d7ec75bd56b0f52746253211bbecef9783a5dbd9f4e3660fc442cd225315648",
+      "assets": {
+        "exercise_videos/exercise_1533.mp4": "30dbd034731ae2a5eccb804e2c3f9a55793534636735ce040ce7bbf945399036",
+        "exercise_direction_videos/exercise_1533.mp4": "9a7e522007dcddeb15c226ec1171dd5b7a9659c9e26f0fa1c1ddef7b8ddcf10d"
+      },
+      "observedAction": "The athlete backpedals, turns 180 degrees over the left shoulder, then sprints away. The first turn is counterclockwise from above, and the mirrored second direction is clockwise. The full braking, turn and acceleration remain visible at normal speed.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=pjMhiDcQrNE",
+        "mediaUrl": "https://www.youtube.com/watch?v=pjMhiDcQrNE",
+        "originalStartSeconds": 0.1,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1533-source.mp4",
+        "archiveSha256": "6dd230c01ae8b35598a6fa65500a80fdaa6728db15a866c82e6c621dd2bdf072"
+      }
+    },
+    {
+      "exerciseId": 1534,
+      "name": "5-10-5 Shuttle Run",
+      "sessionMovementId": 1534,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1534",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          2
+        ],
+        "flexibility": [],
+        "agility": [
+          3,
+          4,
+          5
+        ],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": [
+          3,
+          4
+        ]
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "0bbc1eb313289af473ddc810a1ab76d02e0b3f0a774cc5a94e920e54e4ef6c22",
+      "assets": {
+        "exercise_videos/exercise_1534.mp4": "02dce2b2e49a131ae6fee403a54b58efd83ba489c0dc68123fedd61bd14b38e1"
+      },
+      "observedAction": "The athlete completes the full 5-10-5 shuttle: first short leg, reversal across the middle, and return through the start. A hand touches the line, so Floor is required as well as Field. The second lead uses its own complete mirrored block; no source crossfade enters the loop.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=fZoJVVuqY3U",
+        "mediaUrl": "https://www.youtube.com/watch?v=fZoJVVuqY3U",
+        "originalStartSeconds": 2.8,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1534-source.mp4",
+        "archiveSha256": "e615f2ba2237ecd1ca99b1fe8a87779f42339c5636d8848f84b165e8c50748e1"
+      }
+    },
+    {
+      "exerciseId": 1535,
+      "name": "Triangle Agility Run",
+      "sessionMovementId": 1535,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1535",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          2
+        ],
+        "flexibility": [],
+        "agility": [
+          3,
+          4,
+          5
+        ],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": [
+          3,
+          4
+        ]
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "7a27a6e5f82f588e89029eb9949a2b6383f4f080f684e2d7460807ee61557a19",
+      "assets": {
+        "exercise_videos/exercise_1535.mp4": "f15c0da3fcd1016898e7c511e5fd580b4ab829cf328314f75f3c72c36fdc6f0b",
+        "exercise_direction_videos/exercise_1535.mp4": "39d14fd8180eeb239a79dc3bc31d199a8cb1e0b65a5a47cd727a45c97953e26a"
+      },
+      "observedAction": "The athlete runs the complete triangular path from front-left to back-center to front-right and back to front-left. This is clockwise from above. The mirrored second loop supplies counterclockwise travel; the crop retains all three turns and the whole athlete.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=bvsPgBbYF5U",
+        "mediaUrl": "https://www.youtube.com/watch?v=bvsPgBbYF5U",
+        "originalStartSeconds": 3.5,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1535-source.mp4",
+        "archiveSha256": "bc9a7f83c56644e88b857192e6aa6f9a885af9bf605e30210d0f57530851bda3"
+      }
+    },
+    {
+      "exerciseId": 1540,
+      "name": "Floor One-Arm Handstand Hold",
+      "sessionMovementId": 1540,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1540",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4,
+          5
+        ],
+        "muscularEndurance": [
+          4,
+          5
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4,
+          5
+        ],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Practice the exact demonstrated movement and support, with shorter clean repetitions/holds and resets inside the 45-second opportunity where needed. Meet the physical prerequisites; no added assistance, apparatus, closed eyes or harder variant is inferred. Training is specific to this pattern. The static pose alone does not establish a separate timing/segment-coordination training claim.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "0ff33c21b73c8264ea080e5a1df92976b6e42a0565fe7da23700c030a674772f",
+      "assets": {
+        "exercise_videos/exercise_1540.mp4": "21f536cc157f6fc3b71b1f3c137b360724a67a06582275096ba73038358b13bc",
+        "exercise_hold_frames/exercise_1540.png": "9607c7941564a865eb565f317a8d001130b72e375dca8685492e8cfb071dcf71"
+      },
+      "observedAction": "The real athlete balances in a one-arm handstand on a flat palm, with the free arm extended screen-left and the support palm screen-right. The exact fully framed boot-to-palm hold image is used; the second full timed side is mirrored. No handles, support wall, or body clearance below the palm is required by this flat-support pose.",
+      "source": {
+        "page": "https://www.youtube.com/watch?v=mqvlR9YkWAo",
+        "mediaUrl": "https://www.youtube.com/watch?v=mqvlR9YkWAo",
+        "originalStartSeconds": 17.5,
+        "reviewedLocalArchive": "tools/ReviewedSourceMedia/fitness-1540-source.mp4",
+        "archiveSha256": "e2a8dd7dc246890bc7a69369be81cfe90271ab2d7de23d2ca9f2b95cb179ebb0"
+      }
+    },
+    {
+      "exerciseId": 1602,
+      "name": "Punch Reactions \u00b7 Two Choices",
+      "sessionMovementId": 278,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1602",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3
+        ],
+        "speed": [
+          2
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "db655f89fb3ea95c5cbd0cc51ee32c7a4de18f41369239244bc886a9951fa988",
+      "assets": {
+        "exercise_videos/exercise_1602.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+        "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a",
+        "reaction_videos/punch-2.mp4": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+        "reaction_previews/punch-2.png": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3"
+      },
+      "observedAction": "Two unpredictable number choices select the real straight-punch or jab-cross response. Both actions directly train the chest and shoulder abductors and extend the elbow. Every full response and preview is prepared before the target; feedback follows the separate decision window.",
+      "reactionProtocol": {
+        "exerciseId": 1602,
+        "familyId": "punch",
+        "protocol": "TwoChoice"
+      },
+      "responses": [
+        {
+          "label": "Straight punch",
+          "sourceId": 278,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "2c44b0a7fb8956027efedccf731a25799d8655ab7dbbc89ff2d8d3768eb33091",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/punch-1.mp4",
+          "preview": "reaction_previews/punch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+          "previewSha256": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
+        },
+        {
+          "label": "Jab\u2013cross",
+          "sourceId": 279,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "27d1daa5c16d5274c8e1834330813536ab3adadc5fee8ab1f1be9d03466005d3",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/punch-2.mp4",
+          "preview": "reaction_previews/punch-2.png",
+          "previewSeconds": 0.65,
+          "videoSha256": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+          "previewSha256": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1603,
+      "name": "Punch Reactions \u00b7 Four Choices",
+      "sessionMovementId": 278,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1603",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4
+        ],
+        "speed": [
+          2
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "5737a3058699a5ace2b72e99a6d9e4e89c7ca87b1afce82dd6c783640fede4e9",
+      "assets": {
+        "exercise_videos/exercise_1603.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+        "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a",
+        "reaction_videos/punch-2.mp4": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+        "reaction_previews/punch-2.png": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3",
+        "reaction_videos/punch-3.mp4": "b7980cf45f00edeebd1d2eb9d8cb540e98fb302b800d16bb336814e23fb721ee",
+        "reaction_previews/punch-3.png": "e12e72b0a35d7e9d45eff61fa82c90f418781ac352484c600170ba86f7daa91c",
+        "reaction_videos/punch-4.mp4": "2830470221d4ab47568bd7d13e85282b645ff43c69ff9d1e847061b574088a7f",
+        "reaction_previews/punch-4.png": "e679faca077624c6401a2cadfcd0a078eeb04ab65ce96f2e5869dcea4d7aae9c"
+      },
+      "observedAction": "Four number choices select straight punch, jab-cross, hook, or alternating uppercuts. Chest and shoulder-abductor work is common to all four approved source movements. Elbow-extensor secondary work is deliberately omitted because it is not common to every response.",
+      "reactionProtocol": {
+        "exerciseId": 1603,
+        "familyId": "punch",
+        "protocol": "FourChoice"
+      },
+      "responses": [
+        {
+          "label": "Straight punch",
+          "sourceId": 278,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "2c44b0a7fb8956027efedccf731a25799d8655ab7dbbc89ff2d8d3768eb33091",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/punch-1.mp4",
+          "preview": "reaction_previews/punch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+          "previewSha256": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
+        },
+        {
+          "label": "Jab\u2013cross",
+          "sourceId": 279,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "27d1daa5c16d5274c8e1834330813536ab3adadc5fee8ab1f1be9d03466005d3",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/punch-2.mp4",
+          "preview": "reaction_previews/punch-2.png",
+          "previewSeconds": 0.65,
+          "videoSha256": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+          "previewSha256": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3"
+        },
+        {
+          "label": "Hook",
+          "sourceId": 280,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "25a49a8e33bd5baf1fb8e648a58614c06e53bd4cf31163e60935c469e8b5adc5",
+          "startSeconds": 0,
+          "durationSeconds": 1.95,
+          "mirror": false,
+          "video": "reaction_videos/punch-3.mp4",
+          "preview": "reaction_previews/punch-3.png",
+          "previewSeconds": 0.9,
+          "videoSha256": "b7980cf45f00edeebd1d2eb9d8cb540e98fb302b800d16bb336814e23fb721ee",
+          "previewSha256": "e12e72b0a35d7e9d45eff61fa82c90f418781ac352484c600170ba86f7daa91c"
+        },
+        {
+          "label": "Uppercuts",
+          "sourceId": 274,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "42a9561a248e3778ae1467ec64c97028350b82faa6c366a8bab9a8ac98c9b09e",
+          "startSeconds": 0,
+          "durationSeconds": 1.6,
+          "mirror": false,
+          "video": "reaction_videos/punch-4.mp4",
+          "preview": "reaction_previews/punch-4.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "2830470221d4ab47568bd7d13e85282b645ff43c69ff9d1e847061b574088a7f",
+          "previewSha256": "e679faca077624c6401a2cadfcd0a078eeb04ab65ce96f2e5869dcea4d7aae9c"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1604,
+      "name": "Punch Reactions \u00b7 Context Choices",
+      "sessionMovementId": 278,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1604",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          2
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "ea8e413e46a5134d3dfa65d557c5271d4a22d0746ec58c82f231d1dbe285a7dc",
+      "assets": {
+        "exercise_videos/exercise_1604.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+        "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a",
+        "reaction_videos/punch-2.mp4": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+        "reaction_previews/punch-2.png": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3",
+        "reaction_videos/punch-3.mp4": "b7980cf45f00edeebd1d2eb9d8cb540e98fb302b800d16bb336814e23fb721ee",
+        "reaction_previews/punch-3.png": "e12e72b0a35d7e9d45eff61fa82c90f418781ac352484c600170ba86f7daa91c",
+        "reaction_videos/punch-4.mp4": "2830470221d4ab47568bd7d13e85282b645ff43c69ff9d1e847061b574088a7f",
+        "reaction_previews/punch-4.png": "e679faca077624c6401a2cadfcd0a078eeb04ab65ce96f2e5869dcea4d7aae9c"
+      },
+      "observedAction": "The real four-punch response set uses a visibly pre-announced normal or reversed number mapping before an unpredictable target. The correct full human action appears only after the decision window. Ready previews, pause reset, cold reopen, complete feedback and the opposite lead block are checked separately.",
+      "reactionProtocol": {
+        "exerciseId": 1604,
+        "familyId": "punch",
+        "protocol": "ContextChoice"
+      },
+      "responses": [
+        {
+          "label": "Straight punch",
+          "sourceId": 278,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "2c44b0a7fb8956027efedccf731a25799d8655ab7dbbc89ff2d8d3768eb33091",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/punch-1.mp4",
+          "preview": "reaction_previews/punch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+          "previewSha256": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
+        },
+        {
+          "label": "Jab\u2013cross",
+          "sourceId": 279,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "27d1daa5c16d5274c8e1834330813536ab3adadc5fee8ab1f1be9d03466005d3",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/punch-2.mp4",
+          "preview": "reaction_previews/punch-2.png",
+          "previewSeconds": 0.65,
+          "videoSha256": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+          "previewSha256": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3"
+        },
+        {
+          "label": "Hook",
+          "sourceId": 280,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "25a49a8e33bd5baf1fb8e648a58614c06e53bd4cf31163e60935c469e8b5adc5",
+          "startSeconds": 0,
+          "durationSeconds": 1.95,
+          "mirror": false,
+          "video": "reaction_videos/punch-3.mp4",
+          "preview": "reaction_previews/punch-3.png",
+          "previewSeconds": 0.9,
+          "videoSha256": "b7980cf45f00edeebd1d2eb9d8cb540e98fb302b800d16bb336814e23fb721ee",
+          "previewSha256": "e12e72b0a35d7e9d45eff61fa82c90f418781ac352484c600170ba86f7daa91c"
+        },
+        {
+          "label": "Uppercuts",
+          "sourceId": 274,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "42a9561a248e3778ae1467ec64c97028350b82faa6c366a8bab9a8ac98c9b09e",
+          "startSeconds": 0,
+          "durationSeconds": 1.6,
+          "mirror": false,
+          "video": "reaction_videos/punch-4.mp4",
+          "preview": "reaction_previews/punch-4.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "2830470221d4ab47568bd7d13e85282b645ff43c69ff9d1e847061b574088a7f",
+          "previewSha256": "e679faca077624c6401a2cadfcd0a078eeb04ab65ce96f2e5869dcea4d7aae9c"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1612,
+      "name": "Knee Lift Reactions \u00b7 Two Choices",
+      "sessionMovementId": 144,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1612",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "88c6c806b1b361406260956acb7ffd45e4903ad6c3641ca34fda1803d60cf941",
+      "assets": {
+        "exercise_videos/exercise_1612.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+        "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0",
+        "reaction_videos/knee-2.mp4": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+        "reaction_previews/knee-2.png": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea"
+      },
+      "observedAction": "Two number choices select a complete front knee lift or cross-body knee drive. Both directly flex the hip and show the same initial screen-left working side. The opposite timed side is horizontally mirrored; no change-of-direction agility or back-muscle claim is attached.",
+      "reactionProtocol": {
+        "exerciseId": 1612,
+        "familyId": "knee",
+        "protocol": "TwoChoice"
+      },
+      "responses": [
+        {
+          "label": "Front knee lift",
+          "sourceId": 144,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "5794fbf13744d509b9b27f3bcef2d5d09e62269719efba6df99840246092f69b",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/knee-1.mp4",
+          "preview": "reaction_previews/knee-1.png",
+          "previewSeconds": 1.6,
+          "videoSha256": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+          "previewSha256": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
+        },
+        {
+          "label": "Cross-body knee drive",
+          "sourceId": 170,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "18d58e995ef9134bd56e264446ae379818627af0debc30bb4b7c73d3c463090d",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/knee-2.mp4",
+          "preview": "reaction_previews/knee-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+          "previewSha256": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1613,
+      "name": "Knee Lift Reactions \u00b7 Four Choices",
+      "sessionMovementId": 144,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1613",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3,
+          4
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "22962b22e6ec0c352c9f51f1c43e00e2e0e1d3a349c9d4027cb347b6d54d2bbd",
+      "assets": {
+        "exercise_videos/exercise_1613.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+        "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0",
+        "reaction_videos/knee-2.mp4": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+        "reaction_previews/knee-2.png": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea",
+        "reaction_videos/knee-3.mp4": "8ae840ac9fcc881e391b802e7e420706e2aadfac01d8134818aef03a24fa6d91",
+        "reaction_previews/knee-3.png": "0e709cb571f530ab0a9f7a56f8833615495121a163c1b5ede2100740f6272b2f",
+        "reaction_videos/knee-4.mp4": "d251be168c45fed79d224f95a9802958f0d8d0a538577a01dc4147edeb7a1402",
+        "reaction_previews/knee-4.png": "a7e15d14a481acb52daed2e81c1da66e30b6582420617aa2eee417bd7e1bf776"
+      },
+      "observedAction": "Four number choices select front knee lift, cross-body knee drive, side knee lift, or alternating knee raises with two-arm pull-down. Direct hip-flexor work is common to every response. Optional arm action and side-hip work in individual sources do not become secondary claims for the whole task.",
+      "reactionProtocol": {
+        "exerciseId": 1613,
+        "familyId": "knee",
+        "protocol": "FourChoice"
+      },
+      "responses": [
+        {
+          "label": "Front knee lift",
+          "sourceId": 144,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "5794fbf13744d509b9b27f3bcef2d5d09e62269719efba6df99840246092f69b",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/knee-1.mp4",
+          "preview": "reaction_previews/knee-1.png",
+          "previewSeconds": 1.6,
+          "videoSha256": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+          "previewSha256": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
+        },
+        {
+          "label": "Cross-body knee drive",
+          "sourceId": 170,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "18d58e995ef9134bd56e264446ae379818627af0debc30bb4b7c73d3c463090d",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/knee-2.mp4",
+          "preview": "reaction_previews/knee-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+          "previewSha256": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea"
+        },
+        {
+          "label": "Side knee lift",
+          "sourceId": 173,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "052cc0523f5c802a193092fb76f5df00f6252273f77a6825f41f430b36d6740f",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/knee-3.mp4",
+          "preview": "reaction_previews/knee-3.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "8ae840ac9fcc881e391b802e7e420706e2aadfac01d8134818aef03a24fa6d91",
+          "previewSha256": "0e709cb571f530ab0a9f7a56f8833615495121a163c1b5ede2100740f6272b2f"
+        },
+        {
+          "label": "Knee lift with pull-down",
+          "sourceId": 31,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "86ed2aca3282d3b453c594d5ed10fe4fc5a8c5e38915320a6cdb3e93de956f75",
+          "startSeconds": 0,
+          "durationSeconds": 1.6,
+          "mirror": false,
+          "video": "reaction_videos/knee-4.mp4",
+          "preview": "reaction_previews/knee-4.png",
+          "previewSeconds": 0.4,
+          "videoSha256": "d251be168c45fed79d224f95a9802958f0d8d0a538577a01dc4147edeb7a1402",
+          "previewSha256": "a7e15d14a481acb52daed2e81c1da66e30b6582420617aa2eee417bd7e1bf776"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1614,
+      "name": "Knee Lift Reactions \u00b7 Context Choices",
+      "sessionMovementId": 144,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1614",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "de1e596633668b09943fdf7c2a441c7f979b6f701dc4b2e6a96b1d9cae48bd39",
+      "assets": {
+        "exercise_videos/exercise_1614.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+        "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0",
+        "reaction_videos/knee-2.mp4": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+        "reaction_previews/knee-2.png": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea",
+        "reaction_videos/knee-3.mp4": "8ae840ac9fcc881e391b802e7e420706e2aadfac01d8134818aef03a24fa6d91",
+        "reaction_previews/knee-3.png": "0e709cb571f530ab0a9f7a56f8833615495121a163c1b5ede2100740f6272b2f",
+        "reaction_videos/knee-4.mp4": "d251be168c45fed79d224f95a9802958f0d8d0a538577a01dc4147edeb7a1402",
+        "reaction_previews/knee-4.png": "a7e15d14a481acb52daed2e81c1da66e30b6582420617aa2eee417bd7e1bf776"
+      },
+      "observedAction": "The four established knee-lift patterns use a normal or reversed number mapping shown before each unpredictable target. Complete natural responses are available from the Ready cards and appear after the decision interval. Both timed sides preserve the full response set.",
+      "reactionProtocol": {
+        "exerciseId": 1614,
+        "familyId": "knee",
+        "protocol": "ContextChoice"
+      },
+      "responses": [
+        {
+          "label": "Front knee lift",
+          "sourceId": 144,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "5794fbf13744d509b9b27f3bcef2d5d09e62269719efba6df99840246092f69b",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/knee-1.mp4",
+          "preview": "reaction_previews/knee-1.png",
+          "previewSeconds": 1.6,
+          "videoSha256": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+          "previewSha256": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
+        },
+        {
+          "label": "Cross-body knee drive",
+          "sourceId": 170,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "18d58e995ef9134bd56e264446ae379818627af0debc30bb4b7c73d3c463090d",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/knee-2.mp4",
+          "preview": "reaction_previews/knee-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+          "previewSha256": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea"
+        },
+        {
+          "label": "Side knee lift",
+          "sourceId": 173,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "052cc0523f5c802a193092fb76f5df00f6252273f77a6825f41f430b36d6740f",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/knee-3.mp4",
+          "preview": "reaction_previews/knee-3.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "8ae840ac9fcc881e391b802e7e420706e2aadfac01d8134818aef03a24fa6d91",
+          "previewSha256": "0e709cb571f530ab0a9f7a56f8833615495121a163c1b5ede2100740f6272b2f"
+        },
+        {
+          "label": "Knee lift with pull-down",
+          "sourceId": 31,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "86ed2aca3282d3b453c594d5ed10fe4fc5a8c5e38915320a6cdb3e93de956f75",
+          "startSeconds": 0,
+          "durationSeconds": 1.6,
+          "mirror": false,
+          "video": "reaction_videos/knee-4.mp4",
+          "preview": "reaction_previews/knee-4.png",
+          "previewSeconds": 0.4,
+          "videoSha256": "d251be168c45fed79d224f95a9802958f0d8d0a538577a01dc4147edeb7a1402",
+          "previewSha256": "a7e15d14a481acb52daed2e81c1da66e30b6582420617aa2eee417bd7e1bf776"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1622,
+      "name": "Arm Pattern Reactions \u00b7 Two Choices",
+      "sessionMovementId": 266,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1622",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "87009111a40d747919721a78e80f1c66c71674b24955f86b45f5720073cf6aad",
+      "assets": {
+        "exercise_videos/exercise_1622.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+        "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0",
+        "reaction_videos/arm-2.mp4": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+        "reaction_previews/arm-2.png": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121"
+      },
+      "observedAction": "Two number choices select the complete natural alternating overhead arm-raise pair or a complete standing W-extension cycle. Both directly move the shoulder abductors. The task has no floor, travel, equipment, or combat requirement.",
+      "reactionProtocol": {
+        "exerciseId": 1622,
+        "familyId": "arm",
+        "protocol": "TwoChoice"
+      },
+      "responses": [
+        {
+          "label": "Alternating arm raises",
+          "sourceId": 266,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "06a5d56754050d84018c98ad5ddd087cab427f48f07ae52e89458f17f4e9ce5c",
+          "startSeconds": 0,
+          "durationSeconds": 3.15,
+          "mirror": false,
+          "video": "reaction_videos/arm-1.mp4",
+          "preview": "reaction_previews/arm-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+          "previewSha256": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+        },
+        {
+          "label": "W extensions",
+          "sourceId": 234,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "4fa27dd526cb997f22247d058294da7488348e208d5960683658ab2e016838cb",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/arm-2.mp4",
+          "preview": "reaction_previews/arm-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+          "previewSha256": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1623,
+      "name": "Arm Pattern Reactions \u00b7 Four Choices",
+      "sessionMovementId": 266,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1623",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3,
+          4
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "d677bc2e552dc167ed52e458193b115d63b0cc7096108a5fd6b6378c122d9faa",
+      "assets": {
+        "exercise_videos/exercise_1623.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+        "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0",
+        "reaction_videos/arm-2.mp4": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+        "reaction_previews/arm-2.png": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121",
+        "reaction_videos/arm-3.mp4": "433a8f5424e6b94c10b75ba136c7b1a10423ca13a60ade9f9ab72f07b43381a8",
+        "reaction_previews/arm-3.png": "15e6f255251b8943a08ee09ebf894dc553846094c0779bdddda7043593cdb5e7",
+        "reaction_videos/arm-4.mp4": "e3ec4d2639699b3faa6d6f7c83c91f29c623a883e40723e604c5a73024eeccf2",
+        "reaction_previews/arm-4.png": "9d629fe808a4bee78c3151ee0547cec98893855be15619820d2ea6d7a4e0b275"
+      },
+      "observedAction": "Four number choices select alternating overhead arm raises, standing W extensions, standing arm circles, or goalpost-to-T extensions. Shoulder-abductor work is common to all four exact human demonstrations. No elbow or rotator-cuff claim is inferred from only some responses.",
+      "reactionProtocol": {
+        "exerciseId": 1623,
+        "familyId": "arm",
+        "protocol": "FourChoice"
+      },
+      "responses": [
+        {
+          "label": "Alternating arm raises",
+          "sourceId": 266,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "06a5d56754050d84018c98ad5ddd087cab427f48f07ae52e89458f17f4e9ce5c",
+          "startSeconds": 0,
+          "durationSeconds": 3.15,
+          "mirror": false,
+          "video": "reaction_videos/arm-1.mp4",
+          "preview": "reaction_previews/arm-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+          "previewSha256": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+        },
+        {
+          "label": "W extensions",
+          "sourceId": 234,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "4fa27dd526cb997f22247d058294da7488348e208d5960683658ab2e016838cb",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/arm-2.mp4",
+          "preview": "reaction_previews/arm-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+          "previewSha256": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121"
+        },
+        {
+          "label": "Arm circles",
+          "sourceId": 264,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "a66110f1464dd6261e0afb1648d584c6c8b45e942c8676e450d1e70b723bb37e",
+          "startSeconds": 0,
+          "durationSeconds": 2.1,
+          "mirror": false,
+          "video": "reaction_videos/arm-3.mp4",
+          "preview": "reaction_previews/arm-3.png",
+          "previewSeconds": 0.6,
+          "videoSha256": "433a8f5424e6b94c10b75ba136c7b1a10423ca13a60ade9f9ab72f07b43381a8",
+          "previewSha256": "15e6f255251b8943a08ee09ebf894dc553846094c0779bdddda7043593cdb5e7"
+        },
+        {
+          "label": "Goalpost to T",
+          "sourceId": 268,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "49857d1d6156086ce3f4f7c65a3fc9a269584c92af05c6b2e11c40103fe89c1f",
+          "startSeconds": 0,
+          "durationSeconds": 1.65,
+          "mirror": false,
+          "video": "reaction_videos/arm-4.mp4",
+          "preview": "reaction_previews/arm-4.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "e3ec4d2639699b3faa6d6f7c83c91f29c623a883e40723e604c5a73024eeccf2",
+          "previewSha256": "9d629fe808a4bee78c3151ee0547cec98893855be15619820d2ea6d7a4e0b275"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1624,
+      "name": "Arm Pattern Reactions \u00b7 Context Choices",
+      "sessionMovementId": 266,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1624",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "b9f1787c39cc6fdda3e7c42e488b9b218032b30c94aa9301e8daa263ca923017",
+      "assets": {
+        "exercise_videos/exercise_1624.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+        "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0",
+        "reaction_videos/arm-2.mp4": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+        "reaction_previews/arm-2.png": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121",
+        "reaction_videos/arm-3.mp4": "433a8f5424e6b94c10b75ba136c7b1a10423ca13a60ade9f9ab72f07b43381a8",
+        "reaction_previews/arm-3.png": "15e6f255251b8943a08ee09ebf894dc553846094c0779bdddda7043593cdb5e7",
+        "reaction_videos/arm-4.mp4": "e3ec4d2639699b3faa6d6f7c83c91f29c623a883e40723e604c5a73024eeccf2",
+        "reaction_previews/arm-4.png": "9d629fe808a4bee78c3151ee0547cec98893855be15619820d2ea6d7a4e0b275"
+      },
+      "observedAction": "A pre-displayed normal or reversed mapping assigns four unpredictable number choices to the four real shoulder patterns. The full natural responses and distinct previews are retained, with no correct moving answer before the decision window ends.",
+      "reactionProtocol": {
+        "exerciseId": 1624,
+        "familyId": "arm",
+        "protocol": "ContextChoice"
+      },
+      "responses": [
+        {
+          "label": "Alternating arm raises",
+          "sourceId": 266,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "06a5d56754050d84018c98ad5ddd087cab427f48f07ae52e89458f17f4e9ce5c",
+          "startSeconds": 0,
+          "durationSeconds": 3.15,
+          "mirror": false,
+          "video": "reaction_videos/arm-1.mp4",
+          "preview": "reaction_previews/arm-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+          "previewSha256": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+        },
+        {
+          "label": "W extensions",
+          "sourceId": 234,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "4fa27dd526cb997f22247d058294da7488348e208d5960683658ab2e016838cb",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/arm-2.mp4",
+          "preview": "reaction_previews/arm-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+          "previewSha256": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121"
+        },
+        {
+          "label": "Arm circles",
+          "sourceId": 264,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "a66110f1464dd6261e0afb1648d584c6c8b45e942c8676e450d1e70b723bb37e",
+          "startSeconds": 0,
+          "durationSeconds": 2.1,
+          "mirror": false,
+          "video": "reaction_videos/arm-3.mp4",
+          "preview": "reaction_previews/arm-3.png",
+          "previewSeconds": 0.6,
+          "videoSha256": "433a8f5424e6b94c10b75ba136c7b1a10423ca13a60ade9f9ab72f07b43381a8",
+          "previewSha256": "15e6f255251b8943a08ee09ebf894dc553846094c0779bdddda7043593cdb5e7"
+        },
+        {
+          "label": "Goalpost to T",
+          "sourceId": 268,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "49857d1d6156086ce3f4f7c65a3fc9a269584c92af05c6b2e11c40103fe89c1f",
+          "startSeconds": 0,
+          "durationSeconds": 1.65,
+          "mirror": false,
+          "video": "reaction_videos/arm-4.mp4",
+          "preview": "reaction_previews/arm-4.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "e3ec4d2639699b3faa6d6f7c83c91f29c623a883e40723e604c5a73024eeccf2",
+          "previewSha256": "9d629fe808a4bee78c3151ee0547cec98893855be15619820d2ea6d7a4e0b275"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1632,
+      "name": "Kick Reactions \u00b7 Two Choices",
+      "sessionMovementId": 180,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1632",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3
+        ],
+        "speed": [
+          2
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "0b42492299ddac68e653f8bfad9017b9b516d0294a7412fcdbb35fdfe1368fb6",
+      "assets": {
+        "exercise_videos/exercise_1632.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+        "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0",
+        "reaction_videos/kick-2.mp4": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+        "reaction_previews/kick-2.png": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435"
+      },
+      "observedAction": "Two number choices select a front snap kick or the complete alternating front-kick toe-touch pair. Hip-flexor and lateral knee-extensor work is common to both sources. Field travel is unnecessary, but pivoting/kicking traction and the conspicuous combat action remain restricted by Hard Floor and Shy.",
+      "reactionProtocol": {
+        "exerciseId": 1632,
+        "familyId": "kick",
+        "protocol": "TwoChoice"
+      },
+      "responses": [
+        {
+          "label": "Front snap kick",
+          "sourceId": 180,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "506542231cd6136725427438745e9ab699c930dc35055d6b1786014309f1179d",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/kick-1.mp4",
+          "preview": "reaction_previews/kick-1.png",
+          "previewSeconds": 0.45,
+          "videoSha256": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+          "previewSha256": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
+        },
+        {
+          "label": "Toe-touch kicks",
+          "sourceId": 174,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "7045a1065d930f45544c5a79aef7a7b35fec8774229a64c5305cf266f77baa9e",
+          "startSeconds": 0,
+          "durationSeconds": 2.5,
+          "mirror": false,
+          "video": "reaction_videos/kick-2.mp4",
+          "preview": "reaction_previews/kick-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+          "previewSha256": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1633,
+      "name": "Kick Reactions \u00b7 Four Choices",
+      "sessionMovementId": 180,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1633",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4
+        ],
+        "speed": [
+          2
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "fac2830b67ab5dc0d85f47bae10de860239ab611bdb57adb42947892f6381f98",
+      "assets": {
+        "exercise_videos/exercise_1633.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+        "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0",
+        "reaction_videos/kick-2.mp4": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+        "reaction_previews/kick-2.png": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435",
+        "reaction_videos/kick-3.mp4": "60f0004853e650126a7f4be061b2c648b69a24030581fb59eb09744c63ceba59",
+        "reaction_previews/kick-3.png": "028347f5a86c79bde0422015cddeaee450f10f692fc28850603bfd8acc6e63d8",
+        "reaction_videos/kick-4.mp4": "fac1150651c1b9c9929cf2d959d79f157c9be72335080dc3ba7e85738b4e92ef",
+        "reaction_previews/kick-4.png": "09891e48be57eecd2f0bedab52ef12703a934a6c5fa2455b1d08f33ad07e0003"
+      },
+      "observedAction": "Four number choices select front snap kick, alternating toe-touch kicks, inward crescent, or outward crescent. Each exact source meaningfully flexes the hip. Knee-extensor secondary claims are omitted because the inward crescent source does not supply that approved claim. The crescent clips are oriented consistently with the first shown lead.",
+      "reactionProtocol": {
+        "exerciseId": 1633,
+        "familyId": "kick",
+        "protocol": "FourChoice"
+      },
+      "responses": [
+        {
+          "label": "Front snap kick",
+          "sourceId": 180,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "506542231cd6136725427438745e9ab699c930dc35055d6b1786014309f1179d",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/kick-1.mp4",
+          "preview": "reaction_previews/kick-1.png",
+          "previewSeconds": 0.45,
+          "videoSha256": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+          "previewSha256": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
+        },
+        {
+          "label": "Toe-touch kicks",
+          "sourceId": 174,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "7045a1065d930f45544c5a79aef7a7b35fec8774229a64c5305cf266f77baa9e",
+          "startSeconds": 0,
+          "durationSeconds": 2.5,
+          "mirror": false,
+          "video": "reaction_videos/kick-2.mp4",
+          "preview": "reaction_previews/kick-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+          "previewSha256": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435"
+        },
+        {
+          "label": "Inward crescent",
+          "sourceId": 182,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "ff88110ed35bf8b079ef448cb1c526d1d5a15009246b20bd8babb531a8098aa0",
+          "startSeconds": 0,
+          "durationSeconds": 5.3,
+          "mirror": true,
+          "video": "reaction_videos/kick-3.mp4",
+          "preview": "reaction_previews/kick-3.png",
+          "previewSeconds": 1.8,
+          "videoSha256": "60f0004853e650126a7f4be061b2c648b69a24030581fb59eb09744c63ceba59",
+          "previewSha256": "028347f5a86c79bde0422015cddeaee450f10f692fc28850603bfd8acc6e63d8"
+        },
+        {
+          "label": "Outward crescent",
+          "sourceId": 178,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "3ee2f82832a4616020cc1249dcda7fe525a768c6c759173ba3793025adce8122",
+          "startSeconds": 0,
+          "durationSeconds": 2.6,
+          "mirror": true,
+          "video": "reaction_videos/kick-4.mp4",
+          "preview": "reaction_previews/kick-4.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "fac1150651c1b9c9929cf2d959d79f157c9be72335080dc3ba7e85738b4e92ef",
+          "previewSha256": "09891e48be57eecd2f0bedab52ef12703a934a6c5fa2455b1d08f33ad07e0003"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1634,
+      "name": "Kick Reactions \u00b7 Context Choices",
+      "sessionMovementId": 180,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1634",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          2
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "ae0f6bf4df0b75f1026890e583b67882dc6718c0e551a770ed34ee7991d9adf3",
+      "assets": {
+        "exercise_videos/exercise_1634.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+        "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0",
+        "reaction_videos/kick-2.mp4": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+        "reaction_previews/kick-2.png": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435",
+        "reaction_videos/kick-3.mp4": "60f0004853e650126a7f4be061b2c648b69a24030581fb59eb09744c63ceba59",
+        "reaction_previews/kick-3.png": "028347f5a86c79bde0422015cddeaee450f10f692fc28850603bfd8acc6e63d8",
+        "reaction_videos/kick-4.mp4": "fac1150651c1b9c9929cf2d959d79f157c9be72335080dc3ba7e85738b4e92ef",
+        "reaction_previews/kick-4.png": "09891e48be57eecd2f0bedab52ef12703a934a6c5fa2455b1d08f33ad07e0003"
+      },
+      "observedAction": "The four complete kick patterns use a normal or reversed number mapping announced before an unpredictable target. Real full response videos follow the decision window; every required reset fits inside the remaining 45-second block. The opposite lead block mirrors the full set, including the per-action mirror transforms.",
+      "reactionProtocol": {
+        "exerciseId": 1634,
+        "familyId": "kick",
+        "protocol": "ContextChoice"
+      },
+      "responses": [
+        {
+          "label": "Front snap kick",
+          "sourceId": 180,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "506542231cd6136725427438745e9ab699c930dc35055d6b1786014309f1179d",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/kick-1.mp4",
+          "preview": "reaction_previews/kick-1.png",
+          "previewSeconds": 0.45,
+          "videoSha256": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+          "previewSha256": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
+        },
+        {
+          "label": "Toe-touch kicks",
+          "sourceId": 174,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "7045a1065d930f45544c5a79aef7a7b35fec8774229a64c5305cf266f77baa9e",
+          "startSeconds": 0,
+          "durationSeconds": 2.5,
+          "mirror": false,
+          "video": "reaction_videos/kick-2.mp4",
+          "preview": "reaction_previews/kick-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+          "previewSha256": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435"
+        },
+        {
+          "label": "Inward crescent",
+          "sourceId": 182,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "ff88110ed35bf8b079ef448cb1c526d1d5a15009246b20bd8babb531a8098aa0",
+          "startSeconds": 0,
+          "durationSeconds": 5.3,
+          "mirror": true,
+          "video": "reaction_videos/kick-3.mp4",
+          "preview": "reaction_previews/kick-3.png",
+          "previewSeconds": 1.8,
+          "videoSha256": "60f0004853e650126a7f4be061b2c648b69a24030581fb59eb09744c63ceba59",
+          "previewSha256": "028347f5a86c79bde0422015cddeaee450f10f692fc28850603bfd8acc6e63d8"
+        },
+        {
+          "label": "Outward crescent",
+          "sourceId": 178,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "3ee2f82832a4616020cc1249dcda7fe525a768c6c759173ba3793025adce8122",
+          "startSeconds": 0,
+          "durationSeconds": 2.6,
+          "mirror": true,
+          "video": "reaction_videos/kick-4.mp4",
+          "preview": "reaction_previews/kick-4.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "fac1150651c1b9c9929cf2d959d79f157c9be72335080dc3ba7e85738b4e92ef",
+          "previewSha256": "09891e48be57eecd2f0bedab52ef12703a934a6c5fa2455b1d08f33ad07e0003"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1642,
+      "name": "Crouching Reach Reactions \u00b7 Two Choices",
+      "sessionMovementId": 1516,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1642",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "e5d142d76638dd8ba6649d46da08f9bcbe3ae0dee8c0916fa3968c7b3886bd22",
+      "assets": {
+        "exercise_videos/exercise_1642.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+        "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6",
+        "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+        "reaction_previews/crouch-2.png": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e"
+      },
+      "observedAction": "Two number choices select the complete near-hand or far-hand reach from the real crouching hands-and-feet support. Shoulder loading is common throughout the support task; no incidental bracing secondary claims are added. Both response clips return to the crouched support.",
+      "reactionProtocol": {
+        "exerciseId": 1642,
+        "familyId": "crouch",
+        "protocol": "TwoChoice"
+      },
+      "responses": [
+        {
+          "label": "Near hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 1.7,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/crouch-1.mp4",
+          "preview": "reaction_previews/crouch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+          "previewSha256": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
+        },
+        {
+          "label": "Far hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 3,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/crouch-2.mp4",
+          "preview": "reaction_previews/crouch-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+          "previewSha256": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1643,
+      "name": "Crouching Reach Reactions \u00b7 Four Choices",
+      "sessionMovementId": 1516,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1643",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3,
+          4
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "5252d6a1a69db5101fe3b05ab72124ba9ba153d1a1e1af0510bacde211c723fc",
+      "assets": {
+        "exercise_videos/exercise_1643.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+        "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6",
+        "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+        "reaction_previews/crouch-2.png": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e",
+        "reaction_videos/crouch-3.mp4": "0c5df5e8ceb35486e2d5e7be2c7cfbad6396940110d9518a38090727df02d521",
+        "reaction_previews/crouch-3.png": "bf5f7e7de753d59dbc262b64ad90e00825e7c45de53b1c6aa4625be3b91be00c",
+        "reaction_videos/crouch-4.mp4": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f",
+        "reaction_previews/crouch-4.png": "ec3a76983a50ce4e6c2e085de97b6a28dc21af03e2b320c1154d10b7c6ce4c0c"
+      },
+      "observedAction": "Four number choices select near hand, far hand, near foot, or far foot from the real crouching support. The widened canonical source crop retains each complete reaching limb and support contact. Near/far labels remain meaningful when the complete timed side is mirrored.",
+      "reactionProtocol": {
+        "exerciseId": 1643,
+        "familyId": "crouch",
+        "protocol": "FourChoice"
+      },
+      "responses": [
+        {
+          "label": "Near hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 1.7,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/crouch-1.mp4",
+          "preview": "reaction_previews/crouch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+          "previewSha256": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
+        },
+        {
+          "label": "Far hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 3,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/crouch-2.mp4",
+          "preview": "reaction_previews/crouch-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+          "previewSha256": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e"
+        },
+        {
+          "label": "Near foot",
+          "sourceId": 1516,
+          "sourceStartSeconds": 0.2,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.35,
+          "mirror": false,
+          "video": "reaction_videos/crouch-3.mp4",
+          "preview": "reaction_previews/crouch-3.png",
+          "previewSeconds": 0.6,
+          "videoSha256": "0c5df5e8ceb35486e2d5e7be2c7cfbad6396940110d9518a38090727df02d521",
+          "previewSha256": "bf5f7e7de753d59dbc262b64ad90e00825e7c45de53b1c6aa4625be3b91be00c"
+        },
+        {
+          "label": "Far foot",
+          "sourceId": 1516,
+          "sourceStartSeconds": 5.5,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.55,
+          "mirror": false,
+          "video": "reaction_videos/crouch-4.mp4",
+          "preview": "reaction_previews/crouch-4.png",
+          "previewSeconds": 0.75,
+          "videoSha256": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f",
+          "previewSha256": "ec3a76983a50ce4e6c2e085de97b6a28dc21af03e2b320c1154d10b7c6ce4c0c"
+        }
+      ]
+    },
+    {
+      "exerciseId": 1644,
+      "name": "Crouching Reach Reactions \u00b7 Context Choices",
+      "sessionMovementId": 1516,
+      "status": "admitted",
+      "fitnessStatus": "provisional",
+      "assessmentProfile": "v4-admission-1644",
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
+      "reviewEvidence": "docs/catalog-audit/fitness-review-2026-10-21.json",
+      "metadataSha256": "563837205271e585f2996e8a0a0ffa9eab3cf16c57aa37a286f818e9faa73974",
+      "assets": {
+        "exercise_videos/exercise_1644.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+        "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6",
+        "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+        "reaction_previews/crouch-2.png": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e",
+        "reaction_videos/crouch-3.mp4": "0c5df5e8ceb35486e2d5e7be2c7cfbad6396940110d9518a38090727df02d521",
+        "reaction_previews/crouch-3.png": "bf5f7e7de753d59dbc262b64ad90e00825e7c45de53b1c6aa4625be3b91be00c",
+        "reaction_videos/crouch-4.mp4": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f",
+        "reaction_previews/crouch-4.png": "ec3a76983a50ce4e6c2e085de97b6a28dc21af03e2b320c1154d10b7c6ce4c0c"
+      },
+      "observedAction": "The four real crouching-reach responses use a pre-displayed normal or reversed number mapping. No moving correct answer is shown during the decision window. Floor and traction restrictions remain active; complete natural response clips, reset and both timed sides are reviewed in the actual workout.",
+      "reactionProtocol": {
+        "exerciseId": 1644,
+        "familyId": "crouch",
+        "protocol": "ContextChoice"
+      },
+      "responses": [
+        {
+          "label": "Near hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 1.7,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/crouch-1.mp4",
+          "preview": "reaction_previews/crouch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+          "previewSha256": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
+        },
+        {
+          "label": "Far hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 3,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/crouch-2.mp4",
+          "preview": "reaction_previews/crouch-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+          "previewSha256": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e"
+        },
+        {
+          "label": "Near foot",
+          "sourceId": 1516,
+          "sourceStartSeconds": 0.2,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.35,
+          "mirror": false,
+          "video": "reaction_videos/crouch-3.mp4",
+          "preview": "reaction_previews/crouch-3.png",
+          "previewSeconds": 0.6,
+          "videoSha256": "0c5df5e8ceb35486e2d5e7be2c7cfbad6396940110d9518a38090727df02d521",
+          "previewSha256": "bf5f7e7de753d59dbc262b64ad90e00825e7c45de53b1c6aa4625be3b91be00c"
+        },
+        {
+          "label": "Far foot",
+          "sourceId": 1516,
+          "sourceStartSeconds": 5.5,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.55,
+          "mirror": false,
+          "video": "reaction_videos/crouch-4.mp4",
+          "preview": "reaction_previews/crouch-4.png",
+          "previewSeconds": 0.75,
+          "videoSha256": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f",
+          "previewSha256": "ec3a76983a50ce4e6c2e085de97b6a28dc21af03e2b320c1154d10b7c6ce4c0c"
+        }
+      ]
+    }
+  ],
+  "deferredDraftRecords": [
+    {
+      "exerciseId": 1501,
+      "name": "One-Arm Push-Ups",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1502,
+      "name": "Planche-Lean Push-Ups",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1503,
+      "name": "Shrimp Squats",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1504,
+      "name": "Crow Hold",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1505,
+      "name": "Freestanding Straddle Handstand Hold",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1511,
+      "name": "Floor L-Sit Hold",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1512,
+      "name": "Tuck Planche Hold",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1513,
+      "name": "Aztec Push-Ups",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1530,
+      "name": "Lateral Bound to Broad Jump",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1541,
+      "name": "Floor V-Sit Hold",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1542,
+      "name": "One-Arm One-Leg Push-Ups",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1543,
+      "name": "Aerial Cartwheels",
+      "status": "not-admitted",
+      "reason": "The revised multi-level assessment no longer needs this pending record to fill coverage. Source triage is retained; a later admission still needs a deliberate final review."
+    },
+    {
+      "exerciseId": 1601,
+      "name": "Punch Reactions \u00b7 Initiation",
+      "status": "not-admitted",
+      "reason": "A separate initiation record adds no coverage beyond the selected choice protocol of the same physical family."
+    },
+    {
+      "exerciseId": 1611,
+      "name": "Boxing Evasion Reactions \u00b7 Initiation",
+      "status": "not-admitted",
+      "reason": "A separate initiation record adds no coverage beyond the selected choice protocol of the same physical family."
+    },
+    {
+      "exerciseId": 1621,
+      "name": "Karate Block Reactions \u00b7 Initiation",
+      "status": "not-admitted",
+      "reason": "A separate initiation record adds no coverage beyond the selected choice protocol of the same physical family."
+    },
+    {
+      "exerciseId": 1631,
+      "name": "Kick Reactions \u00b7 Initiation",
+      "status": "not-admitted",
+      "reason": "A separate initiation record adds no coverage beyond the selected choice protocol of the same physical family."
+    },
+    {
+      "exerciseId": 1641,
+      "name": "Crouching Reach Reactions \u00b7 Initiation",
+      "status": "not-admitted",
+      "reason": "A separate initiation record adds no coverage beyond the selected choice protocol of the same physical family."
+    }
+  ],
+  "originalSourceTriage": [
+    {
+      "sourceKey": "one-arm-push-up-94",
+      "sourcePage": "https://www.caliverse.app/exercises/one-arm-push-up-94",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/94-60160cf1c5294.mp4",
+      "triage": "candidate",
+      "observation": "Human one-arm floor push-ups; full torso and feet visible. Requires timed sides and review of the exact loop and floor controls.",
+      "downloadSha256": "a3e2d5e578c3f3eb32b8f70e0f5b7eb51dcbd663eefc777ac4c2cb2e288504f5",
+      "sourceBytes": 13927124,
+      "sourceVideo": {
+        "width": 1080,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "duration": "23.366667"
+      }
+    },
+    {
+      "sourceKey": "handstand-67",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-67",
+      "mediaUrl": "https://cdn.caliverse.app/videos/handstand-square.mp4",
+      "triage": "candidate",
+      "observation": "Human freestanding floor handstand with entry and exit. A hold needs a verified frame and actual-workout review.",
+      "downloadSha256": "4b6aa68adf5bb4d867843cbe7ab1d34663a9efaa2fb91f18f0b83a28695bf93e",
+      "sourceBytes": 570192,
+      "sourceVideo": {
+        "width": 688,
+        "height": 688,
+        "avg_frame_rate": "50/1",
+        "duration": "5.500000"
+      }
+    },
+    {
+      "sourceKey": "handstand-push-up-1395",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-push-up-1395",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afcbf83d314.mp4",
+      "triage": "candidate",
+      "observation": "Human freestanding handstand push-ups on the floor. Review full range, head contact, entry, exit and loop.",
+      "downloadSha256": "2375fb8b0354367bc961448c65ddb91943d2ab3f3b6724180201d82f7e8672d2",
+      "sourceBytes": 449885,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "17.150467"
+      }
+    },
+    {
+      "sourceKey": "handstand-push-up-775",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-push-up-775",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-604100b12b68e.mp4",
+      "triage": "unsupported-equipment",
+      "observation": "Footage uses two parallettes. It cannot be labeled a floor-only handstand push-up or ordinary single-item Elevation movement.",
+      "downloadSha256": "b3842acdc52c8eb48479be92abf2f78a4ff3b90da7a0a517d1c9ebd5dede5fc7",
+      "sourceBytes": 13851454,
+      "sourceVideo": {
+        "width": 1080,
+        "height": 1080,
+        "avg_frame_rate": "37600/1253",
+        "duration": "18.795000"
+      }
+    },
+    {
+      "sourceKey": "handstand-360-rotation-1376",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-360-rotation-1376",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-6597e780e673c.mp4",
+      "triage": "candidate",
+      "observation": "Human handstand turns on the floor. Review the complete turn and exact direction protocol before admission.",
+      "downloadSha256": "038562b4afacdf6b43668adb93076b0259d467616f25e84de8e1b56827316ad9",
+      "sourceBytes": 388857,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "12.078733"
+      }
+    },
+    {
+      "sourceKey": "handstand-shoulder-taps-1392",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-shoulder-taps-1392",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afc64f37f00.mp4",
+      "triage": "candidate",
+      "observation": "Human alternating shoulder taps in a freestanding floor handstand. Review hand loading, alternating timing and full loop.",
+      "downloadSha256": "6c4866a0d669b794f0501e937bbc902085e31cce660a12889d9fd2b805f95da4",
+      "sourceBytes": 216532,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "6.339667"
+      }
+    },
+    {
+      "sourceKey": "handstand-to-l-sit-hold-1382",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-to-l-sit-hold-1382",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-6597fcca1bbfd.mp4",
+      "triage": "unsupported-equipment",
+      "observation": "Footage uses two small parallettes; it cannot demonstrate the floor-supported version.",
+      "downloadSha256": "5e0b6a2918fcd765d8b12928ab617806396375e45dd867de089dd9f2e5d9cf6e",
+      "sourceBytes": 476580,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "20.286933"
+      }
+    },
+    {
+      "sourceKey": "handstand-to-l-sit-to-handstand-1394",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-to-l-sit-to-handstand-1394",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afcb09235cb.mp4",
+      "triage": "candidate",
+      "observation": "Human handstand-to-L-sit-to-handstand sequence with palms on the floor. Review the complete transition and natural repeat.",
+      "downloadSha256": "20c6e7405b5c56feb78dfcf1091532ba47d41003de943ca7af084049b9f1fa0d",
+      "sourceBytes": 564391,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "22.122100"
+      }
+    },
+    {
+      "sourceKey": "planche-100",
+      "sourcePage": "https://www.caliverse.app/exercises/planche-100",
+      "mediaUrl": null,
+      "triage": "no-public-video",
+      "observation": "No public direct video URL was exposed by this source page."
+    },
+    {
+      "sourceKey": "planche-lean-push-up-543",
+      "sourcePage": "https://www.caliverse.app/exercises/planche-lean-push-up-543",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-5fbd58175293d.mp4",
+      "triage": "candidate",
+      "observation": "Human forward-leaning floor push-ups with feet supported. Do not classify these as a full unsupported planche.",
+      "downloadSha256": "d5c8c9c47436abae57837de0676b41d832bcdcb344fa67ce39090bd934db534d",
+      "sourceBytes": 13455527,
+      "sourceVideo": {
+        "width": 1080,
+        "height": 1080,
+        "avg_frame_rate": "94600/3153",
+        "duration": "15.765000"
+      }
+    },
+    {
+      "sourceKey": "shrimp-squat-1118",
+      "sourcePage": "https://www.caliverse.app/exercises/shrimp-squat-1118",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-623c705c0f2f9.mp4",
+      "triage": "candidate",
+      "observation": "Human one-leg squat holding the opposite foot behind. Review depth, knee contact, timed sides and final loop.",
+      "downloadSha256": "3dfb5d8c8f2aaef80d04c7b6ef6d1bdeaead86520743865e92dbcaa3dc2521cc",
+      "sourceBytes": 808870,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30/1",
+        "duration": "25.933333"
+      }
+    },
+    {
+      "sourceKey": "crow-564",
+      "sourcePage": "https://www.caliverse.app/exercises/crow-564",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/564-5fcf5437dd698.mp4",
+      "triage": "candidate",
+      "observation": "Human bent-arm crow balance on palms with knees supported on upper arms. Distinguish it from a straight-arm planche.",
+      "downloadSha256": "f8fa6babeaa2be493d02904acdcc6c98320cf680db312fea085776642fa07b2b",
+      "sourceBytes": 14449406,
+      "sourceVideo": {
+        "width": 1080,
+        "height": 1080,
+        "avg_frame_rate": "268800/8959",
+        "duration": "14.931667"
+      }
+    },
+    {
+      "sourceKey": "split-1531",
+      "sourcePage": "https://www.caliverse.app/exercises/split-1531",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-680a53b38f6a1.mp4",
+      "triage": "does-not-demonstrate-target",
+      "observation": "The observed footage shows a partial standing straddle, not a full middle or front split. It cannot fill an expert full-split claim.",
+      "downloadSha256": "e179e76d2a9974937019d34e941b285ff1a635690a310895f903364ed4a1d359",
+      "sourceBytes": 1091546,
+      "sourceVideo": {
+        "width": 440,
+        "height": 440,
+        "avg_frame_rate": "50/1",
+        "duration": "37.240000"
+      }
+    },
+    {
+      "sourceKey": "knee-get-up-jumping-pistol-squat-1547",
+      "sourcePage": "https://www.caliverse.app/exercises/knee-get-up-jumping-pistol-squat-1547",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-683085707b11a.mp4",
+      "triage": "candidate",
+      "observation": "Human kneeling get-up linked to a one-leg squat and jump. Review complete cycles and which side/direction structure is actually demonstrated.",
+      "downloadSha256": "300a6887845e78746b20b4cc1c457044aa4be335b53f781d0c8e6f75b64e21fa",
+      "sourceBytes": 1263589,
+      "sourceVideo": {
+        "width": 440,
+        "height": 440,
+        "avg_frame_rate": "50/1",
+        "duration": "22.560000"
+      }
+    },
+    {
+      "sourceKey": "knee-get-up-jump-squats-1543",
+      "sourcePage": "https://www.caliverse.app/exercises/knee-get-up-jump-squats-1543",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-68307ea7ad58a.mp4",
+      "triage": "candidate",
+      "observation": "Human kneeling get-up linked to a squat jump. Review the full cycle, kneeling contact and noise classification.",
+      "downloadSha256": "ee6bd93efbc6251f4aa86092a61a4484267287b1638fd5c08723524184bc681b",
+      "sourceBytes": 1305050,
+      "sourceVideo": {
+        "width": 440,
+        "height": 440,
+        "avg_frame_rate": "50/1",
+        "duration": "21.940000"
+      }
+    },
+    {
+      "sourceKey": "handstand-walks-1369",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-walks-1369",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-656f2b3ce99a9.mp4",
+      "triage": "candidate",
+      "observation": "Human forward handstand walk on the floor. Intrinsic travel needs Room space; review complete entry, travel, exit and loop.",
+      "downloadSha256": "1493df1398a074c302c349f69ae8ea3d1f82406e7781de70262f7a658b16f69e",
+      "sourceBytes": 313197,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "11.177833"
+      }
+    },
+    {
+      "sourceKey": "press-to-handstand-1388",
+      "sourcePage": "https://www.caliverse.app/exercises/press-to-handstand-1388",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afbd797af3c.mp4",
+      "triage": "candidate",
+      "observation": "Human floor press into a handstand. Review the exact leg shape and whether the entry is a press or a jump.",
+      "downloadSha256": "31458ac5379c2b8cb599620d69013f0b246bc9de9bbd22a149364d1b305bcf49",
+      "sourceBytes": 318273,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "13.046367"
+      }
+    },
+    {
+      "sourceKey": "handstand-to-planche-101",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-to-planche-101",
+      "mediaUrl": null,
+      "triage": "no-public-video",
+      "observation": "No public direct video URL was exposed by this source page."
+    },
+    {
+      "sourceKey": "handstand-to-straddle-planche-776",
+      "sourcePage": "https://www.caliverse.app/exercises/handstand-to-straddle-planche-776",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-60410863a9d1d.mp4",
+      "triage": "unsupported-equipment",
+      "observation": "Handstand and straddle planche footage uses parallettes. It does not demonstrate palms-on-floor execution.",
+      "downloadSha256": "e9109b059caf02f4089619b41f864aac24d6025a940a8d82952aef31257debe8",
+      "sourceBytes": 13718399,
+      "sourceVideo": {
+        "width": 1080,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "duration": "18.533333"
+      }
+    },
+    {
+      "sourceKey": "press-to-handstand-to-handstand-push-up-1398",
+      "sourcePage": "https://www.caliverse.app/exercises/press-to-handstand-to-handstand-push-up-1398",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-65afd251efcd9.mp4",
+      "triage": "candidate",
+      "observation": "Human floor press-to-handstand and push-up sequence. Review the complete natural sequence before treating it as a distinct session movement.",
+      "downloadSha256": "c6b2f03465ab3a199b114085488ef4fa4869a22c46bcca386fbbf860795829ac",
+      "sourceBytes": 412305,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "16.883533"
+      }
+    },
+    {
+      "sourceKey": "tucked-handstand-jumps-1603",
+      "sourcePage": "https://www.caliverse.app/exercises/tucked-handstand-jumps-1603",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-68fa0ba434493.mp4",
+      "triage": "needs-full-loop-review",
+      "observation": "The sampled frames show crouched support between repetitions; three sampled frames do not establish the airborne action or its force demand.",
+      "downloadSha256": "ab45df2406161b67e0418f12a23279f2696be0a1e64a5da6d779bbb370e02677",
+      "sourceBytes": 506275,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30/1",
+        "duration": "14.800000"
+      }
+    },
+    {
+      "sourceKey": "tucked-handstand-press-jumps-1366",
+      "sourcePage": "https://www.caliverse.app/exercises/tucked-handstand-press-jumps-1366",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-656f20a18e162.mp4",
+      "triage": "candidate",
+      "observation": "Human tucked inversion entry with hands planted. Review the complete motion and identity overlap with other press/kick-up variations.",
+      "downloadSha256": "0bf0b755f0a511ac3b7d3f0d4fbba43da6ada0ba1b5140c7dd359e2e9a8a6214",
+      "sourceBytes": 735056,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30000/1001",
+        "duration": "19.085733"
+      }
+    },
+    {
+      "sourceKey": "planche-straddle-push-up-117",
+      "sourcePage": "https://www.caliverse.app/exercises/planche-straddle-push-up-117",
+      "mediaUrl": null,
+      "triage": "no-public-video",
+      "observation": "No public direct video URL was exposed by this source page."
+    },
+    {
+      "sourceKey": "wall-handstand-push-up-1619",
+      "sourcePage": "https://www.caliverse.app/exercises/wall-handstand-push-up-1619",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-6900b03fbab86.mp4",
+      "triage": "unsupported-equipment",
+      "observation": "The feet use ladder/rack rungs rather than an ordinary wall. It cannot support WallRequired metadata for this exact footage.",
+      "downloadSha256": "7b3e90c427aef04e50c14f886f80c3c0ae0dafeebfd5d9e52da1c61347df4805",
+      "sourceBytes": 791142,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "30/1",
+        "duration": "35.266667"
+      }
+    },
+    {
+      "sourceKey": "planche-tuck-push-up-1280",
+      "sourcePage": "https://www.caliverse.app/exercises/planche-tuck-push-up-1280",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-63d2dd497e857.mp4",
+      "triage": "needs-full-loop-review",
+      "observation": "Sampled frames include knees or feet near the floor. They do not establish a complete unsupported tuck-planche push-up.",
+      "downloadSha256": "1699c1c2b569a12f671119994dd7d27a04f1c618392319880f6e07e1aaecc28d",
+      "sourceBytes": 2736510,
+      "sourceVideo": {
+        "width": 480,
+        "height": 480,
+        "avg_frame_rate": "396000000/13138093",
+        "duration": "13.138093"
+      }
+    },
+    {
+      "sourceKey": "dragon-flag-raises-1515",
+      "sourcePage": "https://www.caliverse.app/exercises/dragon-flag-raises-1515",
+      "mediaUrl": "https://cdn.caliverse.app/videos/exercises/-67d056935922d.mp4",
+      "triage": "unsupported-equipment",
+      "observation": "The hands grip a fixed vertical outdoor frame. An ordinary wall or single stable furniture surface does not represent this anchor.",
+      "downloadSha256": "2b4af6e26ff0555e2068c63cf313be930b51462501591e96469c826aae378bd7",
+      "sourceBytes": 1292647,
+      "sourceVideo": {
+        "width": 440,
+        "height": 440,
+        "avg_frame_rate": "30/1",
+        "duration": "29.000000"
+      }
+    },
+    {
+      "sourceKey": "single-leg-balance-eyes-closed",
+      "sourcePage": "https://na.physitrack.com/home-exercise-video/single-leg-balance-with-eyes-closed",
+      "mediaUrl": "https://media.physitrack.com/exercises/03a6d494-0a04-443f-947f-042c552ee8fe/en/video_1280x720.mp4",
+      "triage": "needs-full-loop-review",
+      "observation": "The source includes an introductory full-body view and a later lower-body close-up. Review a complete eye-closure and hold segment before packaging.",
+      "downloadSha256": "639235763077b5b095cafedc729d54baa306e0f376072f8ea8d8c6e8f6fbd836",
+      "sourceBytes": 1036323,
+      "sourceVideo": {
+        "width": 1280,
+        "height": 720,
+        "avg_frame_rate": "25/1",
+        "duration": "32.520000"
+      }
+    }
+  ],
+  "existingIdentityMetadataChanges": {
+    "exerciseIds": [
+      144,
+      180,
+      534,
+      1206
+    ],
+    "reason": "Explicit movement identities group each reaction/hold variant with its physical family. Existing exercise names, media and muscle training claims are unchanged; identity metadata is separate from saved scores and Keeps."
+  }
+}

@@ -116,4 +116,11 @@
     1418 = $true
     1419 = $true
     1420 = $true
+
+    # Fitness coverage admissions, 21 October 2026.
+    1521 = $true
+    1522 = $true
+    1524 = $true
+    1525 = $true
+    1540 = $true
 }

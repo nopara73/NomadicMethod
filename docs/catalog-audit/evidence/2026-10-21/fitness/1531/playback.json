@@ -1,0 +1,54 @@
+{
+  "id": 1531,
+  "name": "Lateral Shuffle to Crossover Sprint",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock",
+    "SecondSide"
+  ],
+  "playback": [
+    {
+      "start": 1.497692,
+      "duration": 2.65,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 2.038044,
+      "duration": 2.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 2.618346,
+      "duration": 2.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.536815,
+      "duration": 2.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.123829,
+      "duration": 2.65,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.701816,
+      "duration": 2.65,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1531,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveReactionDrills } from "../reaction-drills.js";
 
 import {
   CURRENT_CATALOG_REVISION,
@@ -29,6 +30,7 @@ const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const webRoot = path.resolve(scriptDirectory, "..");
 const repositoryRoot = path.resolve(webRoot, "..");
 const outputRoot = path.resolve(webRoot, "dist");
+const reactionModuleOutputs = new Map();
 
 if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
   throw new Error("Refusing to build outside the web project.");
@@ -36,6 +38,19 @@ if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
+for (const stem of ['reaction-drills', 'reaction-drill-view']) {
+  const source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
+  const name = fingerprintedName(stem, 'js', source);
+  reactionModuleOutputs.set(stem, name);
+  await writeFile(path.join(outputRoot, name), source);
+}
+const reactionSource = await readFile(path.join(repositoryRoot, 'NomadicMethod/Assets/reaction_drills.json'), 'utf8');
+const reactionOutputName = fingerprintedName('reaction-drills', 'json', reactionSource);
+await mkdir(path.join(outputRoot, 'data'), { recursive: true });
+await writeFile(path.join(outputRoot, 'data', reactionOutputName), reactionSource);
+for (const directory of ['reaction_videos', 'reaction_previews']) {
+  await copyDirectory(path.join(repositoryRoot, 'NomadicMethod/Assets', directory), path.join(outputRoot, 'assets', directory));
+}
 
 const lightCadenceSource = await readFile(path.join(webRoot, "light-cadence.js"), "utf8");
 const lightCadenceOutputName = fingerprintedName("light-cadence", "js", lightCadenceSource);
@@ -177,8 +192,21 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 853) {
-  throw new Error(`Expected 853 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 884) {
+  throw new Error(`Expected 884 exercises, found ${catalog?.length ?? "invalid data"}.`);
+}
+const reactionPlans = resolveReactionDrills(JSON.parse(reactionSource), catalog);
+if (reactionPlans.size !== 15) throw new Error('Expected fifteen reviewed reaction protocols.');
+for (const plan of reactionPlans.values()) {
+  for (const action of plan.actions) {
+    for (const [relative, expected] of [[action.video, action.videoSha256], [action.preview, action.previewSha256]]) {
+      const file = path.join(outputRoot, 'assets', relative);
+      await requireFile(file);
+      if (createHash('sha256').update(await readFile(file)).digest('hex') !== expected) {
+        throw new Error(`Reaction asset failed its reviewed hash: ${relative}`);
+      }
+    }
+  }
 }
 
 const pairwiseDeficiencies =
@@ -332,6 +360,9 @@ await writeFile(
 
 const appSource = await readFile(path.join(webRoot, "app.js"), "utf8");
 const fingerprintedAppSource = appSource
+  .replace('"./reaction-drills.js"', `"./${reactionModuleOutputs.get('reaction-drills')}"`)
+  .replace('"./reaction-drill-view.js"', `"./${reactionModuleOutputs.get('reaction-drill-view')}"`)
+  .replace('"data/reaction_drills.json"', `"data/${reactionOutputName}"`)
   .replace(
     'from "./workout.js";',
     `from "./${workoutOutputName}";`,
@@ -350,6 +381,8 @@ const fingerprintedAppSource = appSource
   );
 if (fingerprintedAppSource === appSource ||
     !fingerprintedAppSource.includes(workoutOutputName) ||
+    !fingerprintedAppSource.includes(reactionOutputName) ||
+    [...reactionModuleOutputs.values()].some(name => !fingerprintedAppSource.includes(name)) ||
     !fingerprintedAppSource.includes(preparationWorkerOutputName) ||
     !fingerprintedAppSource.includes(catalogOutputName) ||
     !fingerprintedAppSource.includes(

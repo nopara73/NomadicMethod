@@ -1,0 +1,54 @@
+{
+  "id": 1535,
+  "name": "Triangle Agility Run",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock",
+    "SecondDirection"
+  ],
+  "playback": [
+    {
+      "start": 0.70254,
+      "duration": 4.25,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 1.575473,
+      "duration": 4.25,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 2.480031,
+      "duration": 4.25,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 3.382081,
+      "duration": 4.25,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.029948,
+      "duration": 4.25,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.931306,
+      "duration": 4.25,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1535,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

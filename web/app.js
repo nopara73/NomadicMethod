@@ -1,3 +1,5 @@
+import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
+import { ReactionDrillView } from "./reaction-drill-view.js";
 import {
   DEFAULT_WORKOUT_MODIFIERS,
   LIGHT_DAY_DAILY_REGULAR_MINUTES_CAP,
@@ -159,6 +161,9 @@ let mediaGeneration = 0;
 let mediaReady = false;
 let mediaRecoveryTimer = null;
 let lastMovementPhase = null;
+let reactionDrillPlans = new Map();
+let reactionDrill = null;
+let reactionDrillView = null;
 let reactionCueActive = false;
 let reactionCueMoving = true;
 let reactionCueEndsAt = 0;
@@ -198,9 +203,10 @@ bootstrap();
 
 async function bootstrap() {
   try {
-    const [catalogResponse, assetVersionsResponse] = await Promise.all([
+    const [catalogResponse, assetVersionsResponse, reactionResponse] = await Promise.all([
       fetch(new URL("data/exercises.json", document.baseURI)),
       fetch(new URL("data/asset-versions.json", document.baseURI)),
+      fetch(new URL("data/reaction_drills.json", document.baseURI)),
     ]);
     if (!catalogResponse.ok) {
       throw new Error(`Catalog request failed with ${catalogResponse.status}.`);
@@ -218,6 +224,8 @@ async function bootstrap() {
       throw new Error("Reload Nomadic Method to use the current exercise catalog.");
     }
     exerciseCatalog = exercises;
+    if (!reactionResponse.ok) throw new Error("Reaction drill request failed.");
+    reactionDrillPlans = resolveReactionDrills(await reactionResponse.json(), exercises);
     if (!loadedAssetVersions || Array.isArray(loadedAssetVersions) ||
         typeof loadedAssetVersions !== "object") {
       throw new Error("Asset-version manifest is invalid.");
@@ -1590,11 +1598,15 @@ function loadExerciseMedia(
     return;
   }
 
+  reactionDrill = null;
+  reactionDrillView?.dispose();
+  reactionDrillView = null;
   mediaExercise = exercise;
   mediaGroup = group;
   previewingUpcomingSequenceBlock = isUpcomingSequencePreview;
 
   const generation = ++mediaGeneration;
+  const drillPlan = reactionDrillPlans.get(exercise.id);
   clearMediaRecoveryTimer();
   mediaReady = false;
   elements.startMovement.disabled = true;
@@ -1606,6 +1618,15 @@ function loadExerciseMedia(
   elements.holdFrame.removeAttribute("src");
   resetVideoElement();
   setMediaMirrored(group.mirrorSequenceMedia === true);
+
+  if (drillPlan) {
+    elements.video.hidden = true;
+    reactionDrillView = new ReactionDrillView(elements.mediaCard, drillPlan, assetUrl,
+      () => { if (generation === mediaGeneration) markMediaReady(generation); },
+      () => { if (generation === mediaGeneration) showMediaError(generation); });
+    setMediaMirrored(group.mirrorSequenceMedia === true);
+    return;
+  }
 
   if (exercise.presentation === "Still") {
     elements.video.hidden = true;
@@ -1666,6 +1687,8 @@ function markMediaReady(generation, playbackConfirmed = false) {
   if (generation !== mediaGeneration) {
     return;
   }
+  if (reactionDrillView && !reactionDrillView.ready) return;
+  if (reactionDrillView) playbackConfirmed = true;
   const newlyReady = !mediaReady;
   mediaReady = true;
   elements.mediaError.hidden = true;
@@ -1760,6 +1783,9 @@ function retryMedia() {
 }
 
 function clearExerciseMedia() {
+  reactionDrill = null;
+  reactionDrillView?.dispose();
+  reactionDrillView = null;
   clearMediaRecoveryTimer();
   mediaReady = false;
   mediaGeneration++;
@@ -1874,7 +1900,9 @@ function applyMovementPhase(phase) {
   setFullPhaseSurface("move");
   restartMediaForPhase();
 
-  elements.status.textContent = isCurrentReactionCueEnabled()
+  elements.status.textContent = reactionDrillPlans.has(currentExercise.id)
+    ? "Match the number. Complete the action, then reset. 45 seconds."
+    : isCurrentReactionCueEnabled()
     ? `${description}. Move on green; freeze on red. 45 seconds.`
     : `${description}, 45 seconds.`;
 
@@ -1902,7 +1930,7 @@ function restartMediaForPhase() {
 }
 
 function isCurrentReactionCueEnabled() {
-  return Boolean(currentExercise && session && isReactionCueEnabled(
+  return Boolean(currentExercise && !reactionDrillPlans.has(currentExercise.id) && session && isReactionCueEnabled(
     currentExercise,
     session.state.activeCatalogRevision,
   ));
@@ -1925,6 +1953,21 @@ function startReactionCue(now = performance.now()) {
 }
 
 function updateReactionCue(now = performance.now()) {
+  const plan = reactionDrillPlans.get(currentExercise?.id);
+  if (plan) {
+    elements.reactionCue.hidden = true;
+    if (!movementRunning || lastMovementPhase !== "Continuous") {
+      reactionDrill = null;
+      reactionDrillView?.reset();
+      return;
+    }
+    reactionDrill ??= new ReactionDrill(plan);
+    if (reactionDrill.advance(now, movementRemaining, reactionDrillView?.ready === true)) {
+      if (reactionDrill.phase === "Reset") reactionDrillView.reset(false);
+      reactionDrillView?.render(reactionDrill);
+    }
+    return;
+  }
   if (!movementRunning || lastMovementPhase !== "Continuous" ||
       !isCurrentReactionCueEnabled()) {
     clearReactionCue();
@@ -1977,6 +2020,8 @@ function renderReactionCue(now) {
 }
 
 function clearReactionCue() {
+  reactionDrill = null;
+  reactionDrillView?.reset();
   reactionCueActive = false;
   reactionCueMoving = true;
   reactionCueEndsAt = 0;
@@ -2394,6 +2439,7 @@ function setWorkoutPhaseClass(kind) {
 }
 
 function setMediaMirrored(mirrored) {
+  reactionDrillView?.setMirror(mirrored);
   const scale = mirrored ? "-1" : "1";
   elements.video.style.setProperty("--media-scale-x", scale);
   elements.holdFrame.style.setProperty("--media-scale-x", scale);
@@ -2419,6 +2465,12 @@ function movementCueDescription(sideCue, directionCue) {
 }
 
 function playVideo() {
+  if (reactionDrillView) {
+    elements.video.pause();
+    reactionDrillView.setPreviewEnabled(!document.hidden && !movementRunning &&
+      (!elements.readyPanel.hidden || (restActive && previewingUpcomingSequenceBlock)));
+    return;
+  }
   const playback = elements.video.play();
   if (playback && typeof playback.catch === "function") {
     playback.catch(() => {
@@ -2449,6 +2501,8 @@ function playSound(name) {
 }
 
 function pauseActiveWorkoutForBackground() {
+  reactionDrillView?.setPreviewEnabled(false);
+  reactionDrillView?.reset();
   if (movementRunning) {
     pauseMovement("user");
   }

@@ -1,0 +1,54 @@
+{
+  "id": 1534,
+  "name": "5-10-5 Shuttle Run",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock",
+    "SecondSide"
+  ],
+  "playback": [
+    {
+      "start": 1.527824,
+      "duration": 5.85,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 2.712932,
+      "duration": 5.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 3.929581,
+      "duration": 5.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 5.158627,
+      "duration": 5.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.525152,
+      "duration": 5.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.756004,
+      "duration": 5.85,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1534,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

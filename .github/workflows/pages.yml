@@ -7,6 +7,13 @@ on:
       - ".github/workflows/pages.yml"
       - "web/**"
       - "NomadicMethod/Assets/exercises.json"
+      - "NomadicMethod/Assets/reaction_drills.json"
+      - "NomadicMethod/Assets/reaction_videos/**"
+      - "NomadicMethod/Assets/reaction_previews/**"
+      - "NomadicMethod/ReactionDrillView.cs"
+      - "tools/generate-reaction-drill-media.mjs"
+      - "tools/CatalogReviewEvidence.ps1"
+      - "tools/Test-CatalogReviewEvidence.ps1"
       - "NomadicMethod/Assets/exercise_videos/**"
       - "NomadicMethod/Assets/exercise_direction_videos/**"
       - "NomadicMethod/Assets/exercise_hold_frames/**"
@@ -59,10 +66,12 @@ on:
       - "tools/Test-ExerciseSideSequenceOverrides.ps1"
       - "tools/generate-exercise-fitness-ceiling-scores.mjs"
       - "tools/ExerciseFitnessCeilingScores.json"
+      - "tools/ExerciseFitnessCeilingCoveragePolicy.json"
       - "tools/ExerciseReactionCues.json"
       - "docs/ACSM_FITNESS_CEILING_SCORING.md"
       - "docs/catalog-audit/acsm-fitness-ceiling-scores.csv"
       - "docs/catalog-audit/acsm-fitness-ceiling-coverage.json"
+      - "docs/catalog-audit/acsm-fitness-ceiling-gaps.md"
   workflow_dispatch:
 
 permissions:
@@ -87,6 +96,13 @@ jobs:
           sparse-checkout: |
             /web/**
             /NomadicMethod/Assets/exercises.json
+            /NomadicMethod/Assets/reaction_drills.json
+            /NomadicMethod/Assets/reaction_videos/**
+            /NomadicMethod/Assets/reaction_previews/**
+            /NomadicMethod/ReactionDrillView.cs
+            /tools/generate-reaction-drill-media.mjs
+            /tools/CatalogReviewEvidence.ps1
+            /tools/Test-CatalogReviewEvidence.ps1
             /NomadicMethod/Assets/exercise_videos/**
             /NomadicMethod/Assets/exercise_direction_videos/**
             /NomadicMethod/Assets/exercise_hold_frames/**
@@ -141,11 +157,34 @@ jobs:
             /tools/Test-ExerciseSideSequenceOverrides.ps1
             /tools/generate-exercise-fitness-ceiling-scores.mjs
             /tools/ExerciseFitnessCeilingScores.json
+            /tools/ExerciseFitnessCeilingCoveragePolicy.json
             /tools/ExerciseReactionCues.json
             /docs/ACSM_FITNESS_CEILING_SCORING.md
             /docs/catalog-audit/acsm-fitness-ceiling-scores.csv
             /docs/catalog-audit/acsm-fitness-ceiling-coverage.json
+            /docs/catalog-audit/acsm-fitness-ceiling-gaps.md
           sparse-checkout-cone-mode: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Set up response media verification
+        run: |
+          if ! command -v ffprobe >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends -y ffmpeg
+          fi
+
+      - name: Validate reaction response media
+        run: node tools/generate-reaction-drill-media.mjs --check
+
+      - name: Validate catalog review evidence contracts
+        shell: pwsh
+        run: ./tools/Test-CatalogReviewEvidence.ps1
 
       - name: Validate mirror relationship audit
         shell: pwsh
@@ -180,13 +219,6 @@ jobs:
         run: |
           ./tools/Test-ExerciseExecutionProtocols.ps1
           ./tools/Test-ExerciseSideSequenceOverrides.ps1
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: web/package-lock.json
 
       - name: Test
         run: npm test

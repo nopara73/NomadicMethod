@@ -869,14 +869,14 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 658);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 681);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 195);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 203);
   assert.deepEqual(
     new Set(catalog.filter((exercise) =>
       exercise.upperBodyClothingRequirement === "ClothingRequired")
       .map((exercise) => exercise.id)),
-    new Set([134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428, 1436, 1437]),
+    new Set([134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428, 1436, 1437, 1522, 1523]),
   );
   assert.deepEqual(
     new Set(catalog.filter((exercise) =>
@@ -1188,7 +1188,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exerciseDatabase,
     /DatabaseVersion\s*=\s*ExerciseDatabaseVersionPolicy\.CurrentVersion/,
   );
-  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*103/);
+  assert.match(exerciseDatabaseVersionPolicy, /CurrentVersion\s*=\s*104/);
   assert.match(
     exerciseDatabase,
     /ExerciseDatabaseVersionPolicy\.IsSupportedNonDestructiveUpgrade\([\s\S]*oldVersion,[\s\S]*newVersion/,
@@ -2223,6 +2223,7 @@ test("lead-stance exercises use the same two-block sequence cues on mobile and w
   const expectedLeadStanceIds = [
     204, 205, 245, 265, 279, 473, 528, 538, 575, 578, 583, 591,
     884, 885, 886, 887, 1024, 1042, 1044, 1433,
+    1531, 1534, 1602, 1603, 1604, 1632, 1633, 1634,
   ];
   assert.deepEqual(
     catalog
@@ -2408,7 +2409,7 @@ test("all bilateral, directional, linked, and repeated work uses one sequence mo
     catalog
       .filter((exercise) => exercise.directionSequence !== "None")
       .map((exercise) => exercise.id),
-    [236, 275, 406, 409, 516, 561, 588, 608, 611, 743, 1018, 1109, 1180, 1225, 1230, 1299, 1303],
+    [236, 275, 406, 409, 516, 561, 588, 608, 611, 743, 1018, 1109, 1180, 1225, 1230, 1299, 1303, 1508, 1533, 1535],
   );
   assert.ok(catalog.every((exercise) =>
     !Object.hasOwn(exercise, "directionPartnerExerciseId")));

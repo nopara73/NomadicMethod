@@ -1,0 +1,19 @@
+{
+  "id": 1540,
+  "name": "Floor One-Arm Handstand Hold",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "Hold",
+    "AfterBlock",
+    "SecondSide"
+  ],
+  "playback": [],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1540,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

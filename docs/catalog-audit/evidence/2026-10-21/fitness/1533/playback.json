@@ -1,0 +1,54 @@
+{
+  "id": 1533,
+  "name": "Backpedal to Turn and Sprint",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock",
+    "SecondDirection"
+  ],
+  "playback": [
+    {
+      "start": 0.715507,
+      "duration": 4.1,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 1.554424,
+      "duration": 4.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 2.424503,
+      "duration": 4.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 3.300941,
+      "duration": 4.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.072548,
+      "duration": 4.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.946995,
+      "duration": 4.1,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1533,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

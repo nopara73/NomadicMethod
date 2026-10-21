@@ -1,0 +1,53 @@
+{
+  "id": 1507,
+  "name": "Handstand Shoulder Taps",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock"
+  ],
+  "playback": [
+    {
+      "start": 1.064564,
+      "duration": 3.85,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 1.842655,
+      "duration": 3.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 2.699781,
+      "duration": 3.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 3.55356,
+      "duration": 3.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.547255,
+      "duration": 3.85,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.394507,
+      "duration": 3.85,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1507,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

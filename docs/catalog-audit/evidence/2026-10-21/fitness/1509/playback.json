@@ -1,0 +1,53 @@
+{
+  "id": 1509,
+  "name": "Handstand Walk",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock"
+  ],
+  "playback": [
+    {
+      "start": 1.577846,
+      "duration": 11.1,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 3.812592,
+      "duration": 11.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 6.104137,
+      "duration": 11.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 8.402775,
+      "duration": 11.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 10.706548,
+      "duration": 11.1,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.901443,
+      "duration": 11.1,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1509,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

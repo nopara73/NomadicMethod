@@ -1,0 +1,560 @@
+[
+  {
+    "viewport": {
+      "width": 320,
+      "height": 640
+    },
+    "phase": "ready",
+    "geometry": {
+      "root": {
+        "x": 28,
+        "y": 157.09375,
+        "width": 264,
+        "height": 264,
+        "top": 157.09375,
+        "right": 292,
+        "bottom": 421.09375,
+        "left": 28
+      },
+      "cards": [
+        {
+          "box": {
+            "x": 34,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 93.25,
+            "bottom": 415.09375,
+            "left": 34
+          },
+          "scroll": 57,
+          "width": 57
+        },
+        {
+          "box": {
+            "x": 98.25,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 157.5,
+            "bottom": 415.09375,
+            "left": 98.25
+          },
+          "scroll": 57,
+          "width": 57
+        },
+        {
+          "box": {
+            "x": 162.5,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 221.75,
+            "bottom": 415.09375,
+            "left": 162.5
+          },
+          "scroll": 57,
+          "width": 57
+        },
+        {
+          "box": {
+            "x": 226.75,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 286,
+            "bottom": 415.09375,
+            "left": 226.75
+          },
+          "scroll": 57,
+          "width": 57
+        }
+      ],
+      "cue": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "badgeBackground": "rgb(18, 20, 22)",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "bodyWidth": 320
+    }
+  },
+  {
+    "viewport": {
+      "width": 320,
+      "height": 640
+    },
+    "phase": "prompt",
+    "geometry": {
+      "root": {
+        "x": 28,
+        "y": 157.09375,
+        "width": 264,
+        "height": 264,
+        "top": 157.09375,
+        "right": 292,
+        "bottom": 421.09375,
+        "left": 28
+      },
+      "cards": [
+        {
+          "box": {
+            "x": 34,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 93.25,
+            "bottom": 415.09375,
+            "left": 34
+          },
+          "scroll": 57,
+          "width": 57
+        },
+        {
+          "box": {
+            "x": 98.25,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 157.5,
+            "bottom": 415.09375,
+            "left": 98.25
+          },
+          "scroll": 57,
+          "width": 57
+        },
+        {
+          "box": {
+            "x": 162.5,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 221.75,
+            "bottom": 415.09375,
+            "left": 162.5
+          },
+          "scroll": 57,
+          "width": 57
+        },
+        {
+          "box": {
+            "x": 226.75,
+            "y": 339.8125,
+            "width": 59.25,
+            "height": 75.28125,
+            "top": 339.8125,
+            "right": 286,
+            "bottom": 415.09375,
+            "left": 226.75
+          },
+          "scroll": 57,
+          "width": 57
+        }
+      ],
+      "cue": {
+        "x": 144.265625,
+        "y": 227.453125,
+        "width": 31.453125,
+        "height": 67,
+        "top": 227.453125,
+        "right": 175.71875,
+        "bottom": 294.453125,
+        "left": 144.265625
+      },
+      "badgeBackground": "rgb(18, 20, 22)",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "bodyWidth": 320
+    }
+  },
+  {
+    "viewport": {
+      "width": 915,
+      "height": 412
+    },
+    "phase": "ready",
+    "geometry": {
+      "root": {
+        "x": 286.921875,
+        "y": 38.828125,
+        "width": 330.328125,
+        "height": 330.328125,
+        "top": 38.828125,
+        "right": 617.25,
+        "bottom": 369.15625,
+        "left": 286.921875
+      },
+      "cards": [
+        {
+          "box": {
+            "x": 292.921875,
+            "y": 252.875,
+            "width": 75.828125,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 368.75,
+            "bottom": 363.15625,
+            "left": 292.921875
+          },
+          "scroll": 74,
+          "width": 74
+        },
+        {
+          "box": {
+            "x": 373.75,
+            "y": 252.875,
+            "width": 75.84375,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 449.59375,
+            "bottom": 363.15625,
+            "left": 373.75
+          },
+          "scroll": 74,
+          "width": 74
+        },
+        {
+          "box": {
+            "x": 454.59375,
+            "y": 252.875,
+            "width": 75.828125,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 530.421875,
+            "bottom": 363.15625,
+            "left": 454.59375
+          },
+          "scroll": 74,
+          "width": 74
+        },
+        {
+          "box": {
+            "x": 535.421875,
+            "y": 252.875,
+            "width": 75.828125,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 611.25,
+            "bottom": 363.15625,
+            "left": 535.421875
+          },
+          "scroll": 74,
+          "width": 74
+        }
+      ],
+      "cue": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "badgeBackground": "rgb(18, 20, 22)",
+      "viewport": {
+        "width": 915,
+        "height": 412
+      },
+      "bodyWidth": 915
+    }
+  },
+  {
+    "viewport": {
+      "width": 915,
+      "height": 412
+    },
+    "phase": "prompt",
+    "geometry": {
+      "root": {
+        "x": 286.921875,
+        "y": 38.828125,
+        "width": 330.328125,
+        "height": 330.328125,
+        "top": 38.828125,
+        "right": 617.25,
+        "bottom": 369.15625,
+        "left": 286.921875
+      },
+      "cards": [
+        {
+          "box": {
+            "x": 292.921875,
+            "y": 252.875,
+            "width": 75.828125,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 368.75,
+            "bottom": 363.15625,
+            "left": 292.921875
+          },
+          "scroll": 74,
+          "width": 74
+        },
+        {
+          "box": {
+            "x": 373.75,
+            "y": 252.875,
+            "width": 75.84375,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 449.59375,
+            "bottom": 363.15625,
+            "left": 373.75
+          },
+          "scroll": 74,
+          "width": 74
+        },
+        {
+          "box": {
+            "x": 454.59375,
+            "y": 252.875,
+            "width": 75.828125,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 530.421875,
+            "bottom": 363.15625,
+            "left": 454.59375
+          },
+          "scroll": 74,
+          "width": 74
+        },
+        {
+          "box": {
+            "x": 535.421875,
+            "y": 252.875,
+            "width": 75.828125,
+            "height": 110.28125,
+            "top": 252.875,
+            "right": 611.25,
+            "bottom": 363.15625,
+            "left": 535.421875
+          },
+          "scroll": 74,
+          "width": 74
+        }
+      ],
+      "cue": {
+        "x": 425.125,
+        "y": 100.84375,
+        "width": 53.90625,
+        "height": 115,
+        "top": 100.84375,
+        "right": 479.03125,
+        "bottom": 215.84375,
+        "left": 425.125
+      },
+      "badgeBackground": "rgb(18, 20, 22)",
+      "viewport": {
+        "width": 915,
+        "height": 412
+      },
+      "bodyWidth": 915
+    }
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "phase": "ready",
+    "geometry": {
+      "root": {
+        "x": 661,
+        "y": 105,
+        "width": 690,
+        "height": 690,
+        "top": 105,
+        "right": 1351,
+        "bottom": 795,
+        "left": 661
+      },
+      "cards": [
+        {
+          "box": {
+            "x": 778.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 888.5,
+            "bottom": 789,
+            "left": 778.5
+          },
+          "scroll": 108,
+          "width": 108
+        },
+        {
+          "box": {
+            "x": 893.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 1003.5,
+            "bottom": 789,
+            "left": 893.5
+          },
+          "scroll": 108,
+          "width": 108
+        },
+        {
+          "box": {
+            "x": 1008.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 1118.5,
+            "bottom": 789,
+            "left": 1008.5
+          },
+          "scroll": 108,
+          "width": 108
+        },
+        {
+          "box": {
+            "x": 1123.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 1233.5,
+            "bottom": 789,
+            "left": 1123.5
+          },
+          "scroll": 108,
+          "width": 108
+        }
+      ],
+      "cue": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "badgeBackground": "rgb(18, 20, 22)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bodyWidth": 1440
+    }
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "phase": "prompt",
+    "geometry": {
+      "root": {
+        "x": 661,
+        "y": 105,
+        "width": 690,
+        "height": 690,
+        "top": 105,
+        "right": 1351,
+        "bottom": 795,
+        "left": 661
+      },
+      "cards": [
+        {
+          "box": {
+            "x": 778.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 888.5,
+            "bottom": 789,
+            "left": 778.5
+          },
+          "scroll": 108,
+          "width": 108
+        },
+        {
+          "box": {
+            "x": 893.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 1003.5,
+            "bottom": 789,
+            "left": 893.5
+          },
+          "scroll": 108,
+          "width": 108
+        },
+        {
+          "box": {
+            "x": 1008.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 1118.5,
+            "bottom": 789,
+            "left": 1008.5
+          },
+          "scroll": 108,
+          "width": 108
+        },
+        {
+          "box": {
+            "x": 1123.5,
+            "y": 691.359375,
+            "width": 110,
+            "height": 97.640625,
+            "top": 691.359375,
+            "right": 1233.5,
+            "bottom": 789,
+            "left": 1123.5
+          },
+          "scroll": 108,
+          "width": 108
+        }
+      ],
+      "cue": {
+        "x": 979.046875,
+        "y": 353.171875,
+        "width": 53.90625,
+        "height": 115,
+        "top": 353.171875,
+        "right": 1032.953125,
+        "bottom": 468.171875,
+        "left": 979.046875
+      },
+      "badgeBackground": "rgb(18, 20, 22)",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bodyWidth": 1440
+    }
+  }
+]

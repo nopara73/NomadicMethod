@@ -25,6 +25,25 @@ function Get-CatalogAssetHashes {
     if ([string]$Exercise.directionSequence -ne 'None') {
         $paths += 'exercise_direction_videos/exercise_{0:D4}.mp4' -f $id
     }
+    if ([string]$Exercise.practice -eq 'Reaction training') {
+        $definition = 'reaction_drills.json'
+        $drills = Get-Content -LiteralPath (Join-Path $AssetsRoot $definition) -Raw | ConvertFrom-Json
+        $plans = @($drills.plans | Where-Object { [int]$_.exerciseId -eq $id })
+        if ($plans.Count -ne 1) { throw "Missing exact reaction plan for exercise $id." }
+        $families = @($drills.families | Where-Object { $_.id -ceq $plans[0].familyId })
+        $count = switch ([string]$plans[0].protocol) {
+            'Initiation' { 1 }; 'TwoChoice' { 2 }; 'FourChoice' { 4 }; 'ContextChoice' { 4 }
+            default { throw "Invalid reaction protocol for exercise $id." }
+        }
+        if ($families.Count -ne 1 -or @($families[0].actions).Count -ne 4) {
+            throw "Missing exact response family for exercise $id."
+        }
+        $paths += $definition
+        foreach ($action in @($families[0].actions | Select-Object -First $count)) {
+            $paths += [string]$action.video
+            $paths += [string]$action.preview
+        }
+    }
     $hashes = [ordered]@{}
     foreach ($relative in $paths) {
         $path = Join-Path $AssetsRoot $relative

@@ -1,0 +1,53 @@
+{
+  "id": 1516,
+  "name": "Crouching Reaches",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock"
+  ],
+  "playback": [
+    {
+      "start": 1.088145,
+      "duration": 12,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 3.528504,
+      "duration": 12,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 6.004332,
+      "duration": 12,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 8.470264,
+      "duration": 12,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 10.943392,
+      "duration": 12,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.404855,
+      "duration": 12,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1516,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

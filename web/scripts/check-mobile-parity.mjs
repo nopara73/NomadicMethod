@@ -17,6 +17,8 @@ const sourceTargets = [
   "NomadicMethod/AndroidManifest.xml",
   "NomadicMethod/WorkoutBlockTimelineView.cs",
   "NomadicMethod/ExerciseVideoView.cs",
+  "NomadicMethod/ReactionDrillView.cs",
+  "NomadicMethod/Assets/reaction_drills.json",
   "NomadicMethod/Data",
   "NomadicMethod/Models",
   "NomadicMethod/Services",
@@ -91,9 +93,9 @@ async function collectSourceFiles(target) {
 }
 
 function isParitySource(file) {
-  return /\.(?:cs|csproj|png|xml)$/i.test(file);
+  return /\.(?:cs|csproj|png|xml|json)$/i.test(file);
 }
 
 function isTextSource(file) {
-  return /\.(?:cs|csproj|xml)$/i.test(file);
+  return /\.(?:cs|csproj|xml|json)$/i.test(file);
 }

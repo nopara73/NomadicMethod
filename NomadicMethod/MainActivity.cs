@@ -160,6 +160,9 @@ public partial class MainActivity : Activity
     private int _workoutCompleteWhistleId;
     private Android.Media.MediaPlayer? _activeMediaPlayer;
     private VideoPreparedListener? _videoPreparedListener;
+    private IReadOnlyDictionary<int, ReactionPlan> _reactionDrillPlans = new Dictionary<int, ReactionPlan>();
+    private ReactionDrill? _reactionDrill;
+    private ReactionDrillView? _reactionDrillView;
     private VideoErrorListener? _videoErrorListener;
     private VideoInfoListener? _videoInfoListener;
     private Android.Graphics.Bitmap? _holdFrameBitmap;
@@ -268,6 +271,9 @@ public partial class MainActivity : Activity
         try
         {
             var sessionService = new ExerciseSessionService(database.Exercises);
+            using Stream reactionSource = context.Assets!.Open("reaction_drills.json");
+            IReadOnlyDictionary<int, ReactionPlan> reactionPlans =
+                ReactionDrill.Load(reactionSource, database.Exercises);
             sessionService.RestoreAfterReopen(_state);
             RecoverPendingScoreUpdate(database, _state);
 
@@ -282,7 +288,8 @@ public partial class MainActivity : Activity
                 database,
                 sessionService,
                 pendingMovementGroup,
-                pendingRestGroup);
+                pendingRestGroup,
+                reactionPlans);
         }
         catch
         {
@@ -301,6 +308,7 @@ public partial class MainActivity : Activity
 
         _exerciseDatabase = startup.Database;
         _sessionService = startup.SessionService;
+        _reactionDrillPlans = startup.ReactionPlans;
         _applicationStartupCompleted = true;
 
         if (_state.WorkoutCompleted && !_state.CompletionAcknowledged)
@@ -571,6 +579,7 @@ public partial class MainActivity : Activity
 
     protected override void OnDestroy()
     {
+        ReleaseReactionDrillView();
         _activityDestroyed = true;
         _ouraReadCancellation?.Cancel();
         _workoutPreparationCancellation?.Cancel();
@@ -1960,6 +1969,7 @@ public partial class MainActivity : Activity
 
     private void ShowDurationSelection()
     {
+        ReleaseReactionDrillView();
         _manualLightModeRequested = false;
         _editingActiveWorkoutSetup = false;
         _selectedWorkoutMinutes = ExerciseSessionService.NormalizeSetupMinutes(_state.LastWorkoutMinutes);
@@ -3078,6 +3088,7 @@ public partial class MainActivity : Activity
         };
         _videoPreparedListener = new VideoPreparedListener(mediaPlayer =>
         {
+            if (_reactionDrillView is not null) return;
             _mediaReady = true;
             _activeMediaPlayer = mediaPlayer;
             try
@@ -3167,12 +3178,25 @@ public partial class MainActivity : Activity
         };
     }
 
+    private void ReleaseReactionDrillView()
+    {
+        _reactionDrill = null;
+        ReactionDrillView? view = _reactionDrillView;
+        _reactionDrillView = null;
+        if (view is null) return;
+        view.Release();
+        (view.Parent as ViewGroup)?.RemoveView(view);
+        view.Dispose();
+    }
+
     private void LoadExerciseMedia(
         Exercise exercise,
         WorkoutGroup workoutGroup,
         bool previewingUpcomingSequenceBlock = false,
         bool forceCacheRefresh = false)
     {
+        ReleaseReactionDrillView();
+        _exerciseVideo.Visibility = ViewStates.Visible;
         _mediaExercise = exercise;
         _mediaWorkoutGroup = workoutGroup;
         _previewingUpcomingSequenceBlock = previewingUpcomingSequenceBlock;
@@ -3190,6 +3214,47 @@ public partial class MainActivity : Activity
             !holdDuringRest;
         _freezeHoldAtEnd = holdDuringMove || holdDuringRest;
         _activeMediaPlayer = null;
+
+        if (_reactionDrillPlans.TryGetValue(exercise.Id, out ReactionPlan? reactionPlan))
+        {
+            ClearHoldFrame();
+            _exerciseVideo.StopPlayback();
+            _exerciseVideo.Visibility = ViewStates.Invisible;
+            _mediaScrim.Alpha = 1f;
+            _mediaScrim.Visibility = ViewStates.Visible;
+            _mediaLoadingIndicator.Visibility = ViewStates.Visible;
+            _mediaErrorPanel.Visibility = ViewStates.Gone;
+            SetStartAvailability(available: false);
+            SetPlaybackControlsAvailability(available: false);
+            int generation = _mediaLoadGeneration;
+            try
+            {
+                _reactionDrillView = new ReactionDrillView(this, reactionPlan,
+                    asset => CacheVideoAsset(asset, forceCacheRefresh),
+                    () =>
+                    {
+                        if (_activityDestroyed || generation != _mediaLoadGeneration) return;
+                        _mediaReady = true;
+                        _mediaErrorPanel.Visibility = ViewStates.Gone;
+                        _mediaLoadingIndicator.Visibility = ViewStates.Gone;
+                        SetStartAvailability(available: true);
+                        SetPlaybackControlsAvailability(_workoutPhase == WorkoutPhase.Move &&
+                            (_countdownActive || _countdownPausedByUser));
+                        if (_countdownPausedForMediaError && !_countdownPausedByUser && _activityResumed)
+                        {
+                            _countdownPausedForMediaError = false;
+                            ResumeCountdown();
+                        }
+                        ApplyCurrentMediaPlaybackState();
+                        RevealExerciseMedia();
+                    },
+                    () => { if (!_activityDestroyed && generation == _mediaLoadGeneration) ShowMediaError(); });
+                ((FrameLayout)_exerciseMediaCard).AddView(_reactionDrillView, 2,
+                    new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            }
+            catch (Exception) { ReleaseReactionDrillView(); ShowMediaError(); }
+            return;
+        }
 
         if (usesStill)
         {
@@ -4052,6 +4117,8 @@ public partial class MainActivity : Activity
 
     private void PauseActiveWorkoutForBackground()
     {
+        _reactionDrillView?.SetPreviewEnabled(false);
+        _reactionDrillView?.ResetPlayback();
         if (_editingActiveWorkoutSetup ||
             _appScreen != AppScreen.Workout ||
             _state.WorkoutCompleted)
@@ -4243,7 +4310,9 @@ public partial class MainActivity : Activity
             CueMovementRestart();
             AnnouncePhaseForAccessibility(
                 _countdownPanel,
-                IsCurrentReactionCueEnabled()
+                _reactionDrillPlans.ContainsKey(_currentExercise!.Id)
+                    ? $"{GetMovementCueDescription(presentation)}, 45 seconds. Respond to the number using the displayed mapping."
+                    : IsCurrentReactionCueEnabled()
                     ? $"{GetMovementCueDescription(presentation)}, 45 seconds. " +
                         "Move on green. Freeze on red."
                     : $"{GetMovementCueDescription(presentation)}, 45 seconds.");
@@ -4267,6 +4336,7 @@ public partial class MainActivity : Activity
 
     private bool IsCurrentReactionCueEnabled() =>
         _currentExercise is not null &&
+        !_reactionDrillPlans.ContainsKey(_currentExercise.Id) &&
         ReactionCuePolicy.IsEnabled(
             _currentExercise,
             _state.ActiveCatalogRevision);
@@ -4295,6 +4365,24 @@ public partial class MainActivity : Activity
 
     private void UpdateReactionCue()
     {
+        if (_currentExercise is not null && _reactionDrillView is not null &&
+            _reactionDrillPlans.TryGetValue(_currentExercise.Id, out ReactionPlan? plan))
+        {
+            if (!_countdownActive || _lastMovementPhase != MovementPhase.Continuous)
+            {
+                ClearReactionCue();
+                return;
+            }
+            long now = Android.OS.SystemClock.ElapsedRealtime();
+            _reactionDrill ??= new ReactionDrill(plan);
+            if (_reactionDrill.Advance(now, Math.Max(0, _countdownEndsAtElapsedMilliseconds - now), _reactionDrillView.Ready))
+            {
+                if (_reactionDrill.Phase == "Reset") _reactionDrillView.ResetPlayback();
+                _reactionDrillView.Render(_reactionDrill,
+                    GetCurrentMovementPresentation(MovementPhase.Continuous).MirrorMedia);
+            }
+            return;
+        }
         if (!_countdownActive ||
             _lastMovementPhase != MovementPhase.Continuous ||
             !IsCurrentReactionCueEnabled())
@@ -4366,6 +4454,9 @@ public partial class MainActivity : Activity
 
     private void ClearReactionCue()
     {
+        _reactionDrill = null;
+        _reactionDrillView?.ResetPlayback();
+        _reactionDrillView?.Render(null, _mediaWorkoutGroup?.MirrorSequenceMedia == true);
         _reactionCueActive = false;
         _reactionCueMoving = true;
         _reactionCueEndsAtElapsedMilliseconds = 0;
@@ -4504,6 +4595,17 @@ public partial class MainActivity : Activity
             _ => false,
         };
         SetExerciseMediaMirrored(mirrorMedia);
+
+        if (_reactionDrillView is not null)
+        {
+            _exerciseVideo.Pause();
+            if (_reactionDrill is not null || !_reactionDrillView.PreviewEnabled)
+                _reactionDrillView.Render(_reactionDrill, mirrorMedia);
+            _reactionDrillView.SetPreviewEnabled(_activityResumed &&
+                (_workoutPhase == WorkoutPhase.Ready ||
+                 (_workoutPhase == WorkoutPhase.Rest && _previewingUpcomingSequenceBlock)));
+            return;
+        }
 
         if (ShouldExerciseVideoBePlaying())
         {
@@ -4981,6 +5083,7 @@ public partial class MainActivity : Activity
 
     private void ShowCongratulations()
     {
+        ReleaseReactionDrillView();
         CancelCountdown(resetToStart: false);
         PauseRestCountdown();
         _restActive = false;
@@ -5235,7 +5338,8 @@ public partial class MainActivity : Activity
         SqliteExerciseDatabase Database,
         ExerciseSessionService SessionService,
         WorkoutGroup? PendingMovementGroup,
-        WorkoutGroup? PendingRestGroup);
+        WorkoutGroup? PendingRestGroup,
+        IReadOnlyDictionary<int, ReactionPlan> ReactionPlans);
 
     private sealed class DurationSeekAccessibilityDelegate(
         Func<int> getMinutes,

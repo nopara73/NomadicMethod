@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\reaction-drill-trace.json" Link="Assets\reaction-drill-trace.json" CopyToOutputDirectory="PreserveNewest" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.11" />
     <PackageReference Include="xunit" Version="2.9.3" />
@@ -29,6 +30,7 @@
     <Compile Include="..\NomadicMethod\Services\OuraRecoveryPolicy.cs" Link="Production\Services\OuraRecoveryPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\RestFeedback.cs" Link="Production\Services\RestFeedback.cs" />
     <Compile Include="..\NomadicMethod\Services\ReactionCuePolicy.cs" Link="Production\Services\ReactionCuePolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\ReactionDrillPolicy.cs" Link="Production\Services\ReactionDrillPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\OuraNightBuilder.cs" Link="Production\Services\OuraNightBuilder.cs" />
     <Compile Include="..\NomadicMethod\Data\ExerciseDatabaseMigrationSql.cs" Link="Production\Data\ExerciseDatabaseMigrationSql.cs" />
     <Compile Include="..\NomadicMethod\Data\ExerciseDatabaseVersionPolicy.cs" Link="Production\Data\ExerciseDatabaseVersionPolicy.cs" />
@@ -106,6 +108,7 @@
     <None Include="..\NomadicMethod\Assets\exercises.json"
           Link="Assets\exercises.json"
           CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\NomadicMethod\Assets\reaction_drills.json" Link="Assets\reaction_drills.json" CopyToOutputDirectory="PreserveNewest" />
     <None Update="Fixtures\oura-recovery-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\NomadicMethod\Assets\exercise_hold_frames\*.png"
           Link="Assets\exercise_hold_frames\%(Filename)%(Extension)"

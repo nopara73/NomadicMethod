@@ -1,0 +1,13 @@
+{
+  "random": [0.9, 0.0, 0.0, 0.1, 0.5, 0.9],
+  "steps": [
+    { "now": 0, "phase": "Ready", "reverse": true, "number": 0, "actionIndex": -1, "deadline": 1200 },
+    { "now": 1199, "phase": "Ready", "reverse": true, "number": 0, "actionIndex": -1, "deadline": 1200 },
+    { "now": 1200, "phase": "Prompt", "reverse": true, "number": 1, "actionIndex": 3, "deadline": 1850 },
+    { "now": 1700, "phase": "Prompt", "reverse": true, "number": 1, "actionIndex": 3, "deadline": 1850 },
+    { "now": 5000, "phase": "Feedback", "reverse": true, "number": 1, "actionIndex": 3, "deadline": 6000 },
+    { "now": 6000, "phase": "Reset", "reverse": true, "number": 1, "actionIndex": 3, "deadline": 7200 },
+    { "now": 7200, "phase": "Ready", "reverse": false, "number": 0, "actionIndex": -1, "deadline": 9200 },
+    { "now": 10000, "phase": "Prompt", "reverse": false, "number": 4, "actionIndex": 3, "deadline": 10650 }
+  ]
+}

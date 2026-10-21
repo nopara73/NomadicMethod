@@ -9,4 +9,9 @@
     611 = 'CounterclockwiseThenClockwise'
     1018 = 'CounterclockwiseThenClockwise'
     1303 = 'ClockwiseThenCounterclockwise'
+
+    # Fitness coverage admissions, 21 October 2026.
+    1508 = 'CounterclockwiseThenClockwise'
+    1533 = 'CounterclockwiseThenClockwise'
+    1535 = 'ClockwiseThenCounterclockwise'
 }

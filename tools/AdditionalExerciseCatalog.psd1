@@ -494,4 +494,37 @@
     1436 = @{ Name = 'Burpee Broad Jumps'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelBurpeeBroadJumps' }
     1437 = @{ Name = 'Log Rolls'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelLogRolls' }
     1438 = @{ Name = 'Seated Buttock Walks'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorTravelSeatedButtockWalks' }
+
+    # Fitness coverage admissions, 21 October 2026.
+    1506 = @{ Name = 'Freestanding Handstand Push-Ups'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1506' }
+    1507 = @{ Name = 'Handstand Shoulder Taps'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1507' }
+    1508 = @{ Name = 'Handstand Turns'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1508' }
+    1509 = @{ Name = 'Handstand Walk'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1509' }
+    1516 = @{ Name = 'Crouching Reaches'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1516' }
+    1521 = @{ Name = 'Full Standing Pike Hold'; Region = 'LEGS'; Practice = 'Flexibility training'; MotionProfile = 'Fitness1521' }
+    1522 = @{ Name = 'Full Pancake Stretch'; Region = 'HIPS'; Practice = 'Flexibility training'; MotionProfile = 'Fitness1522' }
+    1523 = @{ Name = 'Full Floor Bridge Hold'; Region = 'BACK'; Practice = 'Flexibility training'; MotionProfile = 'Fitness1523' }
+    1524 = @{ Name = 'Full Front Split Hold'; Region = 'LEGS'; Practice = 'Flexibility training'; MotionProfile = 'Fitness1524' }
+    1525 = @{ Name = 'Full Middle Split Hold'; Region = 'HIPS'; Practice = 'Flexibility training'; MotionProfile = 'Fitness1525' }
+    1531 = @{ Name = 'Lateral Shuffle to Crossover Sprint'; Region = 'LEGS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1531' }
+    1532 = @{ Name = 'Sprint to Backpedal'; Region = 'LEGS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1532' }
+    1533 = @{ Name = 'Backpedal to Turn and Sprint'; Region = 'LEGS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1533' }
+    1534 = @{ Name = '5-10-5 Shuttle Run'; Region = 'LEGS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1534' }
+    1535 = @{ Name = 'Triangle Agility Run'; Region = 'LEGS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1535' }
+    1540 = @{ Name = 'Floor One-Arm Handstand Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1540' }
+    1602 = @{ Name = 'Punch Reactions · Two Choices'; Region = 'CHEST'; Practice = 'Reaction training'; MotionProfile = 'Fitness1602' }
+    1603 = @{ Name = 'Punch Reactions · Four Choices'; Region = 'CHEST'; Practice = 'Reaction training'; MotionProfile = 'Fitness1603' }
+    1604 = @{ Name = 'Punch Reactions · Context Choices'; Region = 'CHEST'; Practice = 'Reaction training'; MotionProfile = 'Fitness1604' }
+    1612 = @{ Name = 'Knee Lift Reactions · Two Choices'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1612' }
+    1613 = @{ Name = 'Knee Lift Reactions · Four Choices'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1613' }
+    1614 = @{ Name = 'Knee Lift Reactions · Context Choices'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1614' }
+    1622 = @{ Name = 'Arm Pattern Reactions · Two Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1622' }
+    1623 = @{ Name = 'Arm Pattern Reactions · Four Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1623' }
+    1624 = @{ Name = 'Arm Pattern Reactions · Context Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1624' }
+    1632 = @{ Name = 'Kick Reactions · Two Choices'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1632' }
+    1633 = @{ Name = 'Kick Reactions · Four Choices'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1633' }
+    1634 = @{ Name = 'Kick Reactions · Context Choices'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1634' }
+    1642 = @{ Name = 'Crouching Reach Reactions · Two Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1642' }
+    1643 = @{ Name = 'Crouching Reach Reactions · Four Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1643' }
+    1644 = @{ Name = 'Crouching Reach Reactions · Context Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1644' }
 }

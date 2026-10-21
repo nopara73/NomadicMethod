@@ -167,7 +167,7 @@ public sealed class FloorContactPolicyTests
             exercise => WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(exercise.Id));
         Assert.Equal(8, WorkoutCatalogPolicy.ForWorkout(catalog, 85).Count(
             exercise => WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(exercise.Id)));
-        Exercise[] withOneRemoved = catalog.Where(exercise => exercise.Id != 1431).ToArray();
+        Exercise[] withOneRemoved = catalog.Where(exercise => !WorkoutCatalogPolicy.FitnessCoverageExerciseIds.Contains(exercise.Id) && exercise.Id != 1431).ToArray();
         WorkoutFloorCatalogDeficiency deficit = Assert.Single(WorkoutModifierPolicy
             .FindFloorAndLocomotionCatalogDeficiencies(withOneRemoved));
         Assert.Equal(20, deficit.MatchingSessionMovementCount);

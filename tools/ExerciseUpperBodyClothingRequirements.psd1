@@ -1,6 +1,7 @@
 @{
     # Covered torso or upper back is part of the demonstrated wall contact.
     ClothingRequired = @(
+        1522, 1523,
         1436,
         1437,
         1427, 1428,
@@ -25,6 +26,7 @@
     # demonstrated exercise. Keep this exhaustive so new catalog records fail
     # generation until they receive a real review.
     Agnostic = @(
+        1506, 1507, 1508, 1509, 1516, 1521, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644,
         1431, 1432, 1433, 1434, 1435, 1438,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
         1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420,

@@ -1,0 +1,20 @@
+{
+  "id": 1643,
+  "name": "Crouching Reach Reactions \u00b7 Four Choices",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Prompt",
+    "Feedback",
+    "PausedReady",
+    "AfterBlock",
+    "SecondSide"
+  ],
+  "playback": [],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1643,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}

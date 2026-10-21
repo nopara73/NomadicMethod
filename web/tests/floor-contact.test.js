@@ -112,13 +112,14 @@ test("the admitted catalog satisfies all distinct floor minimums", () => {
   assert.deepEqual(findFloorAndLocomotionCatalogDeficiencies(catalog), []);
 });
 
-test("new floor travel stays out of unfinished earlier workouts and losing one breaches the quota", () => {
+test("revision-85 floor travel stays out of earlier workouts and its boundary inventory needs every admission", () => {
   assert.equal(FLOOR_LOCOMOTION_EXERCISE_IDS.length, 8);
   assert.equal(getWorkoutCatalog(catalog, 84)
     .some(e => FLOOR_LOCOMOTION_EXERCISE_IDS.includes(e.id)), false);
   assert.equal(getWorkoutCatalog(catalog, 85)
     .filter(e => FLOOR_LOCOMOTION_EXERCISE_IDS.includes(e.id)).length, 8);
-  assert.deepEqual(findFloorAndLocomotionCatalogDeficiencies(catalog.filter(e => e.id !== 1431)), [{
+  const revision85Catalog = getWorkoutCatalog(catalog, 85);
+  assert.deepEqual(findFloorAndLocomotionCatalogDeficiencies(revision85Catalog.filter(e => e.id !== 1431)), [{
     matchingSessionMovementCount: 20, requiredSessionMovementCount: 21,
   }]);
   for (const id of FLOOR_LOCOMOTION_EXERCISE_IDS) {

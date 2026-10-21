@@ -1,8 +1,8 @@
 @{
-    # These are strict identity families, not merely similar exercises. Every
-    # member demonstrates the same fundamental movement even when one catalog
-    # record is a hold, repetition, or naming variant. A workout may select at
-    # most one member of a family as a base muscle-group slot.
+    # Conservative identity families group fundamental movement variants and
+    # reviewed cue protocols sharing a physical response set. Adding a choice
+    # rule never manufactures another physical identity. A workout may select
+    # at most one member of a family as a base muscle-group slot.
     Families = @{
         '588' = @(588, 1300) # Shoulder-roll mobility; the natural marching demonstration expands compatibility without multiplying the fundamental scapular-circle movement.
         '161' = @(161, 1297) # Standing gate openers; sequential and naturally alternating demonstrations share one movement identity.
@@ -18,7 +18,7 @@
         '311' = @(311, 321, 816) # Same low-impact alternating side-tap jack
         '475' = @(475, 919) # Same marching head-turn movement; no independently verified fixed-gaze variant
         '579' = @(579, 580) # Standing back-to-wall shoulder slides and wall-angel range variant
-        '266' = @(266, 301) # Standing straight-arm lateral raises through complementary ranges
+        '266' = @(266, 301, 1622, 1623, 1624) # Standing straight-arm lateral raises through complementary ranges
         '264' = @(264, 275) # Standing shoulder-height arm circles and their small-circle naming variant
         '288' = @(288, 758, 1299, 1303) # Open- and closed-chain ankle circles; sides and directions never multiply identity
         '948' = @(948, 949) # Natural diagonal wood chop, upward and downward naming variants
@@ -33,7 +33,7 @@
         '292' = @(148, 292, 542) # Same standing bird-dog movement and demonstration
         '550' = @(550, 551) # Squat to calf raise with overhead reach
         '480' = @(480, 517) # Breath of Joy
-        '278' = @(278, 326) # Rear-hand straight punch
+        '278' = @(278, 326, 1602, 1603, 1604) # Rear-hand straight punch
         '160' = @(160, 533)      # One-leg standing bent-knee hip extension
         '329' = @(329, 531)      # One-arm controlled shoulder circle
         '101' = @(101, 110) # Shoulder-width squat and its shallow pulse variant
@@ -67,6 +67,11 @@
         '1248' = @(1075, 1248) # Conservative floor movement identity
         '1177' = @(1176, 1177) # Conservative floor movement identity
         '1154' = @(1154, 1223) # Conservative floor movement identity
-        '1187' = @(1187, 1193) # Conservative floor movement identity
+        '1187' = @(1187, 1193)
+        # One identity per physical response family across choice protocols.
+        '144' = @(144, 1612, 1613, 1614)
+        '180' = @(180, 534, 1632, 1633, 1634)
+        '1516' = @(1516, 1642, 1643, 1644)
+        '1206' = @(1206, 1521) # Same standing forward-fold family, different demonstrated depth. # Conservative floor movement identity
     }
 }

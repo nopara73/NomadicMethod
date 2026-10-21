@@ -1,0 +1,53 @@
+{
+  "id": 1506,
+  "name": "Freestanding Handstand Push-Ups",
+  "fixture": "isolated synthetic saved workout; production app and assets; accelerated phase clock; normal-speed human media",
+  "phases": [
+    "Movement",
+    "AfterBlock"
+  ],
+  "playback": [
+    {
+      "start": 1.166786,
+      "duration": 6.15,
+      "completeNormalSpeedLoop": true
+    },
+    {
+      "time": 2.43463,
+      "duration": 6.15,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 3.785773,
+      "duration": 6.15,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 5.145145,
+      "duration": 6.15,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 0.304444,
+      "duration": 6.15,
+      "paused": false,
+      "playbackRate": 1
+    },
+    {
+      "time": 1.607044,
+      "duration": 6.15,
+      "paused": false,
+      "playbackRate": 1
+    }
+  ],
+  "initialSessionId": 1,
+  "sessionIdDuringWork": 1,
+  "preparation": {
+    "id": 1506,
+    "countdown": 4,
+    "phase": "Preparation"
+  }
+}
