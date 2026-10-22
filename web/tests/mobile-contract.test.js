@@ -1439,7 +1439,7 @@ test("runtime media and the deployable web shell are content-addressed", () => {
   assert.match(webBuild, /reloadRequired: true, catalogRevision: CURRENT_CATALOG_REVISION/);
   assert.match(webBuild, /readFile\(path\.join\(outputRoot, "data", catalogOutputName\), "utf8"\)/,
     "Production validation must read the fingerprinted catalog, never the cached-client reload guard");
-  assert.ok(webApp.indexOf("if (!Array.isArray(exercises))") < webApp.indexOf("new WorkoutSession(exercises, loadState())"),
+  assert.ok(webApp.indexOf("if (!Array.isArray(exercises))") < webApp.indexOf("new WorkoutSession(exercises, loadState(), undefined, undefined, fitnessRatings)"),
     "An outdated runtime must reject the guard before it can migrate or write a session");
 });
 
@@ -1730,7 +1730,7 @@ test("Start activates an off-thread prepared workout on Android and web", () => 
   );
   assert.match(
     preparationWorker,
-    /new WorkoutSession\(exercises, state\)[\s\S]*prepareWorkout\(minutes, modifiers\)[\s\S]*postMessage/,
+    /new WorkoutSession\(exercises, state, undefined, undefined, fitnessRatings\)[\s\S]*prepareWorkout\(minutes, modifiers\)[\s\S]*postMessage/,
   );
   assert.match(
     webBuild,
@@ -1750,7 +1750,7 @@ test("prepared Android state retains its planner and cancellation survives rapid
   assert.match(background, /new PreparedWorkout\([\s\S]*preparationService\)/);
   assert.match(start, /prepared\.SessionService\.ActivatePreparedWorkout\(nextState\)/);
   assert.equal((start.match(/_sessionService = prepared\.SessionService;/g) ?? []).length, 2);
-  assert.match(webApp, /new WorkoutSession\(exerciseCatalog, prepared\.state\)/);
+  assert.match(webApp, /new WorkoutSession\(exerciseCatalog, prepared\.state, undefined, undefined, fitnessRatings\)/);
 });
 
 test("Android persistence rejects malformed stored shapes without crashing launch", async () => {
@@ -1894,11 +1894,11 @@ test("workout transport controls are functional and muscle labels stay hidden", 
   );
   assert.match(
     sessionService,
-    /Shuffle\(candidates\);[\s\S]*ShuffleCandidate selected = candidates\[0\]/,
+    /OrderByFitnessPreference\(state, candidates, candidate => candidate\.Exercise\);[\s\S]*ShuffleCandidate selected = candidates\[0\]/,
   );
   assert.match(
     workoutModule,
-    /this\.shuffle\(replacementCandidates\);[\s\S]*const selected = replacementCandidates\[0\]/,
+    /this\.orderByFitnessPreference\(replacementCandidates, candidate => candidate\.exercise\);[\s\S]*const selected = replacementCandidates\[0\]/,
   );
   assert.match(
     sessionService,

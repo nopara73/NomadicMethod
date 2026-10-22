@@ -4,6 +4,7 @@ self.addEventListener("message", (event) => {
   const {
     generation,
     exercises,
+    fitnessRatings,
     state,
     minutes,
     modifiers,
@@ -11,7 +12,7 @@ self.addEventListener("message", (event) => {
     currentWorkoutGroupId,
   } = event.data ?? {};
   try {
-    const session = new WorkoutSession(exercises, state);
+    const session = new WorkoutSession(exercises, state, undefined, undefined, fitnessRatings);
     if (mode === "reconfigure") {
       session.reconfigureActiveWorkout(modifiers, currentWorkoutGroupId);
       session.resizeActiveWorkout(minutes);

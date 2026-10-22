@@ -1,4 +1,6 @@
 import "./light-cadence.js";
+import { calculateFitnessProfile, roundFitnessLevel,
+  fitnessSelectionWeight, orderFitnessCandidates } from "./fitness-profile.js";
 
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
@@ -4431,6 +4433,7 @@ export class WorkoutSession {
     storedState = createDefaultState(),
     random = Math.random,
     nowProvider = () => Date.now(),
+    fitnessRatings = new Map(),
   ) {
     if (!Array.isArray(exercises)) {
       throw new TypeError("Exercise catalog must be an array.");
@@ -4444,6 +4447,7 @@ export class WorkoutSession {
     this.loadedStateVersion = this.state[SOURCE_STATE_VERSION] ?? this.state.version;
     this.random = random;
     this.nowProvider = nowProvider;
+    this.fitnessRatings = fitnessRatings;
     if (this.loadedStateVersion < SLOT_SCOPED_PREFERENCE_STATE_VERSION) {
       this.migrateSlotScopedPreferences();
     }
@@ -5421,7 +5425,7 @@ export class WorkoutSession {
       this.getExercisePhase(group),
     );
 
-    this.shuffle(replacementCandidates);
+    this.orderByFitnessPreference(replacementCandidates, candidate => candidate.exercise);
     const selected = replacementCandidates[0];
 
     for (const coveredGroup of selected.coveredGroups) {
@@ -6294,7 +6298,7 @@ export class WorkoutSession {
     const getSelectionPhase = (group) =>
       scheduledPhaseByGroupId.get(group.id) ??
         this.getProjectedSelectionPhase(group, groups.length);
-    this.shuffle(candidates);
+    if (this.fitnessRatings.size === 0) this.shuffle(candidates);
     const orderedScores = [...new Set(candidates.flatMap((exercise) => groups
       .filter((group) => isAllowed(exercise, group))
       .map((group) => this.getSelectionScore(
@@ -6537,6 +6541,14 @@ export class WorkoutSession {
       }
     }
 
+    if (this.fitnessRatings.size > 0) {
+      const eligibleRoots = [...new Set(atomicCandidates.map(candidate => candidate.exerciseId))]
+        .map(id => this.exercisesById.get(id));
+      this.orderByFitnessPreference(eligibleRoots);
+      const tieOrder = new Map(eligibleRoots.map((exercise, index) => [exercise.id, index]));
+      for (const candidate of atomicCandidates) candidate.tieOrder = tieOrder.get(candidate.exerciseId);
+      atomicCandidates.sort((a, b) => a.tieOrder - b.tieOrder);
+    }
     const solution = solveAtomicSequenceLineup(
       groups.length,
       this.state.activeWorkoutMinutes - reservedRepeatMinutes,
@@ -6637,6 +6649,10 @@ export class WorkoutSession {
     );
     const finalists = ownershipPreferred.filter((exercise) =>
       getCanonicalCoverage(exercise, group) === widestCoverage);
+    if (this.fitnessRatings.size > 0) {
+      this.orderByFitnessPreference(finalists);
+      return finalists[0];
+    }
     const index = Math.min(finalists.length - 1, Math.floor(this.random() * finalists.length));
     return finalists[Math.max(0, index)];
   }
@@ -6680,6 +6696,21 @@ export class WorkoutSession {
       );
       [items[index], items[randomIndex]] = [items[randomIndex], items[index]];
     }
+  }
+
+  orderByFitnessPreference(candidates, exercise = item => item) {
+    if (this.fitnessRatings.size === 0) {
+      this.shuffle(candidates);
+      return;
+    }
+    const profile = calculateFitnessProfile(
+      this.catalogExercises, this.state, this.fitnessRatings).map(roundFitnessLevel);
+    const ordered = orderFitnessCandidates(candidates,
+      item => getSessionMovementId(exercise(item)),
+      item => Math.max(...this.getSequenceExercises(exercise(item)).map(member =>
+        fitnessSelectionWeight(this.fitnessRatings.get(member.id), profile))),
+      this.random);
+    candidates.splice(0, candidates.length, ...ordered);
   }
 
   isCompatibleWithModifiers(exercise, modifiers) {

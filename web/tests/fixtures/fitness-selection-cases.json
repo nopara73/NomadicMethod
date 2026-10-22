@@ -1,0 +1,641 @@
+{
+  "rounding": [
+    {
+      "level": 0,
+      "rounded": 0
+    },
+    {
+      "level": 1,
+      "rounded": 1
+    },
+    {
+      "level": 1.49,
+      "rounded": 1
+    },
+    {
+      "level": 1.5,
+      "rounded": 2
+    },
+    {
+      "level": 2.4,
+      "rounded": 2
+    },
+    {
+      "level": 2.5,
+      "rounded": 3
+    },
+    {
+      "level": 2.6,
+      "rounded": 3
+    },
+    {
+      "level": 4.49,
+      "rounded": 4
+    },
+    {
+      "level": 4.5,
+      "rounded": 5
+    },
+    {
+      "level": 5,
+      "rounded": 5
+    }
+  ],
+  "cases": [
+    {
+      "name": "distance 0 retains positive weight",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          1
+        ]
+      ],
+      "weight": 1
+    },
+    {
+      "name": "distance 1 retains positive weight",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          2
+        ]
+      ],
+      "weight": 0.5
+    },
+    {
+      "name": "distance 2 retains positive weight",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          3
+        ]
+      ],
+      "weight": 0.25
+    },
+    {
+      "name": "distance 3 retains positive weight",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          4
+        ]
+      ],
+      "weight": 0.125
+    },
+    {
+      "name": "distance 4 retains positive weight",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          5
+        ]
+      ],
+      "weight": 0.0625
+    },
+    {
+      "name": "half-up average matches upper level",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2.5
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          3
+        ]
+      ],
+      "weight": 1
+    },
+    {
+      "name": "below half rounds down",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2.4
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          3
+        ]
+      ],
+      "weight": 0.5
+    },
+    {
+      "name": "lower and upper neighbors are symmetric",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          1,
+          3
+        ]
+      ],
+      "weight": 0.5
+    },
+    {
+      "name": "explicit range contains current level",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "weight": 1
+    },
+    {
+      "name": "noncontiguous set does not infer its missing middle",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          1,
+          3,
+          4,
+          5
+        ],
+        []
+      ],
+      "weight": 0.5
+    },
+    {
+      "name": "one match wins despite another characteristic being distant",
+      "profile": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          2
+        ],
+        [],
+        [],
+        []
+      ],
+      "weight": 1
+    },
+    {
+      "name": "additional matches do not multiply weight",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        2
+      ],
+      "levels": [
+        [],
+        [
+          2
+        ],
+        [],
+        [],
+        [],
+        [],
+        [
+          2
+        ],
+        [],
+        [],
+        [
+          2
+        ]
+      ],
+      "weight": 1
+    },
+    {
+      "name": "unknown axis and blank cells cannot create a zero match",
+      "profile": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "weight": 0.0625
+    },
+    {
+      "name": "ratings only on unknown user axes are neutral",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          5
+        ],
+        []
+      ],
+      "weight": 1
+    },
+    {
+      "name": "entirely empty ratings are neutral",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "weight": 1
+    },
+    {
+      "name": "absent rating entry is neutral",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": null,
+      "weight": 1
+    },
+    {
+      "name": "no heart evidence gives neutral weight",
+      "profile": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [
+          1
+        ]
+      ],
+      "weight": 1
+    }
+  ],
+  "ordering": [
+    {
+      "name": "weighted family draws",
+      "candidates": [
+        {
+          "id": 1,
+          "movementId": 10,
+          "weight": 1
+        },
+        {
+          "id": 2,
+          "movementId": 20,
+          "weight": 0.5
+        },
+        {
+          "id": 3,
+          "movementId": 30,
+          "weight": 0.25
+        }
+      ],
+      "draws": [
+        0.8,
+        0.2,
+        0.1
+      ],
+      "expected": [
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "name": "family uses maximum weight and keeps its variants together",
+      "candidates": [
+        {
+          "id": 101,
+          "movementId": 10,
+          "weight": 0.25
+        },
+        {
+          "id": 102,
+          "movementId": 10,
+          "weight": 1
+        },
+        {
+          "id": 201,
+          "movementId": 20,
+          "weight": 0.5
+        }
+      ],
+      "draws": [
+        0.2,
+        0.9,
+        0.1,
+        0.4
+      ],
+      "expected": [
+        102,
+        101,
+        201
+      ]
+    },
+    {
+      "name": "equal keys retain stable input order",
+      "candidates": [
+        {
+          "id": 1,
+          "movementId": 10,
+          "weight": 1
+        },
+        {
+          "id": 2,
+          "movementId": 20,
+          "weight": 1
+        }
+      ],
+      "draws": [
+        0.5,
+        0.5
+      ],
+      "expected": [
+        1,
+        2
+      ]
+    }
+  ]
+}

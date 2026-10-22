@@ -252,7 +252,7 @@ async function bootstrap() {
         findElevationCatalogDeficiencies(exercises).length > 0) {
       throw new Error("Catalog does not satisfy workout invariants.");
     }
-    session = new WorkoutSession(exercises, loadState());
+    session = new WorkoutSession(exercises, loadState(), undefined, undefined, fitnessRatings);
     session.restoreAfterReopen();
     const pendingRestGroup = session.getPendingRestGroup();
     const pendingMovementGroup = session.getPendingMovementGroup();
@@ -1014,7 +1014,7 @@ function endActiveWorkout() {
   cancelWorkoutPreparation();
   const state = cloneWorkoutState(session.state);
   try {
-    const next = new WorkoutSession(exerciseCatalog, state);
+    const next = new WorkoutSession(exerciseCatalog, state, undefined, undefined, fitnessRatings);
     next.endActiveWorkout();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next.state));
     session = next;
@@ -1133,6 +1133,9 @@ function queueWorkoutPreparation(
         const preparedSession = new WorkoutSession(
           exerciseCatalog,
           cloneWorkoutState(session.state),
+          undefined,
+          undefined,
+          fitnessRatings,
         );
         if (isReconfiguration) {
           preparedSession.reconfigureActiveWorkout(
@@ -1193,6 +1196,7 @@ function queueWorkoutPreparation(
     workoutPreparationWorker.postMessage({
       generation,
       exercises: exerciseCatalog,
+      fitnessRatings,
       state: session.state,
       minutes,
       modifiers,
@@ -1283,7 +1287,7 @@ async function startWorkout() {
       return;
     }
     cancelWorkoutPreparation();
-    const nextSession = new WorkoutSession(exerciseCatalog, prepared.state);
+    const nextSession = new WorkoutSession(exerciseCatalog, prepared.state, undefined, undefined, fitnessRatings);
     if (prepared.isReconfiguration) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSession.state));
       session = nextSession;

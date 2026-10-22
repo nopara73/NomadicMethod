@@ -9,6 +9,45 @@ export const FITNESS_LABELS = Object.freeze([
 export const FITNESS_MAXIMUM_LEVEL = 5;
 export const FITNESS_WEB_BOUNDARY_LEVEL = 4;
 
+export function roundFitnessLevel(level) {
+  return !Number.isFinite(level) || level <= 0 ? 0
+    : Math.min(FITNESS_MAXIMUM_LEVEL, Math.max(1, Math.floor(level + 0.5)));
+}
+
+export function fitnessSelectionWeight(levels, roundedProfile) {
+  let distance = Infinity;
+  levels?.forEach((set, dimension) => {
+    const target = roundedProfile[dimension];
+    if (!(target > 0)) return;
+    for (const level of set) distance = Math.min(distance, Math.abs(level - target));
+  });
+  return Number.isFinite(distance) ? 2 ** -distance : 1;
+}
+
+export function orderFitnessCandidates(candidates, movementId, weight, random) {
+  const key = value => {
+    const unit = random();
+    if (!Number.isFinite(value) || value <= 0 ||
+        !Number.isFinite(unit) || unit < 0 || unit >= 1)
+      throw new RangeError("Invalid weighted selection draw.");
+    return -Math.log(1 - unit) / value;
+  };
+  const families = new Map();
+  candidates.forEach((item, index) => {
+    const id = movementId(item);
+    if (!families.has(id)) families.set(id, []);
+    families.get(id).push({ item, index, weight: weight(item) });
+  });
+  return [...families.values()].map(variants => {
+    const familyKey = key(Math.max(...variants.map(entry => entry.weight)));
+    const ordered = variants.length === 1 ? variants
+      : variants.map(entry => ({ ...entry, key: key(entry.weight) }))
+        .sort((a, b) => a.key - b.key || a.index - b.index);
+    return { key: familyKey, index: variants[0].index, variants: ordered };
+  }).sort((a, b) => a.key - b.key || a.index - b.index)
+    .flatMap(family => family.variants.map(entry => entry.item));
+}
+
 export function fitnessProfileRadiusFraction(level) {
   return level / FITNESS_MAXIMUM_LEVEL;
 }
@@ -70,7 +109,7 @@ export class FitnessProfileView {
   }
 
   setLevels(values) {
-    this.values = [...values];
+    this.values = values.map(roundFitnessLevel);
     this.render();
   }
 
@@ -110,7 +149,7 @@ export class FitnessProfileView {
     svg.style.height = height + "px";
     const description = FITNESS_LABELS.map((label, index) =>
       label.join(" ") + ": " + (this.values[index] > 0
-        ? this.values[index].toLocaleString(undefined, { maximumFractionDigits: 2 }) + " of 5"
+        ? this.values[index].toLocaleString() + " of 5"
         : "no qualifying hearted exercise")).join("; ");
     svg.append(make("desc", {}, description));
     const vertices = this.values.map((value, index) =>

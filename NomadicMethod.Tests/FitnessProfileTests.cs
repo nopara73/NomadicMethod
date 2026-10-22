@@ -7,7 +7,7 @@ namespace NomadicMethod.Tests;
 public sealed class FitnessProfileTests
 {
     [Fact]
-    public void ExpertLevelExtendsBeyondTheWebWithoutRoundingFractionalLevels()
+    public void RawProfileFractionsRemainPreciseAndExpertLevelExtendsBeyondTheWeb()
     {
         using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-profile-cases.json")));

@@ -2,16 +2,25 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
-  calculateFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction } from "../fitness-profile.js";
+  calculateFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
-test("expert level extends beyond the web without rounding fractional levels", () => {
+test("raw profile fractions remain precise and expert level extends beyond the web", () => {
   assert.equal(FITNESS_MAXIMUM_LEVEL, fixture.chartScale.maximumLevel);
   assert.equal(FITNESS_WEB_BOUNDARY_LEVEL, fixture.chartScale.webBoundaryLevel);
   for (const entry of fixture.chartScale.cases)
     assert.ok(Math.abs(fitnessProfileRadiusFraction(entry.level) - entry.radiusFraction) < 1e-12);
   assert.ok(fitnessProfileRadiusFraction(5) > fitnessProfileRadiusFraction(4));
+});
+
+test("display and matching share half-up rounding while raw profiles remain fractional", () => {
+  const cases = JSON.parse(read("./fixtures/fitness-selection-cases.json"));
+  for (const entry of cases.rounding)
+    assert.equal(roundFitnessLevel(entry.level), entry.rounded);
+  const fractional = fixture.cases.find(entry => entry.expected.some(value => value % 1));
+  assert.ok(fractional);
+  assert.ok(fractional.expected.some(value => value !== roundFitnessLevel(value)));
 });
 
 test("native and web use the app palette and fixed-size labels for the larger spiderweb", () => {

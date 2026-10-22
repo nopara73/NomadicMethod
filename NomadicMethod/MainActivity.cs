@@ -272,12 +272,12 @@ public partial class MainActivity : Activity
         var database = new SqliteExerciseDatabase(context);
         try
         {
-            var sessionService = new ExerciseSessionService(database.Exercises);
             using Stream reactionSource = context.Assets!.Open("reaction_drills.json");
             IReadOnlyDictionary<int, ReactionPlan> reactionPlans =
                 ReactionDrill.Load(reactionSource, database.Exercises);
             using Stream fitnessSource = context.Assets!.Open("fitness_ratings.json");
             IReadOnlyDictionary<int, int[][]> fitnessRatings = FitnessProfilePolicy.Load(fitnessSource);
+            var sessionService = new ExerciseSessionService(database.Exercises, fitnessRatings: fitnessRatings);
             sessionService.RestoreAfterReopen(_state);
             RecoverPendingScoreUpdate(database, _state);
 
@@ -411,6 +411,7 @@ public partial class MainActivity : Activity
             WorkoutJsonContext.Default.WorkoutState);
         OuraRecoverySnapshot? recoveryContext = _state.OuraRecovery;
         IReadOnlyList<Exercise> exercises = _exerciseDatabase.Exercises;
+        IReadOnlyDictionary<int, int[][]> fitnessRatings = _fitnessRatings;
         _workoutPreparationTask = Task.Run(() =>
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -420,7 +421,7 @@ public partial class MainActivity : Activity
                 ?? throw new InvalidOperationException(
                     "Unable to clone the workout state for preparation.");
             preparedState.OuraRecovery = recoveryContext;
-            var preparationService = new ExerciseSessionService(exercises);
+            var preparationService = new ExerciseSessionService(exercises, fitnessRatings: fitnessRatings);
             if (isReconfiguration)
             {
                 preparationService.ReconfigureActiveWorkout(

@@ -63,12 +63,14 @@ public sealed partial class ExerciseSessionService
     private readonly Random _random;
     private readonly Func<DateTimeOffset> _utcNowProvider;
     private readonly TimeZoneInfo _localTimeZone;
+    private readonly IReadOnlyDictionary<int, int[][]> _fitnessRatings;
 
     public ExerciseSessionService(
         IReadOnlyList<Exercise> exercises,
         Random? random = null,
         Func<DateTimeOffset>? utcNowProvider = null,
-        TimeZoneInfo? localTimeZone = null)
+        TimeZoneInfo? localTimeZone = null,
+        IReadOnlyDictionary<int, int[][]>? fitnessRatings = null)
     {
         ArgumentNullException.ThrowIfNull(exercises);
         _catalogExercises = exercises;
@@ -76,6 +78,7 @@ public sealed partial class ExerciseSessionService
         _random = random ?? Random.Shared;
         _utcNowProvider = utcNowProvider ?? (() => DateTimeOffset.UtcNow);
         _localTimeZone = localTimeZone ?? TimeZoneInfo.Local;
+        _fitnessRatings = fitnessRatings ?? new Dictionary<int, int[][]>();
     }
 
     // Every public state operation crosses this boundary. A service can be
@@ -984,7 +987,7 @@ public sealed partial class ExerciseSessionService
             rejectedRoot,
             GetExercisePhase(group));
 
-        Shuffle(candidates);
+        OrderByFitnessPreference(state, candidates, candidate => candidate.Exercise);
         ShuffleCandidate selected = candidates[0];
 
         foreach (WorkoutGroup coveredGroup in selected.CoveredGroups)
@@ -1822,7 +1825,7 @@ public sealed partial class ExerciseSessionService
                 out WorkoutExercisePhase scheduledPhase)
                 ? scheduledPhase
                 : GetProjectedSelectionPhase(state, group, groups.Count);
-        Shuffle(candidates);
+        if (_fitnessRatings.Count == 0) Shuffle(candidates);
 
         int[] orderedScores = candidates
             .SelectMany(exercise => groups
@@ -2134,6 +2137,17 @@ public sealed partial class ExerciseSessionService
             }
         }
 
+        if (_fitnessRatings.Count > 0)
+        {
+            // Only complete placements that fit can affect a family's weight.
+            List<Exercise> eligibleRoots = atomicCandidates.Select(candidate =>
+                _exercisesById[candidate.ExerciseId]).DistinctBy(exercise => exercise.Id).ToList();
+            OrderByFitnessPreference(state, eligibleRoots, exercise => exercise);
+            Dictionary<int, int> tieOrder = eligibleRoots.Select((exercise, index) => (exercise.Id, index))
+                .ToDictionary(entry => entry.Id, entry => entry.index);
+            atomicCandidates = atomicCandidates.Select(candidate => candidate with
+                { TieOrder = tieOrder[candidate.ExerciseId] }).OrderBy(candidate => candidate.TieOrder).ToList();
+        }
         AtomicSequenceLineup? solution = AtomicSequenceLineupSolver.Solve(
             groups.Count,
             state.ActiveWorkoutMinutes - reservedRepeatMinutes,
@@ -2452,6 +2466,27 @@ public sealed partial class ExerciseSessionService
             int swapIndex = _random.Next(index + 1);
             (items[index], items[swapIndex]) = (items[swapIndex], items[index]);
         }
+    }
+
+    private void OrderByFitnessPreference<T>(
+        WorkoutState state, List<T> candidates, Func<T, Exercise> exercise)
+    {
+        if (_fitnessRatings.Count == 0)
+        {
+            Shuffle(candidates);
+            return;
+        }
+        int[] profile = FitnessProfilePolicy.Calculate(
+                _catalogExercises, state, _fitnessRatings)
+            .Select(FitnessProfilePolicy.RoundLevel).ToArray();
+        T[] ordered = FitnessSelectionPolicy.Order(candidates,
+            item => WorkoutModifierPolicy.GetSessionMovementId(exercise(item)),
+            item => GetSequenceExercises(exercise(item)).Max(member =>
+                FitnessSelectionPolicy.Weight(
+                    _fitnessRatings.GetValueOrDefault(member.Id), profile)),
+            _random.NextDouble);
+        candidates.Clear();
+        candidates.AddRange(ordered);
     }
 
     private bool IsSavedSelectionValid(

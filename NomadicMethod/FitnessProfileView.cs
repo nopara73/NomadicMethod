@@ -20,11 +20,11 @@ public sealed class FitnessProfileView : View
 
     public void SetLevels(double[] levels)
     {
-        _levels = levels.ToArray();
+        _levels = levels.Select(level => (double)FitnessProfilePolicy.RoundLevel(level)).ToArray();
         ContentDescription = "Fitness profile from hearted exercises. " +
             string.Join("; ", FitnessProfilePolicy.Labels.Select((label, index) =>
-                string.Join(" ", label) + ": " + (levels[index] > 0
-                    ? levels[index].ToString("0.##") + " of 5"
+                string.Join(" ", label) + ": " + (_levels[index] > 0
+                    ? _levels[index].ToString("0") + " of 5"
                     : "no qualifying hearted exercise")));
         Invalidate();
     }

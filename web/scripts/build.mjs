@@ -59,10 +59,15 @@ const lightCadenceSource = await readFile(path.join(webRoot, "light-cadence.js")
 const lightCadenceOutputName = fingerprintedName("light-cadence", "js", lightCadenceSource);
 await writeFile(path.join(outputRoot, lightCadenceOutputName), lightCadenceSource, "utf8");
 const workoutSource = (await readFile(path.join(webRoot, "workout.js"), "utf8"))
-  .replace('./light-cadence.js', `./${lightCadenceOutputName}`);
+  .replace('./light-cadence.js', `./${lightCadenceOutputName}`)
+  .replace('./fitness-profile.js', `./${moduleOutputs.get('fitness-profile')}`);
 if (!workoutSource.includes(`./${lightCadenceOutputName}`) ||
     workoutSource.includes('./light-cadence.js')) {
   throw new Error("Could not content-address the shared Light cadence policy.");
+}
+if (!workoutSource.includes(moduleOutputs.get('fitness-profile')) ||
+    workoutSource.includes('./fitness-profile.js')) {
+  throw new Error("Could not content-address the shared fitness policy.");
 }
 const workoutOutputName = fingerprintedName("workout", "js", workoutSource);
 await writeFile(path.join(outputRoot, workoutOutputName), workoutSource, "utf8");

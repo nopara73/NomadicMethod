@@ -9,6 +9,11 @@ public static class FitnessProfilePolicy
     public const int MaximumLevel = 5;
     public const int WebBoundaryLevel = 4;
 
+    // Preserve the unrounded mean in the profile; display and matching share
+    // explicit half-up rounding rather than platform-specific midpoint rules.
+    public static int RoundLevel(double level) => !double.IsFinite(level) || level <= 0
+        ? 0 : (int)Math.Clamp(Math.Floor(level + 0.5), 1, MaximumLevel);
+
     // Reserve the full expert extent; the drawn web stops one level inside it.
     public static double ChartRadiusFraction(double level) => level / MaximumLevel;
 
