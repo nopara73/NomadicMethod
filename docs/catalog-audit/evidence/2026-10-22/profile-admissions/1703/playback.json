@@ -1,0 +1,65 @@
+{
+  "id": 1703,
+  "name": "Crow Hold",
+  "scope": "Synthetic isolated workout state; actual product UI and packaged runtime assets. The phase clock was advanced between inspected boundaries, never used as evidence of a performed workout. Moving demonstrations played at normal speed.",
+  "ready": {
+    "name": "Crow Hold",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "move": {
+    "name": "Crow Hold",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "rest": {
+    "name": "Crow Hold",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  }
+}

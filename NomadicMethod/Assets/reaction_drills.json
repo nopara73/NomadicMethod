@@ -339,6 +339,11 @@
       "protocol": "ContextChoice"
     },
     {
+      "exerciseId": 1621,
+      "familyId": "arm",
+      "protocol": "Initiation"
+    },
+    {
       "exerciseId": 1622,
       "familyId": "arm",
       "protocol": "TwoChoice"

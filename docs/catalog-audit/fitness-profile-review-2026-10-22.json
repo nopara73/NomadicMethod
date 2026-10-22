@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 89,
+  "scope": "Six new records only. Prior reviews and all 884 existing catalog records/ratings remain intact.",
+  "entries": [
+    {
+      "id": 1621,
+      "metadataSha256": "120f058aa23c8ac356cb940218d3ab08ba7bd10fde80b1ca9e0426916306a801",
+      "assets": {
+        "exercise_videos/exercise_1621.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
+        "reaction_drills.json": "c37ccf00cc81dc37ab59e27fc75c672bec075f2ce50bc9b1dbf48a63f36570d0",
+        "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+        "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+      },
+      "reviewedAt": "2026-10-22T10:04:26.806797+00:00",
+      "method": "Actual web workout UI with the canonical Android packaged media and explicitly labelled isolated synthetic state; normal-rate movie playback and accelerated phase-boundary inspection. Source timelines and curated static targets reviewed separately. Native compilation, parity, tests and physical-device delivery are separate checks.",
+      "observedAction": "One known standing arm-raise pattern follows an unpredictable numbered cue. The cue appears before the real response video; no correct demonstration is shown during the decision window. The single response is fully downloaded and decoded first. It shares physical family 266.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/ready.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/move.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/rest.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/prompt.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/feedback.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1621/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One known standing arm-raise pattern follows an unpredictable numbered cue. The cue appears before the real response video; no correct demonstration is shown during the decision window. The single response is fully downloaded and decoded first. It shares physical family 266. The primary target, material secondary training claims, muscular demand, sides, floor contacts and all modifier classifications were checked against the actual task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Moving entries retain complete clean repetitions/attempts; their full packaged movies were reviewed at normal speed. Static entries retain their real entry-to-target timeline and use the exact reviewed target in the actual workout."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Source timelines, final runtime contact sheets and actual workout captures retain the complete athlete, working limbs, supporting hands/feet and any head or knee contact. No essential action is obscured."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Only the same natural movement resets at the loop boundary. Holds settle on their reviewed target; no reversed motion, generated transition, hidden assistance or unrelated cycle is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The source timeline is not stretched. Packaged media uses 20 fps at original elapsed speed. Complete moving demonstrations played at playbackRate 1; static images are identified as static. The accelerated QA phase clock is separate from video playback."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "One-arm push-ups include two complete arm blocks and a verified mirrored second demonstration. Bilateral holds, the press and the alternating arm-raise response require no additional independent side or identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Every task remains planted. Entry into the hand support, inversion or an in-place step-down is intrinsic and does not require a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving repetition or reaction task, so a static target is not applicable."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The admitted sources use the floor or standing feet only; no bars, parallettes, wall or elevation are inferred. Floor, cushioning/traction, clothing, Silence and Shy gates follow the actual contact/impact task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
+        }
+      }
+    },
+    {
+      "id": 1701,
+      "metadataSha256": "7fdcceb9e7c0d40a868843806c1750cbac0ad7d1c8551753b92fed83e162370c",
+      "assets": {
+        "exercise_videos/exercise_1701.mp4": "3c1a70387b2012a9d06e7b510efaf2e3df087026a8cfa3455c5c2ffada663e2f"
+      },
+      "reviewedAt": "2026-10-22T10:04:26.819351+00:00",
+      "method": "Actual web workout UI with the canonical Android packaged media and explicitly labelled isolated synthetic state; normal-rate movie playback and accelerated phase-boundary inspection. Source timelines and curated static targets reviewed separately. Native compilation, parity, tests and physical-device delivery are separate checks.",
+      "observedAction": "A real athlete completes floor push-ups on one hand with a wide two-foot base and the free arm behind the back. Both complete arm blocks appear, with a mirrored second demonstration and no Keep after the first block. Chest and elbow extension receive direct demanding work.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1701/ready.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1701/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1701/move.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1701/rest.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1701/second-arm.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1701/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "A real athlete completes floor push-ups on one hand with a wide two-foot base and the free arm behind the back. Both complete arm blocks appear, with a mirrored second demonstration and no Keep after the first block. Chest and elbow extension receive direct demanding work. The primary target, material secondary training claims, muscular demand, sides, floor contacts and all modifier classifications were checked against the actual task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Moving entries retain complete clean repetitions/attempts; their full packaged movies were reviewed at normal speed. Static entries retain their real entry-to-target timeline and use the exact reviewed target in the actual workout."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Source timelines, final runtime contact sheets and actual workout captures retain the complete athlete, working limbs, supporting hands/feet and any head or knee contact. No essential action is obscured."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Only the same natural movement resets at the loop boundary. Holds settle on their reviewed target; no reversed motion, generated transition, hidden assistance or unrelated cycle is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The source timeline is not stretched. Packaged media uses 20 fps at original elapsed speed. Complete moving demonstrations played at playbackRate 1; static images are identified as static. The accelerated QA phase clock is separate from video playback."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "One-arm push-ups include two complete arm blocks and a verified mirrored second demonstration. Bilateral holds, the press and the alternating arm-raise response require no additional independent side or identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Every task remains planted. Entry into the hand support, inversion or an in-place step-down is intrinsic and does not require a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving repetition or reaction task, so a static target is not applicable."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The admitted sources use the floor or standing feet only; no bars, parallettes, wall or elevation are inferred. Floor, cushioning/traction, clothing, Silence and Shy gates follow the actual contact/impact task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
+        }
+      }
+    },
+    {
+      "id": 1702,
+      "metadataSha256": "7972a2e7068dea6cf07762609ea05e1bc666b286c2afc985ebc4556af474b96b",
+      "assets": {
+        "exercise_videos/exercise_1702.mp4": "5fd309bc21abe4e20e8cafd228d4c6921f852318f5bd1a91283069f8aeed6602",
+        "exercise_hold_frames/exercise_1702.png": "0df70768428cd5e4a1eec5dafb9181fce0fd8c49e07ab7a781423fce684b5e40"
+      },
+      "reviewedAt": "2026-10-22T10:04:26.830550+00:00",
+      "method": "Actual web workout UI with the canonical Android packaged media and explicitly labelled isolated synthetic state; normal-rate movie playback and accelerated phase-boundary inspection. Source timelines and curated static targets reviewed separately. Native compilation, parity, tests and physical-device delivery are separate checks.",
+      "observedAction": "A real athlete lifts both feet into a straight-arm floor tuck planche. Knees remain tucked and unsupported by an elbow shelf. Both palms carry the body. The actual workout displays a reviewed stable hold frame with the complete body visible.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1702/ready.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1702/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1702/move.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1702/rest.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1702/hold.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1702/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "A real athlete lifts both feet into a straight-arm floor tuck planche. Knees remain tucked and unsupported by an elbow shelf. Both palms carry the body. The actual workout displays a reviewed stable hold frame with the complete body visible. The primary target, material secondary training claims, muscular demand, sides, floor contacts and all modifier classifications were checked against the actual task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Moving entries retain complete clean repetitions/attempts; their full packaged movies were reviewed at normal speed. Static entries retain their real entry-to-target timeline and use the exact reviewed target in the actual workout."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Source timelines, final runtime contact sheets and actual workout captures retain the complete athlete, working limbs, supporting hands/feet and any head or knee contact. No essential action is obscured."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Only the same natural movement resets at the loop boundary. Holds settle on their reviewed target; no reversed motion, generated transition, hidden assistance or unrelated cycle is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The source timeline is not stretched. Packaged media uses 20 fps at original elapsed speed. Complete moving demonstrations played at playbackRate 1; static images are identified as static. The accelerated QA phase clock is separate from video playback."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "One-arm push-ups include two complete arm blocks and a verified mirrored second demonstration. Bilateral holds, the press and the alternating arm-raise response require no additional independent side or identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Every task remains planted. Entry into the hand support, inversion or an in-place step-down is intrinsic and does not require a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual workout displays the exact reviewed stable posture, with the complete support and body lever visible."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The admitted sources use the floor or standing feet only; no bars, parallettes, wall or elevation are inferred. Floor, cushioning/traction, clothing, Silence and Shy gates follow the actual contact/impact task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
+        }
+      }
+    },
+    {
+      "id": 1703,
+      "metadataSha256": "9828110669da6ee0ccd4258439b79c7a96df1b132c6a04aa8a2b76f953d43d86",
+      "assets": {
+        "exercise_videos/exercise_1703.mp4": "65299bb43211806746be23f7320e7bc5c08235a624a594e73f0f5c5fc08be4ba",
+        "exercise_hold_frames/exercise_1703.png": "67c4e9cae49025fd8d7a35a1a9dd276bfb5e7b959e7d788459a702b5b7d91734"
+      },
+      "reviewedAt": "2026-10-22T10:04:26.841200+00:00",
+      "method": "Actual web workout UI with the canonical Android packaged media and explicitly labelled isolated synthetic state; normal-rate movie playback and accelerated phase-boundary inspection. Source timelines and curated static targets reviewed separately. Native compilation, parity, tests and physical-device delivery are separate checks.",
+      "observedAction": "A real athlete balances in crow with bent elbows, knees supported above the elbows and both feet lifted. The actual workout displays that exact hands-only supported-knee posture, distinct from the straight-arm tuck planche.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1703/ready.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1703/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1703/move.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1703/rest.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1703/hold.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1703/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "A real athlete balances in crow with bent elbows, knees supported above the elbows and both feet lifted. The actual workout displays that exact hands-only supported-knee posture, distinct from the straight-arm tuck planche. The primary target, material secondary training claims, muscular demand, sides, floor contacts and all modifier classifications were checked against the actual task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Moving entries retain complete clean repetitions/attempts; their full packaged movies were reviewed at normal speed. Static entries retain their real entry-to-target timeline and use the exact reviewed target in the actual workout."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Source timelines, final runtime contact sheets and actual workout captures retain the complete athlete, working limbs, supporting hands/feet and any head or knee contact. No essential action is obscured."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Only the same natural movement resets at the loop boundary. Holds settle on their reviewed target; no reversed motion, generated transition, hidden assistance or unrelated cycle is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The source timeline is not stretched. Packaged media uses 20 fps at original elapsed speed. Complete moving demonstrations played at playbackRate 1; static images are identified as static. The accelerated QA phase clock is separate from video playback."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "One-arm push-ups include two complete arm blocks and a verified mirrored second demonstration. Bilateral holds, the press and the alternating arm-raise response require no additional independent side or identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Every task remains planted. Entry into the hand support, inversion or an in-place step-down is intrinsic and does not require a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual workout displays the exact reviewed stable posture, with the complete support and body lever visible."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The admitted sources use the floor or standing feet only; no bars, parallettes, wall or elevation are inferred. Floor, cushioning/traction, clothing, Silence and Shy gates follow the actual contact/impact task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
+        }
+      }
+    },
+    {
+      "id": 1704,
+      "metadataSha256": "13e4c792cc274f27614cb2604574fc4f13fddad7ee674751bb2e0d020e93bfbe",
+      "assets": {
+        "exercise_videos/exercise_1704.mp4": "ae363a80c8823a8d3b9df7aa809f6e7da240ff9654173185078316960f57187e",
+        "exercise_hold_frames/exercise_1704.png": "8ce5f695ac4c7659b33d08f624fc34d10d6b548184a34ec465a2cd9bddf4e034"
+      },
+      "reviewedAt": "2026-10-22T10:04:26.852502+00:00",
+      "method": "Actual web workout UI with the canonical Android packaged media and explicitly labelled isolated synthetic state; normal-rate movie playback and accelerated phase-boundary inspection. Source timelines and curated static targets reviewed separately. Native compilation, parity, tests and physical-device delivery are separate checks.",
+      "observedAction": "A real athlete enters from the floor and extends both joined legs into a full straight-arm horizontal planche with no foot support or apparatus. The actual workout hold frame shows the full long-lever posture. Feet, hands and knees occur in the packaged entry; head contact is absent.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1704/ready.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1704/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1704/move.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1704/rest.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1704/hold.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1704/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "A real athlete enters from the floor and extends both joined legs into a full straight-arm horizontal planche with no foot support or apparatus. The actual workout hold frame shows the full long-lever posture. Feet, hands and knees occur in the packaged entry; head contact is absent. The primary target, material secondary training claims, muscular demand, sides, floor contacts and all modifier classifications were checked against the actual task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Moving entries retain complete clean repetitions/attempts; their full packaged movies were reviewed at normal speed. Static entries retain their real entry-to-target timeline and use the exact reviewed target in the actual workout."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Source timelines, final runtime contact sheets and actual workout captures retain the complete athlete, working limbs, supporting hands/feet and any head or knee contact. No essential action is obscured."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Only the same natural movement resets at the loop boundary. Holds settle on their reviewed target; no reversed motion, generated transition, hidden assistance or unrelated cycle is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The source timeline is not stretched. Packaged media uses 20 fps at original elapsed speed. Complete moving demonstrations played at playbackRate 1; static images are identified as static. The accelerated QA phase clock is separate from video playback."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "One-arm push-ups include two complete arm blocks and a verified mirrored second demonstration. Bilateral holds, the press and the alternating arm-raise response require no additional independent side or identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Every task remains planted. Entry into the hand support, inversion or an in-place step-down is intrinsic and does not require a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual workout displays the exact reviewed stable posture, with the complete support and body lever visible."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The admitted sources use the floor or standing feet only; no bars, parallettes, wall or elevation are inferred. Floor, cushioning/traction, clothing, Silence and Shy gates follow the actual contact/impact task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
+        }
+      }
+    },
+    {
+      "id": 1705,
+      "metadataSha256": "4361c9244dfa6a48d626edf631b6e01274071837bc39249a54e6aa5bbadea612",
+      "assets": {
+        "exercise_videos/exercise_1705.mp4": "bb2c77cc8946c534635b47a866d871e34aaf048094b7524a675fb52acd3ae584"
+      },
+      "reviewedAt": "2026-10-22T10:04:26.862605+00:00",
+      "method": "Actual web workout UI with the canonical Android packaged media and explicitly labelled isolated synthetic state; normal-rate movie playback and accelerated phase-boundary inspection. Source timelines and curated static targets reviewed separately. Native compilation, parity, tests and physical-device delivery are separate checks.",
+      "observedAction": "A real athlete uses a bent-arm floor press, including light head contact, to reach and hold a freestanding handstand before a controlled step-down. This is not labelled a straight-arm press. The whole body stays framed, and the complete 13-second natural demonstration plays at 1x.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1705/ready.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1705/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1705/move.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1705/rest.png",
+        "docs/catalog-audit/evidence/2026-10-22/profile-admissions/1705/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "A real athlete uses a bent-arm floor press, including light head contact, to reach and hold a freestanding handstand before a controlled step-down. This is not labelled a straight-arm press. The whole body stays framed, and the complete 13-second natural demonstration plays at 1x. The primary target, material secondary training claims, muscular demand, sides, floor contacts and all modifier classifications were checked against the actual task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Moving entries retain complete clean repetitions/attempts; their full packaged movies were reviewed at normal speed. Static entries retain their real entry-to-target timeline and use the exact reviewed target in the actual workout."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Source timelines, final runtime contact sheets and actual workout captures retain the complete athlete, working limbs, supporting hands/feet and any head or knee contact. No essential action is obscured."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Only the same natural movement resets at the loop boundary. Holds settle on their reviewed target; no reversed motion, generated transition, hidden assistance or unrelated cycle is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The source timeline is not stretched. Packaged media uses 20 fps at original elapsed speed. Complete moving demonstrations played at playbackRate 1; static images are identified as static. The accelerated QA phase clock is separate from video playback."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "One-arm push-ups include two complete arm blocks and a verified mirrored second demonstration. Bilateral holds, the press and the alternating arm-raise response require no additional independent side or identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Every task remains planted. Entry into the hand support, inversion or an in-place step-down is intrinsic and does not require a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving repetition or reaction task, so a static target is not applicable."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The admitted sources use the floor or standing feet only; no bars, parallettes, wall or elevation are inferred. Floor, cushioning/traction, clothing, Silence and Shy gates follow the actual contact/impact task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
+        }
+      }
+    }
+  ]
+}

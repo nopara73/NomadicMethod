@@ -186,4 +186,9 @@
     1524 = 50
     1525 = 50
     1540 = 50
+
+    # Profile contributor admissions, 22 October 2026.
+    1702 = 65
+    1703 = 60
+    1704 = 95
 }

@@ -503,7 +503,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 88;
+export const CURRENT_CATALOG_REVISION = 89;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -4378,8 +4378,10 @@ export function getSequenceBlockCount(exercise, minutes) {
     ? 1 : exercise.sequenceBlocks.length;
 }
 
+export const PROFILE_CONTRIBUTOR_EXERCISE_IDS = Object.freeze([1621, 1701, 1702, 1703, 1704, 1705]);
 export const FITNESS_COVERAGE_EXERCISE_IDS = Object.freeze([1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644]);
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
+  if (activeRevision > 0 && activeRevision < 89) catalog = catalog.filter(exercise => !PROFILE_CONTRIBUTOR_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 88) catalog = catalog.filter(exercise => !FITNESS_COVERAGE_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 85)
     catalog = catalog.filter(exercise => !FLOOR_LOCOMOTION_EXERCISE_IDS.includes(exercise.id));

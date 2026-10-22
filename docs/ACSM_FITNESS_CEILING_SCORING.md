@@ -82,12 +82,14 @@ resistance removed the need to source specialist strength/endurance exercises.
 The selected release adds 16 actual movement records and 15 choice protocols,
 rather than the earlier pending 48-record package. Five of the movements also
 provide advanced balance, and three supply the remaining specialist-coordination
-claims. The full catalog contains 884 records at revision 88.
+claims. Revision 88 contains 884 records; revision 89 adds the six reviewed tasks
+described below, bringing the catalog to 890 records.
 
 The existing 30 stop/go records retain their original playback and supply
 reaction levels `[1,2]`. The new five physical response families each provide
 two-choice `[1,3]`, four-choice `[1,3,4]`, and context-choice `[1,3,4,5]` protocols.
-Dedicated initiation records are unnecessary. All protocol variants of a physical
+Revision 89 adds one explicit arm-raise Initiation protocol for a precise tier-1
+reaction contribution. All protocol variants of a physical
 response family share one session identity, including the original physical
 source where applicable. Lower-level coverage does not manufacture a new response task.
 
@@ -97,6 +99,31 @@ context is displayed before the unpredictable target, and feedback follows the
 decision window. A paused or interrupted trial restarts from Ready. No new cue
 is issued unless its complete response and reset fit in the remaining block.
 Existing unfinished workouts retain their prior catalog and selections.
+
+## Precise profile contributors, revision 89
+
+The training-set quota and the spiderweb use different evidence. A set such as
+`[4,5]` legitimately counts in both training cells, but cannot supply a precise
+profile value. The new admissions retain all previous ranges and ratings:
+
+- One-arm push-ups: fixed unilateral floor press, strength `[4]`.
+- Floor tuck planche: unsupported straight-arm tucked hold, strength and balance `[3]`.
+- Crow: bent-arm hold with knees supported on the upper arms, balance `[3]`.
+- Full floor planche: fixed straight-joined-leg horizontal lever, strength `[5]`.
+- Bent-arm press to handstand: the demonstrated bent-arm entry, not a straight-arm
+  press; strength, balance and coordination `[4]`.
+- Arm raise reactions · single cue: unpredictable initiation `[1]`, with no
+  response-choice, inhibition, measured-latency or conditioning claim.
+
+The narrower task descriptions establish the provisional NM categories; no
+source supplies validated physiological cutoffs. All dose-dependent endurance
+claims retain ranges. Clean attempts or short holds with recovery fit inside the
+same 45-second opportunity. Expert strength does not require a 45-second full
+planche. Sources and exact media hashes are recorded in
+[`profile-admissions-2026-10-22.json`](catalog-audit/profile-admissions-2026-10-22.json).
+The generated gap report now includes a separate diagnostic table computed by
+the actual profile policy, so broad training coverage cannot conceal empty
+spiderweb tiers. It creates no quota to justify artificially precise ratings.
 
 ## Data and checks
 

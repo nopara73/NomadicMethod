@@ -1,10 +1,10 @@
 {
   "scoringVersion": 4,
   "status": "provisional",
-  "assessedOn": "2026-10-21",
+  "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 88,
-  "catalogSha256": "c2b7ae813f76f469385faa1baf18414640a1bde4393d8199bee1b4f337ebaaa8",
+  "catalogRevision": 89,
+  "catalogSha256": "4c37a10b6e57e2a95aa0b0eaf06056c8e71318ffc0d651b1af126c4adbd7c044",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -5985,6 +5985,166 @@
       "trainingConditions": "Learn the complete real response patterns from Ready previews. Respond to the unpredictable number using the currently displayed mapping before feedback. All media must be ready before cueing. No actual response latency or accuracy is measured by the app.",
       "exerciseIds": [
         1644
+      ]
+    },
+    "v4-profile-admission-1621": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          1
+        ],
+        "speed": []
+      },
+      "basis": "A single known arm raise follows an unpredictable cue. The existing Initiation runtime prepares the real response media before cueing and delays the demonstration until after the decision window. This is initiation tier 1 only: there is no inhibition, response choice, measured latency or sustained conditioning claim.",
+      "trainingConditions": "Preview the one real response, wait for the unpredictable cue, perform it once, and reset. The complete wait/respond/reset trial must fit inside the 45-second block.",
+      "exerciseIds": [
+        1621
+      ]
+    },
+    "v4-profile-admission-1701": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The complete floor push-up is supported by one working arm, with the other arm held behind the back and the demonstrated wide foot base unchanged. This fixed unilateral press is provisionally tier 4 strength. Its clean repetition dose can train local endurance at tiers 3-4; no added load, narrower stance or one-leg variant is inferred.",
+      "trainingConditions": "Keep the shown one-arm floor mechanics and wide foot support. Use clean repetitions or short attempts with recovery within 45 seconds. The opposite arm receives its own complete block; do not substitute knees or an incline.",
+      "exerciseIds": [
+        1701
+      ]
+    },
+    "v4-profile-admission-1702": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [
+          2,
+          3
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The demonstrated floor tuck planche supports the entire body on two straight arms, with knees tucked but not resting on the elbows. The fixed short-lever unsupported hold is provisionally tier 3 strength and hand balance. It does not become an advanced tuck, straddle or full planche when hold duration increases.",
+      "trainingConditions": "Practice the exact unsupported two-hand tuck shown. Short clean holds, controlled entries and deliberate recovery share the 45-second block. Keep straight arms and the tucked lever; lower the feet when the position is lost.",
+      "exerciseIds": [
+        1702
+      ]
+    },
+    "v4-profile-admission-1703": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [
+          2,
+          3
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The actual crow uses bent elbows and a knee-on-upper-arm shelf with both feet lifted. This fixed hands-only support is provisionally tier 3 balance, with lower force demand than the unsupported straight-arm tuck planche. Longer clean holds support local endurance at tiers 2-3, not expert balance or a straight-arm crane.",
+      "trainingConditions": "Keep knees supported above the elbows and both palms on the floor. Use tolerable clean holds and resets within 45 seconds. No straight-arm crane, inversion, closed eyes or extra support is inferred.",
+      "exerciseIds": [
+        1703
+      ]
+    },
+    "v4-profile-admission-1704": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          5
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3,
+          4
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The reviewed continuous human excerpt enters and displays a full horizontal floor planche with straight arms, straight joined legs and no foot support. The fixed long lever is provisionally expert tier 5 straight-arm strength. Short maximal-quality holds and recovery do not establish expert muscular endurance, and no universal balance transfer is claimed.",
+      "trainingConditions": "Use the exact full floor planche, maintaining the straight joined-leg horizontal lever. Clean brief attempts and deliberate rest share the 45-second block. Tuck is the demonstrated entry, not a replacement for the named held position; no parallettes or assistance are used.",
+      "exerciseIds": [
+        1704
+      ]
+    },
+    "v4-profile-admission-1705": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The footage shows a bent-arm press from two-foot support into a freestanding handstand, including a light head contact during the entry. It is not a straight-arm press. The fixed loaded press, unsupported inversion and controlled multistage transition are provisionally tier 4 strength, balance and coordination. Repeated clean attempts support endurance at tiers 3-4.",
+      "trainingConditions": "Follow the actual bent-arm floor entry, complete elbow extension and freestanding inverted balance. Use clean attempts with deliberate recovery inside 45 seconds. Include the shown head contact in the floor restriction; do not label it a straight-arm press or require uninterrupted repetitions.",
+      "exerciseIds": [
+        1705
       ]
     }
   },

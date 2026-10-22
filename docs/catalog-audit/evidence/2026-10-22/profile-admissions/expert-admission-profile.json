@@ -1,0 +1,29 @@
+{
+  "levels": [
+    0,
+    5.000000149460178,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0.9999998928212069,
+    0
+  ],
+  "description": "cardio: no qualifying hearted exercise; strength: 5 of 5; muscle endurance: no qualifying hearted exercise; flexibility: no qualifying hearted exercise; agility: no qualifying hearted exercise; balance: no qualifying hearted exercise; coordination: no qualifying hearted exercise; power: no qualifying hearted exercise; reaction: 1 of 5; speed: no qualifying hearted exercise",
+  "labels": [
+    "cardio",
+    "strength",
+    "muscleendurance",
+    "flexibility",
+    "agility",
+    "balance",
+    "coordination",
+    "power",
+    "reaction",
+    "speed"
+  ],
+  "fontSize": "12px",
+  "errors": []
+}

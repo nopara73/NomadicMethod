@@ -52,6 +52,14 @@ for (const family of document.families) {
     }
   }
 }
-if (document.families.length !== 5 || document.plans.length !== 15) throw new Error('Expected five reviewed families and fifteen immutable protocols.');
+const expectedPlans = [
+  ...['punch', 'knee', 'arm', 'kick', 'crouch'].flatMap((familyId, index) =>
+    ['TwoChoice', 'FourChoice', 'ContextChoice'].map((protocol, offset) =>
+      ({ exerciseId: 1602 + index * 10 + offset, familyId, protocol }))),
+  { exerciseId: 1621, familyId: 'arm', protocol: 'Initiation' },
+].sort((a, b) => a.exerciseId - b.exerciseId);
+if (document.families.length !== 5 ||
+    JSON.stringify(document.plans) !== JSON.stringify(expectedPlans))
+  throw new Error('Expected the fifteen immutable choice protocols and the reviewed arm-initiation protocol.');
 if (!check) writeFileSync(definitionPath, `${JSON.stringify(document, null, 2)}\n`);
-console.log(`Reaction media ${check ? 'verified' : 'generated'}: 5 families, 15 plans, 20 exact responses.`);
+console.log(`Reaction media ${check ? 'verified' : 'generated'}: 5 families, 16 plans, 20 exact responses.`);

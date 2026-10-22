@@ -2,6 +2,7 @@
     # Every retained direct source is reviewed footage of an actual person,
     # except for the separately reviewed internally invisible training below.
     ReviewedExternal = @(
+        1701, 1702, 1703, 1704, 1705,
         1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540,
         1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
@@ -107,6 +108,7 @@
     # Reuse is allowed only when the reviewed source is human footage and the
     # target movement has identical mechanics.
     ReviewedExactCopies = @(
+        1621,
         1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644
     )
 

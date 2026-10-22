@@ -4,6 +4,7 @@
     # shared space without asking the user to perform, mime, vocalize, or make
     # a conspicuous therapeutic gesture.
     Compatible = @(
+        1621, 1701, 1702, 1703, 1704,
         1622, 1623, 1624,
         1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1602, 1603, 1604, 1612, 1613, 1614, 1642, 1643, 1644,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
@@ -78,6 +79,7 @@
     IncompatibleByReason = @{
         # Visually conspicuous turning jumps, claps and coordinated hybrids.
         ConspicuousConditioningOrHandChoreography = @(
+        1705,
             1506, 1507, 1540,
         1508, 1509,
             1431, 1432, 1433, 1434, 1435, 1436, 1437, 1438,

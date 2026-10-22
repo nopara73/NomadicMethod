@@ -63,7 +63,7 @@ public sealed class ReactionDrillPolicyTests
         Assert.Equal(-1, delayed.DemoActionIndex);
     }
     [Fact]
-    public void CanonicalAssetResolvesFifteenImmutableProtocolsAcrossFiveFamilies()
+    public void CanonicalAssetResolvesSixteenProtocolsAcrossFivePhysicalFamilies()
     {
         var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             Converters = { new JsonStringEnumConverter() } };
@@ -71,11 +71,12 @@ public sealed class ReactionDrillPolicyTests
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
         using Stream stream = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "reaction_drills.json"));
         IReadOnlyDictionary<int, ReactionPlan> plans = ReactionDrill.Load(stream, catalog);
-        Assert.Equal(15, plans.Count);
+        Assert.Equal(16, plans.Count);
         Assert.Equal(5, plans.Values.Select(p => p.FamilyId).Distinct().Count());
         foreach (var family in plans.Values.GroupBy(p => p.FamilyId))
         {
-            Assert.Equal(new[] { 2, 4, 4 }, family.Select(p => p.Actions.Length));
+            Assert.Equal(family.Key == "arm" ? new[] { 1, 2, 4, 4 } : new[] { 2, 4, 4 },
+                family.Select(p => p.Actions.Length));
             Assert.Single(family.Select(p => catalog.Single(e => e.Id == p.ExerciseId).SessionMovementId).Distinct());
         }
     }
@@ -98,5 +99,6 @@ public sealed class ReactionDrillPolicyTests
         Assert.Equal(853, old.Count);
         Assert.DoesNotContain(old, item => WorkoutCatalogPolicy.FitnessCoverageExerciseIds.Contains(item.Id));
         Assert.Equal(884, WorkoutCatalogPolicy.ForWorkout(catalog, 88).Count);
+        Assert.Equal(890, WorkoutCatalogPolicy.ForWorkout(catalog, 89).Count);
     }
 }

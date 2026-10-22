@@ -3,6 +3,7 @@
     # None keeps each repetition at its station. Room traverses a short lane.
     # Field requires space for sustained running or long traveling bounds.
     None = @(
+        1621, 1701, 1702, 1703, 1704, 1705,
         1506, 1507, 1508, 1516, 1521, 1522, 1523, 1524, 1525, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
         1411, 1412, 1413, 1414, 1415, 1416, 1417, 1418, 1419, 1420,

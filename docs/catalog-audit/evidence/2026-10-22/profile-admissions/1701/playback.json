@@ -1,0 +1,105 @@
+{
+  "id": 1701,
+  "name": "One-Arm Push-Ups",
+  "scope": "Synthetic isolated workout state; actual product UI and packaged runtime assets. The phase clock was advanced between inspected boundaries, never used as evidence of a performed workout. Moving demonstrations played at normal speed.",
+  "ready": {
+    "name": "One-Arm Push-Ups",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 7.95,
+      "currentTime": 0.175978,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 8,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "move": {
+    "name": "One-Arm Push-Ups",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 7.95,
+      "currentTime": 0.528699,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 15,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "played": {
+    "name": "One-Arm Push-Ups",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 7.95,
+      "currentTime": 1.313602,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 190,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "rest": {
+    "name": "One-Arm Push-Ups",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 7.95,
+      "currentTime": 0.766991,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 20,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "second": {
+    "name": "One-Arm Push-Ups",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 7.95,
+      "currentTime": 0.180687,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 8,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 89,
+  "exerciseCount": 890,
+  "baselineCommit": "2a0e8960c5dc301b1558718c0304fd5a6906ba2c",
+  "newRecordCount": 6,
+  "newPhysicalMovementCount": 5,
+  "newReactionProtocolCount": 1,
+  "existingRecordsAndRatingsUnchanged": 884,
+  "ratingStatus": "Provisional task-specific NM tiers; neither ACSM nor Dreyfus validates physiological cutoffs or these numeric assignments.",
+  "profileAlgorithmChanged": false,
+  "entries": [
+    {
+      "id": 1621,
+      "name": "Arm Raise Reactions \u00b7 Single Cue",
+      "sessionMovementId": 266,
+      "source": {
+        "RuntimeSourceId": 266,
+        "ResponseAsset": "reaction_videos/arm-1.mp4",
+        "Note": "The exact source page and original external source are those pinned for ID 266; no new human response footage is introduced."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          1
+        ],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "reactionTime": 1
+      },
+      "basis": "A single known arm raise follows an unpredictable cue. The existing Initiation runtime prepares the real response media before cueing and delays the demonstration until after the decision window. This is initiation tier 1 only: there is no inhibition, response choice, measured latency or sustained conditioning claim.",
+      "trainingConditions": "Preview the one real response, wait for the unpredictable cue, perform it once, and reset. The complete wait/respond/reset trial must fit inside the 45-second block."
+    },
+    {
+      "id": 1701,
+      "name": "One-Arm Push-Ups",
+      "sessionMovementId": 1701,
+      "source": {
+        "Url": "https://cdn.caliverse.app/videos/exercises/94-60160cf1c5294.mp4",
+        "LocalSourceFile": "fitness-1701-source.mp4",
+        "SourcePage": "https://www.caliverse.app/exercises/one-arm-push-up-94",
+        "StartSeconds": 0,
+        "Video": true,
+        "OriginalSourceStartSeconds": 2.0,
+        "PingPong": false,
+        "OriginalSourceSha256": "a3e2d5e578c3f3eb32b8f70e0f5b7eb51dcbd663eefc777ac4c2cb2e288504f5",
+        "FramesPerSecond": 20,
+        "File": "fitness-1701.mp4",
+        "LocalSourceSha256": "491b6754f7ab465f3a32403fa80becadfcc622d9284a9ee5ed19c0cfacd62d44",
+        "Human": true,
+        "Crop": "crop=1080:1080:0:0",
+        "DurationSeconds": 7.966667,
+        "SourceHeight": 1080,
+        "SourceWidth": 1080,
+        "MirrorForAlternation": false
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 4
+      },
+      "basis": "The complete floor push-up is supported by one working arm, with the other arm held behind the back and the demonstrated wide foot base unchanged. This fixed unilateral press is provisionally tier 4 strength. Its clean repetition dose can train local endurance at tiers 3-4; no added load, narrower stance or one-leg variant is inferred.",
+      "trainingConditions": "Keep the shown one-arm floor mechanics and wide foot support. Use clean repetitions or short attempts with recovery within 45 seconds. The opposite arm receives its own complete block; do not substitute knees or an incline."
+    },
+    {
+      "id": 1702,
+      "name": "Floor Tuck Planche Hold",
+      "sessionMovementId": 1702,
+      "source": {
+        "Url": "https://cdn.caliverse.app/videos/exercises/-5fbd504eeb33f.mp4",
+        "LocalSourceFile": "fitness-1702-source.mp4",
+        "SourcePage": "https://www.caliverse.app/exercises/planche-tuck-on-the-floor-535",
+        "StartSeconds": 0,
+        "Video": true,
+        "OriginalSourceStartSeconds": 0,
+        "PingPong": false,
+        "OriginalSourceSha256": "7ddd532d921fc94e9b3679cc75230f1fc42d057ebdd5134244404b798b62010f",
+        "FramesPerSecond": 20,
+        "File": "fitness-1702.mp4",
+        "LocalSourceSha256": "da9a0b8540dae87f17fc4e442a3a7101b43bed0cc40ce3b4b6c0ab39c6b820ef",
+        "Human": true,
+        "Crop": "crop=1080:1080:0:0",
+        "DurationSeconds": 10.6,
+        "SourceHeight": 1080,
+        "SourceWidth": 1080,
+        "MirrorForAlternation": false
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [
+          2,
+          3
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 3,
+        "balance": 3
+      },
+      "basis": "The demonstrated floor tuck planche supports the entire body on two straight arms, with knees tucked but not resting on the elbows. The fixed short-lever unsupported hold is provisionally tier 3 strength and hand balance. It does not become an advanced tuck, straddle or full planche when hold duration increases.",
+      "trainingConditions": "Practice the exact unsupported two-hand tuck shown. Short clean holds, controlled entries and deliberate recovery share the 45-second block. Keep straight arms and the tucked lever; lower the feet when the position is lost."
+    },
+    {
+      "id": 1703,
+      "name": "Crow Hold",
+      "sessionMovementId": 1703,
+      "source": {
+        "Url": "https://cdn.caliverse.app/videos/exercises/564-5fcf5437dd698.mp4",
+        "LocalSourceFile": "fitness-1703-source.mp4",
+        "SourcePage": "https://www.caliverse.app/exercises/crow-564",
+        "StartSeconds": 0,
+        "Video": true,
+        "OriginalSourceStartSeconds": 0,
+        "PingPong": false,
+        "OriginalSourceSha256": "f8fa6babeaa2be493d02904acdcc6c98320cf680db312fea085776642fa07b2b",
+        "FramesPerSecond": 20,
+        "File": "fitness-1703.mp4",
+        "LocalSourceSha256": "c829638358362e36f598aabf634778a85ef9cdfa3065389f8911b78346d7a193",
+        "Human": true,
+        "Crop": "crop=1080:1080:0:0",
+        "DurationSeconds": 14.9,
+        "SourceHeight": 1080,
+        "SourceWidth": 1080,
+        "MirrorForAlternation": false
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [
+          2,
+          3
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "balance": 3
+      },
+      "basis": "The actual crow uses bent elbows and a knee-on-upper-arm shelf with both feet lifted. This fixed hands-only support is provisionally tier 3 balance, with lower force demand than the unsupported straight-arm tuck planche. Longer clean holds support local endurance at tiers 2-3, not expert balance or a straight-arm crane.",
+      "trainingConditions": "Keep knees supported above the elbows and both palms on the floor. Use tolerable clean holds and resets within 45 seconds. No straight-arm crane, inversion, closed eyes or extra support is inferred."
+    },
+    {
+      "id": 1704,
+      "name": "Full Floor Planche Hold",
+      "sessionMovementId": 1704,
+      "source": {
+        "Url": "https://www.youtube.com/watch?v=CMaX_UhDml0",
+        "LocalSourceFile": "fitness-1704-source.mp4",
+        "SourcePage": "https://www.youtube.com/watch?v=CMaX_UhDml0",
+        "StartSeconds": 0,
+        "Video": true,
+        "OriginalSourceStartSeconds": 182.5,
+        "PingPong": false,
+        "OriginalSourceSha256": "7acb4761942d156455471bc83843f151768e61d7a1c067bb77d66522791505fb",
+        "FramesPerSecond": 20,
+        "File": "fitness-1704.mp4",
+        "LocalSourceSha256": "e0389b6e88c8389e5eb1ad804ff9c6addb252760066f6aa28a1a6ef7f9c82927",
+        "Human": true,
+        "Crop": "crop=1280:720:0:0",
+        "DurationSeconds": 8.7,
+        "SourceHeight": 720,
+        "SourceWidth": 1280,
+        "MirrorForAlternation": false
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          5
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3,
+          4
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 5
+      },
+      "basis": "The reviewed continuous human excerpt enters and displays a full horizontal floor planche with straight arms, straight joined legs and no foot support. The fixed long lever is provisionally expert tier 5 straight-arm strength. Short maximal-quality holds and recovery do not establish expert muscular endurance, and no universal balance transfer is claimed.",
+      "trainingConditions": "Use the exact full floor planche, maintaining the straight joined-leg horizontal lever. Clean brief attempts and deliberate rest share the 45-second block. Tuck is the demonstrated entry, not a replacement for the named held position; no parallettes or assistance are used."
+    },
+    {
+      "id": 1705,
+      "name": "Bent-Arm Press to Handstand",
+      "sessionMovementId": 1705,
+      "source": {
+        "Url": "https://cdn.caliverse.app/videos/exercises/-65afbd797af3c.mp4",
+        "LocalSourceFile": "fitness-1705-source.mp4",
+        "SourcePage": "https://www.caliverse.app/exercises/press-to-handstand-1388",
+        "StartSeconds": 0,
+        "Video": true,
+        "OriginalSourceStartSeconds": 0,
+        "PingPong": false,
+        "OriginalSourceSha256": "31458ac5379c2b8cb599620d69013f0b246bc9de9bbd22a149364d1b305bcf49",
+        "FramesPerSecond": 20,
+        "File": "fitness-1705.mp4",
+        "LocalSourceSha256": "87ef67677330720a33ad7105014e95c469a5289ba49ae8b07315e99215e04be5",
+        "Human": true,
+        "Crop": "crop=480:480:0:0",
+        "DurationSeconds": 13.0,
+        "SourceHeight": 480,
+        "SourceWidth": 480,
+        "MirrorForAlternation": false
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [
+          3,
+          4
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 4,
+        "balance": 4,
+        "coordination": 4
+      },
+      "basis": "The footage shows a bent-arm press from two-foot support into a freestanding handstand, including a light head contact during the entry. It is not a straight-arm press. The fixed loaded press, unsupported inversion and controlled multistage transition are provisionally tier 4 strength, balance and coordination. Repeated clean attempts support endurance at tiers 3-4.",
+      "trainingConditions": "Follow the actual bent-arm floor entry, complete elbow extension and freestanding inverted balance. Use clean attempts with deliberate recovery inside 45 seconds. Include the shown head contact in the floor restriction; do not label it a straight-arm press or require uninterrupted repetitions."
+    }
+  ],
+  "reviewEvidence": "docs/catalog-audit/fitness-profile-review-2026-10-22.json",
+  "workoutGallery": "docs/catalog-audit/evidence/2026-10-22/profile-admissions/gallery.html",
+  "remainingLimits": "Agility and speed still contribute only tier 2. Reaction contributes tier 1 only. Cardio, flexibility, endurance and power retain their previous precise-contribution limits. Honest ranges were not narrowed.",
+  "rejectedSources": [
+    {
+      "source": "https://www.caliverse.app/exercises/archer-push-up-13",
+      "reason": "Already represented by ID 1061; no duplicate movement admitted."
+    },
+    {
+      "source": "https://www.caliverse.app/exercises/aztec-push-up-63",
+      "reason": "Close frame review shows a tucked clap rather than the described straight-leg airborne toe touch. No Aztec or expert-power claim admitted."
+    },
+    {
+      "source": "https://www.caliverse.app/exercises/handstand-to-l-sit-to-handstand-1394",
+      "reason": "Actual footage uses two small parallettes despite earlier source triage calling it floor-supported. Current equipment controls do not describe that apparatus."
+    },
+    {
+      "source": "https://www.caliverse.app/exercises/planche-100",
+      "reason": "Actual footage uses parallettes. A separate exact floor demonstration is used for the new floor hold."
+    },
+    {
+      "source": "https://www.caliverse.app/exercises/pseudo-planche-push-up-18",
+      "reason": "The documented lean intentionally adjusts loading. A genuine exercise, but this source does not establish a precise additional profile tier."
+    }
+  ]
+}

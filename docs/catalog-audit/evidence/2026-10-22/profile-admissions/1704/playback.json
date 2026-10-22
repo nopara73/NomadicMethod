@@ -1,0 +1,65 @@
+{
+  "id": 1704,
+  "name": "Full Floor Planche Hold",
+  "scope": "Synthetic isolated workout state; actual product UI and packaged runtime assets. The phase clock was advanced between inspected boundaries, never used as evidence of a performed workout. Moving demonstrations played at normal speed.",
+  "ready": {
+    "name": "Full Floor Planche Hold",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "move": {
+    "name": "Full Floor Planche Hold",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "rest": {
+    "name": "Full Floor Planche Hold",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  }
+}

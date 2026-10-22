@@ -327,4 +327,7 @@
     1642 = 'ScreenRightThenLeft'
     1643 = 'ScreenRightThenLeft'
     1644 = 'ScreenRightThenLeft'
+
+    # Profile contributor admissions, 22 October 2026.
+    1701 = 'ScreenLeftThenRight'
 }

@@ -17,13 +17,33 @@ The canonical runtime asset is NomadicMethod/Assets/fitness_ratings.json. It is 
 
 ## Limits of precise contributions
 
-At catalog revision 88, 620 of the 884 records have no qualifying precise strongest
-rating. Reaction has no possible contributors; strength, agility and speed can
-only contribute level 2. Balance and coordination can contribute levels 1–2;
-cardio levels 2–3; flexibility levels 1–3; muscle endurance levels 1–4; and power
-levels 2–4. No characteristic has a qualifying level-5 contributor. These are
-limits of the agreed estimate and its exclusion of ranges. Retain uncertainty
-instead of manufacturing narrower ratings or treating a range as a performed level.
+At revision 89, 620 of 890 records have no qualifying precise strongest rating.
+Six additions open new contributions without changing any of the previous 884
+records or narrowing their training ranges:
+
+| Exercise | Precise strongest contributions |
+| --- | --- |
+| Arm raise reactions · single cue | reaction 1 |
+| Floor tuck planche hold | strength 3; balance 3 |
+| Crow hold | balance 3 |
+| One-arm push-ups | strength 4 |
+| Bent-arm press to handstand | strength 4; balance 4; coordination 4 |
+| Full floor planche hold | strength 5 |
+
+These are provisional task-specific NM judgments, not validated physiological
+thresholds or proof that a hearted exercise was performed successfully. The
+planche rating refers to the actual straight-arm, straight-joined-leg horizontal
+hold; its tucked entry is not rated as expert strength. The single-cue reaction
+task uses the existing unpredictable Initiation protocol, not a predictable loop.
+It shares movement identity 266 with the arm-raise family and cannot multiply it.
+
+Remaining possible contributions are cardio 2–3; strength 2–5; muscle endurance
+1–4; flexibility 1–3; agility 2; balance 1–4; coordination 1, 2 and 4; power 2–4;
+reaction 1; and speed 2. Adding drills with adjustable cadence does not establish
+a precise advanced speed or agility tier. Retain those limits instead of
+narrowing honest ranges. The generated
+[coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md) reports usable
+spiderweb contributors separately from the five-per-training-tier catalog gate.
 
 ## Preferences for fresh choices
 

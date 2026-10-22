@@ -527,4 +527,12 @@
     1642 = @{ Name = 'Crouching Reach Reactions · Two Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1642' }
     1643 = @{ Name = 'Crouching Reach Reactions · Four Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1643' }
     1644 = @{ Name = 'Crouching Reach Reactions · Context Choices'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1644' }
+
+    # Profile contributor admissions, 22 October 2026.
+    1621 = @{ Name = 'Arm Raise Reactions · Single Cue'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1621' }
+    1701 = @{ Name = 'One-Arm Push-Ups'; Region = 'CHEST'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1701' }
+    1702 = @{ Name = 'Floor Tuck Planche Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1702' }
+    1703 = @{ Name = 'Crow Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1703' }
+    1704 = @{ Name = 'Full Floor Planche Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1704' }
+    1705 = @{ Name = 'Bent-Arm Press to Handstand'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1705' }
 }

@@ -18,7 +18,7 @@
         '311' = @(311, 321, 816) # Same low-impact alternating side-tap jack
         '475' = @(475, 919) # Same marching head-turn movement; no independently verified fixed-gaze variant
         '579' = @(579, 580) # Standing back-to-wall shoulder slides and wall-angel range variant
-        '266' = @(266, 301, 1622, 1623, 1624) # Standing straight-arm lateral raises through complementary ranges
+        '266' = @(266, 301, 1621, 1622, 1623, 1624) # Standing straight-arm lateral raises through complementary ranges
         '264' = @(264, 275) # Standing shoulder-height arm circles and their small-circle naming variant
         '288' = @(288, 758, 1299, 1303) # Open- and closed-chain ankle circles; sides and directions never multiply identity
         '948' = @(948, 949) # Natural diagonal wood chop, upward and downward naming variants

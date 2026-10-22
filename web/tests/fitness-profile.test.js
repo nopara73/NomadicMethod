@@ -1,11 +1,28 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { getWorkoutCatalog } from "../workout.js";
 import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
   calculateFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
+
+test("reviewed catalog admissions contribute precise tiers and preserve the older workout catalog", () => {
+  const admissions = JSON.parse(read("./fixtures/fitness-profile-admissions.json"));
+  const catalog = JSON.parse(read("../../NomadicMethod/Assets/exercises.json"));
+  const ratings = parseFitnessRatings(JSON.parse(read("../../NomadicMethod/Assets/fitness_ratings.json")));
+  for (const entry of admissions.cases) {
+    const state = { lastKeptExerciseIds: entry.kept };
+    const before = JSON.stringify(state);
+    assert.deepEqual(calculateFitnessProfile(catalog, state, ratings), entry.expected, entry.name);
+    assert.equal(JSON.stringify(state), before);
+  }
+  assert.ok(getWorkoutCatalog(catalog, admissions.catalogRevision - 1).every(e => !admissions.exerciseIds.includes(e.id)));
+  assert.ok(admissions.exerciseIds.every(id => getWorkoutCatalog(catalog, admissions.catalogRevision).some(e => e.id === id)));
+  assert.equal(catalog.find(e => e.id === 1621).sessionMovementId, 266);
+  assert.equal(catalog.find(e => e.id === 1701).sequenceBlocks.length, 2);
+});
 test("raw profile fractions remain precise and expert level extends beyond the web", () => {
   assert.equal(FITNESS_MAXIMUM_LEVEL, fixture.chartScale.maximumLevel);
   assert.equal(FITNESS_WEB_BOUNDARY_LEVEL, fixture.chartScale.webBoundaryLevel);

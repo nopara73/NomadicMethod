@@ -50,6 +50,20 @@ test('new IDs and changed catalog snapshots require deliberate reassessment', ()
   assert.throws(() => buildAudit([...catalog,{...catalog[0],id:999999}], assessment, context), /Missing explicit assessments/);
   assert.throws(() => buildAudit(catalog, assessment,{...context,catalogSha256:'changed'}), /Catalog changed/);
 });
+
+test('profile contributor diagnostics distinguish precise evidence from trainable ranges', () => {
+  const { profileContributorCoverage: diagnostic } = audit().summary;
+  const coverage = diagnostic.coverage;
+  assert.deepEqual(coverage.reactionTime[1].sessionMovementIds, [266]);
+  assert.equal(coverage.reactionTime[3].count, 0);
+  assert.deepEqual(coverage.muscularStrength[3].exerciseIds, [1702]);
+  assert.deepEqual(coverage.muscularStrength[4].exerciseIds, [1701,1705]);
+  assert.deepEqual(coverage.muscularStrength[5].exerciseIds, [1704]);
+  assert.deepEqual(coverage.balance[3].exerciseIds, [1702,1703]);
+  assert.deepEqual(coverage.coordination[4].exerciseIds, [1705]);
+  assert.ok(!coverage.muscularStrength[5].exerciseIds.includes(241));
+  assert.equal(coverage.speed[3].count, 0);
+});
 test('invalid, repeated, unsorted, zero and fractional levels are rejected', () => {
   for (const invalid of [5,[0],[6],[1,1],[3,2],[1.5]]) {
     const copy = structuredClone(assessment); Object.values(copy.profiles)[0].levels.power = invalid;

@@ -123,4 +123,9 @@
     1524 = $true
     1525 = $true
     1540 = $true
+
+    # Profile contributor admissions, 22 October 2026.
+    1702 = $true
+    1703 = $true
+    1704 = $true
 }

@@ -903,4 +903,12 @@
     1642 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
     1643 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
     1644 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+
+    # Profile contributor admissions, 22 October 2026.
+    1621 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1701 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors') }
+    1702 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ScapularGirdle') }
+    1703 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1704 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ScapularGirdle') }
+    1705 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
 }

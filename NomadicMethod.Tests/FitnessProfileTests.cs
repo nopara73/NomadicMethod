@@ -69,4 +69,30 @@ public sealed class FitnessProfileTests
         Assert.All(catalog.RootElement.EnumerateArray(),
             exercise => Assert.True(ratings.ContainsKey(exercise.GetProperty("id").GetInt32())));
     }
+
+    [Fact]
+    public void ReviewedAdmissionsOpenPreciseContributionsAndPreserveTheOlderCatalog()
+    {
+        using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-profile-admissions.json")));
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
+        using FileStream source = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "fitness_ratings.json"));
+        var ratings = FitnessProfilePolicy.Load(source);
+        foreach (JsonElement entry in fixture.RootElement.GetProperty("cases").EnumerateArray())
+        {
+            var state = new WorkoutState { LastKeptExerciseIds = entry.GetProperty("kept")
+                .EnumerateArray().Select(id => id.GetInt32()).ToHashSet() };
+            string before = JsonSerializer.Serialize(state);
+            double[] expected = entry.GetProperty("expected").EnumerateArray().Select(v => v.GetDouble()).ToArray();
+            Assert.Equal(expected, FitnessProfilePolicy.Calculate(catalog, state, ratings));
+            Assert.Equal(before, JsonSerializer.Serialize(state));
+        }
+        int revision = fixture.RootElement.GetProperty("catalogRevision").GetInt32();
+        int[] ids = fixture.RootElement.GetProperty("exerciseIds").EnumerateArray().Select(v => v.GetInt32()).ToArray();
+        Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, revision - 1), e => ids.Contains(e.Id));
+        Assert.All(ids, id => Assert.Contains(WorkoutCatalogPolicy.ForWorkout(catalog, revision), e => e.Id == id));
+        Assert.Equal(266, catalog.Single(e => e.Id == 1621).SessionMovementId);
+        Assert.Equal(2, catalog.Single(e => e.Id == 1701).SequenceBlocks.Length);
+    }
 }

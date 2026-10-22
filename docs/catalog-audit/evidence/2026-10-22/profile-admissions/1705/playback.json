@@ -1,0 +1,85 @@
+{
+  "id": 1705,
+  "name": "Bent-Arm Press to Handstand",
+  "scope": "Synthetic isolated workout state; actual product UI and packaged runtime assets. The phase clock was advanced between inspected boundaries, never used as evidence of a performed workout. Moving demonstrations played at normal speed.",
+  "ready": {
+    "name": "Bent-Arm Press to Handstand",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 13,
+      "currentTime": 0.277159,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 10,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "move": {
+    "name": "Bent-Arm Press to Handstand",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 13,
+      "currentTime": 0.739605,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 19,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "played": {
+    "name": "Bent-Arm Press to Handstand",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 13,
+      "currentTime": 1.68769,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 299,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "rest": {
+    "name": "Bent-Arm Press to Handstand",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 13,
+      "currentTime": 0.857727,
+      "rate": 1,
+      "loop": true,
+      "paused": false,
+      "frames": 22,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  }
+}

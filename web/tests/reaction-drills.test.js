@@ -42,11 +42,11 @@ test('a complete decision, real action and reset must fit before another cue', (
   assert.equal(delayed.phase, 'Complete');
   assert.equal(delayed.demoActionIndex, -1);
 });
-test('fifteen explicit protocols count as five physical movement families', () => {
-  assert.equal(plans.size, 15);
+test('sixteen explicit protocols retain five physical movement families', () => {
+  assert.equal(plans.size, 16);
   for (const family of document.families) {
     const members = [...plans.values()].filter(p => p.familyId === family.id);
-    assert.deepEqual(members.map(p => p.actions.length), [2, 4, 4]);
+    assert.deepEqual(members.map(p => p.actions.length), family.id === 'arm' ? [1, 2, 4, 4] : [2, 4, 4]);
     assert.equal(new Set(members.map(p => catalog.find(e => e.id === p.exerciseId).sessionMovementId)).size, 1);
     assert.ok(members.every(p => catalog.find(e => e.id === p.exerciseId).insectCompatibility === 'Incompatible'));
   }
@@ -72,4 +72,26 @@ test('unavailable, malformed or duplicate response definitions fail closed', () 
   assert.equal(old.length, 853);
   assert.ok(old.every(item => !FITNESS_COVERAGE_EXERCISE_IDS.includes(item.id)));
   assert.equal(getWorkoutCatalog(catalog, 88).length, 884);
+  assert.equal(getWorkoutCatalog(catalog, 89).length, 890);
+});
+
+test('single-cue initiation waits unpredictably and reveals only the prepared arm raise', () => {
+  const initiation = plans.get(1621);
+  assert.equal(initiation.protocol, 'Initiation');
+  assert.equal(initiation.actions.length, 1);
+  assert.equal(initiation.actions[0].sourceId, 266);
+  for (const random of [0, 0.5, 0.999]) {
+    const drill = new ReactionDrill(initiation, () => random);
+    drill.advance(0, 45000);
+    assert.equal(drill.phase, 'Ready');
+    assert.ok(drill.deadline >= 1200 && drill.deadline <= 2800);
+    assert.equal(drill.demoActionIndex, -1);
+    drill.advance(drill.deadline, 42000);
+    assert.equal(drill.phase, 'Prompt');
+    assert.equal(drill.actionIndex, 0);
+    assert.equal(drill.demoActionIndex, -1);
+    drill.advance(drill.deadline, 41000);
+    assert.equal(drill.phase, 'Feedback');
+    assert.equal(drill.demoActionIndex, 0);
+  }
 });

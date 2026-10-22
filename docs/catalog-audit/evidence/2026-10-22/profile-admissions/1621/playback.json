@@ -1,0 +1,110 @@
+{
+  "id": 1621,
+  "name": "Arm Raise Reactions \u00b7 Single Cue",
+  "scope": "Synthetic isolated workout state; actual product UI and packaged runtime assets. The phase clock was advanced between inspected boundaries, never used as evidence of a performed workout. Moving demonstrations played at normal speed.",
+  "ready": {
+    "name": "Arm Raise Reactions \u00b7 Single Cue",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "move": {
+    "name": "Arm Raise Reactions \u00b7 Single Cue",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": true,
+      "paused": true,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "Ready",
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "prompt": {
+    "name": "Arm Raise Reactions \u00b7 Single Cue",
+    "countdown": "43",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": true,
+      "paused": true,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "1",
+    "reactionShown": 0,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "feedback": {
+    "name": "Arm Raise Reactions \u00b7 Single Cue",
+    "countdown": "43",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": true,
+      "paused": true,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "Alternating arm raises",
+    "reactionShown": 1,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  },
+  "rest": {
+    "name": "Arm Raise Reactions \u00b7 Single Cue",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": null,
+      "currentTime": 0,
+      "rate": 1,
+      "loop": false,
+      "paused": true,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "overflow": false,
+    "activeCatalogRevision": 89
+  }
+}
