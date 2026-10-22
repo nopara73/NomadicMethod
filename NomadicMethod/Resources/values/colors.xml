@@ -3,6 +3,7 @@
     <color name="brand_graphite">#121416</color>
     <color name="brand_bone">#F5EFE7</color>
     <color name="brand_chartreuse">#CBED46</color>
+    <color name="fitness_profile_green">#C8DC63</color>
     <color name="screen_background">@color/brand_bone</color>
     <color name="screen_background_top">#FAF7F1</color>
     <color name="screen_background_bottom">#F1EAE1</color>

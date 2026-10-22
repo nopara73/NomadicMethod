@@ -6,6 +6,12 @@ export const FITNESS_LABELS = Object.freeze([
   ["cardio"], ["strength"], ["muscle", "endurance"], ["flexibility"],
   ["agility"], ["balance"], ["coordination"], ["power"], ["reaction"], ["speed"],
 ]);
+export const FITNESS_MAXIMUM_LEVEL = 5;
+export const FITNESS_WEB_BOUNDARY_LEVEL = 4;
+
+export function fitnessProfileRadiusFraction(level) {
+  return level / FITNESS_MAXIMUM_LEVEL;
+}
 
 export function parseFitnessRatings(source) {
   if (source?.schemaVersion !== 1 ||
@@ -72,8 +78,8 @@ export class FitnessProfileView {
     const textSize = parseFloat(getComputedStyle(this.host).fontSize);
     const lineHeight = textSize * 1.25;
     const labelRoom = Math.max(76, textSize * 6.6);
-    const radius = Math.max(24, Math.min(112, (width - labelRoom * 2) / 2));
-    const labelRadius = radius + textSize * 2.7;
+    const expertRadius = Math.max(24, Math.min(112, (width - labelRoom * 2) / 2));
+    const labelRadius = expertRadius + textSize * 2.7;
     const height = Math.ceil(Math.max(300, labelRadius * 2 + lineHeight * 3));
     const cx = width / 2, cy = height / 2;
     const point = (index, distance) => {
@@ -94,18 +100,22 @@ export class FitnessProfileView {
         ? this.values[index].toLocaleString(undefined, { maximumFractionDigits: 2 }) + " of 5"
         : "no qualifying hearted exercise")).join("; ");
     svg.append(make("desc", {}, description));
-    for (let level = 1; level <= 5; level++)
+    const vertices = this.values.map((value, index) =>
+      point(index, expertRadius * fitnessProfileRadiusFraction(value)));
+    const shape = vertices.map(vertex => vertex.join(",")).join(" ");
+    svg.append(make("polygon", { points: shape, class: "fitness-area" }));
+    for (let level = 1; level <= FITNESS_WEB_BOUNDARY_LEVEL; level++)
       svg.append(make("polygon", { points: FITNESS_DIMENSIONS.map((_, index) =>
-        point(index, radius * level / 5).join(",")).join(" "), class: "fitness-grid" }));
+        point(index, expertRadius * fitnessProfileRadiusFraction(level)).join(",")).join(" "),
+        class: "fitness-grid", "data-web-level": level }));
     FITNESS_DIMENSIONS.forEach((_, index) => {
-      const [x, y] = point(index, radius);
+      const [x, y] = point(index, expertRadius * fitnessProfileRadiusFraction(FITNESS_WEB_BOUNDARY_LEVEL));
       svg.append(make("line", { x1: cx, y1: cy, x2: x, y2: y, class: "fitness-grid" }));
     });
-    const vertices = this.values.map((value, index) => point(index, radius * value / 5));
-    svg.append(make("polygon", { points: vertices.map(vertex => vertex.join(",")).join(" "), class: "fitness-shape" }));
+    svg.append(make("polygon", { points: shape, class: "fitness-shape" }));
     vertices.forEach(([x, y], index) => {
       if (this.values[index] > 0)
-        svg.append(make("circle", { cx: x, cy: y, r: 3, class: "fitness-point" }));
+        svg.append(make("circle", { cx: x, cy: y, r: 2.8, class: "fitness-point", "data-profile-axis": index }));
     });
     FITNESS_LABELS.forEach((lines, index) => {
       const [x, y] = point(index, labelRadius);

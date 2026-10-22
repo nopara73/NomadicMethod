@@ -35,8 +35,8 @@ public sealed class FitnessProfileView : View
     protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
         int width = ResolveSize((int)Dp(420), widthMeasureSpec);
-        float radius = Math.Max(Dp(24), Math.Min(Dp(112), (width - 2 * LabelRoom) / 2));
-        int height = (int)Math.Ceiling(Math.Max(Dp(300), (radius + TextSize * 2.7f) * 2 + TextSize * 3.75f));
+        float expertRadius = Math.Max(Dp(24), Math.Min(Dp(112), (width - 2 * LabelRoom) / 2));
+        int height = (int)Math.Ceiling(Math.Max(Dp(300), (expertRadius + TextSize * 2.7f) * 2 + TextSize * 3.75f));
         SetMeasuredDimension(width, ResolveSize(height, heightMeasureSpec));
     }
 
@@ -45,7 +45,7 @@ public sealed class FitnessProfileView : View
     protected override void OnDraw(Canvas canvas)
     {
         base.OnDraw(canvas);
-        float radius = Math.Max(Dp(24), Math.Min(Dp(112), (Width - 2 * LabelRoom) / 2));
+        float expertRadius = Math.Max(Dp(24), Math.Min(Dp(112), (Width - 2 * LabelRoom) / 2));
         float cx = Width / 2f, cy = Height / 2f;
         (float X, float Y) Point(int index, double distance)
         {
@@ -58,47 +58,51 @@ public sealed class FitnessProfileView : View
             _path.Reset();
             for (int index = 0; index < 10; index++)
             {
-                var p = Point(index, radius * values[index] / 5);
+                var p = Point(index, expertRadius * FitnessProfilePolicy.ChartRadiusFraction(values[index]));
                 if (index == 0) _path.MoveTo(p.X, p.Y);
                 else _path.LineTo(p.X, p.Y);
             }
             _path.Close();
         }
-        _paint.Color = new Color(Context!.GetColor(Resource.Color.surface_outline_soft));
+        Polygon(_levels);
+        _paint.Color = new Color(Context!.GetColor(Resource.Color.fitness_profile_green));
+        _paint.Alpha = 82;
+        _paint.SetStyle(Paint.Style.Fill);
+        canvas.DrawPath(_path, _paint);
+
+        _paint.Color = new Color(Context.GetColor(Resource.Color.surface_outline_soft));
+        _paint.Alpha = 255;
         _paint.SetStyle(Paint.Style.Stroke);
         _paint.StrokeWidth = Dp(1);
-        for (int level = 1; level <= 5; level++)
+        for (int level = 1; level <= FitnessProfilePolicy.WebBoundaryLevel; level++)
         {
             Polygon(Enumerable.Repeat((double)level, 10).ToArray());
             canvas.DrawPath(_path, _paint);
         }
         for (int index = 0; index < 10; index++)
         {
-            var p = Point(index, radius);
+            var p = Point(index, expertRadius * FitnessProfilePolicy.ChartRadiusFraction(FitnessProfilePolicy.WebBoundaryLevel));
             canvas.DrawLine(cx, cy, p.X, p.Y, _paint);
         }
         Polygon(_levels);
-        _paint.Color = new Color(Context!.GetColor(Resource.Color.brand_chartreuse));
-        _paint.Alpha = 44;
-        _paint.SetStyle(Paint.Style.Fill);
-        canvas.DrawPath(_path, _paint);
-        _paint.Color = new Color(Context!.GetColor(Resource.Color.brand_graphite));
+        _paint.Color = new Color(Context.GetColor(Resource.Color.fitness_profile_green));
         _paint.Alpha = 255;
         _paint.SetStyle(Paint.Style.Stroke);
-        _paint.StrokeWidth = Dp(2);
+        _paint.StrokeWidth = Dp(1.8f);
         canvas.DrawPath(_path, _paint);
         _paint.SetStyle(Paint.Style.Fill);
         for (int index = 0; index < 10; index++)
         {
-            var p = Point(index, radius * _levels[index] / 5);
-            if (_levels[index] > 0) canvas.DrawCircle(p.X, p.Y, Dp(3), _paint);
+            var p = Point(index, expertRadius * FitnessProfilePolicy.ChartRadiusFraction(_levels[index]));
+            if (_levels[index] > 0) canvas.DrawCircle(p.X, p.Y, Dp(2.8f), _paint);
         }
+        _paint.Color = new Color(Context.GetColor(Resource.Color.brand_graphite));
         _paint.TextSize = TextSize;
         _paint.TextAlign = Paint.Align.Center;
         for (int index = 0; index < 10; index++)
         {
             string[] lines = FitnessProfilePolicy.Labels[index];
-            var p = Point(index, radius + TextSize * 2.7f);
+            var p = Point(index, expertRadius + TextSize * 2.7f);
             float lineHeight = TextSize * 1.25f;
             float baseline = p.Y - (lines.Length - 1) * lineHeight / 2 -
                 (_paint.Ascent() + _paint.Descent()) / 2;

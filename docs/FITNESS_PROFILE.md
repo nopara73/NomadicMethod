@@ -1,6 +1,6 @@
 # Homepage fitness profile
 
-Android and web draw the same ten-axis spiderweb below the setup controls. The only visible text is the lowercase characteristic labels: cardio, strength, muscle endurance, flexibility, agility, balance, coordination, power, reaction and speed. Five rings represent the fixed 1–5 scale; fractional averages remain fractional distances. There are no visible numbers, title, legend, assessment controls or extra feedback questions.
+Android and web draw the same ten-axis spiderweb below the setup controls. The only visible text is the lowercase characteristic labels: cardio, strength, muscle endurance, flexibility, agility, balance, coordination, power, reaction and speed. Four rings represent levels 1–4 on the fixed 1–5 scale; expert level 5 extends outside the web into reserved space. Fractional averages remain fractional distances, and the scale never normalizes to the user's current highest value. The profile uses one green fill, outline and dot color throughout, without colored outer arcs or a health/athletic distinction. There are no visible numbers, title, legend, assessment controls or extra feedback questions.
 
 The calculation reads current saved Keeps, globally across slots and equipment settings. Slot-scoped Keeps are authoritative; the legacy kept-ID list is a fallback when no slot map exists. It never reads historical votes, dates, completion counts or preference scores, and never modifies workout state.
 

@@ -1,10 +1,34 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { FITNESS_DIMENSIONS, calculateFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
+import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
+  calculateFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
+test("expert level extends beyond the web without rounding fractional levels", () => {
+  assert.equal(FITNESS_MAXIMUM_LEVEL, fixture.chartScale.maximumLevel);
+  assert.equal(FITNESS_WEB_BOUNDARY_LEVEL, fixture.chartScale.webBoundaryLevel);
+  for (const entry of fixture.chartScale.cases)
+    assert.ok(Math.abs(fitnessProfileRadiusFraction(entry.level) - entry.radiusFraction) < 1e-12);
+  assert.ok(fitnessProfileRadiusFraction(5) > fitnessProfileRadiusFraction(4));
+});
+
+test("native and web retain a four-ring green spiderweb without category styling", () => {
+  const native = read("../../NomadicMethod/FitnessProfileView.cs");
+  const colors = read("../../NomadicMethod/Resources/values/colors.xml");
+  const web = read("../fitness-profile.js");
+  const css = read("../styles.css");
+  const green = colors.match(/name="fitness_profile_green">(#[0-9a-f]+)</i)?.[1].toLowerCase();
+  assert.equal(green, "#c8dc63");
+  assert.ok(css.includes("--fitness-green: " + green));
+  assert.match(native, /level <= FitnessProfilePolicy\.WebBoundaryLevel/);
+  assert.match(native, /Resource\.Color\.fitness_profile_green/);
+  assert.match(web, /level <= FITNESS_WEB_BOUNDARY_LEVEL/);
+  assert.match(css, /\.fitness-shape \{[^}]*stroke: var\(--fitness-green\)/);
+  assert.match(css, /\.fitness-point \{ fill: var\(--fitness-green\)/);
+  assert.doesNotMatch(web, /health|athletic|outer.arc/i);
+});
 for (const entry of fixture.cases) {
   test("fitness profile: " + entry.name, () => {
     const source = { schemaVersion: 1, dimensions: fixture.dimensions,

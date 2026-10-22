@@ -6,6 +6,12 @@ namespace NomadicMethod.Services;
 /// <summary>Equal-weight means of precise, strongest ratings of currently kept movements.</summary>
 public static class FitnessProfilePolicy
 {
+    public const int MaximumLevel = 5;
+    public const int WebBoundaryLevel = 4;
+
+    // Reserve the full expert extent; the drawn web stops one level inside it.
+    public static double ChartRadiusFraction(double level) => level / MaximumLevel;
+
     public static readonly string[] Dimensions =
     [
         "cardiorespiratoryEndurance", "muscularStrength", "muscularEndurance",

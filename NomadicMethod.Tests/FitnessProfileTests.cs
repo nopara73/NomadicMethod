@@ -6,6 +6,20 @@ namespace NomadicMethod.Tests;
 
 public sealed class FitnessProfileTests
 {
+    [Fact]
+    public void ExpertLevelExtendsBeyondTheWebWithoutRoundingFractionalLevels()
+    {
+        using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-profile-cases.json")));
+        JsonElement scale = fixture.RootElement.GetProperty("chartScale");
+        Assert.Equal(FitnessProfilePolicy.MaximumLevel, scale.GetProperty("maximumLevel").GetInt32());
+        Assert.Equal(FitnessProfilePolicy.WebBoundaryLevel, scale.GetProperty("webBoundaryLevel").GetInt32());
+        foreach (JsonElement entry in scale.GetProperty("cases").EnumerateArray())
+            Assert.Equal(entry.GetProperty("radiusFraction").GetDouble(),
+                FitnessProfilePolicy.ChartRadiusFraction(entry.GetProperty("level").GetDouble()), 12);
+        Assert.True(FitnessProfilePolicy.ChartRadiusFraction(5) > FitnessProfilePolicy.ChartRadiusFraction(4));
+    }
+
     private static readonly JsonSerializerOptions Options = new()
     {
         PropertyNameCaseInsensitive = true,
