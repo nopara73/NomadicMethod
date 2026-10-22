@@ -43,9 +43,10 @@
   ],
   "cases": [
     {
-      "name": "distance 0 retains positive weight",
+      "name": "profile 2 exercise 3",
       "profile": [
         0,
+        2,
         0,
         0,
         0,
@@ -53,14 +54,590 @@
         0,
         0,
         0,
-        0,
-        1
+        0
       ],
       "levels": [
         [],
+        [
+          3
+        ],
         [],
         [],
         [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "profile 2 exercise 2",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          2
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 1
+    },
+    {
+      "name": "profile 2 exercise 1",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          1
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 2
+    },
+    {
+      "name": "profile 5 exercise 3",
+      "profile": [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 3
+    },
+    {
+      "name": "profile 5 exercise 2",
+      "profile": [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          2
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 4
+    },
+    {
+      "name": "profile 5 exercise 1",
+      "profile": [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          1
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 5
+    },
+    {
+      "name": "profile 2 exercise 4",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          4
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 7
+    },
+    {
+      "name": "profile 2 exercise 5",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 8
+    },
+    {
+      "name": "profile 1 exercise 5",
+      "profile": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 9
+    },
+    {
+      "name": "profile 5 exercise 5",
+      "profile": [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 1
+    },
+    {
+      "name": "profile 1 exercise 1",
+      "profile": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          1
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 1
+    },
+    {
+      "name": "profile 2.4 exercise 3",
+      "profile": [
+        0,
+        2.4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "profile 2.5 exercise 4",
+      "profile": [
+        0,
+        2.5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          4
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "profile 2.6 exercise 3",
+      "profile": [
+        0,
+        2.6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 1
+    },
+    {
+      "name": "range containing +1 belongs only to the +1 tier",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "noncontiguous set never interpolates +1",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          1,
+          4
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 2
+    },
+    {
+      "name": "a +1 match in another ability beats a current match",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          2
+        ],
+        [],
+        [],
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "additional matching abilities do not buy another tier",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "unrelated high rating does not veto a +1 match",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
+        [],
+        [
+          3
+        ],
+        [],
+        [],
+        [],
+        [
+          5
+        ],
+        [],
+        [],
+        [],
+        []
+      ],
+      "tier": 0
+    },
+    {
+      "name": "unknown axes do not create a +1 from zero",
+      "profile": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "levels": [
         [],
         [],
         [],
@@ -68,414 +645,16 @@
         [],
         [
           1
-        ]
-      ],
-      "weight": 1
-    },
-    {
-      "name": "distance 1 retains positive weight",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          2
-        ]
-      ],
-      "weight": 0.5
-    },
-    {
-      "name": "distance 2 retains positive weight",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          3
-        ]
-      ],
-      "weight": 0.25
-    },
-    {
-      "name": "distance 3 retains positive weight",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          4
-        ]
-      ],
-      "weight": 0.125
-    },
-    {
-      "name": "distance 4 retains positive weight",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          5
-        ]
-      ],
-      "weight": 0.0625
-    },
-    {
-      "name": "half-up average matches upper level",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2.5
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          3
-        ]
-      ],
-      "weight": 1
-    },
-    {
-      "name": "below half rounds down",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2.4
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          3
-        ]
-      ],
-      "weight": 0.5
-    },
-    {
-      "name": "lower and upper neighbors are symmetric",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          1,
-          3
-        ]
-      ],
-      "weight": 0.5
-    },
-    {
-      "name": "explicit range contains current level",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          1,
-          2,
-          3
-        ]
-      ],
-      "weight": 1
-    },
-    {
-      "name": "noncontiguous set does not infer its missing middle",
-      "profile": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          1,
-          3,
-          4,
-          5
         ],
-        []
-      ],
-      "weight": 0.5
-    },
-    {
-      "name": "one match wins despite another characteristic being distant",
-      "profile": [
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0,
-        0,
-        0
-      ],
-      "levels": [
-        [],
-        [
-          5
-        ],
-        [],
-        [],
-        [],
-        [],
-        [
-          2
-        ],
-        [],
-        [],
-        []
-      ],
-      "weight": 1
-    },
-    {
-      "name": "additional matches do not multiply weight",
-      "profile": [
-        0,
-        2,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0,
-        0,
-        2
-      ],
-      "levels": [
-        [],
-        [
-          2
-        ],
-        [],
-        [],
-        [],
-        [],
-        [
-          2
-        ],
-        [],
-        [],
-        [
-          2
-        ]
-      ],
-      "weight": 1
-    },
-    {
-      "name": "unknown axis and blank cells cannot create a zero match",
-      "profile": [
-        0,
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "levels": [
-        [],
-        [
-          5
-        ],
-        [],
-        [],
-        [],
-        [],
         [],
         [],
         [],
         []
       ],
-      "weight": 0.0625
+      "tier": 6
     },
     {
-      "name": "ratings only on unknown user axes are neutral",
-      "profile": [
-        0,
-        2,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "levels": [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [
-          5
-        ],
-        []
-      ],
-      "weight": 1
-    },
-    {
-      "name": "entirely empty ratings are neutral",
+      "name": "empty ratings",
       "profile": [
         0,
         2,
@@ -500,10 +679,10 @@
         [],
         []
       ],
-      "weight": 1
+      "tier": 6
     },
     {
-      "name": "absent rating entry is neutral",
+      "name": "missing ratings",
       "profile": [
         0,
         2,
@@ -517,10 +696,10 @@
         0
       ],
       "levels": null,
-      "weight": 1
+      "tier": 6
     },
     {
-      "name": "no heart evidence gives neutral weight",
+      "name": "unknown user profile",
       "profile": [
         0,
         0,
@@ -545,87 +724,99 @@
         [],
         [],
         [],
-        [
-          1
-        ]
+        []
       ],
-      "weight": 1
+      "tier": 6
     }
   ],
   "ordering": [
     {
-      "name": "weighted family draws",
+      "name": "tiers outrank all random draws",
       "candidates": [
         {
           "id": 1,
           "movementId": 10,
-          "weight": 1
+          "tier": 1
         },
         {
           "id": 2,
           "movementId": 20,
-          "weight": 0.5
+          "tier": 0
         },
         {
           "id": 3,
           "movementId": 30,
-          "weight": 0.25
+          "tier": 2
         }
       ],
       "draws": [
-        0.8,
-        0.2,
-        0.1
+        0,
+        0.99,
+        0.2
       ],
       "expected": [
-        3,
         2,
-        1
+        1,
+        3
       ]
     },
     {
-      "name": "family uses maximum weight and keeps its variants together",
+      "name": "one family draw reused across tiers without promoting a lower alias",
       "candidates": [
         {
           "id": 101,
           "movementId": 10,
-          "weight": 0.25
+          "tier": 1
         },
         {
           "id": 102,
           "movementId": 10,
-          "weight": 1
+          "tier": 0
+        },
+        {
+          "id": 103,
+          "movementId": 10,
+          "tier": 0
         },
         {
           "id": 201,
           "movementId": 20,
-          "weight": 0.5
+          "tier": 0
+        },
+        {
+          "id": 301,
+          "movementId": 30,
+          "tier": 1
         }
       ],
       "draws": [
         0.2,
         0.9,
         0.1,
-        0.4
+        0.8,
+        0.4,
+        0.3
       ],
       "expected": [
         102,
+        103,
+        201,
         101,
-        201
+        301
       ]
     },
     {
-      "name": "equal keys retain stable input order",
+      "name": "stable equal draws",
       "candidates": [
         {
           "id": 1,
           "movementId": 10,
-          "weight": 1
+          "tier": 0
         },
         {
           "id": 2,
           "movementId": 20,
-          "weight": 1
+          "tier": 0
         }
       ],
       "draws": [
@@ -637,5 +828,246 @@
         2
       ]
     }
-  ]
+  ],
+  "discovery": {
+    "kept": [
+      1,
+      2
+    ],
+    "exercises": [
+      {
+        "id": 1,
+        "group": 0,
+        "score": 20,
+        "levels": [
+          [],
+          [
+            2
+          ],
+          [],
+          [],
+          [],
+          [
+            2
+          ],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 2,
+        "group": 0,
+        "score": 10,
+        "levels": [
+          [],
+          [
+            2
+          ],
+          [],
+          [],
+          [],
+          [
+            2
+          ],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 3,
+        "group": 0,
+        "movementId": 3,
+        "levels": [
+          [],
+          [
+            3
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 4,
+        "group": 0,
+        "levels": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            3
+          ],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 5,
+        "group": 0,
+        "levels": [
+          [],
+          [
+            3
+          ],
+          [],
+          [],
+          [],
+          [
+            3
+          ],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 6,
+        "group": 0,
+        "movementId": 3,
+        "levels": [
+          [],
+          [
+            2
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 7,
+        "group": 0,
+        "score": 100,
+        "levels": [
+          [],
+          [
+            2
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 8,
+        "group": 0,
+        "score": 500,
+        "levels": [
+          [],
+          [
+            1
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 9,
+        "group": 0,
+        "levels": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 10,
+        "group": 0,
+        "levels": [
+          [],
+          [
+            4
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 20,
+        "group": 1,
+        "levels": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      {
+        "id": 30,
+        "group": 2,
+        "levels": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      }
+    ],
+    "expectedFamilyOrder": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10
+    ]
+  }
 }

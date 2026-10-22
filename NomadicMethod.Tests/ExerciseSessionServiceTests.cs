@@ -3840,7 +3840,7 @@ public sealed class ExerciseSessionServiceTests
     }
 
     [Fact]
-    public void FreshHardCandidateOutranksNonHardKeepAndMirrorPreference()
+    public void EligibleKeepOutranksFreshHardDiscovery()
     {
         DateTimeOffset now = new(2026, 8, 22, 12, 0, 0, TimeSpan.Zero);
         WorkoutGroup[] groups = MassGroupingTaxonomy.GetResolution(3).Groups.ToArray();
@@ -3874,7 +3874,7 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, 3, WorkoutModifiers.Mirror);
 
-        Assert.Equal(hard.Id, state.SelectedExerciseIds[
+        Assert.Equal(nonHardKeep.Id, state.SelectedExerciseIds[
             $"p{(int)WorkoutModifiers.Mirror}|{groups[0].Id}"]);
         Assert.Contains(nonHardKeep.Id, state.LastKeptExerciseIds);
     }
@@ -4721,7 +4721,7 @@ public sealed class ExerciseSessionServiceTests
     }
 
     [Fact]
-    public void SameMuscleSequenceIsRankedByItsHardestPrimaryBlock()
+    public void EligibleKeepOutranksASequenceWithAHardPrimaryBlock()
     {
         WorkoutGroup[] groups = MassGroupingTaxonomy.GetResolution(30).Groups.ToArray();
         Exercise root = CloneWithLinkedSequenceMember(
@@ -4757,7 +4757,7 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, 45, WorkoutModifiers.None);
 
-        Assert.Equal(root.Id, state.SelectedExerciseIds[groups[0].Id]);
+        Assert.Equal(nonHardKeep.Id, state.SelectedExerciseIds[groups[0].Id]);
         Assert.Contains(nonHardKeep.Id, state.LastKeptExerciseIds);
     }
 

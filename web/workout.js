@@ -1,6 +1,6 @@
 import "./light-cadence.js";
 import { calculateFitnessProfile, roundFitnessLevel,
-  fitnessSelectionWeight, orderFitnessCandidates } from "./fitness-profile.js";
+  fitnessSequenceTier, FITNESS_TIER_COUNT, FITNESS_UNKNOWN_TIER, orderFitnessCandidates } from "./fitness-profile.js";
 
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
 export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
@@ -4483,12 +4483,16 @@ export class WorkoutSession {
     }
     this.sequenceRootByExerciseId = new Map();
     this.sequenceExercisesByRootId = new Map();
+    this.movementRootsById = new Map();
     for (const root of exercises.filter((exercise) =>
       Array.isArray(exercise.sequenceBlocks) && exercise.sequenceBlocks.length > 0)) {
       const memberIds = [...new Set(root.sequenceBlocks.map((block) =>
         block.exerciseId))];
       const members = memberIds.map((memberId) => this.exercisesById.get(memberId));
       this.sequenceExercisesByRootId.set(root.id, members);
+      const movementId = getSessionMovementId(root);
+      if (!this.movementRootsById.has(movementId)) this.movementRootsById.set(movementId, []);
+      this.movementRootsById.get(movementId).push(root);
       for (const memberId of memberIds) {
         if (!this.exercisesById.has(memberId) ||
             this.sequenceRootByExerciseId.has(memberId)) {
@@ -5404,20 +5408,6 @@ export class WorkoutSession {
       return null;
     }
 
-    let replacementCandidates = candidates;
-    if ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0) {
-      const lightCandidates = candidates.filter((candidate) =>
-        this.isDemandZeroSequence(candidate.exercise));
-      if (lightCandidates.length > 0) {
-        const phase = this.getExercisePhase(group);
-        const highestLightScore = Math.max(...lightCandidates.map((candidate) =>
-          this.getSelectionScore(candidate.exercise, phase)));
-        replacementCandidates = lightCandidates.filter((candidate) =>
-          this.getSelectionScore(candidate.exercise, phase) ===
-            highestLightScore);
-      }
-    }
-
     const rejectedExercise = this.getSelectedExercise(group);
     const rejectedRoot = this.getSequenceRoot(rejectedExercise);
     const scoreUpdates = this.getSequenceExercises(rejectedRoot);
@@ -5427,8 +5417,8 @@ export class WorkoutSession {
       this.getExercisePhase(group),
     );
 
-    this.orderByFitnessPreference(replacementCandidates, candidate => candidate.exercise);
-    const selected = replacementCandidates[0];
+    this.orderFreshCandidates(group, candidates, candidate => candidate.exercise);
+    const selected = candidates[0];
 
     for (const coveredGroup of selected.coveredGroups) {
       this.state.selectedExerciseIds[this.getSelectionStorageKey(
@@ -5462,7 +5452,8 @@ export class WorkoutSession {
   }
 
   applyShuffleRejection(selectionGroupId, phase, rejectedRoot, exercises) {
-    const rejectedExerciseIds = new Set(exercises.map((exercise) => exercise.id));
+    const rejectedExerciseIds = new Set(this.getMovementRoots(rejectedRoot)
+      .flatMap(root => this.getSequenceExercises(root)).map(exercise => exercise.id));
     this.downvoteSequenceInPhase(phase, rejectedRoot);
     this.state.nextWorkoutExcludedExerciseIds = [...new Set([
       ...this.state.nextWorkoutExcludedExerciseIds,
@@ -5549,7 +5540,7 @@ export class WorkoutSession {
       )])
       .filter((exerciseId) => Number.isInteger(exerciseId) && exerciseId > 0));
     const unavailableMovementIds = new Set([
-      ...[...unavailableExerciseIds]
+      ...[...unavailableExerciseIds, ...this.state.nextWorkoutExcludedExerciseIds]
         .map((exerciseId) => this.exercisesById.get(exerciseId))
         .filter(Boolean)
         .map(getSessionMovementId),
@@ -6301,6 +6292,16 @@ export class WorkoutSession {
       scheduledPhaseByGroupId.get(group.id) ??
         this.getProjectedSelectionPhase(group, groups.length);
     if (this.fitnessRatings.size === 0) this.shuffle(candidates);
+    const fitnessTiers = this.getFitnessTiers();
+    const hasFitnessEvidence = [...fitnessTiers.values()].some(tier => tier !== FITNESS_UNKNOWN_TIER);
+    const excludedMovements = this.getExcludedMovementIds();
+    const refusalDepths = new Map(candidates.flatMap(exercise => groups
+      .filter(group => isAllowed(exercise, group)).map(group => {
+        const phase = getSelectionPhase(group);
+        return [`${exercise.id}:${phase}`, this.getMovementRefusalDepth(exercise, phase)];
+      })));
+    const refusalRanks = new Map([...new Set([0, ...refusalDepths.values()])].sort((a, b) => b - a)
+      .map((depth, rank) => [depth, rank]));
     const orderedScores = [...new Set(candidates.flatMap((exercise) => groups
       .filter((group) => isAllowed(exercise, group))
       .map((group) => this.getSelectionScore(
@@ -6362,12 +6363,22 @@ export class WorkoutSession {
     const hardMuscleAgeWeight = addPriorityDimension(
       Math.max(0, freshHardMuscleRanks.size - 1),
     );
-    const moderateRecoveryAvoidanceWeight = addPriorityDimension(1);
-    const hardRecoveryAvoidanceWeight = addPriorityDimension(1);
+    let moderateRecoveryAvoidanceWeight = hasFitnessEvidence ? 0n : addPriorityDimension(1);
+    let hardRecoveryAvoidanceWeight = hasFitnessEvidence ? 0n : addPriorityDimension(1);
     const freshHardWeight = addPriorityDimension(1);
     const scoreWeight = addPriorityDimension(Math.max(0, orderedScores.length - 1));
-    const keptExerciseWeight = addPriorityDimension(1);
     const hardOpportunityWeight = addPriorityDimension(1);
+    // Separate dimensions exhaust +1 opportunities before current/lower tiers.
+    const fitnessWeights = Array(FITNESS_TIER_COUNT);
+    for (let tier = fitnessWeights.length - 1; tier >= 0; tier--)
+      fitnessWeights[tier] = hasFitnessEvidence ? addPriorityDimension(1) : 0n;
+    if (hasFitnessEvidence) {
+      moderateRecoveryAvoidanceWeight = addPriorityDimension(1);
+      hardRecoveryAvoidanceWeight = addPriorityDimension(1);
+    }
+    const refusalWeight = hasFitnessEvidence ? addPriorityDimension(Math.max(0, refusalRanks.size - 1)) : 0n;
+    const keptExerciseWeight = addPriorityDimension(1);
+    const unexcludedWeight = addPriorityDimension(1);
     const lightDayOpportunityWeight = addPriorityDimension(1);
     const preservedActiveSelectionWeight = allowSavedSelectionException
       ? totalLowerPriorityRange + 1n
@@ -6409,7 +6420,7 @@ export class WorkoutSession {
         ? this.getSelectionScore(exercise, phase)
         : 0;
       const isDownvotedInPhase = includeSlotPreference &&
-        this.getPhaseScoreAdjustment(exercise, phase) < 0;
+        this.getMovementRoots(exercise).some(root => this.getPhaseScoreAdjustment(root, phase) < 0);
       const hasHardOpportunity = includeSlotPreference &&
         hardRotationStatus === HARD_ROTATION_STATUS.FreshHard &&
         !isDownvotedInPhase &&
@@ -6426,8 +6437,11 @@ export class WorkoutSession {
         (includeSlotPreference && hasLightDayOpportunity(exercise, evaluationGroup)
           ? lightDayOpportunityWeight
           : 0n) +
+        (!excludedMovements.has(getSessionMovementId(exercise)) ? unexcludedWeight : 0n) +
         (hasHardOpportunity ? hardOpportunityWeight : 0n) +
         (hasContextualKeepPreference ? keptExerciseWeight : 0n) +
+        BigInt(refusalRanks.get(hasContextualKeepPreference ? 0 : refusalDepths.get(`${exercise.id}:${phase}`))) * refusalWeight +
+        fitnessWeights[isKept ? FITNESS_UNKNOWN_TIER : fitnessTiers.get(exercise.id)] +
         (includeSlotPreference
           ? BigInt(scoreRanks.get(selectionScore)) * scoreWeight
           : 0n) +
@@ -6546,7 +6560,7 @@ export class WorkoutSession {
     if (this.fitnessRatings.size > 0) {
       const eligibleRoots = [...new Set(atomicCandidates.map(candidate => candidate.exerciseId))]
         .map(id => this.exercisesById.get(id));
-      this.orderByFitnessPreference(eligibleRoots);
+      this.orderMovementFamilies(eligibleRoots);
       const tieOrder = new Map(eligibleRoots.map((exercise, index) => [exercise.id, index]));
       for (const candidate of atomicCandidates) candidate.tieOrder = tieOrder.get(candidate.exerciseId);
       atomicCandidates.sort((a, b) => a.tieOrder - b.tieOrder);
@@ -6652,7 +6666,7 @@ export class WorkoutSession {
     const finalists = ownershipPreferred.filter((exercise) =>
       getCanonicalCoverage(exercise, group) === widestCoverage);
     if (this.fitnessRatings.size > 0) {
-      this.orderByFitnessPreference(finalists);
+      this.orderMovementFamilies(finalists);
       return finalists[0];
     }
     const index = Math.min(finalists.length - 1, Math.floor(this.random() * finalists.length));
@@ -6700,18 +6714,61 @@ export class WorkoutSession {
     }
   }
 
-  orderByFitnessPreference(candidates, exercise = item => item) {
+  orderMovementFamilies(candidates, exercise = item => item) {
     if (this.fitnessRatings.size === 0) {
       this.shuffle(candidates);
       return;
     }
-    const profile = calculateFitnessProfile(
-      this.catalogExercises, this.state, this.fitnessRatings).map(roundFitnessLevel);
     const ordered = orderFitnessCandidates(candidates,
       item => getSessionMovementId(exercise(item)),
-      item => Math.max(...this.getSequenceExercises(exercise(item)).map(member =>
-        fitnessSelectionWeight(this.fitnessRatings.get(member.id), profile))),
+      () => 0,
       this.random);
+    candidates.splice(0, candidates.length, ...ordered);
+  }
+
+  getFitnessTiers() {
+    const profile = calculateFitnessProfile(this.catalogExercises, this.state,
+      this.fitnessRatings).map(roundFitnessLevel);
+    return new Map([...this.sequenceExercisesByRootId].map(([id, members]) => [id,
+      fitnessSequenceTier(members.map(member => this.fitnessRatings.get(member.id)), profile)]));
+  }
+
+  getMovementRoots(exercise) {
+    return this.movementRootsById.get(getSessionMovementId(this.getSequenceRoot(exercise)));
+  }
+
+  getMovementRefusalDepth(exercise, phase) {
+    return Math.max(0, ...this.getMovementRoots(exercise).map(root =>
+      Math.max(-this.getPhaseScoreAdjustment(root, phase), -this.getSelectionScore(root, phase))));
+  }
+
+  getExcludedMovementIds() {
+    return new Set(this.state.nextWorkoutExcludedExerciseIds.map(id => this.exercisesById.get(id))
+      .filter(Boolean).map(exercise => getSessionMovementId(this.getSequenceRoot(exercise))));
+  }
+
+  orderFreshCandidates(group, candidates, exercise = item => item) {
+    this.orderMovementFamilies(candidates, exercise);
+    const tiers = this.getFitnessTiers(), phase = this.getExercisePhase(group);
+    const now = this.getCurrentUnixTimeMilliseconds();
+    const ordered = candidates.map(item => {
+      const root = exercise(item), member = this.getSequenceSelectionExerciseForGroup(root, group);
+      const hardRecovery = getHardRotationStatus(member, group,
+        this.state.lastHardWorkUnixMillisecondsByPrimaryMuscle, now) === HARD_ROTATION_STATUS.RecoveringHard;
+      const moderateRecovery = isModerateExerciseRecovering(member,
+        this.state.lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle, now);
+      const kept = this.isSequenceKept(getSelectionKey(group), root) && !hardRecovery && !moderateRecovery &&
+        !this.getMovementRoots(root).some(variant => this.getPhaseScoreAdjustment(variant, phase) < 0);
+      return { item, priority: [
+        Number((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0 && !this.isDemandZeroSequence(root)),
+        kept ? 0 : 1, kept ? 0 : this.getMovementRefusalDepth(root, phase), Number(hardRecovery), Number(moderateRecovery),
+        kept ? FITNESS_UNKNOWN_TIER : tiers.get(this.getSequenceRoot(root).id), -this.getSelectionScore(root, phase),
+      ] };
+    }).sort((a, b) => {
+      for (let i = 0; i < a.priority.length; i++)
+        if (a.priority[i] !== b.priority[i]) return a.priority[i] - b.priority[i];
+      return 0;
+    }).map(entry => entry.item);
     candidates.splice(0, candidates.length, ...ordered);
   }
 
@@ -7521,11 +7578,13 @@ export class WorkoutSession {
     }
     const selectionTimeUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     const allocationCache = new Map();
+    const fitnessTiers = this.getFitnessTiers();
+    const excludedMovements = this.getExcludedMovementIds();
     const rebalanceRoots = this.exercises.filter((exercise) =>
       exercise.sequenceBlocks.length > 0 &&
       this.getSequenceRoot(exercise).id === exercise.id &&
       !keptExerciseIds.has(exercise.id) &&
-      !this.state.nextWorkoutExcludedExerciseIds.includes(exercise.id) &&
+      !excludedMovements.has(getSessionMovementId(exercise)) &&
       this.getSequenceExercises(exercise).every((member) =>
         this.isCompatibleWithModifiers(
           member,
@@ -7678,6 +7737,15 @@ export class WorkoutSession {
                 getCachedSelectionScore(displacedRoot, group.id);
           });
           if (!preservesScores) {
+            continue;
+          }
+          if (removedPlacements.some(placement => {
+            const phase = this.getProjectedSelectionPhase(placement.anchor, groups.length);
+            return fitnessTiers.get(candidate.id) > fitnessTiers.get(placement.root.id) ||
+              this.getMovementRefusalDepth(candidate, phase) > this.getMovementRefusalDepth(placement.root, phase);
+          })) {
+            // A balance improvement cannot restart a refused family or demote
+            // an available +1 choice to a current/lower fitness tier.
             continue;
           }
           let candidateBalance;

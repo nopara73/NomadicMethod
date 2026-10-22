@@ -45,31 +45,55 @@ narrowing honest ranges. The generated
 [coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md) reports usable
 spiderweb contributors separately from the five-per-training-tier catalog gate.
 
-## Preferences for fresh choices
+## Discovery order
 
-Fitness changes only the planner's existing random ordering among otherwise
-equally suitable choices. Equipment, anatomy, complete atomic sequences, Light,
-recovery, saved feedback and Keep priorities retain their existing precedence.
-Workout restoration and chart updates do not regenerate a persisted lineup.
+Eligible saved Keeps take priority over discovering a new movement, including
+fresh hard work. Light still prioritizes complete demand-zero sequences; a
+recovering or phase-downvoted Keep retains its saved identity but does not get
+the ordinary fresh Keep preference. Restoring an unfinished workout, opening
+the chart or changing hearts does not regenerate its persisted selections.
 
-Round known user averages with the display rule, then find the smallest absolute
-distance between any known axis and any explicitly supported level of the
-candidate. Empty cells and unknown user axes do not participate. Ranges and
-noncontiguous sets participate by their actual members, without interpolation.
-One matching characteristic suffices; additional matches do not add weight.
+For new choices with usable profile evidence, exhaust these tiers in order:
 
-Distances 0–4 receive relative weights 1, 1/2, 1/4, 1/8 and 1/16. A candidate
-without a comparable rating receives neutral weight 1. Every otherwise eligible
-candidate remains available, including the two entirely unrated breathing drills.
-These are relative preferences, not admission percentages or evidence of adaptation.
+1. One level above any known, rounded user characteristic.
+2. The current level in any known characteristic.
+3. One level below, then two, three and four levels below.
+4. No comparable rating, then larger upward jumps (+2, +3, +4), as coverage fallbacks.
 
-For an atomic sequence, use the strongest weight among its distinct members.
-Group eligible roots by SessionMovementId, take the maximum eligible variant
-weight for one family draw, then order variants within each family by their
-weights. Sides, aliases, placements and repeated sets do not buy family draws.
-Only complete placements that fit the duration may affect these weights.
-Generate weighted exponential keys once per selection operation:
-`-ln(U) / weight`, ascending, with `U = 1 - random()` in (0,1].
-Reuse that order for every branch of the lineup solver and its repeat fallback.
-The foreground and preparation workers receive the same canonical read-only
-rating dependency. Fitness introduces no saved-state schema or new user input.
+An exercise belongs to its earliest matching tier, even if it matches several
+abilities. Ranges participate through their explicit members; noncontiguous
+sets never imply missing levels. Unknown user axes and empty rating cells do
+not count as level zero. Level 5 cannot generate a level-6 target. If the profile
+provides no comparison, ordinary planner priorities apply without a fitness
+preference. The profile calculation and its exclusion of ambiguous ranges are
+unchanged. A supported range is a training option, not a claim that the app
+prescribes a particular resistance, cadence or more difficult execution.
+
+Refusing a movement allows +1 discovery to continue in any other ability. There
+is no retry cap. Shuffle excludes the entire SessionMovementId family for the
+rest of the active search, including aliases whose ratings would otherwise put
+them in another tier. Those exclusions survive cold reopen. Saved phase-local
+feedback also follows the family when ranking new choices: unrefused families
+precede refused ones, then lesser refusal depth precedes greater depth. Existing
+legacy negative scores remain evidence of refusal. This reads the existing
+feedback without inventing votes for aliases or rewriting scores, Keeps or
+history. A no-heart decision after performing a sequence updates feedback for
+future choices; it does not insert another performed block.
+
+Equipment, anatomical coverage and complete sequences that fit the duration
+remain prerequisites. Recovery outranks upward exploration. The exact lineup
+solver maximizes eligible Keeps and +1 opportunities before current/lower tiers,
+with saved-score and equipment preferences resolving remaining choices. No
+fitness tier is a compatibility ban: if completing the lineup requires an
+otherwise less-preferred movement, coverage remains possible. After every
+family has previously been refused, least-refused families can be considered
+again in a future search; current-search shuffle exclusions are never recycled.
+Muscle balancing cannot replace a selection with a worse fitness tier or a
+more-refused family. Completed and current atomic work remains protected during
+duration/modifier changes.
+
+Randomness only breaks ties: one uniform draw per movement family, then variant
+draws, reused throughout one solver operation. Sides, placements, aliases and
+repeated sets do not buy additional family draws. Canonical read-only ratings
+are shared by Android, web and the preparation worker. There is no new saved-state
+schema, visible control, assessment question or change to the spiderweb.

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import test from "node:test";
-import { roundFitnessLevel, fitnessSelectionWeight, orderFitnessCandidates,
+import { roundFitnessLevel, fitnessSelectionTier, fitnessSequenceTier, orderFitnessCandidates,
   calculateFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState, getResolution,
   WORKOUT_MODIFIERS as M } from "../workout.js";
@@ -18,16 +18,16 @@ const planningCases = JSON.parse(read("./fixtures/workout-planning-cases.json"))
 for (const entry of fixture.cases) {
   test("fitness selection: " + entry.name, () => {
     const before = JSON.stringify(entry);
-    assert.equal(fitnessSelectionWeight(entry.levels, entry.profile.map(roundFitnessLevel)), entry.weight);
+    assert.equal(fitnessSelectionTier(entry.levels, entry.profile.map(roundFitnessLevel)), entry.tier);
     assert.equal(JSON.stringify(entry), before);
   });
 }
 for (const entry of fixture.ordering) {
-  test("shared weighted order: " + entry.name, () => {
+  test("shared tier order: " + entry.name, () => {
     const before = JSON.stringify(entry.candidates);
     let draws = 0;
     const ordered = orderFitnessCandidates(entry.candidates, e => e.movementId,
-      e => e.weight, () => entry.draws[draws++]);
+      e => e.tier, () => entry.draws[draws++]);
     assert.deepEqual(ordered.map(e => e.id), entry.expected);
     assert.equal(draws, entry.draws.length, "keys are drawn once, including within families");
     assert.equal(JSON.stringify(entry.candidates), before);
@@ -38,26 +38,97 @@ function seededRandom(seed) {
   return () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
 }
 
-test("sampling favors nearby levels and variants do not multiply family chances", () => {
+test("unrated sequence members do not mask known training levels", () => {
+  assert.equal(fitnessSequenceTier([null, [[4]]], [2]), 7);
+  assert.equal(fitnessSequenceTier([[[2]], [[3]]], [2]), 0);
+  assert.equal(fitnessSequenceTier([null, [[]]], [2]), 6);
+});
+
+test("equal-tier families have equal chances regardless of aliases", () => {
   const random = seededRandom(123);
   const candidates = [
-    {id:1, movementId:1, weight:1}, {id:2, movementId:1, weight:0.5},
-    {id:3, movementId:1, weight:0.25}, {id:4, movementId:2, weight:0.5},
+    {id:1, movementId:1, tier:0}, {id:2, movementId:1, tier:0},
+    {id:3, movementId:1, tier:0}, {id:4, movementId:2, tier:0},
   ];
   let familyOne = 0;
   for (let i = 0; i < 10000; i++)
-    if (orderFitnessCandidates(candidates, e => e.movementId, e => e.weight, random)[0].movementId === 1)
+    if (orderFitnessCandidates(candidates, e => e.movementId, e => e.tier, random)[0].movementId === 1)
       familyOne++;
-  assert.ok(familyOne > 6400 && familyOne < 6900, String(familyOne));
-  const neighbors = [1,2,3,5].map((level, i) => ({id:i, level,
-    weight:fitnessSelectionWeight([[level]], [2])}));
-  const counts = [0,0,0,0];
-  for (let i = 0; i < 10000; i++)
-    counts[orderFitnessCandidates(neighbors, e => e.id, e => e.weight, random)[0].id]++;
-  assert.ok(counts[1] > counts[0] && counts[1] > counts[2]);
-  assert.ok(Math.abs(counts[0] - counts[2]) < 200);
-  assert.ok(counts[3] > 100, "distant harder exercises remain possible");
+  assert.ok(familyOne > 4750 && familyOne < 5250, String(familyOne));
 });
+
+function discoveryFixture(higherHard = false) {
+  const groups = getResolution(3).groups;
+  const exercises = fixture.discovery.exercises.map(row => ({
+    id: row.id, name: `Synthetic planner fixture ${row.id}`, video: "", practice: "", motionProfile: "",
+    primaryCanonicalGroup: groups[row.group].canonicalGroups[0],
+    secondaryCanonicalGroups: groups[row.group].canonicalGroups.slice(1),
+    mode: "Repetition", presentation: "Motion", holdFramePercent: 0, sideSequence: "Continuous",
+    sequenceBlocks: [{exerciseId: row.id, sideCue: "None", directionCue: "None", mediaSegment: "Full", mirrorMedia: false}],
+    sessionMovementId: row.movementId ?? row.id, score: row.score ?? 0,
+    muscularDemand: higherHard && [3,4,5].includes(row.id) ? 2 : 0,
+    onlyFeetTouchGround: true, shoeAgnostic: true, maxSpaceMeters: 2, equipment: "None", silent: true,
+    mirrorRelationship: "Agnostic", minimumMirrorCoverage: "None", hardFloorCompatibility: "Compatible",
+    shyCompatibility: "Compatible", upperBodyClothingRequirement: "Agnostic", floorContactPoints: "Feet",
+    locomotionSpace: "None", insectCompatibility: "Compatible",
+  }));
+  const ratings = new Map(fixture.discovery.exercises.map(row => [row.id, row.levels]));
+  const state = createDefaultState();
+  state.keptExerciseRootIdsBySelectionGroupId[groups[0].id] = [...fixture.discovery.kept];
+  const session = new WorkoutSession(exercises, state, () => 0, now, ratings);
+  return { exercises, ratings, session };
+}
+
+test("hearts, every +1 ability, current, lower, then fallbacks without family repeats after cold reopen", () => {
+  let {exercises, ratings, session} = discoveryFixture();
+  session.startWorkout(3, 0);
+  const seen = [];
+  do {
+    const group = session.getNextGroup();
+    seen.push(session.getSelectedExercise(group).sessionMovementId);
+    assert.deepEqual(session.state.outcomes, {});
+    assert.ok(seen.length <= 12);
+    if (!session.canShuffleNextExercise(group)) break;
+    assert.ok(session.shuffleNextExercise(group));
+    const selected = structuredClone(session.state.selectedExerciseIds);
+    session = new WorkoutSession(exercises, structuredClone(session.state), () => 0, now, ratings);
+    session.restoreAfterReopen();
+    assert.deepEqual(session.state.selectedExerciseIds, selected);
+  } while (true);
+  assert.deepEqual(seen, fixture.discovery.expectedFamilyOrder);
+  assert.ok(session.state.nextWorkoutExcludedExerciseIds.includes(6));
+  assert.equal(session.state.exerciseScoreAdjustmentsByPhase.Warmup[6], undefined, "no invented alias vote");
+  assert.equal(session.getActiveGroups().length, 3);
+});
+
+test("historical refusals apply to aliases without rewriting scores or hearts", () => {
+  const {session, ratings} = discoveryFixture();
+  const heartSlot = getResolution(3).groups[1].id;
+  session.state.keptExerciseRootIdsBySelectionGroupId = {[heartSlot]: [20]};
+  ratings.set(20, ratings.get(1));
+  session.state.scores[6] = 1000;
+  session.state.exerciseScoreAdjustmentsByPhase.Warmup = {3:-1,4:-1,5:-1};
+  session.startWorkout(3, 0);
+  assert.equal(session.getSelectedExercise(session.getNextGroup()).id, 7);
+  assert.equal(session.getScore(session.exercisesById.get(7)), 100);
+  assert.deepEqual(session.state.keptExerciseRootIdsBySelectionGroupId[heartSlot], [20]);
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase.Warmup, {3:-1,4:-1,5:-1});
+});
+
+for (const [light, recovering, expected] of [[false,false,3], [true,false,7], [false,true,7]]) {
+  test(`upward exploration respects Light ${light} and recovery ${recovering}`, () => {
+    const {session, ratings} = discoveryFixture(true);
+    const groups = getResolution(3).groups;
+    session.state.keptExerciseRootIdsBySelectionGroupId = {[groups[1].id]: [20]};
+    ratings.set(20, ratings.get(1));
+    if (recovering) session.state.lastHardWorkUnixMillisecondsByPrimaryMuscle[groups[0].canonicalGroups[0]] =
+      now() - 3600000;
+    session.startWorkout(3, light ? M.Light : 0);
+    const target = session.getActiveGroups().find(g => (g.selectionGroupId ?? g.id) === groups[0].id);
+    assert.equal(session.getSelectedExercise(target).id, expected);
+    assert.deepEqual(session.state.outcomes, {});
+  });
+}
 
 test("worker receives the same read-only rating dependency as foreground planning", () => {
   let receive, args, sent;
@@ -101,7 +172,7 @@ for (const entry of planningCases) {
 
 for (const minutes of [3,5,7,10,15,45]) {
   for (const light of [false, true]) {
-    test("weighted planning and restoration preserve " + minutes + " minutes, Light " + light, () => {
+    test("tiered planning and restoration preserve " + minutes + " minutes, Light " + light, () => {
       const state = createDefaultState();
       const session = new WorkoutSession(catalog, state, seededRandom(minutes), now, ratings);
       session.initialize();

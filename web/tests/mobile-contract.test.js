@@ -1377,11 +1377,11 @@ test("web and mobile apply rolling muscular recovery by primary muscle", () => {
   assert.match(mainActivity, /_sessionService\.BeginRest\(/);
   assert.match(
     sessionService,
-    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight/,
+    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight[\s\S]*fitnessWeights[\s\S]*keptExerciseWeight/,
   );
   assert.match(
     workoutModule,
-    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight/,
+    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight[\s\S]*fitnessWeights[\s\S]*keptExerciseWeight/,
   );
   assert.match(
     sessionService,
@@ -1896,11 +1896,11 @@ test("workout transport controls are functional and muscle labels stay hidden", 
   );
   assert.match(
     sessionService,
-    /OrderByFitnessPreference\(state, candidates, candidate => candidate\.Exercise\);[\s\S]*ShuffleCandidate selected = candidates\[0\]/,
+    /OrderFreshCandidates\(state, group, candidates, candidate => candidate\.Exercise\);[\s\S]*ShuffleCandidate selected = candidates\[0\]/,
   );
   assert.match(
     workoutModule,
-    /this\.orderByFitnessPreference\(replacementCandidates, candidate => candidate\.exercise\);[\s\S]*const selected = replacementCandidates\[0\]/,
+    /this\.orderFreshCandidates\(group, candidates, candidate => candidate\.exercise\);[\s\S]*const selected = candidates\[0\]/,
   );
   assert.match(
     sessionService,

@@ -14,38 +14,50 @@ export function roundFitnessLevel(level) {
     : Math.min(FITNESS_MAXIMUM_LEVEL, Math.max(1, Math.floor(level + 0.5)));
 }
 
-export function fitnessSelectionWeight(levels, roundedProfile) {
-  let distance = Infinity;
+export const FITNESS_UNKNOWN_TIER = 6;
+export const FITNESS_TIER_COUNT = 10;
+
+// +1, current, -1 through -4, unknown, then +2 through +4 as coverage fallbacks.
+export function fitnessSelectionTier(levels, roundedProfile) {
+  let tier = Infinity;
   levels?.forEach((set, dimension) => {
     const target = roundedProfile[dimension];
     if (!(target > 0)) return;
-    for (const level of set) distance = Math.min(distance, Math.abs(level - target));
+    for (const level of set) {
+      const difference = level - target;
+      tier = Math.min(tier, difference === 1 ? 0
+        : difference <= 0 ? 1 - difference : 5 + difference);
+    }
   });
-  return Number.isFinite(distance) ? 2 ** -distance : 1;
+  return Number.isFinite(tier) ? tier : FITNESS_UNKNOWN_TIER;
 }
 
-export function orderFitnessCandidates(candidates, movementId, weight, random) {
-  const key = value => {
+export function fitnessSequenceTier(members, roundedProfile) {
+  const tiers = members.map(levels => fitnessSelectionTier(levels, roundedProfile))
+    .filter(tier => tier !== FITNESS_UNKNOWN_TIER);
+  return tiers.length ? Math.min(...tiers) : FITNESS_UNKNOWN_TIER;
+}
+
+export function orderFitnessCandidates(candidates, movementId, tier, random) {
+  const draw = () => {
     const unit = random();
-    if (!Number.isFinite(value) || value <= 0 ||
-        !Number.isFinite(unit) || unit < 0 || unit >= 1)
-      throw new RangeError("Invalid weighted selection draw.");
-    return -Math.log(1 - unit) / value;
+    if (!Number.isFinite(unit) || unit < 0 || unit >= 1)
+      throw new RangeError("Invalid selection draw.");
+    return unit;
   };
   const families = new Map();
   candidates.forEach((item, index) => {
     const id = movementId(item);
     if (!families.has(id)) families.set(id, []);
-    families.get(id).push({ item, index, weight: weight(item) });
+    families.get(id).push({ item, index, tier: tier(item) });
   });
-  return [...families.values()].map(variants => {
-    const familyKey = key(Math.max(...variants.map(entry => entry.weight)));
-    const ordered = variants.length === 1 ? variants
-      : variants.map(entry => ({ ...entry, key: key(entry.weight) }))
-        .sort((a, b) => a.key - b.key || a.index - b.index);
-    return { key: familyKey, index: variants[0].index, variants: ordered };
-  }).sort((a, b) => a.key - b.key || a.index - b.index)
-    .flatMap(family => family.variants.map(entry => entry.item));
+  return [...families.values()].flatMap(variants => {
+    const familyKey = draw();
+    return variants.map(entry => ({ ...entry, familyKey, familyIndex: variants[0].index,
+      variantKey: variants.length === 1 ? 0 : draw() }));
+  }).sort((a, b) => a.tier - b.tier || a.familyKey - b.familyKey ||
+    a.familyIndex - b.familyIndex || a.variantKey - b.variantKey || a.index - b.index)
+    .map(entry => entry.item);
 }
 
 export function fitnessProfileRadiusFraction(level) {

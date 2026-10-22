@@ -3853,7 +3853,7 @@ test("a keep preference does not move to another compatible slot", () => {
   );
 });
 
-test("fresh hard work outranks a non-hard keep and soft mirror preference", () => {
+test("an eligible keep outranks fresh hard discovery", () => {
   const now = Date.UTC(2026, 7, 22, 12);
   const groups = RESOLUTIONS.get(3).groups;
   const hard = exercise(
@@ -3904,7 +3904,7 @@ test("fresh hard work outranks a non-hard keep and soft mirror preference", () =
 
   assert.equal(
     session.state.selectedExerciseIds[`p${WORKOUT_MODIFIERS.Mirror}|${groups[0].id}`],
-    hard.id,
+    nonHardKeep.id,
   );
   assert.ok(session.state.lastKeptExerciseIds.includes(nonHardKeep.id));
 });
@@ -4622,7 +4622,7 @@ test("version twenty prepared workout recognizes an existing light-day streak", 
   assert.equal(session.state.activeWorkoutSession.isLightDay, true);
 });
 
-test("a same-muscle sequence is ranked by its hardest primary block", () => {
+test("an eligible keep outranks a sequence with a hard primary block", () => {
   const groups = RESOLUTIONS.get(30).groups;
   const root = exercise(1, groups[0].canonicalGroups[0], [], 0);
   const hardMember = exercise(1_001, groups[0].canonicalGroups[0], [], 0);
@@ -4654,7 +4654,7 @@ test("a same-muscle sequence is ranked by its hardest primary block", () => {
 
   session.startWorkout(45, WORKOUT_MODIFIERS.None);
 
-  assert.equal(session.state.selectedExerciseIds[groups[0].id], root.id);
+  assert.equal(session.state.selectedExerciseIds[groups[0].id], nonHardKeep.id);
   assert.ok(session.state.lastKeptExerciseIds.includes(nonHardKeep.id));
 });
 

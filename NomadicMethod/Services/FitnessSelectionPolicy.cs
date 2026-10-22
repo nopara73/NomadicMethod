@@ -1,59 +1,71 @@
 namespace NomadicMethod.Services;
 
-/// <summary>Soft fitness preferences used only for otherwise tied choices.</summary>
+/// <summary>Exhaust +1 choices before current and progressively lower levels.</summary>
 public static class FitnessSelectionPolicy
 {
-    public static double Weight(int[][]? levels, IReadOnlyList<int> roundedProfile)
+    public const int UnknownTier = 6;
+    public const int TierCount = 10;
+
+    // Ascending tiers: +1, current, -1, -2, -3, -4, unknown, +2, +3, +4.
+    // Unknowns and larger jumps remain fallbacks for complete coverage. A range
+    // supports only its explicit members; it does not imply a harder execution.
+    public static int Tier(int[][]? levels, IReadOnlyList<int> roundedProfile)
     {
-        int distance = int.MaxValue;
+        int tier = int.MaxValue;
         if (levels is not null)
         {
-            for (int dimension = 0; dimension < levels.Length; dimension++)
+            for (int dimension = 0; dimension < Math.Min(levels.Length, roundedProfile.Count); dimension++)
             {
                 int target = roundedProfile[dimension];
                 if (target <= 0) continue;
                 foreach (int level in levels[dimension])
-                    distance = Math.Min(distance, Math.Abs(level - target));
+                {
+                    int difference = level - target;
+                    int candidateTier = difference == 1 ? 0 : difference <= 0
+                        ? 1 - difference : 5 + difference;
+                    tier = Math.Min(tier, candidateTier);
+                }
             }
         }
-        return distance == int.MaxValue ? 1d : Math.Pow(2, -distance);
+        return tier == int.MaxValue ? UnknownTier : tier;
     }
 
-    // One family draw, then weighted variant draws. Repeated identities cannot
-    // buy extra chances for their movement in the atomic lineup solver.
+    public static int SequenceTier(IEnumerable<int[][]?> members, IReadOnlyList<int> roundedProfile) =>
+        members.Select(levels => Tier(levels, roundedProfile)).Where(tier => tier != UnknownTier)
+            .DefaultIfEmpty(UnknownTier).Min();
+
+    // One uniform draw per family, reused across its tiers and placements.
+    // Variant draws break ties inside a family, never buy it extra chances.
     public static T[] Order<T>(
         IEnumerable<T> candidates,
         Func<T, int> movementId,
-        Func<T, double> weight,
+        Func<T, int> tier,
         Func<double> random)
     {
-        var families = candidates.Select((item, index) =>
-            (Item: item, Index: index, Weight: weight(item)))
+        return candidates.Select((item, index) =>
+            (Item: item, Index: index, Tier: tier(item)))
             .GroupBy(entry => movementId(entry.Item))
-            .Select(family =>
+            .SelectMany(family =>
             {
                 var variants = family.ToArray();
-                double key = Key(variants.Max(entry => entry.Weight), random);
-                var ordered = variants.Length == 1 ? variants :
-                    variants.Select(entry => (Entry: entry, Key: Key(entry.Weight, random)))
-                        .OrderBy(entry => entry.Key)
-                        .ThenBy(entry => entry.Entry.Index)
-                        .Select(entry => entry.Entry).ToArray();
-                return (Key: key, Index: variants[0].Index, Variants: ordered);
+                double familyKey = Draw(random);
+                return variants.Select(entry => (Entry: entry, FamilyKey: familyKey,
+                    FamilyIndex: variants[0].Index,
+                    VariantKey: variants.Length == 1 ? 0 : Draw(random))).ToArray();
             })
-            .OrderBy(family => family.Key)
-            .ThenBy(family => family.Index);
-        return families.SelectMany(family => family.Variants)
-            .Select(entry => entry.Item).ToArray();
+            .OrderBy(entry => entry.Entry.Tier)
+            .ThenBy(entry => entry.FamilyKey)
+            .ThenBy(entry => entry.FamilyIndex)
+            .ThenBy(entry => entry.VariantKey)
+            .ThenBy(entry => entry.Entry.Index)
+            .Select(entry => entry.Entry.Item).ToArray();
     }
 
-    private static double Key(double weight, Func<double> random)
+    private static double Draw(Func<double> random)
     {
         double unit = random();
-        if (!double.IsFinite(weight) || weight <= 0 ||
-            !double.IsFinite(unit) || unit < 0 || unit >= 1)
+        if (!double.IsFinite(unit) || unit < 0 || unit >= 1)
             throw new ArgumentOutOfRangeException(nameof(random));
-        // Random supplies [0,1); 1-unit gives U in (0,1], avoiding log(0).
-        return -Math.Log(1 - unit) / weight;
+        return unit;
     }
 }
