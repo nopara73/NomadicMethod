@@ -21,6 +21,11 @@
             android:overScrollMode="never">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+            <LinearLayout
                 android:id="@+id/duration_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -520,6 +525,14 @@
                     <View android:id="@+id/duration_segment_10" style="@style/DurationRouteSegmentInactive" />
                 </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
+                <NomadicMethod.FitnessProfileView
+                    android:id="@+id/fitness_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp" />
             </LinearLayout>
         </ScrollView>
 

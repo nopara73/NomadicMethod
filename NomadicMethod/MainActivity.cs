@@ -51,6 +51,8 @@ public partial class MainActivity : Activity
 
     private SqliteExerciseDatabase _exerciseDatabase = null!;
     private ExerciseSessionService _sessionService = null!;
+    private FitnessProfileView _fitnessProfile = null!;
+    private IReadOnlyDictionary<int, int[][]> _fitnessRatings = new Dictionary<int, int[][]>();
     private IWorkoutStateStore _stateStore = null!;
     private WorkoutState _state = null!;
     private WorkoutGroup _currentWorkoutGroup = null!;
@@ -274,6 +276,8 @@ public partial class MainActivity : Activity
             using Stream reactionSource = context.Assets!.Open("reaction_drills.json");
             IReadOnlyDictionary<int, ReactionPlan> reactionPlans =
                 ReactionDrill.Load(reactionSource, database.Exercises);
+            using Stream fitnessSource = context.Assets!.Open("fitness_ratings.json");
+            IReadOnlyDictionary<int, int[][]> fitnessRatings = FitnessProfilePolicy.Load(fitnessSource);
             sessionService.RestoreAfterReopen(_state);
             RecoverPendingScoreUpdate(database, _state);
 
@@ -289,7 +293,8 @@ public partial class MainActivity : Activity
                 sessionService,
                 pendingMovementGroup,
                 pendingRestGroup,
-                reactionPlans);
+                reactionPlans,
+                fitnessRatings);
         }
         catch
         {
@@ -309,6 +314,8 @@ public partial class MainActivity : Activity
         _exerciseDatabase = startup.Database;
         _sessionService = startup.SessionService;
         _reactionDrillPlans = startup.ReactionPlans;
+        _fitnessRatings = startup.FitnessRatings;
+        UpdateFitnessProfile();
         _applicationStartupCompleted = true;
 
         if (_state.WorkoutCompleted && !_state.CompletionAcknowledged)
@@ -617,6 +624,7 @@ public partial class MainActivity : Activity
             Resource.Id.duration_inset_content);
         _durationScroll = FindRequiredView<ScrollView>(Resource.Id.duration_scroll);
         _durationContent = FindRequiredView<LinearLayout>(Resource.Id.duration_content);
+        _fitnessProfile = FindRequiredView<FitnessProfileView>(Resource.Id.fitness_profile);
         _durationIdentity = FindRequiredView<LinearLayout>(Resource.Id.duration_identity);
         _durationAppIcon = FindRequiredView<ImageView>(Resource.Id.duration_app_icon);
         _durationDial = FindRequiredView<View>(Resource.Id.duration_dial);
@@ -1967,6 +1975,13 @@ public partial class MainActivity : Activity
             GravityFlags.Center);
     }
 
+    private void UpdateFitnessProfile()
+    {
+        if (_exerciseDatabase is not null)
+            _fitnessProfile.SetLevels(FitnessProfilePolicy.Calculate(
+                _exerciseDatabase.Exercises, _state, _fitnessRatings));
+    }
+
     private void ShowDurationSelection()
     {
         ReleaseReactionDrillView();
@@ -1985,6 +2000,7 @@ public partial class MainActivity : Activity
         _beginWorkoutButton.Alpha = 1f;
 
         ShowAppScreen(AppScreen.Duration);
+        UpdateFitnessProfile();
         SetSelectedWorkoutMinutes(_state.LastWorkoutMinutes);
         WorkoutModifiers defaultModifiers = GetDefaultDurationModifiers();
         SetSelectedWorkoutModifier(
@@ -5339,7 +5355,8 @@ public partial class MainActivity : Activity
         ExerciseSessionService SessionService,
         WorkoutGroup? PendingMovementGroup,
         WorkoutGroup? PendingRestGroup,
-        IReadOnlyDictionary<int, ReactionPlan> ReactionPlans);
+        IReadOnlyDictionary<int, ReactionPlan> ReactionPlans,
+        IReadOnlyDictionary<int, int[][]> FitnessRatings);
 
     private sealed class DurationSeekAccessibilityDelegate(
         Func<int> getMinutes,

@@ -18,6 +18,8 @@ const sourceTargets = [
   "NomadicMethod/WorkoutBlockTimelineView.cs",
   "NomadicMethod/ExerciseVideoView.cs",
   "NomadicMethod/ReactionDrillView.cs",
+  "NomadicMethod/FitnessProfileView.cs",
+  "NomadicMethod/Assets/fitness_ratings.json",
   "NomadicMethod/Assets/reaction_drills.json",
   "NomadicMethod/Data",
   "NomadicMethod/Models",

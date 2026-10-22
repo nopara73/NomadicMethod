@@ -202,6 +202,7 @@ function main() {
     ['--output', path.join(root, 'docs/catalog-audit/acsm-fitness-ceiling-scores.csv')],
     ['--coverage-output', path.join(root, 'docs/catalog-audit/acsm-fitness-ceiling-coverage.json')],
     ['--gap-output', path.join(root, 'docs/catalog-audit/acsm-fitness-ceiling-gaps.md')],
+    ['--runtime-output', path.join(root, 'NomadicMethod/Assets/fitness_ratings.json')],
   ]);
   let check = false;
   let reportOnly = false;
@@ -230,6 +231,12 @@ function main() {
     { catalogRevision: Number(revision[1]), catalogSha256, reactionProtocols },
   );
   const outputs = [
+    [options.get('--runtime-output'), JSON.stringify({
+      schemaVersion: 1,
+      dimensions,
+      ratings: Object.fromEntries(audit.rows.map(row =>
+        [row.id, dimensions.map(dimension => row[dimension])])),
+    }) + '\n'],
     [options.get('--output'), renderScores(audit.rows)],
     [options.get('--coverage-output'), `${JSON.stringify(audit.summary, null, 2)}\n`],
     [options.get('--gap-output'), renderCoverageReport(audit.summary)],

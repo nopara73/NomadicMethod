@@ -1,3 +1,4 @@
+import { FitnessProfileView, calculateFitnessProfile, parseFitnessRatings } from "./fitness-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
 import { ReactionDrillView } from "./reaction-drill-view.js";
 import {
@@ -45,6 +46,8 @@ import {
 } from "./workout.js";
 
 const STORAGE_KEY = "nomadic-method.workout.state.v1";
+const fitnessProfileView = new FitnessProfileView(document.getElementById("fitness-profile"));
+let fitnessRatings = new Map();
 const TIMER_INTERVAL_MS = 100;
 const MEDIA_RECOVERY_TIMEOUT_MS = 12_000;
 const MODIFIER_FEEDBACK_DURATION_MS = 2_040;
@@ -203,10 +206,11 @@ bootstrap();
 
 async function bootstrap() {
   try {
-    const [catalogResponse, assetVersionsResponse, reactionResponse] = await Promise.all([
+    const [catalogResponse, assetVersionsResponse, reactionResponse, fitnessResponse] = await Promise.all([
       fetch(new URL("data/exercises.json", document.baseURI)),
       fetch(new URL("data/asset-versions.json", document.baseURI)),
       fetch(new URL("data/reaction_drills.json", document.baseURI)),
+      fetch(new URL("data/fitness_ratings.json", document.baseURI)),
     ]);
     if (!catalogResponse.ok) {
       throw new Error(`Catalog request failed with ${catalogResponse.status}.`);
@@ -224,6 +228,8 @@ async function bootstrap() {
       throw new Error("Reload Nomadic Method to use the current exercise catalog.");
     }
     exerciseCatalog = exercises;
+    if (!fitnessResponse.ok) throw new Error("Fitness rating request failed.");
+    fitnessRatings = parseFitnessRatings(await fitnessResponse.json());
     if (!reactionResponse.ok) throw new Error("Reaction drill request failed.");
     reactionDrillPlans = resolveReactionDrills(await reactionResponse.json(), exercises);
     if (!loadedAssetVersions || Array.isArray(loadedAssetVersions) ||
@@ -908,6 +914,8 @@ function isAutomaticLightModeLocked() {
 }
 
 function showScreen(screen) {
+  if (screen === "duration" && session)
+    fitnessProfileView.setLevels(calculateFitnessProfile(exerciseCatalog, session.state, fitnessRatings));
   elements.durationScreen.hidden = screen !== "duration";
   elements.workoutScreen.hidden = screen !== "workout";
   elements.completionScreen.hidden = screen !== "completion";

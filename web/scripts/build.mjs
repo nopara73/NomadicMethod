@@ -30,7 +30,7 @@ const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const webRoot = path.resolve(scriptDirectory, "..");
 const repositoryRoot = path.resolve(webRoot, "..");
 const outputRoot = path.resolve(webRoot, "dist");
-const reactionModuleOutputs = new Map();
+const moduleOutputs = new Map();
 
 if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
   throw new Error("Refusing to build outside the web project.");
@@ -38,16 +38,19 @@ if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
-for (const stem of ['reaction-drills', 'reaction-drill-view']) {
+for (const stem of ['reaction-drills', 'reaction-drill-view', 'fitness-profile']) {
   const source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
   const name = fingerprintedName(stem, 'js', source);
-  reactionModuleOutputs.set(stem, name);
+  moduleOutputs.set(stem, name);
   await writeFile(path.join(outputRoot, name), source);
 }
 const reactionSource = await readFile(path.join(repositoryRoot, 'NomadicMethod/Assets/reaction_drills.json'), 'utf8');
 const reactionOutputName = fingerprintedName('reaction-drills', 'json', reactionSource);
 await mkdir(path.join(outputRoot, 'data'), { recursive: true });
 await writeFile(path.join(outputRoot, 'data', reactionOutputName), reactionSource);
+const fitnessSource = await readFile(path.join(repositoryRoot, 'NomadicMethod/Assets/fitness_ratings.json'), 'utf8');
+const fitnessOutputName = fingerprintedName('fitness-ratings', 'json', fitnessSource);
+await writeFile(path.join(outputRoot, 'data', fitnessOutputName), fitnessSource);
 for (const directory of ['reaction_videos', 'reaction_previews']) {
   await copyDirectory(path.join(repositoryRoot, 'NomadicMethod/Assets', directory), path.join(outputRoot, 'assets', directory));
 }
@@ -360,8 +363,10 @@ await writeFile(
 
 const appSource = await readFile(path.join(webRoot, "app.js"), "utf8");
 const fingerprintedAppSource = appSource
-  .replace('"./reaction-drills.js"', `"./${reactionModuleOutputs.get('reaction-drills')}"`)
-  .replace('"./reaction-drill-view.js"', `"./${reactionModuleOutputs.get('reaction-drill-view')}"`)
+  .replace('"./reaction-drills.js"', `"./${moduleOutputs.get('reaction-drills')}"`)
+  .replace('"./reaction-drill-view.js"', `"./${moduleOutputs.get('reaction-drill-view')}"`)
+  .replace('"./fitness-profile.js"', `"./${moduleOutputs.get('fitness-profile')}"`)
+  .replace('"data/fitness_ratings.json"', `"data/${fitnessOutputName}"`)
   .replace('"data/reaction_drills.json"', `"data/${reactionOutputName}"`)
   .replace(
     'from "./workout.js";',
@@ -382,7 +387,8 @@ const fingerprintedAppSource = appSource
 if (fingerprintedAppSource === appSource ||
     !fingerprintedAppSource.includes(workoutOutputName) ||
     !fingerprintedAppSource.includes(reactionOutputName) ||
-    [...reactionModuleOutputs.values()].some(name => !fingerprintedAppSource.includes(name)) ||
+    [...moduleOutputs.values()].some(name => !fingerprintedAppSource.includes(name)) ||
+    !fingerprintedAppSource.includes(fitnessOutputName) ||
     !fingerprintedAppSource.includes(preparationWorkerOutputName) ||
     !fingerprintedAppSource.includes(catalogOutputName) ||
     !fingerprintedAppSource.includes(

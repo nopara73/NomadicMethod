@@ -32,6 +32,18 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.fitness-profile {
+  width: min(calc(100% - 48px), 420px);
+  margin: 8px auto 24px;
+  font-size: 0.75rem;
+}
+
+.fitness-profile svg { display: block; width: 100%; overflow: visible; }
+.fitness-profile text { font: inherit; fill: var(--graphite); }
+.fitness-profile .fitness-grid { fill: none; stroke: var(--outline-soft); stroke-width: 1; }
+.fitness-profile .fitness-shape { fill: rgb(203 237 70 / 17%); stroke: var(--graphite); stroke-width: 2; stroke-linejoin: round; }
+.fitness-profile .fitness-point { fill: var(--graphite); }
+
 * {
   box-sizing: border-box;
 }
@@ -1736,12 +1748,13 @@ input:focus-visible {
     padding: clamp(32px, 4vw, 72px);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: clamp(32px, 4dvh, 52px);
     overflow: auto;
   }
 
   .duration-scroll {
+    display: contents;
     width: min(100%, 1240px);
     height: auto;
     min-height: 0;
@@ -1750,7 +1763,9 @@ input:focus-visible {
   }
 
   .duration-content {
-    width: 100%;
+    order: 0;
+    flex: 0 0 auto;
+    width: min(100%, 1240px);
     height: auto;
     min-height: 0;
     padding: 0;
@@ -1763,6 +1778,9 @@ input:focus-visible {
     padding: 0;
     flex: 0 0 auto;
   }
+
+  .duration-action-bar { order: 1; }
+  .fitness-profile { order: 2; flex: 0 0 auto; }
 
   .nomadic-method-icon {
     width: clamp(68px, 4.2vw, 88px);
