@@ -87,9 +87,10 @@ public sealed class SqliteExerciseDatabaseMigrationTests
     [InlineData(101)]
     [InlineData(102)]
     [InlineData(103)]
+    [InlineData(104)]
     public void EverySupportedDatabaseCanUpgradeToTheCurrentCatalog(int oldVersion)
     {
-        Assert.Equal(104, ExerciseDatabaseVersionPolicy.CurrentVersion);
+        Assert.Equal(105, ExerciseDatabaseVersionPolicy.CurrentVersion);
         Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(
             oldVersion,
             ExerciseDatabaseVersionPolicy.CurrentVersion));
@@ -125,6 +126,7 @@ public sealed class SqliteExerciseDatabaseMigrationTests
     [InlineData(93, 93)]
     [InlineData(94, 94)]
     [InlineData(95, 95)]
+    [InlineData(105, 105)]
     public void UnsupportedDatabaseTransitionsRemainRejected(
         int oldVersion,
         int newVersion)
@@ -153,7 +155,39 @@ public sealed class SqliteExerciseDatabaseMigrationTests
         Assert.DoesNotContain(WorkoutCatalogPolicy.BodyCircleExerciseId, preserved);
         Assert.Equal(85, catalog.Length - preserved.Count);
         Assert.All(prior, item => Assert.Equal(item.Key % 17 - 8, item.Value.Score));
-        Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(97, 104));
+        Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(
+            97, ExerciseDatabaseVersionPolicy.CurrentVersion));
+    }
+
+    [Fact]
+    public void Version104MustRefreshCatalogBeforeLoadingNewReactionPlans()
+    {
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), CatalogJsonOptions)!;
+        Exercise[] previousCatalog = catalog
+            .Where(exercise => !WorkoutCatalogPolicy.ProfileContributorExerciseIds.Contains(exercise.Id))
+            .ToArray();
+        Assert.Equal(884, previousCatalog.Length);
+        using Stream plans = File.OpenRead(Path.Combine(
+            AppContext.BaseDirectory, "Assets", "reaction_drills.json"));
+        // Reproduce the installed-app failure: the new plan references 1621,
+        // which cannot exist when SQLite skips its catalog upgrade.
+        Assert.Throws<InvalidDataException>(() => ReactionDrill.Load(plans, previousCatalog));
+        Assert.Equal(CatalogMigrationRules.CurrentCatalogRevision + 16,
+            ExerciseDatabaseVersionPolicy.CurrentVersion);
+        Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(
+            104, ExerciseDatabaseVersionPolicy.CurrentVersion));
+
+        Dictionary<int, StoredExerciseSnapshot> saved = previousCatalog.ToDictionary(
+            exercise => exercise.Id,
+            exercise => new StoredExerciseSnapshot(exercise.Name, exercise.Video, exercise.Id % 17 - 8));
+        Assert.Equal(saved.Keys.Order(),
+            CatalogMigrationRules.ValidatePreservedCatalog(catalog, saved).Order());
+        Assert.All(saved, item => Assert.Equal(item.Key % 17 - 8, item.Value.Score));
+        plans.Position = 0;
+        IReadOnlyDictionary<int, ReactionPlan> loaded = ReactionDrill.Load(plans, catalog);
+        Assert.Equal("Initiation", loaded[1621].Protocol);
+        Assert.Equal(16, loaded.Count);
     }
 
     [Fact]
