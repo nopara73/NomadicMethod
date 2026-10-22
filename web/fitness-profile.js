@@ -57,9 +57,12 @@ export function calculateFitnessProfile(exercises, state, ratings) {
   });
 }
 
+let nextProfileId = 0;
+
 export class FitnessProfileView {
   constructor(host) {
     this.host = host;
+    this.clipId = "fitness-profile-clip-" + ++nextProfileId;
     this.values = new Array(10).fill(0);
     this.observer = new ResizeObserver(() => this.render());
     this.observer.observe(host);
@@ -74,12 +77,22 @@ export class FitnessProfileView {
   render() {
     const width = Math.round(this.host.getBoundingClientRect().width);
     if (width < 100) return;
-    // Text uses rem, so real browser zoom / enlarged text reserves more label room.
-    const textSize = parseFloat(getComputedStyle(this.host).fontSize);
+    // Fit the web around measured, fixed-size labels instead of reserving a wide margin.
+    const style = getComputedStyle(this.host);
+    const textSize = parseFloat(style.fontSize);
     const lineHeight = textSize * 1.25;
-    const labelRoom = Math.max(76, textSize * 6.6);
-    const expertRadius = Math.max(24, Math.min(112, (width - labelRoom * 2) / 2));
-    const labelRadius = expertRadius + textSize * 2.7;
+    const labelGap = Math.max(12, textSize * 0.75);
+    const measure = document.createElement("canvas").getContext("2d");
+    measure.font = style.font;
+    let expertRadius = 180;
+    FITNESS_LABELS.forEach((lines, index) => {
+      const horizontal = Math.abs(Math.cos(index * Math.PI / 5 - Math.PI / 2));
+      if (horizontal < 0.01) return;
+      const labelWidth = Math.max(...lines.map(line => measure.measureText(line).width));
+      expertRadius = Math.min(expertRadius, (width / 2 - labelWidth - 2) / horizontal - labelGap);
+    });
+    expertRadius = Math.max(12, expertRadius);
+    const labelRadius = expertRadius + labelGap;
     const height = Math.ceil(Math.max(300, labelRadius * 2 + lineHeight * 3));
     const cx = width / 2, cy = height / 2;
     const point = (index, distance) => {
@@ -103,24 +116,37 @@ export class FitnessProfileView {
     const vertices = this.values.map((value, index) =>
       point(index, expertRadius * fitnessProfileRadiusFraction(value)));
     const shape = vertices.map(vertex => vertex.join(",")).join(" ");
+    const appendWeb = (target, className) => {
+      for (let level = 1; level <= FITNESS_WEB_BOUNDARY_LEVEL; level++)
+        target.append(make("polygon", { points: FITNESS_DIMENSIONS.map((_, index) =>
+          point(index, expertRadius * fitnessProfileRadiusFraction(level)).join(",")).join(" "),
+          class: className, ...(className === "fitness-grid" ? { "data-web-level": level } : {}) }));
+      FITNESS_DIMENSIONS.forEach((_, index) => {
+        const [x, y] = point(index, expertRadius * fitnessProfileRadiusFraction(FITNESS_WEB_BOUNDARY_LEVEL));
+        target.append(make("line", { x1: cx, y1: cy, x2: x, y2: y, class: className }));
+      });
+    };
+    appendWeb(svg, "fitness-grid");
     svg.append(make("polygon", { points: shape, class: "fitness-area" }));
-    for (let level = 1; level <= FITNESS_WEB_BOUNDARY_LEVEL; level++)
-      svg.append(make("polygon", { points: FITNESS_DIMENSIONS.map((_, index) =>
-        point(index, expertRadius * fitnessProfileRadiusFraction(level)).join(",")).join(" "),
-        class: "fitness-grid", "data-web-level": level }));
-    FITNESS_DIMENSIONS.forEach((_, index) => {
-      const [x, y] = point(index, expertRadius * fitnessProfileRadiusFraction(FITNESS_WEB_BOUNDARY_LEVEL));
-      svg.append(make("line", { x1: cx, y1: cy, x2: x, y2: y, class: "fitness-grid" }));
-    });
+    const clip = make("clipPath", { id: this.clipId });
+    clip.append(make("polygon", { points: shape }));
+    const defs = make("defs");
+    defs.append(clip);
+    svg.append(defs);
+    const innerWeb = make("g", { "clip-path": "url(#" + this.clipId + ")" });
+    appendWeb(innerWeb, "fitness-inner-grid");
+    svg.append(innerWeb);
     svg.append(make("polygon", { points: shape, class: "fitness-shape" }));
     vertices.forEach(([x, y], index) => {
       if (this.values[index] > 0)
-        svg.append(make("circle", { cx: x, cy: y, r: 2.8, class: "fitness-point", "data-profile-axis": index }));
+        svg.append(make("circle", { cx: x, cy: y, r: 3.5, class: "fitness-point", "data-profile-axis": index }));
     });
     FITNESS_LABELS.forEach((lines, index) => {
       const [x, y] = point(index, labelRadius);
+      const horizontal = Math.cos(index * Math.PI / 5 - Math.PI / 2);
       const label = make("text", { x, y: y - (lines.length - 1) * lineHeight / 2,
-        "text-anchor": "middle", "dominant-baseline": "central" });
+        "text-anchor": Math.abs(horizontal) < 0.01 ? "middle" : horizontal > 0 ? "start" : "end",
+        "dominant-baseline": "central" });
       lines.forEach((line, lineIndex) =>
         label.append(make("tspan", { x, dy: lineIndex ? lineHeight : 0 }, line)));
       svg.append(label);

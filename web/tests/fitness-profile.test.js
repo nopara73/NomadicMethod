@@ -14,19 +14,23 @@ test("expert level extends beyond the web without rounding fractional levels", (
   assert.ok(fitnessProfileRadiusFraction(5) > fitnessProfileRadiusFraction(4));
 });
 
-test("native and web retain a four-ring green spiderweb without category styling", () => {
+test("native and web use the app palette and fixed-size labels for the larger spiderweb", () => {
   const native = read("../../NomadicMethod/FitnessProfileView.cs");
   const colors = read("../../NomadicMethod/Resources/values/colors.xml");
   const web = read("../fitness-profile.js");
   const css = read("../styles.css");
-  const green = colors.match(/name="fitness_profile_green">(#[0-9a-f]+)</i)?.[1].toLowerCase();
-  assert.equal(green, "#c8dc63");
-  assert.ok(css.includes("--fitness-green: " + green));
+  for (const [resource, token] of [["brand_graphite", "graphite"], ["brand_chartreuse", "chartreuse"]]) {
+    const color = colors.match(new RegExp('name="' + resource + '">(#[0-9a-f]+)<', 'i'))?.[1].toLowerCase();
+    assert.ok(color && css.includes("--" + token + ": " + color));
+    assert.ok(native.includes("Resource.Color." + resource));
+  }
   assert.match(native, /level <= FitnessProfilePolicy\.WebBoundaryLevel/);
-  assert.match(native, /Resource\.Color\.fitness_profile_green/);
+  assert.match(native, /ComplexUnitType.Sp, 12f/);
+  assert.match(css, /\.fitness-profile \{[^}]*font-size: 0\.75rem/);
   assert.match(web, /level <= FITNESS_WEB_BOUNDARY_LEVEL/);
-  assert.match(css, /\.fitness-shape \{[^}]*stroke: var\(--fitness-green\)/);
-  assert.match(css, /\.fitness-point \{ fill: var\(--fitness-green\)/);
+  assert.match(css, /\.fitness-area \{ fill: var\(--graphite\)/);
+  assert.match(css, /\.fitness-shape \{[^}]*stroke: var\(--chartreuse\)/);
+  assert.match(css, /\.fitness-point \{ fill: var\(--chartreuse\)/);
   assert.doesNotMatch(web, /health|athletic|outer.arc/i);
 });
 for (const entry of fixture.cases) {

@@ -33,18 +33,18 @@
 }
 
 .fitness-profile {
-  --fitness-green: #c8dc63;
-  width: min(calc(100% - 48px), 420px);
+  width: min(calc(100% - 16px), 520px);
   margin: 8px auto 24px;
   font-size: 0.75rem;
 }
 
 .fitness-profile svg { display: block; width: 100%; overflow: visible; }
 .fitness-profile text { font: inherit; fill: var(--graphite); }
-.fitness-profile .fitness-grid { fill: none; stroke: var(--outline-soft); stroke-width: 1; }
-.fitness-profile .fitness-area { fill: rgb(200 220 99 / 32%); }
-.fitness-profile .fitness-shape { fill: none; stroke: var(--fitness-green); stroke-width: 1.8; stroke-linejoin: round; }
-.fitness-profile .fitness-point { fill: var(--fitness-green); }
+.fitness-profile .fitness-grid { fill: none; stroke: var(--graphite); stroke-opacity: 0.15; stroke-width: 1; }
+.fitness-profile .fitness-area { fill: var(--graphite); }
+.fitness-profile .fitness-inner-grid { fill: none; stroke: var(--chartreuse); stroke-opacity: 0.2; stroke-width: 1; }
+.fitness-profile .fitness-shape { fill: none; stroke: var(--chartreuse); stroke-width: 2; stroke-linejoin: round; }
+.fitness-profile .fitness-point { fill: var(--chartreuse); stroke: var(--graphite); stroke-width: 1.5; }
 
 * {
   box-sizing: border-box;

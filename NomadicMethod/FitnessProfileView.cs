@@ -34,18 +34,32 @@ public sealed class FitnessProfileView : View
 
     protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec)
     {
-        int width = ResolveSize((int)Dp(420), widthMeasureSpec);
-        float expertRadius = Math.Max(Dp(24), Math.Min(Dp(112), (width - 2 * LabelRoom) / 2));
-        int height = (int)Math.Ceiling(Math.Max(Dp(300), (expertRadius + TextSize * 2.7f) * 2 + TextSize * 3.75f));
+        int width = ResolveSize((int)Dp(520), widthMeasureSpec);
+        float expertRadius = ExpertRadius(width);
+        int height = (int)Math.Ceiling(Math.Max(Dp(300), (expertRadius + LabelGap) * 2 + TextSize * 3.75f));
         SetMeasuredDimension(width, ResolveSize(height, heightMeasureSpec));
     }
 
-    private float LabelRoom => Math.Max(Dp(76), TextSize * 6.6f);
+    private float LabelGap => Math.Max(Dp(12), TextSize * 0.75f);
+
+    private float ExpertRadius(int width)
+    {
+        _paint.TextSize = TextSize;
+        double radius = Dp(180);
+        for (int index = 0; index < 10; index++)
+        {
+            double horizontal = Math.Abs(Math.Cos(index * Math.PI / 5 - Math.PI / 2));
+            if (horizontal < 0.01) continue;
+            float labelWidth = FitnessProfilePolicy.Labels[index].Max(line => _paint.MeasureText(line));
+            radius = Math.Min(radius, (width / 2f - labelWidth - Dp(2)) / horizontal - LabelGap);
+        }
+        return (float)Math.Max(Dp(12), radius);
+    }
 
     protected override void OnDraw(Canvas canvas)
     {
         base.OnDraw(canvas);
-        float expertRadius = Math.Max(Dp(24), Math.Min(Dp(112), (Width - 2 * LabelRoom) / 2));
+        float expertRadius = ExpertRadius(Width);
         float cx = Width / 2f, cy = Height / 2f;
         (float X, float Y) Point(int index, double distance)
         {
@@ -64,45 +78,61 @@ public sealed class FitnessProfileView : View
             }
             _path.Close();
         }
+        void Web(Color color, int alpha)
+        {
+            _paint.Color = color;
+            _paint.Alpha = alpha;
+            _paint.SetStyle(Paint.Style.Stroke);
+            _paint.StrokeWidth = Dp(1);
+            for (int level = 1; level <= FitnessProfilePolicy.WebBoundaryLevel; level++)
+            {
+                Polygon(Enumerable.Repeat((double)level, 10).ToArray());
+                canvas.DrawPath(_path, _paint);
+            }
+            for (int index = 0; index < 10; index++)
+            {
+                var p = Point(index, expertRadius * FitnessProfilePolicy.ChartRadiusFraction(FitnessProfilePolicy.WebBoundaryLevel));
+                canvas.DrawLine(cx, cy, p.X, p.Y, _paint);
+            }
+        }
+        Color graphite = new(Context!.GetColor(Resource.Color.brand_graphite));
+        Color green = new(Context.GetColor(Resource.Color.brand_chartreuse));
+        Web(graphite, 38);
         Polygon(_levels);
-        _paint.Color = new Color(Context!.GetColor(Resource.Color.fitness_profile_green));
-        _paint.Alpha = 82;
+        _paint.Color = graphite;
+        _paint.Alpha = 255;
         _paint.SetStyle(Paint.Style.Fill);
         canvas.DrawPath(_path, _paint);
-
-        _paint.Color = new Color(Context.GetColor(Resource.Color.surface_outline_soft));
-        _paint.Alpha = 255;
-        _paint.SetStyle(Paint.Style.Stroke);
-        _paint.StrokeWidth = Dp(1);
-        for (int level = 1; level <= FitnessProfilePolicy.WebBoundaryLevel; level++)
-        {
-            Polygon(Enumerable.Repeat((double)level, 10).ToArray());
-            canvas.DrawPath(_path, _paint);
-        }
-        for (int index = 0; index < 10; index++)
-        {
-            var p = Point(index, expertRadius * FitnessProfilePolicy.ChartRadiusFraction(FitnessProfilePolicy.WebBoundaryLevel));
-            canvas.DrawLine(cx, cy, p.X, p.Y, _paint);
-        }
+        canvas.Save();
+        canvas.ClipPath(_path);
+        Web(green, 51);
+        canvas.Restore();
         Polygon(_levels);
-        _paint.Color = new Color(Context.GetColor(Resource.Color.fitness_profile_green));
+        _paint.Color = green;
         _paint.Alpha = 255;
         _paint.SetStyle(Paint.Style.Stroke);
-        _paint.StrokeWidth = Dp(1.8f);
+        _paint.StrokeWidth = Dp(2);
+        _paint.StrokeJoin = Paint.Join.Round;
         canvas.DrawPath(_path, _paint);
         _paint.SetStyle(Paint.Style.Fill);
         for (int index = 0; index < 10; index++)
         {
             var p = Point(index, expertRadius * FitnessProfilePolicy.ChartRadiusFraction(_levels[index]));
-            if (_levels[index] > 0) canvas.DrawCircle(p.X, p.Y, Dp(2.8f), _paint);
+            if (_levels[index] <= 0) continue;
+            _paint.Color = graphite;
+            canvas.DrawCircle(p.X, p.Y, Dp(4.25f), _paint);
+            _paint.Color = green;
+            canvas.DrawCircle(p.X, p.Y, Dp(3.5f), _paint);
         }
-        _paint.Color = new Color(Context.GetColor(Resource.Color.brand_graphite));
+        _paint.Color = graphite;
         _paint.TextSize = TextSize;
-        _paint.TextAlign = Paint.Align.Center;
         for (int index = 0; index < 10; index++)
         {
             string[] lines = FitnessProfilePolicy.Labels[index];
-            var p = Point(index, expertRadius + TextSize * 2.7f);
+            double horizontal = Math.Cos(index * Math.PI / 5 - Math.PI / 2);
+            _paint.TextAlign = Math.Abs(horizontal) < 0.01 ? Paint.Align.Center :
+                horizontal > 0 ? Paint.Align.Left : Paint.Align.Right;
+            var p = Point(index, expertRadius + LabelGap);
             float lineHeight = TextSize * 1.25f;
             float baseline = p.Y - (lines.Length - 1) * lineHeight / 2 -
                 (_paint.Ascent() + _paint.Descent()) / 2;
