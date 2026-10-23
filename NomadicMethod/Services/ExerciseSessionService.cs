@@ -484,6 +484,8 @@ public sealed partial class ExerciseSessionService
         state.Outcomes.Clear();
         state.WorkoutCompleted = false;
         state.CompletionAcknowledged = false;
+        state.ActiveFitnessProfileBaseline = null;
+        state.CompletionFitnessProfileSnapshot = null;
         ClearPendingMovement(state);
         ClearPendingRest(state);
         ClearLegacyMigrationState(state);
@@ -528,6 +530,9 @@ public sealed partial class ExerciseSessionService
         int[] keptExerciseIdsAtStart = state.LastKeptExerciseIds
             .Order()
             .ToArray();
+        state.ActiveFitnessProfileBaseline = FitnessProfilePolicy.Calculate(
+            _catalogExercises, state, _fitnessRatings);
+        state.CompletionFitnessProfileSnapshot = null;
         CreateActiveWorkoutSession(
             state,
             workoutStartedAtUnixMilliseconds,
@@ -1377,6 +1382,9 @@ public sealed partial class ExerciseSessionService
         state.CompletionAcknowledged = false;
         if (state.WorkoutCompleted)
         {
+            ApplyRecordedWorkoutKeeps(state);
+            state.CompletionFitnessProfileSnapshot = FitnessProfilePolicy.Calculate(
+                _catalogExercises, state, _fitnessRatings);
             FinalizeActiveWorkoutSession(
                 state,
                 WorkoutSessionStatus.Completed,
@@ -1505,11 +1513,28 @@ public sealed partial class ExerciseSessionService
         state.PendingRestKept = false;
     }
 
+    private void ApplyRecordedWorkoutKeeps(WorkoutState state)
+    {
+        foreach (IGrouping<string, WorkoutGroup> rounds in GetActiveGroups(state)
+                     .GroupBy(group => group.SelectionKey))
+        {
+            WorkoutGroup decisionRound = rounds.OrderBy(group => group.Order).Last();
+            if (state.Outcomes.GetValueOrDefault(decisionRound.Id) != ExerciseOutcome.Tick)
+                continue;
+            int rootId = state.SelectedExerciseIds.GetValueOrDefault(
+                GetSelectionStorageKey(rounds.Key, state.ActiveWorkoutModifiers));
+            if (_exercisesById.TryGetValue(rootId, out Exercise? root))
+                KeepSequenceInSlot(state, rounds.Key, root);
+        }
+        SyncLegacyKeptExerciseIds(state);
+    }
+
     private void FinalizeCurrentWorkout(WorkoutState state)
     {
         // Closing a workout must not depend on finding a future lineup. Settle
         // its saved preferences only; PrepareWorkout arbitrates the next one
         // using that workout's duration, modifiers, phase scores and recovery.
+        ApplyRecordedWorkoutKeeps(state);
         WorkoutGroup[] activeRounds = GetActiveGroups(state).ToArray();
         WorkoutGroup[] selectionGroups = GetSelectionGroups(state).ToArray();
         var rejectedSelections = new List<(string GroupId, int RootId)>();
@@ -1536,11 +1561,7 @@ public sealed partial class ExerciseSessionService
                 continue;
             }
 
-            if (outcome == ExerciseOutcome.Tick)
-            {
-                KeepSequenceInSlot(state, selectionGroup.Id, root);
-            }
-            else if (outcome == ExerciseOutcome.X)
+            if (outcome == ExerciseOutcome.X)
             {
                 rejectedSelections.Add((selectionGroup.Id, root.Id));
             }
@@ -3339,6 +3360,8 @@ public sealed partial class ExerciseSessionService
         state.ActiveDirectionPartnerExerciseIds ??= [];
         state.ActiveFullSideRoundIds ??= [];
         state.PendingScoreUpdates ??= [];
+        state.ActiveFitnessProfileBaseline = CompletionProfilePolicy.CopySnapshot(state.ActiveFitnessProfileBaseline);
+        state.CompletionFitnessProfileSnapshot = CompletionProfilePolicy.CopySnapshot(state.CompletionFitnessProfileSnapshot);
         state.LegacySelectedExerciseNames ??= [];
         state.LegacyOutcomes ??= [];
     }
@@ -5063,6 +5086,8 @@ public sealed partial class ExerciseSessionService
         state.ActiveSimpleRoundSelectionGroupIds.Clear();
         state.ActiveWorkoutSession = null;
         state.ActiveWorkoutMinutes = 0;
+        state.ActiveFitnessProfileBaseline = null;
+        state.CompletionFitnessProfileSnapshot = null;
         state.ActiveWorkoutModifiers = WorkoutModifiers.None;
         state.ActiveWorkoutIsLightDay = false;
         state.Outcomes.Clear();

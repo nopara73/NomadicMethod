@@ -1,0 +1,13 @@
+{
+  "cases": [
+    { "name": "fractional change within the same chart vertex", "before": [0,0,0,0,1.5,0,0,0,0,0], "after": [0,0,0,0,1.6,0,0,0,0,0], "expected": [["agility","1.5","1.6"]] },
+    { "name": "unchanged", "before": [2,3,4,0,0,0,0,0,0,0], "after": [2,3,4,0,0,0,0,0,0,0], "expected": [] },
+    { "name": "honest decreases and gained and lost evidence", "before": [0,3,2,0,0,4,0,0,0,0], "after": [2,2.5,0,0,0,4,0,0,0,0], "expected": [["cardio","—","2.0"],["strength","3.0","2.5"],["muscle endurance","2.0","—"]] },
+    { "name": "unknown axes remain unknown", "before": [0,0,0,0,0,0,0,0,0,0], "after": [0,0,0,0,0,0,0,0,0,0], "expected": [] },
+    { "name": "changes below display precision are omitted", "before": [1.51,2.41,0,0,0,0,0,0,0,0], "after": [1.54,2.39,0,0,0,0,0,0,0,0], "expected": [] },
+    { "name": "consistent half-up decimal rounding", "before": [2.44,2.46,0,0,0,0,0,0,0,0], "after": [2.45,2.44,0,0,0,0,0,0,0,0], "expected": [["cardio","2.4","2.5"],["strength","2.5","2.4"]] },
+    { "name": "legacy missing baseline", "before": null, "after": [2,0,0,0,0,0,0,0,0,0], "expected": [] },
+    { "name": "missing final snapshot", "before": [2,0,0,0,0,0,0,0,0,0], "after": null, "expected": [] },
+    { "name": "invalid snapshot is not interpreted as zero", "before": [6,0,0,0,0,0,0,0,0,0], "after": [2,0,0,0,0,0,0,0,0,0], "expected": [] }
+  ]
+}

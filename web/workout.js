@@ -1,4 +1,5 @@
 import "./light-cadence.js";
+import { copyProfileSnapshot } from "./completion-profile.js";
 import { calculateFitnessProfile, roundFitnessLevel,
   fitnessSequenceTier, FITNESS_TIER_COUNT, FITNESS_UNKNOWN_TIER, orderFitnessCandidates } from "./fitness-profile.js";
 
@@ -3605,6 +3606,8 @@ export function createDefaultState() {
     activeWorkoutModifiers: WORKOUT_MODIFIERS.None,
     activeWorkoutIsLightDay: false,
     workoutCompleted: false,
+    activeFitnessProfileBaseline: null,
+    completionFitnessProfileSnapshot: null,
     completionAcknowledged: false,
   };
 }
@@ -3654,6 +3657,8 @@ function normalizeStateShape(raw) {
   state.activeWorkoutIsLightDay = raw.activeWorkoutIsLightDay === true;
   state.workoutCompleted = raw.workoutCompleted === true;
   state.completionAcknowledged = raw.completionAcknowledged === true;
+  state.activeFitnessProfileBaseline = copyProfileSnapshot(raw.activeFitnessProfileBaseline);
+  state.completionFitnessProfileSnapshot = copyProfileSnapshot(raw.completionFitnessProfileSnapshot);
   state.pendingRestGroupId =
     typeof raw.pendingRestGroupId === "string" ? raw.pendingRestGroupId : null;
   state.pendingRestEndsAtUnixMilliseconds = Number.isFinite(raw.pendingRestEndsAtUnixMilliseconds)
@@ -4708,6 +4713,8 @@ export class WorkoutSession {
     this.state.outcomes = {};
     this.state.workoutCompleted = false;
     this.state.completionAcknowledged = false;
+    this.state.activeFitnessProfileBaseline = null;
+    this.state.completionFitnessProfileSnapshot = null;
     this.clearPendingMovement();
     this.clearPendingRest();
     // Shuffle exclusions belong only to the workout being shuffled. Durable
@@ -4745,6 +4752,9 @@ export class WorkoutSession {
     }
     const keptExerciseIdsAtStart = [...this.state.lastKeptExerciseIds]
       .sort((left, right) => left - right);
+    this.state.activeFitnessProfileBaseline = calculateFitnessProfile(
+      this.catalogExercises, this.state, this.fitnessRatings);
+    this.state.completionFitnessProfileSnapshot = null;
     this.createActiveWorkoutSession(
       workoutStartedAtUnixMilliseconds,
       keptExerciseIdsAtStart,
@@ -5976,6 +5986,9 @@ export class WorkoutSession {
     );
     this.state.completionAcknowledged = false;
     if (this.state.workoutCompleted) {
+      this.applyRecordedWorkoutKeeps();
+      this.state.completionFitnessProfileSnapshot = calculateFitnessProfile(
+        this.catalogExercises, this.state, this.fitnessRatings);
       this.finalizeActiveWorkoutSession("Completed", decidedAtUnixMilliseconds);
     }
     return exercise;
@@ -6014,9 +6027,26 @@ export class WorkoutSession {
     this.finalizeCurrentWorkout();
   }
 
+  applyRecordedWorkoutKeeps() {
+    const finalRounds = new Map();
+    for (const group of this.getActiveGroups()) {
+      const key = getSelectionKey(group);
+      if (!finalRounds.has(key) || finalRounds.get(key).order < group.order)
+        finalRounds.set(key, group);
+    }
+    for (const [key, group] of finalRounds) {
+      if (this.state.outcomes[group.id] !== "tick") continue;
+      const root = this.exercisesById.get(this.state.selectedExerciseIds[
+        this.getSelectionStorageKey(key, this.state.activeWorkoutModifiers)]);
+      if (root) this.keepSequenceInSlot(key, root);
+    }
+    this.syncLegacyKeptExerciseIds();
+  }
+
   finalizeCurrentWorkout() {
     // Closing a workout must not depend on finding a future lineup. The next
     // preparation uses its own duration, modifiers, phase scores and recovery.
+    this.applyRecordedWorkoutKeeps();
     const activeGroups = this.getActiveGroups();
     const selectionGroups = this.getSelectionGroups();
     const rejectedSelections = new Map();
@@ -6040,9 +6070,7 @@ export class WorkoutSession {
       if (!root) {
         continue;
       }
-      if (outcome === "tick") {
-        this.keepSequenceInSlot(selectionGroup.id, root);
-      } else {
+      if (outcome === "x") {
         rejectedSelections.set(selectionGroup.id, root.id);
       }
     }
@@ -9162,6 +9190,8 @@ export class WorkoutSession {
     this.state.activeSimpleRoundSelectionGroupIds = [];
     this.state.activeWorkoutSession = null;
     this.state.activeWorkoutMinutes = 0;
+    this.state.activeFitnessProfileBaseline = null;
+    this.state.completionFitnessProfileSnapshot = null;
     this.state.activeWorkoutModifiers = WORKOUT_MODIFIERS.None;
     this.state.activeWorkoutIsLightDay = false;
     this.state.outcomes = {};

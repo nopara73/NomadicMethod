@@ -119,6 +119,7 @@ public partial class MainActivity : Activity
     private View _congratulationsScreen = null!;
     private LinearLayout _completionInsetContent = null!;
     private FrameLayout _completionHero = null!;
+    private LinearLayout _completionChanges = null!;
     private View _completionHalo = null!;
     private FrameLayout _completionActionBar = null!;
     private TextView _exerciseName = null!;
@@ -753,6 +754,7 @@ public partial class MainActivity : Activity
         _restProgress = FindRequiredView<ProgressBar>(Resource.Id.rest_progress);
         _keepButton = FindRequiredView<ImageButton>(Resource.Id.keep_button);
         _completionMark = FindRequiredView<ImageView>(Resource.Id.completion_mark);
+        _completionChanges = FindRequiredView<LinearLayout>(Resource.Id.completion_changes);
         _doneButton = FindRequiredView<Button>(Resource.Id.done_button);
 
         _exerciseMediaArea.LayoutChange += (_, _) => ResizeMediaCard();
@@ -1508,6 +1510,7 @@ public partial class MainActivity : Activity
 
     private void ApplyCompletionLayout(bool landscape)
     {
+        if (_state is not null) RenderCompletionProfile();
         int matchParent = ViewGroup.LayoutParams.MatchParent;
         int wrapContent = ViewGroup.LayoutParams.WrapContent;
 
@@ -1957,7 +1960,8 @@ public partial class MainActivity : Activity
             _completionHero.Height);
         int maximumSize = Resources!.GetDimensionPixelSize(
             Resource.Dimension.completion_halo_max_size);
-        int size = Math.Min(maximumSize, availableSize - DpInt(20));
+        bool hasChanges = _completionChanges.Visibility == ViewStates.Visible;
+        int size = hasChanges ? DpInt(128) : Math.Min(maximumSize, availableSize - DpInt(56));
         if (size <= 0)
         {
             return;
@@ -1965,16 +1969,26 @@ public partial class MainActivity : Activity
 
         int padding = Math.Max(DpInt(16), (int)Math.Round(size * 0.16d));
         _completionHalo.SetPadding(padding, padding, padding, padding);
+        int markPadding = hasChanges ? DpInt(16) : DpInt(34);
+        _completionMark.SetPadding(markPadding, markPadding, markPadding, markPadding);
+        if (_completionChanges.LayoutParameters is LinearLayout.LayoutParams changesLayout)
+        {
+            int width = Math.Min(DpInt(416), _completionHero.Width - DpInt(56));
+            if (width > 0 && changesLayout.Width != width)
+            {
+                changesLayout.Width = width;
+                _completionChanges.LayoutParameters = changesLayout;
+            }
+        }
         if (_completionHalo.LayoutParameters?.Width == size &&
             _completionHalo.LayoutParameters.Height == size)
         {
             return;
         }
 
-        _completionHalo.LayoutParameters = new FrameLayout.LayoutParams(
+        _completionHalo.LayoutParameters = new LinearLayout.LayoutParams(
             size,
-            size,
-            GravityFlags.Center);
+            size) { Gravity = GravityFlags.Center };
     }
 
     private void UpdateFitnessProfile()
@@ -5108,7 +5122,21 @@ public partial class MainActivity : Activity
         _exerciseVideo.StopPlayback();
         ResetMovementVisuals();
         _currentExercise = null;
+        RenderCompletionProfile();
         ShowAppScreen(AppScreen.Completion);
+
+        if (OperatingSystem.IsAndroidVersionAtLeast(26) &&
+            !Android.Animation.ValueAnimator.AreAnimatorsEnabled())
+        {
+            foreach (View view in new[] { _completionHalo, _completionMark, _doneButton })
+            {
+                view.Animate()?.Cancel();
+                view.Alpha = view.ScaleX = view.ScaleY = 1f;
+                view.TranslationY = 0;
+            }
+            AnnouncePhaseForAccessibility(_congratulationsScreen, "Workout complete.");
+            return;
+        }
 
         _completionHalo.Animate()?.Cancel();
         _completionHalo.Alpha = 0f;
@@ -5153,7 +5181,70 @@ public partial class MainActivity : Activity
         }
         AnnouncePhaseForAccessibility(
             _congratulationsScreen,
-            $"Workout complete. {_state.ActiveWorkoutMinutes} minutes finished.");
+            "Workout complete.");
+    }
+
+    private void RenderCompletionProfile()
+    {
+        _completionChanges.RemoveAllViews();
+        IReadOnlyList<CompletionProfilePolicy.Change> changes = CompletionProfilePolicy.Changes(
+            _state.ActiveFitnessProfileBaseline, _state.CompletionFitnessProfileSnapshot);
+        _completionChanges.Visibility = changes.Count == 0 ? ViewStates.Gone : ViewStates.Visible;
+        bool landscape = Resources!.Configuration!.Orientation == Android.Content.Res.Orientation.Landscape;
+        int availableWidth = Resources.DisplayMetrics!.WidthPixels - DpInt(56)
+            - _completionInsetContent.PaddingLeft - _completionInsetContent.PaddingRight
+            - (landscape ? Resources.GetDimensionPixelSize(Resource.Dimension.completion_landscape_action_width) : 0);
+        using var measure = new TextView(this);
+        measure.SetTextSize(Android.Util.ComplexUnitType.Sp, 18);
+        bool stacked = Math.Min(DpInt(416), availableWidth) < measure.Paint!.MeasureText("0") * 28;
+        foreach (CompletionProfilePolicy.Change change in changes)
+        {
+            if (_completionChanges.ChildCount > 0)
+            {
+                var divider = new View(this);
+                divider.SetBackgroundColor(Android.Graphics.Color.ParseColor("#1AF5EFE7"));
+                _completionChanges.AddView(divider, new LinearLayout.LayoutParams(-1, DpInt(1)));
+            }
+            var row = new LinearLayout(this) { Orientation = stacked ? Orientation.Vertical : Orientation.Horizontal,
+                ContentDescription = change.Description,
+                Focusable = true, ImportantForAccessibility = ImportantForAccessibility.Yes };
+            row.SetGravity(GravityFlags.CenterVertical);
+            row.SetBackgroundResource(Resource.Drawable.completion_change_focus);
+            row.SetPadding(0, DpInt(14), 0, DpInt(14));
+            TextView Part(string text, string color, float size)
+            {
+                var part = new TextView(this) { Text = text,
+                    ImportantForAccessibility = ImportantForAccessibility.No };
+                part.SetTextColor(Android.Graphics.Color.ParseColor(color));
+                part.SetTextSize(Android.Util.ComplexUnitType.Sp, size);
+                part.FontFeatureSettings = "tnum";
+                part.SetIncludeFontPadding(false);
+                return part;
+            }
+            TextView label = Part(change.Label, "#F5EFE7", 16);
+            label.SetPadding(0, 0, DpInt(8), 0);
+            row.AddView(label, stacked ? new LinearLayout.LayoutParams(-1, -2)
+                : new LinearLayout.LayoutParams(0, -2, 1f));
+            LinearLayout values = row;
+            if (stacked)
+            {
+                values = new LinearLayout(this) { Orientation = Orientation.Horizontal };
+                values.SetGravity(GravityFlags.End | GravityFlags.CenterVertical);
+                row.AddView(values, new LinearLayout.LayoutParams(-1, -2) { TopMargin = DpInt(6) });
+            }
+            foreach ((string text, string color, float size) in new[] {
+                (change.Before, "#A7ABAD", 18f), ("→", "#A7ABAD", 16f), (change.After, "#CBED46", 18f) })
+            {
+                TextView part = Part(text, color, size);
+                part.Gravity = text == "→" ? GravityFlags.Center : GravityFlags.End;
+                if (text == change.After && color == "#CBED46")
+                    part.Typeface = Android.Graphics.Typeface.Create("sans-serif-medium", Android.Graphics.TypefaceStyle.Normal);
+                int width = (int)Math.Ceiling(part.Paint!.MeasureText(text == "→" ? "→" : "0.0")) + DpInt(2);
+                values.AddView(part, new LinearLayout.LayoutParams(width, -2) { MarginStart = DpInt(8) });
+            }
+            _completionChanges.AddView(row, new LinearLayout.LayoutParams(-1, -2));
+        }
+        _completionHero.Post(ResizeCompletionHalo);
     }
 
     private void CloseCompletedWorkout()

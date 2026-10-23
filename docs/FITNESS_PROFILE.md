@@ -15,6 +15,25 @@ These are the agreed NM estimates from hearted exercise ratings, not measured ph
 
 The canonical runtime asset is NomadicMethod/Assets/fitness_ratings.json. It is generated from the reviewed explicit level sets by tools/generate-exercise-fitness-ceiling-scores.mjs and verified by its --check gate. The web build copies and fingerprints that Android asset; it has no independently authored ratings. Shared fixture cases exercise both implementations.
 
+## Completion changes
+
+The normal completion screen shows only changed favourite-derived estimates,
+as a small list such as `agility 1.5 → 1.6`. It uses the unrounded means above,
+with one decimal and half-up rounding. Changes that produce the same displayed
+decimal are omitted. A dash means no qualifying evidence, including when an
+axis gains or loses its last qualifying Keep. Decreases are shown as directly
+as increases. The chart's whole-number rounding remains unchanged.
+
+Activation captures the baseline after preparation, before any workout feedback.
+The last decision settles the recorded Keeps using the same rule as Done, then
+freezes the final profile. Both arrays persist with workout state through cold
+reopen, pauses, duration and modifier edits. Reopening unacknowledged completion
+uses those saved values, even after a ratings update. Done clears the snapshots.
+Legacy sessions with no baseline show no comparison; neither missing evidence
+nor a missing baseline is reconstructed as a measured zero. Explicit End keeps
+its existing interrupted-session path. No progress message appears for an empty
+list. These changes describe estimates from favourites, not physiological gains.
+
 ## Limits of precise contributions
 
 Revision 90 contains 906 records. It adds 11 reviewed physical movements and

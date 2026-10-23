@@ -148,6 +148,13 @@ public sealed class WorkoutState
 
     public bool CompletionAcknowledged { get; set; }
 
+    // Capture only on activation, never on restore. Null means an older session
+    // has no trustworthy baseline; zero within a snapshot means an unknown axis.
+    public double[]? ActiveFitnessProfileBaseline { get; set; }
+
+    // Frozen after the final feedback, until Done. Never recalculate on reopen.
+    public double[]? CompletionFitnessProfileSnapshot { get; set; }
+
     [System.Text.Json.Serialization.JsonIgnore]
     public Dictionary<string, string> LegacySelectedExerciseNames { get; set; } = [];
 

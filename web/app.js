@@ -1,4 +1,5 @@
 import { FitnessProfileView, calculateFitnessProfile, parseFitnessRatings } from "./fitness-profile.js";
+import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
 import { ReactionDrillView } from "./reaction-drill-view.js";
 import {
@@ -133,6 +134,7 @@ const elements = {
   restProgressFill: byId("rest-progress-fill"),
   keepExercise: byId("keep-exercise"),
   completionScreen: byId("completion-screen"),
+  completionChanges: byId("completion-changes"),
   doneButton: byId("done-button"),
   status: byId("status"),
 };
@@ -2377,6 +2379,8 @@ function showCompletion(playCue) {
   resetMovementVisuals();
   currentGroup = null;
   currentExercise = null;
+  renderCompletionProfile(elements.completionChanges, session.state.activeFitnessProfileBaseline,
+    session.state.completionFitnessProfileSnapshot);
   showScreen("completion");
   if (playCue) {
     playSound("complete");

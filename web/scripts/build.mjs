@@ -38,8 +38,10 @@ if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
-for (const stem of ['reaction-drills', 'reaction-drill-view', 'fitness-profile']) {
-  const source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
+for (const stem of ['reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile']) {
+  let source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
+  for (const [dependency, output] of moduleOutputs)
+    source = source.replaceAll(`./${dependency}.js`, `./${output}`);
   const name = fingerprintedName(stem, 'js', source);
   moduleOutputs.set(stem, name);
   await writeFile(path.join(outputRoot, name), source);
@@ -60,6 +62,7 @@ const lightCadenceOutputName = fingerprintedName("light-cadence", "js", lightCad
 await writeFile(path.join(outputRoot, lightCadenceOutputName), lightCadenceSource, "utf8");
 const workoutSource = (await readFile(path.join(webRoot, "workout.js"), "utf8"))
   .replace('./light-cadence.js', `./${lightCadenceOutputName}`)
+  .replace('./completion-profile.js', `./${moduleOutputs.get('completion-profile')}`)
   .replace('./fitness-profile.js', `./${moduleOutputs.get('fitness-profile')}`);
 if (!workoutSource.includes(`./${lightCadenceOutputName}`) ||
     workoutSource.includes('./light-cadence.js')) {
@@ -371,6 +374,7 @@ const fingerprintedAppSource = appSource
   .replace('"./reaction-drills.js"', `"./${moduleOutputs.get('reaction-drills')}"`)
   .replace('"./reaction-drill-view.js"', `"./${moduleOutputs.get('reaction-drill-view')}"`)
   .replace('"./fitness-profile.js"', `"./${moduleOutputs.get('fitness-profile')}"`)
+  .replace('"./completion-profile.js"', `"./${moduleOutputs.get('completion-profile')}"`)
   .replace('"data/fitness_ratings.json"', `"data/${fitnessOutputName}"`)
   .replace('"data/reaction_drills.json"', `"data/${reactionOutputName}"`)
   .replace(

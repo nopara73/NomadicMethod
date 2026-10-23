@@ -404,7 +404,19 @@ test("web and mobile persist hard-first block-aware workout allocation", () => {
   );
   assert.match(
     sessionService,
-    /KeepSequenceInSlot\(state, selectionGroup\.Id, root\)[\s\S]*rejectedSelections\.Add\(\(selectionGroup\.Id, root\.Id\)\)[\s\S]*SyncLegacyKeptExerciseIds\(state\)/,
+    /private void ApplyRecordedWorkoutKeeps\(WorkoutState state\)[\s\S]*ExerciseOutcome\.Tick[\s\S]*KeepSequenceInSlot\(state, rounds\.Key, root\)[\s\S]*SyncLegacyKeptExerciseIds\(state\)/,
+  );
+  assert.match(
+    sessionService,
+    /private void FinalizeCurrentWorkout\(WorkoutState state\)[\s\S]*ApplyRecordedWorkoutKeeps\(state\)[\s\S]*rejectedSelections\.Add\(\(selectionGroup\.Id, root\.Id\)\)[\s\S]*SyncLegacyKeptExerciseIds\(state\)/,
+  );
+  assert.match(
+    workoutModule,
+    /applyRecordedWorkoutKeeps\(\) \{[\s\S]*"tick"[\s\S]*this\.keepSequenceInSlot\(key, root\)[\s\S]*this\.syncLegacyKeptExerciseIds\(\)/,
+  );
+  assert.match(
+    workoutModule,
+    /finalizeCurrentWorkout\(\) \{[\s\S]*this\.applyRecordedWorkoutKeeps\(\)[\s\S]*rejectedSelections\.set\(selectionGroup\.id, root\.id\)/,
   );
 });
 
