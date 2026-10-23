@@ -80,7 +80,7 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
       }
       const protocol = reactionProtocols.get(id)?.protocol;
       const reactionSupport = protocol
-        ? ({ Initiation: [1], TwoChoice: [1,3], FourChoice: [1,3,4], ContextChoice: [1,3,4,5] })[protocol]
+        ? ({ Initiation: [1], StopOnly: [2], TwoChoice: [1,3], FourChoice: [1,3,4], ContextChoice: [1,3,4,5] })[protocol]
         : exercise.reactionCueLevel > 0 ? [1,2] : [];
       if (!reactionSupport || profile.levels.reactionTime.some(level => !reactionSupport.includes(level)) ||
           (protocol && !profile.levels.reactionTime.includes(reactionSupport.at(-1)))) {

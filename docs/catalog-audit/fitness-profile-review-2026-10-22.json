@@ -8,7 +8,7 @@
       "metadataSha256": "120f058aa23c8ac356cb940218d3ab08ba7bd10fde80b1ca9e0426916306a801",
       "assets": {
         "exercise_videos/exercise_1621.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
-        "reaction_drills.json": "c37ccf00cc81dc37ab59e27fc75c672bec075f2ce50bc9b1dbf48a63f36570d0",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
         "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
       },
@@ -65,7 +65,17 @@
           "status": "PASS",
           "reason": "Ready, five-second Preparation, the 45-second work opportunity and Rest were inspected in the actual app. Both arm blocks and the incomplete-sequence Keep restriction were checked for 1701; 1621 prepares the exact response before cueing and delays feedback."
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c37ccf00cc81dc37ab59e27fc75c672bec075f2ce50bc9b1dbf48a63f36570d0",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1701,
@@ -369,5 +379,6 @@
         }
       }
     }
-  ]
+  ],
+  "textAssetHashing": "reaction_drills.json uses UTF-8 text normalized to LF; movie and frame hashes are raw bytes."
 }

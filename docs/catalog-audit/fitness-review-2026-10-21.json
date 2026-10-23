@@ -986,7 +986,7 @@
       "metadataSha256": "db655f89fb3ea95c5cbd0cc51ee32c7a4de18f41369239244bc886a9951fa988",
       "assets": {
         "exercise_videos/exercise_1602.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
         "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a",
         "reaction_videos/punch-2.mp4": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
@@ -1045,14 +1045,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1603,
       "metadataSha256": "5737a3058699a5ace2b72e99a6d9e4e89c7ca87b1afce82dd6c783640fede4e9",
       "assets": {
         "exercise_videos/exercise_1603.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
         "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a",
         "reaction_videos/punch-2.mp4": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
@@ -1115,14 +1125,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1604,
       "metadataSha256": "ea8e413e46a5134d3dfa65d557c5271d4a22d0746ec58c82f231d1dbe285a7dc",
       "assets": {
         "exercise_videos/exercise_1604.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
         "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a",
         "reaction_videos/punch-2.mp4": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
@@ -1190,14 +1210,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1612,
       "metadataSha256": "88c6c806b1b361406260956acb7ffd45e4903ad6c3641ca34fda1803d60cf941",
       "assets": {
         "exercise_videos/exercise_1612.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
         "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0",
         "reaction_videos/knee-2.mp4": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
@@ -1256,14 +1286,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1613,
       "metadataSha256": "22962b22e6ec0c352c9f51f1c43e00e2e0e1d3a349c9d4027cb347b6d54d2bbd",
       "assets": {
         "exercise_videos/exercise_1613.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
         "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0",
         "reaction_videos/knee-2.mp4": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
@@ -1326,14 +1366,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1614,
       "metadataSha256": "de1e596633668b09943fdf7c2a441c7f979b6f701dc4b2e6a96b1d9cae48bd39",
       "assets": {
         "exercise_videos/exercise_1614.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
         "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0",
         "reaction_videos/knee-2.mp4": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
@@ -1400,14 +1450,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1622,
       "metadataSha256": "87009111a40d747919721a78e80f1c66c71674b24955f86b45f5720073cf6aad",
       "assets": {
         "exercise_videos/exercise_1622.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
         "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0",
         "reaction_videos/arm-2.mp4": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
@@ -1465,14 +1525,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1623,
       "metadataSha256": "d677bc2e552dc167ed52e458193b115d63b0cc7096108a5fd6b6378c122d9faa",
       "assets": {
         "exercise_videos/exercise_1623.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
         "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0",
         "reaction_videos/arm-2.mp4": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
@@ -1534,14 +1604,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1624,
       "metadataSha256": "b9f1787c39cc6fdda3e7c42e488b9b218032b30c94aa9301e8daa263ca923017",
       "assets": {
         "exercise_videos/exercise_1624.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
         "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0",
         "reaction_videos/arm-2.mp4": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
@@ -1607,14 +1687,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1632,
       "metadataSha256": "0b42492299ddac68e653f8bfad9017b9b516d0294a7412fcdbb35fdfe1368fb6",
       "assets": {
         "exercise_videos/exercise_1632.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
         "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0",
         "reaction_videos/kick-2.mp4": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
@@ -1673,14 +1763,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1633,
       "metadataSha256": "fac2830b67ab5dc0d85f47bae10de860239ab611bdb57adb42947892f6381f98",
       "assets": {
         "exercise_videos/exercise_1633.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
         "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0",
         "reaction_videos/kick-2.mp4": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
@@ -1743,14 +1843,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1634,
       "metadataSha256": "ae0f6bf4df0b75f1026890e583b67882dc6718c0e551a770ed34ee7991d9adf3",
       "assets": {
         "exercise_videos/exercise_1634.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
         "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0",
         "reaction_videos/kick-2.mp4": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
@@ -1817,14 +1927,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1642,
       "metadataSha256": "e5d142d76638dd8ba6649d46da08f9bcbe3ae0dee8c0916fa3968c7b3886bd22",
       "assets": {
         "exercise_videos/exercise_1642.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
         "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6",
         "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
@@ -1883,14 +2003,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1643,
       "metadataSha256": "5252d6a1a69db5101fe3b05ab72124ba9ba153d1a1e1af0510bacde211c723fc",
       "assets": {
         "exercise_videos/exercise_1643.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
         "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6",
         "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
@@ -1953,14 +2083,24 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     },
     {
       "id": 1644,
       "metadataSha256": "563837205271e585f2996e8a0a0ffa9eab3cf16c57aa37a286f818e9faa73974",
       "assets": {
         "exercise_videos/exercise_1644.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
-        "reaction_drills.json": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
         "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
         "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6",
         "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
@@ -2027,7 +2167,18 @@
           "reason": "Inspected actual production web UI using an explicitly synthetic saved workout: Ready, 5-second preparation, 45-second work, exact holds where applicable, rest, and every paired side/direction. Complete moving clips played normally. Reaction trials prepare every complete local response before cueing, separate target from feedback, and reset on pause. The context punch trial also cold-reopened with the same session and remaining work, without outside-time credit. Shared Android/web traces, 1,109 Android tests, 676 web tests and the production build pass; physical Android installation remains pending.",
           "status": "PASS"
         }
-      }
+      },
+      "dependencyUpdates": [
+        {
+          "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+          "asset": "reaction_drills.json",
+          "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+          "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+          "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF so the review remains valid across Windows and Linux checkouts; binary media hashes remain exact.",
+          "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+        }
+      ]
     }
-  ]
+  ],
+  "textAssetHashing": "reaction_drills.json uses UTF-8 text normalized to LF; movie and frame hashes are raw bytes."
 }

@@ -128,4 +128,11 @@
     1702 = $true
     1703 = $true
     1704 = $true
+
+    # Precise skill admissions, 23 October 2026.
+    1709 = $true
+    1710 = $true
+    1711 = $true
+    1713 = $true
+    1714 = $true
 }

@@ -535,4 +535,22 @@
     1703 = @{ Name = 'Crow Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1703' }
     1704 = @{ Name = 'Full Floor Planche Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1704' }
     1705 = @{ Name = 'Bent-Arm Press to Handstand'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1705' }
+
+    # Precise skill admissions, 23 October 2026.
+    1605 = @{ Name = 'Straight Punch Stops'; Region = 'ARMS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1605' }
+    1615 = @{ Name = 'Knee Lift Stops'; Region = 'HIPS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1615' }
+    1625 = @{ Name = 'Arm Raise Stops'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1625' }
+    1635 = @{ Name = 'Front Kick Stops'; Region = 'LEGS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1635' }
+    1645 = @{ Name = 'Crouching Reach Stops'; Region = 'SHOULDERS'; Practice = 'Reaction training'; MotionProfile = 'Fitness1645' }
+    1706 = @{ Name = 'Straight-Leg Cartwheels'; Region = 'SHOULDERS'; Practice = 'Gymnastics'; MotionProfile = 'Fitness1706' }
+    1707 = @{ Name = 'One-Arm Cartwheels'; Region = 'SHOULDERS'; Practice = 'Gymnastics'; MotionProfile = 'Fitness1707' }
+    1708 = @{ Name = 'Side Aerials'; Region = 'HIPS'; Practice = 'Gymnastics'; MotionProfile = 'Fitness1708' }
+    1709 = @{ Name = 'Straight-Leg Firefly Hold'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'Fitness1709' }
+    1710 = @{ Name = 'Eight-Angle Hold'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'Fitness1710' }
+    1711 = @{ Name = 'Freestanding Forearm Stand Hold'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'Fitness1711' }
+    1712 = @{ Name = 'Floor 90-Degree Handstand Push-Ups'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1712' }
+    1713 = @{ Name = 'Kneeling Full Pigeon Hold'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'Fitness1713' }
+    1714 = @{ Name = 'Feet-to-Head Handstand Scorpion Hold'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'Fitness1714' }
+    1715 = @{ Name = 'Aztec Push-Ups'; Region = 'CHEST'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1715' }
+    1716 = @{ Name = 'Superman Push-Ups'; Region = 'CHEST'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1716' }
 }

@@ -70,11 +70,13 @@ public sealed class FitnessProfileTests
             exercise => Assert.True(ratings.ContainsKey(exercise.GetProperty("id").GetInt32())));
     }
 
-    [Fact]
-    public void ReviewedAdmissionsOpenPreciseContributionsAndPreserveTheOlderCatalog()
+    [Theory]
+    [InlineData("fitness-profile-admissions.json")]
+    [InlineData("fitness-precise-admissions.json")]
+    public void ReviewedAdmissionsOpenPreciseContributionsAndPreserveTheOlderCatalog(string fixtureName)
     {
         using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
-            Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-profile-admissions.json")));
+            Path.Combine(AppContext.BaseDirectory, "Assets", fixtureName)));
         Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
         using FileStream source = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "fitness_ratings.json"));

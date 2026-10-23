@@ -1,0 +1,714 @@
+{
+  "id": 1625,
+  "name": "Arm Raise Stops",
+  "ready": {
+    "name": "Arm Raise Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0.110406,
+        "rate": 1,
+        "frames": 7,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "previewPlayed": {
+    "name": "Arm Raise Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0.655262,
+        "rate": 1,
+        "frames": 81,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "move": {
+    "name": "Arm Raise Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "3",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0,
+        "rate": 1,
+        "frames": 87,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "trials": [
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "Alternating arm raises",
+      "shown": 1
+    }
+  ],
+  "countdown3": {
+    "name": "Arm Raise Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "3",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0,
+        "rate": 1,
+        "frames": 87,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "countdown2": {
+    "name": "Arm Raise Stops",
+    "countdown": "44",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "2",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0,
+        "rate": 1,
+        "frames": 87,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "countdown1": {
+    "name": "Arm Raise Stops",
+    "countdown": "43",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "1",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0,
+        "rate": 1,
+        "frames": 87,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "stop": {
+    "name": "Arm Raise Stops",
+    "countdown": "43",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "STOP",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0,
+        "rate": 1,
+        "frames": 87,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "feedback": {
+    "name": "Arm Raise Stops",
+    "countdown": "35",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "Alternating arm raises",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0.022867,
+        "rate": 1,
+        "frames": 88,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "feedbackPlayed": {
+    "name": "Arm Raise Stops",
+    "countdown": "35",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "Alternating arm raises",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 3.15,
+        "rate": 1,
+        "frames": 146,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "rest": {
+    "name": "Arm Raise Stops",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 3.15,
+        "time": 0.192078,
+        "rate": 1,
+        "frames": 8,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "errors": [],
+  "scope": "SYNTHETIC QA: isolated historical-duration workout fixture; actual product UI and canonical Android media. Timers advanced between phase checks. Moving demonstrations and supporting hold movies played separately at normal elapsed speed. No real workout or phone state was altered."
+}

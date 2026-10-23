@@ -1,0 +1,1032 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 90,
+  "scope": "Sixteen new records, with all ten cells explicitly assessed and every nonempty cell a singleton. Existing records and scores unchanged.",
+  "entries": [
+    {
+      "id": 1605,
+      "metadataSha256": "79eb3b6a1f610c12b715970d6f75de342aa0e796e13179e691fda9429e5f4ed5",
+      "assets": {
+        "exercise_videos/exercise_1605.mp4": "b27c1ceee8695e47df793149faee2488e11b89b4e610b60c8c1345e718e5cfbf",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+        "reaction_videos/punch-1.mp4": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+        "reaction_previews/punch-1.png": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One known straight punch pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/countdown-3.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/countdown-2.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/countdown-1.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/stop.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/feedback.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1605/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One known straight punch pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1615,
+      "metadataSha256": "5643e30caebe9097f8066f3fc6975e0f50db17f377bc551ed762c1c52cd681b6",
+      "assets": {
+        "exercise_videos/exercise_1615.mp4": "63c9c53efcaff43abff97ddb8afaaaf0c510f7d272b6e42708ba534401132084",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+        "reaction_videos/knee-1.mp4": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+        "reaction_previews/knee-1.png": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One known front knee lift pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/countdown-3.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/countdown-2.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/countdown-1.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/stop.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/feedback.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1615/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One known front knee lift pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1625,
+      "metadataSha256": "94b7c45277f2d72758b368772e4e63d52999a54c729ef2972df9bd47a89db3b6",
+      "assets": {
+        "exercise_videos/exercise_1625.mp4": "85026e117e7bc1a386c8fb3d86af8abf5cdee546c154e3ceabc2d0f0fd3cbbbc",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+        "reaction_videos/arm-1.mp4": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+        "reaction_previews/arm-1.png": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One known alternating arm raises pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/countdown-3.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/countdown-2.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/countdown-1.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/stop.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/feedback.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1625/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One known alternating arm raises pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1635,
+      "metadataSha256": "932e2d63050148edd29aa790571b0af601f3624b66d718ba1184ca44e3950c04",
+      "assets": {
+        "exercise_videos/exercise_1635.mp4": "cfb6f2b1027dc3c5fce261c90532923665cd82fdbd6190de236a1773417facad",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+        "reaction_videos/kick-1.mp4": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+        "reaction_previews/kick-1.png": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One known front snap kick pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/countdown-3.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/countdown-2.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/countdown-1.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/stop.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/feedback.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1635/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One known front snap kick pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1645,
+      "metadataSha256": "c820a78a0e0b93f9d31ff8a1b8d56a93b97d734a577142f0c1acff0cb6cad6da",
+      "assets": {
+        "exercise_videos/exercise_1645.mp4": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+        "reaction_drills.json": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+        "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+        "reaction_previews/crouch-1.png": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One known near hand pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/countdown-3.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/countdown-2.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/countdown-1.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/stop.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/feedback.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1645/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One known near hand pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1706,
+      "metadataSha256": "74070f7cef3ef129b8d2105b87ad962bd65704fe6eab11d510f187ada751db4c",
+      "assets": {
+        "exercise_videos/exercise_1706.mp4": "1144d7b7a0b4c13564f8945bf790678938c149c9f8f769bec2315eb0a8ca1e86"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One continuous wide shot: raised-arm standing entry, two successive palm supports, straight split legs through inversion, both feet land and torso rises. The following closer shot is excluded.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/played.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1706/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One continuous wide shot: raised-arm standing entry, two successive palm supports, straight split legs through inversion, both feet land and torso rises. The following closer shot is excluded. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Travel is intrinsic to the named cartwheel/aerial. Room space is required; the whole trajectory remains visible."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1707,
+      "metadataSha256": "0822b16fb7c2349bd256eebcd69be4f1e5d1867d6dc5a0b685dca22d67813b09",
+      "assets": {
+        "exercise_videos/exercise_1707.mp4": "edabf8747fb25bd5e66fb6d71dcd48651938c09aa1742ed62074f18386f7b37d"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "The model on the left makes one full cartwheel on one palm. The other hand stays clear; split legs, single-hand contact, two-foot landing and upright recovery remain visible. The coach does not assist.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/played.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1707/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The model on the left makes one full cartwheel on one palm. The other hand stays clear; split legs, single-hand contact, two-foot landing and upright recovery remain visible. The coach does not assist. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Travel is intrinsic to the named cartwheel/aerial. Room space is required; the whole trajectory remains visible."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1708,
+      "metadataSha256": "88d823ebce18d0a915e961081cac16265fd30461c18fd2a724faf1bf91ee852b",
+      "assets": {
+        "exercise_videos/exercise_1708.mp4": "14b2dd74606ecea10f1d0d022d4bfdf326103a8f156b3fd6488e1593e0089775"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One normal-rate wide shot shows a standing approach, airborne sideways cartwheel with both hands off the floor, split-leg rotation, two-foot landing and recovery. The slow-motion teaching passages are excluded.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/played.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1708/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One normal-rate wide shot shows a standing approach, airborne sideways cartwheel with both hands off the floor, split-leg rotation, two-foot landing and recovery. The slow-motion teaching passages are excluded. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Travel is intrinsic to the named cartwheel/aerial. Room space is required; the whole trajectory remains visible."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1709,
+      "metadataSha256": "ef7a377998af70037eec1dc4f6427c5d1f2141328e452eea01b40ce0abd32ef3",
+      "assets": {
+        "exercise_videos/exercise_1709.mp4": "671032bbae4cc000aa8ed81294b5fed5a7b0210d590ae13dd38a9b8ccf0bf52a",
+        "exercise_hold_frames/exercise_1709.png": "70f828078007794eebb0fc719123420f1e8046d915dcc78b1771c242706dbdb5"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "Continuous floor entry from a deep fold: palms bear weight, both feet lift and both knees straighten into Tittibhasana. The arms remain outside the legs and there are no blocks. The target frame shows straight knees and both soles clear.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/hold.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1709/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Continuous floor entry from a deep fold: palms bear weight, both feet lift and both knees straighten into Tittibhasana. The arms remain outside the legs and there are no blocks. The target frame shows straight knees and both soles clear. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The actual workout uses the exact static posture in Ready and Move. Its unaltered supporting human movie was separately played to completion at rate 1; this is not misrepresented as an app moving preview."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The actual workout displays the curated held position; no invented motion or loop seam is presented as a continuing hold."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual Ready and Move captures show the reviewed full target posture. The still is an actual video frame, not a generated illustration or an entry posture."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1710,
+      "metadataSha256": "619b943fd80d0f3ca7384157ba397766643874903167f426c405046e3ed44202",
+      "assets": {
+        "exercise_videos/exercise_1710.mp4": "82e9f3b944f19998995308f97defde59a3341e01d8d661d7905292480320292a",
+        "exercise_hold_frames/exercise_1710.png": "053fadef7e476c1caec2300bfebd34b8de48e21c9e48994661ce46ffb1e07b28"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "The selected unassisted Astavakrasana hold shows both palms on the floor, crossed ankles, both straight legs to one side of the torso and the upper-leg shelf on one arm. The instructor has both hands clear. The excerpt includes the controlled feet-down exit; earlier hands-on teaching is excluded.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/hold.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/second-side.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1710/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The selected unassisted Astavakrasana hold shows both palms on the floor, crossed ankles, both straight legs to one side of the torso and the upper-leg shelf on one arm. The instructor has both hands clear. The excerpt includes the controlled feet-down exit; earlier hands-on teaching is excluded. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The actual workout uses the exact static posture in Ready and Move. Its unaltered supporting human movie was separately played to completion at rate 1; this is not misrepresented as an app moving preview."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The actual workout displays the curated held position; no invented motion or loop seam is presented as a continuing hold."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both complete 45-second side/lead blocks and the mirrored second media/hold are verified in the actual workout. The first Rest does not offer Keep for an incomplete pair."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual Ready and Move captures show the reviewed full target posture. The still is an actual video frame, not a generated illustration or an entry posture."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1711,
+      "metadataSha256": "9608e413146324a9bea4f9fda9d0972bc2a63a00dc41fc231d8635391d636680",
+      "assets": {
+        "exercise_videos/exercise_1711.mp4": "cb409ab3fee5d774c56d35e91e6ec8d6c09719c78bdad12ae41c6bfd3dd2660c",
+        "exercise_hold_frames/exercise_1711.png": "da6cbe8c2b1a12360a356e88f33f46c7da534dd936ab6fd529b45c34faeb83ab"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "After the source dissolve, a continuous wide shot shows the complete forearm-supported inversion, head clear of the mat, joined straight legs, no wall, then a controlled step-down. No cropped close-up or transition is packaged.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/hold.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1711/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "After the source dissolve, a continuous wide shot shows the complete forearm-supported inversion, head clear of the mat, joined straight legs, no wall, then a controlled step-down. No cropped close-up or transition is packaged. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The actual workout uses the exact static posture in Ready and Move. Its unaltered supporting human movie was separately played to completion at rate 1; this is not misrepresented as an app moving preview."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The actual workout displays the curated held position; no invented motion or loop seam is presented as a continuing hold."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual Ready and Move captures show the reviewed full target posture. The still is an actual video frame, not a generated illustration or an entry posture."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1712,
+      "metadataSha256": "4f3fa8ff82c81d104bd9aa6dc81ab3827f18ca9d380e7d001be6b04c32aa4f7b",
+      "assets": {
+        "exercise_videos/exercise_1712.mp4": "645a19069be3a2238e0034f2a123482b8cb1591f61670651a99092ce82380ef3"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One continuous side view on flat palms: full handstand, controlled lowering to a horizontal straight-body bent-arm planche, then press back to handstand. Entire feet, hands and body are visible; no handles, wall or foot support. The head passes very close to the floor, conservatively included as a possible transition contact.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/played.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1712/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One continuous side view on flat palms: full handstand, controlled lowering to a horizontal straight-body bent-arm planche, then press back to handstand. Entire feet, hands and body are visible; no handles, wall or foot support. The head passes very close to the floor, conservatively included as a possible transition contact. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1713,
+      "metadataSha256": "e1ff09a105a24709f7e43bf039d01be8fb8274298c0e832f1af6455628bed37f",
+      "assets": {
+        "exercise_videos/exercise_1713.mp4": "c62a2959c626820d83d03b48b8abfba71f5030fe6836a0d89c93380e806021be",
+        "exercise_hold_frames/exercise_1713.png": "51c3b85316d6e7aceb60c04fbb23addcf8dae30f910e47d3cea98d58f8e5bc39"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "The full Kapotasana shape has shins and knees down, palms holding whole heels, deep hip and spinal extension, head/forearms near the floor, followed by release and return to tall kneeling. The grip is on heels, not individual toes. No props or assistance.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/hold.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1713/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The full Kapotasana shape has shins and knees down, palms holding whole heels, deep hip and spinal extension, head/forearms near the floor, followed by release and return to tall kneeling. The grip is on heels, not individual toes. No props or assistance. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The actual workout uses the exact static posture in Ready and Move. Its unaltered supporting human movie was separately played to completion at rate 1; this is not misrepresented as an app moving preview."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The actual workout displays the curated held position; no invented motion or loop seam is presented as a continuing hold."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual Ready and Move captures show the reviewed full target posture. The still is an actual video frame, not a generated illustration or an entry posture."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1714,
+      "metadataSha256": "fd7a9506ae1d2b861d9e3ddc282481710747c531d2bfcdeddf50857d2755d82f",
+      "assets": {
+        "exercise_videos/exercise_1714.mp4": "b342a5a345a91d3ce41aae4517f1be8bd700c62ccadef1c9100db8ae0600a769",
+        "exercise_hold_frames/exercise_1714.png": "9258180e6a8167aa59b4051caedc98e48fb88995a5d30318d46ac020eb45d573"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "The complete palms-only handstand backbend stays fully framed. Knees bend until both feet reach the head, then feet lower into a floor bridge and the performer rises. No forearm support, wall, foot-grip or assistance. The held frame is the actual feet-to-head shape.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/hold.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1714/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The complete palms-only handstand backbend stays fully framed. Knees bend until both feet reach the head, then feet lower into a floor bridge and the performer rises. No forearm support, wall, foot-grip or assistance. The held frame is the actual feet-to-head shape. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The actual workout uses the exact static posture in Ready and Move. Its unaltered supporting human movie was separately played to completion at rate 1; this is not misrepresented as an app moving preview."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The actual workout displays the curated held position; no invented motion or loop seam is presented as a continuing hold."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The actual Ready and Move captures show the reviewed full target posture. The still is an actual video frame, not a generated illustration or an entry posture."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1715,
+      "metadataSha256": "3fec6d43584a12d9c1be0b422b324b780d586073e8e77946aa0390181e1b0be5",
+      "assets": {
+        "exercise_videos/exercise_1715.mp4": "8f8b2d0c961dc7b3c63ce13f7910944280ce9153c9e3d6919b77d8d3854610da"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "A complete uncut normal-rate repetition starts and ends in high plank. Both feet and palms leave the floor; the straight-leg airborne pike includes the actual hand-to-toe touch before hands and feet return. Later zoomed/slow teaching footage is excluded.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/played.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1715/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "A complete uncut normal-rate repetition starts and ends in high plank. Both feet and palms leave the floor; the straight-leg airborne pike includes the actual hand-to-toe touch before hands and feet return. Later zoomed/slow teaching footage is excluded. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    },
+    {
+      "id": 1716,
+      "metadataSha256": "0692a974c0d311d2822e8ab347dc7951a549e43a7e04fe1102329d00baa2a743",
+      "assets": {
+        "exercise_videos/exercise_1716.mp4": "4c13eb14834a75b01abbca0ab72841bc6119facf0d1121db6f6aa1b2743ac854"
+      },
+      "reviewedAt": "2026-10-23T00:36:11.455765+00:00",
+      "method": "Original public instructor footage and exact native source frames; final canonical media in the actual web workout using labelled isolated synthetic state. Full moving playback remains at normal elapsed speed. Static workout posture and its separately played supporting movie are distinguished. Android compilation/tests/device installation are separate release checks.",
+      "observedAction": "One complete normal-rate push-up launches the entire straight body airborne, both arms extend forward, palms return before landing, then the performer returns to high plank. No edit or black frame is inside the excerpt.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/preview.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/move.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/rest.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/played.png",
+        "docs/catalog-audit/evidence/2026-10-23/precise-admissions/1716/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "One complete normal-rate push-up launches the entire straight body airborne, both arms extend forward, palms return before landing, then the performer returns to high plank. No edit or black frame is inside the excerpt. Primary/secondary training claims, complete side scheduling, demand, floor/support contacts, ordinary-shoe mechanics, travel and modifier gates were reviewed against this exact task."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The entire packaged moving demonstration was played in the actual workout at normal elapsed speed, including its natural entry/action/reset. Reaction tasks also prepare their exact response before cueing."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The packaged full-frame source and actual workout retain the complete working body and all support contacts. No essential limb or apparatus is cropped away; the selected passages exclude source close-ups, edits and occluding assistance."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The same natural action resets between cycles/trials. Traveling acrobatics reset to their source start for the next attempt; no reverse/ping-pong, composite or fabricated return is used."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is unchanged and runtime media is sampled at 20 fps. Moving app playback and separately inspected supporting movies retain playbackRate 1; the accelerated synthetic timer is not evidence of human performance."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "The demonstrated pose is bilateral or the arm response includes both sides inside its real pattern. No additional side or independent identity is inferred."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The actual task remains planted. Inversion, a controlled entry/exit or in-place step-down is not a traveling lane."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving reaction or repetition task; no static held target applies."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Only the demonstrated floor or feet support is used. No wall, elevation, handles, blocks or new apparatus is inferred. Floor, hard-floor cushioning/traction, clothing, Silence and Shy classifications follow the exact complete task."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, the 45-second work opportunity and Rest were inspected in the actual app, including complete opposite-side continuation when present. Stop-only countdown/cancellation and ordinary scheduled-action branches were both exercised; no latency or accuracy is collected."
+        }
+      }
+    }
+  ],
+  "textAssetHashing": "reaction_drills.json uses UTF-8 text normalized to LF; movie and frame hashes are raw bytes."
+}

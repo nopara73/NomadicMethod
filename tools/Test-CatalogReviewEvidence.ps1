@@ -99,6 +99,17 @@ try {
         [IO.File]::WriteAllText($path, $original)
         Assert-ReviewStatus 'PASS'
     }
+    # JSON newline conversion must survive Windows/Linux checkouts, while a
+    # real protocol-text or binary change still invalidates the review.
+    $multiline = "{`n" + $definition.Substring(1)
+    [IO.File]::WriteAllText($definitionPath, $multiline)
+    $review.assets = Get-CatalogAssetHashes -Exercise $exercise -AssetsRoot $testRoot
+    [IO.File]::WriteAllText($definitionPath, $multiline.Replace("`n", "`r`n"))
+    Assert-ReviewStatus 'PASS'
+    [IO.File]::WriteAllText($definitionPath, $multiline.Replace('TwoChoice', 'StopOnly'))
+    Assert-ReviewStatus 'STALE'
+    [IO.File]::WriteAllText($definitionPath, $multiline)
+    Assert-ReviewStatus 'PASS'
     Write-Output 'Review evidence tests passed: missing, partial, failed, changed metadata, video, hold, direction, reaction response, preview and protocol assets.'
 }
 finally {

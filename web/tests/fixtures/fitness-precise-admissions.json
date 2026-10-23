@@ -1,0 +1,291 @@
+{
+  "catalogRevision": 90,
+  "exerciseIds": [
+    1605,
+    1615,
+    1625,
+    1635,
+    1645,
+    1706,
+    1707,
+    1708,
+    1709,
+    1710,
+    1711,
+    1712,
+    1713,
+    1714,
+    1715,
+    1716
+  ],
+  "cases": [
+    {
+      "name": "cartwheel coordination",
+      "kept": [
+        1706
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "one-arm cartwheel coordination",
+      "kept": [
+        1707
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "unsupported side aerial coordination",
+      "kept": [
+        1708
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "firefly tied precise characteristics",
+      "kept": [
+        1709
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        3,
+        0,
+        3,
+        3,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "eight-angle tied precise characteristics",
+      "kept": [
+        1710
+      ],
+      "expected": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        3,
+        3,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "head-clear forearm stand",
+      "kept": [
+        1711
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "complete floor ninety-degree press",
+      "kept": [
+        1712
+      ],
+      "expected": [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "supported full pigeon range",
+      "kept": [
+        1713
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "feet-to-head handstand range",
+      "kept": [
+        1714
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "actual airborne toe-touch power",
+      "kept": [
+        1715
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "extended flight power",
+      "kept": [
+        1716
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "anticipated cancellation without response choice",
+      "kept": [
+        1605
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "same physical family does not multiply reaction evidence",
+      "kept": [
+        1621,
+        1625
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "all new tasks retain fractional independent averages",
+      "kept": [
+        1605,
+        1615,
+        1625,
+        1635,
+        1645,
+        1706,
+        1707,
+        1708,
+        1709,
+        1710,
+        1711,
+        1712,
+        1713,
+        1714,
+        1715,
+        1716
+      ],
+      "expected": [
+        0,
+        4,
+        0,
+        4,
+        0,
+        3.3333333333333335,
+        3.6,
+        4.5,
+        2,
+        0
+      ]
+    }
+  ]
+}

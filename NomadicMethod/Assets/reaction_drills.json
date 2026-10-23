@@ -324,6 +324,11 @@
       "protocol": "ContextChoice"
     },
     {
+      "exerciseId": 1605,
+      "familyId": "punch",
+      "protocol": "StopOnly"
+    },
+    {
       "exerciseId": 1612,
       "familyId": "knee",
       "protocol": "TwoChoice"
@@ -337,6 +342,11 @@
       "exerciseId": 1614,
       "familyId": "knee",
       "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1615,
+      "familyId": "knee",
+      "protocol": "StopOnly"
     },
     {
       "exerciseId": 1621,
@@ -359,6 +369,11 @@
       "protocol": "ContextChoice"
     },
     {
+      "exerciseId": 1625,
+      "familyId": "arm",
+      "protocol": "StopOnly"
+    },
+    {
       "exerciseId": 1632,
       "familyId": "kick",
       "protocol": "TwoChoice"
@@ -374,6 +389,11 @@
       "protocol": "ContextChoice"
     },
     {
+      "exerciseId": 1635,
+      "familyId": "kick",
+      "protocol": "StopOnly"
+    },
+    {
       "exerciseId": 1642,
       "familyId": "crouch",
       "protocol": "TwoChoice"
@@ -387,6 +407,11 @@
       "exerciseId": 1644,
       "familyId": "crouch",
       "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1645,
+      "familyId": "crouch",
+      "protocol": "StopOnly"
     }
   ]
 }

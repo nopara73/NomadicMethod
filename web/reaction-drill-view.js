@@ -150,8 +150,9 @@ export class ReactionDrillView {
     if (this.previewEnabled) this.setPreviewEnabled(false);
     this.buttons.forEach(button => { button.disabled = true; });
     const reverse = drill?.reverse === true;
-    this.context.textContent = this.plan.protocol === 'ContextChoice'
-      ? (reverse ? '⇄  Reverse' : '→  In order') : 'Number → action';
+    this.context.textContent = this.plan.protocol === 'StopOnly' ? '3 · 2 · 1 → action; STOP → stay'
+      : this.plan.protocol === 'ContextChoice'
+        ? (reverse ? '⇄  Reverse' : '→  In order') : 'Number → action';
     this.labels.forEach((label, index) => {
       const number = reverse ? this.plan.actions.length - index : index + 1;
       label.textContent = this.plan.actions[index].label;
@@ -170,7 +171,8 @@ export class ReactionDrillView {
     });
     this.cue.hidden = active >= 0;
     this.cue.textContent = drill?.cue ?? 'Ready';
-    this.cue.classList.toggle('number', drill?.phase === 'Prompt');
+    this.cue.classList.toggle('number', ['Prompt', 'Countdown'].includes(drill?.phase));
+    this.cue.classList.toggle('stop', drill?.phase === 'Stop');
   }
 
   reset(render = true) {

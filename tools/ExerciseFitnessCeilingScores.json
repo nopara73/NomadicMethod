@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 89,
-  "catalogSha256": "4c37a10b6e57e2a95aa0b0eaf06056c8e71318ffc0d651b1af126c4adbd7c044",
+  "catalogRevision": 90,
+  "catalogSha256": "104b74bf1c58413704826060b0383eede44c4b1bc615cbbbe9737f209e665ff8",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -6145,6 +6145,388 @@
       "trainingConditions": "Follow the actual bent-arm floor entry, complete elbow extension and freestanding inverted balance. Use clean attempts with deliberate recovery inside 45 seconds. Include the shown head contact in the floor restriction; do not label it a straight-arm press or require uninterrupted repetitions.",
       "exerciseIds": [
         1705
+      ]
+    },
+    "v4-precise-admission-1706": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The fixed two-hand, straight split-leg cartwheel coordinates sequential hand and foot contacts through a lateral inversion: competent tier 3 coordination. Its brief two-hand loading and transient inversion support only tier 1 strength and tier 2 dynamic balance. Travel in one direction is not a change-of-direction agility drill. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "exerciseIds": [
+        1706
+      ]
+    },
+    "v4-precise-admission-1707": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "Removing one hand changes the actual cartwheel support and timing. The fixed single-palm inverted rotation is provisionally tier 4 coordination and tier 3 dynamic balance, with tier 2 brief bodyweight support. This does not claim expert one-arm static hand balance. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "exerciseIds": [
+        1707
+      ]
+    },
+    "v4-precise-admission-1708": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          5
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The actual side aerial has no hand support at any point in its airborne sideways inversion. Coordinating the launch, split-leg rotation and landing is provisionally expert tier 5 in this specific acrobatic pattern; tier 3 explosive takeoff and tier 2 lower-limb force are separate lower claims. It is not an assessed reaction, sprint or change-of-direction task. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "exerciseIds": [
+        1708
+      ]
+    },
+    "v4-precise-admission-1709": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [
+          3
+        ],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The fixed full firefly balances on two palms with legs resting outside the upper arms and both knees straight. Its combined arm-balance, straight-leg compression range and entry pattern are provisionally tier 3 balance, flexibility and coordination; bent-arm bodyweight support is tier 2 strength. No straight-arm planche or harder lever is inferred. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1709
+      ]
+    },
+    "v4-precise-admission-1710": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [],
+        "flexibility": [
+          2
+        ],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The actual eight-angle hold has crossed ankles and both extended legs to one side, supported on an upper-arm shelf above two bent arms. This fixed loaded asymmetric arm balance is provisionally tier 3 strength, balance and coordination, and tier 2 hip range. It is not the different tucked arm balance shown by rejected sources. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "exerciseIds": [
+        1710
+      ]
+    },
+    "v4-precise-admission-1711": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The exact freestanding forearm stand balances a complete vertical inversion without head or wall support. Its fixed larger forearm base is provisionally tier 4 balance, with tier 3 shoulder force and coordinated entry/exit. This is neither a headstand nor an expert one-palm handstand. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1711
+      ]
+    },
+    "v4-precise-admission-1712": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          5
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The complete floor 90-degree push-up lowers a straight-body free handstand to the bent-arm horizontal lever and presses back. That fixed full-lever press is provisionally tier 5 strength, with tier 4 inverted balance and multistage coordination. No parallettes, foot support, added load or ballistic power is inferred; possible light head contact is included in the floor restriction. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1712
+      ]
+    },
+    "v4-precise-admission-1713": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [
+          4
+        ],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The exact kneeling full pigeon combines full hip/spinal extension with overhead heel contact and a supported deep kneeling backbend. This specific range is provisionally tier 4 flexibility. The supported low-force stretch is not an assessed muscular-endurance, balance or maximal-strength task; no individual-toe grip is required. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1713
+      ]
+    },
+    "v4-precise-admission-1714": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [],
+        "flexibility": [
+          5
+        ],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The actual handstand scorpion reaches both feet to the head while supported on flat palms. That fixed extreme backbend is provisionally expert tier 5 flexibility in the demonstrated action; two-hand inverted balance and coordination remain tier 4 and shoulder force tier 3. It is not labelled a forearm scorpion or a one-arm balance. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1714
+      ]
+    },
+    "v4-precise-admission-1715": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          4
+        ],
+        "power": [
+          5
+        ],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The complete Aztec repetition launches both palms and feet, folds into a straight-leg airborne pike, touches the toes, and returns to plank. This fixed explosive whole-body action is provisionally tier 5 power and tier 4 coordination; the underlying floor press is tier 2 strength. An ordinary airborne tuck or clap would not establish the same claim. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1715
+      ]
+    },
+    "v4-precise-admission-1716": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          3
+        ],
+        "power": [
+          4
+        ],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The demonstrated Superman push-up launches the entire body, reaches both arms fully forward in flight and catches the body on the palms. This fixed extended-flight push-up is provisionally tier 4 power, tier 3 coordination and tier 2 underlying pressing strength. No toe-touch, clap, longer flight or added load is inferred. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "exerciseIds": [
+        1716
+      ]
+    },
+    "v4-precise-admission-1605": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "exerciseIds": [
+        1605
+      ]
+    },
+    "v4-precise-admission-1615": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "exerciseIds": [
+        1615
+      ]
+    },
+    "v4-precise-admission-1625": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. The arm pattern itself includes both arms.",
+      "exerciseIds": [
+        1625
+      ]
+    },
+    "v4-precise-admission-1635": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "exerciseIds": [
+        1635
+      ]
+    },
+    "v4-precise-admission-1645": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "exerciseIds": [
+        1645
       ]
     }
   },

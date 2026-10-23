@@ -1,0 +1,79 @@
+{
+  "id": 1709,
+  "name": "Straight-Leg Firefly Hold",
+  "ready": {
+    "name": "Straight-Leg Firefly Hold",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "holdTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "supportingMovie": {
+    "duration": 7.55,
+    "time": 7.55,
+    "rate": 1,
+    "frames": 151,
+    "ended": true
+  },
+  "move": {
+    "name": "Straight-Leg Firefly Hold",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "holdTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 50000
+  },
+  "rest": {
+    "name": "Straight-Leg Firefly Hold",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "holdTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "errors": [],
+  "scope": "SYNTHETIC QA: isolated historical-duration workout fixture; actual product UI and canonical Android media. Timers advanced between phase checks. Moving demonstrations and supporting hold movies played separately at normal elapsed speed. No real workout or phone state was altered."
+}

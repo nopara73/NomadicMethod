@@ -83,7 +83,8 @@ The selected release adds 16 actual movement records and 15 choice protocols,
 rather than the earlier pending 48-record package. Five of the movements also
 provide advanced balance, and three supply the remaining specialist-coordination
 claims. Revision 88 contains 884 records; revision 89 adds the six reviewed tasks
-described below, bringing the catalog to 890 records.
+described below, bringing the catalog to 890 records. Revision 90 adds eleven
+verified physical movements and five anticipated-stop protocols, for 906 records.
 
 The existing 30 stop/go records retain their original playback and supply
 reaction levels `[1,2]`. The new five physical response families each provide
@@ -124,6 +125,49 @@ planche. Sources and exact media hashes are recorded in
 The generated gap report now includes a separate diagnostic table computed by
 the actual profile policy, so broad training coverage cannot conceal empty
 spiderweb tiers. It creates no quota to justify artificially precise ratings.
+
+## Precise skill additions, revision 90
+
+The eleven new physical records use fixed demonstrated mechanics and quality
+practice inside the same 45-second opportunity. Their complete assessments are
+in [the admission audit](catalog-audit/precise-admissions-2026-10-23.json).
+Every nonempty new cell is a singleton; none of the 890 previous records or
+assessments is narrowed or overwritten. Short attempts, holds and fresh explosive
+efforts are not a sustained-to-fatigue prescription, so no dose-dependent
+endurance tier is guessed for these additions.
+
+Cartwheels, one-arm cartwheels and no-hand side aerials supply distinct fixed
+coordination patterns. Firefly and eight-angle use their actual leg and arm
+supports; a forearm stand keeps the head clear. The full 90-degree push-up uses
+flat palms and a complete horizontal-lever press. Full pigeon and feet-to-head
+handstand scorpion supply demonstrated advanced ranges, while the Aztec push-up
+includes the real straight-leg airborne toe touch. Superman push-ups use a
+different full-body flight pattern. Source titles alone were insufficient:
+cropped feet, hidden handles, a different tucked balance and individual-toe grip
+all caused source rejection. Exact excerpts and held frames were inspected in
+[actual workout phases](catalog-audit/evidence/2026-10-23/precise-admissions/gallery.html).
+
+Five `StopOnly` plans reuse the five existing response families. A predictable
+three-second countdown prepares one known movement; an unpredictable STOP
+before its scheduled start requires cancellation. Starts are not unpredictable,
+and no choice is required. This supports inhibition `[2]` only. The
+[OSARI primary paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC9170665/) distinguishes
+anticipated-response inhibition from the choice-reaction stop-signal task. It
+does not validate this whole-body implementation or any NM numeric grade.
+
+Each trial draws cancellation with probability 0.25 and a hidden 200–800 ms
+delay into the final countdown beat. No new trial starts unless the complete
+countdown, response/cancellation and reset can fit. Delayed callbacks advance
+one visible beat; paused trials restart the countdown. Cancelled trials never
+show response feedback. The app collects no response accuracy or latency.
+Existing response clips, plans and physical family identities are unchanged;
+unilateral responses retain two complete mirrored blocks. An append-only asset
+dependency update preserves the original reviews of the 16 older protocols.
+
+Precise reaction now reaches 2, coordination and flexibility can reach 5, and
+expert power has a precise contributor. The remaining diagnostic gaps are
+documented in [the profile contract](FITNESS_PROFILE.md). A training-set quota
+still does not establish a precise profile value or justify an inflated rating.
 
 ## Data and checks
 

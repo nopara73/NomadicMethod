@@ -20,4 +20,11 @@
 
     # Profile contributor admissions, 22 October 2026.
     1621 = 266
+
+    # Precise skill admissions, 23 October 2026.
+    1605 = 278
+    1615 = 144
+    1625 = 266
+    1635 = 180
+    1645 = 1516
 }

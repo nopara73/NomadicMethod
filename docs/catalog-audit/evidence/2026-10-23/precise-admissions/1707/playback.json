@@ -1,0 +1,138 @@
+{
+  "id": 1707,
+  "name": "One-Arm Cartwheels",
+  "ready": {
+    "name": "One-Arm Cartwheels",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 2.4,
+      "time": 0.116959,
+      "rate": 1,
+      "frames": 7,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "previewPlayed": {
+    "name": "One-Arm Cartwheels",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 2.4,
+      "time": 0.714248,
+      "rate": 1,
+      "frames": 67,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "move": {
+    "name": "One-Arm Cartwheels",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 2.4,
+      "time": 0.954766,
+      "rate": 1,
+      "frames": 71,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 50000
+  },
+  "played": {
+    "name": "One-Arm Cartwheels",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 2.4,
+      "time": 1.399966,
+      "rate": 1,
+      "frames": 129,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 44800
+  },
+  "rest": {
+    "name": "One-Arm Cartwheels",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 2.4,
+      "time": 0.035085,
+      "rate": 1,
+      "frames": 4,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "second": {
+    "name": "One-Arm Cartwheels",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 2.4,
+      "time": 0.161229,
+      "rate": 1,
+      "frames": 8,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 45000
+  },
+  "errors": [],
+  "scope": "SYNTHETIC QA: isolated historical-duration workout fixture; actual product UI and canonical Android media. Timers advanced between phase checks. Moving demonstrations and supporting hold movies played separately at normal elapsed speed. No real workout or phone state was altered."
+}

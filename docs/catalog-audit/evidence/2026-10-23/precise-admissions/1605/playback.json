@@ -1,0 +1,667 @@
+{
+  "id": 1605,
+  "name": "Straight Punch Stops",
+  "ready": {
+    "name": "Straight Punch Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0.109818,
+        "rate": 1,
+        "frames": 6,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "previewPlayed": {
+    "name": "Straight Punch Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0.664857,
+        "rate": 1,
+        "frames": 43,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "move": {
+    "name": "Straight Punch Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "3",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0,
+        "rate": 1,
+        "frames": 48,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "trials": [
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "STOP",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "Reset",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "3",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "2",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "1",
+      "shown": 0
+    },
+    {
+      "cue": "Straight punch",
+      "shown": 1
+    }
+  ],
+  "countdown3": {
+    "name": "Straight Punch Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "3",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0,
+        "rate": 1,
+        "frames": 48,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "countdown2": {
+    "name": "Straight Punch Stops",
+    "countdown": "44",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "2",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0,
+        "rate": 1,
+        "frames": 48,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "countdown1": {
+    "name": "Straight Punch Stops",
+    "countdown": "43",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "1",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0,
+        "rate": 1,
+        "frames": 48,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "stop": {
+    "name": "Straight Punch Stops",
+    "countdown": "43",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "STOP",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0,
+        "rate": 1,
+        "frames": 48,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "feedback": {
+    "name": "Straight Punch Stops",
+    "countdown": "37",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "Straight punch",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0.021029,
+        "rate": 1,
+        "frames": 49,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "feedbackPlayed": {
+    "name": "Straight Punch Stops",
+    "countdown": "37",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "Straight punch",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 1.25,
+        "rate": 1,
+        "frames": 69,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "rest": {
+    "name": "Straight Punch Stops",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "none"
+    },
+    "reaction": "Ready",
+    "reactionShown": 1,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0.312765,
+        "rate": 1,
+        "frames": 36,
+        "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "second": {
+    "name": "Straight Punch Stops",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reaction": "3",
+    "reactionShown": 0,
+    "responses": [
+      {
+        "duration": 1.25,
+        "time": 0,
+        "rate": 1,
+        "frames": 4,
+        "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+      }
+    ],
+    "overflow": false,
+    "activeCatalogRevision": 90
+  },
+  "errors": [],
+  "scope": "SYNTHETIC QA: isolated historical-duration workout fixture; actual product UI and canonical Android media. Timers advanced between phase checks. Moving demonstrations and supporting hold movies played separately at normal elapsed speed. No real workout or phone state was altered."
+}

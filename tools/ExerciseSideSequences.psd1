@@ -330,4 +330,14 @@
 
     # Profile contributor admissions, 22 October 2026.
     1701 = 'ScreenLeftThenRight'
+
+    # Precise skill admissions, 23 October 2026.
+    1605 = 'ScreenRightThenLeft'
+    1615 = 'ScreenLeftThenRight'
+    1635 = 'ScreenRightThenLeft'
+    1645 = 'ScreenRightThenLeft'
+    1706 = 'ScreenLeftThenRight'
+    1707 = 'ScreenRightThenLeft'
+    1708 = 'ScreenLeftThenRight'
+    1710 = 'ScreenLeftThenRight'
 }

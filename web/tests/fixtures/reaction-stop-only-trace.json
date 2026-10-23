@@ -1,0 +1,18 @@
+{
+  "random": [0.1, 0.5, 0.9, 0.5],
+  "steps": [
+    {"now":0,"phase":"Countdown","number":3,"deadline":1000,"cue":"3","demoActionIndex":-1,"changed":true},
+    {"now":999,"phase":"Countdown","number":3,"deadline":1000,"cue":"3","demoActionIndex":-1,"changed":false},
+    {"now":1000,"phase":"Countdown","number":2,"deadline":2000,"cue":"2","demoActionIndex":-1,"changed":true},
+    {"now":2000,"phase":"Countdown","number":1,"deadline":2500,"cue":"1","demoActionIndex":-1,"changed":true},
+    {"now":2499,"phase":"Countdown","number":1,"deadline":2500,"cue":"1","demoActionIndex":-1,"changed":false},
+    {"now":2500,"phase":"Stop","number":0,"deadline":4150,"cue":"STOP","demoActionIndex":-1,"changed":true},
+    {"now":3500,"phase":"Stop","number":0,"deadline":4150,"cue":"STOP","demoActionIndex":-1,"changed":false},
+    {"now":4150,"phase":"Reset","number":0,"deadline":5350,"cue":"Reset","demoActionIndex":-1,"changed":true},
+    {"now":5350,"phase":"Countdown","number":3,"deadline":6350,"cue":"3","demoActionIndex":-1,"changed":true},
+    {"now":6350,"phase":"Countdown","number":2,"deadline":7350,"cue":"2","demoActionIndex":-1,"changed":true},
+    {"now":7350,"phase":"Countdown","number":1,"deadline":8350,"cue":"1","demoActionIndex":-1,"changed":true},
+    {"now":8350,"phase":"Feedback","number":0,"deadline":9350,"cue":"Known action","demoActionIndex":0,"changed":true},
+    {"now":9350,"phase":"Reset","number":0,"deadline":10550,"cue":"Reset","demoActionIndex":-1,"changed":true}
+  ]
+}

@@ -1038,6 +1038,7 @@ button.modifier-tile:not(:disabled):active {
 .reaction-drill-stage video.show { opacity: 1; }
 .reaction-drill-prompt { font-size: clamp(20px, 5vw, 32px); font-weight: 600; }
 .reaction-drill-prompt.number { font-size: clamp(56px, 14vw, 96px); color: #257a49; }
+.reaction-drill-prompt.stop { font-size: clamp(56px, 14vw, 96px); color: #202326; }
 .reaction-drill-prompt[hidden] { display: none; }
 .reaction-drill-cards { display: flex; gap: 5px; padding: 6px; justify-content: center; }
 .reaction-drill-card { position: relative; flex: 1; min-width: 0; max-width: 110px; padding: 0; overflow: hidden; border: 1px solid rgb(20 20 20 / 16%); border-radius: 9px; background: #fff; }

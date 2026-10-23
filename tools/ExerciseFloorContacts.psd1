@@ -2,6 +2,7 @@
     # The existing human-reviewed catalog is feet-only. New identities must
     # explicitly declare every support contact, including transitions.
     FeetOnly = @(
+        1605, 1615, 1625, 1635, 1708,
         1621,
         1521, 1531, 1532, 1533, 1535, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634,
         1401, 1402, 1403, 1404, 1405, 1406, 1407, 1408, 1409, 1410,
@@ -55,6 +56,17 @@
         1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056
     )
     FloorRequired = @{
+        1645 = @('Feet', 'Hands')
+        1706 = @('Feet', 'Hands')
+        1707 = @('Feet', 'Hands')
+        1709 = @('Feet', 'Hands')
+        1710 = @('Feet', 'Hands', 'Hips')
+        1711 = @('Feet', 'Hands', 'Forearms')
+        1712 = @('Feet', 'Hands', 'Head')
+        1713 = @('Feet', 'Knees', 'Hands', 'Forearms', 'Head')
+        1714 = @('Feet', 'Hands')
+        1715 = @('Feet', 'Hands')
+        1716 = @('Feet', 'Hands')
         1701 = @('Feet', 'Hands')
         1702 = @('Feet', 'Hands')
         1703 = @('Feet', 'Hands')

@@ -1,0 +1,138 @@
+{
+  "id": 1708,
+  "name": "Side Aerials",
+  "ready": {
+    "name": "Side Aerials",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 1.75,
+      "time": 0.120894,
+      "rate": 1,
+      "frames": 7,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "previewPlayed": {
+    "name": "Side Aerials",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 1.75,
+      "time": 0.668048,
+      "rate": 1,
+      "frames": 53,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "move": {
+    "name": "Side Aerials",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 1.75,
+      "time": 0.906188,
+      "rate": 1,
+      "frames": 58,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 50000
+  },
+  "played": {
+    "name": "Side Aerials",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 1.75,
+      "time": 1.355855,
+      "rate": 1,
+      "frames": 102,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 44800
+  },
+  "rest": {
+    "name": "Side Aerials",
+    "countdown": "0",
+    "rest": true,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 1.75,
+      "time": 0.047116,
+      "rate": 1,
+      "frames": 4,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 0
+  },
+  "second": {
+    "name": "Side Aerials",
+    "countdown": "45",
+    "rest": false,
+    "keepHidden": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "holdTransform": "none",
+    "video": {
+      "duration": 1.75,
+      "time": 0.153412,
+      "rate": 1,
+      "frames": 8,
+      "transform": "matrix(-1, 0, 0, 1, 0, 0)"
+    },
+    "reactionShown": 0,
+    "responses": [],
+    "overflow": false,
+    "activeCatalogRevision": 90,
+    "paused": false,
+    "remaining": 45000
+  },
+  "errors": [],
+  "scope": "SYNTHETIC QA: isolated historical-duration workout fixture; actual product UI and canonical Android media. Timers advanced between phase checks. Moving demonstrations and supporting hold movies played separately at normal elapsed speed. No real workout or phone state was altered."
+}

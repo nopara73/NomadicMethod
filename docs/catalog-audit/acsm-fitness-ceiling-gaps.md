@@ -1,6 +1,6 @@
 # Fitness training-level catalog coverage
 
-Catalog revision 89; 890 assessed exercise records.
+Catalog revision 90; 906 assessed exercise records.
 
 Required: **at least 5 distinct approved session movements that can train each characteristic-level combination**.
 An exercise can support multiple explicitly assessed levels. A maximum alone does not imply lower-level coverage. Sides, directions, sets, aliases and renamed duplicates do not multiply a movement.
@@ -10,14 +10,14 @@ Gate: **PASS**. 0 of 50 cells are below the minimum; 0 characteristic-level plac
 | Characteristic | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Cardiorespiratory endurance | 134 | 78 | 44 | 32 | 7 |
-| Muscular strength | 331 | 218 | 51 | 21 | 12 |
+| Muscular strength | 332 | 223 | 54 | 21 | 13 |
 | Muscular endurance | 307 | 465 | 235 | 24 | 11 |
-| Flexibility | 116 | 151 | 90 | 9 | 5 |
+| Flexibility | 116 | 152 | 91 | 10 | 6 |
 | Agility | 14 | 13 | 13 | 13 | 5 |
-| Balance | 96 | 74 | 22 | 23 | 5 |
-| Coordination | 241 | 232 | 35 | 39 | 5 |
-| Power | 56 | 23 | 32 | 11 | 9 |
-| Reaction time | 34 | 29 | 5 | 5 | 5 |
+| Balance | 96 | 75 | 25 | 26 | 5 |
+| Coordination | 241 | 232 | 40 | 43 | 6 |
+| Power | 56 | 23 | 33 | 12 | 10 |
+| Reaction time | 34 | 34 | 5 | 5 | 5 |
 | Speed | 38 | 70 | 48 | 42 | 27 |
 
 ## Missing combinations
@@ -33,14 +33,14 @@ Ratings are provisional NM training-level judgments for repeated 45-second block
 | Characteristic | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Cardiorespiratory endurance | 0 | 5 | 5 | 0 | 0 |
-| Muscular strength | 0 | 1 | 1 | 2 | 1 |
+| Muscular strength | 0 | 1 | 2 | 2 | 2 |
 | Muscular endurance | 5 | 90 | 30 | 1 | 0 |
-| Flexibility | 71 | 15 | 3 | 0 | 0 |
+| Flexibility | 71 | 15 | 4 | 1 | 1 |
 | Agility | 0 | 5 | 0 | 0 | 0 |
-| Balance | 3 | 20 | 2 | 1 | 0 |
-| Coordination | 36 | 46 | 0 | 1 | 0 |
-| Power | 0 | 11 | 10 | 2 | 0 |
-| Reaction time | 1 | 0 | 0 | 0 | 0 |
+| Balance | 3 | 20 | 4 | 2 | 0 |
+| Coordination | 36 | 46 | 3 | 2 | 1 |
+| Power | 0 | 11 | 10 | 3 | 1 |
+| Reaction time | 1 | 5 | 0 | 0 | 0 |
 | Speed | 0 | 5 | 0 | 0 | 0 |
 
 These are diagnostics, not additional admission quotas. An empty cell must not be filled by narrowing an honest range or inventing precision.

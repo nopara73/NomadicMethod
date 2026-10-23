@@ -1,0 +1,959 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 90,
+  "exerciseCount": 906,
+  "baselineVerification": {
+    "baselineCommit": "01de0cc62261f94e6fc403ee8b4bd4a48823ea21",
+    "oldRecordCount": 890,
+    "newRecordCount": 16,
+    "existingRuntimeRecordsUnchanged": true,
+    "existingAssessmentsUnchanged": true,
+    "existingReactionFamiliesAndPlansUnchanged": true,
+    "normalizedCatalogSha256": "104b74bf1c58413704826060b0383eede44c4b1bc615cbbbe9737f209e665ff8"
+  },
+  "newRecordCount": 16,
+  "newPhysicalMovementCount": 11,
+  "newReactionProtocolCount": 5,
+  "existingRecordsAndRatingsUnchanged": 890,
+  "ratingStatus": "Provisional task-specific NM categories. ACSM and Dreyfus do not validate the numeric judgments or physiological cutoffs. Quality practice is not an endurance prescription.",
+  "profileAlgorithmChanged": false,
+  "reviewEvidence": "docs/catalog-audit/precise-skill-review-2026-10-23.json",
+  "workoutGallery": "docs/catalog-audit/evidence/2026-10-23/precise-admissions/gallery.html",
+  "reactionProtocolSource": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9170665/",
+  "reactionScope": "Anticipated cancellation of a known timed action; whole-body NM adaptation is not validated OSARI performance measurement.",
+  "remainingLimits": "Precise reaction 3-5, speed outside 2, agility outside 2, cardio outside 2-3, endurance 5 and balance 5 remain absent. Training-set coverage still meets five distinct movements in all fifty cells. Honest existing ranges are not narrowed.",
+  "rejectedSources": [
+    {
+      "source": "https://www.youtube.com/watch?v=1A8vUebdYUA",
+      "reason": "The apparent floor 90-degree introduction has small handles visible beneath the palms. Used a verified flat-palm Simonster excerpt instead."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=jt3EyKIjoWA",
+      "reason": "Feet are clipped at the handstand apex. No full-body floor admission from this source."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=asRObODwrQE",
+      "reason": "The reviewed passage shows a different tucked arm balance, not the proposed straight-leg eight-angle pose."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=nfiloR4H62c",
+      "reason": "The useful visible sequence is a different tucked balance/transition. The title does not establish eight-angle mechanics."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=5a-AGNjw1oY",
+      "reason": "The inspected floor sequence does not demonstrate the proposed complete one-arm lever-to-vertical-handstand cycle. No invented expert balance contribution."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=p3G1qsxAxgU",
+      "reason": "Individual toe grip is incompatible with ordinary shoes. Full pigeon uses a whole-heel grip instead."
+    }
+  ],
+  "entries": [
+    {
+      "id": 1605,
+      "name": "Straight Punch Stops",
+      "sessionMovementId": 278,
+      "source": {
+        "runtimeSourceId": 278,
+        "familyId": "punch",
+        "protocol": "StopOnly",
+        "response": {
+          "label": "Straight punch",
+          "sourceId": 278,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "2c44b0a7fb8956027efedccf731a25799d8655ab7dbbc89ff2d8d3768eb33091",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/punch-1.mp4",
+          "preview": "reaction_previews/punch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+          "previewSha256": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
+        },
+        "note": "Existing reviewed physical source and identical response media; no new footage or movement identity."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "reactionTime": 2
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "observedAction": "One known straight punch pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue."
+    },
+    {
+      "id": 1615,
+      "name": "Knee Lift Stops",
+      "sessionMovementId": 144,
+      "source": {
+        "runtimeSourceId": 144,
+        "familyId": "knee",
+        "protocol": "StopOnly",
+        "response": {
+          "label": "Front knee lift",
+          "sourceId": 144,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "5794fbf13744d509b9b27f3bcef2d5d09e62269719efba6df99840246092f69b",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/knee-1.mp4",
+          "preview": "reaction_previews/knee-1.png",
+          "previewSeconds": 1.6,
+          "videoSha256": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+          "previewSha256": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
+        },
+        "note": "Existing reviewed physical source and identical response media; no new footage or movement identity."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "reactionTime": 2
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "observedAction": "One known front knee lift pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue."
+    },
+    {
+      "id": 1625,
+      "name": "Arm Raise Stops",
+      "sessionMovementId": 266,
+      "source": {
+        "runtimeSourceId": 266,
+        "familyId": "arm",
+        "protocol": "StopOnly",
+        "response": {
+          "label": "Alternating arm raises",
+          "sourceId": 266,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "06a5d56754050d84018c98ad5ddd087cab427f48f07ae52e89458f17f4e9ce5c",
+          "startSeconds": 0,
+          "durationSeconds": 3.15,
+          "mirror": false,
+          "video": "reaction_videos/arm-1.mp4",
+          "preview": "reaction_previews/arm-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+          "previewSha256": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+        },
+        "note": "Existing reviewed physical source and identical response media; no new footage or movement identity."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "reactionTime": 2
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. The arm pattern itself includes both arms.",
+      "observedAction": "One known alternating arm raises pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue."
+    },
+    {
+      "id": 1635,
+      "name": "Front Kick Stops",
+      "sessionMovementId": 180,
+      "source": {
+        "runtimeSourceId": 180,
+        "familyId": "kick",
+        "protocol": "StopOnly",
+        "response": {
+          "label": "Front snap kick",
+          "sourceId": 180,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "506542231cd6136725427438745e9ab699c930dc35055d6b1786014309f1179d",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/kick-1.mp4",
+          "preview": "reaction_previews/kick-1.png",
+          "previewSeconds": 0.45,
+          "videoSha256": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+          "previewSha256": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
+        },
+        "note": "Existing reviewed physical source and identical response media; no new footage or movement identity."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "reactionTime": 2
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "observedAction": "One known front snap kick pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue."
+    },
+    {
+      "id": 1645,
+      "name": "Crouching Reach Stops",
+      "sessionMovementId": 1516,
+      "source": {
+        "runtimeSourceId": 1516,
+        "familyId": "crouch",
+        "protocol": "StopOnly",
+        "response": {
+          "label": "Near hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 1.7,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/crouch-1.mp4",
+          "preview": "reaction_previews/crouch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+          "previewSha256": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
+        },
+        "note": "Existing reviewed physical source and identical response media; no new footage or movement identity."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [
+          2
+        ],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "reactionTime": 2
+      },
+      "basis": "The implemented StopOnly protocol prepares one known real movement with a predictable three-second countdown. Occasional unpredictable STOP cues before the scheduled start require cancelling that prepared action. This anticipated-response-inhibition task supports NM reaction tier 2 only; there is no unpredictable go cue, response selection, latency/accuracy assessment, conditioning prescription or claimed universal transfer. The whole-body adaptation and NM tier are provisional, not validated by the laboratory OSARI task.",
+      "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
+      "observedAction": "One known near hand pattern is previewed using the existing complete human response. The actual workout displays 3, 2, 1, occasionally STOP with no response movie, and the scheduled known movement only on an uncancelled trial. The stop-only task has no response-choice or unpredictable go cue."
+    },
+    {
+      "id": 1706,
+      "name": "Straight-Leg Cartwheels",
+      "sessionMovementId": 1706,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 62.3,
+        "OriginalSourceSha256": "319919fa4e390918d1e8dad8cdd6ad8dd8eb397284e14df96fb709bb44feb296",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1706-source.mp4",
+        "DurationSeconds": 3.3,
+        "Video": true,
+        "File": "fitness-1706.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 854,
+        "MirrorForAlternation": false,
+        "SourceHeight": 480,
+        "LocalSourceSha256": "af5ddf61e9319301680fb64ff643b33039011c4f0b5185c3f431674805737e1b",
+        "Url": "https://www.youtube.com/watch?v=SGq0FuJe9WM",
+        "PingPong": false,
+        "Crop": "crop=854:480:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=SGq0FuJe9WM"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          2
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "coordination": 3
+      },
+      "basis": "The fixed two-hand, straight split-leg cartwheel coordinates sequential hand and foot contacts through a lateral inversion: competent tier 3 coordination. Its brief two-hand loading and transient inversion support only tier 1 strength and tier 2 dynamic balance. Travel in one direction is not a change-of-direction agility drill. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "observedAction": "One continuous wide shot: raised-arm standing entry, two successive palm supports, straight split legs through inversion, both feet land and torso rises. The following closer shot is excluded."
+    },
+    {
+      "id": 1707,
+      "name": "One-Arm Cartwheels",
+      "sessionMovementId": 1707,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 33.4,
+        "OriginalSourceSha256": "f0a6804edb733294a12e53842decb0430bf0f4d9ec6dee7391e32c092ad34981",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1707-source.mp4",
+        "DurationSeconds": 2.4,
+        "Video": true,
+        "File": "fitness-1707.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "cd1eed8bfc6b3fc4f4bde8dc7c2637cd716d54e04c8a37a644f913d4d4f1b55a",
+        "Url": "https://www.youtube.com/watch?v=E87oiDd1L10",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=E87oiDd1L10"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "coordination": 4
+      },
+      "basis": "Removing one hand changes the actual cartwheel support and timing. The fixed single-palm inverted rotation is provisionally tier 4 coordination and tier 3 dynamic balance, with tier 2 brief bodyweight support. This does not claim expert one-arm static hand balance. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "observedAction": "The model on the left makes one full cartwheel on one palm. The other hand stays clear; split legs, single-hand contact, two-foot landing and upright recovery remain visible. The coach does not assist."
+    },
+    {
+      "id": 1708,
+      "name": "Side Aerials",
+      "sessionMovementId": 1708,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 52.3,
+        "OriginalSourceSha256": "f2eff019a42c649e9e0816635d258ab5d65ec362f6853092eed2026ee9b46660",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1708-source.mp4",
+        "DurationSeconds": 1.768435,
+        "Video": true,
+        "File": "fitness-1708.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "85929cc16924f246ccb47ed3b05b60ccbb418a8d66e0ad6538775a26e724e7aa",
+        "Url": "https://www.youtube.com/watch?v=XlkrqSnLRMM",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=XlkrqSnLRMM"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          5
+        ],
+        "power": [
+          3
+        ],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "coordination": 5
+      },
+      "basis": "The actual side aerial has no hand support at any point in its airborne sideways inversion. Coordinating the launch, split-leg rotation and landing is provisionally expert tier 5 in this specific acrobatic pattern; tier 3 explosive takeoff and tier 2 lower-limb force are separate lower claims. It is not an assessed reaction, sprint or change-of-direction task. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "observedAction": "One normal-rate wide shot shows a standing approach, airborne sideways cartwheel with both hands off the floor, split-leg rotation, two-foot landing and recovery. The slow-motion teaching passages are excluded."
+    },
+    {
+      "id": 1709,
+      "name": "Straight-Leg Firefly Hold",
+      "sessionMovementId": 1709,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 33.0,
+        "OriginalSourceSha256": "84f7bb8df109b4f9fb72deaa1ca819800eb51c5f9d883400f32dbc70e61bcfde",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1709-source.mp4",
+        "DurationSeconds": 7.6,
+        "Video": true,
+        "File": "fitness-1709.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "79f89f5154aaacfe949deea030843c41cf4c35137f2b21ba7f67a9c9cd5d17ff",
+        "Url": "https://www.youtube.com/watch?v=_Gln69TxkOo",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=_Gln69TxkOo"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [
+          3
+        ],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "flexibility": 3,
+        "balance": 3,
+        "coordination": 3
+      },
+      "basis": "The fixed full firefly balances on two palms with legs resting outside the upper arms and both knees straight. Its combined arm-balance, straight-leg compression range and entry pattern are provisionally tier 3 balance, flexibility and coordination; bent-arm bodyweight support is tier 2 strength. No straight-arm planche or harder lever is inferred. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "Continuous floor entry from a deep fold: palms bear weight, both feet lift and both knees straighten into Tittibhasana. The arms remain outside the legs and there are no blocks. The target frame shows straight knees and both soles clear."
+    },
+    {
+      "id": 1710,
+      "name": "Eight-Angle Hold",
+      "sessionMovementId": 1710,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 96.7,
+        "OriginalSourceSha256": "d36396a759ba52e3c2eadbb1eb87c149ad30787c5ac85a39098950f0d67512d8",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1710-source.mp4",
+        "DurationSeconds": 3.169833,
+        "Video": true,
+        "File": "fitness-1710.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "d299d7e056d7febc45ae37c97a25dadee195eb7b49470f145ba52d62266b21f7",
+        "Url": "https://www.youtube.com/watch?v=Xzw3k5THr-Y",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=Xzw3k5THr-Y"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [],
+        "flexibility": [
+          2
+        ],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 3,
+        "balance": 3,
+        "coordination": 3
+      },
+      "basis": "The actual eight-angle hold has crossed ankles and both extended legs to one side, supported on an upper-arm shelf above two bent arms. This fixed loaded asymmetric arm balance is provisionally tier 3 strength, balance and coordination, and tier 2 hip range. It is not the different tucked arm balance shown by rejected sources. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred. The opposite lead/side receives its own complete mirrored 45-second block.",
+      "observedAction": "The selected unassisted Astavakrasana hold shows both palms on the floor, crossed ankles, both straight legs to one side of the torso and the upper-leg shelf on one arm. The instructor has both hands clear. The excerpt includes the controlled feet-down exit; earlier hands-on teaching is excluded."
+    },
+    {
+      "id": 1711,
+      "name": "Freestanding Forearm Stand Hold",
+      "sessionMovementId": 1711,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 36.5,
+        "OriginalSourceSha256": "51e47633310139575e24944c1d3dd05e405c0ba840365d41f4980a0909210e3b",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1711-source.mp4",
+        "DurationSeconds": 11.5,
+        "Video": true,
+        "File": "fitness-1711.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "121ac6f5fcd84572a68586498a3954df8632ffb57495b71d4adce6eee2ce0129",
+        "Url": "https://www.youtube.com/watch?v=cjL0-4DbpYY",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=cjL0-4DbpYY"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "balance": 4
+      },
+      "basis": "The exact freestanding forearm stand balances a complete vertical inversion without head or wall support. Its fixed larger forearm base is provisionally tier 4 balance, with tier 3 shoulder force and coordinated entry/exit. This is neither a headstand nor an expert one-palm handstand. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "After the source dissolve, a continuous wide shot shows the complete forearm-supported inversion, head clear of the mat, joined straight legs, no wall, then a controlled step-down. No cropped close-up or transition is packaged."
+    },
+    {
+      "id": 1712,
+      "name": "Floor 90-Degree Handstand Push-Ups",
+      "sessionMovementId": 1712,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 0.1,
+        "OriginalSourceSha256": "907097ac2954bbc900ce8cbc3f1e9a7113fb70dae194e8bff4d1f41dd6788599",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1712-source.mp4",
+        "DurationSeconds": 6.68,
+        "Video": true,
+        "File": "fitness-1712.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 854,
+        "MirrorForAlternation": false,
+        "SourceHeight": 480,
+        "LocalSourceSha256": "a30d44b7571f54ad6c79764a6b2d1f3eed840da3c88a6114cb6cac77ecf6eb21",
+        "Url": "https://www.youtube.com/watch?v=hLKoKIAp6Eg",
+        "PingPong": false,
+        "Crop": "crop=854:480:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=hLKoKIAp6Eg"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          5
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 5
+      },
+      "basis": "The complete floor 90-degree push-up lowers a straight-body free handstand to the bent-arm horizontal lever and presses back. That fixed full-lever press is provisionally tier 5 strength, with tier 4 inverted balance and multistage coordination. No parallettes, foot support, added load or ballistic power is inferred; possible light head contact is included in the floor restriction. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "One continuous side view on flat palms: full handstand, controlled lowering to a horizontal straight-body bent-arm planche, then press back to handstand. Entire feet, hands and body are visible; no handles, wall or foot support. The head passes very close to the floor, conservatively included as a possible transition contact."
+    },
+    {
+      "id": 1713,
+      "name": "Kneeling Full Pigeon Hold",
+      "sessionMovementId": 1713,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 78.0,
+        "OriginalSourceSha256": "802c14012a2e17e42b28d8d212ed239c2e077f6ea83563065036f59e0490f863",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1713-source.mp4",
+        "DurationSeconds": 10.5,
+        "Video": true,
+        "File": "fitness-1713.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "33c210e34d78e43838a2141adcf051551b03bf7166d9f70a1a5cf6b1e70ee51c",
+        "Url": "https://www.youtube.com/watch?v=7K9f-rJ3Zf8",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=7K9f-rJ3Zf8"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [],
+        "muscularEndurance": [],
+        "flexibility": [
+          4
+        ],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "flexibility": 4
+      },
+      "basis": "The exact kneeling full pigeon combines full hip/spinal extension with overhead heel contact and a supported deep kneeling backbend. This specific range is provisionally tier 4 flexibility. The supported low-force stretch is not an assessed muscular-endurance, balance or maximal-strength task; no individual-toe grip is required. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "The full Kapotasana shape has shins and knees down, palms holding whole heels, deep hip and spinal extension, head/forearms near the floor, followed by release and return to tall kneeling. The grip is on heels, not individual toes. No props or assistance."
+    },
+    {
+      "id": 1714,
+      "name": "Feet-to-Head Handstand Scorpion Hold",
+      "sessionMovementId": 1714,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 30.0,
+        "OriginalSourceSha256": "5388c4f6414faaa3795b0e798635e08a7192488d4aab34cf4d8a4563793c0424",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1714-source.mp4",
+        "DurationSeconds": 20.6,
+        "Video": true,
+        "File": "fitness-1714.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 640,
+        "MirrorForAlternation": false,
+        "SourceHeight": 360,
+        "LocalSourceSha256": "5bb89221f59e750bd37ce42e7f6e0bf3d6a0622e2c81e754175de5b87b3aad92",
+        "Url": "https://www.youtube.com/watch?v=MhmCsj-EpJw",
+        "PingPong": false,
+        "Crop": "crop=640:360:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=MhmCsj-EpJw"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          3
+        ],
+        "muscularEndurance": [],
+        "flexibility": [
+          5
+        ],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "flexibility": 5
+      },
+      "basis": "The actual handstand scorpion reaches both feet to the head while supported on flat palms. That fixed extreme backbend is provisionally expert tier 5 flexibility in the demonstrated action; two-hand inverted balance and coordination remain tier 4 and shoulder force tier 3. It is not labelled a forearm scorpion or a one-arm balance. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "The complete palms-only handstand backbend stays fully framed. Knees bend until both feet reach the head, then feet lower into a floor bridge and the performer rises. No forearm support, wall, foot-grip or assistance. The held frame is the actual feet-to-head shape."
+    },
+    {
+      "id": 1715,
+      "name": "Aztec Push-Ups",
+      "sessionMovementId": 1715,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 110.2,
+        "OriginalSourceSha256": "eba1ba038e9d78fa9cbb8b5bb960fc5bd12176d109d0ba644382732cfcf3db83",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1715-source.mp4",
+        "DurationSeconds": 2.0,
+        "Video": true,
+        "File": "fitness-1715.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 854,
+        "MirrorForAlternation": false,
+        "SourceHeight": 480,
+        "LocalSourceSha256": "b8350f2ca76197b9a30aaa7cdb50d48b2fa3965dacdf94d8dd7112287daec709",
+        "Url": "https://www.youtube.com/watch?v=dKy4QoU6Mv0",
+        "PingPong": false,
+        "Crop": "crop=854:480:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=dKy4QoU6Mv0"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          4
+        ],
+        "power": [
+          5
+        ],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "power": 5
+      },
+      "basis": "The complete Aztec repetition launches both palms and feet, folds into a straight-leg airborne pike, touches the toes, and returns to plank. This fixed explosive whole-body action is provisionally tier 5 power and tier 4 coordination; the underlying floor press is tier 2 strength. An ordinary airborne tuck or clap would not establish the same claim. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "A complete uncut normal-rate repetition starts and ends in high plank. Both feet and palms leave the floor; the straight-leg airborne pike includes the actual hand-to-toe touch before hands and feet return. Later zoomed/slow teaching footage is excluded."
+    },
+    {
+      "id": 1716,
+      "name": "Superman Push-Ups",
+      "sessionMovementId": 1716,
+      "source": {
+        "Human": true,
+        "OriginalSourceStartSeconds": 51.4,
+        "OriginalSourceSha256": "eba1ba038e9d78fa9cbb8b5bb960fc5bd12176d109d0ba644382732cfcf3db83",
+        "StartSeconds": 0,
+        "LocalSourceFile": "fitness-1716-source.mp4",
+        "DurationSeconds": 2.1,
+        "Video": true,
+        "File": "fitness-1716.mp4",
+        "FramesPerSecond": 20,
+        "SourceWidth": 854,
+        "MirrorForAlternation": false,
+        "SourceHeight": 480,
+        "LocalSourceSha256": "a59c31b07ae6b7d425536888f4d9367fce2ef99e1786a80a791ee4b0b749cd4a",
+        "Url": "https://www.youtube.com/watch?v=dKy4QoU6Mv0",
+        "PingPong": false,
+        "Crop": "crop=854:480:0:0",
+        "SourcePage": "https://www.youtube.com/watch?v=dKy4QoU6Mv0"
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          2
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [
+          3
+        ],
+        "power": [
+          4
+        ],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "power": 4
+      },
+      "basis": "The demonstrated Superman push-up launches the entire body, reaches both arms fully forward in flight and catches the body on the palms. This fixed extended-flight push-up is provisionally tier 4 power, tier 3 coordination and tier 2 underlying pressing strength. No toe-touch, clap, longer flight or added load is inferred. These are provisional NM task categories, not validated physiological cutoffs.",
+      "trainingConditions": "Practice only the exact demonstrated shape and support. Use brief clean attempts or short holds with deliberate recovery inside each 45-second opportunity. This is quality skill/range/power practice, not a sustained-to-fatigue endurance prescription; no duration-dependent endurance tier or unmeasured aerobic/speed tier is inferred.",
+      "observedAction": "One complete normal-rate push-up launches the entire straight body airborne, both arms extend forward, palms return before landing, then the performer returns to high plank. No edit or black frame is inside the excerpt."
+    }
+  ],
+  "unchangedProtocolDependencyUpdates": [
+    {
+      "id": 1602,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1603,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1604,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1612,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1613,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1614,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1622,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1623,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1624,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1632,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1633,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1634,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1642,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1643,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1644,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c0b9b280068e15e02b587f3060eb7c4aeae3ed8513d68796055f87afbec24925",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    },
+    {
+      "id": 1621,
+      "updatedAt": "2026-10-23T00:36:11.455765+00:00",
+      "asset": "reaction_drills.json",
+      "previousSha256": "c37ccf00cc81dc37ab59e27fc75c672bec075f2ce50bc9b1dbf48a63f36570d0",
+      "sha256": "e150a6e54f5ebeafb94df149db9e72721f3b4e036baeffc2f7534f333a09e1f2",
+      "reason": "Append-only addition of five StopOnly plans. Every prior plan, family, action, response clip, preview and exercise metadata remains unchanged; the original visual-review date and conclusions are retained. JSON dependency hashes normalize UTF-8 text to LF; binary media hashes remain exact.",
+      "evidence": "docs/catalog-audit/precise-admissions-2026-10-23.json"
+    }
+  ],
+  "textAssetHashing": "reaction_drills.json uses UTF-8 text normalized to LF; movie and frame hashes are raw bytes."
+}

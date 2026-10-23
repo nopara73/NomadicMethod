@@ -192,8 +192,9 @@ internal sealed class ReactionDrillView : FrameLayout
         if (_previewEnabled) SetPreviewEnabled(false);
         foreach (View card in _cards) card.Clickable = false;
         bool reverse = drill?.Reverse == true;
-        _context.Text = _plan.Protocol == "ContextChoice"
-            ? (reverse ? "⇄  Reverse" : "→  In order") : "Number → action";
+        _context.Text = _plan.Protocol == "StopOnly" ? "3 · 2 · 1 → action; STOP → stay"
+            : _plan.Protocol == "ContextChoice"
+                ? (reverse ? "⇄  Reverse" : "→  In order") : "Number → action";
         int active = drill?.DemoActionIndex ?? -1;
         int previous = _activeIndex;
         _activeIndex = active;
@@ -218,8 +219,9 @@ internal sealed class ReactionDrillView : FrameLayout
         }
         _cue.Visibility = active >= 0 ? ViewStates.Invisible : ViewStates.Visible;
         _cue.Text = drill?.Cue ?? "Ready";
-        _cue.TextSize = drill?.Phase == "Prompt" ? 64 : 28;
-        _cue.SetTextColor(drill?.Phase == "Prompt" ? Color.Rgb(37, 122, 73) : Color.Rgb(32, 35, 38));
+        _cue.TextSize = drill?.Phase is "Prompt" or "Countdown" or "Stop" ? 64 : 28;
+        _cue.SetTextColor(drill?.Phase is "Prompt" or "Countdown"
+            ? Color.Rgb(37, 122, 73) : Color.Rgb(32, 35, 38));
     }
 
     public void ResetPlayback()

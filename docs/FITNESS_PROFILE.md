@@ -11,40 +11,63 @@ For each currently kept exercise:
 3. Deduplicate SessionMovementId across slots, sides, directions and aliases. If kept variants of one movement have different qualifying values, retain the highest qualifying value in each characteristic once.
 4. Average the qualifying values independently in each characteristic. For speed-focused movements rated 2, 3 and 4, the speed result is 3. An empty group has radius zero.
 
-These are the agreed NM estimates from hearted exercise ratings, not measured physiological abilities. A zero means no qualifying current Keep. Exercise training ratings remain provisional and unchanged.
+These are the agreed NM estimates from hearted exercise ratings, not measured physiological abilities. A zero means no qualifying current Keep. Existing exercise training ratings remain provisional and unchanged.
 
 The canonical runtime asset is NomadicMethod/Assets/fitness_ratings.json. It is generated from the reviewed explicit level sets by tools/generate-exercise-fitness-ceiling-scores.mjs and verified by its --check gate. The web build copies and fingerprints that Android asset; it has no independently authored ratings. Shared fixture cases exercise both implementations.
 
 ## Limits of precise contributions
 
-At revision 89, 620 of 890 records have no qualifying precise strongest rating.
-Six additions open new contributions without changing any of the previous 884
-records or narrowing their training ranges:
+Revision 90 contains 906 records. It adds 11 reviewed physical movements and
+five stop-only reaction protocols; all 890 previous records and assessments are
+unchanged. Every nonempty rating cell on these additions is a singleton. Empty
+cells mean no supported claim, not an assigned level zero.
 
-| Exercise | Precise strongest contributions |
+| New exercise | Precise strongest profile contributions |
 | --- | --- |
-| Arm raise reactions · single cue | reaction 1 |
-| Floor tuck planche hold | strength 3; balance 3 |
-| Crow hold | balance 3 |
-| One-arm push-ups | strength 4 |
-| Bent-arm press to handstand | strength 4; balance 4; coordination 4 |
-| Full floor planche hold | strength 5 |
+| Straight-leg cartwheels | coordination 3 |
+| One-arm cartwheels | coordination 4 |
+| Side aerials | coordination 5 |
+| Straight-leg firefly hold | flexibility 3; balance 3; coordination 3 |
+| Eight-angle hold | strength 3; balance 3; coordination 3 |
+| Freestanding forearm stand hold | balance 4 |
+| Floor 90-degree handstand push-ups | strength 5 |
+| Kneeling full pigeon hold | flexibility 4 |
+| Feet-to-head handstand scorpion hold | flexibility 5 |
+| Aztec push-ups | power 5 |
+| Superman push-ups | power 4 |
+| Straight punch, knee lift, arm raise, front kick and crouching reach stops | reaction 2, five distinct existing physical families |
 
-These are provisional task-specific NM judgments, not validated physiological
-thresholds or proof that a hearted exercise was performed successfully. The
-planche rating refers to the actual straight-arm, straight-joined-leg horizontal
-hold; its tucked entry is not rated as expert strength. The single-cue reaction
-task uses the existing unpredictable Initiation protocol, not a predictable loop.
-It shares movement identity 266 with the arm-raise family and cannot multiply it.
+Full ten-characteristic assessments, original sources, exact media hashes,
+observed mechanics and rejected footage are in the
+[admission audit](catalog-audit/precise-admissions-2026-10-23.json).
+The [workout gallery](catalog-audit/evidence/2026-10-23/precise-admissions/gallery.html)
+distinguishes actual workout stills from separately played supporting movies.
+Its isolated synthetic fixtures never touch phone data.
 
-Remaining possible contributions are cardio 2–3; strength 2–5; muscle endurance
-1–4; flexibility 1–3; agility 2; balance 1–4; coordination 1, 2 and 4; power 2–4;
-reaction 1; and speed 2. Adding drills with adjustable cadence does not establish
-a precise advanced speed or agility tier. Retain those limits instead of
-narrowing honest ranges. The generated
-[coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md) reports usable
-spiderweb contributors separately from the five-per-training-tier catalog gate.
+These remain provisional NM task categories, not physiological measurements or
+proof that a hearted movement was performed successfully. Physical additions
+prescribe quality attempts, brief holds or fresh explosive efforts with recovery
+inside 45 seconds. They do not infer a duration-dependent endurance grade.
+Previously assessed ranges remain intact.
 
+Stop-only trials prepare one known action at the end of a predictable 3, 2, 1.
+An occasional unpredictable STOP cancels it. This separates inhibition from
+unpredictable initiation and response choice; it claims reaction 2 only.
+The [anticipated-response inhibition research](https://pmc.ncbi.nlm.nih.gov/articles/PMC9170665/)
+supports that task distinction, not the validity of NM's whole-body adaptation
+or its numeric tier. No latency or accuracy is measured. Each protocol retains
+its source's movement identity and complete side requirements.
+
+Possible precise contributions are now cardio 2–3; strength 2–5; muscle
+endurance 1–4; flexibility 1–5; agility 2; balance 1–4; coordination 1–5;
+power 2–5; reaction 1–2; and speed 2. Reaction 3–5, expert balance, expert
+endurance and the other missing cells remain visible. Cadence-dependent drills
+do not acquire a fixed speed/cardio tier merely because they look difficult.
+
+The generated [coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md)
+separates usable spiderweb evidence from training-set coverage. The latter
+continues to meet five distinct movements in every one of the 50 cells.
+It does not authorize narrowing an honest range or manufacturing precise scores.
 ## Discovery order
 
 Eligible saved Keeps take priority over discovering a new movement, including

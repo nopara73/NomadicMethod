@@ -8,8 +8,9 @@ import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
 
-test("reviewed catalog admissions contribute precise tiers and preserve the older workout catalog", () => {
-  const admissions = JSON.parse(read("./fixtures/fitness-profile-admissions.json"));
+for (const fixtureName of ["fitness-profile-admissions.json", "fitness-precise-admissions.json"])
+test("reviewed catalog admissions contribute precise tiers and preserve the older workout catalog: " + fixtureName, () => {
+  const admissions = JSON.parse(read("./fixtures/" + fixtureName));
   const catalog = JSON.parse(read("../../NomadicMethod/Assets/exercises.json"));
   const ratings = parseFitnessRatings(JSON.parse(read("../../NomadicMethod/Assets/fitness_ratings.json")));
   for (const entry of admissions.cases) {

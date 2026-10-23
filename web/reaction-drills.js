@@ -4,6 +4,10 @@ export const REACTION_PROMPT_MS = 650;
 export const REACTION_RESET_MS = 1200;
 export const REACTION_WAIT_MIN_MS = 1200;
 export const REACTION_WAIT_MAX_MS = 2800;
+export const REACTION_COUNTDOWN_STEP_MS = 1000;
+export const REACTION_STOP_DELAY_MIN_MS = 200;
+export const REACTION_STOP_DELAY_MAX_MS = 800;
+export const REACTION_STOP_PROBABILITY = 0.25;
 
 export function resolveReactionDrills(document, catalog) {
   if (document?.version !== 1 || !Array.isArray(document.families) ||
@@ -17,7 +21,7 @@ export function resolveReactionDrills(document, catalog) {
   for (const plan of document.plans) {
     const family = families.get(plan.familyId);
     const exercise = catalog.find(item => item.id === plan.exerciseId);
-    const count = { Initiation: 1, TwoChoice: 2, FourChoice: 4, ContextChoice: 4 }[plan.protocol];
+    const count = { Initiation: 1, StopOnly: 1, TwoChoice: 2, FourChoice: 4, ContextChoice: 4 }[plan.protocol];
     if (!Number.isInteger(plan.exerciseId) || result.has(plan.exerciseId) || !count ||
         !family || !exercise || exercise.practice !== 'Reaction training' ||
         !(exercise.reactionCueLevel > 0)) throw new Error("Invalid reaction plan.");
@@ -76,6 +80,7 @@ export class ReactionDrill {
 
   advance(now, remaining, mediaReady = true) {
     if (!mediaReady) return false;
+    if (this.plan.protocol === 'StopOnly') return this.advanceStopOnly(now, remaining);
     const previous = this.phase;
     if (this.phase === "Idle") this.beginReady(now, remaining);
     else if (this.phase !== "Complete" && now >= this.deadline) {
@@ -102,8 +107,45 @@ export class ReactionDrill {
     return previous !== this.phase;
   }
 
+  advanceStopOnly(now, remaining) {
+    const previous = this.phase, previousNumber = this.number;
+    const duration = Math.round(this.plan.actions[0].durationSeconds * 1000);
+    if ((this.phase === 'Idle' || this.phase === 'Reset') &&
+        (this.phase === 'Idle' || now >= this.deadline)) {
+      // Predictable starts; only cancellation is unpredictable. No performance
+      // measurements, feedback votes or assessment data are recorded.
+      const lead = 3 * REACTION_COUNTDOWN_STEP_MS + Math.max(0,
+        REACTION_PROMPT_MS - (REACTION_COUNTDOWN_STEP_MS - REACTION_STOP_DELAY_MAX_MS));
+      if (remaining < lead + duration + REACTION_RESET_MS) {
+        this.phase = 'Complete'; this.number = 0; this.actionIndex = -1;
+      } else {
+        this.stopPlanned = unit(this.random) < REACTION_STOP_PROBABILITY;
+        this.stopDelay = REACTION_STOP_DELAY_MIN_MS + Math.floor(unit(this.random) *
+          (REACTION_STOP_DELAY_MAX_MS - REACTION_STOP_DELAY_MIN_MS + 1));
+        this.phase = 'Countdown'; this.number = 3; this.actionIndex = 0;
+        this.deadline = now + REACTION_COUNTDOWN_STEP_MS;
+      }
+    } else if (this.phase !== 'Complete' && now >= this.deadline) {
+      if (this.phase === 'Countdown' && this.number > 1) {
+        this.number--;
+        this.deadline = now + (this.number === 1 && this.stopPlanned ? this.stopDelay : REACTION_COUNTDOWN_STEP_MS);
+      } else if (this.phase === 'Countdown') {
+        const hold = this.stopPlanned
+          ? Math.max(REACTION_PROMPT_MS, REACTION_COUNTDOWN_STEP_MS - this.stopDelay) + duration : duration;
+        if (remaining < hold + REACTION_RESET_MS) this.phase = 'Complete';
+        else {
+          this.number = 0; this.phase = this.stopPlanned ? 'Stop' : 'Feedback'; this.deadline = now + hold;
+        }
+      } else if (this.phase === 'Stop' || this.phase === 'Feedback') {
+        this.phase = 'Reset'; this.deadline = now + REACTION_RESET_MS;
+      }
+    }
+    return previous !== this.phase || previousNumber !== this.number;
+  }
+
   get demoActionIndex() { return this.phase === "Feedback" ? this.actionIndex : -1; }
-  get cue() { return this.phase === "Prompt" ? String(this.number) :
+  get cue() { return ['Prompt', 'Countdown'].includes(this.phase) ? String(this.number) :
+    this.phase === 'Stop' ? 'STOP' :
     this.phase === "Feedback" ? this.plan.actions[this.actionIndex].label :
       this.phase === "Reset" ? "Reset" : "Ready"; }
 }

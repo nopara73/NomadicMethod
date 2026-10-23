@@ -16,6 +16,9 @@ on:
       - "tools/generate-reaction-drill-media.mjs"
       - "tools/CatalogReviewEvidence.ps1"
       - "tools/Test-CatalogReviewEvidence.ps1"
+      - "tools/Test-PreciseSkillAdmissions.ps1"
+      - "docs/catalog-audit/precise-admissions-2026-10-23.json"
+      - "docs/catalog-audit/precise-skill-review-2026-10-23.json"
       - "NomadicMethod/Assets/exercise_videos/**"
       - "NomadicMethod/Assets/exercise_direction_videos/**"
       - "NomadicMethod/Assets/exercise_hold_frames/**"
@@ -107,6 +110,9 @@ jobs:
             /tools/generate-reaction-drill-media.mjs
             /tools/CatalogReviewEvidence.ps1
             /tools/Test-CatalogReviewEvidence.ps1
+            /tools/Test-PreciseSkillAdmissions.ps1
+            /docs/catalog-audit/precise-admissions-2026-10-23.json
+            /docs/catalog-audit/precise-skill-review-2026-10-23.json
             /NomadicMethod/Assets/exercise_videos/**
             /NomadicMethod/Assets/exercise_direction_videos/**
             /NomadicMethod/Assets/exercise_hold_frames/**
@@ -189,6 +195,10 @@ jobs:
       - name: Validate catalog review evidence contracts
         shell: pwsh
         run: ./tools/Test-CatalogReviewEvidence.ps1
+
+      - name: Validate precise skill admissions and reviewed media
+        shell: pwsh
+        run: ./tools/Test-PreciseSkillAdmissions.ps1
 
       - name: Validate mirror relationship audit
         shell: pwsh

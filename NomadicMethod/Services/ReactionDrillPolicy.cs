@@ -42,6 +42,10 @@ public sealed class ReactionDrill
     public const int ResetMilliseconds = 1200;
     public const int WaitMinimumMilliseconds = 1200;
     public const int WaitMaximumMilliseconds = 2800;
+    public const int CountdownStepMilliseconds = 1000;
+    public const int StopDelayMinimumMilliseconds = 200;
+    public const int StopDelayMaximumMilliseconds = 800;
+    public const double StopProbability = 0.25;
     public ReactionPlan Plan { get; }
     private readonly Func<double> _random;
     public string Phase { get; private set; } = "Idle";
@@ -49,10 +53,14 @@ public sealed class ReactionDrill
     public int Number { get; private set; }
     public int ActionIndex { get; private set; } = -1;
     public long Deadline { get; private set; }
+    private bool _stopPlanned;
+    private int _stopDelay;
     public int DemoActionIndex => Phase == "Feedback" ? ActionIndex : -1;
     public string Cue => Phase switch
     {
         "Prompt" => Number.ToString(),
+        "Countdown" => Number.ToString(),
+        "Stop" => "STOP",
         "Feedback" => Plan.Actions[ActionIndex].Label,
         "Reset" => "Reset",
         _ => "Ready",
@@ -81,6 +89,7 @@ public sealed class ReactionDrill
     public bool Advance(long now, long remaining, bool mediaReady = true)
     {
         if (!mediaReady) return false;
+        if (Plan.Protocol == "StopOnly") return AdvanceStopOnly(now, remaining);
         string previous = Phase;
         if (Phase == "Idle") BeginReady(now, remaining);
         else if (Phase != "Complete" && now >= Deadline)
@@ -109,6 +118,66 @@ public sealed class ReactionDrill
         return previous != Phase;
     }
 
+    private bool AdvanceStopOnly(long now, long remaining)
+    {
+        string previous = Phase;
+        int previousNumber = Number;
+        long duration = (long)Math.Round(Plan.Actions[0].DurationSeconds * 1000);
+        if ((Phase is "Idle" or "Reset") && (Phase == "Idle" || now >= Deadline))
+        {
+            // Starts are always predictable: three whole countdown beats. Only
+            // cancellation is unpredictable; this does not claim initiation or
+            // measure a user's accuracy, response latency or ability.
+            long lead = 3 * CountdownStepMilliseconds + Math.Max(0,
+                PromptMilliseconds - (CountdownStepMilliseconds - StopDelayMaximumMilliseconds));
+            if (remaining < lead + duration + ResetMilliseconds)
+            {
+                Phase = "Complete";
+                Number = 0;
+                ActionIndex = -1;
+            }
+            else
+            {
+                _stopPlanned = Unit() < StopProbability;
+                _stopDelay = StopDelayMinimumMilliseconds + (int)Math.Floor(Unit() *
+                    (StopDelayMaximumMilliseconds - StopDelayMinimumMilliseconds + 1));
+                Phase = "Countdown";
+                Number = 3;
+                ActionIndex = 0;
+                Deadline = now + CountdownStepMilliseconds;
+            }
+        }
+        else if (Phase != "Complete" && now >= Deadline)
+        {
+            if (Phase == "Countdown" && Number > 1)
+            {
+                Number--;
+                Deadline = now + (Number == 1 && _stopPlanned ? _stopDelay : CountdownStepMilliseconds);
+            }
+            else if (Phase == "Countdown")
+            {
+                long hold = _stopPlanned
+                    ? Math.Max(PromptMilliseconds, CountdownStepMilliseconds - _stopDelay) + duration
+                    : duration;
+                if (remaining < hold + ResetMilliseconds) Phase = "Complete";
+                else
+                {
+                    Number = 0;
+                    Phase = _stopPlanned ? "Stop" : "Feedback";
+                    Deadline = now + hold;
+                }
+            }
+            else if (Phase is "Stop" or "Feedback")
+            {
+                Phase = "Reset";
+                Deadline = now + ResetMilliseconds;
+            }
+        }
+        // A delayed callback advances one beat, never skips a visible beat or
+        // turns a cancelled response into a late demonstration.
+        return previous != Phase || previousNumber != Number;
+    }
+
     public static IReadOnlyDictionary<int, ReactionPlan> Load(Stream stream, IReadOnlyList<Exercise> catalog)
     {
         ReactionDrillDocument document = JsonSerializer.Deserialize(stream,
@@ -123,7 +192,7 @@ public sealed class ReactionDrill
         {
             ReactionFamily? family = document.Families.SingleOrDefault(item => item.Id == plan.FamilyId);
             Exercise? exercise = catalog.SingleOrDefault(item => item.Id == plan.ExerciseId);
-            int count = plan.Protocol switch { "Initiation" => 1, "TwoChoice" => 2,
+            int count = plan.Protocol switch { "Initiation" or "StopOnly" => 1, "TwoChoice" => 2,
                 "FourChoice" or "ContextChoice" => 4, _ => 0 };
             if (count == 0 || family?.Actions.Length != 4 || result.ContainsKey(plan.ExerciseId) ||
                 exercise is null || exercise.Practice != "Reaction training" || exercise.ReactionCueLevel <= 0)

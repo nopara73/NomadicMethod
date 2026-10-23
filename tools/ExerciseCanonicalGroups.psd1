@@ -911,4 +911,22 @@
     1703 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
     1704 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ScapularGirdle') }
     1705 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+
+    # Precise skill admissions, 23 October 2026.
+    1605 = @{ Primary = 'ElbowExtensors'; Secondary = @() }
+    1615 = @{ Primary = 'HipFlexors'; Secondary = @() }
+    1625 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1635 = @{ Primary = 'LateralKneeExtensors'; Secondary = @() }
+    1645 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1706 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1707 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1708 = @{ Primary = 'GlutealExtensors'; Secondary = @('MedialAndDeepKneeExtensors', 'LateralKneeExtensors') }
+    1709 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors', 'PosteriorThighAndKneeFlexors') }
+    1710 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    1711 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
+    1712 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors', 'Chest') }
+    1713 = @{ Primary = 'HipFlexors'; Secondary = @('AbdominalWall', 'ShoulderAdductorsAndExtensors') }
+    1714 = @{ Primary = 'ShoulderAbductors'; Secondary = @('HipFlexors', 'AbdominalWall') }
+    1715 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors') }
+    1716 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors') }
 }

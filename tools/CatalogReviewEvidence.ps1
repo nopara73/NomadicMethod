@@ -32,7 +32,7 @@ function Get-CatalogAssetHashes {
         if ($plans.Count -ne 1) { throw "Missing exact reaction plan for exercise $id." }
         $families = @($drills.families | Where-Object { $_.id -ceq $plans[0].familyId })
         $count = switch ([string]$plans[0].protocol) {
-            'Initiation' { 1 }; 'TwoChoice' { 2 }; 'FourChoice' { 4 }; 'ContextChoice' { 4 }
+            'Initiation' { 1 }; 'StopOnly' { 1 }; 'TwoChoice' { 2 }; 'FourChoice' { 4 }; 'ContextChoice' { 4 }
             default { throw "Invalid reaction protocol for exercise $id." }
         }
         if ($families.Count -ne 1 -or @($families[0].actions).Count -ne 4) {
@@ -50,7 +50,16 @@ function Get-CatalogAssetHashes {
         if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
             throw "Missing runtime asset for exercise ${id}: $relative"
         }
-        $hashes[$relative] = (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLowerInvariant()
+        if ($relative -eq 'reaction_drills.json') {
+            # Checkouts may change JSON newlines. Bind the exact UTF-8 text
+            # after LF normalization; all binary movie/frame hashes stay raw.
+            $text = [IO.File]::ReadAllText($path).Replace("`r`n", "`n")
+            $bytes = [Text.Encoding]::UTF8.GetBytes($text)
+            $hashes[$relative] = [Convert]::ToHexString(
+                [Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
+        } else {
+            $hashes[$relative] = (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLowerInvariant()
+        }
     }
     return $hashes
 }
