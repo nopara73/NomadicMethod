@@ -3,11 +3,13 @@ import { calculateFitnessProfile, roundFitnessLevel,
   fitnessSequenceTier, FITNESS_TIER_COUNT, FITNESS_UNKNOWN_TIER, orderFitnessCandidates } from "./fitness-profile.js";
 
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
-export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15]);
 
-// Duration edits can shorten or extend; completed/current atomic work sets the minimum.
+// Historical durations remain available only to restore or shorten an active workout.
 export function getWorkoutMinuteOptions(activeWorkoutMinutes = 0) {
-  return NEW_WORKOUT_MINUTES;
+  return activeWorkoutMinutes > 15
+    ? SUPPORTED_MINUTES.filter(minutes => minutes <= activeWorkoutMinutes)
+    : NEW_WORKOUT_MINUTES;
 }
 
 export function normalizeSetupMinutes(minutes, activeWorkoutMinutes = 0) {

@@ -307,28 +307,33 @@ test("mid-workout settings allow duration edits without crossing the protected p
   assert.equal(element("begin-workout").getAttribute("aria-label"), "Resume workout");
 });
 
-test("instant setup supports extending active workouts and preserves the protected minimum", () => {
+test("instant setup caps new workouts and preserves historical shortening and the protected minimum", () => {
   const { controls, element } = startup([], 60);
-  assert.equal(controls.selectedMinutes, 60);
-  assert.equal(element("duration-range").max, "9");
+  assert.equal(controls.selectedMinutes, 15);
+  assert.equal(element("duration-range").max, "4");
   element("duration-increase").fire("click");
-  assert.equal(controls.selectedMinutes, 90);
+  assert.equal(controls.selectedMinutes, 15);
   controls.setSelection(60, 0);
-  assert.equal(controls.selectedMinutes, 60);
+  assert.equal(controls.selectedMinutes, 15);
   controls.setActiveWorkoutSetup(true, 20, 60);
   controls.setSelection(60, 0);
   assert.equal(controls.selectedMinutes, 60);
-  assert.equal(element("duration-range").max, "9");
+  assert.equal(element("duration-range").max, "8");
   element("duration-increase").fire("click");
-  assert.equal(controls.selectedMinutes, 90);
+  assert.equal(controls.selectedMinutes, 60);
+  controls.setSelection(90, 0);
+  assert.equal(controls.selectedMinutes, 60);
+  controls.setSelection(20, 0);
+  element("duration-decrease").fire("click");
+  assert.equal(controls.selectedMinutes, 20);
   controls.setSelection(60, 0);
   controls.setActiveWorkoutSetup(false);
-  assert.equal(controls.selectedMinutes, 60);
-  assert.equal(element("duration-range").max, "9");
+  assert.equal(controls.selectedMinutes, 15);
+  assert.equal(element("duration-range").max, "4");
   controls.setActiveWorkoutSetup(true, 3, 3);
   controls.setSelection(3, 0);
   assert.equal(controls.selectedMinutes, 3);
-  assert.equal(element("duration-range").max, "9");
+  assert.equal(element("duration-range").max, "4");
   assert.equal(element("duration-range").style.values["--range-progress"], "0%");
 });
 

@@ -132,7 +132,11 @@ button:disabled {
 
 .duration-dial {
   width: 250px;
-  height: 250px;
+  height: auto;
+  aspect-ratio: 1;
+  min-width: min-content;
+  min-height: min-content;
+  padding: 24px;
   margin-top: 22px;
   border: 2px solid var(--chartreuse);
   border-radius: 50%;
@@ -1528,7 +1532,6 @@ input:focus-visible {
 
   .duration-dial {
     width: 188px;
-    height: 188px;
     margin-top: 8px;
   }
 
@@ -1697,7 +1700,6 @@ input:focus-visible {
 
   .duration-dial {
     width: 140px;
-    height: 140px;
     margin-top: 4px;
   }
 
@@ -1748,21 +1750,21 @@ input:focus-visible {
 
 @media (min-width: 1000px) {
   .duration-screen {
-    padding: clamp(32px, 4vw, 72px);
+    padding: clamp(16px, 3dvh, 32px) clamp(24px, 4vw, 72px);
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: clamp(32px, 4dvh, 52px);
-    overflow: auto;
+    gap: 12px;
+    overflow: hidden;
   }
 
   .duration-scroll {
-    display: contents;
+    display: block;
     width: min(100%, 1240px);
     height: auto;
     min-height: 0;
-    flex: 0 0 auto;
-    overflow: visible;
+    flex: 1 1 0;
+    overflow: auto;
   }
 
   .duration-content {
@@ -1786,14 +1788,13 @@ input:focus-visible {
   .fitness-profile { order: 2; flex: 0 0 auto; }
 
   .nomadic-method-icon {
-    width: clamp(68px, 4.2vw, 88px);
-    height: clamp(68px, 4.2vw, 88px);
+    width: clamp(44px, 7dvh, 68px);
+    height: clamp(44px, 7dvh, 68px);
   }
 
   .duration-dial {
-    width: clamp(300px, min(20vw, 34dvh), 420px);
-    height: clamp(300px, min(20vw, 34dvh), 420px);
-    margin-top: clamp(20px, 2.5dvh, 32px);
+    width: clamp(180px, min(20vw, 26dvh), 320px);
+    margin-top: clamp(10px, 1.6dvh, 20px);
     border-width: 3px;
   }
 
@@ -1802,7 +1803,7 @@ input:focus-visible {
   }
 
   .duration-value {
-    font-size: clamp(100px, min(8vw, 13dvh), 150px);
+    font-size: clamp(64px, min(8vw, 11dvh), 120px);
   }
 
   .duration-unit {
@@ -1811,17 +1812,17 @@ input:focus-visible {
 
   .duration-controls {
     width: min(100%, clamp(760px, 58vw, 1120px));
-    margin: clamp(32px, 4dvh, 52px) auto 0;
+    margin: clamp(16px, 2.5dvh, 32px) auto 0;
     flex: 0 0 auto;
   }
 
   .duration-step-row {
-    height: clamp(74px, 6vw, 92px);
+    height: clamp(56px, 8dvh, 76px);
   }
 
   .step-button {
-    width: clamp(74px, 6vw, 92px);
-    height: clamp(74px, 6vw, 92px);
+    width: clamp(56px, 8dvh, 76px);
+    height: clamp(56px, 8dvh, 76px);
     border-radius: 20px;
   }
 
@@ -1855,14 +1856,14 @@ input:focus-visible {
   }
 
   .duration-labels {
-    margin-right: calc(clamp(74px, 6vw, 92px) + clamp(34px, 2.4vw, 48px));
-    margin-left: calc(clamp(74px, 6vw, 92px) + clamp(34px, 2.4vw, 48px));
+    margin-right: calc(clamp(56px, 8dvh, 76px) + clamp(34px, 2.4vw, 48px));
+    margin-left: calc(clamp(56px, 8dvh, 76px) + clamp(34px, 2.4vw, 48px));
     font-size: clamp(11px, 0.75vw, 14px);
   }
 
   .duration-modifiers {
-    min-height: clamp(74px, 6vw, 92px);
-    margin-top: clamp(24px, 3dvh, 40px);
+    min-height: 60px;
+    margin-top: clamp(16px, 2.5dvh, 28px);
     gap: 16px;
     flex-wrap: wrap;
     justify-content: center;
@@ -1875,9 +1876,9 @@ input:focus-visible {
   }
 
   .modifier-tile {
-    width: clamp(64px, 5vw, 84px);
-    height: clamp(64px, 5vw, 84px);
-    padding: clamp(14px, 1.2vw, 20px);
+    width: clamp(48px, 7dvh, 64px);
+    height: clamp(48px, 7dvh, 64px);
+    padding: clamp(10px, 1.5dvh, 14px);
     border-radius: 20px;
   }
 
@@ -1896,14 +1897,14 @@ input:focus-visible {
   }
 
   .begin-workout {
-    width: clamp(112px, 8vw, 144px);
-    height: clamp(112px, 8vw, 144px);
+    width: clamp(68px, 10dvh, 96px);
+    height: clamp(68px, 10dvh, 96px);
     margin: 0 auto;
     border-radius: 32px;
   }
 
   .forward-arrow {
-    transform: scale(1.7);
+    transform: scale(1.2);
   }
 
   .workout-screen {
@@ -2139,7 +2140,6 @@ input:focus-visible {
 
   .duration-dial {
     width: 190px;
-    height: 190px;
     margin-top: 10px;
   }
 

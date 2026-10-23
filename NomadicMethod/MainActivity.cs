@@ -1111,14 +1111,15 @@ public partial class MainActivity : Activity
         int wrapContent = ViewGroup.LayoutParams.WrapContent;
         var resources = Resources!;
         int screenWidthDp = resources.Configuration!.ScreenWidthDp;
+        bool shortPortrait = !landscape && resources.Configuration.ScreenHeightDp < 650;
         bool compactLandscape = landscape &&
             screenWidthDp < 640;
         bool stackLandscapeModifierGroups = landscape &&
             screenWidthDp < 760;
-        int iconSize = compactLandscape
+        int iconSize = shortPortrait ? DpInt(44) : compactLandscape
             ? DpInt(32)
             : resources.GetDimensionPixelSize(Resource.Dimension.duration_icon_size);
-        int dialSize = compactLandscape
+        int dialSize = shortPortrait ? DpInt(190) : compactLandscape
             ? DpInt(140)
             : resources.GetDimensionPixelSize(Resource.Dimension.duration_dial_size);
 
@@ -1139,7 +1140,7 @@ public partial class MainActivity : Activity
             iconSize);
         var dialLayout = new LinearLayout.LayoutParams(dialSize, dialSize);
         dialLayout.TopMargin = DpInt(
-            compactLandscape ? 4 : landscape ? 8 : 22);
+            compactLandscape ? 4 : landscape ? 8 : shortPortrait ? 10 : 22);
         _durationDial.LayoutParameters = dialLayout;
 
         if (landscape)
@@ -1289,7 +1290,7 @@ public partial class MainActivity : Activity
             DpInt(16));
         _durationContent.SetPadding(
             DpInt(24),
-            DpInt(24),
+            DpInt(shortPortrait ? 12 : 24),
             DpInt(24),
             DpInt(24));
         _durationIdentity.LayoutParameters = new LinearLayout.LayoutParams(
@@ -1302,7 +1303,7 @@ public partial class MainActivity : Activity
         var portraitStepRowLayout = new LinearLayout.LayoutParams(
             matchParent,
             DpInt(64));
-        portraitStepRowLayout.TopMargin = DpInt(28);
+        portraitStepRowLayout.TopMargin = DpInt(shortPortrait ? 12 : 28);
         _durationStepRow.LayoutParameters = portraitStepRowLayout;
         _durationDecreaseButton.LayoutParameters =
             new LinearLayout.LayoutParams(DpInt(64), DpInt(64));
@@ -1316,7 +1317,7 @@ public partial class MainActivity : Activity
         {
             Gravity = GravityFlags.CenterHorizontal,
         };
-        portraitModifierScrollerLayout.TopMargin = DpInt(32);
+        portraitModifierScrollerLayout.TopMargin = DpInt(shortPortrait ? 20 : 32);
         _durationModifierScroller.LayoutParameters =
             portraitModifierScrollerLayout;
         _durationModifierGroups.LayoutParameters =

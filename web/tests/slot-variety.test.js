@@ -74,15 +74,19 @@ test("new choices, hip anatomy and exact exceptions do not alter frozen catalogs
   }
 });
 
-test("new and active workouts offer shorter and longer supported durations", () => {
-  assert.deepEqual(getWorkoutMinuteOptions(), [3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+test("setup caps new workouts and only shortens historical durations", () => {
+  assert.deepEqual(getWorkoutMinuteOptions(), [3, 5, 7, 10, 15]);
   for (const minutes of NEW_WORKOUT_MINUTES) {
     assert.equal(normalizeSetupMinutes(minutes), minutes);
-    assert.equal(Math.max(...getWorkoutMinuteOptions(minutes)), 90);
+    assert.equal(Math.max(...getWorkoutMinuteOptions(minutes)), 15);
   }
-  assert.equal(normalizeSetupMinutes(90), 90);
+  assert.equal(normalizeSetupMinutes(90), 15);
   assert.equal(normalizeMinutes(90), 90);
-  assert.deepEqual(getWorkoutMinuteOptions(30), [3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
-  assert.equal(normalizeSetupMinutes(90, 30), 90);
+  assert.deepEqual(getWorkoutMinuteOptions(30), [3, 5, 7, 10, 15, 20, 30]);
+  assert.equal(normalizeSetupMinutes(90, 30), 30);
   assert.equal(normalizeSetupMinutes(30, 30), 30);
+  for (const minutes of [20, 30, 45, 60, 90]) {
+    assert.equal(Math.max(...getWorkoutMinuteOptions(minutes)), minutes);
+    assert.equal(normalizeSetupMinutes(minutes, minutes), minutes);
+  }
 });

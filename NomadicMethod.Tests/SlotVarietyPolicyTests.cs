@@ -88,21 +88,26 @@ public sealed class SlotVarietyPolicyTests
     }
 
     [Fact]
-    public void NewAndActiveWorkoutsOfferEverySupportedDuration()
+    public void SetupCapsNewWorkoutsAndOnlyShortensHistoricalDurations()
     {
-        Assert.Equal(new[] { 3, 5, 7, 10, 15, 20, 30, 45, 60, 90 }, ExerciseSessionService.NewWorkoutMinutes);
+        Assert.Equal(new[] { 3, 5, 7, 10, 15 }, ExerciseSessionService.NewWorkoutMinutes);
         foreach (int minutes in ExerciseSessionService.NewWorkoutMinutes)
         {
             Assert.Equal(minutes, ExerciseSessionService.NormalizeSetupMinutes(minutes));
-            Assert.Equal(90, ExerciseSessionService.GetWorkoutMinuteOptions(minutes).Max());
+            Assert.Equal(15, ExerciseSessionService.GetWorkoutMinuteOptions(minutes).Max());
         }
-        Assert.Equal(90, ExerciseSessionService.NormalizeSetupMinutes(90));
+        Assert.Equal(15, ExerciseSessionService.NormalizeSetupMinutes(90));
         Assert.Equal(90, ExerciseSessionService.NormalizeLastWorkoutMinutes(90));
         Assert.True(ExerciseSessionService.IsValidWorkoutMinutes(90));
-        Assert.Equal(ExerciseSessionService.SupportedWorkoutMinutes,
+        Assert.Equal(new[] { 3, 5, 7, 10, 15, 20, 30 },
             ExerciseSessionService.GetWorkoutMinuteOptions(30));
-        Assert.Equal(90, ExerciseSessionService.NormalizeSetupMinutes(90, 30));
+        Assert.Equal(30, ExerciseSessionService.NormalizeSetupMinutes(90, 30));
         Assert.Equal(30, ExerciseSessionService.NormalizeSetupMinutes(30, 30));
+        foreach (int minutes in new[] { 20, 30, 45, 60, 90 })
+        {
+            Assert.Equal(minutes, ExerciseSessionService.GetWorkoutMinuteOptions(minutes).Max());
+            Assert.Equal(minutes, ExerciseSessionService.NormalizeSetupMinutes(minutes, minutes));
+        }
     }
 
     [Fact]
