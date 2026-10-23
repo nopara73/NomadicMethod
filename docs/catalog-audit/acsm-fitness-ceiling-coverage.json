@@ -4,10 +4,10 @@
   "status": "provisional",
   "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 90,
-  "catalogSha256": "104b74bf1c58413704826060b0383eede44c4b1bc615cbbbe9737f209e665ff8",
-  "exerciseCount": 906,
-  "profileCount": 205,
+  "catalogRevision": 91,
+  "catalogSha256": "22f91855a640dd41c97fa2c1d5d202b59b978d4c5d4554655a672c0c6b334a3d",
+  "exerciseCount": 907,
+  "profileCount": 206,
   "coveragePolicy": {
     "schemaVersion": 2,
     "minimumDistinctSessionMovements": 5,
@@ -1994,8 +1994,8 @@
         ]
       },
       "4": {
-        "count": 21,
-        "exerciseCount": 23,
+        "count": 22,
+        "exerciseCount": 24,
         "exerciseIds": [
           115,
           149,
@@ -2019,7 +2019,8 @@
           1509,
           1540,
           1701,
-          1705
+          1705,
+          1717
         ],
         "sessionMovementIds": [
           115,
@@ -2042,7 +2043,8 @@
           1509,
           1540,
           1701,
-          1705
+          1705,
+          1717
         ]
       },
       "5": {
@@ -5790,8 +5792,8 @@
         ]
       },
       "4": {
-        "count": 26,
-        "exerciseCount": 32,
+        "count": 27,
+        "exerciseCount": 33,
         "exerciseIds": [
           21,
           115,
@@ -5824,7 +5826,8 @@
           1705,
           1711,
           1712,
-          1714
+          1714,
+          1717
         ],
         "sessionMovementIds": [
           21,
@@ -5852,7 +5855,8 @@
           1705,
           1711,
           1712,
-          1714
+          1714,
+          1717
         ]
       },
       "5": {
@@ -6969,8 +6973,8 @@
         ]
       },
       "4": {
-        "count": 43,
-        "exerciseCount": 44,
+        "count": 44,
+        "exerciseCount": 45,
         "exerciseIds": [
           58,
           92,
@@ -7015,7 +7019,8 @@
           1707,
           1712,
           1714,
-          1715
+          1715,
+          1717
         ],
         "sessionMovementIds": [
           58,
@@ -7060,7 +7065,8 @@
           1707,
           1712,
           1714,
-          1715
+          1715,
+          1717
         ]
       },
       "5": {
@@ -8247,14 +8253,16 @@
           ]
         },
         "4": {
-          "count": 2,
+          "count": 3,
           "exerciseIds": [
             1701,
-            1705
+            1705,
+            1717
           ],
           "sessionMovementIds": [
             1701,
-            1705
+            1705,
+            1717
           ]
         },
         "5": {
@@ -8913,14 +8921,16 @@
           ]
         },
         "4": {
-          "count": 2,
+          "count": 3,
           "exerciseIds": [
             1705,
-            1711
+            1711,
+            1717
           ],
           "sessionMovementIds": [
             1705,
-            1711
+            1711,
+            1717
           ]
         },
         "5": {
@@ -9125,14 +9135,16 @@
           ]
         },
         "4": {
-          "count": 2,
+          "count": 3,
           "exerciseIds": [
             1705,
-            1707
+            1707,
+            1717
           ],
           "sessionMovementIds": [
             1705,
-            1707
+            1707,
+            1717
           ]
         },
         "5": {

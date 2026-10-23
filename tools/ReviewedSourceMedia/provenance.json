@@ -2460,5 +2460,16 @@
     "provenance": "Public exact human footage downloaded in the background. One uninterrupted original interval, natural chronology and speed, sampled to 20 fps. No synthetic movement, ping-pong, mirrored alternation or hidden equipment. The final packaged crop and actual unaccelerated workout have separate explicit hash-bound review.",
     "sourceTrimStartSeconds": 74.1,
     "sourceTrimDurationSeconds": 3.2
+  },
+  {
+    "file": "fitness-1717-source.mp4",
+    "sha256": "d2545d0d24c707ce13bd1e14d00612e6c68288a271c116376f79a4c77995d15f",
+    "sourceExerciseId": 1717,
+    "sourcePage": "https://gmb.io/press-handstand/",
+    "originalSource": "https://www.youtube.com/watch?v=SfLaCKaljU4",
+    "originalSourceSha256": "15806ef342cbcad845148d0db0f842ca2713a63a86ba1442856750a64432ab1f",
+    "originalSourceStartSeconds": 575.0,
+    "durationSeconds": 5.1,
+    "provenance": "Losslessly encoded excerpt of the original human demonstration. Original cadence and decoded dimensions retained; no generated, reversed or composited frames. Audio omitted."
   }
 ]

@@ -2,6 +2,7 @@
     # Every retained direct source is reviewed footage of an actual person,
     # except for the separately reviewed internally invisible training below.
     ReviewedExternal = @(
+        1717,
         1706, 1707, 1708, 1709, 1710, 1711, 1712, 1713, 1714, 1715, 1716,
         1701, 1702, 1703, 1704, 1705,
         1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540,

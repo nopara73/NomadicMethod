@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 91,
+  "scope": "One selectable new movement; all 906 previous records and assessments unchanged.",
+  "entries": [
+    {
+      "id": 1717,
+      "metadataSha256": "92f00ccae4bb684fd86199feddce53b9e88b806ed0ddc9c6eb4dd15d738b9774",
+      "assets": {
+        "exercise_videos/exercise_1717.mp4": "476cf456362050ba72dbdd5bfec8c70f9eed5fee3050bcaf51ba204e2a6e171c"
+      },
+      "reviewedAt": "2026-10-23T10:43:39.5019409+00:00",
+      "method": "Original GMB instructor footage, complete packaged frame sequence, and normal-speed playback in the actual web workout. Labelled isolated synthetic local state selected and ordered the exercise; timers and media were not accelerated. Android tests, packaging and phone installation are separate release checks.",
+      "observedAction": "Straight elbows and grounded feet lead into a no-jump straddle press and joined-leg freestanding handstand. Shoulder force is primary; active hip compression is a meaningful secondary stimulus. It is distinct from bent-arm/head-contact press 1705. Strength, balance and coordination are provisional task tier 4; other axes make no claim.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-23/ability-admissions/1717/ready.png",
+        "docs/catalog-audit/evidence/2026-10-23/ability-admissions/1717/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-23/ability-admissions/1717/movement.png",
+        "docs/catalog-audit/evidence/2026-10-23/ability-admissions/1717/rest.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Straight elbows and grounded feet lead into a no-jump straddle press and joined-leg freestanding handstand. Shoulder force is primary; active hip compression is a meaningful secondary stimulus. It is distinct from bent-arm/head-contact press 1705. Strength, balance and coordination are provisional task tier 4; other axes make no claim."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The full 5.1-second packaged action was inspected frame by frame and played repeatedly at normal speed in the actual workout, from feet on the floor to the complete handstand."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Full-width letterboxing preserves both hands, the grounded feet, the complete straddle and the overhead joined feet. The actual 1280x720 landscape workout retains these boundaries."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The excerpt resets visibly from the finished handstand to the grounded start for another attempt. It does not reverse or fabricate a controlled descent. The prescription is a press to handstand, not an ascent-and-descent repetition."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The exact source excerpt retains normal elapsed time. Runtime is 5.1 seconds at 20 fps and actual workout video playbackRate was 1, looping with readyState 4. Workout preparation, 45-second work and 15-second Rest ran on their normal clocks."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral straight-arm press is one continuous block with no unilateral or directional requirement; both hands and legs work together. No automatic alternate-side mirror is applied."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Hands remain planted during the complete press; no advancing, retreating, lane or hidden wall support is involved."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "A moving press is prescribed, not a held posture; there is no static hold-frame asset."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Hands and feet contact the floor. Floor permission is required and concentrated palm loading excludes Hard Floor. No wall, elevation, handles or support are required. Ordinary shoes do not change the demonstrated mechanics; deliberate silent placement is possible."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "A valid 15-minute whole-body plan selected the kept press in its hip-flexor slot. Only ordering was adjusted in isolated synthetic local fixture data to review it first. The actual app displayed Ready, blue preparation, red 45-second work, blue 15-second Rest and Keep. No personal or phone workout data was used."
+        }
+      }
+    }
+  ]
+}

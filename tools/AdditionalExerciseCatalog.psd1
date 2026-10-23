@@ -553,4 +553,7 @@
     1714 = @{ Name = 'Feet-to-Head Handstand Scorpion Hold'; Region = 'SHOULDERS'; Practice = 'Yoga'; MotionProfile = 'Fitness1714' }
     1715 = @{ Name = 'Aztec Push-Ups'; Region = 'CHEST'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1715' }
     1716 = @{ Name = 'Superman Push-Ups'; Region = 'CHEST'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1716' }
+
+    # Ability gap additions, 23 October 2026.
+    1717 = @{ Name = 'Straight-Arm Straddle Press to Handstand'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1717' }
 }

@@ -200,8 +200,8 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 906) {
-  throw new Error(`Expected 906 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 907) {
+  throw new Error(`Expected 907 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 const reactionPlans = resolveReactionDrills(JSON.parse(reactionSource), catalog);
 if (reactionPlans.size !== 21) throw new Error('Expected twenty-one reviewed reaction protocols.');

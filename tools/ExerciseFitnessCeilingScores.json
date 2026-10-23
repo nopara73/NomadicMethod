@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 90,
-  "catalogSha256": "104b74bf1c58413704826060b0383eede44c4b1bc615cbbbe9737f209e665ff8",
+  "catalogRevision": 91,
+  "catalogSha256": "22f91855a640dd41c97fa2c1d5d202b59b978d4c5d4554655a672c0c6b334a3d",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -6527,6 +6527,31 @@
       "trainingConditions": "Learn the one exact response in Ready. Prepare to act at the end of 3, 2, 1; remain still if STOP appears. Starts remain predictable, cancelled trials never reveal a response, and only a whole countdown/action/reset trial that fits the remaining 45-second block may begin. Both leads/sides receive complete mirrored blocks.",
       "exerciseIds": [
         1645
+      ]
+    },
+    "v4-ability-admission-1717": {
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "basis": "The fixed straight-elbow, no-jump straddle press from grounded feet into a freestanding handstand requires advanced shoulder force, unsupported inverted balance and synchronized hip compression/extension: provisional NM tier 4 in those three tasks. It is mechanically distinct from the existing bent-arm/head-contact press; no hidden added resistance or easier tucked execution is assumed.",
+      "trainingConditions": "Practice the exact demonstrated skill as clean brief attempts with recovery inside the 45-second opportunity. No uninterrupted hold, repetition target, measured endurance, speed or aerobic tier is inferred. Existing assessments remain unchanged. The press uses floor palms and straight elbows without jumping or head contact.",
+      "exerciseIds": [
+        1717
       ]
     }
   },

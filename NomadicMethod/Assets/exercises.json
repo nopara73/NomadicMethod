@@ -44482,5 +44482,51 @@
     "maxSpaceMeters": 2,
     "equipment": "None",
     "silent": false
+  },
+  {
+    "id": 1717,
+    "name": "Straight-Arm Straddle Press to Handstand",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1717.mp4",
+    "primaryCanonicalGroup": "ShoulderAbductors",
+    "secondaryCanonicalGroups": [
+      "HipFlexors"
+    ],
+    "practice": "Calisthenics",
+    "motionProfile": "Fitness1717",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1717,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Incompatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Incompatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 2,
+    "reactionCueLevel": 0,
+    "onlyFeetTouchGround": false,
+    "floorContactPoints": "Feet, Hands",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true
   }
 ]

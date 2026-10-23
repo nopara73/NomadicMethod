@@ -1,0 +1,62 @@
+{
+  "catalogRevision": 91,
+  "exerciseIds": [
+    1717
+  ],
+  "cases": [
+    {
+      "name": "straight-arm press precise ties",
+      "kept": [
+        1717
+      ],
+      "expected": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "planningCases": [
+    {
+      "id": 1717,
+      "minutes": 15,
+      "modifiers": ["Floor", "Silence"],
+      "keepSlot": "r15.hip-flexors"
+    }
+  ],
+  "compatibilityCases": [
+    {
+      "allowed": false,
+      "name": "press needs Floor",
+      "id": 1717,
+      "modifiers": [
+        "Silence"
+      ]
+    },
+    {
+      "allowed": true,
+      "name": "press admits cushioned floor",
+      "id": 1717,
+      "modifiers": [
+        "Floor",
+        "Silence"
+      ]
+    },
+    {
+      "allowed": false,
+      "name": "press excludes concentrated palms on hard floor",
+      "id": 1717,
+      "modifiers": [
+        "Floor",
+        "HardFloor"
+      ]
+    }
+  ]
+}

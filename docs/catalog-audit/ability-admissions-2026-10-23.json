@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 91,
+  "exerciseCount": 907,
+  "newRecordCount": 1,
+  "newPhysicalMovementCount": 1,
+  "baselineVerification": {
+    "baselineCommit": "6a44b7deb0c322851e05a56d8ccf8f117f567399",
+    "oldRecordCount": 906,
+    "existingRuntimeRecordsUnchanged": true,
+    "existingAssessmentsUnchanged": true,
+    "normalizedCatalogSha256": "22f91855a640dd41c97fa2c1d5d202b59b978d4c5d4554655a672c0c6b334a3d"
+  },
+  "profileAlgorithmChanged": false,
+  "ratingStatus": "Provisional NM task-specific tiers. A source establishes the movement, not a validated numerical or physiological cutoff. Short quality practice does not imply expert endurance.",
+  "reviewEvidence": "docs/catalog-audit/ability-skill-review-2026-10-23.json",
+  "workoutGallery": "docs/catalog-audit/evidence/2026-10-23/ability-admissions/gallery.html",
+  "balanceReference": "https://handstandfactory.com/podcast/s1ep33-the-handstand-flag/",
+  "remainingLimits": "Precise cardio 5, muscular endurance 5, agility 5, balance 5, reaction 5 and speed 5 remain absent. Existing ranges remain unchanged. The profile still averages precise strongest current Keeps, so lower retained contributors can keep an average below 5.",
+  "rejectedSources": [
+    {
+      "source": "https://www.youtube.com/watch?v=tsXOXYzW-RU",
+      "reason": "Clear full one-arm flag on a stable elevated support, but its complete mirrored pair needs two blocks in one primary slot and cannot fit the 15-minute whole-body lineup. Deferred without changing anatomy, side requirements or the scheduler."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=pshcq2d4hAQ",
+      "reason": "The lever-to-handstand demonstration uses two tall parallettes, which are not a single stable support."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=rjRKinK68ek",
+      "reason": "The press uses handstand canes; the current Elevation control does not cover them."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=hMRjwxPBqfE",
+      "reason": "Important limbs and the supporting hand are cropped in the useful full-flag passages."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=-GB0ZnH7LEs",
+      "reason": "The useful full-flag demonstrations use separate parallettes."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=7mA7RzYlEI8",
+      "reason": "The inspected floor progression is assisted, while the unassisted excerpt does not clearly reach the proposed full horizontal manna. No manna admitted."
+    }
+  ],
+  "entries": [
+    {
+      "id": 1717,
+      "name": "Straight-Arm Straddle Press to Handstand",
+      "sessionMovementId": 1717,
+      "source": {
+        "file": "fitness-1717-source.mp4",
+        "sha256": "d2545d0d24c707ce13bd1e14d00612e6c68288a271c116376f79a4c77995d15f",
+        "sourceExerciseId": 1717,
+        "sourcePage": "https://gmb.io/press-handstand/",
+        "originalSource": "https://www.youtube.com/watch?v=SfLaCKaljU4",
+        "originalSourceSha256": "15806ef342cbcad845148d0db0f842ca2713a63a86ba1442856750a64432ab1f",
+        "originalSourceStartSeconds": 575.0,
+        "durationSeconds": 5.1,
+        "provenance": "Losslessly encoded excerpt of the original human demonstration. Original cadence and decoded dimensions retained; no generated, reversed or composited frames. Audio omitted."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          4
+        ],
+        "coordination": [
+          4
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 4,
+        "balance": 4,
+        "coordination": 4
+      },
+      "basis": "The fixed straight-elbow, no-jump straddle press from grounded feet into a freestanding handstand requires advanced shoulder force, unsupported inverted balance and synchronized hip compression/extension: provisional NM tier 4 in those three tasks. It is mechanically distinct from the existing bent-arm/head-contact press; no hidden added resistance or easier tucked execution is assumed.",
+      "trainingConditions": "Practice the exact demonstrated skill as clean brief attempts with recovery inside the 45-second opportunity. No uninterrupted hold, repetition target, measured endurance, speed or aerobic tier is inferred. Existing assessments remain unchanged. The press uses floor palms and straight elbows without jumping or head contact.",
+      "anatomy": "ShoulderAbductors",
+      "secondaryTrainingClaims": [
+        "HipFlexors"
+      ],
+      "equipment": "Floor palms and feet; no support or head contact.",
+      "identity": "Straight-elbow no-jump straddle press, distinct from the bent-arm/head-contact press 1705."
+    }
+  ]
+}

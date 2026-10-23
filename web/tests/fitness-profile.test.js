@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { getWorkoutCatalog } from "../workout.js";
+import { getWorkoutCatalog, isCompatibleWithWorkoutModifiers, WORKOUT_MODIFIERS, WorkoutSession, createDefaultState } from "../workout.js";
 import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
   calculateFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
 
-for (const fixtureName of ["fitness-profile-admissions.json", "fitness-precise-admissions.json"])
+for (const fixtureName of ["fitness-profile-admissions.json", "fitness-precise-admissions.json", "fitness-ability-admissions.json"])
 test("reviewed catalog admissions contribute precise tiers and preserve the older workout catalog: " + fixtureName, () => {
   const admissions = JSON.parse(read("./fixtures/" + fixtureName));
   const catalog = JSON.parse(read("../../NomadicMethod/Assets/exercises.json"));
@@ -21,6 +21,21 @@ test("reviewed catalog admissions contribute precise tiers and preserve the olde
   }
   assert.ok(getWorkoutCatalog(catalog, admissions.catalogRevision - 1).every(e => !admissions.exerciseIds.includes(e.id)));
   assert.ok(admissions.exerciseIds.every(id => getWorkoutCatalog(catalog, admissions.catalogRevision).some(e => e.id === id)));
+  for (const entry of admissions.compatibilityCases ?? []) {
+    const exercise = catalog.find(e => e.id === entry.id);
+    const modifiers = entry.modifiers.reduce((mask, name) => mask | WORKOUT_MODIFIERS[name], 0);
+    assert.equal(isCompatibleWithWorkoutModifiers(exercise, modifiers), entry.allowed, entry.name);
+  }
+  for (const entry of admissions.planningCases ?? []) {
+    const state = createDefaultState();
+    state.keptExerciseRootIdsBySelectionGroupId[entry.keepSlot] = [entry.id];
+    const session = new WorkoutSession(catalog, state, () => 0.42, () => Date.UTC(2026, 9, 23), ratings);
+    const modifiers = entry.modifiers.reduce((mask, name) => mask | WORKOUT_MODIFIERS[name], 0);
+    session.startWorkout(entry.minutes, modifiers);
+    assert.equal(session.getActiveGroups().length, entry.minutes);
+    assert.ok(session.getActiveGroups().some(group => session.getSelectedExercise(group).id === entry.id),
+      `Admission ${entry.id} must fit a complete short workout`);
+  }
   assert.equal(catalog.find(e => e.id === 1621).sessionMovementId, 266);
   assert.equal(catalog.find(e => e.id === 1701).sequenceBlocks.length, 2);
 });

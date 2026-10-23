@@ -58,10 +58,27 @@ supports that task distinction, not the validity of NM's whole-body adaptation
 or its numeric tier. No latency or accuracy is measured. Each protocol retains
 its source's movement identity and complete side requirements.
 
+Revision 91 adds the straight-arm straddle press to handstand while retaining
+all 906 previous exercises and assessments unchanged. It contributes strength 4,
+balance 4 and coordination 4, increasing each of these sparse contributor sets
+from two to three movements. It requires floor access and excludes Hard Floor.
+The [admission audit](catalog-audit/ability-admissions-2026-10-23.json)
+records all ten characteristic claims, original footage, equipment and anatomy.
+The [workout review](catalog-audit/evidence/2026-10-23/ability-admissions/gallery.html)
+covers the final packaged media and timer phases. Unfinished older workouts
+retain their original catalog; the press becomes available to new workouts.
+An elevated one-arm flag candidate was deferred: its complete mirrored pair
+needs two blocks in one primary slot and cannot fit a new 15-minute whole-body
+lineup. Secondary muscle claims cannot turn it into a two-primary-slot sequence.
+No side, anatomy or scheduling rule was weakened to admit it.
+
 Possible precise contributions are now cardio 2–3; strength 2–5; muscle
 endurance 1–4; flexibility 1–5; agility 2; balance 1–4; coordination 1–5;
-power 2–5; reaction 1–2; and speed 2. Reaction 3–5, expert balance, expert
-endurance and the other missing cells remain visible. Cadence-dependent drills
+power 2–5; reaction 1–2; and speed 2. Cardio, endurance, agility, balance, reaction and
+speed still have no precise level-5 contributor. Adding equipment alone cannot
+close those gaps; it must enable a genuinely supported precise assessment.
+The unchanged averaging rule also means that retaining lower-level contributors
+can keep an axis below 5 even when a level-5 movement is kept. Cadence-dependent drills
 do not acquire a fixed speed/cardio tier merely because they look difficult.
 
 The generated [coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md)

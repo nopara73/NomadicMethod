@@ -929,4 +929,7 @@
     1714 = @{ Primary = 'ShoulderAbductors'; Secondary = @('HipFlexors', 'AbdominalWall') }
     1715 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors') }
     1716 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors') }
+
+    # Ability gap additions, 23 October 2026.
+    1717 = @{ Primary = 'ShoulderAbductors'; Secondary = @('HipFlexors') }
 }

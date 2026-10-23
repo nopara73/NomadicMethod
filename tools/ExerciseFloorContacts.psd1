@@ -67,6 +67,7 @@
         1714 = @('Feet', 'Hands')
         1715 = @('Feet', 'Hands')
         1716 = @('Feet', 'Hands')
+        1717 = @('Feet', 'Hands')
         1701 = @('Feet', 'Hands')
         1702 = @('Feet', 'Hands')
         1703 = @('Feet', 'Hands')

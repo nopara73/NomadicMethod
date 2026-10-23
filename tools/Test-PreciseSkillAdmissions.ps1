@@ -1,14 +1,17 @@
+param([ValidateSet('precise-admissions-2026-10-23', 'ability-admissions-2026-10-23')]
+    [string]$Admission = 'precise-admissions-2026-10-23')
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'CatalogReviewEvidence.ps1')
 $root = Split-Path -Parent $PSScriptRoot
 $assets = Join-Path $root 'NomadicMethod/Assets'
 $catalog = @(Get-Content (Join-Path $assets 'exercises.json') -Raw | ConvertFrom-Json)
-$audit = Get-Content (Join-Path $root 'docs/catalog-audit/precise-admissions-2026-10-23.json') -Raw | ConvertFrom-Json -AsHashtable
+$audit = Get-Content (Join-Path $root "docs/catalog-audit/$Admission.json") -Raw | ConvertFrom-Json -AsHashtable
+$expectedCount = if ($Admission -eq 'ability-admissions-2026-10-23') { 1 } else { 16 }
 $reviews = Read-CatalogReviewEvidence -Path (Join-Path $root $audit.reviewEvidence)
 $assessment = Get-Content (Join-Path $PSScriptRoot 'ExerciseFitnessCeilingScores.json') -Raw | ConvertFrom-Json -AsHashtable
 $ratings = Get-Content (Join-Path $assets 'fitness_ratings.json') -Raw | ConvertFrom-Json -AsHashtable
-if ($audit.newRecordCount -ne 16 -or @($audit.entries).Count -ne 16 -or $reviews.Count -ne 16) {
-    throw 'Expected sixteen explicitly reviewed precise skill admissions.'
+if ($audit.newRecordCount -ne $expectedCount -or @($audit.entries).Count -ne $expectedCount -or $reviews.Count -ne $expectedCount) {
+    throw "Expected $expectedCount explicitly reviewed admissions for $Admission."
 }
 foreach ($entry in $audit.entries) {
     $id = [int]$entry.id
@@ -38,4 +41,4 @@ foreach ($entry in $audit.entries) {
         }
     }
 }
-Write-Output 'Sixteen precise admissions match their explicit reviews, canonical identities and all ten runtime rating cells.'
+Write-Output "$expectedCount precise admissions match their explicit reviews, canonical identities and all ten runtime rating cells."

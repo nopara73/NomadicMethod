@@ -73,6 +73,7 @@ public sealed class FitnessProfileTests
     [Theory]
     [InlineData("fitness-profile-admissions.json")]
     [InlineData("fitness-precise-admissions.json")]
+    [InlineData("fitness-ability-admissions.json")]
     public void ReviewedAdmissionsOpenPreciseContributionsAndPreserveTheOlderCatalog(string fixtureName)
     {
         using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
@@ -94,6 +95,31 @@ public sealed class FitnessProfileTests
         int[] ids = fixture.RootElement.GetProperty("exerciseIds").EnumerateArray().Select(v => v.GetInt32()).ToArray();
         Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, revision - 1), e => ids.Contains(e.Id));
         Assert.All(ids, id => Assert.Contains(WorkoutCatalogPolicy.ForWorkout(catalog, revision), e => e.Id == id));
+        if (fixture.RootElement.TryGetProperty("compatibilityCases", out JsonElement compatibility))
+            foreach (JsonElement entry in compatibility.EnumerateArray())
+            {
+                Exercise exercise = catalog.Single(e => e.Id == entry.GetProperty("id").GetInt32());
+                WorkoutModifiers modifiers = entry.GetProperty("modifiers").EnumerateArray()
+                    .Aggregate(WorkoutModifiers.None, (mask, name) =>
+                        mask | Enum.Parse<WorkoutModifiers>(name.GetString()!));
+                Assert.Equal(entry.GetProperty("allowed").GetBoolean(),
+                    WorkoutModifierPolicy.IsCompatible(exercise, modifiers));
+            }
+        if (fixture.RootElement.TryGetProperty("planningCases", out JsonElement planning))
+            foreach (JsonElement entry in planning.EnumerateArray())
+            {
+                int exerciseId = entry.GetProperty("id").GetInt32();
+                int minutes = entry.GetProperty("minutes").GetInt32();
+                var state = new WorkoutState();
+                state.KeptExerciseRootIdsBySelectionGroupId[entry.GetProperty("keepSlot").GetString()!] = [exerciseId];
+                WorkoutModifiers modifiers = entry.GetProperty("modifiers").EnumerateArray()
+                    .Aggregate(WorkoutModifiers.None, (mask, name) => mask | Enum.Parse<WorkoutModifiers>(name.GetString()!));
+                var service = new ExerciseSessionService(catalog, new Random(42),
+                    () => new DateTimeOffset(2026, 10, 23, 0, 0, 0, TimeSpan.Zero), fitnessRatings: ratings);
+                service.StartWorkout(state, minutes, modifiers);
+                Assert.Equal(minutes, service.GetActiveGroups(state).Count);
+                Assert.Contains(service.GetActiveGroups(state), group => service.GetSelectedExercise(state, group).Id == exerciseId);
+            }
         Assert.Equal(266, catalog.Single(e => e.Id == 1621).SessionMovementId);
         Assert.Equal(2, catalog.Single(e => e.Id == 1701).SequenceBlocks.Length);
     }
