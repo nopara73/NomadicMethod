@@ -33,6 +33,7 @@
 }
 
 .fitness-profile {
+  position: relative;
   width: min(calc(100% - 16px), 520px);
   margin: 8px auto 24px;
   font-size: 0.75rem;
@@ -45,6 +46,55 @@
 .fitness-profile .fitness-inner-grid { fill: none; stroke: var(--chartreuse); stroke-opacity: 0.2; stroke-width: 1; }
 .fitness-profile .fitness-shape { fill: none; stroke: var(--chartreuse); stroke-width: 2; stroke-linejoin: round; }
 .fitness-profile .fitness-point { fill: var(--chartreuse); stroke: var(--graphite); stroke-width: 1.5; }
+.fitness-axis-ray { stroke: var(--graphite); stroke-opacity: 0; stroke-width: 1; pointer-events: none; }
+.fitness-axis-ray.is-unknown { stroke-opacity: 0.4; stroke-dasharray: 3 4; }
+.fitness-axis-ray.is-highlighted { stroke-opacity: 0.8; stroke-width: 2; }
+.fitness-unknown { fill: var(--bone); stroke: var(--graphite); stroke-opacity: 0.55; stroke-width: 1.5; pointer-events: none; }
+.fitness-axis-hit { stroke: transparent; stroke-width: 28; stroke-linecap: round; cursor: pointer; }
+.fitness-axis {
+  position: absolute;
+  transform: translateY(-50%);
+  min-width: 48px;
+  min-height: 48px;
+  padding: 4px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--graphite);
+  font: inherit;
+  line-height: 1.25;
+  cursor: pointer;
+}
+.fitness-axis.is-unknown { color: var(--secondary); }
+.fitness-axis:hover, .fitness-axis:focus-visible { background: var(--chartreuse); }
+.fitness-axis:focus-visible { outline: 2px solid var(--graphite); outline-offset: 2px; }
+.fitness-stacked .fitness-axes { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; }
+.fitness-stacked .fitness-axis { position: static; transform: none; overflow-wrap: anywhere; }
+.fitness-details {
+  width: min(440px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  max-height: calc(100dvh - 32px);
+  padding: 20px;
+  border: 1px solid #3c4144;
+  border-radius: 20px;
+  background: var(--graphite);
+  color: var(--bone);
+  overflow: auto;
+  box-shadow: 0 20px 80px #12141655;
+}
+.fitness-details::backdrop { background: #12141666; }
+.fitness-details-header { position: sticky; top: 0; z-index: 1; background: var(--graphite); display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.fitness-details h2 { min-width: 0; margin: 0; font-size: 1.25rem; font-weight: 500; overflow-wrap: anywhere; }
+.fitness-details-close { display: grid; place-items: center; flex: 0 0 48px; height: 48px; min-height: 48px; padding: 0; border: 0; border-radius: 50%; background: #262a2d; color: var(--bone); font-size: 28px; line-height: 1; cursor: pointer; }
+.fitness-details button:focus-visible { outline: 2px solid var(--chartreuse); outline-offset: 3px; }
+.fitness-details-summary { margin: 12px 0 4px; color: var(--chartreuse); font-size: 1.5rem; }
+.fitness-details-note, .fitness-details-footnote { color: #c3c2bb; font-size: 0.875rem; line-height: 1.5; }
+.fitness-details-note { margin: 0 0 16px; }
+.fitness-details-footnote { margin: 16px 0 0; }
+.fitness-contributions { list-style: none; margin: 0; padding: 0; }
+.fitness-contribution { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid #3c4144; line-height: 1.4; }
+.fitness-contribution > :first-child { overflow-wrap: anywhere; }
+.fitness-contribution-level { display: grid; place-items: center; flex: 0 0 2.25em; height: 2.25em; border-radius: 50%; color: var(--chartreuse); background: #262a2d; font-variant-numeric: tabular-nums; }
 
 * {
   box-sizing: border-box;

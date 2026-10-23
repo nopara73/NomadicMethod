@@ -12,6 +12,8 @@ public sealed class FitnessProfileTests
         using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-profile-cases.json")));
         JsonElement scale = fixture.RootElement.GetProperty("chartScale");
+        foreach (JsonElement entry in fixture.RootElement.GetProperty("meanLabels").EnumerateArray())
+            Assert.Equal(entry.GetProperty("label").GetString(), FitnessProfilePolicy.FormatMean(entry.GetProperty("mean").GetDouble()));
         Assert.Equal(FitnessProfilePolicy.MaximumLevel, scale.GetProperty("maximumLevel").GetInt32());
         Assert.Equal(FitnessProfilePolicy.WebBoundaryLevel, scale.GetProperty("webBoundaryLevel").GetInt32());
         foreach (JsonElement entry in scale.GetProperty("cases").EnumerateArray())
@@ -37,7 +39,7 @@ public sealed class FitnessProfileTests
             {
                 Id = row.GetProperty("id").GetInt32(),
                 SessionMovementId = row.GetProperty("sessionMovementId").GetInt32(),
-                Name = "fixture", Video = "", PrimaryCanonicalGroup = default,
+                Name = "movement " + row.GetProperty("id").GetInt32(), Video = "", PrimaryCanonicalGroup = default,
                 SecondaryCanonicalGroups = [], Practice = "", MotionProfile = "",
                 Mode = default, Presentation = default, HoldFramePercent = 0,
                 SideSequence = default, OnlyFeetTouchGround = true, ShoeAgnostic = true,
@@ -54,6 +56,23 @@ public sealed class FitnessProfileTests
                 .Select(value => value.GetDouble()).ToArray();
             double[] actual = FitnessProfilePolicy.Calculate(exercises, state, ratings);
             Assert.True(expected.SequenceEqual(actual), entry.GetProperty("name").GetString());
+            ratings[999] = FitnessProfilePolicy.Dimensions.Select(_ => new[] { 5 }).ToArray(); // Retired catalog ID.
+            FitnessProfileAxis[] profile = FitnessProfilePolicy.Inspect(exercises, state, ratings);
+            Assert.Equal(expected, profile.Select(axis => axis.Mean));
+            for (int dimension = 0; dimension < profile.Length; dimension++)
+            {
+                int[][] evidence = entry.GetProperty("evidence").TryGetProperty(FitnessProfilePolicy.Dimensions[dimension], out var rows)
+                    ? rows.EnumerateArray().Select(row => row.EnumerateArray().Select(v => v.GetInt32()).ToArray()).ToArray() : [];
+                Assert.Equal(evidence, profile[dimension].Contributions.Select(c => new[] { c.MovementId, c.ExerciseId, c.Level }).ToArray());
+                Assert.All(profile[dimension].Contributions, c => Assert.Equal("movement " + c.ExerciseId, c.Name));
+            }
+            Assert.Equal(JsonSerializer.Serialize(profile), JsonSerializer.Serialize(
+                FitnessProfilePolicy.Inspect(exercises.Reverse().ToArray(), state, ratings)));
+            Assert.All(FitnessProfilePolicy.Inspect(exercises, state, new Dictionary<int, int[][]>()), axis =>
+            {
+                Assert.Equal(0, axis.Mean);
+                Assert.Empty(axis.Contributions);
+            });
             Assert.Equal(before, JsonSerializer.Serialize(state));
         }
     }

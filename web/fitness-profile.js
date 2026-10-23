@@ -14,6 +14,12 @@ export function roundFitnessLevel(level) {
     : Math.min(FITNESS_MAXIMUM_LEVEL, Math.max(1, Math.floor(level + 0.5)));
 }
 
+export function formatFitnessMean(mean) {
+  // Do not round a mean just below a half up across the chart's rounding boundary.
+  const shown = Math.floor(mean * 100 + 1e-9) / 100;
+  return String(shown) + (Math.abs(mean - shown) > 1e-9 ? "…" : "");
+}
+
 export const FITNESS_UNKNOWN_TIER = 6;
 export const FITNESS_TIER_COUNT = 10;
 
@@ -86,6 +92,13 @@ export function parseFitnessRatings(source) {
 }
 
 export function calculateFitnessProfile(exercises, state, ratings) {
+  return inspectFitnessProfile(exercises, state, ratings).map(axis => axis.mean);
+}
+
+// The chart and inspector share this evidence, so excluded claims cannot reappear
+// in the explanation. One saved representative per movement, highest value first;
+// equal variants use the lowest exercise id, independent of catalog/slot order.
+export function inspectFitnessProfile(exercises, state, ratings) {
   const slots = Object.values(state.keptExerciseRootIdsBySelectionGroupId ?? {});
   const kept = new Set(slots.length ? slots.flat() : state.lastKeptExerciseIds ?? []);
   const movements = new Map();
@@ -95,16 +108,21 @@ export function calculateFitnessProfile(exercises, state, ratings) {
     if (!levels) continue;
     const strongest = Math.max(0, ...levels.flat());
     const movementId = exercise.sessionMovementId > 0 ? exercise.sessionMovementId : exercise.id;
-    if (!movements.has(movementId)) movements.set(movementId, new Array(10).fill(0));
+    if (!movements.has(movementId)) movements.set(movementId, new Array(10).fill(null));
     const values = movements.get(movementId);
     levels.forEach((set, dimension) => {
-      if (set.length === 1 && set[0] === strongest)
-        values[dimension] = Math.max(values[dimension], set[0]);
+      if (set.length === 1 && set[0] === strongest && (!values[dimension] ||
+          set[0] > values[dimension].level ||
+          (set[0] === values[dimension].level && exercise.id < values[dimension].exerciseId)))
+        values[dimension] = { movementId, exerciseId: exercise.id, name: exercise.name, level: set[0] };
     });
   }
   return FITNESS_DIMENSIONS.map((_, dimension) => {
-    const values = [...movements.values()].map(row => row[dimension]).filter(value => value > 0);
-    return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
+    const contributions = [...movements.values()].map(row => row[dimension]).filter(Boolean)
+      .sort((a, b) => a.movementId - b.movementId);
+    const mean = contributions.length
+      ? contributions.reduce((sum, value) => sum + value.level, 0) / contributions.length : 0;
+    return { mean, contributions };
   });
 }
 
@@ -115,14 +133,115 @@ export class FitnessProfileView {
     this.host = host;
     this.clipId = "fitness-profile-clip-" + ++nextProfileId;
     this.values = new Array(10).fill(0);
+    this.ready = false;
+    this.profile = FITNESS_DIMENSIONS.map(() => ({ mean: 0, contributions: [] }));
+    this.buttons = FITNESS_LABELS.map((lines, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.disabled = true;
+      button.className = "fitness-axis";
+      button.dataset.axis = index;
+      button.setAttribute("aria-haspopup", "dialog");
+      button.textContent = lines.join(" ");
+      button.addEventListener("click", () => this.openDetails(index));
+      button.addEventListener("focus", () => this.highlight(index));
+      button.addEventListener("blur", () => this.highlight(-1));
+      return button;
+    });
+    this.chart = document.createElement("div");
+    this.axes = document.createElement("div");
+    this.axes.className = "fitness-axes";
+    this.axes.append(...this.buttons);
+    const fontProbe = document.createElement("span");
+    fontProbe.style.cssText = "position:absolute;width:1em;height:1em;visibility:hidden;pointer-events:none";
+    fontProbe.setAttribute("aria-hidden", "true");
+    host.append(this.chart, this.axes, fontProbe);
+    host.setAttribute("role", "group");
+    host.setAttribute("aria-label", "Fitness profile from favourites");
+    host.setAttribute("aria-busy", "true");
     this.observer = new ResizeObserver(() => this.render());
     this.observer.observe(host);
+    this.observer.observe(fontProbe);
     this.render();
   }
 
-  setLevels(values) {
-    this.values = values.map(roundFitnessLevel);
+  setProfile(profile) {
+    this.ready = true;
+    this.host.setAttribute("aria-busy", "false");
+    this.buttons.forEach(button => { button.disabled = false; });
+    this.profile = profile;
+    this.values = profile.map(axis => roundFitnessLevel(axis.mean));
     this.render();
+  }
+
+  highlight(index) {
+    this.chart.querySelectorAll("[data-axis-ray]").forEach(ray =>
+      ray.classList.toggle("is-highlighted", Number(ray.dataset.axisRay) === index));
+  }
+
+  openDetails(index) {
+    if (!this.ready || this.dialog?.open) return;
+    this.dialog?.remove();
+    this.dialog = null;
+    const previousFocus = document.activeElement;
+    const axis = this.profile[index];
+    const make = (tag, className, text) => {
+      const element = document.createElement(tag);
+      element.className = className;
+      if (text !== undefined) element.textContent = text;
+      return element;
+    };
+    const dialog = make("dialog", "fitness-details");
+    const title = make("h2", "", FITNESS_LABELS[index].join(" "));
+    title.id = this.clipId + "-title";
+    dialog.setAttribute("aria-labelledby", title.id);
+    const close = make("button", "fitness-details-close", "×");
+    close.type = "button";
+    close.setAttribute("aria-label", "Close fitness details");
+    close.autofocus = true;
+    close.addEventListener("click", () => dialog.close());
+    const header = make("div", "fitness-details-header");
+    header.append(title, close);
+    const summary = make("p", "fitness-details-summary", axis.contributions.length
+      ? "level " + this.values[index] + " of 5" : "No evidence yet");
+    summary.id = this.clipId + "-summary";
+    dialog.setAttribute("aria-describedby", summary.id);
+    const note = make("p", "fitness-details-note", axis.contributions.length
+      ? "Mean " + formatFitnessMean(axis.mean) +
+        " · " + axis.contributions.length + " favourite movement" + (axis.contributions.length === 1 ? "" : "s")
+      : "No current favourite has a qualifying rating for this axis.");
+    const list = make("ul", "fitness-contributions");
+    for (const entry of axis.contributions) {
+      const row = make("li", "fitness-contribution");
+      row.dataset.movementId = entry.movementId;
+      row.dataset.exerciseId = entry.exerciseId;
+      const level = make("span", "fitness-contribution-level", String(entry.level));
+      level.setAttribute("aria-label", "level " + entry.level + " of 5");
+      row.append(make("span", "", entry.name), level);
+      list.append(row);
+    }
+    dialog.append(header, summary, note, list, make("p", "fitness-details-footnote",
+      "From precise strongest ratings of favourites. NM estimates, not measured ability."));
+    dialog.addEventListener("click", event => {
+      const rect = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right ||
+          event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
+    });
+    dialog.addEventListener("keydown", event => {
+      if (event.key === "Tab") { event.preventDefault(); close.focus(); }
+    });
+    dialog.addEventListener("close", () => {
+      const active = document.activeElement;
+      const restoreFocus = active === previousFocus || active === document.body || dialog.contains(active);
+      dialog.remove();
+      // A queued close must not steal focus from a newly selected axis/dialog.
+      if (this.dialog !== dialog) return;
+      this.dialog = null;
+      if (restoreFocus) this.buttons[index].focus({ preventScroll: true });
+    }, { once: true });
+    this.dialog = dialog;
+    document.body.append(dialog);
+    dialog.showModal();
   }
 
   render() {
@@ -142,9 +261,22 @@ export class FitnessProfileView {
       const labelWidth = Math.max(...lines.map(line => measure.measureText(line).width));
       expertRadius = Math.min(expertRadius, (width / 2 - labelWidth - 2) / horizontal - labelGap);
     });
-    expertRadius = Math.max(12, expertRadius);
+    const bounds = FITNESS_LABELS.map((lines, index) => {
+      const horizontal = Math.cos(index * Math.PI / 5 - Math.PI / 2);
+      const x = width / 2 + horizontal * (expertRadius + labelGap);
+      const w = Math.max(48, ...lines.map(line => measure.measureText(line).width + 8));
+      const h = Math.max(48, lineHeight * lines.length + 8);
+      const left = Math.max(0, Math.min(width - w, Math.abs(horizontal) < 0.01
+        ? x - w / 2 : horizontal > 0 ? x - 4 : x - w + 4));
+      return { left, right: left + w, top: Math.sin(index * Math.PI / 5 - Math.PI / 2) *
+        (expertRadius + labelGap) - h / 2, height: h };
+    });
+    const stacked = expertRadius < 40 || bounds.some((a, i) => bounds.slice(i + 1).some(b =>
+      a.left < b.right && b.left < a.right && a.top < b.top + b.height && b.top < a.top + a.height));
+    this.host.classList.toggle("fitness-stacked", stacked);
+    expertRadius = stacked ? Math.min(120, width / 2 - 24) : Math.max(12, expertRadius);
     const labelRadius = expertRadius + labelGap;
-    const height = Math.ceil(Math.max(300, labelRadius * 2 + lineHeight * 3));
+    const height = Math.ceil(stacked ? expertRadius * 2 + 32 : Math.max(300, labelRadius * 2 + lineHeight * 3));
     const cx = width / 2, cy = height / 2;
     const point = (index, distance) => {
       const angle = index * Math.PI / 5 - Math.PI / 2;
@@ -156,8 +288,7 @@ export class FitnessProfileView {
       if (value !== undefined) element.textContent = value;
       return element;
     };
-    const svg = make("svg", { viewBox: "0 0 " + width + " " + height, role: "img",
-      "aria-label": "Fitness profile from hearted exercises" });
+    const svg = make("svg", { viewBox: "0 0 " + width + " " + height, "aria-hidden": "true" });
     svg.style.height = height + "px";
     const description = FITNESS_LABELS.map((label, index) =>
       label.join(" ") + ": " + (this.values[index] > 0
@@ -192,16 +323,36 @@ export class FitnessProfileView {
       if (this.values[index] > 0)
         svg.append(make("circle", { cx: x, cy: y, r: 3.5, class: "fitness-point", "data-profile-axis": index }));
     });
+    FITNESS_DIMENSIONS.forEach((_, index) => {
+      const [x, y] = point(index, expertRadius * fitnessProfileRadiusFraction(FITNESS_WEB_BOUNDARY_LEVEL));
+      svg.append(make("line", { x1: cx, y1: cy, x2: x, y2: y,
+        class: "fitness-axis-ray" + (this.values[index] ? "" : " is-unknown"), "data-axis-ray": index }));
+      if (!this.values[index]) svg.append(make("circle", { cx: x, cy: y, r: 4,
+        class: "fitness-unknown", "data-unknown-axis": index }));
+      // Touching the actual axis also opens its evidence. Native buttons provide
+      // the equivalent keyboard and screen-reader interaction.
+      const hitEnd = point(index, expertRadius * fitnessProfileRadiusFraction(Math.max(FITNESS_WEB_BOUNDARY_LEVEL, this.values[index])));
+      const hit = make("line", { x1: point(index, 18)[0], y1: point(index, 18)[1],
+        x2: hitEnd[0], y2: hitEnd[1], class: "fitness-axis-hit" });
+      hit.addEventListener("click", () => this.openDetails(index));
+      svg.append(hit);
+    });
     FITNESS_LABELS.forEach((lines, index) => {
       const [x, y] = point(index, labelRadius);
       const horizontal = Math.cos(index * Math.PI / 5 - Math.PI / 2);
-      const label = make("text", { x, y: y - (lines.length - 1) * lineHeight / 2,
-        "text-anchor": Math.abs(horizontal) < 0.01 ? "middle" : horizontal > 0 ? "start" : "end",
-        "dominant-baseline": "central" });
-      lines.forEach((line, lineIndex) =>
-        label.append(make("tspan", { x, dy: lineIndex ? lineHeight : 0 }, line)));
-      svg.append(label);
+      const button = this.buttons[index];
+      button.classList.toggle("is-unknown", !this.values[index]);
+      button.setAttribute("aria-label", lines.join(" ") + ": " + (this.values[index]
+        ? "level " + this.values[index] + " of 5" : "no evidence yet") + ". Show favourite movements");
+      if (stacked) { button.removeAttribute("style"); return; }
+      const labelWidth = Math.max(...lines.map(line => measure.measureText(line).width));
+      const buttonWidth = Math.max(48, labelWidth + 8);
+      const left = Math.abs(horizontal) < 0.01 ? x - buttonWidth / 2
+        : horizontal > 0 ? x - 4 : x - buttonWidth + 4;
+      button.style.cssText = `left:${Math.max(0, Math.min(width - buttonWidth, left))}px;top:${y}px;width:${buttonWidth}px;min-height:${Math.max(48, lineHeight * lines.length + 8)}px;`;
     });
-    this.host.replaceChildren(svg);
+    this.chart.replaceChildren(svg);
+    const focused = this.buttons.indexOf(document.activeElement);
+    if (focused >= 0) this.highlight(focused);
   }
 }

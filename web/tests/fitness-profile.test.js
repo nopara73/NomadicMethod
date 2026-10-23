@@ -3,10 +3,14 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { getWorkoutCatalog, isCompatibleWithWorkoutModifiers, WORKOUT_MODIFIERS, WorkoutSession, createDefaultState } from "../workout.js";
 import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
-  calculateFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel } from "../fitness-profile.js";
+  calculateFitnessProfile, inspectFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel, formatFitnessMean } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
+
+test("mean labels never cross the chart rounding boundary", () => {
+  for (const entry of fixture.meanLabels) assert.equal(formatFitnessMean(entry.mean), entry.label);
+});
 
 for (const fixtureName of ["fitness-profile-admissions.json", "fitness-precise-admissions.json", "fitness-ability-admissions.json"])
 test("reviewed catalog admissions contribute precise tiers and preserve the older workout catalog: " + fixtureName, () => {
@@ -81,6 +85,18 @@ for (const entry of fixture.cases) {
       ratings: Object.fromEntries(entry.exercises.map(row => [row.id, row.levels])) };
     const before = JSON.stringify(entry);
     assert.deepEqual(calculateFitnessProfile(entry.exercises, entry.state, parseFitnessRatings(source)), entry.expected);
+    const exercises = entry.exercises.map(e => ({...e, name: "movement " + e.id}));
+    const ratings = parseFitnessRatings(source);
+    ratings.set(999, FITNESS_DIMENSIONS.map(() => [5])); // Retired: rating exists, current catalog does not.
+    const profile = inspectFitnessProfile(exercises, entry.state, ratings);
+    assert.deepEqual(profile.map(axis => axis.mean), entry.expected);
+    profile.forEach((axis, dimension) => {
+      assert.deepEqual(axis.contributions.map(c => [c.movementId, c.exerciseId, c.level]),
+        entry.evidence[FITNESS_DIMENSIONS[dimension]] ?? [], entry.name);
+      assert.ok(axis.contributions.every(c => c.name === "movement " + c.exerciseId));
+    });
+    assert.deepEqual(inspectFitnessProfile([...exercises].reverse(), entry.state, ratings), profile);
+    assert.ok(inspectFitnessProfile(exercises, entry.state, new Map()).every(axis => axis.mean === 0 && !axis.contributions.length));
     assert.equal(JSON.stringify(entry), before, "profile calculation must not modify saved workout state");
   });
 }
@@ -105,10 +121,10 @@ test("homepage profile reads canonical data with the same native and web contrac
   const html = read("../index.html");
   const build = read("../scripts/build.mjs");
   assert.ok(native.includes('Assets!.Open("fitness_ratings.json")'));
-  assert.ok(native.includes("FitnessProfilePolicy.Calculate("));
+  assert.ok(native.includes("FitnessProfilePolicy.Inspect("));
   assert.ok(layout.includes("NomadicMethod.FitnessProfileView"));
   assert.ok(app.includes('parseFitnessRatings(await fitnessResponse.json())'));
-  assert.ok(app.includes("calculateFitnessProfile(exerciseCatalog, session.state, fitnessRatings)"));
+  assert.ok(app.includes("inspectFitnessProfile(exerciseCatalog, session.state, fitnessRatings)"));
   assert.ok(html.indexOf('id="fitness-profile"') > html.indexOf('id="elevation-equipment"'));
   assert.ok(html.indexOf('id="fitness-profile"') < html.indexOf('class="duration-action-bar"'));
   assert.ok(build.includes("NomadicMethod/Assets/fitness_ratings.json"));

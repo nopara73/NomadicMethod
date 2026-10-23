@@ -1994,7 +1994,7 @@ public partial class MainActivity : Activity
     private void UpdateFitnessProfile()
     {
         if (_exerciseDatabase is not null)
-            _fitnessProfile.SetLevels(FitnessProfilePolicy.Calculate(
+            _fitnessProfile.SetProfile(FitnessProfilePolicy.Inspect(
                 _exerciseDatabase.Exercises, _state, _fitnessRatings));
     }
 
@@ -2133,6 +2133,7 @@ public partial class MainActivity : Activity
         _selectedWorkoutMinutes = _state.ActiveWorkoutMinutes;
         _selectedWorkoutModifiers = _state.ActiveWorkoutModifiers;
         ShowAppScreen(AppScreen.Duration);
+        UpdateFitnessProfile();
         SetSelectedWorkoutMinutes(_selectedWorkoutMinutes);
         SetSelectedWorkoutModifier(
             WorkoutModifiers.UpperBodyClothing,

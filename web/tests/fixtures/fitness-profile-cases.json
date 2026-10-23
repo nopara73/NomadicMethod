@@ -1,14 +1,39 @@
 {
+  "meanLabels": [
+    { "mean": 2, "label": "2" },
+    { "mean": 2.5, "label": "2.5" },
+    { "mean": 2.3333333333333335, "label": "2.33…" },
+    { "mean": 2.499, "label": "2.49…" },
+    { "mean": 3.999, "label": "3.99…" }
+  ],
   "chartScale": {
     "maximumLevel": 5,
     "webBoundaryLevel": 4,
     "cases": [
-      { "level": 0, "radiusFraction": 0 },
-      { "level": 1, "radiusFraction": 0.2 },
-      { "level": 2.5, "radiusFraction": 0.5 },
-      { "level": 3.6, "radiusFraction": 0.72 },
-      { "level": 4, "radiusFraction": 0.8 },
-      { "level": 5, "radiusFraction": 1 }
+      {
+        "level": 0,
+        "radiusFraction": 0
+      },
+      {
+        "level": 1,
+        "radiusFraction": 0.2
+      },
+      {
+        "level": 2.5,
+        "radiusFraction": 0.5
+      },
+      {
+        "level": 3.6,
+        "radiusFraction": 0.72
+      },
+      {
+        "level": 4,
+        "radiusFraction": 0.8
+      },
+      {
+        "level": 5,
+        "radiusFraction": 1
+      }
     ]
   },
   "dimensions": [
@@ -60,7 +85,8 @@
         0,
         0,
         0
-      ]
+      ],
+      "evidence": {}
     },
     {
       "name": "speed averages 2 3 and 4 and ignores unhearted 5",
@@ -156,7 +182,26 @@
         0,
         0,
         3
-      ]
+      ],
+      "evidence": {
+        "speed": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            3,
+            3,
+            4
+          ]
+        ]
+      }
     },
     {
       "name": "secondary speed and strength do not dilute dominant groups",
@@ -240,7 +285,28 @@
         0,
         0,
         3
-      ]
+      ],
+      "evidence": {
+        "muscularStrength": [
+          [
+            2,
+            2,
+            5
+          ]
+        ],
+        "speed": [
+          [
+            1,
+            1,
+            4
+          ],
+          [
+            3,
+            3,
+            2
+          ]
+        ]
+      }
     },
     {
       "name": "precise ties count in both groups with fractional means",
@@ -301,7 +367,28 @@
         0,
         0,
         4
-      ]
+      ],
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            1,
+            4
+          ],
+          [
+            2,
+            2,
+            3
+          ]
+        ],
+        "speed": [
+          [
+            1,
+            1,
+            4
+          ]
+        ]
+      }
     },
     {
       "name": "ambiguous strongest range does not promote a secondary characteristic",
@@ -389,7 +476,23 @@
         0,
         0,
         0
-      ]
+      ],
+      "evidence": {
+        "muscularStrength": [
+          [
+            2,
+            2,
+            4
+          ]
+        ],
+        "balance": [
+          [
+            2,
+            2,
+            4
+          ]
+        ]
+      }
     },
     {
       "name": "noncontiguous ambiguous ranges are excluded too",
@@ -434,7 +537,8 @@
         0,
         0,
         0
-      ]
+      ],
+      "evidence": {}
     },
     {
       "name": "slots sides aliases and directions never multiply a movement",
@@ -541,7 +645,21 @@
         0,
         0,
         3
-      ]
+      ],
+      "evidence": {
+        "speed": [
+          [
+            10,
+            10,
+            2
+          ],
+          [
+            12,
+            12,
+            4
+          ]
+        ]
+      }
     },
     {
       "name": "legacy kept ids still work and unknown ids do not contribute",
@@ -583,7 +701,16 @@
         0,
         0,
         0
-      ]
+      ],
+      "evidence": {
+        "balance": [
+          [
+            1,
+            1,
+            5
+          ]
+        ]
+      }
     },
     {
       "name": "heart history and unrelated state never participate",
@@ -655,7 +782,212 @@
         3,
         0,
         0
-      ]
+      ],
+      "evidence": {
+        "power": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "name": "inspection retains only the highest saved variant and deterministic exact ties",
+      "exercises": [
+        {
+          "id": 13,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              2
+            ]
+          ]
+        },
+        {
+          "id": 12,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ]
+          ]
+        },
+        {
+          "id": 14,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              1,
+              5
+            ]
+          ]
+        },
+        {
+          "id": 20,
+          "sessionMovementId": 0,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "lastKeptExerciseIds": [
+          11,
+          12,
+          13,
+          14,
+          20,
+          999
+        ],
+        "keptExerciseRootIdsBySelectionGroupId": {
+          "first": [
+            13,
+            11,
+            12,
+            14
+          ],
+          "second": [
+            20,
+            12,
+            999
+          ]
+        }
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2.5
+      ],
+      "evidence": {
+        "speed": [
+          [
+            10,
+            12,
+            4
+          ],
+          [
+            20,
+            20,
+            1
+          ]
+        ]
+      }
+    },
+    {
+      "name": "empty authoritative slot maps exclude stale legacy favourites",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              1
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "lastKeptExerciseIds": [
+          1
+        ],
+        "keptExerciseRootIdsBySelectionGroupId": {
+          "upper": []
+        }
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {}
     }
   ]
 }

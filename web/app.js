@@ -1,4 +1,4 @@
-import { FitnessProfileView, calculateFitnessProfile, parseFitnessRatings } from "./fitness-profile.js";
+import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings } from "./fitness-profile.js";
 import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
 import { ReactionDrillView } from "./reaction-drill-view.js";
@@ -917,7 +917,7 @@ function isAutomaticLightModeLocked() {
 
 function showScreen(screen) {
   if (screen === "duration" && session)
-    fitnessProfileView.setLevels(calculateFitnessProfile(exerciseCatalog, session.state, fitnessRatings));
+    fitnessProfileView.setProfile(inspectFitnessProfile(exerciseCatalog, session.state, fitnessRatings));
   elements.durationScreen.hidden = screen !== "duration";
   elements.workoutScreen.hidden = screen !== "workout";
   elements.completionScreen.hidden = screen !== "completion";
