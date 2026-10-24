@@ -34,6 +34,7 @@
 
 /* Feedback belongs to the exercise. The single frozen video follows the hand;
    direction hints live above it and never create a second media layer. */
+body.feedback-input { touch-action: none; user-select: none; -webkit-user-select: none; }
 .feedback-screen .phase-surface { background: var(--bone); }
 .feedback-screen .phase-surface > * { background: var(--bone) !important; }
 .feedback-screen .rest-panel { color: var(--graphite); min-height: 112px; }
@@ -53,18 +54,18 @@
 .feedback-hints { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .feedback-hint {
   position: absolute; display: grid; place-items: center; color: var(--graphite);
-  width: 96px; height: 96px; padding: 0;
-  background: var(--surface); border-radius: 50%; font-size: 76px; line-height: 1;
-  box-shadow: 0 3px 14px #12141612; opacity: 0; scale: .9;
-  transition: opacity 100ms, scale 130ms, background 130ms;
+  width: 128px; height: 128px; padding: 0;
+  background: var(--surface); border-radius: 50%; font-size: 104px; line-height: 1;
+  box-shadow: 0 3px 14px #12141612; opacity: 0;
+  transition: opacity 100ms, background 130ms;
 }
-.feedback-x { left: 12px; top: calc(50% - 48px); }
-.feedback-tick { right: 12px; top: calc(50% - 48px); }
+.feedback-x { left: 12px; top: calc(50% - 64px); }
+.feedback-tick { right: 12px; top: calc(50% - 64px); }
 .feedback-easy { left: 50%; top: 12px; translate: -50% 0; }
 .feedback-hard { left: 50%; bottom: 12px; translate: -50% 0; }
-.feedback-dragging .feedback-hint { opacity: .35; scale: 1; }
+.feedback-dragging .feedback-hint { opacity: .35; }
 .feedback-dragging .feedback-hint.active { opacity: 1; }
-.feedback-dragging .feedback-hint.active.ready { scale: 1.12; background: var(--chartreuse); }
+.feedback-dragging .feedback-hint.active.ready { background: var(--chartreuse); }
 .feedback-footer { display: flex; align-items: center; justify-content: space-between; min-height: 52px; position: relative; }
 .feedback-receipt { color: var(--graphite); font-size: 16px; }
 .feedback-receipt.emoji { font-size: 48px; line-height: 1; }

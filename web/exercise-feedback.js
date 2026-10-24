@@ -18,6 +18,8 @@ export class ExerciseFeedbackView {
   constructor(card, footer, hooks) {
     this.mediaCard = card; this.footer = footer; this.hooks = hooks;
     this.stage = card.parentElement;
+    // Input covers the screen; only the single frozen exercise sheet moves.
+    this.surface = card.closest(".workout-screen");
     const sheet = document.createElement("div"); sheet.className = "feedback-sheet";
     this.caption = document.createElement("div"); this.caption.className = "feedback-caption";
     card.replaceWith(sheet); sheet.append(card, this.caption); this.card = card = sheet;
@@ -37,18 +39,18 @@ export class ExerciseFeedbackView {
       if (!this.active || this.busy) return;
       hooks.choose(null); this.render(null); this.card.focus({ preventScroll: true });
     });
-    card.addEventListener("pointerdown", event => this.down(event));
-    card.addEventListener("pointermove", event => this.move(event));
-    card.addEventListener("pointerup", event => this.up(event));
-    card.addEventListener("pointercancel", () => this.cancelGesture(true));
-    card.addEventListener("lostpointercapture", () => this.cancelGesture(true));
+    document.addEventListener("pointerdown", event => this.down(event));
+    document.addEventListener("pointermove", event => this.move(event));
+    document.addEventListener("pointerup", event => this.up(event));
+    document.addEventListener("pointercancel", () => this.cancelGesture(true));
+    this.surface.addEventListener("lostpointercapture", () => this.cancelGesture(true));
     card.addEventListener("keydown", event => {
       if (!this.active || this.selected || this.busy) return;
       const direction = { ArrowLeft: "x", ArrowRight: "tick", ArrowUp: "easy", ArrowDown: "hard" }[event.key];
       if (direction) { event.preventDefault(); this.commit(direction); }
     });
     // Screen reader / keyboard alternatives are discoverable without a visible
-    // button panel. The media is the touch surface.
+    // button panel. Controls retain their normal touch behavior.
     this.actions = document.createElement("div");
     this.actions.className = "feedback-accessible-actions";
     for (const [value, label] of Object.entries(feedbackLabels)) {
@@ -61,6 +63,7 @@ export class ExerciseFeedbackView {
   reduced() { return matchMedia("(prefers-reduced-motion: reduce)").matches; }
   setActive(active, selected = null) {
     this.stop(); this.active = active;
+    document.body.classList.toggle("feedback-input", active);
     this.stage.classList.toggle("feedback-stage", active);
     this.card.tabIndex = active ? 0 : -1;
     if (active) {
@@ -99,12 +102,13 @@ export class ExerciseFeedbackView {
   }
   down(event) {
     if (!this.active || this.busy || this.gesture || !event.isPrimary || event.button !== 0) return;
+    if (event.target.closest("button, a, input, select, textarea, [role=button], dialog, [contenteditable=true]")) return;
     event.preventDefault();
     const current = new DOMMatrix(getComputedStyle(this.card).transform);
     this.cancelAnimation(); this.card.style.transform = this.pose(current.m41, current.m42);
     this.gesture = { id: event.pointerId, startX: event.clientX - current.m41, startY: event.clientY - current.m42,
       x: current.m41, y: current.m42, direction: null };
-    this.hooks.hold(true); this.card.setPointerCapture(event.pointerId);
+    this.hooks.hold(true); this.surface.setPointerCapture(event.pointerId);
     this.stage.classList.add("feedback-held");
   }
   move(event) {
@@ -125,7 +129,7 @@ export class ExerciseFeedbackView {
   up(event) {
     const g = this.gesture; if (!g || event.pointerId !== g.id) return;
     this.move(event); this.gesture = null;
-    if (this.card.hasPointerCapture(g.id)) this.card.releasePointerCapture(g.id);
+    if (this.surface.hasPointerCapture(g.id)) this.surface.releasePointerCapture(g.id);
     this.stage.classList.remove("feedback-held"); this.preview(null);
     if (!this.selected && g.direction && feedbackDistance(g.x, g.y, g.direction) >= feedbackThreshold(this.card.clientWidth))
       this.commit(g.direction, g);
@@ -135,7 +139,7 @@ export class ExerciseFeedbackView {
   cancelGesture(resume) {
     const g = this.gesture; if (!g) return;
     this.gesture = null;
-    if (this.card.hasPointerCapture(g.id)) this.card.releasePointerCapture(g.id);
+    if (this.surface.hasPointerCapture(g.id)) this.surface.releasePointerCapture(g.id);
     this.stage.classList.remove("feedback-held"); this.preview(null);
     this.card.style.transform = "";
     this.animate([{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }]);
@@ -155,7 +159,7 @@ export class ExerciseFeedbackView {
     this.burstEmoji.textContent = feedbackSymbols[this.selected]; this.burst.hidden = false;
     const dx = hint.x + hint.width / 2 - innerWidth / 2;
     const dy = hint.y + hint.height / 2 - innerHeight / 2;
-    const scale = Math.max(innerWidth, innerHeight) * 1.65 / 112;
+    const scale = Math.min(innerWidth, innerHeight) * .68 / 112;
     const pose = (x, y, size) => `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${size})`;
     this.card.style.transform = "";
     // One frozen card underneath; the selected emoji travels from its target
@@ -165,7 +169,7 @@ export class ExerciseFeedbackView {
       : [{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }], 260);
     this.burstAnimations = this.reduced() ? [] : [
       this.burstEmoji.animate([
-        { transform: pose(dx, dy, .72), opacity: 1 },
+        { transform: pose(dx, dy, 104 / 112), opacity: 1 },
         { transform: pose(0, 0, 1.55), opacity: 1, offset: .32 },
         { transform: pose(0, 0, scale), opacity: 1 }
       ], { duration: 620, easing: "cubic-bezier(.32,0,.5,1)", fill: "forwards" }),
@@ -194,6 +198,7 @@ export class ExerciseFeedbackView {
   }
   stop() {
     clearInterval(this.hintTimer); this.interrupt();
+    document.body.classList.remove("feedback-input");
     this.active = false; this.busy = false;
     this.card.style.transform = ""; this.preview(null);
     this.stage.classList.remove("feedback-held", "feedback-stage", "feedback-selected");

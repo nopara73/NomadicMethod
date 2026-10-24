@@ -12,7 +12,7 @@ namespace NomadicMethod;
 public partial class MainActivity
 {
     private bool _feedbackEnabled, _feedbackHeld, _feedbackResumeAfterHold, _feedbackExpiring;
-    private bool _feedbackSettling, _feedbackMultitouch;
+    private bool _feedbackSettling, _feedbackMultitouch, _feedbackScreenGesture;
     private float _feedbackStartX, _feedbackStartY, _feedbackX, _feedbackY;
     private int _feedbackPointer = -1, _feedbackEpoch;
     private ExerciseOutcome? _feedbackDirection;
@@ -42,7 +42,6 @@ public partial class MainActivity
         _feedbackCaption.SetPadding(DpInt(12), DpInt(8), DpInt(12), DpInt(8));
         _feedbackCaption.SetMaxLines(3);
         _feedbackSheet.AddView(_feedbackCaption, new FrameLayout.LayoutParams(-1, DpInt(64), GravityFlags.Bottom));
-        _feedbackSheet.Touch += OnExerciseFeedbackTouch;
         _feedbackSheet.SetAccessibilityDelegate(new FeedbackAccessibilityDelegate(this));
         foreach (ExerciseOutcome response in new[] { ExerciseOutcome.X, ExerciseOutcome.Tick,
                      ExerciseOutcome.TooEasy, ExerciseOutcome.TooHard })
@@ -50,12 +49,13 @@ public partial class MainActivity
             var hint = new TextView(this) { Text = ExerciseFeedbackPolicy.Symbol(response),
                 Gravity = GravityFlags.Center, Alpha = 0, Elevation = Dp(12),
                 ImportantForAccessibility = ImportantForAccessibility.No };
-            hint.SetTextSize(Android.Util.ComplexUnitType.Sp, 76);
+            hint.SetTextSize(Android.Util.ComplexUnitType.Sp, 104);
+            hint.SetIncludeFontPadding(false);
             hint.SetTextColor(new Color(GetColor(Resource.Color.primary_text)));
             hint.SetPadding(0, 0, 0, 0);
             var background = new GradientDrawable();
             background.SetColor(new Color(GetColor(Resource.Color.surface)));
-            background.SetCornerRadius(Dp(48));
+            background.SetCornerRadius(Dp(64));
             hint.Background = background;
             var gravity = response switch {
                 ExerciseOutcome.X => GravityFlags.Left | GravityFlags.CenterVertical,
@@ -63,7 +63,7 @@ public partial class MainActivity
                 ExerciseOutcome.TooEasy => GravityFlags.Top | GravityFlags.CenterHorizontal,
                 _ => GravityFlags.Bottom | GravityFlags.CenterHorizontal,
             };
-            var layout = new FrameLayout.LayoutParams(DpInt(96), DpInt(96), gravity);
+            var layout = new FrameLayout.LayoutParams(DpInt(128), DpInt(128), gravity);
             layout.SetMargins(DpInt(12), DpInt(12), DpInt(12), DpInt(12));
             _exerciseMediaArea.AddView(hint, layout);
             _feedbackHints.Add(response, hint);
@@ -153,11 +153,34 @@ public partial class MainActivity
             : _feedbackReceipt.ContentDescription;
     }
 
-    private void OnExerciseFeedbackTouch(object? sender, View.TouchEventArgs args)
+    public override bool DispatchTouchEvent(MotionEvent? e)
     {
-        MotionEvent? e = args.Event;
-        if (!_feedbackEnabled || !_restActive || e is null || _feedbackExpiring || _feedbackSettling) return;
-        args.Handled = true;
+        if (e is null) return base.DispatchTouchEvent(e);
+        if (e.ActionMasked == MotionEventActions.Down)
+            _feedbackScreenGesture = _feedbackEnabled && _restActive && !_feedbackExpiring && !_feedbackSettling &&
+                _workoutScreen.IsShown && !IsFeedbackControlAt(_workoutScreen, e.RawX, e.RawY);
+        if (!_feedbackScreenGesture) return base.DispatchTouchEvent(e);
+        HandleExerciseFeedbackTouch(e);
+        if (e.ActionMasked is MotionEventActions.Up or MotionEventActions.Cancel) _feedbackScreenGesture = false;
+        return true;
+    }
+
+    // Test controls before owning the gesture, so pause/settings/Undo retain
+    // normal taps. Blank header, footer and margins belong to the swipe surface.
+    private bool IsFeedbackControlAt(View view, float x, float y)
+    {
+        if (!view.IsShown || !view.Enabled) return false;
+        int[] position = new int[2];
+        view.GetLocationOnScreen(position);
+        if (x < position[0] || y < position[1] || x >= position[0] + view.Width || y >= position[1] + view.Height) return false;
+        if (view is ViewGroup group)
+            for (int i = group.ChildCount - 1; i >= 0; i--)
+                if (group.GetChildAt(i) is { } child && IsFeedbackControlAt(child, x, y)) return true;
+        return view != _feedbackSheet && (view.Clickable || view.LongClickable);
+    }
+
+    private void HandleExerciseFeedbackTouch(MotionEvent e)
+    {
         if (e.ActionMasked == MotionEventActions.Down)
         {
             _feedbackSheet.Animate()?.Cancel();
@@ -206,7 +229,6 @@ public partial class MainActivity
                     if (hint.Background is GradientDrawable backdrop)
                         backdrop.SetColor(new Color(GetColor(response == _feedbackDirection && progress >= 1
                             ? Resource.Color.brand_chartreuse : Resource.Color.surface)));
-                    hint.ScaleX = hint.ScaleY = response == _feedbackDirection && progress >= 1 ? 1.12f : 1;
                 }
                 if (e.ActionMasked == MotionEventActions.Up && progress >= 1 && _feedbackDirection is { } choice)
                     ChooseExerciseFeedback(choice);
@@ -286,7 +308,8 @@ public partial class MainActivity
         foreach (var target in _feedbackHints.Values) { target.Animate()?.Cancel(); target.Alpha = 0; }
         _feedbackBurstEmoji.Text = ExerciseFeedbackPolicy.Symbol(response);
         _feedbackBurstEmoji.TranslationX = dx; _feedbackBurstEmoji.TranslationY = dy;
-        _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = .72f;
+        const float startScale = 104f / 112f;
+        _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = startScale;
         _feedbackBurstWash.Alpha = 0;
         _feedbackBurst.Visibility = ViewStates.Visible;
         if (!FeedbackReducedMotion)
@@ -297,7 +320,7 @@ public partial class MainActivity
                 _feedbackSheet.PostDelayed(() => { if (epoch == _feedbackEpoch) ResetFeedbackPose(true); }, 120);
             }
             else ResetFeedbackPose(true);
-            float fullScale = Math.Max(_workoutScreen.Width, _workoutScreen.Height) * 1.65f / Dp(112);
+            float fullScale = Math.Min(_workoutScreen.Width, _workoutScreen.Height) * .68f / _feedbackBurstEmoji.TextSize;
             _feedbackBurstAnimator = Android.Animation.ValueAnimator.OfFloat(0, 1)
                 ?? throw new InvalidOperationException("Could not create feedback animation.");
             _feedbackBurstAnimator.SetDuration(620);
@@ -307,7 +330,7 @@ public partial class MainActivity
                 float travel = Math.Min(1, t / .32f);
                 _feedbackBurstEmoji.TranslationX = dx * (1 - travel);
                 _feedbackBurstEmoji.TranslationY = dy * (1 - travel);
-                float size = t < .32f ? .72f + (.83f * travel) : 1.55f + (fullScale - 1.55f) * (t - .32f) / .68f;
+                float size = t < .32f ? startScale + ((1.55f - startScale) * travel) : 1.55f + (fullScale - 1.55f) * (t - .32f) / .68f;
                 _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = size;
                 _feedbackBurstWash.Alpha = t;
             };
@@ -348,6 +371,7 @@ public partial class MainActivity
     private void CancelExerciseFeedback()
     {
         _feedbackEpoch++;
+        _feedbackScreenGesture = false;
         _feedbackSettling = false;
         _feedbackBurstAnimator?.Cancel(); _feedbackBurstAnimator?.Dispose(); _feedbackBurstAnimator = null;
         if (_feedbackBurst is not null) _feedbackBurst.Visibility = ViewStates.Gone;

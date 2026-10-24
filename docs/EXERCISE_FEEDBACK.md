@@ -1,6 +1,6 @@
 # Exercise feedback
 
-After the final block of an atomic exercise sequence, the actual exercise card is the feedback surface. Its last scene stays visible. Intermediate blocks retain their existing automatic continuation and next-block preview.
+After the final block of an atomic exercise sequence, the whole feedback screen accepts swipes, including its header, footer and empty margins. Pause, settings and other controls retain their normal taps. The single actual exercise card follows the gesture and its last scene stays visible. Intermediate blocks retain their existing automatic continuation and next-block preview.
 
 | Gesture | Visible response | Saved meaning |
 |---|---|---|
@@ -15,7 +15,7 @@ The card follows the pointer in both axes. The current displacement selects a di
 
 Touching and holding pauses the rest clock, including a stationary hold. Releasing resumes only if it was running and the user has not manually paused it. The separate pause control remains available. Backgrounding cancels direct manipulation and leaves the saved rest paused. Reduced-motion settings suppress instructional and confirmation movement without removing the feedback actions.
 
-All four direction hints use large emoji. Confirming a response freezes the clock, saves the response, and grows that emoji from its direction target to fill the screen in 620 ms before advancing immediately to the next exercise (or workout completion). There is no wait for the remaining rest countdown. The single last exercise frame stays underneath the transition. Unanswered rest still displays “N seconds to meh”; timeout nudges the card left and runs the same emoji transition for Meh. Reduced motion advances without the zoom. A manually chosen response never also receives the default response.
+All four direction hints use 104 px/sp emoji in 128 px/dp targets. They stay the same size during the drag; the selected target changes colour at the commit threshold. Confirming a response freezes the clock, saves the response, and brings that emoji to the centre in 620 ms before advancing immediately to the next exercise (or workout completion). Its final size is 68% of the shorter screen dimension, so the whole emoji remains readable rather than zooming beyond the screen. There is no wait for the remaining rest countdown. The single last exercise frame stays underneath the transition. Unanswered rest still displays “N seconds to meh”; timeout nudges the card left and runs the same emoji transition for Meh. Reduced motion advances without the zoom. A manually chosen response never also receives the default response.
 
 Backgrounding interrupts the transition without advancing a hidden workout. The saved response, frozen frame and remaining time survive. On reopen, the paused screen offers Undo or the existing play control to finish the saved response; choosing play repeats the transition and advances immediately. This also handles responses saved by older versions. Undo is only available on this recovered checkpoint, not an additional post-selection wait.
 

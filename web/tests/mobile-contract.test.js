@@ -4,6 +4,24 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
+test("feedback swipes cover the screen while controls and bounded emoji sizes remain equivalent", async () => {
+  const root = new URL("../../", import.meta.url);
+  const native = await readFile(new URL("NomadicMethod/MainActivity.ExerciseFeedback.cs", root), "utf8");
+  const view = await readFile(new URL("web/exercise-feedback.js", root), "utf8");
+  const css = await readFile(new URL("web/styles.css", root), "utf8");
+  assert.match(native, /override bool DispatchTouchEvent[\s\S]*!IsFeedbackControlAt[\s\S]*HandleExerciseFeedbackTouch\(e\)/);
+  assert.match(native, /view != _feedbackSheet && \(view.Clickable \|\| view.LongClickable\)/);
+  assert.match(view, /document.addEventListener\("pointerdown"/);
+  assert.match(view, /event.target.closest\("button, a, input, select, textarea/);
+  assert.match(css, /body.feedback-input \{ touch-action: none/);
+  assert.match(native, /SetTextSize\(Android.Util.ComplexUnitType.Sp, 104\)/);
+  assert.match(css, /font-size: 104px/);
+  assert.match(native, /Math.Min\(_workoutScreen.Width, _workoutScreen.Height\) \* .68f \/ _feedbackBurstEmoji.TextSize/);
+  assert.match(view, /Math.min\(innerWidth, innerHeight\) \* .68 \/ 112/);
+  assert.doesNotMatch(native, /hint.Scale[XY]/);
+  assert.doesNotMatch(css.match(/\.feedback-dragging \.feedback-hint.active.ready \{[^}]+\}/)[0], /scale:/);
+});
+
 test("feedback confirms through a full-screen emoji and advances independently of remaining rest", async () => {
   const root = new URL("../../", import.meta.url);
   const native = await readFile(new URL("NomadicMethod/MainActivity.ExerciseFeedback.cs", root), "utf8");

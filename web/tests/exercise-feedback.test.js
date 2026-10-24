@@ -12,10 +12,10 @@ test("direction emoji agree with Android's shared feedback vocabulary", () => as
 // contract independently of the workout timer or a browser's frame rate.
 function transitionView(reduced = false) {
   const animations = [], choices = [], completions = [];
-  const animate = () => {
+  const animate = frames => {
     let resolve, reject;
     const finished = new Promise((yes, no) => { resolve = yes; reject = no; });
-    const animation = { finished, finish: resolve, cancel: () => reject(new Error("interrupted")) };
+    const animation = { frames, finished, finish: resolve, cancel: () => reject(new Error("interrupted")) };
     animations.push(animation); return animation;
   };
   const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), {
@@ -26,8 +26,28 @@ function transitionView(reduced = false) {
     render(value) { this.selected = value; },
     hooks: { choose: value => { choices.push(value); return true; }, completed: () => completions.push(true) }
   });
-  return { view, choices, completions, finish: () => animations.forEach(animation => animation.finish()) };
+  return { view, choices, completions, animations, finish: () => animations.forEach(animation => animation.finish()) };
 }
+for (const [width, height] of [[320,568], [390,844], [844,390], [768,1024]])
+  test(`confirmation stays within the shorter screen dimension at ${width} x ${height}`, async () => {
+    globalThis.document = { hidden: false }; globalThis.innerWidth = width; globalThis.innerHeight = height;
+    const { view, animations, finish } = transitionView();
+    const pending = view.commit("hard");
+    const frames = animations[0].frames;
+    const scale = Number(frames.at(-1).transform.match(/scale\(([^)]+)\)/)[1]);
+    assert.ok(Math.abs(scale * 112 - Math.min(width, height) * .68) < .001);
+    assert.ok(scale * 140 < Math.min(width, height), "even the emoji box fits without cropping");
+    finish(); await pending;
+  });
+
+test("screen gestures leave interactive controls untouched", () => {
+  const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), { active: true });
+  for (const control of ["button", "a", "input", "select", "textarea", "[role=button]", "dialog", "[contenteditable=true]"]) {
+    view.down({ isPrimary: true, button: 0, target: { closest: selector => selector.includes(control) },
+      preventDefault: () => assert.fail("a control tap must not become feedback") });
+    assert.equal(view.gesture, undefined);
+  }
+});
 for (const response of fixtures.responses) test(`${response} advances exactly once when its animation ends, without waiting for rest`, async () => {
   globalThis.document = { hidden: false }; globalThis.innerWidth = 390; globalThis.innerHeight = 844;
   const { view, choices, completions, finish } = transitionView();
