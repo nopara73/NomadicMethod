@@ -185,11 +185,19 @@ let feedbackHeld = false;
 let feedbackResumeAfterHold = false;
 let feedbackExpiring = false;
 const feedbackView = new ExerciseFeedbackView(elements.mediaCard, elements.feedbackFooter, {
-  choose: value => { if (session?.setPendingRestFeedback(value)) { persistState(); updateRest(); } },
+  choose: value => {
+    if (!session?.setPendingRestFeedback(value)) return false;
+    if (value) {
+      if (!session.state.pendingRestPausedByUser)
+        session.pauseRest(currentGroup, Math.max(1, session.getPendingRestMillisecondsRemaining(Date.now())));
+      clearInterval(restTimer); restTimer = null;
+      feedbackHeld = feedbackResumeAfterHold = false;
+    }
+    persistState(); updateRest(); renderRestPlaybackToggle(); return true;
+  },
   hold: holdFeedbackClock,
   running: () => restActive && !session?.state.pendingRestPausedByUser,
-  expired: () => { if (!document.hidden && restActive) { feedbackExpiring = false; completeRest(true); } },
-  settled: () => { if (restActive && session.getPendingRestMillisecondsRemaining(Date.now()) <= 0) completeRest(); },
+  completed: () => { if (!document.hidden && restActive) { feedbackExpiring = false; completeRest(true); } },
 });
 let restActive = false;
 let wakeLock = null;
@@ -2328,7 +2336,10 @@ function holdFeedbackClock(held, resume = true) {
 }
 
 function toggleRestPlayback() {
-  if (feedbackExpiring) return;
+  if (feedbackExpiring || feedbackView.busy) return;
+  if (restActive && feedbackView.active && session?.getPendingRestFeedback()) {
+    feedbackView.finishSelection(); return;
+  }
   if (feedbackHeld) {
     feedbackResumeAfterHold = !feedbackResumeAfterHold;
     renderRestPlaybackToggle(); return;
@@ -2566,8 +2577,7 @@ function playSound(name) {
 }
 
 function pauseActiveWorkoutForBackground() {
-  feedbackView.cancelGesture(false);
-  feedbackView.cancelAnimation();
+  feedbackView.interrupt();
   feedbackExpiring = false;
   if (restActive && !previewingUpcomingSequenceBlock) reactionDrillView?.freeze();
   else { reactionDrillView?.setPreviewEnabled(false); reactionDrillView?.reset(); }

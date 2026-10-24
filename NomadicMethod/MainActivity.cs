@@ -4945,7 +4945,11 @@ public partial class MainActivity : Activity
 
     private void ToggleRestPlayback()
     {
-        if (_feedbackExpiring) return;
+        if (_feedbackExpiring || _feedbackSettling) return;
+        if (_restActive && _feedbackEnabled && ExerciseSessionService.GetPendingRestFeedback(_state) is { } response)
+        {
+            AnimateFeedbackSelection(response); return;
+        }
         if (_feedbackHeld)
         {
             _feedbackResumeAfterHold = !_feedbackResumeAfterHold;

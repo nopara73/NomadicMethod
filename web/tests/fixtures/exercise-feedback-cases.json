@@ -7,5 +7,6 @@
     { "name": "uncommitted diagonal", "points": [[10,10,null],[40,40,null],[20,-70,"easy"]] }
   ],
   "thresholds": [[200,56],[320,73.60000000000001],[500,88]],
-  "responses": ["x","tick","easy","hard"]
+  "responses": ["x","tick","easy","hard"],
+  "symbols": {"x":"💩","tick":"❤️","easy":"🥱","hard":"💀"}
 }

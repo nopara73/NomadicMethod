@@ -4,6 +4,23 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
+test("feedback confirms through a full-screen emoji and advances independently of remaining rest", async () => {
+  const root = new URL("../../", import.meta.url);
+  const native = await readFile(new URL("NomadicMethod/MainActivity.ExerciseFeedback.cs", root), "utf8");
+  const activity = await readFile(new URL("NomadicMethod/MainActivity.cs", root), "utf8");
+  const app = await readFile(new URL("web/app.js", root), "utf8");
+  const view = await readFile(new URL("web/exercise-feedback.js", root), "utf8");
+  assert.match(native, /private void AnimateFeedbackSelection[\s\S]*SetDuration\(620\)[\s\S]*CompleteRest\(\);/);
+  assert.match(native, /if \(!_state\.PendingRestPausedByUser\)[\s\S]*PauseRest/);
+  assert.match(native, /_feedbackEpoch\+\+[\s\S]*_feedbackBurstAnimator\?\.Cancel/);
+  assert.match(activity, /private void ToggleRestPlayback[\s\S]*AnimateFeedbackSelection\(response\); return;/);
+  assert.match(app, /completed: \(\) =>[^\n]*completeRest\(true\)/);
+  assert.match(app, /if \(!session\.state\.pendingRestPausedByUser\)[\s\S]*session\.pauseRest/);
+  assert.match(app, /function pauseActiveWorkoutForBackground\(\) \{\s*feedbackView\.interrupt\(\)/);
+  assert.match(view, /duration: 620[\s\S]*this\.hooks\.completed\(\)/);
+  assert.doesNotMatch(view.slice(view.indexOf("async finishSelection"), view.indexOf("clearBurst() {")), /MillisecondsRemaining/);
+});
+
 test("moving videos and held poses support the same mirrored side on both platforms", async () => {
   const root = new URL("../../", import.meta.url);
   const nativeView = await readFile(new URL("NomadicMethod/ExerciseVideoView.cs", root), "utf8");

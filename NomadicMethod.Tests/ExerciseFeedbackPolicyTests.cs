@@ -28,5 +28,9 @@ public sealed class ExerciseFeedbackPolicyTests
         foreach (var pair in fixture.RootElement.GetProperty("thresholds").EnumerateArray())
             Assert.Equal(pair[1].GetDouble(), ExerciseFeedbackPolicy.Threshold(pair[0].GetDouble()), 8);
         Assert.False(ExerciseFeedbackPolicy.IsResponse(ExerciseOutcome.Neutral));
+        foreach (var (key, response) in new[] { ("x", ExerciseOutcome.X), ("tick", ExerciseOutcome.Tick),
+                     ("easy", ExerciseOutcome.TooEasy), ("hard", ExerciseOutcome.TooHard) })
+            Assert.Equal(fixture.RootElement.GetProperty("symbols").GetProperty(key).GetString(),
+                ExerciseFeedbackPolicy.Symbol(response));
     }
 }

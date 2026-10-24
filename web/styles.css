@@ -53,13 +53,13 @@
 .feedback-hints { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .feedback-hint {
   position: absolute; display: grid; place-items: center; color: var(--graphite);
-  min-width: 56px; min-height: 56px; padding: 4px 10px;
-  background: var(--surface); border-radius: 28px; font-size: 15px; font-weight: 500;
+  width: 96px; height: 96px; padding: 0;
+  background: var(--surface); border-radius: 50%; font-size: 76px; line-height: 1;
   box-shadow: 0 3px 14px #12141612; opacity: 0; scale: .9;
   transition: opacity 100ms, scale 130ms, background 130ms;
 }
-.feedback-x { left: 0; top: calc(50% - 28px); font-size: 42px; }
-.feedback-tick { right: 0; top: calc(50% - 28px); font-size: 42px; }
+.feedback-x { left: 0; top: calc(50% - 48px); }
+.feedback-tick { right: 0; top: calc(50% - 48px); }
 .feedback-easy { left: 50%; top: 0; translate: -50% 0; }
 .feedback-hard { left: 50%; bottom: 0; translate: -50% 0; }
 .feedback-dragging .feedback-hint { opacity: .35; scale: 1; }
@@ -67,7 +67,11 @@
 .feedback-dragging .feedback-hint.active.ready { scale: 1.12; background: var(--chartreuse); }
 .feedback-footer { display: flex; align-items: center; justify-content: space-between; min-height: 52px; position: relative; }
 .feedback-receipt { color: var(--graphite); font-size: 16px; }
-.feedback-receipt.emoji { font-size: 36px; line-height: 1; }
+.feedback-receipt.emoji { font-size: 48px; line-height: 1; }
+.feedback-burst { position: fixed; inset: 0; z-index: 1000; overflow: hidden; touch-action: none; }
+.feedback-burst span { position: absolute; left: 50%; top: 50%; width: 140px; height: 140px;
+  display: grid; place-items: center; font-size: 112px; line-height: 1; transform: translate(-50%, -50%);
+  will-change: transform; }
 .feedback-undo { color: var(--secondary); font: inherit; min-height: 48px; min-width: 80px; border: 0; background: transparent; font-size: 23px; }
 .feedback-undo span { font-size: 14px; margin-left: 4px; }
 .feedback-accessible-actions { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

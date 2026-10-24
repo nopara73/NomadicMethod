@@ -1,5 +1,5 @@
 export const feedbackLabels = { x: "Meh", tick: "Love it", easy: "Too easy", hard: "Too hard" };
-export const feedbackSymbols = { x: "💩", tick: "❤️", easy: "↑  too easy", hard: "↓  too hard" };
+export const feedbackSymbols = { x: "💩", tick: "❤️", easy: "🥱", hard: "💀" };
 export function feedbackDirection(x, y, previous = null) {
   const ax = Math.abs(x), ay = Math.abs(y);
   if (Math.max(ax, ay) < 12) return null;
@@ -27,6 +27,11 @@ export class ExerciseFeedbackView {
     this.hints.innerHTML = Object.keys(feedbackLabels).map(value =>
       `<span class="feedback-hint feedback-${value}" data-feedback="${value}">${feedbackSymbols[value]}</span>`).join("");
     this.stage.append(this.hints);
+    this.burst = document.createElement("div");
+    this.burst.className = "feedback-burst"; this.burst.hidden = true;
+    this.burst.setAttribute("aria-hidden", "true");
+    this.burstEmoji = document.createElement("span"); this.burst.append(this.burstEmoji);
+    document.body.append(this.burst);
     this.receipt = footer.querySelector(".feedback-receipt");
     footer.querySelector(".feedback-undo").addEventListener("click", () => {
       if (!this.active || this.busy) return;
@@ -73,7 +78,7 @@ export class ExerciseFeedbackView {
     this.footer.classList.toggle("has-response", !!selected);
     this.receipt.textContent = selected ? feedbackSymbols[selected] : "";
     this.receipt.setAttribute("aria-label", selected ? `${feedbackLabels[selected]}. Feedback saved.` : "");
-    this.receipt.classList.toggle("emoji", selected === "tick" || selected === "x");
+    this.receipt.classList.toggle("emoji", !!selected);
     this.footer.querySelector(".feedback-undo").hidden = !selected;
     this.actions.hidden = !!selected || !this.active;
     this.stage.classList.toggle("feedback-selected", !!selected);
@@ -138,26 +143,57 @@ export class ExerciseFeedbackView {
   }
   async commit(value, g = { x: 0, y: 0 }, automatic = false) {
     if (!this.active || this.selected || this.busy) return;
+    if (this.hooks.choose(value) === false) return;
+    this.render(value);
+    await this.finishSelection(g, automatic);
+  }
+  async finishSelection(g = { x: 0, y: 0 }, automatic = false) {
+    if (!this.active || !this.selected || this.busy || document.hidden) return;
     const epoch = this.epoch; this.busy = true;
-    this.hooks.choose(value); this.preview(null); this.render(value);
+    const hint = this.hints.querySelector(`[data-feedback="${this.selected}"]`).getBoundingClientRect();
+    this.preview(null); this.footer.style.visibility = "hidden";
+    this.burstEmoji.textContent = feedbackSymbols[this.selected]; this.burst.hidden = false;
+    const dx = hint.x + hint.width / 2 - innerWidth / 2;
+    const dy = hint.y + hint.height / 2 - innerHeight / 2;
+    const scale = Math.max(innerWidth, innerHeight) * 1.65 / 112;
+    const pose = (x, y, size) => `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${size})`;
     this.card.style.transform = "";
-    const x = value === "x" ? -70 : value === "tick" ? 70 : 0;
-    const y = value === "easy" ? -70 : value === "hard" ? 70 : 0;
-    await this.animate(automatic
-      ? [{ transform: this.pose() }, { transform: this.pose(x, y), offset: .38 }, { transform: this.pose() }]
-      : [{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }], automatic ? 480 : 280);
-    if (epoch !== this.epoch || !this.active) return;
+    // One frozen card underneath; the selected emoji travels from its target
+    // into a full-screen transition. The clock no longer gates advancement.
+    this.animate(automatic
+      ? [{ transform: this.pose() }, { transform: this.pose(-70), offset: .4 }, { transform: this.pose() }]
+      : [{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }], 260);
+    this.burstAnimations = this.reduced() ? [] : [
+      this.burstEmoji.animate([
+        { transform: pose(dx, dy, .72), opacity: 1 },
+        { transform: pose(0, 0, 1.55), opacity: 1, offset: .32 },
+        { transform: pose(0, 0, scale), opacity: 1 }
+      ], { duration: 620, easing: "cubic-bezier(.32,0,.5,1)", fill: "forwards" }),
+      this.burst.animate([{ backgroundColor: "#f5efe700" }, { backgroundColor: "#f5efe7" }],
+        { duration: 620, fill: "forwards" })
+    ];
+    try { await Promise.all(this.burstAnimations.map(animation => animation.finished)); }
+    catch { return; /* Lifecycle interruption preserves the saved response. */ }
+    if (epoch !== this.epoch || !this.active || document.hidden) return;
     this.busy = false;
-    if (automatic) this.hooks.expired();
-    else this.hooks.settled?.();
+    this.clearBurst();
+    this.hooks.completed();
+  }
+  clearBurst() {
+    for (const animation of this.burstAnimations ?? []) animation.cancel();
+    this.burstAnimations = []; this.burst.hidden = true; this.footer.style.visibility = "";
+  }
+  interrupt() {
+    this.epoch = (this.epoch ?? 0) + 1;
+    this.cancelGesture(false); this.cancelAnimation(); this.clearBurst(); this.busy = false;
+    this.card.style.transform = ""; this.preview(null);
   }
   nudge() {
     if (!this.active || this.selected || this.gesture || this.busy || this.reduced() || !this.hooks.running() || document.hidden) return;
     this.animate([{ transform: this.pose() }, { transform: this.pose(-9, 0), offset: .4 }, { transform: this.pose() }], 650);
   }
   stop() {
-    this.epoch = (this.epoch ?? 0) + 1;
-    clearInterval(this.hintTimer); this.cancelGesture(false); this.cancelAnimation();
+    clearInterval(this.hintTimer); this.interrupt();
     this.active = false; this.busy = false;
     this.card.style.transform = ""; this.preview(null);
     this.stage.classList.remove("feedback-held", "feedback-stage", "feedback-selected");

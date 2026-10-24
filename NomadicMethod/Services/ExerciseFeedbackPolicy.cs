@@ -35,7 +35,7 @@ public static class ExerciseFeedbackPolicy
     public static string Symbol(ExerciseOutcome value) => value switch
     {
         ExerciseOutcome.Tick => "❤️", ExerciseOutcome.X => "💩",
-        ExerciseOutcome.TooEasy => "↑  too easy", _ => "↓  too hard",
+        ExerciseOutcome.TooEasy => "🥱", _ => "💀",
     };
     public static string Description(ExerciseOutcome value) => value switch
     {
