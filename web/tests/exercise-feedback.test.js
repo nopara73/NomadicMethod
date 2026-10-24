@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { feedbackDirection, feedbackThreshold, feedbackDistance, feedbackSymbols, feedbackVisual, ExerciseFeedbackView } from "../exercise-feedback.js";
+import { feedbackDirection, feedbackThreshold, feedbackDistance, feedbackSymbols, feedbackVisual, stampFrame, stampTiming, automaticMehX, ExerciseFeedbackView } from "../exercise-feedback.js";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from "../workout.js";
 
 const fixtures = JSON.parse(await readFile(new URL("./fixtures/exercise-feedback-cases.json", import.meta.url)));
@@ -11,35 +11,61 @@ test("direction emoji agree with Android's shared feedback vocabulary", () => as
 // A controllable animation clock checks the real view's completion/lifecycle
 // contract independently of the workout timer or a browser's frame rate.
 function transitionView(reduced = false) {
-  const animations = [], choices = [], completions = [];
-  const animate = (frames, options) => {
-    let resolve, reject;
-    const finished = new Promise((yes, no) => { resolve = yes; reject = no; });
-    const animation = { frames, options, finished, finish: resolve, cancel: () => reject(new Error("interrupted")) };
-    animations.push(animation); return animation;
-  };
+  const jobs = [], choices = [], completions = [];
+  const surface = { style: {} };
+  globalThis.document = { hidden: false, querySelector: () => surface, getElementById: () => null,
+    body: { classList: { add() {}, remove() {} } } };
   const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), {
-    epoch: 0, active: true, selected: null, busy: false,
-    hints: { querySelector: () => ({ getBoundingClientRect: () => ({ x: 0, y: 200, width: 80, height: 80 }) }) },
-    card: { style: {} }, footer: { style: {} }, burst: { hidden: true, animate }, burstEmoji: { animate },
-    reduced: () => reduced, preview: () => {}, animate: async () => {}, cancelGesture: () => {}, cancelAnimation: () => {},
+    epoch: 0, active: true, selected: null, busy: false, surface,
+    card: { style: {} }, footer: { style: {} }, burst: { hidden: true, style: {} },
+    burstEmoji: { style: {} }, burstImpact: { style: {} }, burstCheck: { style: {} },
+    hintPose: () => ({ x: 0, y: 0, scale: 1.04 }),
+    reduced: () => reduced, preview: () => {}, cancelGesture: () => {}, cancelAnimation: () => {},
     render(value) { this.selected = value; },
+    timeline(duration, draw) {
+      this.cancelTimeline(); draw(0);
+      return new Promise(resolve => { this.job = { duration, draw, resolve }; jobs.push(this.job); });
+    },
+    cancelTimeline() { this.job?.resolve(false); this.job = null; },
     hooks: { choose: value => { choices.push(value); return true; }, completed: () => completions.push(true) }
   });
-  return { view, choices, completions, animations, finish: () => animations.forEach(animation => animation.finish()) };
+  const finish = async () => {
+    for (let i = 0; i < 6; i++) {
+      const job = view.job;
+      if (job) { view.job = null; job.draw(job.duration); job.resolve(true); }
+      await Promise.resolve();
+    }
+  };
+  return { view, choices, completions, jobs, finish };
 }
+test("Stamp follows the approved preview's phase boundaries and sustained hold", () => {
+  assert.deepEqual(stampTiming, fixtures.stampTiming);
+  for (const {t, ...expected} of fixtures.stamp) {
+    const actual = stampFrame(t, 360, {x:20,y:30,scale:.2});
+    for (const [key, value] of Object.entries(expected)) assert.ok(Math.abs(actual[key]-value)<1e-8, `${t}: ${key}`);
+  }
+  for (const [t,x] of fixtures.automatic) assert.ok(Math.abs(automaticMehX(t,360)-x)<1e-8);
+});
 for (const [width, height] of [[320,568], [390,844], [844,390], [768,1024]])
-  test(`confirmation fills the shorter screen dimension at ${width} x ${height}`, async () => {
-    globalThis.document = { hidden: false }; globalThis.innerWidth = width; globalThis.innerHeight = height;
-    const { view, animations, finish } = transitionView();
+  test(`Stamp remains legible at ${width} x ${height}`, async () => {
+    globalThis.innerWidth = width; globalThis.innerHeight = height;
+    const { view, jobs, finish } = transitionView();
     const pending = view.commit("hard");
-    const frames = animations[0].frames;
-    const scale = Number(frames.at(-1).transform.match(/scale\(([^)]+)\)/)[1]);
-    assert.ok(Math.abs(scale * 256 - Math.min(width, height) * .9) < .001);
-    assert.ok(animations[0].frames.some(frame => frame.opacity === .82), "one soft confirmation pulse");
-    assert.equal(animations[0].options.easing, "linear", "global easing must not compress the pulse's timing");
-    finish(); await pending;
+    assert.equal(jobs[0].duration, 1700);
+    jobs[0].draw(1699);
+    assert.equal(view.burstCheck.style.opacity, 1);
+    assert.equal(view.surface.style.opacity, ".8", "the last frame remains visible");
+    await finish(); await pending;
   });
+test("timeout performs the complete automatic swipe before starting the stamp", async () => {
+  globalThis.innerWidth=360; globalThis.innerHeight=800;
+  const {view,jobs,completions,finish}=transitionView();
+  const pending=view.commit("x",undefined,true);
+  assert.equal(jobs[0].duration,1270); assert.equal(completions.length,0);
+  await finish(); await pending;
+  assert.deepEqual(jobs.map(j=>j.duration),[1270,1700,420]);
+  assert.equal(completions.length,1);
+});
 
 test("screen gestures leave interactive controls untouched", () => {
   const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), { active: true });
@@ -54,7 +80,7 @@ test("instructional pull holds its full displacement before springing back", () 
   let motion;
   const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), {
     active: true, reduced: () => false, hooks: { running: () => true },
-    hints: { querySelector: () => ({ animate: () => ({}) }) },
+    hints: { querySelector: () => ({ style: {}, animate: () => ({}) }) },
     animate: (frames, duration, easing) => { motion = { frames, duration, easing }; }
   });
   view.nudge();
@@ -70,7 +96,7 @@ for (const response of fixtures.responses) test(`${response} advances exactly on
   const pending = view.commit(response);
   await view.commit("x");
   assert.deepEqual(choices, [response]); assert.equal(completions.length, 0);
-  finish(); await pending;
+  await finish(); await pending;
   assert.equal(completions.length, 1); assert.equal(view.burst.hidden, true);
 });
 test("interrupted feedback retains its response and resumes once without recording twice", async () => {
@@ -78,13 +104,14 @@ test("interrupted feedback retains its response and resumes once without recordi
   const { view, choices, completions, finish } = transitionView();
   const pending = view.commit("hard"); view.interrupt(); await pending;
   assert.equal(completions.length, 0); assert.equal(view.selected, "hard"); assert.equal(view.burst.hidden, true);
-  const resumed = view.finishSelection(); finish(); await resumed;
+  const resumed = view.finishSelection(); await finish(); await resumed;
   assert.deepEqual(choices, ["hard"]); assert.equal(completions.length, 1);
 });
-test("reduced motion skips the zoom and advances immediately", async () => {
+test("reduced motion retains a readable confirmation without zoom or impact", async () => {
   globalThis.document = { hidden: false }; globalThis.innerWidth = 390; globalThis.innerHeight = 844;
-  const { view, completions } = transitionView(true);
-  await view.commit("easy"); assert.equal(completions.length, 1); assert.equal(view.burst.hidden, true);
+  const { view, completions, jobs, finish } = transitionView(true);
+  const pending = view.commit("easy"); assert.equal(jobs[0].duration,900);
+  await finish(); await pending; assert.equal(completions.length, 1); assert.equal(view.burst.hidden, true);
 });
 for (const trace of fixtures.traces) test(trace.name, () => {
   let direction = null;
@@ -93,8 +120,8 @@ for (const trace of fixtures.traces) test(trace.name, () => {
     assert.equal(direction, expected);
   }
 });
-test("commit threshold scales within thumb-sized bounds", () => {
-  for (const [width, expected] of fixtures.thresholds) assert.equal(feedbackThreshold(width), expected);
+test("commit threshold matches the preview's screen-relative displacement", () => {
+  for (const [width, expected] of fixtures.thresholds) assert.ok(Math.abs(feedbackThreshold(width) - expected) < 1e-8);
   assert.equal(feedbackDistance(-90, 3, "x"), 90);
   assert.equal(feedbackDistance(90, 3, "x"), -90);
 });

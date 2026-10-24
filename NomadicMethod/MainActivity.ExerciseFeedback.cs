@@ -25,6 +25,8 @@ public partial class MainActivity
     private FrameLayout _feedbackBurst = null!;
     private View _feedbackBurstWash = null!;
     private TextView _feedbackBurstEmoji = null!;
+    private StampMarksView _feedbackStampMarks = null!;
+    private bool _feedbackDeparting;
     private Android.Animation.ValueAnimator? _feedbackBurstAnimator;
     private Android.Animation.ValueAnimator? _feedbackNudgeAnimator;
     private bool FeedbackReducedMotion => OperatingSystem.IsAndroidVersionAtLeast(26) &&
@@ -57,7 +59,7 @@ public partial class MainActivity
             var hint = new TextView(this) { Text = ExerciseFeedbackPolicy.Symbol(response),
                 Gravity = GravityFlags.Center, Alpha = 0,
                 ImportantForAccessibility = ImportantForAccessibility.No };
-            hint.SetTextSize(Android.Util.ComplexUnitType.Dip, 256);
+            hint.SetTextSize(Android.Util.ComplexUnitType.Dip, 248);
             hint.SetIncludeFontPadding(false);
             hint.SetTextColor(new Color(GetColor(Resource.Color.primary_text)));
             hint.SetPadding(0, 0, 0, 0);
@@ -67,9 +69,8 @@ public partial class MainActivity
                 ExerciseOutcome.TooEasy => GravityFlags.Top | GravityFlags.CenterHorizontal,
                 _ => GravityFlags.Bottom | GravityFlags.CenterHorizontal,
             };
-            var layout = new FrameLayout.LayoutParams(DpInt(320), DpInt(320), gravity);
-            layout.SetMargins(-DpInt(108), -DpInt(108), -DpInt(108), -DpInt(108));
-            _exerciseMediaArea.AddView(hint, layout);
+            var layout = new FrameLayout.LayoutParams(DpInt(300), DpInt(300), GravityFlags.Center);
+            ((FrameLayout)_workoutScreen).AddView(hint, layout);
             _feedbackHints.Add(response, hint);
         }
         _feedbackFooter = new LinearLayout(this) { Orientation = Orientation.Horizontal,
@@ -93,13 +94,16 @@ public partial class MainActivity
         _feedbackBurst = new FrameLayout(this) { Visibility = ViewStates.Gone,
             Clickable = true, Elevation = Dp(100), ImportantForAccessibility = ImportantForAccessibility.NoHideDescendants };
         _feedbackBurstWash = new View(this);
-        _feedbackBurstWash.SetBackgroundColor(new Color(GetColor(Resource.Color.screen_background)));
+        _feedbackBurstWash.SetBackgroundColor(Color.Rgb(211, 239, 100));
         _feedbackBurst.AddView(_feedbackBurstWash, new FrameLayout.LayoutParams(-1, -1));
         _feedbackBurstEmoji = new TextView(this) { Gravity = GravityFlags.Center };
-        _feedbackBurstEmoji.SetTextSize(Android.Util.ComplexUnitType.Dip, 256);
+        _feedbackBurstEmoji.SetTextSize(Android.Util.ComplexUnitType.Dip, 248);
         _feedbackBurstEmoji.SetIncludeFontPadding(false);
-        _feedbackBurst.AddView(_feedbackBurstEmoji, new FrameLayout.LayoutParams(DpInt(320), DpInt(320), GravityFlags.Center));
-        ((FrameLayout)_workoutScreen).AddView(_feedbackBurst, new FrameLayout.LayoutParams(-1, -1));
+        _feedbackBurstEmoji.SetTextColor(new Color(GetColor(Resource.Color.primary_text)));
+        _feedbackStampMarks = new StampMarksView(this);
+        _feedbackBurst.AddView(_feedbackStampMarks, new FrameLayout.LayoutParams(-1, -1));
+        _feedbackBurst.AddView(_feedbackBurstEmoji, new FrameLayout.LayoutParams(DpInt(300), DpInt(300), GravityFlags.Center));
+        FindRequiredView<FrameLayout>(Resource.Id.app_root).AddView(_feedbackBurst, new FrameLayout.LayoutParams(-1, -1));
     }
 
     private void ShowExerciseFeedback(bool enabled)
@@ -191,7 +195,7 @@ public partial class MainActivity
             _feedbackNudgeAnimator?.Cancel();
             _feedbackSheet.Animate()?.Cancel();
             _feedbackPointer = e.GetPointerId(0);
-            _feedbackX = _feedbackSheet.TranslationX; _feedbackY = _feedbackSheet.TranslationY;
+            _feedbackX = _feedbackMotionX / .85f; _feedbackY = _feedbackMotionY / .85f;
             _feedbackStartX = e.RawX - _feedbackX; _feedbackStartY = e.RawY - _feedbackY;
             _feedbackDirection = null; _feedbackMultitouch = false;
             HoldFeedbackClock(true);
@@ -218,11 +222,10 @@ public partial class MainActivity
             {
                 _feedbackDirection = ExerciseFeedbackPolicy.Direction(_feedbackX / Dp(1),
                     _feedbackY / Dp(1), _feedbackDirection);
-                _feedbackSheet.TranslationX = _feedbackX;
-                _feedbackSheet.TranslationY = _feedbackY;
-                _feedbackSheet.Rotation = FeedbackReducedMotion ? 0 : Math.Clamp(_feedbackX / Dp(45), -7, 7);
+                SetFeedbackSurface(_feedbackX * .85f, _feedbackY * .85f, 1,
+                    FeedbackReducedMotion ? 0 : Math.Clamp(_feedbackX / _workoutScreen.Width * 8, -8, 8));
                 double progress = ExerciseFeedbackPolicy.Distance(_feedbackX / Dp(1), _feedbackY / Dp(1), _feedbackDirection)
-                    / ExerciseFeedbackPolicy.Threshold(_exerciseMediaCard.Width / Dp(1));
+                    / ExerciseFeedbackPolicy.Threshold(_workoutScreen.Width / Dp(1));
                 PreviewFeedback(_feedbackDirection, progress);
                 if (e.ActionMasked == MotionEventActions.Up && progress >= 1 && _feedbackDirection is { } choice)
                     ChooseExerciseFeedback(choice);
@@ -235,16 +238,19 @@ public partial class MainActivity
     {
         var visual = ExerciseFeedbackPolicy.Visual(FeedbackReducedMotion ? 0 : progress,
             Math.Min(_workoutScreen.Width, _workoutScreen.Height) / Dp(1));
-        int[] area = new int[2], screen = new int[2];
-        _exerciseMediaArea.GetLocationOnScreen(area); _workoutScreen.GetLocationOnScreen(screen);
         foreach (var (response, hint) in _feedbackHints)
         {
             bool active = response == direction;
-            hint.Alpha = direction is null ? 0 : active ? 1 : (float)visual.Others;
+            hint.Alpha = direction is null ? 0 : active
+                ? (float)Math.Clamp(progress * ExerciseFeedbackPolicy.Threshold(_workoutScreen.Width / Dp(1)) / 22, 0, 1)
+                : (float)visual.Others;
             hint.TranslationZ = active ? Dp(16) : 0;
-            hint.ScaleX = hint.ScaleY = active ? (float)visual.Size / 256 : .25f;
-            hint.TranslationX = active ? (screen[0] + _workoutScreen.Width / 2f - area[0] - hint.Left - hint.Width / 2f) * (float)visual.Travel : 0;
-            hint.TranslationY = active ? (screen[1] + _workoutScreen.Height / 2f - area[1] - hint.Top - hint.Height / 2f) * (float)visual.Travel : 0;
+            hint.ScaleX = hint.ScaleY = active ? (float)visual.Size / 248 : .2f;
+            hint.Rotation = active ? -9 * (float)Math.Clamp(progress, 0, 1) : 0;
+            hint.TranslationX = response is ExerciseOutcome.X or ExerciseOutcome.Tick
+                ? (response == ExerciseOutcome.X ? -1 : 1) * _workoutScreen.Width * .32f * (1 - (float)visual.Travel) : 0;
+            hint.TranslationY = response is ExerciseOutcome.TooEasy or ExerciseOutcome.TooHard
+                ? (response == ExerciseOutcome.TooEasy ? -1 : 1) * _workoutScreen.Height * .25f * (1 - (float)visual.Travel) : 0;
         }
     }
 
@@ -253,7 +259,7 @@ public partial class MainActivity
         _feedbackPointer = -1; _feedbackDirection = null;
         PreviewFeedback(null, 0);
         foreach (var hint in _feedbackHints.Values) { hint.Animate()?.Cancel(); hint.Alpha = 0; }
-        ResetFeedbackPose(animate);
+        if (!_feedbackSettling) ResetFeedbackPose(animate);
         HoldFeedbackClock(false);
     }
 
@@ -306,69 +312,169 @@ public partial class MainActivity
         ChooseExerciseFeedback(ExerciseOutcome.X, automatic: true);
     }
 
+    private float _feedbackMotionX, _feedbackMotionY;
+
+    private void SetFeedbackSurface(float x, float y, float scale = 1, float rotation = 0, float alpha = 1)
+    {
+        _feedbackMotionX = x; _feedbackMotionY = y;
+        var screen = (FrameLayout)_workoutScreen;
+        for (int i = 0; i < screen.ChildCount; i++)
+        {
+            View child = screen.GetChildAt(i)!;
+            if (_feedbackHints.Values.Any(hint => hint == child)) continue;
+            child.TranslationX = x; child.TranslationY = y;
+            child.ScaleX = child.ScaleY = scale; child.Rotation = rotation; child.Alpha = alpha;
+        }
+    }
+
     private void AnimateFeedbackSelection(ExerciseOutcome response, bool automatic = false)
     {
         if (_feedbackSettling || !_restActive || !_activityResumed) return;
         _feedbackNudgeAnimator?.Cancel();
         _feedbackSettling = true;
-        int epoch = _feedbackEpoch;
         _feedbackFooter.Alpha = 0;
-        int[] hintPosition = new int[2], screenPosition = new int[2];
-        TextView hint = _feedbackHints[response];
-        _exerciseMediaArea.GetLocationOnScreen(hintPosition); _workoutScreen.GetLocationOnScreen(screenPosition);
-        float dx = hintPosition[0] + hint.Left + hint.TranslationX + hint.Width / 2f - screenPosition[0] - _workoutScreen.Width / 2f;
-        float dy = hintPosition[1] + hint.Top + hint.TranslationY + hint.Height / 2f - screenPosition[1] - _workoutScreen.Height / 2f;
-        float startScale = hint.Alpha > 0 ? hint.ScaleX : .25f;
-        foreach (var target in _feedbackHints.Values) { target.Animate()?.Cancel(); target.Alpha = 0; }
-        _feedbackBurstEmoji.Text = ExerciseFeedbackPolicy.Symbol(response);
-        _feedbackBurstEmoji.Alpha = 1;
-        _feedbackBurstEmoji.TranslationX = dx; _feedbackBurstEmoji.TranslationY = dy;
-        _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = startScale;
+        _feedbackBurst.Alpha = 1;
         _feedbackBurstWash.Alpha = 0;
+        _feedbackStampMarks.Update(default);
+        _feedbackBurstEmoji.Alpha = 0;
         _feedbackBurst.Visibility = ViewStates.Visible;
-        if (!FeedbackReducedMotion)
-        {
-            if (automatic)
+        bool reduced = FeedbackReducedMotion;
+        int lead = automatic && !reduced ? ExerciseFeedbackPolicy.AutomaticMilliseconds : 0;
+        if (lead > 0) _restCountdownText.Text = "0 seconds to meh";
+        int duration = reduced ? ExerciseFeedbackPolicy.ReducedMilliseconds : ExerciseFeedbackPolicy.StampMilliseconds;
+        float x = _feedbackMotionX, y = _feedbackMotionY;
+        float rotation = Math.Clamp(_feedbackX / _workoutScreen.Width * 8, -8, 8);
+        float initialX = 0, initialY = 0, initialScale = 1.04f;
+        bool captured = false;
+        _feedbackBurstEmoji.Text = ExerciseFeedbackPolicy.Symbol(response);
+        RunFeedbackAnimation(lead + duration, t => {
+            if (t < lead)
             {
-                _feedbackSheet.Animate()?.TranslationX(-Dp(144)).Rotation(-3).SetDuration(160).Start();
-                _feedbackSheet.PostDelayed(() => { if (epoch == _feedbackEpoch) ResetFeedbackPose(true); }, 160);
+                _feedbackX = Dp((float)ExerciseFeedbackPolicy.AutomaticMehX(t, _workoutScreen.Width / Dp(1)));
+                x = _feedbackX * .85f; y = 0;
+                rotation = Math.Clamp(_feedbackX / _workoutScreen.Width * 8, -8, 8);
+                SetFeedbackSurface(x, y, 1, rotation);
+                PreviewFeedback(ExerciseOutcome.X, Math.Abs(_feedbackX) / Dp(1) /
+                    ExerciseFeedbackPolicy.Threshold(_workoutScreen.Width / Dp(1)));
+                return;
             }
-            else ResetFeedbackPose(true);
-            float fullScale = Math.Min(_workoutScreen.Width, _workoutScreen.Height) * .9f / _feedbackBurstEmoji.TextSize;
-            _feedbackBurstAnimator = Android.Animation.ValueAnimator.OfFloat(0, 1)
-                ?? throw new InvalidOperationException("Could not create feedback animation.");
-            _feedbackBurstAnimator.SetDuration(640);
-            _feedbackBurstAnimator.SetInterpolator(new Android.Views.Animations.LinearInterpolator());
-            _feedbackBurstAnimator.Update += (_, args) => {
-                float t = (float)args.Animation.AnimatedValue!;
-                static float Ease(float value) => 1 - MathF.Pow(1 - Math.Clamp(value, 0, 1), 3);
-                float travel = Ease(t / .45f);
-                _feedbackBurstEmoji.TranslationX = dx * (1 - travel);
-                _feedbackBurstEmoji.TranslationY = dy * (1 - travel);
-                float size = t < .45f ? startScale + (fullScale * 1.06f - startScale) * travel
-                    : t < .67f ? fullScale * (1.06f - .12f * Ease((t - .45f) / .22f))
-                    : fullScale * (.94f + .06f * Ease((t - .67f) / .16f));
-                _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = size;
-                _feedbackBurstEmoji.Alpha = t < .45f ? 1 : t < .67f ? 1 - .18f * Ease((t - .45f) / .22f)
-                    : .82f + .18f * Ease((t - .67f) / .16f);
-                _feedbackBurstWash.Alpha = Math.Min(1, t / .5f);
-            };
-            _feedbackBurstAnimator.Start();
-        }
-        _feedbackSheet.PostDelayed(() => {
-            if (epoch != _feedbackEpoch || !_activityResumed || !_restActive) return;
+            if (!captured)
+            {
+                captured = true;
+                TextView hint = _feedbackHints[response];
+                initialX = hint.TranslationX / Dp(1); initialY = hint.TranslationY / Dp(1);
+                initialScale = hint.Alpha > 0 ? hint.ScaleX : .2f;
+                PreviewFeedback(null, 0);
+                _restCountdownText.Alpha = _restPlaybackAction.Alpha = 0;
+            }
+            var frame = ExerciseFeedbackPolicy.Stamp(reduced ? ExerciseFeedbackPolicy.StampMilliseconds : t - lead,
+                Math.Min(_workoutScreen.Width, _workoutScreen.Height) / Dp(1), initialX, initialY, initialScale);
+            _feedbackBurstEmoji.Alpha = 1;
+            _feedbackBurstEmoji.TranslationX = Dp((float)frame.X);
+            _feedbackBurstEmoji.TranslationY = Dp((float)frame.Y);
+            _feedbackBurstEmoji.ScaleX = (float)frame.Sx; _feedbackBurstEmoji.ScaleY = (float)frame.Sy;
+            _feedbackBurstEmoji.Rotation = (float)frame.Rotation;
+            _feedbackBurstWash.Alpha = (float)frame.Wash;
+            _feedbackStampMarks.Update(frame);
+            SetFeedbackSurface(reduced ? 0 : x * (1 - (float)frame.Settled),
+                reduced ? 0 : y * (1 - (float)frame.Settled) + Dp((float)frame.Shake),
+                reduced ? 1 : (float)frame.SheetScale, reduced ? 0 : rotation * (1 - (float)frame.Settled), .8f);
+        }, () => {
             _feedbackSettling = _feedbackExpiring = false;
+            _feedbackDeparting = true;
             CompleteRest();
-        }, FeedbackReducedMotion ? 1 : 640);
+            _feedbackDeparting = false;
+            View destination = _state.WorkoutCompleted ? _congratulationsScreen : _workoutScreen;
+            destination.Animate()?.Cancel();
+            int reveal = reduced ? ExerciseFeedbackPolicy.ReducedRevealMilliseconds : ExerciseFeedbackPolicy.RevealMilliseconds;
+            RunFeedbackAnimation(reveal, t => {
+                float p = 1 - MathF.Pow(1 - Math.Clamp((float)t / reveal, 0, 1), 3);
+                _feedbackBurst.Alpha = 1 - p; destination.Alpha = p;
+                destination.TranslationY = reduced ? 0 : Dp(38) * (1 - p);
+            }, () => {
+                _feedbackBurst.Visibility = ViewStates.Gone;
+                destination.Alpha = 1; destination.TranslationY = 0;
+            });
+        });
+    }
+
+    private void RunFeedbackAnimation(int duration, System.Action<double> draw, System.Action completed)
+    {
+        int epoch = _feedbackEpoch;
+        _feedbackBurstAnimator?.Dispose();
+        _feedbackBurstAnimator = null;
+        if (FeedbackReducedMotion)
+        {
+            // Android's animator duration scale of zero also removes delays.
+            // Keep the readable confirmation hold on a real clock instead.
+            long started = SystemClock.UptimeMillis();
+            void Step()
+            {
+                if (epoch != _feedbackEpoch || !_activityResumed) return;
+                double elapsed = Math.Min(duration, SystemClock.UptimeMillis() - started);
+                draw(elapsed);
+                if (elapsed < duration) _feedbackBurst.PostDelayed(Step, 16);
+                else completed();
+            }
+            Step();
+            return;
+        }
+        _feedbackBurstAnimator = Android.Animation.ValueAnimator.OfFloat(0, duration)!;
+        _feedbackBurstAnimator.SetDuration(duration);
+        _feedbackBurstAnimator.SetInterpolator(new Android.Views.Animations.LinearInterpolator());
+        _feedbackBurstAnimator.Update += (_, args) => {
+            if (epoch == _feedbackEpoch && _activityResumed) draw((float)args.Animation.AnimatedValue!);
+        };
+        _feedbackBurstAnimator.AnimationEnd += (_, _) => {
+            if (epoch == _feedbackEpoch && _activityResumed) completed();
+        };
+        draw(0); _feedbackBurstAnimator.Start();
     }
 
     private void ResetFeedbackPose(bool animate)
     {
         _feedbackSheet.Animate()?.Cancel();
+        _feedbackNudgeAnimator?.Cancel();
         if (animate && !FeedbackReducedMotion)
-            _feedbackSheet.Animate()?.TranslationX(0).TranslationY(0).Rotation(0)
-                .SetDuration(260).SetInterpolator(new Android.Views.Animations.DecelerateInterpolator(1.8f)).Start();
-        else { _feedbackSheet.TranslationX = _feedbackSheet.TranslationY = _feedbackSheet.Rotation = 0; }
+        {
+            float x = _feedbackMotionX, y = _feedbackMotionY;
+            _feedbackNudgeAnimator?.Dispose();
+            _feedbackNudgeAnimator = Android.Animation.ValueAnimator.OfFloat(0, 1)!;
+            _feedbackNudgeAnimator.SetDuration(320);
+            _feedbackNudgeAnimator.Update += (_, e) => {
+                float p = 1 - MathF.Pow(1 - (float)e.Animation.AnimatedValue!, 3);
+                SetFeedbackSurface(x * (1 - p), y * (1 - p));
+            };
+            _feedbackNudgeAnimator.Start();
+        }
+        else SetFeedbackSurface(0, 0);
+    }
+
+    private sealed class StampMarksView(MainActivity owner) : View(owner)
+    {
+        private readonly Paint _paint = new(PaintFlags.AntiAlias);
+        private ExerciseFeedbackPolicy.StampPose _frame;
+        public void Update(ExerciseFeedbackPolicy.StampPose frame) { _frame = frame; Invalidate(); }
+        protected override void OnDraw(Canvas canvas)
+        {
+            base.OnDraw(canvas);
+            _paint.Color = new Color(owner.GetColor(Resource.Color.primary_text));
+            _paint.StrokeCap = Paint.Cap.Round;
+            _paint.StrokeWidth = owner.Dp(5);
+            _paint.Alpha = (int)(255 * _frame.Impact);
+            canvas.Save(); canvas.Translate(Width / 2f, Height / 2f);
+            canvas.Scale((float)_frame.ImpactScale, (float)_frame.ImpactScale);
+            foreach (float angle in new float[] {22,68,112,158,202,248,292,338})
+            {
+                canvas.Save(); canvas.Rotate(angle);
+                canvas.DrawLine(owner.Dp(144), 0, owner.Dp(168), 0, _paint); canvas.Restore();
+            }
+            canvas.Restore();
+            _paint.Alpha = (int)(255 * _frame.Receipt); _paint.StrokeWidth = owner.Dp(2);
+            float x = Width / 2f, y = Height / 2f + owner.Dp(169 + (float)(8 * (1 - _frame.Receipt)));
+            canvas.DrawLine(x - owner.Dp(8), y, x - owner.Dp(2), y + owner.Dp(6), _paint);
+            canvas.DrawLine(x - owner.Dp(2), y + owner.Dp(6), x + owner.Dp(10), y - owner.Dp(7), _paint);
+        }
     }
 
     private void ScheduleFeedbackHint(int epoch)
@@ -388,8 +494,7 @@ public partial class MainActivity
                     float pull = t < .38f ? 1 - MathF.Pow(1 - t / .38f, 3)
                         : t < .52f ? 1 : t < .84f ? 1 - 1.1f * (1 - MathF.Pow(1 - (t - .52f) / .32f, 3))
                         : -.1f * (1 - (t - .84f) / .16f);
-                    _feedbackSheet.TranslationX = -Dp(40) * pull;
-                    _feedbackSheet.Rotation = -1.8f * pull;
+                    SetFeedbackSurface(-Dp(40) * pull * .85f, 0, 1, -1.8f * pull);
                     _feedbackHints[ExerciseOutcome.X].Alpha = Math.Max(0, pull) * .8f;
                 };
                 _feedbackNudgeAnimator.Start();
@@ -404,8 +509,14 @@ public partial class MainActivity
         _feedbackScreenGesture = false;
         _feedbackNudgeAnimator?.Cancel(); _feedbackNudgeAnimator?.Dispose(); _feedbackNudgeAnimator = null;
         _feedbackSettling = false;
-        _feedbackBurstAnimator?.Cancel(); _feedbackBurstAnimator?.Dispose(); _feedbackBurstAnimator = null;
-        if (_feedbackBurst is not null) _feedbackBurst.Visibility = ViewStates.Gone;
+        if (!_feedbackDeparting)
+        {
+            _feedbackBurstAnimator?.Cancel(); _feedbackBurstAnimator?.Dispose(); _feedbackBurstAnimator = null;
+            if (_feedbackBurst is not null) _feedbackBurst.Visibility = ViewStates.Gone;
+        }
+        _restCountdownText.Alpha = _restPlaybackAction.Alpha = 1;
+        _workoutScreen.Alpha = _congratulationsScreen.Alpha = 1;
+        _workoutScreen.TranslationY = _congratulationsScreen.TranslationY = 0;
         if (_feedbackFooter is not null) _feedbackFooter.Alpha = 1;
         if (_feedbackHeld) HoldFeedbackClock(false, resume: false);
         _feedbackHeld = _feedbackResumeAfterHold = _feedbackExpiring = _feedbackEnabled = false;
