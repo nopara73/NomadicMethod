@@ -3030,7 +3030,10 @@ public partial class MainActivity : Activity
             _beginWorkoutButton.Enabled = true;
             _beginWorkoutButton.Alpha = 1f;
             Android.Util.Log.Error("NomadicMethod", $"Unable to start workout: {error}");
-            Toast.MakeText(this, Resource.String.workout_change_failed, ToastLength.Long)?.Show();
+            string message = error.Message.StartsWith(FitnessSelectionPolicy.UnavailableMessage, StringComparison.Ordinal)
+                ? FitnessSelectionPolicy.UnavailableMessage
+                : "Could not prepare this workout. Your progress is safe.";
+            ShowModifierFeedback(Resource.String.workout_unavailable, message);
         }
     }
 

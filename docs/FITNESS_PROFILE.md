@@ -20,17 +20,25 @@ Examples: easy at 2 and hard at 4 agree on 3. Love at 2 and love at 4 disagree, 
 
 These are provisional training-level estimates under the owner's feedback interpretation, not measured ability. In particular, the chosen whole-range rule deliberately maps a full-range self-resisted exercise marked easy to 5 and hard to 1; the app does not measure applied resistance.
 
-The canonical ratings asset remains `NomadicMethod/Assets/fitness_ratings.json`. No catalog ratings or selection rules change. Shared `fitness-difficulty-cases.json` fixtures verify both platforms' ranges, noncontiguous sets, conflicts, ties, endpoint saturation, unknowns, latest-response replacement and movement deduplication.
+The canonical ratings asset remains `NomadicMethod/Assets/fitness_ratings.json`. No catalog ratings change. Shared `fitness-difficulty-cases.json` fixtures verify both platforms' ranges, noncontiguous sets, conflicts, ties, endpoint saturation, unknowns, latest-response replacement and movement deduplication.
 
 ## Completion changes
 
 New workouts capture the same difficulty-derived profile at activation and freeze it after final feedback. The existing completion list compares fractional means to one decimal; it introduces no new assessment UI. Snapshots carry an evidence version so an old favourites-based baseline is never compared with a difficulty-derived value. A workout started before this change has no comparable baseline. Completed older snapshots remain stored, but their obsolete comparison is not displayed. Cold reopening retains all workout progress and frozen snapshots. Love can update the profile; meh alone cannot. Evidence version 2 prevents comparisons with either the old favourites baseline (version 0) or the previous singleton-only easy/hard baseline (version 1).
 
-## Selection remains unchanged
+## Exercise selection
 
-This release changes the displayed estimates only. The planner retains its existing favourites-based calculation, including precise strongest ratings, movement deduplication and mean rounding. It does not consume the new chart values. Keeps, scores, recovery, equipment restrictions, fresh-choice tiers and persisted unfinished selections retain their previous behaviour. The discovery order below still describes that separate favourites-based input.
+Selection now uses the same latest love/easy/hard evidence and exact best-fit level sets as the chart. Display rounding does not change membership. A movement qualifies when at least one known characteristic has a nonempty rated set entirely contained in that characteristic's best-fit set. For zone `[3,4]`, `[3]`, `[4]` and `[3,4]` qualify; `[2,3]` and `[4,5]` do not. Noncontiguous holes remain holes. Every distinct member of an atomic sequence must qualify; sides and aliases never create extra family draws.
 
-## Catalog diagnostics for the unchanged favourites-based planner
+Unknown axes cannot qualify an exercise. If the entire profile is unknown (including only full-range love), ordinary selection bootstraps feedback. Once any axis is known, empty/unrated cells cannot supply a match. There is no +1 priority, nearest-level fallback, hidden relaxation or automatic reset of the profile.
+
+Equipment, truthful anatomical coverage, complete sequences/durations, Light and recovery retain their existing constraints and priorities. Eligible loved movements keep repeat priority. A later easy/hard response removes the family's saved Keeps across slots without a dislike penalty or rewriting history; a later love can earn a Keep again. Meh retains its existing preference/refusal behavior and supplies no difficulty evidence.
+
+The filter applies to new lineups, shuffle replacements, balancing replacements and newly planned portions of duration/modifier edits. Saved unfinished selections, completed work and the current atomic selection retain the existing preservation guarantees. A chart update does not regenerate them. If no complete eligible lineup exists, preparation fails without saving its speculative state and both platforms show: “No complete workout fits your current training zone with these settings.” Users can change their existing settings; the app does not invent a workout or alter their feedback to unblock it.
+
+Shared eligibility fixtures cover exact containment, unknowns, empty cells, noncontiguous sets, any-characteristic matching and complete sequence membership. Planner tests cover favourite priority, family refusals, easy/hard Keep removal, Light/recovery, shuffle, no-solution behavior and unfinished-workout restoration. Canonical ratings remain read-only and the saved-state schema is unchanged.
+
+## Historical catalog diagnostics
 
 Revision 90 contains 906 records. It adds 11 reviewed physical movements and
 five stop-only reaction protocols; all 890 previous records and assessments are
@@ -100,55 +108,6 @@ The generated [coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md)
 separates usable spiderweb evidence from training-set coverage. The latter
 continues to meet five distinct movements in every one of the 50 cells.
 It does not authorize narrowing an honest range or manufacturing precise scores.
-## Discovery order
+## Candidate ordering
 
-Eligible saved Keeps take priority over discovering a new movement, including
-fresh hard work. Light still prioritizes complete demand-zero sequences; a
-recovering or phase-downvoted Keep retains its saved identity but does not get
-the ordinary fresh Keep preference. Restoring an unfinished workout, opening
-the chart or changing hearts does not regenerate its persisted selections.
-
-For new choices with usable profile evidence, exhaust these tiers in order:
-
-1. One level above any known, rounded user characteristic.
-2. The current level in any known characteristic.
-3. One level below, then two, three and four levels below.
-4. No comparable rating, then larger upward jumps (+2, +3, +4), as coverage fallbacks.
-
-An exercise belongs to its earliest matching tier, even if it matches several
-abilities. Ranges participate through their explicit members; noncontiguous
-sets never imply missing levels. Unknown user axes and empty rating cells do
-not count as level zero. Level 5 cannot generate a level-6 target. If the profile
-provides no comparison, ordinary planner priorities apply without a fitness
-preference. The planner’s separate favourites-based calculation and its exclusion of ambiguous ranges are
-unchanged. A supported range is a training option, not a claim that the app
-prescribes a particular resistance, cadence or more difficult execution.
-
-Refusing a movement allows +1 discovery to continue in any other ability. There
-is no retry cap. Shuffle excludes the entire SessionMovementId family for the
-rest of the active search, including aliases whose ratings would otherwise put
-them in another tier. Those exclusions survive cold reopen. Saved phase-local
-feedback also follows the family when ranking new choices: unrefused families
-precede refused ones, then lesser refusal depth precedes greater depth. Existing
-legacy negative scores remain evidence of refusal. This reads the existing
-feedback without inventing votes for aliases or rewriting scores, Keeps or
-history. A no-heart decision after performing a sequence updates feedback for
-future choices; it does not insert another performed block.
-
-Equipment, anatomical coverage and complete sequences that fit the duration
-remain prerequisites. Recovery outranks upward exploration. The exact lineup
-solver maximizes eligible Keeps and +1 opportunities before current/lower tiers,
-with saved-score and equipment preferences resolving remaining choices. No
-fitness tier is a compatibility ban: if completing the lineup requires an
-otherwise less-preferred movement, coverage remains possible. After every
-family has previously been refused, least-refused families can be considered
-again in a future search; current-search shuffle exclusions are never recycled.
-Muscle balancing cannot replace a selection with a worse fitness tier or a
-more-refused family. Completed and current atomic work remains protected during
-duration/modifier changes.
-
-Randomness only breaks ties: one uniform draw per movement family, then variant
-draws, reused throughout one solver operation. Sides, placements, aliases and
-repeated sets do not buy additional family draws. Canonical read-only ratings
-are shared by Android, web and the preparation worker. There is no new saved-state
-schema or assessment question. The axis inspector explains difficulty feedback; selection retains its separate favourites-based input.
+Within the eligible pool, the existing planner compares Light, contextual Keep preference, refusals, recovery, saved score, equipment and muscle coverage. Fitness is an eligibility rule rather than a scoring dimension. Randomness only breaks ties: one draw per movement family and variant draws within that family, reused throughout the solver. The same rating dependency reaches Android, web and the web preparation worker.

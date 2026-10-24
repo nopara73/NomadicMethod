@@ -17,8 +17,7 @@ public static class FitnessProfilePolicy
     public const int MaximumLevel = 5;
     public const int WebBoundaryLevel = 4;
 
-    // Preserve the unrounded mean in the profile; display and matching share
-    // explicit half-up rounding rather than platform-specific midpoint rules.
+    // Rounding is only for display. Selection uses the complete best-fit set.
     public static int RoundLevel(double level) => !double.IsFinite(level) || level <= 0
         ? 0 : (int)Math.Clamp(Math.Floor(level + 0.5), 1, MaximumLevel);
 
@@ -86,6 +85,27 @@ public static class FitnessProfilePolicy
         WorkoutState state,
         IReadOnlyDictionary<int, int[][]> ratings)
     {
+        var latest = LatestMovementDecisions(exercises, state);
+
+        var contributions = Dimensions.Select(_ => new List<FitnessEvidence>()).ToArray();
+        foreach (var (movementId, (exercise, decision)) in latest.OrderBy(entry => entry.Key))
+        {
+            if (!ratings.TryGetValue(exercise.Id, out int[][]? levels)) continue;
+            int strongest = levels.SelectMany(set => set).DefaultIfEmpty(0).Max();
+            for (int dimension = 0; dimension < Dimensions.Length; dimension++)
+            {
+                int[] set = levels[dimension];
+                if (set.Length == 0 || set[^1] != strongest) continue;
+                contributions[dimension].Add(new(movementId, exercise.Id, exercise.Name,
+                    [.. set], decision.Outcome, SupportedLevels(set, decision.Outcome)));
+            }
+        }
+        return contributions.Select(Fit).ToArray();
+    }
+
+    public static IReadOnlyDictionary<int, (Exercise Exercise, WorkoutDecisionLog Decision)> LatestMovementDecisions(
+        IReadOnlyList<Exercise> exercises, WorkoutState state)
+    {
         var byId = exercises.ToDictionary(exercise => exercise.Id);
         var latest = new Dictionary<int, (Exercise Exercise, WorkoutDecisionLog Decision)>();
         IEnumerable<WorkoutSessionLog> sessions = state.WorkoutHistory;
@@ -102,20 +122,7 @@ public static class FitnessProfilePolicy
             latest[movementId] = (exercise, decision);
         }
 
-        var contributions = Dimensions.Select(_ => new List<FitnessEvidence>()).ToArray();
-        foreach (var (movementId, (exercise, decision)) in latest.OrderBy(entry => entry.Key))
-        {
-            if (!ratings.TryGetValue(exercise.Id, out int[][]? levels)) continue;
-            int strongest = levels.SelectMany(set => set).DefaultIfEmpty(0).Max();
-            for (int dimension = 0; dimension < Dimensions.Length; dimension++)
-            {
-                int[] set = levels[dimension];
-                if (set.Length == 0 || set[^1] != strongest) continue;
-                contributions[dimension].Add(new(movementId, exercise.Id, exercise.Name,
-                    [.. set], decision.Outcome, SupportedLevels(set, decision.Outcome)));
-            }
-        }
-        return contributions.Select(Fit).ToArray();
+        return latest;
     }
 
     private static int[] SupportedLevels(int[] rated, ExerciseOutcome outcome) => outcome switch

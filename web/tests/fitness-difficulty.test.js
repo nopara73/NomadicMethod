@@ -34,7 +34,7 @@ test("level labels retain noncontiguous gaps", () => {
   assert.equal(formatFitnessLevels([5]), "5");
 });
 
-test("difficulty evidence changes the display without changing planner tiers or fresh selections", () => {
+test("difficulty evidence drives selection eligibility while legacy favourites remain historical", () => {
   const catalog = read("../../NomadicMethod/Assets/exercises.json");
   const ratings = parseFitnessRatings(read("../../NomadicMethod/Assets/fitness_ratings.json"));
   const exercise = catalog.find(e => ratings.get(e.id).some(set => set.length === 1 && set[0] === 4) &&
@@ -49,7 +49,5 @@ test("difficulty evidence changes the display without changing planner tiers or 
   assert.notDeepEqual(calculateFitnessProfile(catalog, first, ratings), calculateFitnessProfile(catalog, second, ratings));
   assert.deepEqual(calculateFavouriteFitnessProfile(catalog, first, ratings), calculateFavouriteFitnessProfile(catalog, second, ratings));
   const sessions = [first, second].map(state => new WorkoutSession(catalog, state, () => 0.42, () => 100000, ratings));
-  assert.deepEqual(sessions[0].getFitnessTiers(), sessions[1].getFitnessTiers());
-  sessions.forEach(session => session.startWorkout(3));
-  assert.deepEqual(sessions[0].state.selectedExerciseIds, sessions[1].state.selectedExerciseIds);
+  assert.notDeepEqual(sessions[0].getFitnessEligibility(), sessions[1].getFitnessEligibility());
 });

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import test from "node:test";
-import { roundFitnessLevel, fitnessSelectionTier, fitnessSequenceTier, orderFitnessCandidates,
+import { roundFitnessLevel, isFitnessEligible, isFitnessSequenceEligible, fitnessZones, inspectFitnessProfile, orderFitnessCandidates,
   calculateFavouriteFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState, getResolution,
   WORKOUT_MODIFIERS as M } from "../workout.js";
@@ -18,7 +18,7 @@ const planningCases = JSON.parse(read("./fixtures/workout-planning-cases.json"))
 for (const entry of fixture.cases) {
   test("fitness selection: " + entry.name, () => {
     const before = JSON.stringify(entry);
-    assert.equal(fitnessSelectionTier(entry.levels, entry.profile.map(roundFitnessLevel)), entry.tier);
+    assert.equal(isFitnessEligible(entry.levels, entry.zones), entry.eligible);
     assert.equal(JSON.stringify(entry), before);
   });
 }
@@ -38,10 +38,11 @@ function seededRandom(seed) {
   return () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
 }
 
-test("unrated sequence members do not mask known training levels", () => {
-  assert.equal(fitnessSequenceTier([null, [[4]]], [2]), 7);
-  assert.equal(fitnessSequenceTier([[[2]], [[3]]], [2]), 0);
-  assert.equal(fitnessSequenceTier([null, [[]]], [2]), 6);
+test("every sequence member must qualify, with bootstrap only for wholly unknown profiles", () => {
+  assert.equal(isFitnessSequenceEligible([null, [[3]]], [[3]]), false);
+  assert.equal(isFitnessSequenceEligible([[[3]], [[3,4]]], [[3,4]]), true);
+  assert.equal(isFitnessSequenceEligible([[[3]], [[2,3]]], [[3,4]]), false);
+  assert.equal(isFitnessSequenceEligible([null, [[]]], [[]]), true);
 });
 
 test("equal-tier families have equal chances regardless of aliases", () => {
@@ -75,11 +76,14 @@ function discoveryFixture(higherHard = false) {
   const ratings = new Map(fixture.discovery.exercises.map(row => [row.id, row.levels]));
   const state = createDefaultState();
   state.keptExerciseRootIdsBySelectionGroupId[groups[0].id] = [...fixture.discovery.kept];
+  state.workoutHistory = [{sessionId:1, status:"Interrupted", blocks:[], decisions:[{
+    rootExerciseId:1, outcome:"tick", decidedAtUnixMilliseconds:1,
+  }]}];
   const session = new WorkoutSession(exercises, state, () => 0, now, ratings);
   return { exercises, ratings, session };
 }
 
-test("hearts, every +1 ability, current, lower, then fallbacks without family repeats after cold reopen", () => {
+test("eligible loves first, then eligible new movements only, including after cold reopen", () => {
   let {exercises, ratings, session} = discoveryFixture();
   session.startWorkout(3, 0);
   const seen = [];
@@ -96,8 +100,8 @@ test("hearts, every +1 ability, current, lower, then fallbacks without family re
     assert.deepEqual(session.state.selectedExerciseIds, selected);
   } while (true);
   assert.deepEqual(seen, fixture.discovery.expectedFamilyOrder);
-  assert.ok(session.state.nextWorkoutExcludedExerciseIds.includes(6));
-  assert.equal(session.state.exerciseScoreAdjustmentsByPhase.Warmup[6], undefined, "no invented alias vote");
+  assert.ok(session.state.nextWorkoutExcludedExerciseIds.includes(1));
+  assert.equal(session.state.exerciseScoreAdjustmentsByPhase.Warmup[3], undefined, "no invented alias vote");
   assert.equal(session.getActiveGroups().length, 3);
 });
 
@@ -116,8 +120,10 @@ test("historical refusals apply to aliases without rewriting scores or hearts", 
 });
 
 for (const [light, recovering, expected] of [[false,false,3], [true,false,7], [false,true,7]]) {
-  test(`upward exploration respects Light ${light} and recovery ${recovering}`, () => {
+  test(`zone selection respects Light ${light} and recovery ${recovering}`, () => {
     const {session, ratings} = discoveryFixture(true);
+    for (const id of [3,4,5]) ratings.set(id, structuredClone(ratings.get(1)));
+    session.state.scores[3] = 1000;
     const groups = getResolution(3).groups;
     session.state.keptExerciseRootIdsBySelectionGroupId = {[groups[1].id]: [20]};
     ratings.set(20, ratings.get(1));
@@ -172,7 +178,7 @@ for (const entry of planningCases) {
 
 for (const minutes of [3,5,7,10,15,45]) {
   for (const light of [false, true]) {
-    test("tiered planning and restoration preserve " + minutes + " minutes, Light " + light, () => {
+    test("bootstrap planning and restoration preserve " + minutes + " minutes, Light " + light, () => {
       const state = createDefaultState();
       const session = new WorkoutSession(catalog, state, seededRandom(minutes), now, ratings);
       session.initialize();
@@ -212,3 +218,58 @@ for (const minutes of [3,5,7,10,15,45]) {
     });
   }
 }
+
+test("a coverage hole fails explicitly instead of admitting an out-of-zone or unrated movement", () => {
+  const {session, ratings} = discoveryFixture();
+  ratings.set(30, Array.from({length:10}, () => []));
+  assert.throws(() => session.startWorkout(3, 0), /No complete workout fits your current training zone/);
+});
+
+test("known zones apply to new work in duration and modifier edits while current work stays fixed", () => {
+  const {session} = discoveryFixture();
+  session.startWorkout(3, 0);
+  const current = session.getNextGroup(), id = session.getSelectedExercise(current).id;
+  session.pauseMovement(current, 27000, true);
+  session.resizeActiveWorkout(5);
+  session.reconfigureActiveWorkout(M.Wall, session.getNextGroup().id);
+  assert.equal(session.getSelectedExercise(session.getNextGroup()).id, id);
+  const eligible = session.getFitnessEligibility();
+  assert.ok(session.getActiveGroups().every(group => eligible.get(session.getSelectedExercise(group).id)));
+  assert.equal(session.getActiveGroups().length, 5);
+});
+
+test("easy or hard removes favourite priority across aliases without dislike scores", () => {
+  for (const outcome of ["easy", "hard"]) {
+    const {session, ratings} = discoveryFixture();
+    // Another axis still qualifies; removal cannot be credited to the filter alone.
+    session.state.workoutHistory[0].decisions.push({rootExerciseId:6, outcome,
+      decidedAtUnixMilliseconds:2});
+    session.state.keptExerciseRootIdsBySelectionGroupId[getResolution(3).groups[0].id].push(3,6);
+    const before = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+    session.removeDifficultyKeeps();
+    assert.deepEqual(session.state.keptExerciseRootIdsBySelectionGroupId[getResolution(3).groups[0].id], [1,2]);
+    assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, before);
+    session.state.workoutHistory[0].decisions.push({rootExerciseId:3, outcome:"tick", decidedAtUnixMilliseconds:3});
+    session.state.keptExerciseRootIdsBySelectionGroupId[getResolution(3).groups[0].id].push(3);
+    session.removeDifficultyKeeps();
+    assert.ok(session.state.keptExerciseRootIdsBySelectionGroupId[getResolution(3).groups[0].id].includes(3));
+  }
+});
+
+test("new difficulty evidence does not regenerate an unfinished lineup or leak through shuffle", () => {
+  const {session, exercises, ratings} = discoveryFixture();
+  session.startWorkout(3, 0);
+  const selected = structuredClone(session.state.selectedExerciseIds);
+  // Simulate a newer response changing the zone while preserving the unfinished plan.
+  session.state.activeWorkoutSession.decisions.push({rootExerciseId:1, outcome:"easy", decidedAtUnixMilliseconds:2});
+  session.state.activeWorkoutSession.decisions.push({rootExerciseId:2, outcome:"easy", decidedAtUnixMilliseconds:3});
+  const restored = new WorkoutSession(exercises, structuredClone(session.state), () => 0, now, ratings);
+  restored.restoreAfterReopen();
+  assert.deepEqual(restored.state.selectedExerciseIds, selected);
+  const eligible = restored.getFitnessEligibility();
+  const next = restored.getNextGroup();
+  if (restored.canShuffleNextExercise(next)) {
+    restored.shuffleNextExercise(next);
+    assert.equal(eligible.get(restored.getSelectedExercise(next).id), true);
+  }
+});

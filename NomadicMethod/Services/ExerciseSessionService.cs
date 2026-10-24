@@ -326,7 +326,8 @@ public sealed partial class ExerciseSessionService
             // Re-evaluate that plan from its already persisted session history
             // so installing the update on day four takes effect immediately.
             EnableLightModeForExistingActiveWorkout(state);
-            CarrySlotPreferencesForward(state);
+            RemoveDifficultyKeeps(state);
+        CarrySlotPreferencesForward(state);
         }
         state.ActiveWorkoutIsLightDay = state.ActiveWorkoutModifiers
             .HasFlag(WorkoutModifiers.Light);
@@ -493,6 +494,7 @@ public sealed partial class ExerciseSessionService
         // Shuffle exclusions are scoped to the workout in which the shuffle
         // happened. Persistent rejection feedback is stored by workout phase.
         state.NextWorkoutExcludedExerciseIds.Clear();
+        RemoveDifficultyKeeps(state);
         CarrySlotPreferencesForward(state);
         RepairActiveLineup(state, preserveCurrentSelections:
             !modifiers.HasFlag(WorkoutModifiers.Light));
@@ -1394,6 +1396,7 @@ public sealed partial class ExerciseSessionService
             exercisePhase,
             decidedAtUnixMilliseconds);
         state.Outcomes[group.Id] = outcome;
+        if (outcome is ExerciseOutcome.TooEasy or ExerciseOutcome.TooHard) RemoveDifficultyKeeps(state);
         if (state.ActiveModifierProtectedSelectionGroupId == group.SelectionKey &&
             GetActiveGroups(state)
                 .Where(activeGroup =>
@@ -1543,6 +1546,17 @@ public sealed partial class ExerciseSessionService
         state.PendingRestMediaPositionMilliseconds = 0;
     }
 
+    private void RemoveDifficultyKeeps(WorkoutState state)
+    {
+        HashSet<int> declined = FitnessProfilePolicy.LatestMovementDecisions(_catalogExercises, state)
+            .Where(entry => entry.Value.Decision.Outcome is ExerciseOutcome.TooEasy or ExerciseOutcome.TooHard)
+            .Select(entry => entry.Key).ToHashSet();
+        foreach (var roots in state.KeptExerciseRootIdsBySelectionGroupId.Values)
+            roots.RemoveWhere(id => _exercisesById.TryGetValue(id, out Exercise? exercise) &&
+                declined.Contains(WorkoutModifierPolicy.GetSessionMovementId(exercise)));
+        SyncLegacyKeptExerciseIds(state);
+    }
+
     private void ApplyRecordedWorkoutKeeps(WorkoutState state)
     {
         foreach (IGrouping<string, WorkoutGroup> rounds in GetActiveGroups(state)
@@ -1556,7 +1570,7 @@ public sealed partial class ExerciseSessionService
             if (_exercisesById.TryGetValue(rootId, out Exercise? root))
                 KeepSequenceInSlot(state, rounds.Key, root);
         }
-        SyncLegacyKeptExerciseIds(state);
+        RemoveDifficultyKeeps(state);
     }
 
     private void FinalizeCurrentWorkout(WorkoutState state)
@@ -1685,8 +1699,10 @@ public sealed partial class ExerciseSessionService
                 _exercisesById[exerciseId]))
             .Append(WorkoutModifierPolicy.GetSessionMovementId(currentExercise))
             .ToHashSet();
+        Dictionary<int, bool> fitnessEligibility = GetFitnessEligibility(state);
         var candidates = new List<ShuffleCandidate>();
         foreach (Exercise exercise in _exercises.Where(exercise =>
+                     fitnessEligibility.GetValueOrDefault(exercise.Id) &&
                      exercise.Id != currentExerciseId &&
                      !state.NextWorkoutExcludedExerciseIds.Contains(exercise.Id) &&
                      !unavailableExerciseIds.Contains(exercise.Id) &&
@@ -1808,9 +1824,11 @@ public sealed partial class ExerciseSessionService
         modifierTransitionProtectedGroupIds ??=
             new HashSet<string>(StringComparer.Ordinal);
 
+        Dictionary<int, bool> fitnessEligibility = GetFitnessEligibility(state);
+
         bool CalculateIsAllowed(Exercise exercise, WorkoutGroup group)
         {
-            if (IsWorkoutSelectionCandidate(
+            if (fitnessEligibility.GetValueOrDefault(exercise.Id) && IsWorkoutSelectionCandidate(
                     state,
                     exercise,
                     group,
@@ -1826,7 +1844,7 @@ public sealed partial class ExerciseSessionService
                 return true;
             }
 
-            return allowSavedSelectionException &&
+            return allowSavedSelectionException && state.ActiveWorkoutSession is not null &&
                 currentExerciseIds.GetValueOrDefault(group.Id) == exercise.Id &&
                 IsSavedSelectionValid(
                     state,
@@ -1865,8 +1883,7 @@ public sealed partial class ExerciseSessionService
                 ? scheduledPhase
                 : GetProjectedSelectionPhase(state, group, groups.Count);
         if (_fitnessRatings.Count == 0) Shuffle(candidates);
-        Dictionary<int, int> fitnessTiers = GetFitnessTiers(state);
-        bool hasFitnessEvidence = fitnessTiers.Values.Any(tier => tier != FitnessSelectionPolicy.UnknownTier);
+        bool hasFitnessEvidence = fitnessEligibility.Values.Any(eligible => !eligible);
         HashSet<int> excludedMovements = GetExcludedMovementIds(state);
         var refusalDepths = candidates.SelectMany(exercise => groups
             .Where(group => IsAllowed(exercise, group))
@@ -1946,11 +1963,6 @@ public sealed partial class ExerciseSessionService
         BigInteger scoreWeight = AddPriorityDimension(
             Math.Max(0, orderedScores.Length - 1));
         BigInteger hardOpportunityWeight = AddPriorityDimension(1L);
-        // Separate dimensions maximize +1 opportunities before considering any
-        // number of current/lower choices. Fitness is no longer a random tie.
-        var fitnessWeights = new BigInteger[FitnessSelectionPolicy.TierCount];
-        for (int tier = fitnessWeights.Length - 1; tier >= 0; tier--)
-            fitnessWeights[tier] = hasFitnessEvidence ? AddPriorityDimension(1L) : BigInteger.Zero;
         if (hasFitnessEvidence)
         {
             moderateRecoveryAvoidanceWeight = AddPriorityDimension(1L);
@@ -2043,7 +2055,6 @@ public sealed partial class ExerciseSessionService
                     ? keptExerciseWeight
                     : BigInteger.Zero) +
                 refusalRanks[hasContextualKeepPreference ? 0L : refusalDepths[(exercise.Id, phase)]] * refusalWeight +
-                fitnessWeights[isKept ? FitnessSelectionPolicy.UnknownTier : fitnessTiers[exercise.Id]] +
                 (includeSlotPreference
                     ? scoreRanks[selectionScore] * scoreWeight
                     : BigInteger.Zero) +
@@ -2227,7 +2238,7 @@ public sealed partial class ExerciseSessionService
                 .Select(candidate => candidate.MovementId)
                 .Distinct()
                 .Count();
-            throw new InvalidOperationException(CreateDistinctLineupException(groups, movementCount).Message +
+            throw new InvalidOperationException((hasFitnessEvidence ? FitnessSelectionPolicy.UnavailableMessage + " " : "") + CreateDistinctLineupException(groups, movementCount).Message +
                 $" Budget: {state.ActiveWorkoutMinutes - reservedRepeatMinutes}; unavailable slots: " +
                 string.Join(',', groups.Where((g, i) => !atomicCandidates.Any(c =>
                     (c.CoverageMask & (1UL << i)) != 0)).Select(g => g.Id)));
@@ -2549,13 +2560,13 @@ public sealed partial class ExerciseSessionService
         candidates.AddRange(ordered);
     }
 
-    private Dictionary<int, int> GetFitnessTiers(WorkoutState state)
+    private Dictionary<int, bool> GetFitnessEligibility(WorkoutState state)
     {
-        int[] profile = FitnessProfilePolicy.CalculateFavourites(_catalogExercises, state, _fitnessRatings)
-            .Select(FitnessProfilePolicy.RoundLevel).ToArray();
+        int[][] zones = FitnessSelectionPolicy.Zones(FitnessProfilePolicy.Inspect(
+            _catalogExercises, state, _fitnessRatings));
         return _sequenceExercisesByRootId.ToDictionary(entry => entry.Key,
-            entry => FitnessSelectionPolicy.SequenceTier(entry.Value.Select(member =>
-                _fitnessRatings.GetValueOrDefault(member.Id)), profile));
+            entry => FitnessSelectionPolicy.IsSequenceEligible(entry.Value.Select(member =>
+                _fitnessRatings.GetValueOrDefault(member.Id)), zones));
     }
 
     private Exercise[] GetMovementRoots(Exercise exercise) =>
@@ -2577,7 +2588,6 @@ public sealed partial class ExerciseSessionService
         List<T> candidates, Func<T, Exercise> exercise)
     {
         OrderMovementFamilies(candidates, exercise);
-        Dictionary<int, int> tiers = GetFitnessTiers(state);
         WorkoutExercisePhase phase = GetExercisePhase(group);
         long now = GetCurrentUnixTimeMilliseconds();
         var ordered = candidates.Select(item =>
@@ -2596,7 +2606,6 @@ public sealed partial class ExerciseSessionService
                 Refusals: kept ? 0 : GetMovementRefusalDepth(state, root, phase),
                 HardRecovery: hardRecovery ? 1 : 0,
                 ModerateRecovery: moderateRecovery ? 1 : 0,
-                Tier: kept ? FitnessSelectionPolicy.UnknownTier : tiers[GetSequenceRoot(root).Id],
                 Score: -(long)GetSelectionScore(state, root, phase)));
         }).OrderBy(entry => entry.Priority).Select(entry => entry.Item).ToArray();
         candidates.Clear();
@@ -5594,7 +5603,7 @@ public sealed partial class ExerciseSessionService
         long selectionTimeUnixMilliseconds = GetCurrentUnixTimeMilliseconds();
         var allocationCache = new Dictionary<string, LongWorkoutAllocation?>(
             StringComparer.Ordinal);
-        Dictionary<int, int> fitnessTiers = GetFitnessTiers(state);
+        Dictionary<int, bool> fitnessEligibility = GetFitnessEligibility(state);
         HashSet<int> excludedMovements = GetExcludedMovementIds(state);
 
         HashSet<int> savedKeptRootIds = state
@@ -5606,6 +5615,7 @@ public sealed partial class ExerciseSessionService
             .Where(exercise =>
                 exercise.SequenceBlocks.Length > 0 &&
                 GetSequenceRoot(exercise).Id == exercise.Id &&
+                fitnessEligibility.GetValueOrDefault(exercise.Id) &&
                 !savedKeptRootIds.Contains(exercise.Id) &&
                 !excludedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(exercise)) &&
                 GetSequenceExercises(exercise).All(member =>
@@ -5818,12 +5828,11 @@ public sealed partial class ExerciseSessionService
                     if (removedPlacements.Any(placement =>
                     {
                         WorkoutExercisePhase phase = GetProjectedSelectionPhase(state, placement.Anchor, groups.Length);
-                        return fitnessTiers[candidate.Id] > fitnessTiers[placement.Root.Id] ||
-                            GetMovementRefusalDepth(state, candidate, phase) >
+                        return GetMovementRefusalDepth(state, candidate, phase) >
                                 GetMovementRefusalDepth(state, placement.Root, phase);
                     }))
                     {
-                        // Balancing cannot undo the exploration tier or bring
+                        // Balancing cannot bring
                         // back a refused family in place of a fresh choice.
                         continue;
                     }

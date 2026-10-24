@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationId>com.local.nomadicmethod</ApplicationId>
-    <ApplicationVersion>168</ApplicationVersion>
-    <ApplicationDisplayVersion>3.44</ApplicationDisplayVersion>
+    <ApplicationVersion>169</ApplicationVersion>
+    <ApplicationDisplayVersion>3.45</ApplicationDisplayVersion>
     <!-- Device deployments must remain launchable without transient fast-deploy files. -->
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <!--

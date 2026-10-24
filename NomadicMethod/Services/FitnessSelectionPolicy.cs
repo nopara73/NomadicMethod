@@ -1,38 +1,22 @@
 namespace NomadicMethod.Services;
 
-/// <summary>Exhaust +1 choices before current and progressively lower levels.</summary>
+/// <summary>Strict membership in an estimated training zone; unknown profiles bootstrap normally.</summary>
 public static class FitnessSelectionPolicy
 {
-    public const int UnknownTier = 6;
-    public const int TierCount = 10;
+    public const string UnavailableMessage = "No complete workout fits your current training zone with these settings.";
 
-    // Ascending tiers: +1, current, -1, -2, -3, -4, unknown, +2, +3, +4.
-    // Unknowns and larger jumps remain fallbacks for complete coverage. A range
-    // supports only its explicit members; it does not imply a harder execution.
-    public static int Tier(int[][]? levels, IReadOnlyList<int> roundedProfile)
-    {
-        int tier = int.MaxValue;
-        if (levels is not null)
-        {
-            for (int dimension = 0; dimension < Math.Min(levels.Length, roundedProfile.Count); dimension++)
-            {
-                int target = roundedProfile[dimension];
-                if (target <= 0) continue;
-                foreach (int level in levels[dimension])
-                {
-                    int difference = level - target;
-                    int candidateTier = difference == 1 ? 0 : difference <= 0
-                        ? 1 - difference : 5 + difference;
-                    tier = Math.Min(tier, candidateTier);
-                }
-            }
-        }
-        return tier == int.MaxValue ? UnknownTier : tier;
-    }
+    public static int[][] Zones(IReadOnlyList<FitnessProfileAxis> profile) =>
+        profile.Select(axis => axis.Mean > 0 ? axis.BestLevels ?? [] : []).ToArray();
 
-    public static int SequenceTier(IEnumerable<int[][]?> members, IReadOnlyList<int> roundedProfile) =>
-        members.Select(levels => Tier(levels, roundedProfile)).Where(tier => tier != UnknownTier)
-            .DefaultIfEmpty(UnknownTier).Min();
+    public static bool IsEligible(int[][]? levels, IReadOnlyList<int[]> zones) =>
+        !zones.Any(zone => zone.Length > 0) || levels is not null &&
+        levels.Select((set, dimension) => set.Length > 0 && dimension < zones.Count &&
+            set.All(level => zones[dimension].Contains(level))).Any(matches => matches);
+
+    // Every member must qualify, so a matching side cannot admit an unrated or
+    // out-of-zone member through a complete atomic sequence.
+    public static bool IsSequenceEligible(IEnumerable<int[][]?> members, IReadOnlyList<int[]> zones) =>
+        members.All(levels => IsEligible(levels, zones));
 
     // One uniform draw per family, reused across its tiers and placements.
     // Variant draws break ties inside a family, never buy it extra chances.

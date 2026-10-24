@@ -1426,12 +1426,16 @@ test("web and mobile apply rolling muscular recovery by primary muscle", () => {
   assert.match(mainActivity, /_sessionService\.BeginRest\(/);
   assert.match(
     sessionService,
-    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight[\s\S]*fitnessWeights[\s\S]*keptExerciseWeight/,
+    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight[\s\S]*refusalWeight[\s\S]*keptExerciseWeight/,
   );
   assert.match(
     workoutModule,
-    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight[\s\S]*fitnessWeights[\s\S]*keptExerciseWeight/,
+    /equipmentPreferenceWeight[\s\S]*moderateRecoveryAvoidanceWeight[\s\S]*hardRecoveryAvoidanceWeight[\s\S]*freshHardWeight[\s\S]*scoreWeight[\s\S]*refusalWeight[\s\S]*keptExerciseWeight/,
   );
+  assert.doesNotMatch(sessionService, /fitnessWeights|GetFitnessTiers/);
+  assert.doesNotMatch(workoutModule, /fitnessWeights|getFitnessTiers/);
+  assert.match(sessionService, /fitnessEligibility\.GetValueOrDefault\(exercise\.Id\) && IsWorkoutSelectionCandidate/);
+  assert.match(workoutModule, /fitnessEligibility\.get\(exercise\.id\) && this\.isWorkoutSelectionCandidate/);
   assert.match(
     sessionService,
     /var baseUtilities = new BigInteger\[groups\.Count, candidates\.Count\][\s\S]*var anchorUtilities = new BigInteger\[groups\.Count, candidates\.Count\][\s\S]*utilitiesByGroup/,

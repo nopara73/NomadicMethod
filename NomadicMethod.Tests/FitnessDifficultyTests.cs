@@ -82,7 +82,7 @@ public sealed class FitnessDifficultyTests
     }
 
     [Fact]
-    public void DifficultyResponsesDoNotChangeThePlannerInputOrFreshSelection()
+    public void DifficultyResponsesChangeSelectionZonesWithoutRewritingLegacyFavourites()
     {
         Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(Path.Combine(
             AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
@@ -96,9 +96,7 @@ public sealed class FitnessDifficultyTests
                 [new() { RootExerciseId = exercise.Id, Outcome = ExerciseOutcome.TooHard, DecidedAtUnixMilliseconds = 1 }] }] };
         Assert.NotEqual(FitnessProfilePolicy.Calculate(catalog, first, ratings), FitnessProfilePolicy.Calculate(catalog, second, ratings));
         Assert.Equal(FitnessProfilePolicy.CalculateFavourites(catalog, first, ratings), FitnessProfilePolicy.CalculateFavourites(catalog, second, ratings));
-        var now = DateTimeOffset.FromUnixTimeMilliseconds(100000);
-        new ExerciseSessionService(catalog, new Random(42), () => now, fitnessRatings: ratings).StartWorkout(first, 3);
-        new ExerciseSessionService(catalog, new Random(42), () => now, fitnessRatings: ratings).StartWorkout(second, 3);
-        Assert.Equal(first.SelectedExerciseIds.OrderBy(entry => entry.Key), second.SelectedExerciseIds.OrderBy(entry => entry.Key));
+        Assert.NotEqual(FitnessSelectionPolicy.Zones(FitnessProfilePolicy.Inspect(catalog, first, ratings)),
+            FitnessSelectionPolicy.Zones(FitnessProfilePolicy.Inspect(catalog, second, ratings)));
     }
 }

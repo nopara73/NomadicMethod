@@ -21,28 +21,19 @@ export function formatFitnessMean(mean) {
   return String(shown) + (Math.abs(mean - shown) > 1e-9 ? "…" : "");
 }
 
-export const FITNESS_UNKNOWN_TIER = 6;
-export const FITNESS_TIER_COUNT = 10;
+export const FITNESS_UNAVAILABLE_MESSAGE = "No complete workout fits your current training zone with these settings.";
 
-// +1, current, -1 through -4, unknown, then +2 through +4 as coverage fallbacks.
-export function fitnessSelectionTier(levels, roundedProfile) {
-  let tier = Infinity;
-  levels?.forEach((set, dimension) => {
-    const target = roundedProfile[dimension];
-    if (!(target > 0)) return;
-    for (const level of set) {
-      const difference = level - target;
-      tier = Math.min(tier, difference === 1 ? 0
-        : difference <= 0 ? 1 - difference : 5 + difference);
-    }
-  });
-  return Number.isFinite(tier) ? tier : FITNESS_UNKNOWN_TIER;
+export function fitnessZones(profile) {
+  return profile.map(axis => axis.mean > 0 ? [...axis.bestLevels] : []);
 }
 
-export function fitnessSequenceTier(members, roundedProfile) {
-  const tiers = members.map(levels => fitnessSelectionTier(levels, roundedProfile))
-    .filter(tier => tier !== FITNESS_UNKNOWN_TIER);
-  return tiers.length ? Math.min(...tiers) : FITNESS_UNKNOWN_TIER;
+export function isFitnessEligible(levels, zones) {
+  return !zones.some(zone => zone.length > 0) || !!levels?.some((set, dimension) =>
+    set.length > 0 && set.every(level => zones[dimension]?.includes(level)));
+}
+
+export function isFitnessSequenceEligible(members, zones) {
+  return members.every(levels => isFitnessEligible(levels, zones));
 }
 
 export function orderFitnessCandidates(candidates, movementId, tier, random) {
@@ -97,21 +88,7 @@ export function calculateFitnessProfile(exercises, state, ratings) {
 }
 
 export function inspectFitnessProfile(exercises, state, ratings) {
-  const byId = new Map(exercises.map(exercise => [exercise.id, exercise]));
-  const sessions = [...(state.workoutHistory ?? [])];
-  if (state.activeWorkoutSession) sessions.push(state.activeWorkoutSession);
-  const latest = new Map();
-  // Stable ordering mirrors Android, including duplicate active/history evidence.
-  const decisions = sessions.sort((a, b) => (a.sessionId ?? 0) - (b.sessionId ?? 0))
-    .flatMap(session => session.decisions ?? [])
-    .sort((a, b) => (a.decidedAtUnixMilliseconds ?? 0) - (b.decidedAtUnixMilliseconds ?? 0));
-  for (const decision of decisions) {
-    if (!["tick", "easy", "hard"].includes(decision.outcome)) continue;
-    const exercise = byId.get(decision.rootExerciseId);
-    if (!exercise) continue;
-    const movementId = exercise.sessionMovementId > 0 ? exercise.sessionMovementId : exercise.id;
-    latest.set(movementId, { exercise, decision });
-  }
+  const latest = latestFitnessMovementDecisions(exercises, state);
   const profile = FITNESS_DIMENSIONS.map(() => ({ mean: 0, contributions: [], bestLevels: [] }));
   for (const [movementId, { exercise, decision }] of [...latest].sort((a, b) => a[0] - b[0])) {
     const levels = ratings.get(exercise.id);
@@ -140,6 +117,25 @@ export function inspectFitnessProfile(exercises, state, ratings) {
   return profile;
 }
 
+export function latestFitnessMovementDecisions(exercises, state) {
+  const byId = new Map(exercises.map(exercise => [exercise.id, exercise]));
+  const sessions = [...(state.workoutHistory ?? [])];
+  if (state.activeWorkoutSession) sessions.push(state.activeWorkoutSession);
+  const latest = new Map();
+  // Stable ordering mirrors Android, including duplicate active/history evidence.
+  const decisions = sessions.sort((a, b) => (a.sessionId ?? 0) - (b.sessionId ?? 0))
+    .flatMap(session => session.decisions ?? [])
+    .sort((a, b) => (a.decidedAtUnixMilliseconds ?? 0) - (b.decidedAtUnixMilliseconds ?? 0));
+  for (const decision of decisions) {
+    if (!["tick", "easy", "hard"].includes(decision.outcome)) continue;
+    const exercise = byId.get(decision.rootExerciseId);
+    if (!exercise) continue;
+    const movementId = exercise.sessionMovementId > 0 ? exercise.sessionMovementId : exercise.id;
+    latest.set(movementId, { exercise, decision });
+  }
+  return latest;
+}
+
 export function formatFitnessLevels(levels) {
   const parts = [];
   for (let i = 0; i < levels.length; i++) {
@@ -151,7 +147,7 @@ export function formatFitnessLevels(levels) {
   return parts.join(", ");
 }
 
-// Keep selection on its existing input until its feedback logic is changed explicitly.
+// Retained for legacy profile fixtures and historical interpretation only.
 export function calculateFavouriteFitnessProfile(exercises, state, ratings) {
   return inspectFavouriteFitnessProfile(exercises, state, ratings).map(axis => axis.mean);
 }

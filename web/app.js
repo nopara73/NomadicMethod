@@ -1,5 +1,5 @@
 import { ExerciseFeedbackView } from "./exercise-feedback.js";
-import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings, FITNESS_EVIDENCE_VERSION } from "./fitness-profile.js";
+import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings, FITNESS_EVIDENCE_VERSION, FITNESS_UNAVAILABLE_MESSAGE } from "./fitness-profile.js";
 import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
 import { ReactionDrillView } from "./reaction-drill-view.js";
@@ -207,6 +207,7 @@ let modifierFeedbackTimer = null;
 let workoutPreparationGeneration = 0;
 let workoutPreparationWorker = null;
 let workoutPreparationPromise = null;
+let workoutPreparationError = null;
 let workoutPreparationResolve = null;
 let preparingWorkoutMinutes = 0;
 let preparingWorkoutModifiers = WORKOUT_MODIFIERS.None;
@@ -1118,6 +1119,7 @@ function queueWorkoutPreparation(
 
   cancelWorkoutPreparation();
   const generation = ++workoutPreparationGeneration;
+  workoutPreparationError = null;
   preparingWorkoutMinutes = minutes;
   preparingWorkoutModifiers = modifiers;
   preparingWorkoutIsReconfiguration = isReconfiguration;
@@ -1176,6 +1178,7 @@ function queueWorkoutPreparation(
         });
       } catch (error) {
         console.error(error);
+        workoutPreparationError = error instanceof Error ? error.message : String(error);
         complete(null);
       }
     }, 0);
@@ -1191,6 +1194,11 @@ function queueWorkoutPreparation(
         return;
       }
       if (event.data.error) {
+        if (event.data.error.startsWith(FITNESS_UNAVAILABLE_MESSAGE)) {
+          workoutPreparationError = event.data.error;
+          complete(null);
+          return;
+        }
         console.warn(`Background workout preparation failed: ${event.data.error}`);
         workoutPreparationWorker?.terminate();
         workoutPreparationWorker = null;
@@ -1300,7 +1308,7 @@ async function startWorkout() {
       currentWorkoutGroupId,
     );
     if (!prepared) {
-      throw new Error("The selected workout could not be prepared.");
+      throw new Error(workoutPreparationError ?? "The selected workout could not be prepared.");
     }
     if (minutes !== selectedMinutes || modifiers !== selectedModifiers ||
         isReconfiguration !== activeWorkoutSetup || currentWorkoutGroupId !== workoutSetupCurrentGroupId) {
@@ -1329,6 +1337,8 @@ async function startWorkout() {
     console.error(error);
     elements.beginWorkout.disabled = false;
     startupControls?.markReady();
+    showWorkoutModifierFeedback("workout unavailable", error.message?.startsWith(FITNESS_UNAVAILABLE_MESSAGE)
+      ? FITNESS_UNAVAILABLE_MESSAGE : "Could not prepare this workout. Your progress is safe.");
   }
 }
 
