@@ -160,6 +160,9 @@ public sealed class WorkoutState
     // Frozen after the final feedback, until Done. Never recalculate on reopen.
     public double[]? CompletionFitnessProfileSnapshot { get; set; }
 
+    // 0 is the old favourites-based comparison. Never compare it with difficulty evidence.
+    public int FitnessProfileEvidenceVersion { get; set; }
+
     [System.Text.Json.Serialization.JsonIgnore]
     public Dictionary<string, string> LegacySelectedExerciseNames { get; set; } = [];
 

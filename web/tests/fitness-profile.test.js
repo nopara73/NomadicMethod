@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { getWorkoutCatalog, isCompatibleWithWorkoutModifiers, WORKOUT_MODIFIERS, WorkoutSession, createDefaultState } from "../workout.js";
 import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
-  calculateFitnessProfile, inspectFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel, formatFitnessMean } from "../fitness-profile.js";
+  calculateFavouriteFitnessProfile, inspectFavouriteFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel, formatFitnessMean } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
@@ -20,7 +20,7 @@ test("reviewed catalog admissions contribute precise tiers and preserve the olde
   for (const entry of admissions.cases) {
     const state = { lastKeptExerciseIds: entry.kept };
     const before = JSON.stringify(state);
-    assert.deepEqual(calculateFitnessProfile(catalog, state, ratings), entry.expected, entry.name);
+    assert.deepEqual(calculateFavouriteFitnessProfile(catalog, state, ratings), entry.expected, entry.name);
     assert.equal(JSON.stringify(state), before);
   }
   assert.ok(getWorkoutCatalog(catalog, admissions.catalogRevision - 1).every(e => !admissions.exerciseIds.includes(e.id)));
@@ -84,19 +84,19 @@ for (const entry of fixture.cases) {
     const source = { schemaVersion: 1, dimensions: fixture.dimensions,
       ratings: Object.fromEntries(entry.exercises.map(row => [row.id, row.levels])) };
     const before = JSON.stringify(entry);
-    assert.deepEqual(calculateFitnessProfile(entry.exercises, entry.state, parseFitnessRatings(source)), entry.expected);
+    assert.deepEqual(calculateFavouriteFitnessProfile(entry.exercises, entry.state, parseFitnessRatings(source)), entry.expected);
     const exercises = entry.exercises.map(e => ({...e, name: "movement " + e.id}));
     const ratings = parseFitnessRatings(source);
     ratings.set(999, FITNESS_DIMENSIONS.map(() => [5])); // Retired: rating exists, current catalog does not.
-    const profile = inspectFitnessProfile(exercises, entry.state, ratings);
+    const profile = inspectFavouriteFitnessProfile(exercises, entry.state, ratings);
     assert.deepEqual(profile.map(axis => axis.mean), entry.expected);
     profile.forEach((axis, dimension) => {
       assert.deepEqual(axis.contributions.map(c => [c.movementId, c.exerciseId, c.level]),
         entry.evidence[FITNESS_DIMENSIONS[dimension]] ?? [], entry.name);
       assert.ok(axis.contributions.every(c => c.name === "movement " + c.exerciseId));
     });
-    assert.deepEqual(inspectFitnessProfile([...exercises].reverse(), entry.state, ratings), profile);
-    assert.ok(inspectFitnessProfile(exercises, entry.state, new Map()).every(axis => axis.mean === 0 && !axis.contributions.length));
+    assert.deepEqual(inspectFavouriteFitnessProfile([...exercises].reverse(), entry.state, ratings), profile);
+    assert.ok(inspectFavouriteFitnessProfile(exercises, entry.state, new Map()).every(axis => axis.mean === 0 && !axis.contributions.length));
     assert.equal(JSON.stringify(entry), before, "profile calculation must not modify saved workout state");
   });
 }

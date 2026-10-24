@@ -3,12 +3,14 @@ using NomadicMethod.Models;
 
 namespace NomadicMethod.Services;
 
-public sealed record FitnessContribution(int MovementId, int ExerciseId, string Name, int Level);
+public sealed record FitnessContribution(int MovementId, int ExerciseId, string Name, int Level,
+    int RatedLevel = 0, ExerciseOutcome? Feedback = null);
 public sealed record FitnessProfileAxis(double Mean, IReadOnlyList<FitnessContribution> Contributions);
 
-/// <summary>Equal-weight means of precise, strongest ratings of currently kept movements.</summary>
+/// <summary>Equal-weight challenge estimates from each movement's latest difficulty response.</summary>
 public static class FitnessProfilePolicy
 {
+    public const int EvidenceVersion = 1;
     public const int MaximumLevel = 5;
     public const int WebBoundaryLevel = 4;
 
@@ -74,8 +76,57 @@ public static class FitnessProfilePolicy
         IReadOnlyDictionary<int, int[][]> ratings)
         => Inspect(exercises, state, ratings).Select(axis => axis.Mean).ToArray();
 
-    // Both the plot and its explanation consume the same exact evidence.
+    // Select the latest difficulty response BEFORE checking its ratings. A newer
+    // ambiguous variant must not leave an older precise response masquerading as current.
     public static FitnessProfileAxis[] Inspect(
+        IReadOnlyList<Exercise> exercises,
+        WorkoutState state,
+        IReadOnlyDictionary<int, int[][]> ratings)
+    {
+        var byId = exercises.ToDictionary(exercise => exercise.Id);
+        var latest = new Dictionary<int, (Exercise Exercise, WorkoutDecisionLog Decision)>();
+        IEnumerable<WorkoutSessionLog> sessions = state.WorkoutHistory;
+        if (state.ActiveWorkoutSession is { } active) sessions = sessions.Append(active);
+        // Stable ordering makes the last recorded decision win a timestamp tie;
+        // session identity orders ties across history, with active evidence last.
+        foreach (WorkoutDecisionLog decision in sessions.OrderBy(session => session.SessionId)
+                     .SelectMany(session => session.Decisions)
+                     .OrderBy(decision => decision.DecidedAtUnixMilliseconds))
+        {
+            if (decision.Outcome is not (ExerciseOutcome.TooEasy or ExerciseOutcome.TooHard) ||
+                !byId.TryGetValue(decision.RootExerciseId, out Exercise? exercise)) continue;
+            int movementId = exercise.SessionMovementId > 0 ? exercise.SessionMovementId : exercise.Id;
+            latest[movementId] = (exercise, decision);
+        }
+
+        var contributions = Dimensions.Select(_ => new List<FitnessContribution>()).ToArray();
+        foreach (var (movementId, (exercise, decision)) in latest.OrderBy(entry => entry.Key))
+        {
+            if (!ratings.TryGetValue(exercise.Id, out int[][]? levels)) continue;
+            int strongest = levels.SelectMany(set => set).DefaultIfEmpty(0).Max();
+            for (int dimension = 0; dimension < Dimensions.Length; dimension++)
+            {
+                int[] set = levels[dimension];
+                if (set.Length != 1 || set[0] != strongest) continue;
+                int estimate = Math.Clamp(set[0] + (decision.Outcome == ExerciseOutcome.TooEasy ? 1 : -1),
+                    1, MaximumLevel);
+                contributions[dimension].Add(new(movementId, exercise.Id, exercise.Name,
+                    estimate, set[0], decision.Outcome));
+            }
+        }
+        return contributions.Select(values => new FitnessProfileAxis(
+            values.Count == 0 ? 0d : values.Average(value => value.Level), values.ToArray())).ToArray();
+    }
+
+    // The planner deliberately retains its existing favourite-based input. Updating
+    // the displayed estimate must not silently change fresh choices or saved lineups.
+    public static double[] CalculateFavourites(
+        IReadOnlyList<Exercise> exercises,
+        WorkoutState state,
+        IReadOnlyDictionary<int, int[][]> ratings)
+        => InspectFavourites(exercises, state, ratings).Select(axis => axis.Mean).ToArray();
+
+    public static FitnessProfileAxis[] InspectFavourites(
         IReadOnlyList<Exercise> exercises,
         WorkoutState state,
         IReadOnlyDictionary<int, int[][]> ratings)

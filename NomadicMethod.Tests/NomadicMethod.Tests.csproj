@@ -116,6 +116,7 @@
           CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\NomadicMethod\Assets\reaction_drills.json" Link="Assets\reaction_drills.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\NomadicMethod\Assets\fitness_ratings.json" Link="Assets\fitness_ratings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\fitness-difficulty-cases.json" Link="Assets\fitness-difficulty-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-profile-cases.json" Link="Assets\fitness-profile-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\completion-profile-cases.json" Link="Assets\completion-profile-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-profile-admissions.json" Link="Assets\fitness-profile-admissions.json" CopyToOutputDirectory="PreserveNewest" />

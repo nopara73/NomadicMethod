@@ -1,6 +1,6 @@
 import "./light-cadence.js";
 import { copyProfileSnapshot } from "./completion-profile.js";
-import { calculateFitnessProfile, roundFitnessLevel,
+import { calculateFitnessProfile, calculateFavouriteFitnessProfile, FITNESS_EVIDENCE_VERSION, roundFitnessLevel,
   fitnessSequenceTier, FITNESS_TIER_COUNT, FITNESS_UNKNOWN_TIER, orderFitnessCandidates } from "./fitness-profile.js";
 
 export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
@@ -3608,6 +3608,7 @@ export function createDefaultState() {
     activeWorkoutModifiers: WORKOUT_MODIFIERS.None,
     activeWorkoutIsLightDay: false,
     workoutCompleted: false,
+    fitnessProfileEvidenceVersion: 0,
     activeFitnessProfileBaseline: null,
     completionFitnessProfileSnapshot: null,
     completionAcknowledged: false,
@@ -3659,6 +3660,7 @@ function normalizeStateShape(raw) {
   state.activeWorkoutIsLightDay = raw.activeWorkoutIsLightDay === true;
   state.workoutCompleted = raw.workoutCompleted === true;
   state.completionAcknowledged = raw.completionAcknowledged === true;
+  state.fitnessProfileEvidenceVersion = raw.fitnessProfileEvidenceVersion === FITNESS_EVIDENCE_VERSION ? FITNESS_EVIDENCE_VERSION : 0;
   state.activeFitnessProfileBaseline = copyProfileSnapshot(raw.activeFitnessProfileBaseline);
   state.completionFitnessProfileSnapshot = copyProfileSnapshot(raw.completionFitnessProfileSnapshot);
   state.pendingRestGroupId =
@@ -4719,6 +4721,7 @@ export class WorkoutSession {
     this.state.workoutCompleted = false;
     this.state.completionAcknowledged = false;
     this.state.activeFitnessProfileBaseline = null;
+    this.state.fitnessProfileEvidenceVersion = 0;
     this.state.completionFitnessProfileSnapshot = null;
     this.clearPendingMovement();
     this.clearPendingRest();
@@ -4757,6 +4760,7 @@ export class WorkoutSession {
     }
     const keptExerciseIdsAtStart = [...this.state.lastKeptExerciseIds]
       .sort((left, right) => left - right);
+    this.state.fitnessProfileEvidenceVersion = FITNESS_EVIDENCE_VERSION;
     this.state.activeFitnessProfileBaseline = calculateFitnessProfile(
       this.catalogExercises, this.state, this.fitnessRatings);
     this.state.completionFitnessProfileSnapshot = null;
@@ -6020,6 +6024,9 @@ export class WorkoutSession {
     this.state.completionAcknowledged = false;
     if (this.state.workoutCompleted) {
       this.applyRecordedWorkoutKeeps();
+      if (this.state.fitnessProfileEvidenceVersion !== FITNESS_EVIDENCE_VERSION)
+        this.state.activeFitnessProfileBaseline = null;
+      this.state.fitnessProfileEvidenceVersion = FITNESS_EVIDENCE_VERSION;
       this.state.completionFitnessProfileSnapshot = calculateFitnessProfile(
         this.catalogExercises, this.state, this.fitnessRatings);
       this.finalizeActiveWorkoutSession("Completed", decidedAtUnixMilliseconds);
@@ -6794,7 +6801,7 @@ export class WorkoutSession {
   }
 
   getFitnessTiers() {
-    const profile = calculateFitnessProfile(this.catalogExercises, this.state,
+    const profile = calculateFavouriteFitnessProfile(this.catalogExercises, this.state,
       this.fitnessRatings).map(roundFitnessLevel);
     return new Map([...this.sequenceExercisesByRootId].map(([id, members]) => [id,
       fitnessSequenceTier(members.map(member => this.fitnessRatings.get(member.id)), profile)]));
@@ -9228,6 +9235,7 @@ export class WorkoutSession {
     this.state.activeWorkoutSession = null;
     this.state.activeWorkoutMinutes = 0;
     this.state.activeFitnessProfileBaseline = null;
+    this.state.fitnessProfileEvidenceVersion = 0;
     this.state.completionFitnessProfileSnapshot = null;
     this.state.activeWorkoutModifiers = WORKOUT_MODIFIERS.None;
     this.state.activeWorkoutIsLightDay = false;

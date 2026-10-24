@@ -4,7 +4,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { resolveReactionDrills } from '../web/reaction-drills.js';
-import { calculateFitnessProfile } from '../web/fitness-profile.js';
+import { calculateFavouriteFitnessProfile } from '../web/fitness-profile.js';
 
 export const dimensions = Object.freeze([
   'cardiorespiratoryEndurance', 'muscularStrength', 'muscularEndurance',
@@ -114,7 +114,7 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
   // Use the product calculation so this diagnostic cannot silently count ranges.
   const ratings = new Map(rows.map(row => [row.id, dimensions.map(key => row[key])]));
   const contributions = new Map(rows.map(row => [row.id,
-    calculateFitnessProfile([byId.get(row.id)], { lastKeptExerciseIds: [row.id] }, ratings)]));
+    calculateFavouriteFitnessProfile([byId.get(row.id)], { lastKeptExerciseIds: [row.id] }, ratings)]));
   const profileContributorCoverage = {
     recordsWithoutContribution: rows.filter(row => contributions.get(row.id).every(value => value === 0)).length,
     coverage: Object.fromEntries(dimensions.map((dimension, index) => [dimension,
@@ -209,7 +209,7 @@ export function renderCoverageReport(summary) {
     ] : ['Every combination meets the minimum.']), '',
     'Ratings are provisional NM training-level judgments for repeated 45-second blocks. Each supported level needs a meaningful training case using the actual movement and its documented adjustments. The coverage requirement supplies no evidence for a rating and never authorizes score inflation or unreviewed admissions.', '',
     '## Spiderweb contributors (diagnostic)', '',
-    `${summary.profileContributorCoverage.recordsWithoutContribution} records have no precise strongest contribution. The following counts use the actual heart-profile calculation and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.`, '',
+    `${summary.profileContributorCoverage.recordsWithoutContribution} records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.`, '',
     '| Characteristic | 1 | 2 | 3 | 4 | 5 |',
     '| --- | ---: | ---: | ---: | ---: | ---: |',
     ...dimensions.map(key => `| ${labels[key]} | ${coveragePolicy.levels.map(level => summary.profileContributorCoverage.coverage[key][level].count).join(' | ')} |`), '',

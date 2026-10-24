@@ -5176,7 +5176,8 @@ public partial class MainActivity : Activity
     {
         _completionChanges.RemoveAllViews();
         IReadOnlyList<CompletionProfilePolicy.Change> changes = CompletionProfilePolicy.Changes(
-            _state.ActiveFitnessProfileBaseline, _state.CompletionFitnessProfileSnapshot);
+            _state.FitnessProfileEvidenceVersion == FitnessProfilePolicy.EvidenceVersion ? _state.ActiveFitnessProfileBaseline : null,
+            _state.CompletionFitnessProfileSnapshot);
         _completionChanges.Visibility = changes.Count == 0 ? ViewStates.Gone : ViewStates.Visible;
         bool landscape = Resources!.Configuration!.Orientation == Android.Content.Res.Orientation.Landscape;
         int availableWidth = Resources.DisplayMetrics!.WidthPixels - DpInt(56)

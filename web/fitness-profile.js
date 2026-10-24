@@ -8,6 +8,7 @@ export const FITNESS_LABELS = Object.freeze([
 ]);
 export const FITNESS_MAXIMUM_LEVEL = 5;
 export const FITNESS_WEB_BOUNDARY_LEVEL = 4;
+export const FITNESS_EVIDENCE_VERSION = 1;
 
 export function roundFitnessLevel(level) {
   return !Number.isFinite(level) || level <= 0 ? 0
@@ -95,10 +96,46 @@ export function calculateFitnessProfile(exercises, state, ratings) {
   return inspectFitnessProfile(exercises, state, ratings).map(axis => axis.mean);
 }
 
-// The chart and inspector share this evidence, so excluded claims cannot reappear
-// in the explanation. One saved representative per movement, highest value first;
-// equal variants use the lowest exercise id, independent of catalog/slot order.
 export function inspectFitnessProfile(exercises, state, ratings) {
+  const byId = new Map(exercises.map(exercise => [exercise.id, exercise]));
+  const sessions = [...(state.workoutHistory ?? [])];
+  if (state.activeWorkoutSession) sessions.push(state.activeWorkoutSession);
+  const latest = new Map();
+  // Stable ordering mirrors Android, including duplicate active/history evidence.
+  const decisions = sessions.sort((a, b) => (a.sessionId ?? 0) - (b.sessionId ?? 0))
+    .flatMap(session => session.decisions ?? [])
+    .sort((a, b) => (a.decidedAtUnixMilliseconds ?? 0) - (b.decidedAtUnixMilliseconds ?? 0));
+  for (const decision of decisions) {
+    if (decision.outcome !== "easy" && decision.outcome !== "hard") continue;
+    const exercise = byId.get(decision.rootExerciseId);
+    if (!exercise) continue;
+    const movementId = exercise.sessionMovementId > 0 ? exercise.sessionMovementId : exercise.id;
+    latest.set(movementId, { exercise, decision });
+  }
+  const profile = FITNESS_DIMENSIONS.map(() => ({ mean: 0, contributions: [] }));
+  for (const [movementId, { exercise, decision }] of [...latest].sort((a, b) => a[0] - b[0])) {
+    const levels = ratings.get(exercise.id);
+    if (!levels) continue;
+    const strongest = Math.max(0, ...levels.flat());
+    levels.forEach((set, dimension) => {
+      if (set.length !== 1 || set[0] !== strongest) return;
+      const level = Math.max(1, Math.min(FITNESS_MAXIMUM_LEVEL,
+        set[0] + (decision.outcome === "easy" ? 1 : -1)));
+      profile[dimension].contributions.push({ movementId, exerciseId: exercise.id,
+        name: exercise.name, level, ratedLevel: set[0], feedback: decision.outcome });
+    });
+  }
+  for (const axis of profile) if (axis.contributions.length)
+    axis.mean = axis.contributions.reduce((sum, entry) => sum + entry.level, 0) / axis.contributions.length;
+  return profile;
+}
+
+// Keep selection on its existing input until its feedback logic is changed explicitly.
+export function calculateFavouriteFitnessProfile(exercises, state, ratings) {
+  return inspectFavouriteFitnessProfile(exercises, state, ratings).map(axis => axis.mean);
+}
+
+export function inspectFavouriteFitnessProfile(exercises, state, ratings) {
   const slots = Object.values(state.keptExerciseRootIdsBySelectionGroupId ?? {});
   const kept = new Set(slots.length ? slots.flat() : state.lastKeptExerciseIds ?? []);
   const movements = new Map();
@@ -157,7 +194,7 @@ export class FitnessProfileView {
     fontProbe.setAttribute("aria-hidden", "true");
     host.append(this.chart, this.axes, fontProbe);
     host.setAttribute("role", "group");
-    host.setAttribute("aria-label", "Fitness profile from favourites");
+    host.setAttribute("aria-label", "Fitness profile from difficulty feedback");
     host.setAttribute("aria-busy", "true");
     this.observer = new ResizeObserver(() => this.render());
     this.observer.observe(host);
@@ -208,8 +245,8 @@ export class FitnessProfileView {
     dialog.setAttribute("aria-describedby", summary.id);
     const note = make("p", "fitness-details-note", axis.contributions.length
       ? "Mean " + formatFitnessMean(axis.mean) +
-        " · " + axis.contributions.length + " favourite movement" + (axis.contributions.length === 1 ? "" : "s")
-      : "No current favourite has a qualifying rating for this axis.");
+        " · " + axis.contributions.length + " rated movement" + (axis.contributions.length === 1 ? "" : "s")
+      : "No easy/hard feedback has a qualifying rating for this axis.");
     const list = make("ul", "fitness-contributions");
     for (const entry of axis.contributions) {
       const row = make("li", "fitness-contribution");
@@ -217,11 +254,14 @@ export class FitnessProfileView {
       row.dataset.exerciseId = entry.exerciseId;
       const level = make("span", "fitness-contribution-level", String(entry.level));
       level.setAttribute("aria-label", "level " + entry.level + " of 5");
-      row.append(make("span", "", entry.name), level);
+      const name = make("span", "fitness-contribution-name", entry.name);
+      name.append(make("small", "fitness-contribution-feedback",
+        (entry.feedback === "easy" ? "🥱 too easy" : "💀 too hard") + " · " + entry.ratedLevel + " → " + entry.level));
+      row.append(name, level);
       list.append(row);
     }
     dialog.append(header, summary, note, list, make("p", "fitness-details-footnote",
-      "From precise strongest ratings of favourites. NM estimates, not measured ability."));
+      "Latest easy/hard response per movement. Too easy adds 1; too hard subtracts 1, within 1–5. Precise strongest ratings only. NM estimates, not measured ability."));
     dialog.addEventListener("click", event => {
       const rect = dialog.getBoundingClientRect();
       if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right ||
@@ -293,7 +333,7 @@ export class FitnessProfileView {
     const description = FITNESS_LABELS.map((label, index) =>
       label.join(" ") + ": " + (this.values[index] > 0
         ? this.values[index].toLocaleString() + " of 5"
-        : "no qualifying hearted exercise")).join("; ");
+        : "no qualifying difficulty feedback")).join("; ");
     svg.append(make("desc", {}, description));
     const vertices = this.values.map((value, index) =>
       point(index, expertRadius * fitnessProfileRadiusFraction(value)));
@@ -343,7 +383,7 @@ export class FitnessProfileView {
       const button = this.buttons[index];
       button.classList.toggle("is-unknown", !this.values[index]);
       button.setAttribute("aria-label", lines.join(" ") + ": " + (this.values[index]
-        ? "level " + this.values[index] + " of 5" : "no evidence yet") + ". Show favourite movements");
+        ? "level " + this.values[index] + " of 5" : "no evidence yet") + ". Show difficulty feedback");
       if (stacked) { button.removeAttribute("style"); return; }
       const labelWidth = Math.max(...lines.map(line => measure.measureText(line).width));
       const buttonWidth = Math.max(48, labelWidth + 8);

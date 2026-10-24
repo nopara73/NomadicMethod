@@ -485,6 +485,7 @@ public sealed partial class ExerciseSessionService
         state.WorkoutCompleted = false;
         state.CompletionAcknowledged = false;
         state.ActiveFitnessProfileBaseline = null;
+        state.FitnessProfileEvidenceVersion = 0;
         state.CompletionFitnessProfileSnapshot = null;
         ClearPendingMovement(state);
         ClearPendingRest(state);
@@ -530,6 +531,7 @@ public sealed partial class ExerciseSessionService
         int[] keptExerciseIdsAtStart = state.LastKeptExerciseIds
             .Order()
             .ToArray();
+        state.FitnessProfileEvidenceVersion = FitnessProfilePolicy.EvidenceVersion;
         state.ActiveFitnessProfileBaseline = FitnessProfilePolicy.Calculate(
             _catalogExercises, state, _fitnessRatings);
         state.CompletionFitnessProfileSnapshot = null;
@@ -1406,6 +1408,9 @@ public sealed partial class ExerciseSessionService
         if (state.WorkoutCompleted)
         {
             ApplyRecordedWorkoutKeeps(state);
+            if (state.FitnessProfileEvidenceVersion != FitnessProfilePolicy.EvidenceVersion)
+                state.ActiveFitnessProfileBaseline = null;
+            state.FitnessProfileEvidenceVersion = FitnessProfilePolicy.EvidenceVersion;
             state.CompletionFitnessProfileSnapshot = FitnessProfilePolicy.Calculate(
                 _catalogExercises, state, _fitnessRatings);
             FinalizeActiveWorkoutSession(
@@ -2546,7 +2551,7 @@ public sealed partial class ExerciseSessionService
 
     private Dictionary<int, int> GetFitnessTiers(WorkoutState state)
     {
-        int[] profile = FitnessProfilePolicy.Calculate(_catalogExercises, state, _fitnessRatings)
+        int[] profile = FitnessProfilePolicy.CalculateFavourites(_catalogExercises, state, _fitnessRatings)
             .Select(FitnessProfilePolicy.RoundLevel).ToArray();
         return _sequenceExercisesByRootId.ToDictionary(entry => entry.Key,
             entry => FitnessSelectionPolicy.SequenceTier(entry.Value.Select(member =>
@@ -5114,6 +5119,7 @@ public sealed partial class ExerciseSessionService
         state.ActiveWorkoutSession = null;
         state.ActiveWorkoutMinutes = 0;
         state.ActiveFitnessProfileBaseline = null;
+        state.FitnessProfileEvidenceVersion = 0;
         state.CompletionFitnessProfileSnapshot = null;
         state.ActiveWorkoutModifiers = WorkoutModifiers.None;
         state.ActiveWorkoutIsLightDay = false;

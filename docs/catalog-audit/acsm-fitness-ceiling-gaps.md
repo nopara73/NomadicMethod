@@ -28,7 +28,7 @@ Ratings are provisional NM training-level judgments for repeated 45-second block
 
 ## Spiderweb contributors (diagnostic)
 
-620 records have no precise strongest contribution. The following counts use the actual heart-profile calculation and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.
+620 records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.
 
 | Characteristic | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |

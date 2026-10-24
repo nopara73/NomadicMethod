@@ -54,10 +54,10 @@ public sealed class FitnessProfileTests
             string before = JsonSerializer.Serialize(state);
             double[] expected = entry.GetProperty("expected").EnumerateArray()
                 .Select(value => value.GetDouble()).ToArray();
-            double[] actual = FitnessProfilePolicy.Calculate(exercises, state, ratings);
+            double[] actual = FitnessProfilePolicy.CalculateFavourites(exercises, state, ratings);
             Assert.True(expected.SequenceEqual(actual), entry.GetProperty("name").GetString());
             ratings[999] = FitnessProfilePolicy.Dimensions.Select(_ => new[] { 5 }).ToArray(); // Retired catalog ID.
-            FitnessProfileAxis[] profile = FitnessProfilePolicy.Inspect(exercises, state, ratings);
+            FitnessProfileAxis[] profile = FitnessProfilePolicy.InspectFavourites(exercises, state, ratings);
             Assert.Equal(expected, profile.Select(axis => axis.Mean));
             for (int dimension = 0; dimension < profile.Length; dimension++)
             {
@@ -67,8 +67,8 @@ public sealed class FitnessProfileTests
                 Assert.All(profile[dimension].Contributions, c => Assert.Equal("movement " + c.ExerciseId, c.Name));
             }
             Assert.Equal(JsonSerializer.Serialize(profile), JsonSerializer.Serialize(
-                FitnessProfilePolicy.Inspect(exercises.Reverse().ToArray(), state, ratings)));
-            Assert.All(FitnessProfilePolicy.Inspect(exercises, state, new Dictionary<int, int[][]>()), axis =>
+                FitnessProfilePolicy.InspectFavourites(exercises.Reverse().ToArray(), state, ratings)));
+            Assert.All(FitnessProfilePolicy.InspectFavourites(exercises, state, new Dictionary<int, int[][]>()), axis =>
             {
                 Assert.Equal(0, axis.Mean);
                 Assert.Empty(axis.Contributions);
@@ -107,7 +107,7 @@ public sealed class FitnessProfileTests
                 .EnumerateArray().Select(id => id.GetInt32()).ToHashSet() };
             string before = JsonSerializer.Serialize(state);
             double[] expected = entry.GetProperty("expected").EnumerateArray().Select(v => v.GetDouble()).ToArray();
-            Assert.Equal(expected, FitnessProfilePolicy.Calculate(catalog, state, ratings));
+            Assert.Equal(expected, FitnessProfilePolicy.CalculateFavourites(catalog, state, ratings));
             Assert.Equal(before, JsonSerializer.Serialize(state));
         }
         int revision = fixture.RootElement.GetProperty("catalogRevision").GetInt32();

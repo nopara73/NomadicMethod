@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import test from "node:test";
 import { roundFitnessLevel, fitnessSelectionTier, fitnessSequenceTier, orderFitnessCandidates,
-  calculateFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
+  calculateFavouriteFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState, getResolution,
   WORKOUT_MODIFIERS as M } from "../workout.js";
 
@@ -180,7 +180,7 @@ for (const minutes of [3,5,7,10,15,45]) {
       const slot = getResolution(30).groups.find(g => g.canonicalGroups.includes(anchor.primaryCanonicalGroup));
       session.state.keptExerciseRootIdsBySelectionGroupId[slot.id] = [anchor.id];
       const kept = structuredClone(session.state.keptExerciseRootIdsBySelectionGroupId);
-      assert.equal(calculateFitnessProfile(catalog, session.state, ratings)[1], 2);
+      assert.equal(calculateFavouriteFitnessProfile(catalog, session.state, ratings)[1], 2);
       const flags = modifiers | (light ? M.Light : 0);
       session.startWorkout(minutes, flags);
       assert.equal(session.getActiveGroups().length, minutes);

@@ -2409,3 +2409,5 @@ input:focus-visible {
 
 .exercise-media-area.feedback-stage { container-type: size; }
 .feedback-stage .feedback-sheet { width: min(calc(100cqw - 16px), calc(100cqh - 88px), 480px); }
+
+.fitness-contribution-feedback { display: block; margin-top: 0.35rem; font-size: 0.75rem; color: #c3c2bb; }

@@ -32,7 +32,8 @@ test("malformed snapshots are absent, never measured zero", () => {
 });
 
 test("snapshots survive preparation, cold movement restore, duration and modifier edits, completion and Done", () => {
-  let session = create();
+  const ratings = new Map(catalog.map(e => [e.id, Array.from({length: 10}, (_, i) => i === 1 ? [3] : [])]));
+  let session = create(createDefaultState(), ratings);
   session.initialize();
   session.prepareWorkout(3);
   assert.equal(session.state.activeFitnessProfileBaseline, null);
@@ -41,7 +42,7 @@ test("snapshots survive preparation, cold movement restore, duration and modifie
   assert.deepEqual(baseline, calculateFitnessProfile(catalog, session.state, ratings));
   const sessionId = session.state.activeWorkoutSession.sessionId;
   session.beginMovement(session.getNextGroup(), 45_000, now + 45_000);
-  session = create(reload(session.state));
+  session = create(reload(session.state), ratings);
   session.restoreAfterReopen();
   assert.deepEqual(session.state.activeFitnessProfileBaseline, baseline);
   assert.equal(session.state.activeWorkoutSession.sessionId, sessionId);
@@ -49,14 +50,14 @@ test("snapshots survive preparation, cold movement restore, duration and modifie
   session.pauseMovement(session.getNextGroup(), 30_000, true);
   session.resizeActiveWorkout(5);
   session.reconfigureActiveWorkout(session.state.activeWorkoutModifiers ^ M.Silence, session.getNextGroup().id);
-  session = create(reload(session.state));
+  session = create(reload(session.state), ratings);
   session.restoreAfterReopen();
   assert.deepEqual(session.state.activeFitnessProfileBaseline, baseline);
   while (session.getNextGroup()) {
     const group = session.getNextGroup();
     session.beginRest(group, now + 15_000);
     if (session.isIntermediateSequenceBlock(group)) session.advanceSequence(group);
-    else session.recordOutcome(group, true);
+    else session.recordOutcome(group, "easy");
     session.clearPendingRest();
   }
   assert.equal(session.state.workoutCompleted, true);
@@ -77,12 +78,32 @@ test("snapshots survive preparation, cold movement restore, duration and modifie
   assert.deepEqual(calculateFitnessProfile(catalog, session.state, ratings), final);
 });
 
+test("a legacy favourites baseline is never compared with difficulty feedback", () => {
+  let session = create();
+  session.initialize();
+  session.startWorkout(3);
+  session.state.fitnessProfileEvidenceVersion = 0;
+  session.state.activeFitnessProfileBaseline = new Array(10).fill(4);
+  session = create(reload(session.state));
+  session.restoreAfterReopen();
+  assert.equal(session.state.activeFitnessProfileBaseline[0], 4);
+  while (session.getNextGroup()) {
+    const group = session.getNextGroup();
+    if (session.isIntermediateSequenceBlock(group)) session.advanceSequence(group);
+    else session.recordOutcome(group, "easy");
+  }
+  assert.equal(session.state.activeFitnessProfileBaseline, null);
+  assert.equal(session.state.fitnessProfileEvidenceVersion, 1);
+  assert.deepEqual(completionProfileChanges(session.state.activeFitnessProfileBaseline,
+    session.state.completionFitnessProfileSnapshot), []);
+});
+
 test("legacy and explicit end never invent a comparison", () => {
   let session = create();
   session.initialize();
   session.startWorkout(3);
   delete session.state.activeFitnessProfileBaseline;
-  session = create(reload(session.state));
+  session = create(reload(session.state), ratings);
   session.restoreAfterReopen();
   assert.equal(session.state.activeFitnessProfileBaseline, null);
   while (session.getNextGroup()) session.recordOutcome(session.getNextGroup(), true);
@@ -102,8 +123,8 @@ test("both completion surfaces consume frozen snapshots and expose the same conc
   const app = read("../app.js");
   const layout = read("../../NomadicMethod/Resources/layout/screen_completion.xml");
   const html = read("../index.html").split('id="completion-screen"')[1];
-  assert.match(native, /CompletionProfilePolicy.Changes\(\s*_state.ActiveFitnessProfileBaseline, _state.CompletionFitnessProfileSnapshot/);
-  assert.match(app, /renderCompletionProfile\(elements.completionChanges, session.state.activeFitnessProfileBaseline,\s*session.state.completionFitnessProfileSnapshot/);
+  assert.match(native, /CompletionProfilePolicy.Changes\([\s\S]*?_state.FitnessProfileEvidenceVersion == FitnessProfilePolicy.EvidenceVersion \? _state.ActiveFitnessProfileBaseline : null,\s*_state.CompletionFitnessProfileSnapshot/);
+  assert.match(app, /renderCompletionProfile\(elements.completionChanges,\s*session.state.fitnessProfileEvidenceVersion === FITNESS_EVIDENCE_VERSION \? session.state.activeFitnessProfileBaseline : null,\s*session.state.completionFitnessProfileSnapshot/);
   assert.ok(layout.includes('id="@+id/completion_changes"'));
   assert.ok(html.includes('id="completion-changes"'));
   assert.doesNotMatch(layout + html, /FitnessProfileView|fitness-profile|muscle.region|minutes.finished/);

@@ -1,5 +1,5 @@
 import { ExerciseFeedbackView } from "./exercise-feedback.js";
-import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings } from "./fitness-profile.js";
+import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings, FITNESS_EVIDENCE_VERSION } from "./fitness-profile.js";
 import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
 import { ReactionDrillView } from "./reaction-drill-view.js";
@@ -2435,7 +2435,8 @@ function showCompletion(playCue) {
   resetMovementVisuals();
   currentGroup = null;
   currentExercise = null;
-  renderCompletionProfile(elements.completionChanges, session.state.activeFitnessProfileBaseline,
+  renderCompletionProfile(elements.completionChanges,
+    session.state.fitnessProfileEvidenceVersion === FITNESS_EVIDENCE_VERSION ? session.state.activeFitnessProfileBaseline : null,
     session.state.completionFitnessProfileSnapshot);
   showScreen("completion");
   if (playCue) {

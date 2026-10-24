@@ -45,7 +45,7 @@ public sealed class CompletionProfileTests
     public void SnapshotsSurvivePreparationMovementDeathEditingFinalFeedbackAndDone()
     {
         Exercise[] catalog = Catalog();
-        var ratings = Ratings();
+        var ratings = Catalog().ToDictionary(e => e.Id, _ => FitnessProfilePolicy.Dimensions.Select((_, i) => i == 1 ? new[] { 3 } : Array.Empty<int>()).ToArray());
         var service = new ExerciseSessionService(catalog, new Random(5), () => Now, fitnessRatings: ratings);
         var state = new WorkoutState();
         service.Initialize(state);
@@ -76,7 +76,7 @@ public sealed class CompletionProfileTests
         {
             service.BeginRest(state, group, Now.ToUnixTimeMilliseconds() + 15_000);
             if (service.IsIntermediateSequenceBlock(state, group)) service.AdvanceSequence(state, group);
-            else service.RecordOutcome(state, group, true);
+            else service.RecordOutcomeWithScoreUpdates(state, group, ExerciseOutcome.TooEasy);
             service.ClearPendingRest(state);
         }
         Assert.True(state.WorkoutCompleted);
@@ -97,6 +97,28 @@ public sealed class CompletionProfileTests
         Assert.Null(state.ActiveFitnessProfileBaseline);
         Assert.Null(state.CompletionFitnessProfileSnapshot);
         Assert.Equal(final, FitnessProfilePolicy.Calculate(catalog, state, ratings));
+    }
+
+    [Fact]
+    public void LegacyFavouriteBaselineIsNotComparedWithDifficultyFeedback()
+    {
+        var service = new ExerciseSessionService(Catalog(), new Random(4), () => Now, fitnessRatings: Ratings());
+        var state = new WorkoutState();
+        service.Initialize(state);
+        service.StartWorkout(state, 3);
+        state.FitnessProfileEvidenceVersion = 0;
+        state.ActiveFitnessProfileBaseline = Enumerable.Repeat(4d, 10).ToArray();
+        state = Reload(state);
+        service.RestoreAfterReopen(state);
+        Assert.Equal(4d, state.ActiveFitnessProfileBaseline![0]); // Preserve saved state until final feedback.
+        while (service.GetNextGroup(state) is { } group)
+        {
+            if (service.IsIntermediateSequenceBlock(state, group)) service.AdvanceSequence(state, group);
+            else service.RecordOutcomeWithScoreUpdates(state, group, ExerciseOutcome.TooEasy);
+        }
+        Assert.Null(state.ActiveFitnessProfileBaseline);
+        Assert.Equal(FitnessProfilePolicy.EvidenceVersion, state.FitnessProfileEvidenceVersion);
+        Assert.Empty(CompletionProfilePolicy.Changes(state.ActiveFitnessProfileBaseline, state.CompletionFitnessProfileSnapshot));
     }
 
     [Fact]

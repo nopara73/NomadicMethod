@@ -84,7 +84,7 @@ public sealed class FitnessProfileView : FrameLayout
             _buttons[index].Enabled = true;
             _buttons[index].ContentDescription = string.Join(" ", FitnessProfilePolicy.Labels[index]) + ": " +
                 (_levels[index] > 0 ? "level " + _levels[index].ToString("0") + " of 5" : "no evidence yet") +
-                ". Show favourite movements";
+                ". Show difficulty feedback";
             _buttons[index].SetTextColor(_levels[index] > 0 ? Graphite
                 : new Color(Context!.GetColor(Resource.Color.secondary_text)));
         }
@@ -321,14 +321,17 @@ public sealed class FitnessProfileView : FrameLayout
             : "No evidence yet", 24, Green));
         Color secondary = new(195, 194, 187);
         content.AddView(Text(axis.Contributions.Count > 0
-            ? "Mean " + FitnessProfilePolicy.FormatMean(axis.Mean) + " · " + axis.Contributions.Count + " favourite movement" +
+            ? "Mean " + FitnessProfilePolicy.FormatMean(axis.Mean) + " · " + axis.Contributions.Count + " rated movement" +
                 (axis.Contributions.Count == 1 ? "" : "s")
-            : "No current favourite has a qualifying rating for this axis.", 14, secondary));
+            : "No easy/hard feedback has a qualifying rating for this axis.", 14, secondary));
         foreach (FitnessContribution entry in axis.Contributions)
         {
             var row = new LinearLayout(Context) { Orientation = Orientation.Horizontal };
             row.SetGravity(GravityFlags.CenterVertical);
-            var name = Text(entry.Name, 16, Bone);
+            var name = new LinearLayout(Context) { Orientation = Orientation.Vertical };
+            name.AddView(Text(entry.Name, 16, Bone));
+            name.AddView(Text((entry.Feedback == NomadicMethod.Models.ExerciseOutcome.TooEasy
+                ? "🥱 too easy" : "💀 too hard") + " · " + entry.RatedLevel + " → " + entry.Level, 12, secondary));
             row.AddView(name, new LinearLayout.LayoutParams(0, LayoutParams.WrapContent, 1));
             var level = Text(entry.Level.ToString(), 16, Green);
             level.Gravity = GravityFlags.Center;
@@ -339,7 +342,7 @@ public sealed class FitnessProfileView : FrameLayout
             row.AddView(level, new LinearLayout.LayoutParams((int)Dp(48), LayoutParams.WrapContent) { LeftMargin = (int)Dp(16) });
             content.AddView(row);
         }
-        content.AddView(Text("From precise strongest ratings of favourites. NM estimates, not measured ability.", 14, secondary));
+        content.AddView(Text("Latest easy/hard response per movement. Too easy adds 1; too hard subtracts 1, within 1–5. Precise strongest ratings only. NM estimates, not measured ability.", 14, secondary));
         var scroll = new ScrollView(Context);
         scroll.AddView(content);
         var builder = new AlertDialog.Builder(Context!);

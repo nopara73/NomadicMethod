@@ -243,7 +243,7 @@ public sealed class FitnessSelectionTests
             .First(g => g.CanonicalGroups.Contains(anchor.PrimaryCanonicalGroup));
         state.KeptExerciseRootIdsBySelectionGroupId[slot.Id] = [anchor.Id];
         string kept = JsonSerializer.Serialize(state.KeptExerciseRootIdsBySelectionGroupId);
-        Assert.Equal(2, FitnessProfilePolicy.Calculate(catalog, state, ratings)[1]);
+        Assert.Equal(2, FitnessProfilePolicy.CalculateFavourites(catalog, state, ratings)[1]);
         WorkoutModifiers flags = WorkoutModifiers.Mirror | WorkoutModifiers.TallMirror |
             WorkoutModifiers.HardFloor | WorkoutModifiers.Wall |
             (light ? WorkoutModifiers.Light : WorkoutModifiers.None);

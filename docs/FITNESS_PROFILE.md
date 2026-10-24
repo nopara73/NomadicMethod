@@ -4,41 +4,28 @@ Android and web draw the same ten-axis spiderweb below the setup controls. Its l
 
 An axis without qualifying evidence has a dashed charcoal spoke and hollow marker at the web boundary, with no green value dot. Its numeric calculation still uses the existing empty-group sentinel at the centre; the hollow marker is an unknown indicator, never a level-4 value. A known low level retains its green dot at the correct radius. Accessibility announces “no evidence yet” rather than level zero or measured inability.
 
-Tapping an axis or its label opens a read-only details dialog. Labels are real keyboard and screen-reader buttons with at least 48dp/CSS-pixel targets. The dialog shows the rounded level, mean (at most two decimal places, with an ellipsis for further digits; display never rounds across a half-level boundary), and each contributing favourite movement with its exact counted level. It shows one saved representative per SessionMovementId: the highest qualifying variant for that axis, breaking equal-level ties by lowest exercise ID. Rows are ordered by movement ID on both platforms. Ambiguous, weaker, unsaved, retired and duplicate claims never become extra rows. The calculation and inspector share the same contribution pipeline. Unknown axes explain that no current favourite has a qualifying rating, without suggesting inability.
+Tapping an axis or its label opens a read-only details dialog. Labels retain their keyboard, screen-reader and 48dp/CSS-pixel touch targets. The dialog shows the rounded level, mean and one contributing movement per SessionMovementId. Each row shows the exact exercise rating, latest difficulty response and adjusted contribution. Unknown axes explain that no easy/hard feedback has a qualifying rating. Opening and closing the inspector never writes workout state or prepares a lineup. Chart layout, scale, colours and fixed-size labels are unchanged.
 
-Closing details returns focus to its axis. Opening, reading and closing never write workout state, prepare a lineup, change Keeps or scores, or update recovery. The overlay also works while editing an unfinished workout's settings. Measured 12sp/0.75rem labels retain the radial layout where they fit; at enlarged text sizes they move into two columns beneath the intact web. Numbers and explanation appear only on demand. There is no title, legend, assessment question or extra setup feedback.
+## Difficulty evidence
 
-The calculation reads current saved Keeps, globally across slots and equipment settings. Slot-scoped Keeps are authoritative; the legacy kept-ID list is a fallback when no slot map exists. It never reads historical votes, dates, completion counts or preference scores, and never modifies workout state.
+The chart reads explicit easy/hard decisions from saved workout history and the active session, including interrupted sessions. Love, meh, automatic timeouts, old preference scores and current Keeps do not contribute. Pending, uncommitted swipe responses do not contribute. Existing history is read without mutation; there is no migration that guesses difficulty from old binary feedback.
 
-For each currently kept exercise:
+1. Select the latest easy/hard response per SessionMovementId across all slots, sides and aliases. A later love/meh response leaves that difficulty evidence intact. Order by decision timestamp; equal timestamps use session ID and then recorded decision order. The root of an atomic selection supplies one response; its sides, blocks and sets never multiply it.
+2. Use that exact exercise's current canonical ratings. Find its strongest supported level across the ten characteristics. Only singleton ratings equal to that strongest level qualify. All precise ties qualify; ranges (including noncontiguous sets) and weaker secondary ratings do not. A newer ambiguous alias replaces the old response even if it leaves no qualifying contribution. Retired or unrated exercises do not supply guessed values.
+3. For a qualifying rating L, too easy contributes min(5, L + 1); too hard contributes max(1, L - 1). This is a provisional challenge estimate, not proof of physiological ability or a measured one-level improvement.
+4. Average one adjusted contribution per movement independently for each axis. Retain the fractional mean; round only the displayed vertex, with halves upward. No contributions means unknown, drawn at the centre without a green value dot.
 
-1. Find its strongest rating across all ten characteristics, using the largest supported level.
-2. Contribute only to characteristics whose complete rating is exactly that one level. All precise ties qualify. Ambiguous sets never contribute, and an ambiguous stronger characteristic does not promote a lower secondary characteristic.
-3. Deduplicate SessionMovementId across slots, sides, directions and aliases. If kept variants of one movement have different qualifying values, retain the highest qualifying value in each characteristic once.
-4. Average the qualifying values independently in each characteristic. For speed-focused movements rated 2, 3 and 4, the speed result is 3. An empty group has radius zero.
+Example: too easy at strength 3 contributes 4, while too hard at strength 4 contributes 3. The mean is 3.5 and the chart displays 4. Repeating either exercise does not multiply its weight. Only a new difficulty response replaces its contribution; there is no age decay in this version.
 
-These are the agreed NM estimates from hearted exercise ratings, not measured physiological abilities. A zero means no qualifying current Keep. Existing exercise training ratings remain provisional and unchanged.
-
-The canonical runtime asset is NomadicMethod/Assets/fitness_ratings.json. It is generated from the reviewed explicit level sets by tools/generate-exercise-fitness-ceiling-scores.mjs and verified by its --check gate. The web build copies and fingerprints that Android asset; it has no independently authored ratings. Shared fixture cases exercise both implementations.
+The canonical runtime asset remains `NomadicMethod/Assets/fitness_ratings.json`. The existing generator and coverage gates remain unchanged. Shared `fitness-difficulty-cases.json` fixtures verify Android/web parity, including replacement, ranges, ties, clamping, unknowns and deduplication.
 
 ## Completion changes
 
-The normal completion screen shows only changed favourite-derived estimates,
-as a small list such as `agility 1.5 → 1.6`. It uses the unrounded means above,
-with one decimal and half-up rounding. Changes that produce the same displayed
-decimal are omitted. A dash means no qualifying evidence, including when an
-axis gains or loses its last qualifying Keep. Decreases are shown as directly
-as increases. The chart's whole-number rounding remains unchanged.
+New workouts capture the same difficulty-derived profile at activation and freeze it after final feedback. The existing completion list compares fractional means to one decimal; it introduces no new assessment UI. Snapshots carry an evidence version so an old favourites-based baseline is never compared with a difficulty-derived value. A workout started before this change has no comparable baseline. Completed older snapshots remain stored, but their obsolete comparison is not displayed. Cold reopening retains all workout progress and frozen snapshots. Love/meh alone produces no profile change.
 
-Activation captures the baseline after preparation, before any workout feedback.
-The last decision settles the recorded Keeps using the same rule as Done, then
-freezes the final profile. Both arrays persist with workout state through cold
-reopen, pauses, duration and modifier edits. Reopening unacknowledged completion
-uses those saved values, even after a ratings update. Done clears the snapshots.
-Legacy sessions with no baseline show no comparison; neither missing evidence
-nor a missing baseline is reconstructed as a measured zero. Explicit End keeps
-its existing interrupted-session path. No progress message appears for an empty
-list. These changes describe estimates from favourites, not physiological gains.
+## Selection remains unchanged
+
+This release changes the displayed estimates only. The planner retains its existing favourites-based calculation, including precise strongest ratings, movement deduplication and mean rounding. It does not consume the new chart values. Keeps, scores, recovery, equipment restrictions, fresh-choice tiers and persisted unfinished selections retain their previous behaviour. The discovery order below still describes that separate favourites-based input.
 
 ## Limits of precise contributions
 
@@ -97,13 +84,13 @@ needs two blocks in one primary slot and cannot fit a new 15-minute whole-body
 lineup. Secondary muscle claims cannot turn it into a two-primary-slot sequence.
 No side, anatomy or scheduling rule was weakened to admit it.
 
-Possible precise contributions are now cardio 2–3; strength 2–5; muscle
+Possible precise catalog ratings (before feedback adjustment) are now cardio 2–3; strength 2–5; muscle
 endurance 1–4; flexibility 1–5; agility 2; balance 1–4; coordination 1–5;
 power 2–5; reaction 1–2; and speed 2. Cardio, endurance, agility, balance, reaction and
 speed still have no precise level-5 contributor. Adding equipment alone cannot
 close those gaps; it must enable a genuinely supported precise assessment.
-The unchanged averaging rule also means that retaining lower-level contributors
-can keep an axis below 5 even when a level-5 movement is kept. Cadence-dependent drills
+The averaging rule also means that retaining lower adjusted contributions
+can keep an axis below 5 even with a contribution of 5. Cadence-dependent drills
 do not acquire a fixed speed/cardio tier merely because they look difficult.
 
 The generated [coverage report](catalog-audit/acsm-fitness-ceiling-gaps.md)
@@ -161,4 +148,4 @@ Randomness only breaks ties: one uniform draw per movement family, then variant
 draws, reused throughout one solver operation. Sides, placements, aliases and
 repeated sets do not buy additional family draws. Canonical read-only ratings
 are shared by Android, web and the preparation worker. There is no new saved-state
-schema or assessment question. The axis inspector above explains the existing profile without changing selection.
+schema or assessment question. The axis inspector explains difficulty feedback; selection retains its separate favourites-based input.

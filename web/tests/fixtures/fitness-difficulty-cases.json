@@ -1,0 +1,1142 @@
+{
+  "dimensions": [
+    "cardiorespiratoryEndurance",
+    "muscularStrength",
+    "muscularEndurance",
+    "flexibility",
+    "agility",
+    "balance",
+    "coordination",
+    "power",
+    "reactionTime",
+    "speed"
+  ],
+  "cases": [
+    {
+      "name": "favourites and binary outcomes provide no difficulty evidence",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "lastKeptExerciseIds": [
+          1
+        ],
+        "keptExerciseRootIdsBySelectionGroupId": {
+          "slot": [
+            1
+          ]
+        },
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "tick",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 1,
+                "outcome": "x",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {}
+    },
+    {
+      "name": "adjust before averaging and rounding",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [
+              3
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 2,
+          "levels": [
+            [],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        3.5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            1,
+            3,
+            "easy",
+            4
+          ],
+          [
+            2,
+            2,
+            4,
+            "hard",
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "name": "clamp each contribution at endpoints",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              1
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 2,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              5
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {
+        "balance": [
+          [
+            1,
+            1,
+            1,
+            "hard",
+            1
+          ],
+          [
+            2,
+            2,
+            5,
+            "easy",
+            5
+          ]
+        ]
+      }
+    },
+    {
+      "name": "latest timestamp wins across out of order history and aliases",
+      "exercises": [
+        {
+          "id": 10,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "id": 11,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              3
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 2,
+            "decisions": [
+              {
+                "rootExerciseId": 11,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 30
+              }
+            ]
+          },
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 10,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 20
+              },
+              {
+                "rootExerciseId": 10,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 10
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "evidence": {
+        "speed": [
+          [
+            10,
+            11,
+            3,
+            "hard",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "name": "love meh and pending feedback do not erase or invent difficulty evidence",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ],
+            [],
+            []
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 2,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 1,
+                "outcome": "tick",
+                "decidedAtUnixMilliseconds": 2
+              },
+              {
+                "rootExerciseId": 1,
+                "outcome": "x",
+                "decidedAtUnixMilliseconds": 3
+              }
+            ]
+          }
+        ],
+        "pendingRestFeedback": "easy",
+        "selectedExerciseIds": {
+          "slot": 2
+        },
+        "outcomes": {
+          "slot": "easy"
+        }
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0
+      ],
+      "evidence": {
+        "power": [
+          [
+            1,
+            1,
+            4,
+            "hard",
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "name": "active interrupted and completed sessions count once",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              2
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 2,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ],
+            "status": "Interrupted"
+          },
+          {
+            "sessionId": 2,
+            "decisions": [
+              {
+                "rootExerciseId": 2,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ],
+            "status": "Completed"
+          }
+        ],
+        "activeWorkoutSession": {
+          "sessionId": 2,
+          "decisions": [
+            {
+              "rootExerciseId": 2,
+              "outcome": "hard",
+              "decidedAtUnixMilliseconds": 2
+            }
+          ]
+        }
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "evidence": {
+        "speed": [
+          [
+            1,
+            1,
+            2,
+            "easy",
+            3
+          ],
+          [
+            2,
+            2,
+            4,
+            "hard",
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "name": "precise strongest ties count weaker characteristics do not",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [
+              3
+            ],
+            [],
+            [],
+            [],
+            [],
+            [
+              3
+            ],
+            [],
+            [],
+            [
+              1
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0
+      ],
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            1,
+            3,
+            "easy",
+            4
+          ]
+        ],
+        "coordination": [
+          [
+            1,
+            1,
+            3,
+            "easy",
+            4
+          ]
+        ]
+      }
+    },
+    {
+      "name": "ranges never promote a weaker characteristic",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              1,
+              3
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 2,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              1,
+              3,
+              5
+            ],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {}
+    },
+    {
+      "name": "precise tied characteristic survives an ambiguous tie",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [
+              1,
+              3
+            ],
+            [],
+            [],
+            [],
+            [
+              3
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {
+        "balance": [
+          [
+            1,
+            1,
+            3,
+            "hard",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "name": "newest ambiguous alias replaces older precise evidence",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              1,
+              3
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {}
+    },
+    {
+      "name": "missing and retired ratings remain unknown",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 999,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {}
+    },
+    {
+      "name": "timestamp ties use session then recorded order",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              3
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 10,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              3
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 3,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 5
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 5
+              }
+            ]
+          },
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 5
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "evidence": {
+        "speed": [
+          [
+            10,
+            2,
+            3,
+            "hard",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "name": "an atomic response does not multiply sequence members",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              2
+            ]
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 2,
+          "levels": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [
+              4
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1,
+                "sequenceExerciseIds": [
+                  1,
+                  2,
+                  1,
+                  2
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "evidence": {
+        "speed": [
+          [
+            1,
+            1,
+            2,
+            "easy",
+            3
+          ]
+        ]
+      }
+    },
+    {
+      "name": "later feedback raises or lowers with fallback movement identity",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 0,
+          "levels": [
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ],
+        "activeWorkoutSession": {
+          "sessionId": 2,
+          "decisions": [
+            {
+              "rootExerciseId": 1,
+              "outcome": "easy",
+              "decidedAtUnixMilliseconds": 2
+            }
+          ]
+        }
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "evidence": {
+        "flexibility": [
+          [
+            1,
+            1,
+            2,
+            "easy",
+            3
+          ]
+        ]
+      }
+    }
+  ]
+}
