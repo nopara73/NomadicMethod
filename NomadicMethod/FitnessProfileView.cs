@@ -317,32 +317,41 @@ public sealed class FitnessProfileView : FrameLayout
         title.SetPadding((int)Dp(24), (int)Dp(20), (int)Dp(24), (int)Dp(8));
         var content = new LinearLayout(Context) { Orientation = Orientation.Vertical };
         content.SetPadding((int)Dp(24), 0, (int)Dp(24), (int)Dp(16));
-        content.AddView(Text(axis.Contributions.Count > 0 ? "level " + _levels[index].ToString("0") + " of 5"
+        content.AddView(Text(axis.Mean > 0 ? "level " + _levels[index].ToString("0") + " of 5"
             : "No evidence yet", 24, Green));
         Color secondary = new(195, 194, 187);
-        content.AddView(Text(axis.Contributions.Count > 0
-            ? "Mean " + FitnessProfilePolicy.FormatMean(axis.Mean) + " · " + axis.Contributions.Count + " rated movement" +
+        content.AddView(Text(axis.Mean > 0
+            ? "Best fit " + FitnessProfilePolicy.FormatLevels(axis.BestLevels ?? []) + " · " + axis.Contributions.Count + " rated movement" +
                 (axis.Contributions.Count == 1 ? "" : "s")
-            : "No easy/hard feedback has a qualifying rating for this axis.", 14, secondary));
-        foreach (FitnessContribution entry in axis.Contributions)
+            : axis.Contributions.Count > 0 ? "This feedback still fits every level."
+            : "No love/easy/hard feedback has a qualifying rating for this axis.", 14, secondary));
+        foreach (FitnessEvidence entry in axis.Contributions)
         {
             var row = new LinearLayout(Context) { Orientation = Orientation.Horizontal };
             row.SetGravity(GravityFlags.CenterVertical);
             var name = new LinearLayout(Context) { Orientation = Orientation.Vertical };
             name.AddView(Text(entry.Name, 16, Bone));
-            name.AddView(Text((entry.Feedback == NomadicMethod.Models.ExerciseOutcome.TooEasy
-                ? "🥱 too easy" : "💀 too hard") + " · " + entry.RatedLevel + " → " + entry.Level, 12, secondary));
+            string feedback = entry.Feedback switch
+            {
+                NomadicMethod.Models.ExerciseOutcome.Tick => "❤️ love",
+                NomadicMethod.Models.ExerciseOutcome.TooEasy => "🥱 too easy",
+                _ => "💀 too hard",
+            };
+            name.AddView(Text(feedback + " · rated " + FitnessProfilePolicy.FormatLevels(entry.RatedLevels), 12, secondary));
             row.AddView(name, new LinearLayout.LayoutParams(0, LayoutParams.WrapContent, 1));
-            var level = Text(entry.Level.ToString(), 16, Green);
+            string supported = FitnessProfilePolicy.FormatLevels(entry.SupportedLevels);
+            var level = Text(supported, 16, Green);
             level.Gravity = GravityFlags.Center;
-            level.ContentDescription = "level " + entry.Level + " of 5";
+            level.ContentDescription = "supports levels " + supported;
+            level.SetPadding((int)Dp(12), (int)Dp(8), (int)Dp(12), (int)Dp(8));
+            level.SetMaxWidth((int)Dp(112));
             var badge = new GradientDrawable();
             badge.SetColor(new Color(38, 42, 45)); badge.SetCornerRadius(Dp(24));
             level.Background = badge;
-            row.AddView(level, new LinearLayout.LayoutParams((int)Dp(48), LayoutParams.WrapContent) { LeftMargin = (int)Dp(16) });
+            row.AddView(level, new LinearLayout.LayoutParams(LayoutParams.WrapContent, LayoutParams.WrapContent) { LeftMargin = (int)Dp(16) });
             content.AddView(row);
         }
-        content.AddView(Text("Latest easy/hard response per movement. Too easy adds 1; too hard subtracts 1, within 1–5. Precise strongest ratings only. NM estimates, not measured ability.", 14, secondary));
+        content.AddView(Text("Too easy supports levels above the rated range; too hard below it; love within it. Best fit across each movement’s latest response, within 1–5. NM estimates, not measured ability.", 14, secondary));
         var scroll = new ScrollView(Context);
         scroll.AddView(content);
         var builder = new AlertDialog.Builder(Context!);

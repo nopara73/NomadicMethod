@@ -99,14 +99,16 @@ public sealed class CompletionProfileTests
         Assert.Equal(final, FitnessProfilePolicy.Calculate(catalog, state, ratings));
     }
 
-    [Fact]
-    public void LegacyFavouriteBaselineIsNotComparedWithDifficultyFeedback()
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    public void PreviousEvidenceBaselinesAreNotComparedWithRangeFeedback(int version)
     {
         var service = new ExerciseSessionService(Catalog(), new Random(4), () => Now, fitnessRatings: Ratings());
         var state = new WorkoutState();
         service.Initialize(state);
         service.StartWorkout(state, 3);
-        state.FitnessProfileEvidenceVersion = 0;
+        state.FitnessProfileEvidenceVersion = version;
         state.ActiveFitnessProfileBaseline = Enumerable.Repeat(4d, 10).ToArray();
         state = Reload(state);
         service.RestoreAfterReopen(state);

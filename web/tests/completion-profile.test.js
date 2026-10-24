@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { completionProfileChanges, copyProfileSnapshot } from "../completion-profile.js";
-import { calculateFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
+import { calculateFitnessProfile, parseFitnessRatings, FITNESS_EVIDENCE_VERSION } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from "../workout.js";
 
 const read = path => readFileSync(new URL(path, import.meta.url), "utf8");
@@ -78,11 +78,11 @@ test("snapshots survive preparation, cold movement restore, duration and modifie
   assert.deepEqual(calculateFitnessProfile(catalog, session.state, ratings), final);
 });
 
-test("a legacy favourites baseline is never compared with difficulty feedback", () => {
+for (const version of [0, 1]) test(`evidence version ${version} is never compared with range feedback`, () => {
   let session = create();
   session.initialize();
   session.startWorkout(3);
-  session.state.fitnessProfileEvidenceVersion = 0;
+  session.state.fitnessProfileEvidenceVersion = version;
   session.state.activeFitnessProfileBaseline = new Array(10).fill(4);
   session = create(reload(session.state));
   session.restoreAfterReopen();
@@ -93,7 +93,7 @@ test("a legacy favourites baseline is never compared with difficulty feedback", 
     else session.recordOutcome(group, "easy");
   }
   assert.equal(session.state.activeFitnessProfileBaseline, null);
-  assert.equal(session.state.fitnessProfileEvidenceVersion, 1);
+  assert.equal(session.state.fitnessProfileEvidenceVersion, FITNESS_EVIDENCE_VERSION);
   assert.deepEqual(completionProfileChanges(session.state.activeFitnessProfileBaseline,
     session.state.completionFitnessProfileSnapshot), []);
 });

@@ -8,7 +8,7 @@ export const FITNESS_LABELS = Object.freeze([
 ]);
 export const FITNESS_MAXIMUM_LEVEL = 5;
 export const FITNESS_WEB_BOUNDARY_LEVEL = 4;
-export const FITNESS_EVIDENCE_VERSION = 1;
+export const FITNESS_EVIDENCE_VERSION = 2;
 
 export function roundFitnessLevel(level) {
   return !Number.isFinite(level) || level <= 0 ? 0
@@ -106,28 +106,49 @@ export function inspectFitnessProfile(exercises, state, ratings) {
     .flatMap(session => session.decisions ?? [])
     .sort((a, b) => (a.decidedAtUnixMilliseconds ?? 0) - (b.decidedAtUnixMilliseconds ?? 0));
   for (const decision of decisions) {
-    if (decision.outcome !== "easy" && decision.outcome !== "hard") continue;
+    if (!["tick", "easy", "hard"].includes(decision.outcome)) continue;
     const exercise = byId.get(decision.rootExerciseId);
     if (!exercise) continue;
     const movementId = exercise.sessionMovementId > 0 ? exercise.sessionMovementId : exercise.id;
     latest.set(movementId, { exercise, decision });
   }
-  const profile = FITNESS_DIMENSIONS.map(() => ({ mean: 0, contributions: [] }));
+  const profile = FITNESS_DIMENSIONS.map(() => ({ mean: 0, contributions: [], bestLevels: [] }));
   for (const [movementId, { exercise, decision }] of [...latest].sort((a, b) => a[0] - b[0])) {
     const levels = ratings.get(exercise.id);
     if (!levels) continue;
     const strongest = Math.max(0, ...levels.flat());
     levels.forEach((set, dimension) => {
-      if (set.length !== 1 || set[0] !== strongest) return;
-      const level = Math.max(1, Math.min(FITNESS_MAXIMUM_LEVEL,
-        set[0] + (decision.outcome === "easy" ? 1 : -1)));
+      if (!set.length || set.at(-1) !== strongest) return;
+      const supportedLevels = decision.outcome === "tick" ? [...set]
+        : decision.outcome === "easy"
+          ? [1, 2, 3, 4, 5].filter(level => level >= Math.min(5, set.at(-1) + 1))
+          : [1, 2, 3, 4, 5].filter(level => level <= Math.max(1, set[0] - 1));
       profile[dimension].contributions.push({ movementId, exerciseId: exercise.id,
-        name: exercise.name, level, ratedLevel: set[0], feedback: decision.outcome });
+        name: exercise.name, ratedLevels: [...set], feedback: decision.outcome, supportedLevels });
     });
   }
-  for (const axis of profile) if (axis.contributions.length)
-    axis.mean = axis.contributions.reduce((sum, entry) => sum + entry.level, 0) / axis.contributions.length;
+  for (const axis of profile) {
+    if (!axis.contributions.length) continue;
+    const candidates = [1, 2, 3, 4, 5];
+    const penalties = candidates.map(candidate => axis.contributions.reduce((sum, entry) =>
+      sum + Math.min(...entry.supportedLevels.map(level => (candidate - level) ** 2)), 0));
+    const minimum = Math.min(...penalties);
+    axis.bestLevels = candidates.filter((_, index) => penalties[index] === minimum);
+    if (axis.bestLevels.length < FITNESS_MAXIMUM_LEVEL)
+      axis.mean = axis.bestLevels.reduce((sum, level) => sum + level, 0) / axis.bestLevels.length;
+  }
   return profile;
+}
+
+export function formatFitnessLevels(levels) {
+  const parts = [];
+  for (let i = 0; i < levels.length; i++) {
+    const start = levels[i];
+    let end = start;
+    while (i + 1 < levels.length && levels[i + 1] === end + 1) end = levels[++i];
+    parts.push(start === end ? String(start) : `${start}–${end}`);
+  }
+  return parts.join(", ");
 }
 
 // Keep selection on its existing input until its feedback logic is changed explicitly.
@@ -239,29 +260,32 @@ export class FitnessProfileView {
     close.addEventListener("click", () => dialog.close());
     const header = make("div", "fitness-details-header");
     header.append(title, close);
-    const summary = make("p", "fitness-details-summary", axis.contributions.length
+    const summary = make("p", "fitness-details-summary", axis.mean > 0
       ? "level " + this.values[index] + " of 5" : "No evidence yet");
     summary.id = this.clipId + "-summary";
     dialog.setAttribute("aria-describedby", summary.id);
-    const note = make("p", "fitness-details-note", axis.contributions.length
-      ? "Mean " + formatFitnessMean(axis.mean) +
+    const note = make("p", "fitness-details-note", axis.mean > 0
+      ? "Best fit " + formatFitnessLevels(axis.bestLevels) +
         " · " + axis.contributions.length + " rated movement" + (axis.contributions.length === 1 ? "" : "s")
-      : "No easy/hard feedback has a qualifying rating for this axis.");
+      : axis.contributions.length ? "This feedback still fits every level."
+      : "No love/easy/hard feedback has a qualifying rating for this axis.");
     const list = make("ul", "fitness-contributions");
     for (const entry of axis.contributions) {
       const row = make("li", "fitness-contribution");
       row.dataset.movementId = entry.movementId;
       row.dataset.exerciseId = entry.exerciseId;
-      const level = make("span", "fitness-contribution-level", String(entry.level));
-      level.setAttribute("aria-label", "level " + entry.level + " of 5");
+      const supported = formatFitnessLevels(entry.supportedLevels);
+      const level = make("span", "fitness-contribution-level", supported);
+      level.setAttribute("aria-label", "supports levels " + supported);
       const name = make("span", "fitness-contribution-name", entry.name);
       name.append(make("small", "fitness-contribution-feedback",
-        (entry.feedback === "easy" ? "🥱 too easy" : "💀 too hard") + " · " + entry.ratedLevel + " → " + entry.level));
+        (entry.feedback === "tick" ? "❤️ love" : entry.feedback === "easy" ? "🥱 too easy" : "💀 too hard") +
+          " · rated " + formatFitnessLevels(entry.ratedLevels)));
       row.append(name, level);
       list.append(row);
     }
     dialog.append(header, summary, note, list, make("p", "fitness-details-footnote",
-      "Latest easy/hard response per movement. Too easy adds 1; too hard subtracts 1, within 1–5. Precise strongest ratings only. NM estimates, not measured ability."));
+      "Too easy supports levels above the rated range; too hard below it; love within it. Best fit across each movement’s latest response, within 1–5. NM estimates, not measured ability."));
     dialog.addEventListener("click", event => {
       const rect = dialog.getBoundingClientRect();
       if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right ||

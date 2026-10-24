@@ -44,6 +44,9 @@ public sealed class FitnessDifficultyTests
             for (int i = 0; i < profile.Length; i++)
             {
                 Assert.Equal(expected[i], profile[i].Mean);
+                int[] best = entry.GetProperty("bestLevels").TryGetProperty(FitnessProfilePolicy.Dimensions[i], out var bestLevels)
+                    ? bestLevels.Deserialize<int[]>()! : [];
+                Assert.Equal(best, profile[i].BestLevels);
                 JsonElement[] rows = entry.GetProperty("evidence").TryGetProperty(FitnessProfilePolicy.Dimensions[i], out var evidence)
                     ? evidence.EnumerateArray().ToArray() : [];
                 Assert.Equal(rows.Length, profile[i].Contributions.Count);
@@ -52,9 +55,14 @@ public sealed class FitnessDifficultyTests
                     var actual = profile[i].Contributions[j]; var row = rows[j];
                     Assert.Equal(row[0].GetInt32(), actual.MovementId);
                     Assert.Equal(row[1].GetInt32(), actual.ExerciseId);
-                    Assert.Equal(row[2].GetInt32(), actual.RatedLevel);
-                    Assert.Equal(row[3].GetString() == "easy" ? ExerciseOutcome.TooEasy : ExerciseOutcome.TooHard, actual.Feedback);
-                    Assert.Equal(row[4].GetInt32(), actual.Level);
+                    Assert.Equal(row[2].Deserialize<int[]>(), actual.RatedLevels);
+                    Assert.Equal(row[3].GetString() switch
+                    {
+                        "tick" => ExerciseOutcome.Tick,
+                        "easy" => ExerciseOutcome.TooEasy,
+                        _ => ExerciseOutcome.TooHard,
+                    }, actual.Feedback);
+                    Assert.Equal(row[4].Deserialize<int[]>(), actual.SupportedLevels);
                     Assert.Equal("movement " + actual.ExerciseId, actual.Name);
                 }
             }
@@ -63,6 +71,14 @@ public sealed class FitnessDifficultyTests
             Assert.All(FitnessProfilePolicy.Inspect(exercises, state, new Dictionary<int, int[][]>()), axis => Assert.Equal(0, axis.Mean));
             Assert.Equal(before, JsonSerializer.Serialize(state));
         }
+    }
+
+    [Fact]
+    public void LevelLabelsRetainNoncontiguousGaps()
+    {
+        Assert.Equal("1, 3–5", FitnessProfilePolicy.FormatLevels([1, 3, 4, 5]));
+        Assert.Equal("2–3", FitnessProfilePolicy.FormatLevels([2, 3]));
+        Assert.Equal("5", FitnessProfilePolicy.FormatLevels([5]));
     }
 
     [Fact]

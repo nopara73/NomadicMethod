@@ -3,14 +3,17 @@ using NomadicMethod.Models;
 
 namespace NomadicMethod.Services;
 
-public sealed record FitnessContribution(int MovementId, int ExerciseId, string Name, int Level,
-    int RatedLevel = 0, ExerciseOutcome? Feedback = null);
-public sealed record FitnessProfileAxis(double Mean, IReadOnlyList<FitnessContribution> Contributions);
+public sealed record FitnessContribution(int MovementId, int ExerciseId, string Name, int Level);
+public sealed record FavouriteFitnessProfileAxis(double Mean, IReadOnlyList<FitnessContribution> Contributions);
+public sealed record FitnessEvidence(int MovementId, int ExerciseId, string Name, int[] RatedLevels,
+    ExerciseOutcome Feedback, int[] SupportedLevels);
+public sealed record FitnessProfileAxis(double Mean, IReadOnlyList<FitnessEvidence> Contributions,
+    int[]? BestLevels = null);
 
 /// <summary>Equal-weight challenge estimates from each movement's latest difficulty response.</summary>
 public static class FitnessProfilePolicy
 {
-    public const int EvidenceVersion = 1;
+    public const int EvidenceVersion = 2;
     public const int MaximumLevel = 5;
     public const int WebBoundaryLevel = 4;
 
@@ -76,8 +79,8 @@ public static class FitnessProfilePolicy
         IReadOnlyDictionary<int, int[][]> ratings)
         => Inspect(exercises, state, ratings).Select(axis => axis.Mean).ToArray();
 
-    // Select the latest difficulty response BEFORE checking its ratings. A newer
-    // ambiguous variant must not leave an older precise response masquerading as current.
+    // Select the latest informative response BEFORE checking its ratings. Meh,
+    // timeouts and pending gestures neither contribute nor erase earlier evidence.
     public static FitnessProfileAxis[] Inspect(
         IReadOnlyList<Exercise> exercises,
         WorkoutState state,
@@ -93,13 +96,13 @@ public static class FitnessProfilePolicy
                      .SelectMany(session => session.Decisions)
                      .OrderBy(decision => decision.DecidedAtUnixMilliseconds))
         {
-            if (decision.Outcome is not (ExerciseOutcome.TooEasy or ExerciseOutcome.TooHard) ||
+            if (decision.Outcome is not (ExerciseOutcome.Tick or ExerciseOutcome.TooEasy or ExerciseOutcome.TooHard) ||
                 !byId.TryGetValue(decision.RootExerciseId, out Exercise? exercise)) continue;
             int movementId = exercise.SessionMovementId > 0 ? exercise.SessionMovementId : exercise.Id;
             latest[movementId] = (exercise, decision);
         }
 
-        var contributions = Dimensions.Select(_ => new List<FitnessContribution>()).ToArray();
+        var contributions = Dimensions.Select(_ => new List<FitnessEvidence>()).ToArray();
         foreach (var (movementId, (exercise, decision)) in latest.OrderBy(entry => entry.Key))
         {
             if (!ratings.TryGetValue(exercise.Id, out int[][]? levels)) continue;
@@ -107,15 +110,45 @@ public static class FitnessProfilePolicy
             for (int dimension = 0; dimension < Dimensions.Length; dimension++)
             {
                 int[] set = levels[dimension];
-                if (set.Length != 1 || set[0] != strongest) continue;
-                int estimate = Math.Clamp(set[0] + (decision.Outcome == ExerciseOutcome.TooEasy ? 1 : -1),
-                    1, MaximumLevel);
+                if (set.Length == 0 || set[^1] != strongest) continue;
                 contributions[dimension].Add(new(movementId, exercise.Id, exercise.Name,
-                    estimate, set[0], decision.Outcome));
+                    [.. set], decision.Outcome, SupportedLevels(set, decision.Outcome)));
             }
         }
-        return contributions.Select(values => new FitnessProfileAxis(
-            values.Count == 0 ? 0d : values.Average(value => value.Level), values.ToArray())).ToArray();
+        return contributions.Select(Fit).ToArray();
+    }
+
+    private static int[] SupportedLevels(int[] rated, ExerciseOutcome outcome) => outcome switch
+    {
+        ExerciseOutcome.Tick => [.. rated],
+        ExerciseOutcome.TooEasy => Enumerable.Range(Math.Min(MaximumLevel, rated[^1] + 1),
+            MaximumLevel - Math.Min(MaximumLevel, rated[^1] + 1) + 1).ToArray(),
+        ExerciseOutcome.TooHard => Enumerable.Range(1, Math.Max(1, rated[0] - 1)).ToArray(),
+        _ => throw new ArgumentOutOfRangeException(nameof(outcome)),
+    };
+
+    private static FitnessProfileAxis Fit(List<FitnessEvidence> evidence)
+    {
+        if (evidence.Count == 0) return new(0, [], []);
+        // Each movement has one equal vote. Evaluate only the five discrete levels;
+        // distance to the nearest supported member preserves noncontiguous sets.
+        int[] penalties = Enumerable.Range(1, MaximumLevel).Select(candidate => evidence.Sum(entry =>
+            entry.SupportedLevels.Min(level => (candidate - level) * (candidate - level)))).ToArray();
+        int minimum = penalties.Min();
+        int[] best = Enumerable.Range(1, MaximumLevel).Where(level => penalties[level - 1] == minimum).ToArray();
+        return new(best.Length == MaximumLevel ? 0 : best.Average(), evidence.ToArray(), best);
+    }
+
+    public static string FormatLevels(IReadOnlyList<int> levels)
+    {
+        var parts = new List<string>();
+        for (int i = 0; i < levels.Count; i++)
+        {
+            int start = levels[i], end = start;
+            while (i + 1 < levels.Count && levels[i + 1] == end + 1) end = levels[++i];
+            parts.Add(start == end ? start.ToString() : $"{start}–{end}");
+        }
+        return string.Join(", ", parts);
     }
 
     // The planner deliberately retains its existing favourite-based input. Updating
@@ -126,7 +159,7 @@ public static class FitnessProfilePolicy
         IReadOnlyDictionary<int, int[][]> ratings)
         => InspectFavourites(exercises, state, ratings).Select(axis => axis.Mean).ToArray();
 
-    public static FitnessProfileAxis[] InspectFavourites(
+    public static FavouriteFitnessProfileAxis[] InspectFavourites(
         IReadOnlyList<Exercise> exercises,
         WorkoutState state,
         IReadOnlyDictionary<int, int[][]> ratings)
@@ -160,7 +193,7 @@ public static class FitnessProfilePolicy
         {
             FitnessContribution[] values = movements.Values.Select(value => value[dimension])
                 .OfType<FitnessContribution>().OrderBy(value => value.MovementId).ToArray();
-            return new FitnessProfileAxis(values.Length == 0 ? 0d : values.Average(value => value.Level), values);
+            return new FavouriteFitnessProfileAxis(values.Length == 0 ? 0d : values.Average(value => value.Level), values);
         }).ToArray();
     }
 }

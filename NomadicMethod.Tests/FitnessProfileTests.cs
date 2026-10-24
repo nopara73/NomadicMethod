@@ -57,7 +57,7 @@ public sealed class FitnessProfileTests
             double[] actual = FitnessProfilePolicy.CalculateFavourites(exercises, state, ratings);
             Assert.True(expected.SequenceEqual(actual), entry.GetProperty("name").GetString());
             ratings[999] = FitnessProfilePolicy.Dimensions.Select(_ => new[] { 5 }).ToArray(); // Retired catalog ID.
-            FitnessProfileAxis[] profile = FitnessProfilePolicy.InspectFavourites(exercises, state, ratings);
+            FavouriteFitnessProfileAxis[] profile = FitnessProfilePolicy.InspectFavourites(exercises, state, ratings);
             Assert.Equal(expected, profile.Select(axis => axis.Mean));
             for (int dimension = 0; dimension < profile.Length; dimension++)
             {

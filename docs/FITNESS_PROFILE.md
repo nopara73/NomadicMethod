@@ -4,30 +4,33 @@ Android and web draw the same ten-axis spiderweb below the setup controls. Its l
 
 An axis without qualifying evidence has a dashed charcoal spoke and hollow marker at the web boundary, with no green value dot. Its numeric calculation still uses the existing empty-group sentinel at the centre; the hollow marker is an unknown indicator, never a level-4 value. A known low level retains its green dot at the correct radius. Accessibility announces “no evidence yet” rather than level zero or measured inability.
 
-Tapping an axis or its label opens a read-only details dialog. Labels retain their keyboard, screen-reader and 48dp/CSS-pixel touch targets. The dialog shows the rounded level, mean and one contributing movement per SessionMovementId. Each row shows the exact exercise rating, latest difficulty response and adjusted contribution. Unknown axes explain that no easy/hard feedback has a qualifying rating. Opening and closing the inspector never writes workout state or prepares a lineup. Chart layout, scale, colours and fixed-size labels are unchanged.
+Tapping an axis or its label opens a read-only details dialog. Labels retain their keyboard, screen-reader and 48dp/CSS-pixel touch targets. The dialog shows the rounded level, the equally best-fitting levels and one contributing movement per SessionMovementId. Each row shows the exact exercise rating, latest love/easy/hard response and supported levels. Unknown axes distinguish absent evidence from feedback that still fits every level. Opening and closing the inspector never writes workout state or prepares a lineup. Chart layout, scale, colours and fixed-size labels are unchanged.
 
 ## Difficulty evidence
 
-The chart reads explicit easy/hard decisions from saved workout history and the active session, including interrupted sessions. Love, meh, automatic timeouts, old preference scores and current Keeps do not contribute. Pending, uncommitted swipe responses do not contribute. Existing history is read without mutation; there is no migration that guesses difficulty from old binary feedback.
+The chart reads recorded love (`Tick`), too-easy and too-hard decisions from saved workout history and the active session, including interrupted sessions. Meh (`X`), timeouts, neutral outcomes and pending gestures neither contribute nor erase the last informative response. Saved Keeps without a recorded response do not imply difficulty evidence. Existing history is read without mutation.
 
-1. Select the latest easy/hard response per SessionMovementId across all slots, sides and aliases. A later love/meh response leaves that difficulty evidence intact. Order by decision timestamp; equal timestamps use session ID and then recorded decision order. The root of an atomic selection supplies one response; its sides, blocks and sets never multiply it.
-2. Use that exact exercise's current canonical ratings. Find its strongest supported level across the ten characteristics. Only singleton ratings equal to that strongest level qualify. All precise ties qualify; ranges (including noncontiguous sets) and weaker secondary ratings do not. A newer ambiguous alias replaces the old response even if it leaves no qualifying contribution. Retired or unrated exercises do not supply guessed values.
-3. For a qualifying rating L, too easy contributes min(5, L + 1); too hard contributes max(1, L - 1). This is a provisional challenge estimate, not proof of physiological ability or a measured one-level improvement.
-4. Average one adjusted contribution per movement independently for each axis. Retain the fractional mean; round only the displayed vertex, with halves upward. No contributions means unknown, drawn at the centre without a green value dot.
+1. Select the latest love/easy/hard response per SessionMovementId across all slots, sides and aliases. Order by decision timestamp; equal timestamps use session ID and then recorded decision order. The atomic selection root supplies one response; sides, blocks and sets never multiply it.
+2. Use that exact exercise's current canonical ratings. Find the highest supported level across its ten characteristics. Every nonempty characteristic whose maximum equals that level qualifies, including ranges and ties. Weaker characteristics remain excluded. A newer unrated alias replaces old evidence rather than reviving stale ratings.
+3. Interpret feedback against the whole rated set: love supports exactly its listed levels; too easy supports all levels above its maximum; too hard supports all levels below its minimum. Saturate too-easy-at-5 to `[5]` and too-hard-at-1 to `[1]`. Thus `[2,3]` yields `[4,5]`, `[2,3]` or `[1]` for easy, love or hard respectively. `[1,2,3,4,5]` yields `[5]`, all five, or `[1]`.
+4. For each candidate integer level 1–5, sum the squared distance to the nearest supported member of each movement's evidence set. Movements have equal weight. Keep every candidate with the minimum sum; average those equally good candidates and round half upward only for display. Noncontiguous sets retain their holes. The average is a summary and need not itself be a member of a noncontiguous best-fit set.
+5. No evidence, or equal support for all five candidates, remains unknown (internal zero). In particular, full-range love alone does not fabricate level 3; when combined with informative evidence it adds zero penalty everywhere and cannot dilute that evidence.
 
-Example: too easy at strength 3 contributes 4, while too hard at strength 4 contributes 3. The mean is 3.5 and the chart displays 4. Repeating either exercise does not multiply its weight. Only a new difficulty response replaces its contribution; there is no age decay in this version.
+Examples: easy at 2 and hard at 4 agree on 3. Love at 2 and love at 4 disagree, with squared-distance compromise 3. Easy at 3 and hard at 4 tie at 3 and 4, giving 3.5 internally and 4 on the web. Repeated feedback replaces the same movement's response without adding votes. There is no age decay in this version.
 
-The canonical runtime asset remains `NomadicMethod/Assets/fitness_ratings.json`. The existing generator and coverage gates remain unchanged. Shared `fitness-difficulty-cases.json` fixtures verify Android/web parity, including replacement, ranges, ties, clamping, unknowns and deduplication.
+These are provisional training-level estimates under the owner's feedback interpretation, not measured ability. In particular, the chosen whole-range rule deliberately maps a full-range self-resisted exercise marked easy to 5 and hard to 1; the app does not measure applied resistance.
+
+The canonical ratings asset remains `NomadicMethod/Assets/fitness_ratings.json`. No catalog ratings or selection rules change. Shared `fitness-difficulty-cases.json` fixtures verify both platforms' ranges, noncontiguous sets, conflicts, ties, endpoint saturation, unknowns, latest-response replacement and movement deduplication.
 
 ## Completion changes
 
-New workouts capture the same difficulty-derived profile at activation and freeze it after final feedback. The existing completion list compares fractional means to one decimal; it introduces no new assessment UI. Snapshots carry an evidence version so an old favourites-based baseline is never compared with a difficulty-derived value. A workout started before this change has no comparable baseline. Completed older snapshots remain stored, but their obsolete comparison is not displayed. Cold reopening retains all workout progress and frozen snapshots. Love/meh alone produces no profile change.
+New workouts capture the same difficulty-derived profile at activation and freeze it after final feedback. The existing completion list compares fractional means to one decimal; it introduces no new assessment UI. Snapshots carry an evidence version so an old favourites-based baseline is never compared with a difficulty-derived value. A workout started before this change has no comparable baseline. Completed older snapshots remain stored, but their obsolete comparison is not displayed. Cold reopening retains all workout progress and frozen snapshots. Love can update the profile; meh alone cannot. Evidence version 2 prevents comparisons with either the old favourites baseline (version 0) or the previous singleton-only easy/hard baseline (version 1).
 
 ## Selection remains unchanged
 
 This release changes the displayed estimates only. The planner retains its existing favourites-based calculation, including precise strongest ratings, movement deduplication and mean rounding. It does not consume the new chart values. Keeps, scores, recovery, equipment restrictions, fresh-choice tiers and persisted unfinished selections retain their previous behaviour. The discovery order below still describes that separate favourites-based input.
 
-## Limits of precise contributions
+## Catalog diagnostics for the unchanged favourites-based planner
 
 Revision 90 contains 906 records. It adds 11 reviewed physical movements and
 five stop-only reaction protocols; all 890 previous records and assessments are
@@ -117,7 +120,7 @@ abilities. Ranges participate through their explicit members; noncontiguous
 sets never imply missing levels. Unknown user axes and empty rating cells do
 not count as level zero. Level 5 cannot generate a level-6 target. If the profile
 provides no comparison, ordinary planner priorities apply without a fitness
-preference. The profile calculation and its exclusion of ambiguous ranges are
+preference. The planner’s separate favourites-based calculation and its exclusion of ambiguous ranges are
 unchanged. A supported range is a training option, not a claim that the app
 prescribes a particular resistance, cadence or more difficult execution.
 

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { calculateFitnessProfile, inspectFitnessProfile, calculateFavouriteFitnessProfile,
-  FITNESS_DIMENSIONS, parseFitnessRatings, roundFitnessLevel } from "../fitness-profile.js";
+  FITNESS_DIMENSIONS, parseFitnessRatings, roundFitnessLevel, formatFitnessLevels } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState } from "../workout.js";
 
 const read = file => JSON.parse(readFileSync(new URL(file, import.meta.url), "utf8"));
@@ -17,7 +17,8 @@ for (const entry of fixture.cases) test("difficulty profile: " + entry.name, () 
   for (let i = 0; i < profile.length; i++) {
     assert.equal(profile[i].mean, entry.expected[i]);
     assert.deepEqual(profile[i].contributions.map(c => [c.movementId, c.exerciseId,
-      c.ratedLevel, c.feedback, c.level]), entry.evidence[FITNESS_DIMENSIONS[i]] ?? []);
+      c.ratedLevels, c.feedback, c.supportedLevels]), entry.evidence[FITNESS_DIMENSIONS[i]] ?? []);
+    assert.deepEqual(profile[i].bestLevels, entry.bestLevels[FITNESS_DIMENSIONS[i]] ?? []);
     assert.ok(profile[i].contributions.every(c => c.name === "movement " + c.exerciseId));
   }
   assert.deepEqual(inspectFitnessProfile([...exercises].reverse(), entry.state, ratings), profile);
@@ -25,6 +26,12 @@ for (const entry of fixture.cases) test("difficulty profile: " + entry.name, () 
   assert.deepEqual(inspectFitnessProfile(exercises, JSON.parse(JSON.stringify(entry.state)), ratings), profile);
   assert.equal(JSON.stringify(entry), before);
   if (entry.expected.includes(3.5)) assert.equal(roundFitnessLevel(3.5), 4);
+});
+
+test("level labels retain noncontiguous gaps", () => {
+  assert.equal(formatFitnessLevels([1, 3, 4, 5]), "1, 3–5");
+  assert.equal(formatFitnessLevels([2, 3]), "2–3");
+  assert.equal(formatFitnessLevels([5]), "5");
 });
 
 test("difficulty evidence changes the display without changing planner tiers or fresh selections", () => {

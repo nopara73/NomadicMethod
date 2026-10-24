@@ -142,7 +142,7 @@ body.feedback-input { touch-action: none; user-select: none; -webkit-user-select
 .fitness-contributions { list-style: none; margin: 0; padding: 0; }
 .fitness-contribution { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid #3c4144; line-height: 1.4; }
 .fitness-contribution > :first-child { overflow-wrap: anywhere; }
-.fitness-contribution-level { display: grid; place-items: center; flex: 0 0 2.25em; height: 2.25em; border-radius: 50%; color: var(--chartreuse); background: #262a2d; font-variant-numeric: tabular-nums; }
+.fitness-contribution-level { display: grid; place-items: center; flex: 0 0 auto; min-width: 2.25em; max-width: 7em; min-height: 2.25em; padding: .4em .65em; border-radius: 1.5em; color: var(--chartreuse); background: #262a2d; font-variant-numeric: tabular-nums; text-align: center; }
 
 * {
   box-sizing: border-box;
