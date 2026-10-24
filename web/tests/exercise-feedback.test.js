@@ -12,10 +12,10 @@ test("direction emoji agree with Android's shared feedback vocabulary", () => as
 // contract independently of the workout timer or a browser's frame rate.
 function transitionView(reduced = false) {
   const animations = [], choices = [], completions = [];
-  const animate = frames => {
+  const animate = (frames, options) => {
     let resolve, reject;
     const finished = new Promise((yes, no) => { resolve = yes; reject = no; });
-    const animation = { frames, finished, finish: resolve, cancel: () => reject(new Error("interrupted")) };
+    const animation = { frames, options, finished, finish: resolve, cancel: () => reject(new Error("interrupted")) };
     animations.push(animation); return animation;
   };
   const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), {
@@ -37,6 +37,7 @@ for (const [width, height] of [[320,568], [390,844], [844,390], [768,1024]])
     const scale = Number(frames.at(-1).transform.match(/scale\(([^)]+)\)/)[1]);
     assert.ok(Math.abs(scale * 256 - Math.min(width, height) * .9) < .001);
     assert.ok(animations[0].frames.some(frame => frame.opacity === .82), "one soft confirmation pulse");
+    assert.equal(animations[0].options.easing, "linear", "global easing must not compress the pulse's timing");
     finish(); await pending;
   });
 
@@ -47,6 +48,21 @@ test("screen gestures leave interactive controls untouched", () => {
       preventDefault: () => assert.fail("a control tap must not become feedback") });
     assert.equal(view.gesture, undefined);
   }
+});
+test("instructional pull holds its full displacement before springing back", () => {
+  globalThis.document = { hidden: false };
+  let motion;
+  const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), {
+    active: true, reduced: () => false, hooks: { running: () => true },
+    hints: { querySelector: () => ({ animate: () => ({}) }) },
+    animate: (frames, duration, easing) => { motion = { frames, duration, easing }; }
+  });
+  view.nudge();
+  assert.equal(motion.easing, "linear");
+  assert.equal(motion.frames[1].transform, view.pose(-40));
+  assert.equal(motion.frames[2].transform, view.pose(-40));
+  assert.ok((motion.frames[2].offset - motion.frames[1].offset) * motion.duration >= 120,
+    "the full pull should visibly hold for at least 120ms");
 });
 for (const response of fixtures.responses) test(`${response} advances exactly once when its animation ends, without waiting for rest`, async () => {
   globalThis.document = { hidden: false }; globalThis.innerWidth = 390; globalThis.innerHeight = 844;

@@ -100,10 +100,10 @@ export class ExerciseFeedbackView {
     this.animation?.cancel(); this.animation = null;
     this.nudgeAnimation?.cancel(); this.nudgeAnimation = null;
   }
-  async animate(frames, duration = 260) {
+  async animate(frames, duration = 260, easing = "cubic-bezier(.2,.8,.2,1)") {
     this.cancelAnimation();
     if (this.reduced()) return;
-    const animation = this.card.animate(frames, { duration, easing: "cubic-bezier(.2,.8,.2,1)" });
+    const animation = this.card.animate(frames, { duration, easing });
     this.animation = animation;
     try { await animation.finished; } catch { /* A new gesture owns the frame. */ }
     if (this.animation === animation) this.animation = null;
@@ -185,12 +185,12 @@ export class ExerciseFeedbackView {
       : [{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }], 260);
     this.burstAnimations = this.reduced() ? [] : [
       this.burstEmoji.animate([
-        { transform: pose(dx, dy, startScale), opacity: 1 },
-        { transform: pose(0, 0, scale * 1.06), opacity: 1, offset: .45 },
-        { transform: pose(0, 0, scale * .94), opacity: .82, offset: .67 },
+        { transform: pose(dx, dy, startScale), opacity: 1, easing: "cubic-bezier(.2,.8,.2,1)" },
+        { transform: pose(0, 0, scale * 1.06), opacity: 1, offset: .45, easing: "cubic-bezier(.2,.8,.2,1)" },
+        { transform: pose(0, 0, scale * .94), opacity: .82, offset: .67, easing: "cubic-bezier(.2,.8,.2,1)" },
         { transform: pose(0, 0, scale), opacity: 1, offset: .83 },
         { transform: pose(0, 0, scale), opacity: 1 }
-      ], { duration: 640, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }),
+      ], { duration: 640, easing: "linear", fill: "forwards" }),
       this.burst.animate([{ backgroundColor: "#f5efe700" }, { backgroundColor: "#f5efe7e6", offset: .45 },
         { backgroundColor: "#f5efe7" }], { duration: 640, fill: "forwards" })
     ];
@@ -212,9 +212,10 @@ export class ExerciseFeedbackView {
   }
   nudge() {
     if (!this.active || this.selected || this.gesture || this.busy || this.reduced() || !this.hooks.running() || document.hidden) return;
-    this.animate([{ transform: this.pose() }, { transform: this.pose(-40, 0), offset: .38 },
-      { transform: this.pose(-40, 0), offset: .52 }, { transform: this.pose(4, 0), offset: .84 },
-      { transform: this.pose() }], 960);
+    this.animate([{ transform: this.pose(), easing: "cubic-bezier(.2,.8,.2,1)" }, { transform: this.pose(-40, 0), offset: .38 },
+      { transform: this.pose(-40, 0), offset: .52, easing: "cubic-bezier(.2,.8,.2,1)" },
+      { transform: this.pose(4, 0), offset: .84, easing: "cubic-bezier(.2,.8,.2,1)" },
+      { transform: this.pose() }], 960, "linear");
     const hint = this.hints.querySelector('[data-feedback="x"]');
     this.nudgeAnimation = hint.animate([{ opacity: 0 }, { opacity: .8, offset: .38 },
       { opacity: .8, offset: .52 }, { opacity: 0, offset: .84 }, { opacity: 0 }], { duration: 960 });
