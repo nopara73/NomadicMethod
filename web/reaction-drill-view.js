@@ -175,6 +175,12 @@ export class ReactionDrillView {
     this.cue.classList.toggle('stop', drill?.phase === 'Stop');
   }
 
+  freeze() {
+    this.previewEnabled = false;
+    this.buttons.forEach(button => { button.disabled = true; });
+    this.videos.forEach(video => video.pause());
+  }
+
   reset(render = true) {
     this.activeIndex = -1;
     this.previewEnabled = false;

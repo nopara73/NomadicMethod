@@ -428,17 +428,10 @@
               <div class="progress-track rest-track" aria-hidden="true">
                 <span id="rest-progress-fill"></span>
               </div>
-              <button
-                id="keep-exercise"
-                class="primary-button keep-button"
-                type="button"
-                aria-label="Keep exercise for the next session"
-                title="Keep exercise"
-              >
-                <svg class="keep-love-icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 9.24 3 10.91 3.81 12 5.09 13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 22 12.28 18.6 15.36 13.45 20.03Z"></path>
-                </svg>
-              </button>
+              <div id="exercise-feedback-footer" class="feedback-footer" hidden>
+                <output class="feedback-receipt" aria-live="polite"></output>
+                <button class="feedback-undo" type="button" aria-label="Undo exercise feedback" hidden>↶ <span>undo</span></button>
+              </div>
             </div>
           </div>
         </div>

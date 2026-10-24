@@ -149,7 +149,6 @@ public partial class MainActivity : Activity
     private ImageButton _restPlaybackAction = null!;
     private TextView _restCountdownText = null!;
     private ProgressBar _restProgress = null!;
-    private ImageButton _keepButton = null!;
     private ImageView _completionMark = null!;
     private Button _doneButton = null!;
     private SystemBarsController[] _systemBarsControllers = [];
@@ -227,6 +226,7 @@ public partial class MainActivity : Activity
         ConfigureAccessibility();
         ConfigureSystemBars();
         BindEvents();
+        ConfigureExerciseFeedback();
         ConfigureVideoView();
         ConfigureWhistleCues();
 
@@ -532,6 +532,7 @@ public partial class MainActivity : Activity
         }
         if (_restActive)
         {
+            ShowRestPanel();
             ResumeRestCountdown();
         }
         else if (_countdownPaused &&
@@ -550,6 +551,7 @@ public partial class MainActivity : Activity
     protected override void OnPause()
     {
         _activityResumed = false;
+        CancelExerciseFeedback();
         PauseActiveWorkoutForBackground();
         PauseRestCountdown();
         _exerciseVideo?.Pause();
@@ -752,7 +754,6 @@ public partial class MainActivity : Activity
             Resource.Id.rest_playback_action);
         _restCountdownText = FindRequiredView<TextView>(Resource.Id.rest_countdown_text);
         _restProgress = FindRequiredView<ProgressBar>(Resource.Id.rest_progress);
-        _keepButton = FindRequiredView<ImageButton>(Resource.Id.keep_button);
         _completionMark = FindRequiredView<ImageView>(Resource.Id.completion_mark);
         _completionChanges = FindRequiredView<LinearLayout>(Resource.Id.completion_changes);
         _doneButton = FindRequiredView<Button>(Resource.Id.done_button);
@@ -956,7 +957,6 @@ public partial class MainActivity : Activity
         _playbackAction.Click += (_, _) => TogglePlayback();
         _nextAction.Click += (_, _) => GoToNextExercise();
         _restPlaybackAction.Click += (_, _) => ToggleRestPlayback();
-        _keepButton.Click += (_, _) => KeepCurrentExercise();
         _mediaRetryButton.Click += (_, _) =>
         {
             if (_mediaExercise is not null && _mediaWorkoutGroup is not null)
@@ -1009,8 +1009,8 @@ public partial class MainActivity : Activity
                 2,
                 (int)Android.Util.ComplexUnitType.Sp);
             _restCountdownText.SetAutoSizeTextTypeUniformWithConfiguration(
-                landscape ? 24 : 28,
-                40,
+                14,
+                18,
                 2,
                 (int)Android.Util.ComplexUnitType.Sp);
             _beginWorkoutButton.SetAutoSizeTextTypeUniformWithConfiguration(
@@ -1939,18 +1939,15 @@ public partial class MainActivity : Activity
 
     private void ResizeMediaCard()
     {
-        int size = Math.Min(_exerciseMediaArea.Width, _exerciseMediaArea.Height);
-        if (size <= 0 ||
-            (_exerciseMediaCard.LayoutParameters?.Width == size &&
-             _exerciseMediaCard.LayoutParameters.Height == size))
-        {
-            return;
-        }
-
-        _exerciseMediaCard.LayoutParameters = new FrameLayout.LayoutParams(
-            size,
-            size,
-            GravityFlags.Center);
+        int caption = _feedbackEnabled ? DpInt(64) : 0;
+        int gutter = _feedbackEnabled ? DpInt(24) : 0;
+        int size = Math.Min(_exerciseMediaArea.Width - gutter, _exerciseMediaArea.Height - caption - gutter);
+        if (size <= 0) return;
+        if (_feedbackSheet is not null && (_feedbackSheet.LayoutParameters?.Width != size ||
+            _feedbackSheet.LayoutParameters.Height != size + caption))
+            _feedbackSheet.LayoutParameters = new FrameLayout.LayoutParams(size, size + caption, GravityFlags.Center);
+        if (_exerciseMediaCard.LayoutParameters?.Width != size || _exerciseMediaCard.LayoutParameters.Height != size)
+            _exerciseMediaCard.LayoutParameters = new FrameLayout.LayoutParams(size, size, GravityFlags.Top | GravityFlags.CenterHorizontal);
     }
 
     private void ResizeCompletionHalo()
@@ -3150,6 +3147,8 @@ public partial class MainActivity : Activity
                 _workoutPhase == WorkoutPhase.Move &&
                 (_countdownActive || _countdownPausedByUser));
             ApplyCurrentMediaPlaybackState();
+            if (_restActive && !_previewingUpcomingSequenceBlock && _state.PendingRestMediaPositionMilliseconds > 0)
+                _exerciseVideo.SeekTo(Math.Min(_state.PendingRestMediaPositionMilliseconds, Math.Max(0, mediaPlayer.Duration - 1)));
 
             SetStartAvailability(available: true);
             int preparedGeneration = _mediaLoadGeneration;
@@ -4074,7 +4073,7 @@ public partial class MainActivity : Activity
             return;
         }
 
-        StopCountdownTimer();
+        StopCountdownTimer(preserveFinalFrame: true);
         UpdateMoveCountdown(0L);
         if (_currentExercise?.Mode == ExerciseMode.Hold)
         {
@@ -4104,9 +4103,9 @@ public partial class MainActivity : Activity
         }
     }
 
-    private void StopCountdownTimer()
+    private void StopCountdownTimer(bool preserveFinalFrame = false)
     {
-        ClearReactionCue();
+        ClearReactionCue(preserveFinalFrame);
         _countdownActive = false;
         _countdownPaused = false;
         _countdownPausedForMediaError = false;
@@ -4150,8 +4149,13 @@ public partial class MainActivity : Activity
 
     private void PauseActiveWorkoutForBackground()
     {
-        _reactionDrillView?.SetPreviewEnabled(false);
-        _reactionDrillView?.ResetPlayback();
+        if (_feedbackHeld) { EndFeedbackDrag(false); }
+        if (_restActive && !_previewingUpcomingSequenceBlock) _reactionDrillView?.Freeze();
+        else
+        {
+            _reactionDrillView?.SetPreviewEnabled(false);
+            _reactionDrillView?.ResetPlayback();
+        }
         if (_editingActiveWorkoutSetup ||
             _appScreen != AppScreen.Workout ||
             _state.WorkoutCompleted)
@@ -4269,7 +4273,7 @@ public partial class MainActivity : Activity
         }
         _countdownProgress.Progress = (int)boundedMilliseconds;
         ApplyMovementPhase(state);
-        UpdateReactionCue();
+        if (state.Phase != MovementPhase.Complete) UpdateReactionCue();
     }
 
     private int GetCurrentMovementDurationMilliseconds() =>
@@ -4485,11 +4489,15 @@ public partial class MainActivity : Activity
             _reactionCueMoving ? "Move" : "Freeze";
     }
 
-    private void ClearReactionCue()
+    private void ClearReactionCue(bool preserveFinalFrame = false)
     {
         _reactionDrill = null;
-        _reactionDrillView?.ResetPlayback();
-        _reactionDrillView?.Render(null, _mediaWorkoutGroup?.MirrorSequenceMedia == true);
+        if (preserveFinalFrame) _reactionDrillView?.Freeze();
+        else
+        {
+            _reactionDrillView?.ResetPlayback();
+            _reactionDrillView?.Render(null, _mediaWorkoutGroup?.MirrorSequenceMedia == true);
+        }
         _reactionCueActive = false;
         _reactionCueMoving = true;
         _reactionCueEndsAtElapsedMilliseconds = 0;
@@ -4617,8 +4625,7 @@ public partial class MainActivity : Activity
     {
         bool mirrorMedia = _workoutPhase switch
         {
-            WorkoutPhase.Rest when _previewingUpcomingSequenceBlock &&
-                _mediaWorkoutGroup is not null =>
+            WorkoutPhase.Rest when _mediaWorkoutGroup is not null =>
                 GetMovementPresentation(
                     _mediaWorkoutGroup,
                     MovementPhase.Continuous).MirrorMedia,
@@ -4632,6 +4639,7 @@ public partial class MainActivity : Activity
         if (_reactionDrillView is not null)
         {
             _exerciseVideo.Pause();
+            if (_restActive && !_previewingUpcomingSequenceBlock && _reactionDrillView.Frozen) return;
             if (_reactionDrill is not null || !_reactionDrillView.PreviewEnabled)
                 _reactionDrillView.Render(_reactionDrill, mirrorMedia);
             _reactionDrillView.SetPreviewEnabled(_activityResumed &&
@@ -4771,13 +4779,13 @@ public partial class MainActivity : Activity
 
     private void RenderRestVisuals()
     {
-        SetExerciseMediaMirrored(mirrored: false);
         RenderFullWorkoutPhase(Resource.Color.rest_surface);
         AnimateMediaPhase(resting: true);
     }
 
     private void ResetMovementVisuals()
     {
+        CancelExerciseFeedback();
         ClearReactionCue();
         _lastMovementPhase = null;
         RenderCountdownPhase();
@@ -4794,7 +4802,7 @@ public partial class MainActivity : Activity
 
     private void BeginRest()
     {
-        ClearReactionCue();
+        ClearReactionCue(preserveFinalFrame: true);
         _sessionService.BeginRest(
             _state,
             _currentWorkoutGroup,
@@ -4803,6 +4811,8 @@ public partial class MainActivity : Activity
 
         _restActive = true;
         _exerciseVideo.Pause();
+        _state.PendingRestMediaPositionMilliseconds = _exerciseVideo.PositionMilliseconds;
+        _stateStore.Save(_state);
         if (_currentExercise?.Mode == ExerciseMode.Hold)
         {
             FreezeHoldOnFinalFrame();
@@ -4837,7 +4847,7 @@ public partial class MainActivity : Activity
         }
 
         return $"Rest, {secondsRemaining} seconds. " +
-            "Tap the heart to keep this sequence.";
+            "Swipe the exercise to respond, or pause the timer.";
     }
 
     private void ShowRestPanel()
@@ -4858,7 +4868,7 @@ public partial class MainActivity : Activity
         RenderExecutionTimeline(
             selectUpcomingBlock: nextBlock is not null);
         UpdateRestPlaybackActionVisual();
-        UpdateKeepButtonState();
+        ShowExerciseFeedback(nextBlock is null);
         UpdateRestCountdownText();
     }
 
@@ -4876,32 +4886,6 @@ public partial class MainActivity : Activity
             GetMovementPresentation(
                 nextBlock,
                 MovementPhase.Continuous).MirrorMedia);
-    }
-
-    private void UpdateKeepButtonState()
-    {
-        if (_sessionService.IsIntermediateSequenceBlock(
-                _state,
-                _currentWorkoutGroup))
-        {
-            _keepButton.Enabled = false;
-            _keepButton.Visibility = ViewStates.Gone;
-            return;
-        }
-
-        _keepButton.Visibility = ViewStates.Visible;
-        _keepButton.Enabled = !_state.PendingRestKept;
-        _keepButton.Alpha = 1f;
-        _keepButton.SetBackgroundResource(_state.PendingRestKept
-            ? Resource.Drawable.kept_button_background
-            : Resource.Drawable.rest_button_background);
-        _keepButton.SetColorFilter(new Android.Graphics.Color(GetColor(
-            _state.PendingRestKept
-                ? Resource.Color.accent_text
-                : Resource.Color.white)));
-        _keepButton.ContentDescription = _state.PendingRestKept
-            ? "Exercise kept for the next session"
-            : GetString(Resource.String.keep_exercise_description);
     }
 
     private void ResumeRestCountdown()
@@ -4946,7 +4930,8 @@ public partial class MainActivity : Activity
                 _state,
                 DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
         int secondsRemaining = (int)Math.Ceiling(millisecondsRemaining / 1000d);
-        string secondsText = secondsRemaining.ToString();
+        bool awaiting = _feedbackEnabled && ExerciseSessionService.GetPendingRestFeedback(_state) is null;
+        string secondsText = $"{secondsRemaining} seconds" + (awaiting ? " to meh" : "");
         if (_restCountdownText.Text != secondsText)
         {
             _restCountdownText.Text = secondsText;
@@ -4960,6 +4945,13 @@ public partial class MainActivity : Activity
 
     private void ToggleRestPlayback()
     {
+        if (_feedbackExpiring) return;
+        if (_feedbackHeld)
+        {
+            _feedbackResumeAfterHold = !_feedbackResumeAfterHold;
+            UpdateRestPlaybackActionVisual();
+            return;
+        }
         if (!_restActive ||
             _state.PendingRestGroupId != _currentWorkoutGroup.Id)
         {
@@ -5012,7 +5004,7 @@ public partial class MainActivity : Activity
 
     private void UpdateRestPlaybackActionVisual()
     {
-        bool paused = _state.PendingRestPausedByUser;
+        bool paused = _feedbackHeld ? !_feedbackResumeAfterHold : _state.PendingRestPausedByUser;
         _restPlaybackAction.SetImageResource(
             paused
                 ? Resource.Drawable.ic_phase_active
@@ -5035,21 +5027,6 @@ public partial class MainActivity : Activity
         _restTimer = null;
     }
 
-    private void KeepCurrentExercise()
-    {
-        if (!_restActive ||
-            _state.PendingRestKept ||
-            !_sessionService.KeepPendingRest(_state))
-        {
-            return;
-        }
-
-        _stateStore.Save(_state);
-        _keepButton.Enabled = false;
-        _keepButton.PerformHapticFeedback(FeedbackConstants.KeyboardTap);
-        CompleteRest();
-    }
-
     private void CompleteRest()
     {
         if (!_restActive || _state.PendingRestGroupId != _currentWorkoutGroup.Id)
@@ -5057,6 +5034,13 @@ public partial class MainActivity : Activity
             return;
         }
 
+        if (_feedbackExpiring || _feedbackSettling) return;
+        if (_feedbackEnabled && ExerciseSessionService.GetPendingRestFeedback(_state) is null)
+        {
+            AnimateAutomaticMeh();
+            return;
+        }
+        CancelExerciseFeedback();
         _restActive = false;
         PauseRestCountdown();
         if (_sessionService.IsIntermediateSequenceBlock(
@@ -5067,8 +5051,7 @@ public partial class MainActivity : Activity
             return;
         }
 
-        bool keep = _state.PendingRestKept;
-        FinalizeCurrentRound(keep);
+        FinalizeCurrentRound(ExerciseSessionService.GetPendingRestFeedback(_state) ?? ExerciseOutcome.X);
     }
 
     private void ContinueWithNextSequenceBlock()
@@ -5094,12 +5077,12 @@ public partial class MainActivity : Activity
         }
     }
 
-    private void FinalizeCurrentRound(bool keep)
+    private void FinalizeCurrentRound(ExerciseOutcome feedback)
     {
         RecordedWorkoutOutcome result = _sessionService.RecordOutcomeWithScoreUpdates(
             _state,
             _currentWorkoutGroup,
-            keep);
+            feedback);
         _sessionService.ClearPendingRest(_state);
 
         SaveStateAndScores(result.ScoreUpdates);

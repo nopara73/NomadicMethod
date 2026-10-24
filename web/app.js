@@ -1,3 +1,4 @@
+import { ExerciseFeedbackView } from "./exercise-feedback.js";
 import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings } from "./fitness-profile.js";
 import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
@@ -132,7 +133,7 @@ const elements = {
   restPlaybackToggle: byId("toggle-rest"),
   restCountdown: byId("rest-countdown"),
   restProgressFill: byId("rest-progress-fill"),
-  keepExercise: byId("keep-exercise"),
+  feedbackFooter: byId("exercise-feedback-footer"),
   completionScreen: byId("completion-screen"),
   completionChanges: byId("completion-changes"),
   doneButton: byId("done-button"),
@@ -180,6 +181,16 @@ let movementRunning = false;
 let movementPauseReason = null;
 let automaticSequenceStartPending = false;
 let restTimer = null;
+let feedbackHeld = false;
+let feedbackResumeAfterHold = false;
+let feedbackExpiring = false;
+const feedbackView = new ExerciseFeedbackView(elements.mediaCard, elements.feedbackFooter, {
+  choose: value => { if (session?.setPendingRestFeedback(value)) { persistState(); updateRest(); } },
+  hold: holdFeedbackClock,
+  running: () => restActive && !session?.state.pendingRestPausedByUser,
+  expired: () => { if (!document.hidden && restActive) { feedbackExpiring = false; completeRest(true); } },
+  settled: () => { if (restActive && session.getPendingRestMillisecondsRemaining(Date.now()) <= 0) completeRest(); },
+});
 let restActive = false;
 let wakeLock = null;
 let wakeLockRequestPending = false;
@@ -360,7 +371,7 @@ function bindEvents() {
   elements.playbackToggle.addEventListener("click", toggleMovementPlayback);
   elements.nextExercise.addEventListener("click", goToNextExercise);
   elements.restPlaybackToggle.addEventListener("click", toggleRestPlayback);
-  elements.keepExercise.addEventListener("click", keepExercise);
+
   elements.mediaRetry.addEventListener("click", retryMedia);
   elements.doneButton.addEventListener("click", closeCompletion);
   document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -1426,7 +1437,7 @@ function restorePendingRest() {
 
   restActive = true;
   elements.video.pause();
-  setMediaMirrored(false);
+  setMediaMirrored(getMovementPresentation(currentGroup, "Continuous").mirrorMedia);
   setFullPhaseSurface("rest");
   elements.mediaCard.classList.add("resting");
   showRestPanel();
@@ -1563,6 +1574,7 @@ function renderPlaybackToggle() {
 }
 
 function showRestPanel() {
+  feedbackView.cancelGesture(false);
   elements.readyPanel.hidden = true;
   elements.movePanel.hidden = true;
   elements.restPanel.hidden = false;
@@ -1579,10 +1591,9 @@ function showRestPanel() {
     renderExecutionTimeline(currentGroup, isIntermediateBlock);
   }
   renderRestPlaybackToggle();
-  elements.keepExercise.hidden = isIntermediateBlock;
-  elements.keepExercise.disabled = false;
-  elements.keepExercise.setAttribute("aria-label", "Keep exercise for the next session");
-  elements.keepExercise.title = "Keep exercise";
+  feedbackExpiring = false;
+  feedbackView.setActive(!isIntermediateBlock, session?.getPendingRestFeedback());
+  elements.workoutScreen.classList.toggle("feedback-screen", !isIntermediateBlock);
 }
 
 function showUpcomingSequenceBlockPreview(nextBlock) {
@@ -2033,9 +2044,10 @@ function renderReactionCue(now) {
   );
 }
 
-function clearReactionCue() {
+function clearReactionCue(preserveFinalFrame = false) {
   reactionDrill = null;
-  reactionDrillView?.reset();
+  if (preserveFinalFrame) reactionDrillView?.freeze();
+  else reactionDrillView?.reset();
   reactionCueActive = false;
   reactionCueMoving = true;
   reactionCueEndsAt = 0;
@@ -2045,6 +2057,12 @@ function clearReactionCue() {
 }
 
 function prepareSequenceMediaSegment(force = false) {
+  if (restActive && !previewingUpcomingSequenceBlock) {
+    const position = (session?.state.pendingRestMediaPositionMilliseconds ?? 0) / 1000;
+    if (Number.isFinite(elements.video.duration) && position > 0 && Math.abs(elements.video.currentTime - position) > .05)
+      elements.video.currentTime = Math.min(position, Math.max(0, elements.video.duration - .01));
+    return;
+  }
   if ((mediaGroup?.sequenceMediaSegment ?? "Full") === "Full" ||
       !Number.isFinite(elements.video.duration)) {
     return;
@@ -2226,7 +2244,7 @@ function completeMovement() {
   if (!movementRunning || !session || !currentGroup) {
     return;
   }
-  stopMovementTimer();
+  stopMovementTimer(true, true);
   elements.movementCountdown.value = "0";
   elements.movementCountdown.textContent = "0";
   elements.movementProgressFill.style.transform = "scaleX(0)";
@@ -2235,10 +2253,11 @@ function completeMovement() {
   }
   playSound("rest");
   session.beginRest(currentGroup, Date.now() + REST_DURATION_MS);
+  session.state.pendingRestMediaPositionMilliseconds = Math.max(0, Math.round(elements.video.currentTime * 1000));
   persistState();
   restActive = true;
   elements.video.pause();
-  setMediaMirrored(false);
+  setMediaMirrored(getMovementPresentation(currentGroup, "Continuous").mirrorMedia);
   setFullPhaseSurface("rest");
   elements.mediaCard.classList.add("resting");
   showRestPanel();
@@ -2261,7 +2280,7 @@ function restStatusMessage() {
     return `Rest, ${seconds} seconds. Next block: ${nextExercise.name}. ` +
       "It starts automatically.";
   }
-  return `Rest, ${seconds} seconds. Tap the heart to keep this sequence.`;
+  return `${seconds} seconds to meh. Swipe the exercise to respond, or pause the timer.`;
 }
 
 function startRestTimer() {
@@ -2280,14 +2299,40 @@ function updateRest() {
   const remaining = session.getPendingRestMillisecondsRemaining(Date.now());
   const seconds = Math.ceil(remaining / 1000);
   elements.restCountdown.value = String(seconds);
-  elements.restCountdown.textContent = String(seconds);
+  const awaiting = feedbackView.active && !session.getPendingRestFeedback();
+  elements.restCountdown.textContent = `${seconds} seconds${awaiting ? " to meh" : ""}`;
   elements.restProgressFill.style.transform = `scaleX(${remaining / REST_DURATION_MS})`;
   if (remaining <= 0) {
     completeRest();
   }
 }
 
+function holdFeedbackClock(held, resume = true) {
+  if (!restActive || !session || !currentGroup) return;
+  if (held) {
+    feedbackResumeAfterHold = !session.state.pendingRestPausedByUser;
+    feedbackHeld = true;
+    const remaining = session.getPendingRestMillisecondsRemaining(Date.now());
+    if (feedbackResumeAfterHold && remaining > 0) session.pauseRest(currentGroup, remaining);
+    clearInterval(restTimer); restTimer = null; persistState();
+  } else {
+    const shouldResume = feedbackHeld && feedbackResumeAfterHold && resume && !document.hidden;
+    feedbackHeld = false; feedbackResumeAfterHold = false;
+    if (shouldResume && session.state.pendingRestPausedByUser) {
+      const remaining = session.getPendingRestMillisecondsRemaining(Date.now());
+      session.resumeRest(currentGroup, Date.now() + Math.max(1, remaining));
+      persistState(); startRestTimer();
+    }
+  }
+  renderRestPlaybackToggle();
+}
+
 function toggleRestPlayback() {
+  if (feedbackExpiring) return;
+  if (feedbackHeld) {
+    feedbackResumeAfterHold = !feedbackResumeAfterHold;
+    renderRestPlaybackToggle(); return;
+  }
   if (!restActive || !session || !currentGroup ||
       session.state.pendingRestGroupId !== currentGroup.id) {
     return;
@@ -2321,27 +2366,28 @@ function toggleRestPlayback() {
 }
 
 function renderRestPlaybackToggle() {
-  const paused = session?.state.pendingRestPausedByUser === true;
+  const paused = feedbackHeld ? !feedbackResumeAfterHold : session?.state.pendingRestPausedByUser === true;
   const label = paused ? "Resume rest" : "Pause rest";
   elements.restPlaybackToggle.dataset.state = paused ? "paused" : "playing";
   elements.restPlaybackToggle.setAttribute("aria-label", label);
   elements.restPlaybackToggle.title = label;
 }
 
-function keepExercise() {
-  if (!restActive || !session) {
-    return;
-  }
-  if (session.keepPendingRest()) {
-    persistState();
-    completeRest();
-  }
-}
-
-function completeRest() {
+function completeRest(afterAnimation = false) {
   if (!restActive || !session || !currentGroup) {
     return;
   }
+  if ((feedbackExpiring || feedbackView.busy) && !afterAnimation) return;
+  if (!afterAnimation && !session.isIntermediateSequenceBlock(currentGroup) && !session.getPendingRestFeedback()) {
+    feedbackExpiring = true;
+    clearInterval(restTimer); restTimer = null;
+    // Keep a rest checkpoint while the automatic response settles. Backgrounding
+    // interrupts the animation without finalizing a hidden exercise.
+    session.pauseRest(currentGroup, 1); persistState();
+    feedbackView.commit("x", undefined, true);
+    return;
+  }
+  feedbackView.stop();
   restActive = false;
   clearInterval(restTimer);
   restTimer = null;
@@ -2361,8 +2407,7 @@ function completeRest() {
     restorePendingMovement();
     return;
   }
-  const keep = session.state.pendingRestKept;
-  session.recordOutcome(currentGroup, keep);
+  session.recordOutcome(currentGroup, session.getPendingRestFeedback() ?? "x");
   session.clearPendingRest();
   persistState();
   if (session.state.workoutCompleted) {
@@ -2397,14 +2442,14 @@ function closeCompletion() {
   showDuration();
 }
 
-function stopMovementTimer(clearPendingMovement = true) {
+function stopMovementTimer(clearPendingMovement = true, preserveFinalFrame = false) {
   clearInterval(movementTimer);
   movementTimer = null;
   movementRunning = false;
   movementPauseReason = null;
   movementEndsAt = 0;
   movementRemaining = 0;
-  clearReactionCue();
+  clearReactionCue(preserveFinalFrame);
   if (clearPendingMovement && session?.state.pendingMovementGroupId) {
     session.clearPendingMovement();
     persistState();
@@ -2414,6 +2459,8 @@ function stopMovementTimer(clearPendingMovement = true) {
 }
 
 function stopRuntimeTimers(preservePendingMovement = false) {
+  feedbackView.stop();
+  feedbackExpiring = false;
   stopMovementTimer(!preservePendingMovement);
   restActive = false;
   clearInterval(restTimer);
@@ -2421,6 +2468,8 @@ function stopRuntimeTimers(preservePendingMovement = false) {
 }
 
 function resetMovementVisuals() {
+  feedbackView.stop();
+  elements.workoutScreen.classList.remove("feedback-screen");
   clearReactionCue();
   lastMovementPhase = null;
   movementPauseReason = null;
@@ -2517,8 +2566,11 @@ function playSound(name) {
 }
 
 function pauseActiveWorkoutForBackground() {
-  reactionDrillView?.setPreviewEnabled(false);
-  reactionDrillView?.reset();
+  feedbackView.cancelGesture(false);
+  feedbackView.cancelAnimation();
+  feedbackExpiring = false;
+  if (restActive && !previewingUpcomingSequenceBlock) reactionDrillView?.freeze();
+  else { reactionDrillView?.setPreviewEnabled(false); reactionDrillView?.reset(); }
   if (movementRunning) {
     pauseMovement("user");
   }

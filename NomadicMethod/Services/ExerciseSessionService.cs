@@ -1051,6 +1051,8 @@ public sealed partial class ExerciseSessionService
         state.PendingRestMillisecondsRemaining = 0;
         state.PendingRestPausedByUser = false;
         state.PendingRestKept = false;
+        state.PendingRestFeedback = null;
+        state.PendingRestMediaPositionMilliseconds = 0;
         long completedAtUnixMilliseconds = GetCurrentUnixTimeMilliseconds();
         RecordCompletedWorkoutBlock(
             state,
@@ -1135,6 +1137,7 @@ public sealed partial class ExerciseSessionService
         }
 
         state.PendingRestKept = true;
+        state.PendingRestFeedback = ExerciseOutcome.Tick;
         return true;
     }
 
@@ -1255,11 +1258,30 @@ public sealed partial class ExerciseSessionService
         bool keep) =>
         RecordOutcomeWithScoreUpdates(state, group, keep).Exercise;
 
-    public RecordedWorkoutOutcome RecordOutcomeWithScoreUpdates(
-        WorkoutState state,
-        WorkoutGroup group,
-        bool keep)
+    public bool SetPendingRestFeedback(WorkoutState state, ExerciseOutcome? feedback)
     {
+        if (feedback is not null && !ExerciseFeedbackPolicy.IsResponse(feedback.Value))
+            throw new ArgumentOutOfRangeException(nameof(feedback));
+        WorkoutGroup? group = GetPendingRestGroup(state);
+        if (group is null || IsIntermediateSequenceBlock(state, group)) return false;
+        state.PendingRestFeedback = feedback;
+        state.PendingRestKept = feedback == ExerciseOutcome.Tick;
+        return true;
+    }
+
+    public static ExerciseOutcome? GetPendingRestFeedback(WorkoutState state) =>
+        state.PendingRestFeedback is { } value && ExerciseFeedbackPolicy.IsResponse(value)
+            ? value : state.PendingRestKept ? ExerciseOutcome.Tick : null;
+
+    public RecordedWorkoutOutcome RecordOutcomeWithScoreUpdates(
+        WorkoutState state, WorkoutGroup group, bool keep) =>
+        RecordOutcomeWithScoreUpdates(state, group, keep ? ExerciseOutcome.Tick : ExerciseOutcome.X);
+
+    public RecordedWorkoutOutcome RecordOutcomeWithScoreUpdates(
+        WorkoutState state, WorkoutGroup group, ExerciseOutcome feedback)
+    {
+        if (!ExerciseFeedbackPolicy.IsResponse(feedback))
+            throw new ArgumentOutOfRangeException(nameof(feedback));
         UseWorkoutCatalog(state);
         ArgumentNullException.ThrowIfNull(group);
 
@@ -1276,7 +1298,7 @@ public sealed partial class ExerciseSessionService
         }
 
         ClearPendingMovement(state);
-        return ApplySequenceOutcome(state, group, keep);
+        return ApplySequenceOutcome(state, group, feedback == ExerciseOutcome.Tick, explicitOutcome: feedback);
     }
 
     public RecordedWorkoutOutcome RejectCurrentSequenceWithScoreUpdates(
@@ -1342,19 +1364,20 @@ public sealed partial class ExerciseSessionService
         WorkoutState state,
         WorkoutGroup group,
         bool keep,
-        WorkoutExercisePhase? feedbackPhase = null)
+        WorkoutExercisePhase? feedbackPhase = null,
+        ExerciseOutcome? explicitOutcome = null)
     {
         Exercise exercise = GetSelectedExercise(state, group);
         Exercise root = GetSequenceRoot(exercise);
         Exercise[] sequenceExercises = GetSequenceExercises(root);
-        ExerciseOutcome outcome = keep ? ExerciseOutcome.Tick : ExerciseOutcome.X;
+        ExerciseOutcome outcome = explicitOutcome ?? (keep ? ExerciseOutcome.Tick : ExerciseOutcome.X);
         WorkoutExercisePhase exercisePhase =
             feedbackPhase ?? GetExercisePhase(group);
         int selectionScoreBeforeDecision = GetSelectionScore(
             state,
             root,
             exercisePhase);
-        if (!keep)
+        if (outcome == ExerciseOutcome.X)
         {
             DownvoteSequenceInPhase(state, exercisePhase, root);
         }
@@ -1392,7 +1415,7 @@ public sealed partial class ExerciseSessionService
         }
         return new RecordedWorkoutOutcome(
             exercise,
-            keep ? [] : Array.AsReadOnly(sequenceExercises));
+            outcome == ExerciseOutcome.X ? Array.AsReadOnly(sequenceExercises) : []);
     }
 
     private void ApplyShuffleRejection(
@@ -1473,7 +1496,7 @@ public sealed partial class ExerciseSessionService
                     scoreUpdates = ApplySequenceOutcome(
                             state,
                             pendingGroup,
-                            keep)
+                            keep, explicitOutcome: GetPendingRestFeedback(state))
                         .ScoreUpdates;
                 }
             }
@@ -1511,6 +1534,8 @@ public sealed partial class ExerciseSessionService
         state.PendingRestMillisecondsRemaining = 0;
         state.PendingRestPausedByUser = false;
         state.PendingRestKept = false;
+        state.PendingRestFeedback = null;
+        state.PendingRestMediaPositionMilliseconds = 0;
     }
 
     private void ApplyRecordedWorkoutKeeps(WorkoutState state)
@@ -4330,7 +4355,7 @@ public sealed partial class ExerciseSessionService
                      state.Outcomes.TryGetValue(
                          round.Id,
                          out ExerciseOutcome outcome) &&
-                     outcome is ExerciseOutcome.Tick or ExerciseOutcome.X))
+                     ExerciseFeedbackPolicy.IsResponse(outcome)))
         {
             lockedSelectionGroupIds.Add(decidedRound.SelectionKey);
         }
@@ -4591,7 +4616,7 @@ public sealed partial class ExerciseSessionService
             state.PendingMovementPausedByUser,
             state.PendingRestGroupId,
             state.PendingRestEndsAtUnixMilliseconds,
-            state.PendingRestKept);
+            state.PendingRestKept, state.PendingRestFeedback, state.PendingRestMediaPositionMilliseconds);
 
     private void MigrateLegacyActiveProgress(
         WorkoutState state,
@@ -4623,7 +4648,7 @@ public sealed partial class ExerciseSessionService
                 .OrderBy(round => round.Order)
                 .ToArray();
             ExerciseOutcome? decision = oldOutcomes
-                .Where(entry => entry.Value is ExerciseOutcome.Tick or ExerciseOutcome.X)
+                .Where(entry => ExerciseFeedbackPolicy.IsResponse(entry.Value))
                 .Select(entry => (ExerciseOutcome?)entry.Value)
                 .LastOrDefault();
             if (decision is not null)
@@ -4694,6 +4719,8 @@ public sealed partial class ExerciseSessionService
             state.PendingRestGroupId = pendingRestRound.Id;
             state.PendingRestEndsAtUnixMilliseconds =
                 snapshot.PendingRestEndsAtUnixMilliseconds;
+            state.PendingRestFeedback = pendingRestRound.IsFinalSequenceRound ? snapshot.PendingRestFeedback : null;
+            state.PendingRestMediaPositionMilliseconds = snapshot.PendingRestMediaPositionMilliseconds;
             state.PendingRestKept = snapshot.PendingRestKept &&
                 pendingRestRound.IsFinalSequenceRound;
             return;
@@ -5109,6 +5136,8 @@ public sealed partial class ExerciseSessionService
         state.PendingRestMillisecondsRemaining = 0;
         state.PendingRestPausedByUser = false;
         state.PendingRestKept = false;
+        state.PendingRestFeedback = null;
+        state.PendingRestMediaPositionMilliseconds = 0;
         UseWorkoutCatalog(state);
     }
 
@@ -6464,5 +6493,5 @@ public sealed partial class ExerciseSessionService
         bool PendingMovementPausedByUser,
         string? PendingRestGroupId,
         long PendingRestEndsAtUnixMilliseconds,
-        bool PendingRestKept);
+        bool PendingRestKept, ExerciseOutcome? PendingRestFeedback, int PendingRestMediaPositionMilliseconds);
 }

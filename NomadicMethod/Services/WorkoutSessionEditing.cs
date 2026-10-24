@@ -62,6 +62,15 @@ public sealed partial class ExerciseSessionService
             FinalizeCurrentWorkout(state);
             return;
         }
+        // A swipe is already an explicit decision, even while its rest clock runs.
+        // Ending without one must still never manufacture a dislike.
+        if (GetPendingRestFeedback(state) is { } feedback &&
+            GetValidPendingRestGroup(state) is { IsFinalSequenceRound: true } pending)
+        {
+            ApplySequenceOutcome(state, pending, feedback == ExerciseOutcome.Tick, explicitOutcome: feedback);
+            ClearPendingRest(state);
+            ApplyRecordedWorkoutKeeps(state);
+        }
         // Stop archives recorded work; it never needs to solve the unfinished lineup.
         FinalizeActiveWorkoutSession(state, WorkoutSessionStatus.Interrupted);
         ResetToDurationSelection(state);

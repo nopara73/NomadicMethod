@@ -1457,7 +1457,8 @@ test("runtime media and the deployable web shell are content-addressed", () => {
     "An outdated runtime must reject the guard before it can migrate or write a session");
 });
 
-test("movement and rest phases use pronounced accents across the surface, media, and actions", () => {
+test("movement and intermediate rest retain phase accents; feedback uses the exercise card", async () => {
+  const feedbackNative = await source("NomadicMethod", "MainActivity.ExerciseFeedback.cs");
   for (const [name, value] of [
     ["move_surface", "#F0C7CC"],
     ["move_text", "#681E27"],
@@ -1487,10 +1488,8 @@ test("movement and rest phases use pronounced accents across the surface, media,
     androidStyles,
     /NomadicMethodKeepButton[\s\S]*@drawable\/rest_button_background/,
   );
-  assert.match(
-    workoutLayout,
-    /<ImageButton[\s\S]*@\+id\/keep_button[\s\S]*@drawable\/ic_love[\s\S]*@color\/white/,
-  );
+  assert.doesNotMatch(workoutLayout, /@\+id\/keep_button/);
+  assert.match(feedbackNative, /RenderFullWorkoutPhase\(Resource\.Color\.screen_background\)/);
   assert.match(
     workoutLayout,
     /<ImageButton[\s\S]*@\+id\/rest_playback_action[\s\S]*@string\/pause_rest_description[\s\S]*@drawable\/ic_phase_pause/,
@@ -1507,10 +1506,7 @@ test("movement and rest phases use pronounced accents across the surface, media,
   assert.match(webApp, /session\.pauseRest/);
   assert.match(webApp, /session\.resumeRest/);
   assert.match(webApp, /renderRestPlaybackToggle/);
-  assert.match(
-    mainActivity,
-    /PendingRestKept[\s\S]*rest_button_background[\s\S]*SetColorFilter[\s\S]*Resource\.Color\.white/,
-  );
+  assert.match(feedbackNative, /GetPendingRestFeedback[\s\S]*RenderExerciseFeedback/);
   assert.match(
     webApp,
     /setFullPhaseSurface[\s\S]*setWorkoutPhaseClass\(kind\)[\s\S]*classList\.toggle\("phase-move"[\s\S]*classList\.toggle\("phase-rest"/,
@@ -2366,7 +2362,7 @@ test("web and mobile separate the exercise whistle from the final completion cue
   );
   assert.match(
     mainActivity,
-    /private void FinalizeCurrentRound\(bool keep\)[\s\S]*if \(_state\.WorkoutCompleted\)[\s\S]*PlayWhistleCue\(_workoutCompleteWhistleId\);[\s\S]*ShowCongratulations\(\);/,
+    /private void FinalizeCurrentRound\(ExerciseOutcome feedback\)[\s\S]*if \(_state\.WorkoutCompleted\)[\s\S]*PlayWhistleCue\(_workoutCompleteWhistleId\);[\s\S]*ShowCongratulations\(\);/,
   );
   assert.match(
     webApp,
@@ -2374,12 +2370,12 @@ test("web and mobile separate the exercise whistle from the final completion cue
   );
   assert.match(
     webApp,
-    /function completeRest\(\)[\s\S]*session\.state\.workoutCompleted\)[\s\S]*showCompletion\(true\);/,
+    /function completeRest\(afterAnimation = false\)[\s\S]*session\.state\.workoutCompleted\)[\s\S]*showCompletion\(true\);/,
   );
   const mobileCueBodies = [
     methodBody(mainActivity, "private void CueMovementRestart()", "private void RenderCountdownPhase("),
     methodBody(mainActivity, "private void CompleteCountdown()", "private void CancelCountdown("),
-    methodBody(mainActivity, "private void FinalizeCurrentRound(bool keep)", "private void ShowCongratulations()"),
+    methodBody(mainActivity, "private void FinalizeCurrentRound(ExerciseOutcome feedback)", "private void ShowCongratulations()"),
     methodBody(mainActivity, "private void PlayWhistleCue(int soundId)", "[SuppressMessage("),
   ];
   const webCueBodies = [
@@ -2514,19 +2510,10 @@ test("atomic sequences are adjacent units that may satisfy multiple primary slot
     workoutModule,
     /applySequenceOutcome[\s\S]*downvoteSequenceInPhase[\s\S]*recordWorkoutDecision/,
   );
-  assert.match(
-    mainActivity,
-    /IsIntermediateSequenceBlock[\s\S]*_keepButton\.Visibility = ViewStates\.Gone/,
-  );
-  assert.match(
-    webApp,
-    /getNextSequenceBlock[\s\S]*elements\.keepExercise\.hidden = isIntermediateBlock/,
-  );
-  assert.match(
-    webIndex,
-    /id="keep-exercise"[\s\S]*aria-label="Keep exercise for the next session"[\s\S]*class="keep-love-icon"/,
-  );
-  assert.match(strings, /name="keep_exercise_description">Keep this exercise/);
+  assert.match(mainActivity, /ShowExerciseFeedback\(nextBlock is null\)/);
+  assert.match(webApp, /feedbackView\.setActive\(!isIntermediateBlock/);
+  assert.match(webIndex, /id="exercise-feedback-footer"[\s\S]*class="feedback-undo"/);
+  assert.doesNotMatch(webIndex, /id="keep-exercise"/);
   assert.doesNotMatch(mainActivity, /Tap to keep both|keep both directions|tap_to_keep_both/);
   assert.doesNotMatch(webApp, /Tap to keep both|keep both directions/);
   assert.doesNotMatch(strings, /tap_to_keep|Tap to keep/);
@@ -2594,7 +2581,7 @@ test("intermediate Rest previews the exact upcoming block without advancing it",
   );
   assert.match(
     mainActivity,
-    /WorkoutPhase\.Rest when _previewingUpcomingSequenceBlock[\s\S]*_mediaWorkoutGroup/,
+    /WorkoutPhase\.Rest when _mediaWorkoutGroup is not null[\s\S]*GetMovementPresentation/,
   );
   assert.match(
     webApp,

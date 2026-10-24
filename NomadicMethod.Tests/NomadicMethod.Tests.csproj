@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\exercise-feedback-cases.json" Link="Assets\exercise-feedback-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\reaction-drill-trace.json" Link="Assets\reaction-drill-trace.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\reaction-stop-only-trace.json" Link="Assets\reaction-stop-only-trace.json" CopyToOutputDirectory="PreserveNewest" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
@@ -52,6 +53,7 @@
     <Compile Include="..\NomadicMethod\Models\ExercisePresentation.cs" Link="Production\Models\ExercisePresentation.cs" />
     <Compile Include="..\NomadicMethod\Models\ExerciseDirectionSequence.cs" Link="Production\Models\ExerciseDirectionSequence.cs" />
     <Compile Include="..\NomadicMethod\Models\ExerciseSideSequence.cs" Link="Production\Models\ExerciseSideSequence.cs" />
+    <Compile Include="..\NomadicMethod\Services\ExerciseFeedbackPolicy.cs" Link="Production\Services\ExerciseFeedbackPolicy.cs" />
     <Compile Include="..\NomadicMethod\Models\ExerciseOutcome.cs" Link="Production\Models\ExerciseOutcome.cs" />
     <Compile Include="..\NomadicMethod\Models\RecordedWorkoutOutcome.cs" Link="Production\Models\RecordedWorkoutOutcome.cs" />
     <Compile Include="..\NomadicMethod\Models\LegacyWorkoutState.cs" Link="Production\Models\LegacyWorkoutState.cs" />

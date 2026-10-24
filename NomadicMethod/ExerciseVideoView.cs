@@ -52,6 +52,16 @@ public sealed class ExerciseVideoView : TextureView, TextureView.ISurfaceTexture
         if (_prepared) _player?.Start();
     }
 
+    public int PositionMilliseconds
+    {
+        get
+        {
+            try { return _prepared ? Math.Max(0, _player?.CurrentPosition ?? 0) : 0; }
+            catch (Java.Lang.IllegalStateException) { return 0; }
+            catch (ObjectDisposedException) { return 0; }
+        }
+    }
+
     public void Pause()
     {
         _playWhenReady = false;

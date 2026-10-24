@@ -32,6 +32,49 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Feedback belongs to the exercise. The single frozen video follows the hand;
+   direction hints live above it and never create a second media layer. */
+.feedback-screen .phase-surface { background: var(--bone); }
+.feedback-screen .phase-surface > * { background: var(--bone) !important; }
+.feedback-screen .rest-panel { color: var(--graphite); min-height: 112px; }
+.feedback-screen .rest-countdown { font-size: 17px; font-weight: 500; letter-spacing: -.15px; }
+.feedback-screen .rest-playback-control { flex: 0 0 48px; min-height: 48px; }
+.feedback-screen .rest-row { justify-content: space-between; gap: 16px; }
+.feedback-screen .rest-track { height: 3px; background: var(--outline-soft); }
+.feedback-screen .rest-track > span { background: var(--graphite); }
+.exercise-media-area.feedback-stage { position: relative; overflow: visible; isolation: isolate; }
+.feedback-stage .feedback-sheet {
+  touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none;
+  transition: box-shadow 180ms; will-change: transform; z-index: 1;
+  box-shadow: 0 8px 24px #1214161c; opacity: 1; scale: 1;
+}
+.feedback-stage.feedback-held .feedback-sheet { cursor: grabbing; box-shadow: 0 16px 36px #12141630; }
+.feedback-stage.feedback-selected .feedback-sheet { cursor: default; }
+.feedback-hints { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.feedback-hint {
+  position: absolute; display: grid; place-items: center; color: var(--graphite);
+  min-width: 56px; min-height: 56px; padding: 4px 10px;
+  background: var(--surface); border-radius: 28px; font-size: 15px; font-weight: 500;
+  box-shadow: 0 3px 14px #12141612; opacity: 0; scale: .9;
+  transition: opacity 100ms, scale 130ms, background 130ms;
+}
+.feedback-x { left: 0; top: calc(50% - 28px); font-size: 42px; }
+.feedback-tick { right: 0; top: calc(50% - 28px); font-size: 42px; }
+.feedback-easy { left: 50%; top: 0; translate: -50% 0; }
+.feedback-hard { left: 50%; bottom: 0; translate: -50% 0; }
+.feedback-dragging .feedback-hint { opacity: .35; scale: 1; }
+.feedback-dragging .feedback-hint.active { opacity: 1; }
+.feedback-dragging .feedback-hint.active.ready { scale: 1.12; background: var(--chartreuse); }
+.feedback-footer { display: flex; align-items: center; justify-content: space-between; min-height: 52px; position: relative; }
+.feedback-receipt { color: var(--graphite); font-size: 16px; }
+.feedback-receipt.emoji { font-size: 36px; line-height: 1; }
+.feedback-undo { color: var(--secondary); font: inherit; min-height: 48px; min-width: 80px; border: 0; background: transparent; font-size: 23px; }
+.feedback-undo span { font-size: 14px; margin-left: 4px; }
+.feedback-accessible-actions { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.feedback-accessible-actions:focus-within { position: fixed; z-index: 20; bottom: 16px; left: 16px; right: 16px; width: auto; height: auto; clip-path: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; background: var(--surface); border-radius: 14px; }
+.feedback-accessible-actions button { background: var(--surface); color: var(--graphite); border: 1px solid var(--outline); border-radius: 10px; padding: 12px; }
+@media (prefers-reduced-motion: reduce) { .feedback-stage *, .feedback-footer * { transition: none !important; } }
+
 .fitness-profile {
   position: relative;
   width: min(calc(100% - 16px), 520px);
@@ -2332,3 +2375,32 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+.workout-screen.feedback-screen.phase-rest .exercise-media-card {
+  border: 1px solid var(--outline-soft); padding: 0; background: var(--media);
+  box-shadow: 0 10px 28px #12141620; opacity: 1; transform: none;
+}
+.feedback-stage .hold-frame { inset: 0; width: 100%; height: 100%; }
+
+.feedback-sheet { display: contents; }
+.feedback-caption { display: none; }
+.feedback-screen .exercise-name { display: none; }
+.feedback-stage .feedback-sheet {
+  display: block; width: min(84vw, 54dvh, 480px); border-radius: 22px;
+  overflow: hidden; background: var(--surface); border: 1px solid var(--outline-soft);
+}
+.feedback-stage .feedback-caption {
+  display: flex; align-items: center; justify-content: center; min-height: 60px;
+  padding: 12px 16px; text-align: center; font-size: 15px; line-height: 20px; color: var(--graphite);
+}
+.workout-screen.feedback-screen.phase-rest .exercise-media-card {
+  width: 100%; border: 0; border-radius: 0; box-shadow: none; background: var(--media);
+}
+.feedback-stage .exercise-media-card video, .feedback-stage .hold-frame { border-radius: 0; }
+@media (orientation: landscape) {
+  .feedback-stage .feedback-sheet { width: min(40vw, 58dvh, 480px); }
+  .feedback-stage .feedback-caption { min-height: 42px; padding: 8px 12px; font-size: 13px; line-height: 17px; }
+}
+
+.exercise-media-area.feedback-stage { container-type: size; }
+.feedback-stage .feedback-sheet { width: min(calc(100cqw - 16px), calc(100cqh - 88px), 480px); }

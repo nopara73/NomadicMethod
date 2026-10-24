@@ -224,9 +224,24 @@ internal sealed class ReactionDrillView : FrameLayout
             ? Color.Rgb(37, 122, 73) : Color.Rgb(32, 35, 38));
     }
 
+    public bool Frozen { get; private set; }
+    public void Freeze()
+    {
+        if (_released) return;
+        Frozen = true;
+        _previewEnabled = false;
+        foreach (View card in _cards) card.Clickable = false;
+        foreach (MediaPlayer player in _players)
+        {
+            try { if (player.IsPlaying) player.Pause(); }
+            catch (Java.Lang.IllegalStateException) { }
+        }
+    }
+
     public void ResetPlayback()
     {
         if (_released) return;
+        Frozen = false;
         _activeIndex = -1;
         for (int index = 0; index < _players.Length; index++)
         {

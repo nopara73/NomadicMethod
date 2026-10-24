@@ -117,6 +117,11 @@ public sealed class WorkoutState
 
     public bool PendingRestKept { get; set; }
 
+    // Null means no response yet. Kept remains a compatibility mirror for older saves.
+    public ExerciseOutcome? PendingRestFeedback { get; set; }
+
+    public int PendingRestMediaPositionMilliseconds { get; set; }
+
     public int PendingScoreExerciseId { get; set; }
 
     public int PendingScoreValue { get; set; }

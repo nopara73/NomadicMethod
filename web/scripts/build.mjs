@@ -38,7 +38,7 @@ if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
-for (const stem of ['reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile']) {
+for (const stem of ['reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile', 'exercise-feedback']) {
   let source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
   for (const [dependency, output] of moduleOutputs)
     source = source.replaceAll(`./${dependency}.js`, `./${output}`);
@@ -371,6 +371,7 @@ await writeFile(
 
 const appSource = await readFile(path.join(webRoot, "app.js"), "utf8");
 const fingerprintedAppSource = appSource
+  .replace('"./exercise-feedback.js"', `"./${moduleOutputs.get('exercise-feedback')}"`)
   .replace('"./reaction-drills.js"', `"./${moduleOutputs.get('reaction-drills')}"`)
   .replace('"./reaction-drill-view.js"', `"./${moduleOutputs.get('reaction-drill-view')}"`)
   .replace('"./fitness-profile.js"', `"./${moduleOutputs.get('fitness-profile')}"`)

@@ -3597,6 +3597,8 @@ export function createDefaultState() {
     pendingRestMillisecondsRemaining: 0,
     pendingRestPausedByUser: false,
     pendingRestKept: false,
+    pendingRestFeedback: null,
+    pendingRestMediaPositionMilliseconds: 0,
     lastWorkoutMinutes: 10,
     elevationEquipmentEnabled: false,
     lastWorkoutModifiers: DEFAULT_WORKOUT_MODIFIERS,
@@ -3671,6 +3673,9 @@ function normalizeStateShape(raw) {
     : 0;
   state.pendingRestPausedByUser = raw.pendingRestPausedByUser === true;
   state.pendingRestKept = raw.pendingRestKept === true;
+  state.pendingRestMediaPositionMilliseconds = Math.min(3600000, positiveIntegerOrZero(raw.pendingRestMediaPositionMilliseconds));
+  state.pendingRestFeedback = ["tick", "x", "easy", "hard"].includes(raw.pendingRestFeedback)
+    ? raw.pendingRestFeedback : state.pendingRestKept ? "tick" : null;
   state.pendingMovementGroupId = typeof raw.pendingMovementGroupId === "string"
     ? raw.pendingMovementGroupId
     : null;
@@ -3702,7 +3707,7 @@ function normalizeStateShape(raw) {
     }
   }
   for (const [groupId, outcome] of Object.entries(objectOrEmpty(raw.outcomes))) {
-    if (outcome === "x" || outcome === "neutral" || outcome === "tick") {
+    if (["x", "neutral", "tick", "easy", "hard"].includes(outcome)) {
       state.outcomes[groupId] = outcome;
     }
   }
@@ -4199,7 +4204,7 @@ function normalizeWorkoutSessionLog(raw) {
       rootExerciseName: stringOrEmpty(decision.rootExerciseName),
       sequenceExerciseIds: uniquePositiveIntegers(decision.sequenceExerciseIds)
         .sort((left, right) => left - right),
-      outcome: decision.outcome === "tick" || decision.outcome === "x"
+      outcome: ["tick", "x", "easy", "hard"].includes(decision.outcome)
         ? decision.outcome
         : "neutral",
       selectionScoreBeforeDecision: integerOrZero(
@@ -4917,6 +4922,13 @@ export class WorkoutSession {
     if (!this.state.activeWorkoutSession) {
       this.finalizeCurrentWorkout();
       return;
+    }
+    const feedback = this.getPendingRestFeedback();
+    const pending = feedback ? this.getPendingRestGroup() : null;
+    if (pending && isFinalSequenceRound(pending) && feedback) {
+      this.applySequenceOutcome(pending, feedback);
+      this.clearPendingRest();
+      this.applyRecordedWorkoutKeeps();
     }
     this.finalizeActiveWorkoutSession("Interrupted");
     this.resetTransientState();
@@ -5801,6 +5813,8 @@ export class WorkoutSession {
     this.state.pendingRestMillisecondsRemaining = 0;
     this.state.pendingRestPausedByUser = false;
     this.state.pendingRestKept = false;
+    this.state.pendingRestFeedback = null;
+    this.state.pendingRestMediaPositionMilliseconds = 0;
     const exercise = this.getSelectedExercise(group);
     const completedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     this.recordCompletedWorkoutBlock(group, completedAtUnixMilliseconds);
@@ -5836,6 +5850,7 @@ export class WorkoutSession {
       return false;
     }
     this.state.pendingRestKept = true;
+    this.state.pendingRestFeedback = "tick";
     return true;
   }
 
@@ -5896,6 +5911,22 @@ export class WorkoutSession {
     this.state.pendingRestMillisecondsRemaining = 0;
     this.state.pendingRestPausedByUser = false;
     this.state.pendingRestKept = false;
+    this.state.pendingRestFeedback = null;
+    this.state.pendingRestMediaPositionMilliseconds = 0;
+  }
+
+  getPendingRestFeedback() {
+    return this.state.pendingRestFeedback ?? (this.state.pendingRestKept ? "tick" : null);
+  }
+
+  setPendingRestFeedback(feedback) {
+    if (feedback !== null && !["tick", "x", "easy", "hard"].includes(feedback))
+      throw new Error("Invalid exercise feedback.");
+    const group = this.getPendingRestGroup();
+    if (!group || this.isIntermediateSequenceBlock(group)) return false;
+    this.state.pendingRestFeedback = feedback;
+    this.state.pendingRestKept = feedback === "tick";
+    return true;
   }
 
   recordOutcome(group, keep) {
@@ -5952,6 +5983,8 @@ export class WorkoutSession {
   }
 
   applySequenceOutcome(group, keep, feedbackPhase = null) {
+    const outcome = typeof keep === "boolean" ? (keep ? "tick" : "x") : keep;
+    if (!["tick", "x", "easy", "hard"].includes(outcome)) throw new Error("Invalid exercise feedback.");
     const exercise = this.getSelectedExercise(group);
     const root = this.getSequenceRoot(exercise);
     const selectionGroupId = getSelectionKey(group);
@@ -5960,19 +5993,19 @@ export class WorkoutSession {
       root,
       exercisePhase,
     );
-    if (!keep) {
+    if (outcome === "x") {
       this.downvoteSequenceInPhase(exercisePhase, root);
     }
     const decidedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     this.recordWorkoutDecision(
       group,
       root,
-      keep ? "tick" : "x",
+      outcome,
       selectionScoreBeforeDecision,
       exercisePhase,
       decidedAtUnixMilliseconds,
     );
-    this.state.outcomes[group.id] = keep ? "tick" : "x";
+    this.state.outcomes[group.id] = outcome;
     if (this.state.activeModifierProtectedSelectionGroupId ===
           selectionGroupId &&
         this.getActiveGroups()
@@ -6019,7 +6052,7 @@ export class WorkoutSession {
         if (this.isIntermediateSequenceBlock(group)) {
           this.advanceSequence(group);
         } else {
-          this.applySequenceOutcome(group, this.state.pendingRestKept);
+          this.applySequenceOutcome(group, this.getPendingRestFeedback() ?? "x");
         }
       }
       this.clearPendingRest();
@@ -8249,6 +8282,8 @@ export class WorkoutSession {
       pendingRestGroupId: this.state.pendingRestGroupId,
       pendingRestEndsAtUnixMilliseconds: this.state.pendingRestEndsAtUnixMilliseconds,
       pendingRestKept: this.state.pendingRestKept,
+      pendingRestFeedback: this.state.pendingRestFeedback,
+      pendingRestMediaPositionMilliseconds: this.state.pendingRestMediaPositionMilliseconds,
     };
   }
 
@@ -8272,7 +8307,7 @@ export class WorkoutSession {
         .filter(([roundId]) =>
           this.resolveLegacySelectionKey(roundId) === selectionGroup.id);
       const decision = oldOutcomes
-        .filter(([, outcome]) => outcome === "tick" || outcome === "x")
+        .filter(([, outcome]) => ["tick", "x", "easy", "hard"].includes(outcome))
         .at(-1)?.[1];
       if (decision) {
         for (const round of sequenceRounds.slice(0, -1)) {
@@ -8329,6 +8364,8 @@ export class WorkoutSession {
       this.state.pendingRestGroupId = pendingRound.id;
       this.state.pendingRestEndsAtUnixMilliseconds =
         snapshot.pendingRestEndsAtUnixMilliseconds;
+      this.state.pendingRestFeedback = isFinalSequenceRound(pendingRound) ? snapshot.pendingRestFeedback : null;
+      this.state.pendingRestMediaPositionMilliseconds = snapshot.pendingRestMediaPositionMilliseconds;
       this.state.pendingRestKept = snapshot.pendingRestKept &&
         isFinalSequenceRound(pendingRound);
       return;

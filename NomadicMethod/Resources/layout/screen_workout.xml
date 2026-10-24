@@ -391,9 +391,8 @@
 
                     <ImageButton
                         android:id="@+id/rest_playback_action"
-                        android:layout_width="0dp"
+                        android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:layout_weight="1"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/pause_rest_description"
                         android:foreground="?android:attr/selectableItemBackgroundBorderless"
@@ -404,14 +403,16 @@
 
                     <TextView
                         android:id="@+id/rest_countdown_text"
-                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end|center_vertical"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
                         android:includeFontPadding="false"
                         android:maxLines="1"
                         android:text="@string/rest_initial"
                         android:textColor="@color/rest_text"
-                        android:textSize="40sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <ProgressBar
@@ -425,18 +426,7 @@
                     android:progress="15000"
                     android:progressDrawable="@drawable/rest_progress_track" />
 
-                <ImageButton
-                    android:id="@+id/keep_button"
-                    style="@style/NomadicMethodKeepButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="68dp"
-                    android:layout_marginTop="10dp"
-                    android:contentDescription="@string/keep_exercise_description"
-                    android:minHeight="60dp"
-                    android:padding="8dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_love"
-                    android:tint="@color/white" />
+
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

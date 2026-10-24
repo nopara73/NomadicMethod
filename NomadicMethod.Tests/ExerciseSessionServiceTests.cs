@@ -7,6 +7,57 @@ namespace NomadicMethod.Tests;
 public sealed class ExerciseSessionServiceTests
 {
     [Theory]
+    [InlineData(ExerciseOutcome.X)]
+    [InlineData(ExerciseOutcome.Tick)]
+    [InlineData(ExerciseOutcome.TooEasy)]
+    [InlineData(ExerciseOutcome.TooHard)]
+    public void SwipeFeedbackSurvivesRestorationAndDoesNotConflateDifficultyWithDislike(ExerciseOutcome feedback)
+    {
+        Exercise[] exercises = [FullyCoveredExercise(1, CanonicalMuscleGroup.ScapularGirdle)];
+        var service = new ExerciseSessionService(exercises, new Random(1));
+        var state = new WorkoutState();
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        var group = service.GetNextGroup(state)!;
+        service.BeginRest(state, group, DateTimeOffset.UtcNow.AddSeconds(15).ToUnixTimeMilliseconds());
+        Assert.True(service.SetPendingRestFeedback(state, feedback));
+        service.PauseRest(state, group, 12_000);
+        state.PendingRestMediaPositionMilliseconds = 1234;
+        state = JsonSerializer.Deserialize<WorkoutState>(JsonSerializer.Serialize(state))!;
+        service.RestoreAfterReopen(state);
+        Assert.Equal(feedback, ExerciseSessionService.GetPendingRestFeedback(state));
+        Assert.Equal(1234, state.PendingRestMediaPositionMilliseconds);
+        Assert.Equal(12_000, service.GetPendingRestMillisecondsRemaining(state, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()));
+        Assert.True(service.SetPendingRestFeedback(state, null));
+        Assert.Null(ExerciseSessionService.GetPendingRestFeedback(state));
+        Assert.True(service.SetPendingRestFeedback(state, feedback));
+        var result = service.RecordOutcomeWithScoreUpdates(state, service.GetNextGroup(state)!, feedback);
+        service.ClearPendingRest(state);
+        Assert.Equal(feedback, state.ActiveWorkoutSession!.Decisions.Single().Outcome);
+        Assert.Equal(feedback == ExerciseOutcome.X, result.ScoreUpdates.Count > 0);
+        Assert.Equal(feedback == ExerciseOutcome.X, state.ExerciseScoreAdjustmentsByPhase.Values.Any(x => x.Count > 0));
+        state = JsonSerializer.Deserialize<WorkoutState>(JsonSerializer.Serialize(state))!;
+        service.RestoreAfterReopen(state);
+        Assert.Equal(feedback, state.Outcomes[group.Id]);
+        Assert.Equal(2, service.GetNextGroup(state)!.Order);
+    }
+
+    [Theory]
+    [InlineData(ExerciseOutcome.Tick)]
+    [InlineData(ExerciseOutcome.TooEasy)]
+    [InlineData(ExerciseOutcome.TooHard)]
+    public void ExplicitEndRetainsAnAlreadySwipedResponse(ExerciseOutcome feedback)
+    {
+        var service = new ExerciseSessionService([FullyCoveredExercise(1, CanonicalMuscleGroup.ScapularGirdle)], new Random(1));
+        var state = new WorkoutState();
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        service.BeginRest(state, service.GetNextGroup(state)!, DateTimeOffset.UtcNow.AddSeconds(15).ToUnixTimeMilliseconds());
+        service.SetPendingRestFeedback(state, feedback);
+        service.EndActiveWorkout(state);
+        Assert.Equal(feedback, state.WorkoutHistory.Single().Decisions.Single().Outcome);
+        Assert.Empty(state.ExerciseScoreAdjustmentsByPhase.Values.SelectMany(x => x));
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void RepeatedMovementRoundsPreserveSeparateProgressKeepsAndHistory(bool light)
