@@ -19,6 +19,8 @@ on:
       - "tools/Test-PreciseSkillAdmissions.ps1"
       - "docs/catalog-audit/precise-admissions-2026-10-23.json"
       - "docs/catalog-audit/precise-skill-review-2026-10-23.json"
+      - "docs/catalog-audit/zopd-admissions-2026-10-24.json"
+      - "docs/catalog-audit/zopd-skill-review-2026-10-24.json"
       - "docs/catalog-audit/ability-admissions-2026-10-23.json"
       - "docs/catalog-audit/ability-skill-review-2026-10-23.json"
       - "NomadicMethod/Assets/exercise_videos/**"
@@ -114,6 +116,8 @@ jobs:
             /tools/Test-PreciseSkillAdmissions.ps1
             /docs/catalog-audit/precise-admissions-2026-10-23.json
             /docs/catalog-audit/precise-skill-review-2026-10-23.json
+            /docs/catalog-audit/zopd-admissions-2026-10-24.json
+            /docs/catalog-audit/zopd-skill-review-2026-10-24.json
             /docs/catalog-audit/ability-admissions-2026-10-23.json
             /docs/catalog-audit/ability-skill-review-2026-10-23.json
             /NomadicMethod/Assets/exercise_videos/**
@@ -203,6 +207,7 @@ jobs:
         run: |
           ./tools/Test-PreciseSkillAdmissions.ps1
           ./tools/Test-PreciseSkillAdmissions.ps1 -Admission ability-admissions-2026-10-23
+          ./tools/Test-PreciseSkillAdmissions.ps1 -Admission zopd-admissions-2026-10-24
 
       - name: Validate mirror relationship audit
         shell: pwsh

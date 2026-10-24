@@ -56,6 +56,8 @@
         1048, 1049, 1050, 1051, 1052, 1053, 1054, 1055, 1056
     )
     FloorRequired = @{
+        1718 = @('Feet', 'Hands', 'Knees')
+        1719 = @('Feet', 'Hands')
         1645 = @('Feet', 'Hands')
         1706 = @('Feet', 'Hands')
         1707 = @('Feet', 'Hands')

@@ -44528,5 +44528,97 @@
     "maxSpaceMeters": 2,
     "equipment": "None",
     "silent": true
+  },
+  {
+    "id": 1718,
+    "name": "Floor Straddle Planche Hold",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1718.mp4",
+    "primaryCanonicalGroup": "ShoulderAbductors",
+    "secondaryCanonicalGroups": [
+      "ScapularGirdle"
+    ],
+    "practice": "Calisthenics",
+    "motionProfile": "Fitness1718",
+    "mode": "Hold",
+    "presentation": "Still",
+    "holdFramePercent": 55,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1718,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Incompatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 2,
+    "reactionCueLevel": 0,
+    "onlyFeetTouchGround": false,
+    "floorContactPoints": "Feet, Hands, Knees",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true
+  },
+  {
+    "id": 1719,
+    "name": "Floor Tuck Planche Push-Ups",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1719.mp4",
+    "primaryCanonicalGroup": "ShoulderAbductors",
+    "secondaryCanonicalGroups": [
+      "ElbowExtensors"
+    ],
+    "practice": "Calisthenics",
+    "motionProfile": "Fitness1719",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1719,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Compatible",
+    "hardFloorCompatibility": "Incompatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 2,
+    "reactionCueLevel": 0,
+    "onlyFeetTouchGround": false,
+    "floorContactPoints": "Feet, Hands",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true
   }
 ]

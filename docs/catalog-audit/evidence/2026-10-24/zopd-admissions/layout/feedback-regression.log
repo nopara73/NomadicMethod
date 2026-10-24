@@ -1,0 +1,12 @@
+BEFORE 1280 720 {
+  '.workout-screen': { width: 1280, height: 720, container: 'normal', align: 'auto' },
+  '.exercise-media-area': { width: 656, height: 0, container: 'size', align: 'center' },
+  '.feedback-sheet': { width: 2, height: 86, container: 'normal', align: 'auto' },
+  '.exercise-media-card': { width: 0, height: 0, container: 'normal', align: 'auto' }
+}
+AFTER 1280 720 {
+  '.workout-screen': { width: 1280, height: 720, container: 'normal', align: 'auto' },
+  '.exercise-media-area': { width: 656, height: 467, container: 'size', align: 'stretch' },
+  '.feedback-sheet': { width: 379, height: 421, container: 'normal', align: 'auto' },
+  '.exercise-media-card': { width: 377, height: 377, container: 'normal', align: 'auto' }
+}

@@ -4,10 +4,10 @@
   "status": "provisional",
   "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 91,
-  "catalogSha256": "22f91855a640dd41c97fa2c1d5d202b59b978d4c5d4554655a672c0c6b334a3d",
-  "exerciseCount": 907,
-  "profileCount": 206,
+  "catalogRevision": 92,
+  "catalogSha256": "047a9f99604524c6537400cda490d34102a11e72c09636b423fdc52229675bce",
+  "exerciseCount": 909,
+  "profileCount": 208,
   "coveragePolicy": {
     "schemaVersion": 2,
     "minimumDistinctSessionMovements": 5,
@@ -1994,8 +1994,8 @@
         ]
       },
       "4": {
-        "count": 22,
-        "exerciseCount": 24,
+        "count": 24,
+        "exerciseCount": 26,
         "exerciseIds": [
           115,
           149,
@@ -2020,7 +2020,9 @@
           1540,
           1701,
           1705,
-          1717
+          1717,
+          1718,
+          1719
         ],
         "sessionMovementIds": [
           115,
@@ -2044,7 +2046,9 @@
           1540,
           1701,
           1705,
-          1717
+          1717,
+          1718,
+          1719
         ]
       },
       "5": {
@@ -5728,8 +5732,8 @@
         ]
       },
       "3": {
-        "count": 25,
-        "exerciseCount": 31,
+        "count": 27,
+        "exerciseCount": 33,
         "exerciseIds": [
           21,
           115,
@@ -5761,7 +5765,9 @@
           1704,
           1707,
           1709,
-          1710
+          1710,
+          1718,
+          1719
         ],
         "sessionMovementIds": [
           21,
@@ -5788,7 +5794,9 @@
           1704,
           1707,
           1709,
-          1710
+          1710,
+          1718,
+          1719
         ]
       },
       "4": {
@@ -6884,8 +6892,8 @@
         ]
       },
       "3": {
-        "count": 40,
-        "exerciseCount": 41,
+        "count": 41,
+        "exerciseCount": 42,
         "exerciseIds": [
           58,
           92,
@@ -6927,7 +6935,8 @@
           1709,
           1710,
           1711,
-          1716
+          1716,
+          1719
         ],
         "sessionMovementIds": [
           58,
@@ -6969,7 +6978,8 @@
           1709,
           1710,
           1711,
-          1716
+          1716,
+          1719
         ]
       },
       "4": {
@@ -8253,16 +8263,20 @@
           ]
         },
         "4": {
-          "count": 3,
+          "count": 5,
           "exerciseIds": [
             1701,
             1705,
-            1717
+            1717,
+            1718,
+            1719
           ],
           "sessionMovementIds": [
             1701,
             1705,
-            1717
+            1717,
+            1718,
+            1719
           ]
         },
         "5": {

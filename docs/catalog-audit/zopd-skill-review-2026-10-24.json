@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 92,
+  "scope": "Two new session movements; all 907 prior records and their assessments unchanged.",
+  "entries": [
+    {
+      "id": 1718,
+      "metadataSha256": "cef2a5c91f0ff17b7a90019b1c469382030de90989b5f5568282573d85864ad2",
+      "assets": {
+        "exercise_videos/exercise_1718.mp4": "821e542d8c6b3e9c082d3118babceafb6f31a058de15e01eff95281b3e79a7a1",
+        "exercise_hold_frames/exercise_1718.png": "e29c3d1170572b246f920302de48a5d8ee899a1c5e2dc0046abff0d67b520f3c"
+      },
+      "reviewedAt": "2026-10-24T13:56:58.361899+00:00",
+      "method": "Original human footage and complete packaged frame sequence inspected, followed by real-time playback and timer phases in the actual web workout. Synthetic isolated state; native tests and physical installation are separate release checks.",
+      "observedAction": "Official gymnastics human footage shows the front-view entry from floor support, both straight legs spread wide, the complete unsupported horizontal hold on straight arms, and a controlled exit to a foot-supported low push-up. All limbs remain visible. The hold frame is inside the stable held position; a brief knee contact during setup is included in restrictions.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1718/ready.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1718/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1718/movement.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1718/played.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1718/rest.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1718/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Official gymnastics human footage shows the front-view entry from floor support, both straight legs spread wide, the complete unsupported horizontal hold on straight arms, and a controlled exit to a foot-supported low push-up. All limbs remain visible. The hold frame is inside the stable held position; a brief knee contact during setup is included in restrictions. Primary ShoulderAbductors; only the reviewed direct secondary claim is retained. Task ratings remain provisional."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The original 7.6-second source shows entry, unsupported straddle hold and controlled exit. The app correctly presents the curated static posture; its 4.55-second supporting movie shows the approach into that hold."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Whole source framing and runtime letterboxing retain both hands, feet and every working limb. No apparatus or support is hidden by the crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The exercise is a static posture in Ready, movement and feedback. No artificial repetition or fabricated exit is presented as a hold."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Original elapsed time is preserved. Runtime uses 20 fps, moving playbackRate 1. Preparation, 45-second movement and feedback clocks were observed at ordinary speed without mocked time."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both arms and legs participate together; one complete bilateral block, no alternating side or direction is required."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Palms remain planted. No advancing, retreating, wall assistance or locomotion space is required."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The 55% source frame shows the stable unsupported straight-arm, straight-knee straddle posture. The actual Ready and movement screens load and retain the exact still."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Feet, hands and a brief setup knee contact require Floor and exclude Hard Floor. No bars, bands, elevation or wall. Ordinary shoes are compatible; controlled execution is quiet. Static planche excludes Insect; moving push-ups permit it."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual app selected the movement in a valid 15-minute plan and displayed Ready, preparation, the complete 45-second block and settled swipe feedback. Earlier slots were marked complete solely in isolated synthetic QA state to reach the shoulder slot. No personal workout was changed."
+        }
+      }
+    },
+    {
+      "id": 1719,
+      "metadataSha256": "39f04e25946c0410059e77ead5ecac724639db857291d76691d91f83bfc3d040",
+      "assets": {
+        "exercise_videos/exercise_1719.mp4": "d8b9550f11447f00ba952316a65012d672f5b52ff9d97f125d847f4b1942482d"
+      },
+      "reviewedAt": "2026-10-24T13:56:58.371389+00:00",
+      "method": "Original human footage and complete packaged frame sequence inspected, followed by real-time playback and timer phases in the actual web workout. Synthetic isolated state; native tests and physical installation are separate release checks.",
+      "observedAction": "The instructor completes two floor tuck-planche push-ups: elbows bend deeply, the face remains clear of the floor, and the elbows extend again while both feet stay airborne. Knees stay free of an arm shelf. Flat palms, ordinary shoes and all limbs are visible; there are no bars, bands, spotters or edited reversals.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1719/ready.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1719/preparation.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1719/movement.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1719/played.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1719/rest.png",
+        "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/1719/playback.json"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The instructor completes two floor tuck-planche push-ups: elbows bend deeply, the face remains clear of the floor, and the elbows extend again while both feet stay airborne. Knees stay free of an arm shelf. Flat palms, ordinary shoes and all limbs are visible; there are no bars, bands, spotters or edited reversals. Primary ShoulderAbductors; only the reviewed direct secondary claim is retained. Task ratings remain provisional."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete 5-second runtime loop contains two natural unsupported tuck-planche pressing cycles, from extended elbows through the low position and back. Source and packaged cycles were inspected; repeated actual workout playback uses rate 1."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Whole source framing and runtime letterboxing retain both hands, feet and every working limb. No apparatus or support is hidden by the crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The loop ends in the extended-elbow tuck and resets to the same extended-elbow tuck. There is no incomplete bottom-position cutoff, reverse playback or invented ascent."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Original elapsed time is preserved. Runtime uses 20 fps, moving playbackRate 1. Preparation, 45-second movement and feedback clocks were observed at ordinary speed without mocked time."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both arms and legs participate together; one complete bilateral block, no alternating side or direction is required."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Palms remain planted. No advancing, retreating, wall assistance or locomotion space is required."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a moving repetition with no prescribed static hold frame."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Flat palms carry concentrated load: Floor required, Hard Floor excluded. No bars, bands, elevation or wall. Ordinary shoes are compatible; controlled execution is quiet. Static planche excludes Insect; moving push-ups permit it."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual app selected the movement in a valid 15-minute plan and displayed Ready, preparation, the complete 45-second block and settled swipe feedback. Earlier slots were marked complete solely in isolated synthetic QA state to reach the shoulder slot. No personal workout was changed."
+        }
+      }
+    }
+  ]
+}

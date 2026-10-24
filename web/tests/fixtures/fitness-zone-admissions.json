@@ -1,0 +1,324 @@
+{
+  "catalogRevision": 92,
+  "exerciseIds": [
+    1718,
+    1719
+  ],
+  "cases": [
+    {
+      "name": "both planche variants retain precise strength 4",
+      "kept": [
+        1718,
+        1719
+      ],
+      "expected": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "planningCases": [
+    {
+      "id": 1718,
+      "minutes": 15,
+      "modifiers": [
+        "Floor",
+        "Silence"
+      ],
+      "keepSlot": "r15.shoulder"
+    },
+    {
+      "id": 1719,
+      "minutes": 15,
+      "modifiers": [
+        "Floor",
+        "Silence"
+      ],
+      "keepSlot": "r15.shoulder"
+    }
+  ],
+  "compatibilityCases": [
+    {
+      "id": 1718,
+      "modifiers": [
+        "Silence"
+      ],
+      "allowed": false,
+      "name": "1718 needs Floor"
+    },
+    {
+      "id": 1718,
+      "modifiers": [
+        "Floor",
+        "Silence",
+        "Shy"
+      ],
+      "allowed": true,
+      "name": "1718 quiet floor training"
+    },
+    {
+      "id": 1718,
+      "modifiers": [
+        "Floor",
+        "HardFloor"
+      ],
+      "allowed": false,
+      "name": "1718 excludes concentrated palms or knees"
+    },
+    {
+      "id": 1718,
+      "modifiers": [
+        "Floor",
+        "Insect"
+      ],
+      "allowed": false,
+      "name": "1718 static versus moving Insect classification"
+    },
+    {
+      "id": 1719,
+      "modifiers": [
+        "Silence"
+      ],
+      "allowed": false,
+      "name": "1719 needs Floor"
+    },
+    {
+      "id": 1719,
+      "modifiers": [
+        "Floor",
+        "Silence",
+        "Shy"
+      ],
+      "allowed": true,
+      "name": "1719 quiet floor training"
+    },
+    {
+      "id": 1719,
+      "modifiers": [
+        "Floor",
+        "HardFloor"
+      ],
+      "allowed": false,
+      "name": "1719 excludes concentrated palms or knees"
+    },
+    {
+      "id": 1719,
+      "modifiers": [
+        "Floor",
+        "Insect"
+      ],
+      "allowed": true,
+      "name": "1719 static versus moving Insect classification"
+    }
+  ],
+  "zoneCases": [
+    {
+      "id": 1718,
+      "dimension": 1,
+      "zone": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 1,
+      "zone": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 1,
+      "zone": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 1,
+      "zone": [
+        4
+      ],
+      "eligible": true
+    },
+    {
+      "id": 1718,
+      "dimension": 1,
+      "zone": [
+        5
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 5,
+      "zone": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 5,
+      "zone": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 5,
+      "zone": [
+        3
+      ],
+      "eligible": true
+    },
+    {
+      "id": 1718,
+      "dimension": 5,
+      "zone": [
+        4
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1718,
+      "dimension": 5,
+      "zone": [
+        5
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 1,
+      "zone": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 1,
+      "zone": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 1,
+      "zone": [
+        3
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 1,
+      "zone": [
+        4
+      ],
+      "eligible": true
+    },
+    {
+      "id": 1719,
+      "dimension": 1,
+      "zone": [
+        5
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 5,
+      "zone": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 5,
+      "zone": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 5,
+      "zone": [
+        3
+      ],
+      "eligible": true
+    },
+    {
+      "id": 1719,
+      "dimension": 5,
+      "zone": [
+        4
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 5,
+      "zone": [
+        5
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 6,
+      "zone": [
+        1
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 6,
+      "zone": [
+        2
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 6,
+      "zone": [
+        3
+      ],
+      "eligible": true
+    },
+    {
+      "id": 1719,
+      "dimension": 6,
+      "zone": [
+        4
+      ],
+      "eligible": false
+    },
+    {
+      "id": 1719,
+      "dimension": 6,
+      "zone": [
+        5
+      ],
+      "eligible": false
+    }
+  ]
+}

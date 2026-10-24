@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 92,
+  "exerciseCount": 909,
+  "newRecordCount": 2,
+  "newPhysicalMovementCount": 2,
+  "baselineVerification": {
+    "baselineCommit": "a0cfd25acf7963ae32059541c46371416ad76084",
+    "oldRecordCount": 907,
+    "existingRuntimeRecordsUnchanged": true,
+    "existingAssessmentsUnchanged": true,
+    "normalizedCatalogSha256": "047a9f99604524c6537400cda490d34102a11e72c09636b423fdc52229675bce"
+  },
+  "profileAlgorithmChanged": false,
+  "ratingStatus": "Provisional NM task-specific categories. FIG and instructor sources establish the movements; they do not validate these numerical ratings. No endurance, speed or aerobic capacity is inferred from skill difficulty.",
+  "reviewEvidence": "docs/catalog-audit/zopd-skill-review-2026-10-24.json",
+  "workoutGallery": "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/gallery.html",
+  "gapEffect": {
+    "strength4Before": 3,
+    "strength4After": 5,
+    "strictCellsBelowFiveBefore": 21,
+    "strictCellsBelowFiveAfter": 20,
+    "strictCellsEmpty": 12,
+    "physicalDurationProfilesWithEmptySlots": 698
+  },
+  "remainingLimits": "Global strength 4 reaches five. Other deficient singleton cells and restrictive whole-body workout shortages remain; the admission does not waive or widen strict ZoPD eligibility.",
+  "rejectedSources": [
+    {
+      "source": "https://www.caliverse.app/exercises/l-sit-to-tucked-v-sit-1397",
+      "reason": "Demonstration uses separate handles/parallettes unsupported by current equipment controls; it is also a tucked transition, not a full straight-leg V-sit."
+    },
+    {
+      "source": "https://www.youtube.com/watch?v=CFh9ZbhJ0P0",
+      "reason": "Far leg and parts of entry are obscured; the official FIG demonstration is clearer."
+    }
+  ],
+  "entries": [
+    {
+      "id": 1718,
+      "name": "Floor Straddle Planche Hold",
+      "sessionMovementId": 1718,
+      "source": {
+        "file": "fitness-1718-source.mp4",
+        "sha256": "9dc2f8ecb95703cb0f9014827351059eb23f350605b5599e1bf67b4b7e700964",
+        "sourcePage": "https://www.fig-aerobic.com/B-186-STRADDLE-PLANCHE_a695.html",
+        "originalSource": "https://www.fig-aerobic.com/apiv3/video/getVideo/1349559/19082325_hd.mp4",
+        "originalSourceSha256": "6f8e5a12b3bce677c48f08070f4b22a34e1a049945a63b0e4cf78d6a56a5b71a",
+        "originalSourceStartSeconds": 6.6,
+        "durationSeconds": 7.6,
+        "provenance": "Losslessly encoded original human excerpt at unchanged dimensions and cadence; audio omitted. No generated, composited or reversed frames."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 4
+      },
+      "basis": "The fixed straight-elbow, straight-knee straddle planche holds the trunk horizontally without foot or external support. Its shortened wide-leg lever sits between the existing tucked tier-3 and straight-joined-leg tier-5 planches: provisional NM strength tier 4. Horizontal two-palm equilibrium supports task-specific balance tier 3. The exact hold, not an easier tucked version or a full joined-leg planche, is prescribed.",
+      "trainingConditions": "Use clean brief attempts or repetitions with deliberate recovery inside the 45-second opportunity. Retain the demonstrated floor support, limb position and complete action. No sustained 45-second maximum, repetition count, endurance tier, ballistic power, cardio capacity or measured performance is inferred. These are provisional NM task categories, not externally validated physiological cutoffs.",
+      "anatomy": "ShoulderAbductors",
+      "secondaryTrainingClaims": [
+        "ScapularGirdle"
+      ],
+      "equipment": "Feet, hands and a brief setup knee contact require Floor and exclude Hard Floor. No bars, bands, elevation or wall. Ordinary shoes are compatible; controlled execution is quiet. Static planche excludes Insect; moving push-ups permit it.",
+      "identity": "Different fixed mechanics; neither is an alias of a tucked static planche or a straight joined-leg full planche."
+    },
+    {
+      "id": 1719,
+      "name": "Floor Tuck Planche Push-Ups",
+      "sessionMovementId": 1719,
+      "source": {
+        "file": "fitness-1719-source.mp4",
+        "sha256": "8eb3cdddc1d4a487c795d53d34d35a61b220fc712fd36b7576a7c79e0ec613bf",
+        "sourcePage": "https://www.youtube.com/watch?v=4IISjdSCw5k",
+        "originalSource": "https://www.youtube.com/watch?v=4IISjdSCw5k",
+        "originalSourceSha256": "e617137b15293ea9ad39145601c88f6e46c0fbbcb484c9ee983aa0db4af12c40",
+        "originalSourceStartSeconds": 2.2,
+        "durationSeconds": 5.0,
+        "provenance": "Losslessly encoded original human excerpt at unchanged dimensions and cadence; audio omitted. No generated, composited or reversed frames."
+      },
+      "trainedLevels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "preciseStrongestContributions": {
+        "muscularStrength": 4
+      },
+      "basis": "The fixed unsupported tucked push-up lowers and raises the whole body through elbow flexion/extension while both feet remain airborne and the knees do not rest on the upper arms. This adds a complete loaded pressing cycle to the existing tier-3 static tuck planche, supporting provisional strength tier 4; equilibrium and coordinated reversal remain tier 3. The full straight-body floor 90-degree press remains a distinct tier-5 task.",
+      "trainingConditions": "Use clean brief attempts or repetitions with deliberate recovery inside the 45-second opportunity. Retain the demonstrated floor support, limb position and complete action. No sustained 45-second maximum, repetition count, endurance tier, ballistic power, cardio capacity or measured performance is inferred. These are provisional NM task categories, not externally validated physiological cutoffs.",
+      "anatomy": "ShoulderAbductors",
+      "secondaryTrainingClaims": [
+        "ElbowExtensors"
+      ],
+      "equipment": "Flat palms carry concentrated load: Floor required, Hard Floor excluded. No bars, bands, elevation or wall. Ordinary shoes are compatible; controlled execution is quiet. Static planche excludes Insect; moving push-ups permit it.",
+      "identity": "Different fixed mechanics; neither is an alias of a tucked static planche or a straight joined-leg full planche."
+    }
+  ],
+  "incidentalWebFix": {
+    "problem": "Feedback media collapsed to 0 by 0 pixels in the desktop grid because size containment removes intrinsic height while align-self center prevents stretching.",
+    "change": "Stretch the size container into its allocated media area. No feedback timing, gesture or native behavior changed.",
+    "verification": "Matched synthetic 1280 by 720 rendering reproduces 0 by 0 before and 377 by 377 after; 844 by 390 landscape and 422 by 905 portrait remain visible. Both admitted exercises were replayed through complete real-time workout and feedback phases.",
+    "evidence": "docs/catalog-audit/evidence/2026-10-24/zopd-admissions/layout/feedback-regression.log"
+  }
+}

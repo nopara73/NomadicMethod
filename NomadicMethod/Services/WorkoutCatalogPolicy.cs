@@ -4,6 +4,8 @@ namespace NomadicMethod.Services;
 
 public static class WorkoutCatalogPolicy
 {
+    public static IReadOnlySet<int> ZoneGapExerciseIds { get; } = new HashSet<int> { 1718, 1719 };
+
     public static IReadOnlySet<int> AbilityGapExerciseIds { get; } = new HashSet<int> { 1717 };
 
     public static IReadOnlySet<int> PreciseSkillExerciseIds { get; } = new HashSet<int>
@@ -64,6 +66,8 @@ public static class WorkoutCatalogPolicy
         IReadOnlyList<Exercise> catalog, int activeCatalogRevision,
         IReadOnlySet<int>? singleDirectionExerciseIds = null)
     {
+        if (activeCatalogRevision is > 0 and < 92)
+            catalog = catalog.Where(exercise => !ZoneGapExerciseIds.Contains(exercise.Id)).ToArray();
         if (activeCatalogRevision is > 0 and < 91)
             catalog = catalog.Where(exercise => !AbilityGapExerciseIds.Contains(exercise.Id)).ToArray();
         if (activeCatalogRevision is > 0 and < 90)

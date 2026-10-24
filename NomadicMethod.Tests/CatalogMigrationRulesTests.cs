@@ -2315,7 +2315,7 @@ public sealed class CatalogMigrationRulesTests
     public void SoleWallRevisionRebuildsChangedWorkoutStateAndResetsScores()
     {
         HashSet<int> changedIds = [563, 564, 567, 568, 574];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             changedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[54]);
@@ -2422,7 +2422,7 @@ public sealed class CatalogMigrationRulesTests
             104, 113, 117, 120, 123, 135, 177, 184, 186, 199,
             256, 261, 626, 677, 845, 996, 997,
         ];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             changedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[64]);
@@ -2598,7 +2598,7 @@ public sealed class CatalogMigrationRulesTests
     public void MaterialTrainingRevisionRemovesOnlyAnatomicallyInvalidSlotsAndKeeps()
     {
         HashSet<int> addedIds = [911, 913, 916, 917];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             addedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[67]);
@@ -2702,7 +2702,7 @@ public sealed class CatalogMigrationRulesTests
     public void TrainingClaimRevisionRemovesOnlyNewlyInvalidSlotFeedback()
     {
         HashSet<int> addedIds = [918, 919];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             addedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[69]);
@@ -2848,7 +2848,7 @@ public sealed class CatalogMigrationRulesTests
     public void CorrectedTwoSidedRevisionRebuildsPlacementsAndPreservesFeedback()
     {
         HashSet<int> changedIds = [32, 483, 493];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             changedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[71]);
@@ -3432,7 +3432,7 @@ public sealed class CatalogMigrationRulesTests
     public void DemandCoverageExpansionRebuildsReusedIdsAndResetsFeedback()
     {
         HashSet<int> changedIds = [302, 304, 305, 307, 308, 309, 310];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             changedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[61]);
@@ -3491,7 +3491,7 @@ public sealed class CatalogMigrationRulesTests
         [
             248, 281, 286, 367, 393, 529, 537, 545,
         ];
-        Assert.Equal(91, CatalogMigrationRules.CurrentCatalogRevision);
+        Assert.Equal(92, CatalogMigrationRules.CurrentCatalogRevision);
         Assert.Equal(
             changedIds,
             CatalogMigrationRules.WorkoutStateInvalidationsByRevision[62]);

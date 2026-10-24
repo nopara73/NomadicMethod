@@ -56,3 +56,14 @@ Catalog SHA-256 (LF-normalized): `22f91855a640dd41c97fa2c1d5d202b59b978d4c5d4554
 Ratings SHA-256 (LF-normalized): `fe1acb549fb07e987a339a2531922ff34082474e95d9d8032c08756303d9400a`.
 
 No ratings, exercises or eligibility rules were changed to improve these counts.
+
+## Follow-up: catalog revision 92
+
+Two reviewed additions, Floor Straddle Planche Hold (1718) and Floor Tuck Planche Push-Ups (1719), bring strict singleton strength 4 from **3 to 5 distinct movements**. Balance 3 grows from 8 to 10; coordination 3 grows from 8 to 9. No previous rating changed.
+
+The same audit now reports **20 of 50 cells below five; 12 empty**. The 1,350 physical/duration profiles still include 698 with empty slots and 875 below five choices. This closes a global cell, not the remaining whole-body coverage shortages. The original tables above remain the revision-91 baseline.
+
+[Admission rationale and source records](zopd-admissions-2026-10-24.json) and [actual-workout review gallery](evidence/2026-10-24/zopd-admissions/gallery.html). Re-run the command above against revision 92 for the full current report.
+
+Current catalog SHA-256 (LF-normalized): `047a9f99604524c6537400cda490d34102a11e72c09636b423fdc52229675bce`.
+Current ratings SHA-256 (LF-normalized): `08a1d2e3c60e87ca588150424e77dbd25207c0a7f285323c9d421818bebb9cbd`.

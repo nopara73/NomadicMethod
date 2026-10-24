@@ -932,4 +932,8 @@
 
     # Ability gap additions, 23 October 2026.
     1717 = @{ Primary = 'ShoulderAbductors'; Secondary = @('HipFlexors') }
+
+    # ZoPD gap admissions, 24 October 2026.
+    1718 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ScapularGirdle') }
+    1719 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
 }

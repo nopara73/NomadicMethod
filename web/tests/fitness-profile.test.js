@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import { getWorkoutCatalog, isCompatibleWithWorkoutModifiers, WORKOUT_MODIFIERS, WorkoutSession, createDefaultState } from "../workout.js";
 import { FITNESS_DIMENSIONS, FITNESS_MAXIMUM_LEVEL, FITNESS_WEB_BOUNDARY_LEVEL,
-  calculateFavouriteFitnessProfile, inspectFavouriteFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel, formatFitnessMean } from "../fitness-profile.js";
+  isFitnessEligible, calculateFavouriteFitnessProfile, inspectFavouriteFitnessProfile, parseFitnessRatings, fitnessProfileRadiusFraction, roundFitnessLevel, formatFitnessMean } from "../fitness-profile.js";
 
 const read = file => readFileSync(new URL(file, import.meta.url), "utf8");
 const fixture = JSON.parse(read("./fixtures/fitness-profile-cases.json"));
@@ -12,7 +12,7 @@ test("mean labels never cross the chart rounding boundary", () => {
   for (const entry of fixture.meanLabels) assert.equal(formatFitnessMean(entry.mean), entry.label);
 });
 
-for (const fixtureName of ["fitness-profile-admissions.json", "fitness-precise-admissions.json", "fitness-ability-admissions.json"])
+for (const fixtureName of ["fitness-profile-admissions.json", "fitness-precise-admissions.json", "fitness-ability-admissions.json", "fitness-zone-admissions.json"])
 test("reviewed catalog admissions contribute precise tiers and preserve the older workout catalog: " + fixtureName, () => {
   const admissions = JSON.parse(read("./fixtures/" + fixtureName));
   const catalog = JSON.parse(read("../../NomadicMethod/Assets/exercises.json"));
@@ -29,6 +29,11 @@ test("reviewed catalog admissions contribute precise tiers and preserve the olde
     const exercise = catalog.find(e => e.id === entry.id);
     const modifiers = entry.modifiers.reduce((mask, name) => mask | WORKOUT_MODIFIERS[name], 0);
     assert.equal(isCompatibleWithWorkoutModifiers(exercise, modifiers), entry.allowed, entry.name);
+  }
+  for (const entry of admissions.zoneCases ?? []) {
+    const zones = FITNESS_DIMENSIONS.map((_, dimension) => dimension === entry.dimension ? entry.zone : []);
+    assert.equal(isFitnessEligible(ratings.get(entry.id), zones), entry.eligible,
+      `Admission ${entry.id}, axis ${entry.dimension}, zone ${entry.zone}`);
   }
   for (const entry of admissions.planningCases ?? []) {
     const state = createDefaultState();

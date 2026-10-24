@@ -3,6 +3,7 @@
 # all other members are symmetric, bilateral, or side-neutral.
 @{
     Ids = @(
+        1718, 1719,
         1717,
         1625, 1709, 1711, 1712, 1713, 1714, 1715, 1716,
         1621, 1702, 1703, 1704, 1705,

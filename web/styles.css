@@ -2407,7 +2407,8 @@ input:focus-visible {
   .feedback-stage .feedback-caption { min-height: 42px; padding: 8px 12px; font-size: 13px; line-height: 17px; }
 }
 
-.exercise-media-area.feedback-stage { container-type: size; }
+/* A size container cannot derive its height from its children. Stretch it into the allocated media area, including the desktop grid. */
+.exercise-media-area.feedback-stage { container-type: size; align-self: stretch; }
 .feedback-stage .feedback-sheet { width: min(calc(100cqw - 16px), calc(100cqh - 88px), 480px); }
 
 .fitness-contribution-feedback { display: block; margin-top: 0.35rem; font-size: 0.75rem; color: #c3c2bb; }

@@ -1,0 +1,107 @@
+{
+  "id": 1719,
+  "errors": [],
+  "scope": "Isolated synthetic 15-minute workout. Earlier slots marked tick only in fixture to reach the target shoulder slot. No real user data. Real time and media clocks; no acceleration.",
+  "ready": {
+    "name": "Floor Tuck Planche Push-Ups",
+    "countdown": "45",
+    "rest": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 5,
+      "time": 0.05183,
+      "rate": 1,
+      "frames": 5,
+      "paused": false
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 0
+  },
+  "preview": {
+    "name": "Floor Tuck Planche Push-Ups",
+    "countdown": "45",
+    "rest": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 5,
+      "time": 0.704997,
+      "rate": 1,
+      "frames": 119,
+      "paused": false
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 0
+  },
+  "preparation": {
+    "name": "Floor Tuck Planche Push-Ups",
+    "countdown": "5",
+    "rest": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 5,
+      "time": 0.789762,
+      "rate": 1,
+      "frames": 121,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 50000
+  },
+  "move": {
+    "name": "Floor Tuck Planche Push-Ups",
+    "countdown": "44",
+    "rest": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 5,
+      "time": 2.392268,
+      "rate": 1,
+      "frames": 153,
+      "paused": false
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 50000
+  },
+  "played": {
+    "name": "Floor Tuck Planche Push-Ups",
+    "countdown": "37",
+    "rest": false,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 5,
+      "time": 4.01773,
+      "rate": 1,
+      "frames": 285,
+      "paused": false
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 40753
+  },
+  "rest": {
+    "name": "Floor Tuck Planche Push-Ups",
+    "countdown": "0",
+    "rest": true,
+    "holdVisible": false,
+    "holdLoaded": false,
+    "video": {
+      "duration": 5,
+      "time": 0.216564,
+      "rate": 1,
+      "frames": 1009,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 0
+  }
+}

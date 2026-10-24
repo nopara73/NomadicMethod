@@ -93,6 +93,7 @@ public sealed class FitnessProfileTests
     [InlineData("fitness-profile-admissions.json")]
     [InlineData("fitness-precise-admissions.json")]
     [InlineData("fitness-ability-admissions.json")]
+    [InlineData("fitness-zone-admissions.json")]
     public void ReviewedAdmissionsOpenPreciseContributionsAndPreserveTheOlderCatalog(string fixtureName)
     {
         using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
@@ -123,6 +124,15 @@ public sealed class FitnessProfileTests
                         mask | Enum.Parse<WorkoutModifiers>(name.GetString()!));
                 Assert.Equal(entry.GetProperty("allowed").GetBoolean(),
                     WorkoutModifierPolicy.IsCompatible(exercise, modifiers));
+            }
+        if (fixture.RootElement.TryGetProperty("zoneCases", out JsonElement zones))
+            foreach (JsonElement entry in zones.EnumerateArray())
+            {
+                int dimension = entry.GetProperty("dimension").GetInt32();
+                int[] zone = entry.GetProperty("zone").EnumerateArray().Select(v => v.GetInt32()).ToArray();
+                int[][] profile = Enumerable.Range(0, 10).Select(axis => axis == dimension ? zone : Array.Empty<int>()).ToArray();
+                Assert.Equal(entry.GetProperty("eligible").GetBoolean(), FitnessSelectionPolicy.IsEligible(
+                    ratings[entry.GetProperty("id").GetInt32()], profile));
             }
         if (fixture.RootElement.TryGetProperty("planningCases", out JsonElement planning))
             foreach (JsonElement entry in planning.EnumerateArray())

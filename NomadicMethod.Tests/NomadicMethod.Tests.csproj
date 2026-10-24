@@ -120,6 +120,7 @@
     <None Include="..\web\tests\fixtures\fitness-profile-cases.json" Link="Assets\fitness-profile-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\completion-profile-cases.json" Link="Assets\completion-profile-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-profile-admissions.json" Link="Assets\fitness-profile-admissions.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\fitness-zone-admissions.json" Link="Assets\fitness-zone-admissions.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-ability-admissions.json" Link="Assets\fitness-ability-admissions.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-precise-admissions.json" Link="Assets\fitness-precise-admissions.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-selection-cases.json" Link="Assets\fitness-selection-cases.json" CopyToOutputDirectory="PreserveNewest" />

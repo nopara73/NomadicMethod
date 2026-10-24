@@ -57,7 +57,7 @@ test('profile contributor diagnostics distinguish precise evidence from trainabl
   assert.deepEqual(coverage.reactionTime[1].sessionMovementIds, [266]);
   assert.equal(coverage.reactionTime[3].count, 0);
   assert.deepEqual(coverage.muscularStrength[3].exerciseIds, [1702,1710]);
-  assert.deepEqual(coverage.muscularStrength[4].exerciseIds, [1701,1705,1717]);
+  assert.deepEqual(coverage.muscularStrength[4].exerciseIds, [1701,1705,1717,1718,1719]);
   assert.deepEqual(coverage.muscularStrength[5].exerciseIds, [1704,1712]);
   assert.deepEqual(coverage.balance[3].exerciseIds, [1702,1703,1709,1710]);
   assert.deepEqual(coverage.balance[4].exerciseIds, [1705,1711,1717]);

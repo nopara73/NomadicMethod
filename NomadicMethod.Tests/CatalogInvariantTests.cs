@@ -266,7 +266,7 @@ public sealed class CatalogInvariantTests
         });
         Assert.Equal(226, exercises.Count(exercise => exercise.MuscularDemand == 0));
         Assert.Equal(430, exercises.Count(exercise => exercise.MuscularDemand == 1));
-        Assert.Equal(251, exercises.Count(exercise => exercise.MuscularDemand == 2));
+        Assert.Equal(253, exercises.Count(exercise => exercise.MuscularDemand == 2));
         foreach (int level in Enumerable.Range(1, 5))
         {
             Exercise[] reactive = exercises.Where(exercise =>
@@ -619,7 +619,7 @@ public sealed class CatalogInvariantTests
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Unreviewed);
         Assert.Equal(409, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Compatible));
-        Assert.Equal(498, exercises.Count(exercise =>
+        Assert.Equal(500, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Incompatible));
         Assert.All(
             new[] { 37, 194, 610, 326 },
@@ -697,7 +697,7 @@ public sealed class CatalogInvariantTests
                         ExerciseUpperBodyClothingRequirement.BareUpperBodyRequired)
                 .Select(exercise => exercise.Id)
                 .ToHashSet());
-        Assert.Equal(785, exercises.Count(exercise =>
+        Assert.Equal(787, exercises.Count(exercise =>
             exercise.UpperBodyClothingRequirement == ExerciseUpperBodyClothingRequirement.Agnostic));
         Assert.DoesNotContain(exercises, exercise =>
             exercise.ShyCompatibility == ExerciseShyCompatibility.Unreviewed);
@@ -728,7 +728,7 @@ public sealed class CatalogInvariantTests
                         ExerciseShyCompatibility.Incompatible)
                 .Select(exercise => exercise.Id)
                 .ToHashSet());
-        Assert.Equal(690, exercises.Count(exercise =>
+        Assert.Equal(692, exercises.Count(exercise =>
             exercise.ShyCompatibility == ExerciseShyCompatibility.Compatible));
         Assert.All(
             new[] { 56, 185, 377, 379, 401, 403, 557 },
@@ -818,7 +818,7 @@ public sealed class CatalogInvariantTests
             exercise.MirrorRelationship == ExerciseMirrorRelationship.Unreviewed);
         Assert.Equal(99, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.BenefitsGreatly));
-        Assert.Equal(808, exercises.Count(exercise =>
+        Assert.Equal(810, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.Agnostic));
         Assert.Equal(0, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.MirrorOnly));
@@ -834,7 +834,7 @@ public sealed class CatalogInvariantTests
         Assert.Equal(59, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.BenefitsGreatly &&
             exercise.MinimumMirrorCoverage == ExerciseMirrorCoverage.FullBody));
-        Assert.Equal(808, exercises.Count(exercise =>
+        Assert.Equal(810, exercises.Count(exercise =>
             exercise.MirrorRelationship == ExerciseMirrorRelationship.Agnostic &&
             exercise.MinimumMirrorCoverage == ExerciseMirrorCoverage.None));
         Assert.DoesNotContain(exercises, exercise => exercise.Id == 90);
@@ -1160,7 +1160,7 @@ public sealed class CatalogInvariantTests
         });
         Dictionary<int, int> expectedSequenceBlockDistribution = new()
         {
-            [1] = 527,
+            [1] = 529,
             [2] = 302,
             [3] = 20,
             [4] = 17,

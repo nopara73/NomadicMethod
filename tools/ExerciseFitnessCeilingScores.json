@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 91,
-  "catalogSha256": "22f91855a640dd41c97fa2c1d5d202b59b978d4c5d4554655a672c0c6b334a3d",
+  "catalogRevision": 92,
+  "catalogSha256": "047a9f99604524c6537400cda490d34102a11e72c09636b423fdc52229675bce",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -6552,6 +6552,54 @@
       "trainingConditions": "Practice the exact demonstrated skill as clean brief attempts with recovery inside the 45-second opportunity. No uninterrupted hold, repetition target, measured endurance, speed or aerobic tier is inferred. Existing assessments remain unchanged. The press uses floor palms and straight elbows without jumping or head contact.",
       "exerciseIds": [
         1717
+      ]
+    },
+    "v4-zone-gap-admission-1718": {
+      "basis": "The fixed straight-elbow, straight-knee straddle planche holds the trunk horizontally without foot or external support. Its shortened wide-leg lever sits between the existing tucked tier-3 and straight-joined-leg tier-5 planches: provisional NM strength tier 4. Horizontal two-palm equilibrium supports task-specific balance tier 3. The exact hold, not an easier tucked version or a full joined-leg planche, is prescribed.",
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Use clean brief attempts or repetitions with deliberate recovery inside the 45-second opportunity. Retain the demonstrated floor support, limb position and complete action. No sustained 45-second maximum, repetition count, endurance tier, ballistic power, cardio capacity or measured performance is inferred. These are provisional NM task categories, not externally validated physiological cutoffs.",
+      "exerciseIds": [
+        1718
+      ]
+    },
+    "v4-zone-gap-admission-1719": {
+      "basis": "The fixed unsupported tucked push-up lowers and raises the whole body through elbow flexion/extension while both feet remain airborne and the knees do not rest on the upper arms. This adds a complete loaded pressing cycle to the existing tier-3 static tuck planche, supporting provisional strength tier 4; equilibrium and coordinated reversal remain tier 3. The full straight-body floor 90-degree press remains a distinct tier-5 task.",
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          4
+        ],
+        "muscularEndurance": [],
+        "flexibility": [],
+        "agility": [],
+        "balance": [
+          3
+        ],
+        "coordination": [
+          3
+        ],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Use clean brief attempts or repetitions with deliberate recovery inside the 45-second opportunity. Retain the demonstrated floor support, limb position and complete action. No sustained 45-second maximum, repetition count, endurance tier, ballistic power, cardio capacity or measured performance is inferred. These are provisional NM task categories, not externally validated physiological cutoffs.",
+      "exerciseIds": [
+        1719
       ]
     }
   },

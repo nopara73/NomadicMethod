@@ -1,4 +1,4 @@
-param([ValidateSet('precise-admissions-2026-10-23', 'ability-admissions-2026-10-23')]
+param([ValidateSet('precise-admissions-2026-10-23', 'ability-admissions-2026-10-23', 'zopd-admissions-2026-10-24')]
     [string]$Admission = 'precise-admissions-2026-10-23')
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'CatalogReviewEvidence.ps1')
@@ -6,7 +6,7 @@ $root = Split-Path -Parent $PSScriptRoot
 $assets = Join-Path $root 'NomadicMethod/Assets'
 $catalog = @(Get-Content (Join-Path $assets 'exercises.json') -Raw | ConvertFrom-Json)
 $audit = Get-Content (Join-Path $root "docs/catalog-audit/$Admission.json") -Raw | ConvertFrom-Json -AsHashtable
-$expectedCount = if ($Admission -eq 'ability-admissions-2026-10-23') { 1 } else { 16 }
+$expectedCount = if ($Admission -eq 'ability-admissions-2026-10-23') { 1 } elseif ($Admission -eq 'zopd-admissions-2026-10-24') { 2 } else { 16 }
 $reviews = Read-CatalogReviewEvidence -Path (Join-Path $root $audit.reviewEvidence)
 $assessment = Get-Content (Join-Path $PSScriptRoot 'ExerciseFitnessCeilingScores.json') -Raw | ConvertFrom-Json -AsHashtable
 $ratings = Get-Content (Join-Path $assets 'fitness_ratings.json') -Raw | ConvertFrom-Json -AsHashtable

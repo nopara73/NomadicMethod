@@ -1,0 +1,113 @@
+{
+  "id": 1718,
+  "errors": [],
+  "scope": "Isolated synthetic 15-minute workout. Earlier slots marked tick only in fixture to reach the target shoulder slot. No real user data. Real time and media clocks; no acceleration.",
+  "ready": {
+    "name": "Floor Straddle Planche Hold",
+    "countdown": "45",
+    "rest": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 0
+  },
+  "supportingMovie": {
+    "duration": 4.55,
+    "rate": 1,
+    "ended": true,
+    "frames": 91
+  },
+  "preview": {
+    "name": "Floor Straddle Planche Hold",
+    "countdown": "45",
+    "rest": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 0
+  },
+  "preparation": {
+    "name": "Floor Straddle Planche Hold",
+    "countdown": "5",
+    "rest": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 50000
+  },
+  "move": {
+    "name": "Floor Straddle Planche Hold",
+    "countdown": "44",
+    "rest": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 50000
+  },
+  "played": {
+    "name": "Floor Straddle Planche Hold",
+    "countdown": "37",
+    "rest": false,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 50000
+  },
+  "rest": {
+    "name": "Floor Straddle Planche Hold",
+    "countdown": "0",
+    "rest": true,
+    "holdVisible": true,
+    "holdLoaded": true,
+    "video": {
+      "duration": null,
+      "time": 0,
+      "rate": 1,
+      "frames": 0,
+      "paused": true
+    },
+    "overflow": false,
+    "activeCatalogRevision": 92,
+    "remaining": 0
+  }
+}

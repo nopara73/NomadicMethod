@@ -556,4 +556,8 @@
 
     # Ability gap additions, 23 October 2026.
     1717 = @{ Name = 'Straight-Arm Straddle Press to Handstand'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1717' }
+
+    # ZoPD gap admissions, 24 October 2026.
+    1718 = @{ Name = 'Floor Straddle Planche Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1718' }
+    1719 = @{ Name = 'Floor Tuck Planche Push-Ups'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1719' }
 }

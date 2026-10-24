@@ -135,4 +135,7 @@
     1711 = $true
     1713 = $true
     1714 = $true
+
+    # ZoPD gap admissions, 24 October 2026.
+    1718 = $true
 }
