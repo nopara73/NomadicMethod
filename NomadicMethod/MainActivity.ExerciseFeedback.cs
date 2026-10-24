@@ -64,6 +64,7 @@ public partial class MainActivity
                 _ => GravityFlags.Bottom | GravityFlags.CenterHorizontal,
             };
             var layout = new FrameLayout.LayoutParams(DpInt(96), DpInt(96), gravity);
+            layout.SetMargins(DpInt(12), DpInt(12), DpInt(12), DpInt(12));
             _exerciseMediaArea.AddView(hint, layout);
             _feedbackHints.Add(response, hint);
         }

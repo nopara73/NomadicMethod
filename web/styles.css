@@ -58,10 +58,10 @@
   box-shadow: 0 3px 14px #12141612; opacity: 0; scale: .9;
   transition: opacity 100ms, scale 130ms, background 130ms;
 }
-.feedback-x { left: 0; top: calc(50% - 48px); }
-.feedback-tick { right: 0; top: calc(50% - 48px); }
-.feedback-easy { left: 50%; top: 0; translate: -50% 0; }
-.feedback-hard { left: 50%; bottom: 0; translate: -50% 0; }
+.feedback-x { left: 12px; top: calc(50% - 48px); }
+.feedback-tick { right: 12px; top: calc(50% - 48px); }
+.feedback-easy { left: 50%; top: 12px; translate: -50% 0; }
+.feedback-hard { left: 50%; bottom: 12px; translate: -50% 0; }
 .feedback-dragging .feedback-hint { opacity: .35; scale: 1; }
 .feedback-dragging .feedback-hint.active { opacity: 1; }
 .feedback-dragging .feedback-hint.active.ready { scale: 1.12; background: var(--chartreuse); }
