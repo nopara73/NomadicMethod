@@ -14,12 +14,14 @@ test("feedback swipes cover the screen while controls and bounded emoji sizes re
   assert.match(view, /document.addEventListener\("pointerdown"/);
   assert.match(view, /event.target.closest\("button, a, input, select, textarea/);
   assert.match(css, /body.feedback-input \{ touch-action: none/);
-  assert.match(native, /SetTextSize\(Android.Util.ComplexUnitType.Sp, 104\)/);
-  assert.match(css, /font-size: 104px/);
-  assert.match(native, /Math.Min\(_workoutScreen.Width, _workoutScreen.Height\) \* .68f \/ _feedbackBurstEmoji.TextSize/);
-  assert.match(view, /Math.min\(innerWidth, innerHeight\) \* .68 \/ 112/);
-  assert.doesNotMatch(native, /hint.Scale[XY]/);
-  assert.doesNotMatch(css.match(/\.feedback-dragging \.feedback-hint.active.ready \{[^}]+\}/)[0], /scale:/);
+  assert.match(native, /ExerciseFeedbackPolicy.Visual/);
+  assert.match(native, /content.SetClipChildren\(false\);[\s\S]*content.SetClipToPadding\(false\)/);
+  assert.match(css, /\.exercise-media-area.feedback-stage[^}]*overflow: visible/);
+  assert.match(view, /feedbackVisual/);
+  assert.match(native, /SetTextSize\(Android.Util.ComplexUnitType.Dip, 256\)/);
+  assert.match(css, /font-size: 256px/);
+  assert.doesNotMatch(css.match(/\.feedback-hint \{[^}]+\}/)[0], /border-radius|background:/);
+
 });
 
 test("feedback confirms through a full-screen emoji and advances independently of remaining rest", async () => {
@@ -28,14 +30,14 @@ test("feedback confirms through a full-screen emoji and advances independently o
   const activity = await readFile(new URL("NomadicMethod/MainActivity.cs", root), "utf8");
   const app = await readFile(new URL("web/app.js", root), "utf8");
   const view = await readFile(new URL("web/exercise-feedback.js", root), "utf8");
-  assert.match(native, /private void AnimateFeedbackSelection[\s\S]*SetDuration\(620\)[\s\S]*CompleteRest\(\);/);
+  assert.match(native, /private void AnimateFeedbackSelection[\s\S]*SetDuration\(640\)[\s\S]*CompleteRest\(\);/);
   assert.match(native, /if \(!_state\.PendingRestPausedByUser\)[\s\S]*PauseRest/);
   assert.match(native, /_feedbackEpoch\+\+[\s\S]*_feedbackBurstAnimator\?\.Cancel/);
   assert.match(activity, /private void ToggleRestPlayback[\s\S]*AnimateFeedbackSelection\(response\); return;/);
   assert.match(app, /completed: \(\) =>[^\n]*completeRest\(true\)/);
   assert.match(app, /if \(!session\.state\.pendingRestPausedByUser\)[\s\S]*session\.pauseRest/);
   assert.match(app, /function pauseActiveWorkoutForBackground\(\) \{\s*feedbackView\.interrupt\(\)/);
-  assert.match(view, /duration: 620[\s\S]*this\.hooks\.completed\(\)/);
+  assert.match(view, /duration: 640[\s\S]*this\.hooks\.completed\(\)/);
   assert.doesNotMatch(view.slice(view.indexOf("async finishSelection"), view.indexOf("clearBurst() {")), /MillisecondsRemaining/);
 });
 

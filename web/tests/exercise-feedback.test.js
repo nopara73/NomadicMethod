@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { feedbackDirection, feedbackThreshold, feedbackDistance, feedbackSymbols, ExerciseFeedbackView } from "../exercise-feedback.js";
+import { feedbackDirection, feedbackThreshold, feedbackDistance, feedbackSymbols, feedbackVisual, ExerciseFeedbackView } from "../exercise-feedback.js";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from "../workout.js";
 
 const fixtures = JSON.parse(await readFile(new URL("./fixtures/exercise-feedback-cases.json", import.meta.url)));
@@ -20,7 +20,7 @@ function transitionView(reduced = false) {
   };
   const view = Object.assign(Object.create(ExerciseFeedbackView.prototype), {
     epoch: 0, active: true, selected: null, busy: false,
-    hints: { querySelector: () => ({ getBoundingClientRect: () => ({ x: 0, y: 200, width: 96, height: 96 }) }) },
+    hints: { querySelector: () => ({ getBoundingClientRect: () => ({ x: 0, y: 200, width: 80, height: 80 }) }) },
     card: { style: {} }, footer: { style: {} }, burst: { hidden: true, animate }, burstEmoji: { animate },
     reduced: () => reduced, preview: () => {}, animate: async () => {}, cancelGesture: () => {}, cancelAnimation: () => {},
     render(value) { this.selected = value; },
@@ -29,14 +29,14 @@ function transitionView(reduced = false) {
   return { view, choices, completions, animations, finish: () => animations.forEach(animation => animation.finish()) };
 }
 for (const [width, height] of [[320,568], [390,844], [844,390], [768,1024]])
-  test(`confirmation stays within the shorter screen dimension at ${width} x ${height}`, async () => {
+  test(`confirmation fills the shorter screen dimension at ${width} x ${height}`, async () => {
     globalThis.document = { hidden: false }; globalThis.innerWidth = width; globalThis.innerHeight = height;
     const { view, animations, finish } = transitionView();
     const pending = view.commit("hard");
     const frames = animations[0].frames;
     const scale = Number(frames.at(-1).transform.match(/scale\(([^)]+)\)/)[1]);
-    assert.ok(Math.abs(scale * 112 - Math.min(width, height) * .68) < .001);
-    assert.ok(scale * 140 < Math.min(width, height), "even the emoji box fits without cropping");
+    assert.ok(Math.abs(scale * 256 - Math.min(width, height) * .9) < .001);
+    assert.ok(animations[0].frames.some(frame => frame.opacity === .82), "one soft confirmation pulse");
     finish(); await pending;
   });
 
@@ -125,3 +125,11 @@ for (const response of fixtures.responses) test(`explicit End preserves ${respon
   assert.equal(session.state.workoutHistory.at(-1).decisions.at(-1).outcome, response);
   assert.equal(session.state.activeWorkoutMinutes, 0);
 });
+
+for (const [progress, shortEdge, travel, size, others] of fixtures.visuals)
+  test(`drag growth stays bounded and reversible at ${progress}`, () => {
+    const actual = feedbackVisual(progress, shortEdge);
+    assert.ok(Math.abs(actual.travel - travel) < .0001);
+    assert.ok(Math.abs(actual.size - size) < .0001);
+    assert.ok(Math.abs(actual.others - others) < .0001);
+  });

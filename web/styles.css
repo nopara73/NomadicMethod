@@ -54,24 +54,21 @@ body.feedback-input { touch-action: none; user-select: none; -webkit-user-select
 .feedback-hints { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .feedback-hint {
   position: absolute; display: grid; place-items: center; color: var(--graphite);
-  width: 128px; height: 128px; padding: 0;
-  background: var(--surface); border-radius: 50%; font-size: 104px; line-height: 1;
-  box-shadow: 0 3px 14px #12141612; opacity: 0;
-  transition: opacity 100ms, background 130ms;
+  width: 320px; height: 320px; padding: 0;
+  font-size: 256px; line-height: 1; opacity: 0; transform: scale(.25);
+  filter: drop-shadow(0 4px 6px #12141618);
+  will-change: transform, opacity;
 }
-.feedback-x { left: 12px; top: calc(50% - 64px); }
-.feedback-tick { right: 12px; top: calc(50% - 64px); }
-.feedback-easy { left: 50%; top: 12px; translate: -50% 0; }
-.feedback-hard { left: 50%; bottom: 12px; translate: -50% 0; }
-.feedback-dragging .feedback-hint { opacity: .35; }
-.feedback-dragging .feedback-hint.active { opacity: 1; }
-.feedback-dragging .feedback-hint.active.ready { background: var(--chartreuse); }
+.feedback-x { left: -108px; top: calc(50% - 160px); }
+.feedback-tick { right: -108px; top: calc(50% - 160px); }
+.feedback-easy { left: calc(50% - 160px); top: -108px; }
+.feedback-hard { left: calc(50% - 160px); bottom: -108px; }
 .feedback-footer { display: flex; align-items: center; justify-content: space-between; min-height: 52px; position: relative; }
 .feedback-receipt { color: var(--graphite); font-size: 16px; }
 .feedback-receipt.emoji { font-size: 48px; line-height: 1; }
 .feedback-burst { position: fixed; inset: 0; z-index: 1000; overflow: hidden; touch-action: none; }
-.feedback-burst span { position: absolute; left: 50%; top: 50%; width: 140px; height: 140px;
-  display: grid; place-items: center; font-size: 112px; line-height: 1; transform: translate(-50%, -50%);
+.feedback-burst span { position: absolute; left: 50%; top: 50%; width: 320px; height: 320px;
+  display: grid; place-items: center; font-size: 256px; line-height: 1; transform: translate(-50%, -50%);
   will-change: transform; }
 .feedback-undo { color: var(--secondary); font: inherit; min-height: 48px; min-width: 80px; border: 0; background: transparent; font-size: 23px; }
 .feedback-undo span { font-size: 14px; margin-left: 4px; }

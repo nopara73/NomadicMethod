@@ -9,8 +9,13 @@ export function feedbackDirection(x, y, previous = null) {
   if (vertical && ax <= ay * 1.2 || ay > ax * 1.2) return y >= 0 ? "hard" : "easy";
   return null;
 }
-export const feedbackThreshold = width => Math.max(56, Math.min(88, width * .23));
+export const feedbackThreshold = width => Math.max(96, Math.min(144, width * .38));
 export const feedbackDistance = (x, y, direction) => ({ x: -x, tick: x, easy: -y, hard: y })[direction] ?? 0;
+export function feedbackVisual(progress, shortEdge) {
+  const p = Math.max(0, Math.min(1, progress));
+  return { travel: p * p * (3 - 2 * p), size: 64 + (shortEdge * .9 - 64) * p * p,
+    others: .28 * (1 - p) };
+}
 
 // Owns presentation and pointer capture only. The session remains the authority
 // for pending feedback and the rest clock, including restored workouts.
@@ -91,7 +96,10 @@ export class ExerciseFeedbackView {
   pose(x = 0, y = 0) {
     return `translate3d(${x}px,${y}px,0) rotate(${this.reduced() ? 0 : Math.max(-7, Math.min(7, x / 45))}deg)`;
   }
-  cancelAnimation() { this.animation?.cancel(); this.animation = null; }
+  cancelAnimation() {
+    this.animation?.cancel(); this.animation = null;
+    this.nudgeAnimation?.cancel(); this.nudgeAnimation = null;
+  }
   async animate(frames, duration = 260) {
     this.cancelAnimation();
     if (this.reduced()) return;
@@ -121,19 +129,26 @@ export class ExerciseFeedbackView {
   }
   preview(direction, progress = 0) {
     this.stage.classList.toggle("feedback-dragging", !!direction);
+    const visual = feedbackVisual(this.reduced() ? 0 : progress, Math.min(innerWidth, innerHeight));
+    const stage = this.hints.getBoundingClientRect();
     for (const hint of this.hints.children) {
-      hint.classList.toggle("active", hint.dataset.feedback === direction);
-      hint.classList.toggle("ready", hint.dataset.feedback === direction && progress >= 1);
+      const active = hint.dataset.feedback === direction;
+      hint.style.opacity = !direction ? 0 : active ? 1 : visual.others;
+      hint.style.zIndex = active ? 2 : 1;
+      const dx = innerWidth / 2 - (stage.x + hint.offsetLeft + hint.offsetWidth / 2);
+      const dy = innerHeight / 2 - (stage.y + hint.offsetTop + hint.offsetHeight / 2);
+      hint.style.transform = active
+        ? `translate(${dx * visual.travel}px, ${dy * visual.travel}px) scale(${visual.size / 256})` : "";
     }
   }
   up(event) {
     const g = this.gesture; if (!g || event.pointerId !== g.id) return;
     this.move(event); this.gesture = null;
     if (this.surface.hasPointerCapture(g.id)) this.surface.releasePointerCapture(g.id);
-    this.stage.classList.remove("feedback-held"); this.preview(null);
+    this.stage.classList.remove("feedback-held");
     if (!this.selected && g.direction && feedbackDistance(g.x, g.y, g.direction) >= feedbackThreshold(this.card.clientWidth))
       this.commit(g.direction, g);
-    else { this.card.style.transform = ""; if (!this.selected) this.animate([{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }]); }
+    else { this.preview(null); this.card.style.transform = ""; if (!this.selected) this.animate([{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }]); }
     this.hooks.hold(false);
   }
   cancelGesture(resume) {
@@ -159,22 +174,25 @@ export class ExerciseFeedbackView {
     this.burstEmoji.textContent = feedbackSymbols[this.selected]; this.burst.hidden = false;
     const dx = hint.x + hint.width / 2 - innerWidth / 2;
     const dy = hint.y + hint.height / 2 - innerHeight / 2;
-    const scale = Math.min(innerWidth, innerHeight) * .68 / 112;
+    const scale = Math.min(innerWidth, innerHeight) * .9 / 256;
+    const startScale = hint.width / 320;
     const pose = (x, y, size) => `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${size})`;
     this.card.style.transform = "";
     // One frozen card underneath; the selected emoji travels from its target
     // into a full-screen transition. The clock no longer gates advancement.
     this.animate(automatic
-      ? [{ transform: this.pose() }, { transform: this.pose(-70), offset: .4 }, { transform: this.pose() }]
+      ? [{ transform: this.pose() }, { transform: this.pose(-144), offset: .55 }, { transform: this.pose() }]
       : [{ transform: this.pose(g.x, g.y) }, { transform: this.pose() }], 260);
     this.burstAnimations = this.reduced() ? [] : [
       this.burstEmoji.animate([
-        { transform: pose(dx, dy, 104 / 112), opacity: 1 },
-        { transform: pose(0, 0, 1.55), opacity: 1, offset: .32 },
+        { transform: pose(dx, dy, startScale), opacity: 1 },
+        { transform: pose(0, 0, scale * 1.06), opacity: 1, offset: .45 },
+        { transform: pose(0, 0, scale * .94), opacity: .82, offset: .67 },
+        { transform: pose(0, 0, scale), opacity: 1, offset: .83 },
         { transform: pose(0, 0, scale), opacity: 1 }
-      ], { duration: 620, easing: "cubic-bezier(.32,0,.5,1)", fill: "forwards" }),
-      this.burst.animate([{ backgroundColor: "#f5efe700" }, { backgroundColor: "#f5efe7" }],
-        { duration: 620, fill: "forwards" })
+      ], { duration: 640, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }),
+      this.burst.animate([{ backgroundColor: "#f5efe700" }, { backgroundColor: "#f5efe7e6", offset: .45 },
+        { backgroundColor: "#f5efe7" }], { duration: 640, fill: "forwards" })
     ];
     try { await Promise.all(this.burstAnimations.map(animation => animation.finished)); }
     catch { return; /* Lifecycle interruption preserves the saved response. */ }
@@ -194,7 +212,12 @@ export class ExerciseFeedbackView {
   }
   nudge() {
     if (!this.active || this.selected || this.gesture || this.busy || this.reduced() || !this.hooks.running() || document.hidden) return;
-    this.animate([{ transform: this.pose() }, { transform: this.pose(-9, 0), offset: .4 }, { transform: this.pose() }], 650);
+    this.animate([{ transform: this.pose() }, { transform: this.pose(-40, 0), offset: .38 },
+      { transform: this.pose(-40, 0), offset: .52 }, { transform: this.pose(4, 0), offset: .84 },
+      { transform: this.pose() }], 960);
+    const hint = this.hints.querySelector('[data-feedback="x"]');
+    this.nudgeAnimation = hint.animate([{ opacity: 0 }, { opacity: .8, offset: .38 },
+      { opacity: .8, offset: .52 }, { opacity: 0, offset: .84 }, { opacity: 0 }], { duration: 960 });
   }
   stop() {
     clearInterval(this.hintTimer); this.interrupt();

@@ -23,7 +23,12 @@ public static class ExerciseFeedbackPolicy
         return null;
     }
 
-    public static double Threshold(double width) => Math.Clamp(width * .23, 56, 88);
+    public static double Threshold(double width) => Math.Clamp(width * .38, 96, 144);
+    public static (double Travel, double Size, double Others) Visual(double progress, double shortEdge)
+    {
+        double p = Math.Clamp(progress, 0, 1);
+        return (p * p * (3 - 2 * p), 64 + (shortEdge * .9 - 64) * p * p, .28 * (1 - p));
+    }
     public static double Distance(double x, double y, ExerciseOutcome? direction) => direction switch
     {
         ExerciseOutcome.X => -x,

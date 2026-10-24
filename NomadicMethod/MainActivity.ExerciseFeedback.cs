@@ -26,12 +26,20 @@ public partial class MainActivity
     private View _feedbackBurstWash = null!;
     private TextView _feedbackBurstEmoji = null!;
     private Android.Animation.ValueAnimator? _feedbackBurstAnimator;
+    private Android.Animation.ValueAnimator? _feedbackNudgeAnimator;
     private bool FeedbackReducedMotion => OperatingSystem.IsAndroidVersionAtLeast(26) &&
         !Android.Animation.ValueAnimator.AreAnimatorsEnabled();
 
     private void ConfigureExerciseFeedback()
     {
         _exerciseMediaArea.SetClipChildren(false);
+        // The inset content would otherwise clip the entire media-area layer,
+        // including its growing emoji, even with clipping disabled on the area.
+        if (_exerciseMediaArea.Parent is ViewGroup content)
+        {
+            content.SetClipChildren(false);
+            content.SetClipToPadding(false);
+        }
         _feedbackSheet = new FrameLayout(this) { Clickable = true };
         _exerciseMediaArea.RemoveView(_exerciseMediaCard);
         _feedbackSheet.AddView(_exerciseMediaCard);
@@ -47,24 +55,20 @@ public partial class MainActivity
                      ExerciseOutcome.TooEasy, ExerciseOutcome.TooHard })
         {
             var hint = new TextView(this) { Text = ExerciseFeedbackPolicy.Symbol(response),
-                Gravity = GravityFlags.Center, Alpha = 0, Elevation = Dp(12),
+                Gravity = GravityFlags.Center, Alpha = 0,
                 ImportantForAccessibility = ImportantForAccessibility.No };
-            hint.SetTextSize(Android.Util.ComplexUnitType.Sp, 104);
+            hint.SetTextSize(Android.Util.ComplexUnitType.Dip, 256);
             hint.SetIncludeFontPadding(false);
             hint.SetTextColor(new Color(GetColor(Resource.Color.primary_text)));
             hint.SetPadding(0, 0, 0, 0);
-            var background = new GradientDrawable();
-            background.SetColor(new Color(GetColor(Resource.Color.surface)));
-            background.SetCornerRadius(Dp(64));
-            hint.Background = background;
             var gravity = response switch {
                 ExerciseOutcome.X => GravityFlags.Left | GravityFlags.CenterVertical,
                 ExerciseOutcome.Tick => GravityFlags.Right | GravityFlags.CenterVertical,
                 ExerciseOutcome.TooEasy => GravityFlags.Top | GravityFlags.CenterHorizontal,
                 _ => GravityFlags.Bottom | GravityFlags.CenterHorizontal,
             };
-            var layout = new FrameLayout.LayoutParams(DpInt(128), DpInt(128), gravity);
-            layout.SetMargins(DpInt(12), DpInt(12), DpInt(12), DpInt(12));
+            var layout = new FrameLayout.LayoutParams(DpInt(320), DpInt(320), gravity);
+            layout.SetMargins(-DpInt(108), -DpInt(108), -DpInt(108), -DpInt(108));
             _exerciseMediaArea.AddView(hint, layout);
             _feedbackHints.Add(response, hint);
         }
@@ -92,8 +96,9 @@ public partial class MainActivity
         _feedbackBurstWash.SetBackgroundColor(new Color(GetColor(Resource.Color.screen_background)));
         _feedbackBurst.AddView(_feedbackBurstWash, new FrameLayout.LayoutParams(-1, -1));
         _feedbackBurstEmoji = new TextView(this) { Gravity = GravityFlags.Center };
-        _feedbackBurstEmoji.SetTextSize(Android.Util.ComplexUnitType.Sp, 112);
-        _feedbackBurst.AddView(_feedbackBurstEmoji, new FrameLayout.LayoutParams(DpInt(176), DpInt(176), GravityFlags.Center));
+        _feedbackBurstEmoji.SetTextSize(Android.Util.ComplexUnitType.Dip, 256);
+        _feedbackBurstEmoji.SetIncludeFontPadding(false);
+        _feedbackBurst.AddView(_feedbackBurstEmoji, new FrameLayout.LayoutParams(DpInt(320), DpInt(320), GravityFlags.Center));
         ((FrameLayout)_workoutScreen).AddView(_feedbackBurst, new FrameLayout.LayoutParams(-1, -1));
     }
 
@@ -183,6 +188,7 @@ public partial class MainActivity
     {
         if (e.ActionMasked == MotionEventActions.Down)
         {
+            _feedbackNudgeAnimator?.Cancel();
             _feedbackSheet.Animate()?.Cancel();
             _feedbackPointer = e.GetPointerId(0);
             _feedbackX = _feedbackSheet.TranslationX; _feedbackY = _feedbackSheet.TranslationY;
@@ -210,7 +216,6 @@ public partial class MainActivity
             _feedbackX = e.RawX - _feedbackStartX; _feedbackY = e.RawY - _feedbackStartY;
             if (ExerciseSessionService.GetPendingRestFeedback(_state) is null)
             {
-                ExerciseOutcome? previousDirection = _feedbackDirection;
                 _feedbackDirection = ExerciseFeedbackPolicy.Direction(_feedbackX / Dp(1),
                     _feedbackY / Dp(1), _feedbackDirection);
                 _feedbackSheet.TranslationX = _feedbackX;
@@ -218,18 +223,7 @@ public partial class MainActivity
                 _feedbackSheet.Rotation = FeedbackReducedMotion ? 0 : Math.Clamp(_feedbackX / Dp(45), -7, 7);
                 double progress = ExerciseFeedbackPolicy.Distance(_feedbackX / Dp(1), _feedbackY / Dp(1), _feedbackDirection)
                     / ExerciseFeedbackPolicy.Threshold(_exerciseMediaCard.Width / Dp(1));
-                foreach (var (response, hint) in _feedbackHints)
-                {
-                    if (previousDirection != _feedbackDirection)
-                    {
-                        hint.Animate()?.Cancel();
-                        hint.Animate()?.Alpha(_feedbackDirection is null ? 0 : response == _feedbackDirection ? 1 : .35f)
-                            .SetDuration(FeedbackReducedMotion ? 0 : 100).Start();
-                    }
-                    if (hint.Background is GradientDrawable backdrop)
-                        backdrop.SetColor(new Color(GetColor(response == _feedbackDirection && progress >= 1
-                            ? Resource.Color.brand_chartreuse : Resource.Color.surface)));
-                }
+                PreviewFeedback(_feedbackDirection, progress);
                 if (e.ActionMasked == MotionEventActions.Up && progress >= 1 && _feedbackDirection is { } choice)
                     ChooseExerciseFeedback(choice);
             }
@@ -237,9 +231,27 @@ public partial class MainActivity
         }
     }
 
+    private void PreviewFeedback(ExerciseOutcome? direction, double progress)
+    {
+        var visual = ExerciseFeedbackPolicy.Visual(FeedbackReducedMotion ? 0 : progress,
+            Math.Min(_workoutScreen.Width, _workoutScreen.Height) / Dp(1));
+        int[] area = new int[2], screen = new int[2];
+        _exerciseMediaArea.GetLocationOnScreen(area); _workoutScreen.GetLocationOnScreen(screen);
+        foreach (var (response, hint) in _feedbackHints)
+        {
+            bool active = response == direction;
+            hint.Alpha = direction is null ? 0 : active ? 1 : (float)visual.Others;
+            hint.TranslationZ = active ? Dp(16) : 0;
+            hint.ScaleX = hint.ScaleY = active ? (float)visual.Size / 256 : .25f;
+            hint.TranslationX = active ? (screen[0] + _workoutScreen.Width / 2f - area[0] - hint.Left - hint.Width / 2f) * (float)visual.Travel : 0;
+            hint.TranslationY = active ? (screen[1] + _workoutScreen.Height / 2f - area[1] - hint.Top - hint.Height / 2f) * (float)visual.Travel : 0;
+        }
+    }
+
     private void EndFeedbackDrag(bool animate)
     {
         _feedbackPointer = -1; _feedbackDirection = null;
+        PreviewFeedback(null, 0);
         foreach (var hint in _feedbackHints.Values) { hint.Animate()?.Cancel(); hint.Alpha = 0; }
         ResetFeedbackPose(animate);
         HoldFeedbackClock(false);
@@ -297,18 +309,20 @@ public partial class MainActivity
     private void AnimateFeedbackSelection(ExerciseOutcome response, bool automatic = false)
     {
         if (_feedbackSettling || !_restActive || !_activityResumed) return;
+        _feedbackNudgeAnimator?.Cancel();
         _feedbackSettling = true;
         int epoch = _feedbackEpoch;
         _feedbackFooter.Alpha = 0;
         int[] hintPosition = new int[2], screenPosition = new int[2];
         TextView hint = _feedbackHints[response];
-        hint.GetLocationOnScreen(hintPosition); _workoutScreen.GetLocationOnScreen(screenPosition);
-        float dx = hintPosition[0] + hint.Width / 2f - screenPosition[0] - _workoutScreen.Width / 2f;
-        float dy = hintPosition[1] + hint.Height / 2f - screenPosition[1] - _workoutScreen.Height / 2f;
+        _exerciseMediaArea.GetLocationOnScreen(hintPosition); _workoutScreen.GetLocationOnScreen(screenPosition);
+        float dx = hintPosition[0] + hint.Left + hint.TranslationX + hint.Width / 2f - screenPosition[0] - _workoutScreen.Width / 2f;
+        float dy = hintPosition[1] + hint.Top + hint.TranslationY + hint.Height / 2f - screenPosition[1] - _workoutScreen.Height / 2f;
+        float startScale = hint.Alpha > 0 ? hint.ScaleX : .25f;
         foreach (var target in _feedbackHints.Values) { target.Animate()?.Cancel(); target.Alpha = 0; }
         _feedbackBurstEmoji.Text = ExerciseFeedbackPolicy.Symbol(response);
+        _feedbackBurstEmoji.Alpha = 1;
         _feedbackBurstEmoji.TranslationX = dx; _feedbackBurstEmoji.TranslationY = dy;
-        const float startScale = 104f / 112f;
         _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = startScale;
         _feedbackBurstWash.Alpha = 0;
         _feedbackBurst.Visibility = ViewStates.Visible;
@@ -316,23 +330,28 @@ public partial class MainActivity
         {
             if (automatic)
             {
-                _feedbackSheet.Animate()?.TranslationX(-Dp(70)).Rotation(-2).SetDuration(120).Start();
-                _feedbackSheet.PostDelayed(() => { if (epoch == _feedbackEpoch) ResetFeedbackPose(true); }, 120);
+                _feedbackSheet.Animate()?.TranslationX(-Dp(144)).Rotation(-3).SetDuration(160).Start();
+                _feedbackSheet.PostDelayed(() => { if (epoch == _feedbackEpoch) ResetFeedbackPose(true); }, 160);
             }
             else ResetFeedbackPose(true);
-            float fullScale = Math.Min(_workoutScreen.Width, _workoutScreen.Height) * .68f / _feedbackBurstEmoji.TextSize;
+            float fullScale = Math.Min(_workoutScreen.Width, _workoutScreen.Height) * .9f / _feedbackBurstEmoji.TextSize;
             _feedbackBurstAnimator = Android.Animation.ValueAnimator.OfFloat(0, 1)
                 ?? throw new InvalidOperationException("Could not create feedback animation.");
-            _feedbackBurstAnimator.SetDuration(620);
-            _feedbackBurstAnimator.SetInterpolator(new Android.Views.Animations.PathInterpolator(.32f, 0, .5f, 1));
+            _feedbackBurstAnimator.SetDuration(640);
+            _feedbackBurstAnimator.SetInterpolator(new Android.Views.Animations.LinearInterpolator());
             _feedbackBurstAnimator.Update += (_, args) => {
                 float t = (float)args.Animation.AnimatedValue!;
-                float travel = Math.Min(1, t / .32f);
+                static float Ease(float value) => 1 - MathF.Pow(1 - Math.Clamp(value, 0, 1), 3);
+                float travel = Ease(t / .45f);
                 _feedbackBurstEmoji.TranslationX = dx * (1 - travel);
                 _feedbackBurstEmoji.TranslationY = dy * (1 - travel);
-                float size = t < .32f ? startScale + ((1.55f - startScale) * travel) : 1.55f + (fullScale - 1.55f) * (t - .32f) / .68f;
+                float size = t < .45f ? startScale + (fullScale * 1.06f - startScale) * travel
+                    : t < .67f ? fullScale * (1.06f - .12f * Ease((t - .45f) / .22f))
+                    : fullScale * (.94f + .06f * Ease((t - .67f) / .16f));
                 _feedbackBurstEmoji.ScaleX = _feedbackBurstEmoji.ScaleY = size;
-                _feedbackBurstWash.Alpha = t;
+                _feedbackBurstEmoji.Alpha = t < .45f ? 1 : t < .67f ? 1 - .18f * Ease((t - .45f) / .22f)
+                    : .82f + .18f * Ease((t - .67f) / .16f);
+                _feedbackBurstWash.Alpha = Math.Min(1, t / .5f);
             };
             _feedbackBurstAnimator.Start();
         }
@@ -340,7 +359,7 @@ public partial class MainActivity
             if (epoch != _feedbackEpoch || !_activityResumed || !_restActive) return;
             _feedbackSettling = _feedbackExpiring = false;
             CompleteRest();
-        }, FeedbackReducedMotion ? 1 : 620);
+        }, FeedbackReducedMotion ? 1 : 640);
     }
 
     private void ResetFeedbackPose(bool animate)
@@ -359,10 +378,21 @@ public partial class MainActivity
             if (!_feedbackHeld && !_feedbackExpiring && !_state.PendingRestPausedByUser &&
                 ExerciseSessionService.GetPendingRestFeedback(_state) is null && !FeedbackReducedMotion)
             {
-                _feedbackSheet.Animate()?.TranslationX(-Dp(9)).SetDuration(240).Start();
-                _exerciseMediaCard.PostDelayed(() => {
-                    if (epoch == _feedbackEpoch && !_feedbackHeld) ResetFeedbackPose(true);
-                }, 260);
+                _feedbackNudgeAnimator?.Dispose();
+                _feedbackNudgeAnimator = Android.Animation.ValueAnimator.OfFloat(0, 1)!;
+                _feedbackNudgeAnimator.SetDuration(960);
+                _feedbackNudgeAnimator.SetInterpolator(new Android.Views.Animations.LinearInterpolator());
+                PreviewFeedback(null, 0);
+                _feedbackNudgeAnimator.Update += (_, args) => {
+                    float t = (float)args.Animation.AnimatedValue!;
+                    float pull = t < .38f ? 1 - MathF.Pow(1 - t / .38f, 3)
+                        : t < .52f ? 1 : t < .84f ? 1 - 1.1f * (1 - MathF.Pow(1 - (t - .52f) / .32f, 3))
+                        : -.1f * (1 - (t - .84f) / .16f);
+                    _feedbackSheet.TranslationX = -Dp(40) * pull;
+                    _feedbackSheet.Rotation = -1.8f * pull;
+                    _feedbackHints[ExerciseOutcome.X].Alpha = Math.Max(0, pull) * .8f;
+                };
+                _feedbackNudgeAnimator.Start();
             }
             ScheduleFeedbackHint(epoch);
         }, 4200);
@@ -372,6 +402,7 @@ public partial class MainActivity
     {
         _feedbackEpoch++;
         _feedbackScreenGesture = false;
+        _feedbackNudgeAnimator?.Cancel(); _feedbackNudgeAnimator?.Dispose(); _feedbackNudgeAnimator = null;
         _feedbackSettling = false;
         _feedbackBurstAnimator?.Cancel(); _feedbackBurstAnimator?.Dispose(); _feedbackBurstAnimator = null;
         if (_feedbackBurst is not null) _feedbackBurst.Visibility = ViewStates.Gone;
