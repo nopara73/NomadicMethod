@@ -122,9 +122,8 @@ jobs:
             /NomadicMethod/Resources/raw/**
             /NomadicMethod.Tests/CatalogInvariantTests.cs
             /NomadicMethod/NomadicMethod.csproj
-            /NomadicMethod/MainActivity.cs
+            /NomadicMethod/MainActivity*.cs
             /NomadicMethod/ExerciseVideoView.cs
-            /NomadicMethod/MainActivity.Recovery.cs
             /NomadicMethod/RecoveryPrivacyActivity.cs
             /NomadicMethod/AndroidManifest.xml
             /NomadicMethod/WorkoutBlockTimelineView.cs
