@@ -95,11 +95,11 @@ public sealed class ExerciseVideoView : TextureView, TextureView.ISurfaceTexture
             _videoWidth = player.VideoWidth;
             _videoHeight = player.VideoHeight;
             FitVideo();
-            if (_seekWhenReady >= 0)
-            {
-                player.SeekTo(_seekWhenReady);
-                _seekWhenReady = -1;
-            }
+            // Preparing does not decode a frame on every device. Seek even at
+            // zero so a cold-restored, paused workout shows its demonstration
+            // without starting playback or advancing the workout timer.
+            player.SeekTo(Math.Max(0, _seekWhenReady));
+            _seekWhenReady = -1;
             _preparedListener?.OnPrepared(player);
             if (_playWhenReady && ReferenceEquals(_player, player)) player.Start();
         };
