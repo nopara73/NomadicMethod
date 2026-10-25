@@ -1381,7 +1381,8 @@ public sealed partial class ExerciseSessionService
             state,
             root,
             exercisePhase);
-        if (outcome == ExerciseOutcome.X)
+        bool downvote = outcome is ExerciseOutcome.X or ExerciseOutcome.TooEasy;
+        if (downvote)
         {
             DownvoteSequenceInPhase(state, exercisePhase, root);
         }
@@ -1423,7 +1424,7 @@ public sealed partial class ExerciseSessionService
         }
         return new RecordedWorkoutOutcome(
             exercise,
-            outcome == ExerciseOutcome.X ? Array.AsReadOnly(sequenceExercises) : []);
+            downvote ? Array.AsReadOnly(sequenceExercises) : []);
     }
 
     private void ApplyShuffleRejection(
@@ -1527,7 +1528,7 @@ public sealed partial class ExerciseSessionService
             .Select(round => state.Outcomes[round.Id])
             .ToArray();
         int replaced = decisionOutcomes.Count(outcome =>
-            outcome == ExerciseOutcome.X);
+            outcome is ExerciseOutcome.X or ExerciseOutcome.TooEasy);
         int kept = decisionOutcomes.Count(outcome =>
             outcome == ExerciseOutcome.Tick);
         return (replaced, kept);
@@ -1605,7 +1606,7 @@ public sealed partial class ExerciseSessionService
                 continue;
             }
 
-            if (outcome == ExerciseOutcome.X)
+            if (outcome is ExerciseOutcome.X or ExerciseOutcome.TooEasy)
             {
                 rejectedSelections.Add((selectionGroup.Id, root.Id));
             }

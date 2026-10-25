@@ -111,6 +111,10 @@ are **warmup**, blocks 16–45 are **peak performance**, and blocks 46 onward ar
 the movement in either of the other two phases.
 Intermediate block rests do not score or offer the heart.
 
+“Too easy” also applies that phase-local `-1` downvote while retaining its
+difficulty evidence. “Too hard” updates difficulty evidence without a downvote.
+Both difficulty responses remove the movement family's saved Keeps.
+
 Modifier profiles share a logical slot, so a Keep made with Insect off remains
 the Keep for that same slot with Insect on whenever the exercise is eligible.
 When the duration changes anatomical resolution, Nomadic Method maps a Keep through the

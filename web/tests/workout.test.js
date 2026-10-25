@@ -2691,7 +2691,7 @@ test("modifier profiles share keeps without forgetting excluded exercises", () =
   );
 });
 
-test("a warmup downvote reselects an alternative without global exclusion", () => {
+for (const response of ["x", "easy"]) test(`${response}: a warmup downvote reselects an alternative without global exclusion`, () => {
   const exercises = RESOLUTIONS.get(3).groups.flatMap((group, index) => [
     exercise(1 + index * 3, group.canonicalGroups[0], group.canonicalGroups.slice(1), 0,
       EXERCISE_INSECT_COMPATIBILITY.Compatible),
@@ -2705,7 +2705,7 @@ test("a warmup downvote reselects an alternative without global exclusion", () =
   const groups = session.getActiveGroups();
   const rejectedId = session.getSelectedExercise(groups[0]).id;
 
-  session.recordOutcome(groups[0], false);
+  session.recordOutcome(groups[0], response);
   for (const group of groups.slice(1)) {
     session.recordOutcome(group, true);
   }

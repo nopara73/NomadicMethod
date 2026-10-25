@@ -7,12 +7,15 @@ namespace NomadicMethod.Tests;
 public sealed class ExerciseSessionServiceTests
 {
     [Theory]
-    [InlineData(ExerciseOutcome.X)]
-    [InlineData(ExerciseOutcome.Tick)]
-    [InlineData(ExerciseOutcome.TooEasy)]
-    [InlineData(ExerciseOutcome.TooHard)]
-    public void SwipeFeedbackSurvivesRestorationAndDoesNotConflateDifficultyWithDislike(ExerciseOutcome feedback)
+    [InlineData(ExerciseOutcome.X, "x")]
+    [InlineData(ExerciseOutcome.Tick, "tick")]
+    [InlineData(ExerciseOutcome.TooEasy, "easy")]
+    [InlineData(ExerciseOutcome.TooHard, "hard")]
+    public void SwipeFeedbackSurvivesRestorationAndAppliesSharedPhaseScoreOnce(ExerciseOutcome feedback, string response)
     {
+        using var fixture = JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,
+            "Assets", "exercise-feedback-cases.json")));
+        int adjustment = fixture.RootElement.GetProperty("phaseScoreAdjustments").GetProperty(response).GetInt32();
         Exercise[] exercises = [FullyCoveredExercise(1, CanonicalMuscleGroup.ScapularGirdle)];
         var service = new ExerciseSessionService(exercises, new Random(1));
         var state = new WorkoutState();
@@ -30,22 +33,29 @@ public sealed class ExerciseSessionServiceTests
         Assert.True(service.SetPendingRestFeedback(state, null));
         Assert.Null(ExerciseSessionService.GetPendingRestFeedback(state));
         Assert.True(service.SetPendingRestFeedback(state, feedback));
+        Assert.Empty(state.ExerciseScoreAdjustmentsByPhase);
         var result = service.RecordOutcomeWithScoreUpdates(state, service.GetNextGroup(state)!, feedback);
         service.ClearPendingRest(state);
         Assert.Equal(feedback, state.ActiveWorkoutSession!.Decisions.Single().Outcome);
-        Assert.Equal(feedback == ExerciseOutcome.X, result.ScoreUpdates.Count > 0);
-        Assert.Equal(feedback == ExerciseOutcome.X, state.ExerciseScoreAdjustmentsByPhase.Values.Any(x => x.Count > 0));
+        Assert.Equal(adjustment != 0, result.ScoreUpdates.Count > 0);
+        Assert.Equal(adjustment, state.ExerciseScoreAdjustmentsByPhase.GetValueOrDefault(
+            WorkoutExercisePhase.Warmup)?.GetValueOrDefault(exercises[0].Id) ?? 0);
+        Assert.Equal(adjustment == 0 ? 0 : 1, state.ExerciseScoreAdjustmentsByPhase.Count);
+        Assert.Equal(0, exercises[0].Score);
+        string scores = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
         state = JsonSerializer.Deserialize<WorkoutState>(JsonSerializer.Serialize(state))!;
         service.RestoreAfterReopen(state);
         Assert.Equal(feedback, state.Outcomes[group.Id]);
         Assert.Equal(2, service.GetNextGroup(state)!.Order);
+        Assert.Equal(scores, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
     }
 
     [Theory]
-    [InlineData(ExerciseOutcome.Tick)]
-    [InlineData(ExerciseOutcome.TooEasy)]
-    [InlineData(ExerciseOutcome.TooHard)]
-    public void ExplicitEndRetainsAnAlreadySwipedResponse(ExerciseOutcome feedback)
+    [InlineData(ExerciseOutcome.X, -1)]
+    [InlineData(ExerciseOutcome.Tick, 0)]
+    [InlineData(ExerciseOutcome.TooEasy, -1)]
+    [InlineData(ExerciseOutcome.TooHard, 0)]
+    public void ExplicitEndRetainsAnAlreadySwipedResponse(ExerciseOutcome feedback, int adjustment)
     {
         var service = new ExerciseSessionService([FullyCoveredExercise(1, CanonicalMuscleGroup.ScapularGirdle)], new Random(1));
         var state = new WorkoutState();
@@ -54,7 +64,11 @@ public sealed class ExerciseSessionServiceTests
         service.SetPendingRestFeedback(state, feedback);
         service.EndActiveWorkout(state);
         Assert.Equal(feedback, state.WorkoutHistory.Single().Decisions.Single().Outcome);
-        Assert.Empty(state.ExerciseScoreAdjustmentsByPhase.Values.SelectMany(x => x));
+        Assert.Equal(adjustment, state.ExerciseScoreAdjustmentsByPhase.GetValueOrDefault(
+            WorkoutExercisePhase.Warmup)?.GetValueOrDefault(1) ?? 0);
+        string scores = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
+        service.EndActiveWorkout(state);
+        Assert.Equal(scores, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
     }
 
     [Theory]
@@ -1274,8 +1288,10 @@ public sealed class ExerciseSessionServiceTests
                 .Order());
     }
 
-    [Fact]
-    public void WarmupDownvoteReselectsAlternativeWithoutGlobalExclusion()
+    [Theory]
+    [InlineData(ExerciseOutcome.X)]
+    [InlineData(ExerciseOutcome.TooEasy)]
+    public void WarmupDownvoteReselectsAlternativeWithoutGlobalExclusion(ExerciseOutcome feedback)
     {
         Exercise[] exercises = ThreeGroupCatalog(
             ExerciseInsectCompatibility.Compatible);
@@ -1289,7 +1305,7 @@ public sealed class ExerciseSessionServiceTests
         WorkoutGroup[] groups = service.GetActiveGroups(state).ToArray();
         int rejectedExerciseId = service.GetSelectedExercise(state, groups[0]).Id;
 
-        service.RecordOutcome(state, groups[0], keep: false);
+        service.RecordOutcomeWithScoreUpdates(state, groups[0], feedback);
         foreach (WorkoutGroup group in groups.Skip(1))
         {
             service.RecordOutcome(state, group, keep: true);

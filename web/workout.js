@@ -6003,7 +6003,7 @@ export class WorkoutSession {
       root,
       exercisePhase,
     );
-    if (outcome === "x") {
+    if (outcome === "x" || outcome === "easy") {
       this.downvoteSequenceInPhase(exercisePhase, root);
     }
     const decidedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
@@ -6116,7 +6116,7 @@ export class WorkoutSession {
       const outcome = decisionRound
         ? this.state.outcomes[decisionRound.id]
         : undefined;
-      if (outcome !== "tick" && outcome !== "x") {
+      if (outcome !== "tick" && outcome !== "x" && outcome !== "easy") {
         continue;
       }
       const root = this.exercisesById.get(this.state.selectedExerciseIds[
@@ -6128,7 +6128,7 @@ export class WorkoutSession {
       if (!root) {
         continue;
       }
-      if (outcome === "x") {
+      if (outcome === "x" || outcome === "easy") {
         rejectedSelections.set(selectionGroup.id, root.id);
       }
     }

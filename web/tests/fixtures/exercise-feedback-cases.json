@@ -8,6 +8,7 @@
   ],
   "thresholds": [[200,72],[320,115.2],[500,180]],
   "responses": ["x","tick","easy","hard"],
+  "phaseScoreAdjustments": {"x":-1,"tick":0,"easy":-1,"hard":0},
   "symbols": {"x":"💩","tick":"❤️","easy":"🥱","hard":"💀"},
   "visuals": [[0,390,0,49.6,0],[0.5,390,0.5,153.76,0],[1,390,1,257.92,0],[2,320,1,257.92,0],[-1,320,0,49.6,0]],
   "stampTiming": {"automatic":1270,"stamp":1700,"reveal":420,"reduced":900,"reducedReveal":180},

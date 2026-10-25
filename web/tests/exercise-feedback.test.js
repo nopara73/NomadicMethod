@@ -154,19 +154,36 @@ for (const response of fixtures.responses) test(`${response}: undo, cold restore
   assert.equal(session.state.pendingRestMediaPositionMilliseconds, 1234);
   assert.equal(session.getPendingRestFeedback(), response);
   const before = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+  const group = session.getNextGroup();
+  const root = session.getSequenceRoot(session.getSelectedExercise(group));
+  const phase = session.getExercisePhase(group);
   session.recordOutcome(session.getNextGroup(), response); session.clearPendingRest();
   assert.equal(session.state.activeWorkoutSession.decisions.at(-1).outcome, response);
-  if (response !== "x") assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, before);
-  else assert.notDeepEqual(session.state.exerciseScoreAdjustmentsByPhase, before);
+  const adjustment = fixtures.phaseScoreAdjustments[response];
+  if (adjustment) {
+    before[phase] ??= {};
+    before[phase][root.id] = (before[phase][root.id] ?? 0) + adjustment;
+  }
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, before);
   session = new WorkoutSession(catalog, structuredClone(session.state), () => .4);
   session.restoreAfterReopen();
   assert.equal(session.state.outcomes[groupId], response);
   assert.equal(session.state.activeWorkoutSession.decisions.at(-1).outcome, response);
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, before);
 });
 for (const response of fixtures.responses) test(`explicit End preserves ${response} without inventing another response`, () => {
-  const session = setup(); session.setPendingRestFeedback(response); session.endActiveWorkout();
+  const session = setup();
+  const group = session.getNextGroup();
+  const root = session.getSequenceRoot(session.getSelectedExercise(group));
+  const phase = session.getExercisePhase(group);
+  session.setPendingRestFeedback(response); session.endActiveWorkout();
   assert.equal(session.state.workoutHistory.at(-1).decisions.at(-1).outcome, response);
   assert.equal(session.state.activeWorkoutMinutes, 0);
+  assert.equal(session.state.exerciseScoreAdjustmentsByPhase[phase]?.[root.id] ?? 0,
+    fixtures.phaseScoreAdjustments[response]);
+  const before = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+  session.endActiveWorkout();
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, before);
 });
 
 for (const [progress, shortEdge, travel, size, others] of fixtures.visuals)
