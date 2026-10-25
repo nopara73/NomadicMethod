@@ -1,0 +1,8 @@
+[
+  {"name":"rigid floor permits the controlled wall raise", "modifiers":["HardFloor","Wall","UpperBodyClothing"], "eligible":true},
+  {"name":"silence permits the controlled wall raise", "modifiers":["HardFloor","Wall","UpperBodyClothing","Silence"], "eligible":true},
+  {"name":"a soft floor also permits the wall raise", "modifiers":["Wall","UpperBodyClothing"], "eligible":true},
+  {"name":"the wall is still required", "modifiers":["HardFloor","UpperBodyClothing"], "eligible":false},
+  {"name":"back contact retains the clothing requirement", "modifiers":["HardFloor","Wall"], "eligible":false},
+  {"name":"insect still excludes this isolated movement", "modifiers":["HardFloor","Wall","UpperBodyClothing","Insect"], "eligible":false}
+]

@@ -7,6 +7,8 @@
     # Incompatible
     # exercises remain available when the user selects a stable soft surface.
     Compatible = @(
+        # Controlled dorsiflexion with stationary heels does not require cushioning.
+        165,
         1615, 1625,
         1621,
         1612, 1613, 1614,
@@ -73,7 +75,7 @@
     IncompatibleByReason = @{
         ConcentratedHeelOrForefootLoading = @(
             1425,
-            119, 139, 140, 162, 165, 166, 172, 194,
+            119, 139, 140, 162, 166, 172, 194,
             198, 201, 273, 561, 575, 578, 583, 987
         )
         TractionDependentWallOrBalanceLoading = @(

@@ -91,9 +91,10 @@ public sealed class SqliteExerciseDatabaseMigrationTests
     [InlineData(105)]
     [InlineData(106)]
     [InlineData(107)]
+    [InlineData(108)]
     public void EverySupportedDatabaseCanUpgradeToTheCurrentCatalog(int oldVersion)
     {
-        Assert.Equal(108, ExerciseDatabaseVersionPolicy.CurrentVersion);
+        Assert.Equal(109, ExerciseDatabaseVersionPolicy.CurrentVersion);
         Assert.True(ExerciseDatabaseVersionPolicy.IsSupportedNonDestructiveUpgrade(
             oldVersion,
             ExerciseDatabaseVersionPolicy.CurrentVersion));
