@@ -102,6 +102,7 @@ public sealed class CompletionProfileTests
     [Theory]
     [InlineData(0)]
     [InlineData(1)]
+    [InlineData(2)]
     public void PreviousEvidenceBaselinesAreNotComparedWithRangeFeedback(int version)
     {
         var service = new ExerciseSessionService(Catalog(), new Random(4), () => Now, fitnessRatings: Ratings());

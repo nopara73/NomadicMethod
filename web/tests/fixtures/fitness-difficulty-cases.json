@@ -3098,6 +3098,1193 @@
           ]
         ]
       }
+    },
+    {
+      "name": "easy updates lower cardio and balance as well as strongest strength",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        3.5,
+        5.0,
+        0,
+        0,
+        0,
+        4.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "muscularStrength": [
+          5
+        ],
+        "balance": [
+          3,
+          4,
+          5
+        ]
+      },
+      "evidence": {
+        "cardiorespiratoryEndurance": [
+          [
+            1,
+            1,
+            [
+              1
+            ],
+            "easy",
+            [
+              2,
+              3,
+              4,
+              5
+            ]
+          ]
+        ],
+        "muscularStrength": [
+          [
+            1,
+            1,
+            [
+              4
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "balance": [
+          [
+            1,
+            1,
+            [
+              2
+            ],
+            "easy",
+            [
+              3,
+              4,
+              5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "just right does not anchor weaker cardio or balance",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "tick",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        4.0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "muscularStrength": [
+          4
+        ]
+      },
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            1,
+            [
+              4
+            ],
+            "tick",
+            [
+              4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "too hard does not lower weaker cardio or balance",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        2.0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "muscularStrength": [
+          1,
+          2,
+          3
+        ]
+      },
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            1,
+            [
+              4
+            ],
+            "hard",
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "easy applies above all rated ranges and strongest ties",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              3,
+              4
+            ],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            [
+              1,
+              3,
+              4
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        5.0,
+        4.0,
+        0,
+        0,
+        0,
+        5.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "cardiorespiratoryEndurance": [
+          5
+        ],
+        "muscularStrength": [
+          3,
+          4,
+          5
+        ],
+        "balance": [
+          5
+        ]
+      },
+      "evidence": {
+        "cardiorespiratoryEndurance": [
+          [
+            1,
+            1,
+            [
+              3,
+              4
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "muscularStrength": [
+          [
+            1,
+            1,
+            [
+              2
+            ],
+            "easy",
+            [
+              3,
+              4,
+              5
+            ]
+          ]
+        ],
+        "balance": [
+          [
+            1,
+            1,
+            [
+              1,
+              3,
+              4
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "just right preserves strongest ranged ties and skips weaker strength",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              3,
+              4
+            ],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            [
+              1,
+              3,
+              4
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "tick",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        3.5,
+        0,
+        0,
+        0,
+        0,
+        2.6666666666666665,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "cardiorespiratoryEndurance": [
+          3,
+          4
+        ],
+        "balance": [
+          1,
+          3,
+          4
+        ]
+      },
+      "evidence": {
+        "cardiorespiratoryEndurance": [
+          [
+            1,
+            1,
+            [
+              3,
+              4
+            ],
+            "tick",
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "balance": [
+          [
+            1,
+            1,
+            [
+              1,
+              3,
+              4
+            ],
+            "tick",
+            [
+              1,
+              3,
+              4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "hard uses each strongest range minimum and skips weaker strength",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              3,
+              4
+            ],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            [
+              1,
+              3,
+              4
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        1.5,
+        0,
+        0,
+        0,
+        0,
+        1.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "cardiorespiratoryEndurance": [
+          1,
+          2
+        ],
+        "balance": [
+          1
+        ]
+      },
+      "evidence": {
+        "cardiorespiratoryEndurance": [
+          [
+            1,
+            1,
+            [
+              3,
+              4
+            ],
+            "hard",
+            [
+              1,
+              2
+            ]
+          ]
+        ],
+        "balance": [
+          [
+            1,
+            1,
+            [
+              1,
+              3,
+              4
+            ],
+            "hard",
+            [
+              1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "easy updates every one of the ten nonempty axes including saturation",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            [
+              5
+            ],
+            [
+              2,
+              3,
+              4,
+              5
+            ]
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "bestLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "muscularStrength": [
+          3,
+          4,
+          5
+        ],
+        "muscularEndurance": [
+          4,
+          5
+        ],
+        "flexibility": [
+          5
+        ],
+        "agility": [
+          5
+        ],
+        "balance": [
+          4,
+          5
+        ],
+        "coordination": [
+          5
+        ],
+        "power": [
+          5
+        ],
+        "reactionTime": [
+          5
+        ],
+        "speed": [
+          5
+        ]
+      },
+      "evidence": {
+        "cardiorespiratoryEndurance": [
+          [
+            1,
+            1,
+            [
+              1
+            ],
+            "easy",
+            [
+              2,
+              3,
+              4,
+              5
+            ]
+          ]
+        ],
+        "muscularStrength": [
+          [
+            1,
+            1,
+            [
+              2
+            ],
+            "easy",
+            [
+              3,
+              4,
+              5
+            ]
+          ]
+        ],
+        "muscularEndurance": [
+          [
+            1,
+            1,
+            [
+              3
+            ],
+            "easy",
+            [
+              4,
+              5
+            ]
+          ]
+        ],
+        "flexibility": [
+          [
+            1,
+            1,
+            [
+              4
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "agility": [
+          [
+            1,
+            1,
+            [
+              5
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "balance": [
+          [
+            1,
+            1,
+            [
+              1,
+              3
+            ],
+            "easy",
+            [
+              4,
+              5
+            ]
+          ]
+        ],
+        "coordination": [
+          [
+            1,
+            1,
+            [
+              2,
+              4
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "power": [
+          [
+            1,
+            1,
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "reactionTime": [
+          [
+            1,
+            1,
+            [
+              5
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "speed": [
+          [
+            1,
+            1,
+            [
+              2,
+              3,
+              4,
+              5
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "latest love alias removes earlier easy evidence from weaker axes",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "tick",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        4.0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "muscularStrength": [
+          4
+        ]
+      },
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            2,
+            [
+              4
+            ],
+            "tick",
+            [
+              4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "latest hard alias removes earlier easy evidence from weaker axes",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "hard",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        0,
+        2.0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "muscularStrength": [
+          1,
+          2,
+          3
+        ]
+      },
+      "evidence": {
+        "muscularStrength": [
+          [
+            1,
+            2,
+            [
+              4
+            ],
+            "hard",
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "name": "latest easy alias adds weaker axes without duplicate family votes",
+      "exercises": [
+        {
+          "id": 1,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "id": 2,
+          "sessionMovementId": 1,
+          "levels": [
+            [
+              1
+            ],
+            [
+              4
+            ],
+            [],
+            [],
+            [],
+            [
+              2
+            ],
+            [],
+            [],
+            [],
+            []
+          ]
+        }
+      ],
+      "state": {
+        "workoutHistory": [
+          {
+            "sessionId": 1,
+            "decisions": [
+              {
+                "rootExerciseId": 1,
+                "outcome": "tick",
+                "decidedAtUnixMilliseconds": 1
+              },
+              {
+                "rootExerciseId": 2,
+                "outcome": "easy",
+                "decidedAtUnixMilliseconds": 2
+              }
+            ]
+          }
+        ]
+      },
+      "expected": [
+        3.5,
+        5.0,
+        0,
+        0,
+        0,
+        4.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bestLevels": {
+        "cardiorespiratoryEndurance": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "muscularStrength": [
+          5
+        ],
+        "balance": [
+          3,
+          4,
+          5
+        ]
+      },
+      "evidence": {
+        "cardiorespiratoryEndurance": [
+          [
+            1,
+            2,
+            [
+              1
+            ],
+            "easy",
+            [
+              2,
+              3,
+              4,
+              5
+            ]
+          ]
+        ],
+        "muscularStrength": [
+          [
+            1,
+            2,
+            [
+              4
+            ],
+            "easy",
+            [
+              5
+            ]
+          ]
+        ],
+        "balance": [
+          [
+            1,
+            2,
+            [
+              2
+            ],
+            "easy",
+            [
+              3,
+              4,
+              5
+            ]
+          ]
+        ]
+      }
     }
   ]
 }

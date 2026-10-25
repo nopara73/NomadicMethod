@@ -11,7 +11,7 @@ public sealed class FitnessSelectionTests
         Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-selection-cases.json")));
 
     [Fact]
-    public void SharedEligibilityHandlesUnknownsStrictRangesAndNoncontiguousZones()
+    public void SharedEligibilityHandlesUnknownsOverlappingRangesAndNoncontiguousZones()
     {
         using JsonDocument fixture = Fixture();
         foreach (JsonElement entry in fixture.RootElement.GetProperty("rounding").EnumerateArray())
@@ -27,6 +27,22 @@ public sealed class FitnessSelectionTests
                     .Select(level => level.GetInt32()).ToArray()).ToArray();
             Assert.Equal(entry.GetProperty("eligible").GetBoolean(),
                 FitnessSelectionPolicy.IsEligible(levels, zones));
+        }
+    }
+
+    [Fact]
+    public void CanonicalRangedSprintingAndReactionTasksMatchTheirSupportedLevels()
+    {
+        using JsonDocument fixture = Fixture();
+        using FileStream source = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "fitness_ratings.json"));
+        var ratings = FitnessProfilePolicy.Load(source);
+        foreach (JsonElement entry in fixture.RootElement.GetProperty("catalogCases").EnumerateArray())
+        {
+            int dimension = entry.GetProperty("dimension").GetInt32();
+            int[] zone = entry.GetProperty("zone").EnumerateArray().Select(v => v.GetInt32()).ToArray();
+            int[][] zones = Enumerable.Range(0, 10).Select(axis => axis == dimension ? zone : Array.Empty<int>()).ToArray();
+            Assert.Equal(entry.GetProperty("eligible").GetBoolean(), FitnessSelectionPolicy.IsEligible(
+                ratings[entry.GetProperty("id").GetInt32()], zones));
         }
     }
 
@@ -72,7 +88,8 @@ public sealed class FitnessSelectionTests
     {
         Assert.False(FitnessSelectionPolicy.IsSequenceEligible([null, [[3]]], [[3]]));
         Assert.True(FitnessSelectionPolicy.IsSequenceEligible([[[3]], [[3,4]]], [[3,4]]));
-        Assert.False(FitnessSelectionPolicy.IsSequenceEligible([[[3]], [[2,3]]], [[3,4]]));
+        Assert.True(FitnessSelectionPolicy.IsSequenceEligible([[[3]], [[2,3]]], [[3,4]]));
+        Assert.False(FitnessSelectionPolicy.IsSequenceEligible([[[3]], [[1,2]]], [[3,4]]));
         Assert.True(FitnessSelectionPolicy.IsSequenceEligible([null, [[]]], [[]]));
     }
 
@@ -291,9 +308,11 @@ public sealed class FitnessSelectionTests
     }
 
     [Fact]
-    public void KnownZonesApplyToDurationAndModifierEditsWithoutReplacingCurrentWork()
+    public void OverlappingRangesApplyToDurationAndModifierEditsWithoutReplacingCurrentWork()
     {
         var (exercises, ratings, state) = DiscoveryFixture();
+        ratings[20][1] = [1,2,3,4,5];
+        ratings[30][1] = [2,3];
         var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
         service.StartWorkout(state, 3, WorkoutModifiers.None);
         WorkoutGroup current = service.GetNextGroup(state)!;

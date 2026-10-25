@@ -1,0 +1,1140 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-25",
+  "catalogRevision": 92,
+  "catalogRecords": 909,
+  "catalogSha256": "047a9f99604524c6537400cda490d34102a11e72c09636b423fdc52229675bce",
+  "ratingsSha256": "08a1d2e3c60e87ca588150424e77dbd25207c0a7f285323c9d421818bebb9cbd",
+  "policy": "Any explicitly rated level overlaps the corresponding known zone; every atomic member qualifies; SessionMovementId deduplicated.",
+  "scope": "50 single-axis singleton cells globally under the overlap rule, plus all five uniform singleton profiles across new workout durations and the existing single/pair physical validation profiles. It also checks each single known characteristic/level against the same physical/duration profiles. These are representative profiles, not every possible mixed user zone. Slot availability does not prove a simultaneous complete lineup; --verify-lineups additionally runs the normal planner with fixed synthetic zones on uniform-level profiles without an empty slot.",
+  "reproduce": "node web/scripts/report-zopd-coverage.mjs --verify-lineups --output .artifacts/overlap-coverage.json",
+  "previousContainmentSummary": {
+    "levelCellsBelowFive": 20,
+    "levelCellsEmpty": 12,
+    "workoutProfilesWithEmptySlots": 698,
+    "workoutProfilesBelowFiveChoices": 875
+  },
+  "summary": {
+    "levelCellsBelowFive": 0,
+    "levelCellsEmpty": 0,
+    "physicalProfiles": 54,
+    "workoutProfilesChecked": 1350,
+    "workoutProfilesWithEmptySlots": 403,
+    "workoutProfilesBelowFiveChoices": 668,
+    "completeLineupChecks": 947,
+    "additionalLineupFailuresWithoutEmptySlots": 0,
+    "singleAxisProfilesChecked": 13500,
+    "bySingleKnownCharacteristic": [
+      {
+        "characteristic": "cardiorespiratoryEndurance",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 44,
+            "belowFiveChoices": 153
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 159,
+            "belowFiveChoices": 242
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 200,
+            "belowFiveChoices": 236
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 200,
+            "belowFiveChoices": 242
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 235,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "muscularStrength",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 24,
+            "belowFiveChoices": 160
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 88,
+            "belowFiveChoices": 197
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 252,
+            "belowFiveChoices": 269
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 263,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "muscularEndurance",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 88,
+            "belowFiveChoices": 188
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 24,
+            "belowFiveChoices": 101
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 88,
+            "belowFiveChoices": 195
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 263,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "flexibility",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 48,
+            "belowFiveChoices": 216
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 136,
+            "belowFiveChoices": 216
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 201,
+            "belowFiveChoices": 262
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 263,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 263,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "agility",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "balance",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 47,
+            "belowFiveChoices": 235
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 98,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 261,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 261,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "coordination",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 0,
+            "belowFiveChoices": 107
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 112,
+            "belowFiveChoices": 180
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 226,
+            "belowFiveChoices": 267
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 226,
+            "belowFiveChoices": 262
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "power",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 184,
+            "belowFiveChoices": 243
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 208,
+            "belowFiveChoices": 264
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 200,
+            "belowFiveChoices": 262
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 267,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 267,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "reactionTime",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 184,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 184,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 270,
+            "belowFiveChoices": 270
+          }
+        ]
+      },
+      {
+        "characteristic": "speed",
+        "levels": [
+          {
+            "level": 1,
+            "profiles": 270,
+            "withEmptySlots": 174,
+            "belowFiveChoices": 242
+          },
+          {
+            "level": 2,
+            "profiles": 270,
+            "withEmptySlots": 184,
+            "belowFiveChoices": 243
+          },
+          {
+            "level": 3,
+            "profiles": 270,
+            "withEmptySlots": 219,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 4,
+            "profiles": 270,
+            "withEmptySlots": 225,
+            "belowFiveChoices": 270
+          },
+          {
+            "level": 5,
+            "profiles": 270,
+            "withEmptySlots": 263,
+            "belowFiveChoices": 270
+          }
+        ]
+      }
+    ],
+    "byUniformLevel": [
+      {
+        "level": 1,
+        "profiles": 270,
+        "withEmptySlots": 0,
+        "belowFiveChoices": 5
+      },
+      {
+        "level": 2,
+        "profiles": 270,
+        "withEmptySlots": 0,
+        "belowFiveChoices": 48
+      },
+      {
+        "level": 3,
+        "profiles": 270,
+        "withEmptySlots": 72,
+        "belowFiveChoices": 145
+      },
+      {
+        "level": 4,
+        "profiles": 270,
+        "withEmptySlots": 150,
+        "belowFiveChoices": 215
+      },
+      {
+        "level": 5,
+        "profiles": 270,
+        "withEmptySlots": 181,
+        "belowFiveChoices": 255
+      }
+    ]
+  },
+  "globalCoverage": [
+    {
+      "characteristic": "cardiorespiratoryEndurance",
+      "level": 1,
+      "distinctMovements": 128,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "cardiorespiratoryEndurance",
+      "level": 2,
+      "distinctMovements": 75,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "cardiorespiratoryEndurance",
+      "level": 3,
+      "distinctMovements": 43,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "cardiorespiratoryEndurance",
+      "level": 4,
+      "distinctMovements": 31,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "cardiorespiratoryEndurance",
+      "level": 5,
+      "distinctMovements": 7,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularStrength",
+      "level": 1,
+      "distinctMovements": 324,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularStrength",
+      "level": 2,
+      "distinctMovements": 216,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularStrength",
+      "level": 3,
+      "distinctMovements": 53,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularStrength",
+      "level": 4,
+      "distinctMovements": 24,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularStrength",
+      "level": 5,
+      "distinctMovements": 13,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularEndurance",
+      "level": 1,
+      "distinctMovements": 294,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularEndurance",
+      "level": 2,
+      "distinctMovements": 447,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularEndurance",
+      "level": 3,
+      "distinctMovements": 228,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularEndurance",
+      "level": 4,
+      "distinctMovements": 24,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "muscularEndurance",
+      "level": 5,
+      "distinctMovements": 11,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "flexibility",
+      "level": 1,
+      "distinctMovements": 113,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "flexibility",
+      "level": 2,
+      "distinctMovements": 140,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "flexibility",
+      "level": 3,
+      "distinctMovements": 86,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "flexibility",
+      "level": 4,
+      "distinctMovements": 10,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "flexibility",
+      "level": 5,
+      "distinctMovements": 6,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "agility",
+      "level": 1,
+      "distinctMovements": 14,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "agility",
+      "level": 2,
+      "distinctMovements": 13,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "agility",
+      "level": 3,
+      "distinctMovements": 13,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "agility",
+      "level": 4,
+      "distinctMovements": 13,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "agility",
+      "level": 5,
+      "distinctMovements": 5,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "balance",
+      "level": 1,
+      "distinctMovements": 95,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "balance",
+      "level": 2,
+      "distinctMovements": 67,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "balance",
+      "level": 3,
+      "distinctMovements": 23,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "balance",
+      "level": 4,
+      "distinctMovements": 23,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "balance",
+      "level": 5,
+      "distinctMovements": 5,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "coordination",
+      "level": 1,
+      "distinctMovements": 232,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "coordination",
+      "level": 2,
+      "distinctMovements": 220,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "coordination",
+      "level": 3,
+      "distinctMovements": 41,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "coordination",
+      "level": 4,
+      "distinctMovements": 44,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "coordination",
+      "level": 5,
+      "distinctMovements": 6,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "power",
+      "level": 1,
+      "distinctMovements": 50,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "power",
+      "level": 2,
+      "distinctMovements": 22,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "power",
+      "level": 3,
+      "distinctMovements": 32,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "power",
+      "level": 4,
+      "distinctMovements": 12,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "power",
+      "level": 5,
+      "distinctMovements": 10,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "reactionTime",
+      "level": 1,
+      "distinctMovements": 31,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "reactionTime",
+      "level": 2,
+      "distinctMovements": 31,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "reactionTime",
+      "level": 3,
+      "distinctMovements": 5,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "reactionTime",
+      "level": 4,
+      "distinctMovements": 5,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "reactionTime",
+      "level": 5,
+      "distinctMovements": 5,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "speed",
+      "level": 1,
+      "distinctMovements": 36,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "speed",
+      "level": 2,
+      "distinctMovements": 65,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "speed",
+      "level": 3,
+      "distinctMovements": 44,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "speed",
+      "level": 4,
+      "distinctMovements": 38,
+      "missingToFive": 0
+    },
+    {
+      "characteristic": "speed",
+      "level": 5,
+      "distinctMovements": 23,
+      "missingToFive": 0
+    }
+  ],
+  "emptySlotGroups": [
+    {
+      "uniformLevel": 3,
+      "groupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+      "name": "Anterior/lateral lower leg and dorsal foot",
+      "occurrences": 36
+    },
+    {
+      "uniformLevel": 3,
+      "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+      "name": "Anterior/lateral lower leg and dorsal foot",
+      "occurrences": 36
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+      "name": "Anterior/lateral lower leg and dorsal foot",
+      "occurrences": 44
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r10.hip-flexors-adductors",
+      "name": "Hip flexors and adductors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r10.lateral-knee-extensors",
+      "name": "Lateral knee extensors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r10.medial-deep-knee-extensors",
+      "name": "Medial and deep knee extensors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r10.posterior-lower-leg-plantar-foot",
+      "name": "Posterior lower leg and plantar foot",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+      "name": "Anterior/lateral lower leg and dorsal foot",
+      "occurrences": 44
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.arm-forearm-hand",
+      "name": "Arm, forearm and hand",
+      "occurrences": 1
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.head-neck",
+      "name": "Head and neck",
+      "occurrences": 53
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.hip-adductors",
+      "name": "Hip adductors",
+      "occurrences": 11
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.hip-flexors",
+      "name": "Hip flexors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.lateral-deep-hip-stabilizers",
+      "name": "Lateral and deep hip stabilizers",
+      "occurrences": 11
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.lateral-knee-extensors",
+      "name": "Lateral knee extensors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.medial-deep-knee-extensors",
+      "name": "Medial and deep knee extensors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r15.posterior-lower-leg-plantar-foot",
+      "name": "Posterior lower leg and plantar foot",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r5.head-neck-shoulder-girdle",
+      "name": "Head, neck and shoulder girdle",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r5.lower-legs-feet",
+      "name": "Lower legs and feet",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r7.hip-flexors-adductors",
+      "name": "Hip flexors and adductors",
+      "occurrences": 11
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r7.knee-extensors",
+      "name": "Knee extensors",
+      "occurrences": 10
+    },
+    {
+      "uniformLevel": 4,
+      "groupId": "r7.lower-legs-feet",
+      "name": "Lower legs and feet",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+      "name": "Anterior/lateral lower leg and dorsal foot",
+      "occurrences": 44
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.back-abdominal-pelvic-floor",
+      "name": "Back, abdominal wall and pelvic floor",
+      "occurrences": 47
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.gluteals-deep-hip",
+      "name": "Gluteals and deep hip stabilizers",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.hip-flexors-adductors",
+      "name": "Hip flexors and adductors",
+      "occurrences": 30
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.lateral-knee-extensors",
+      "name": "Lateral knee extensors",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.medial-deep-knee-extensors",
+      "name": "Medial and deep knee extensors",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.posterior-lower-leg-plantar-foot",
+      "name": "Posterior lower leg and plantar foot",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r10.posterior-thigh-knee-flexors",
+      "name": "Posterior thigh and knee flexors",
+      "occurrences": 9
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.abdominal-pelvic-floor",
+      "name": "Abdominal wall and pelvic floor",
+      "occurrences": 47
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+      "name": "Anterior/lateral lower leg and dorsal foot",
+      "occurrences": 44
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.arm-forearm-hand",
+      "name": "Arm, forearm and hand",
+      "occurrences": 1
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.back-spinal-stabilization",
+      "name": "Back and spinal stabilization",
+      "occurrences": 54
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.gluteal-extensors",
+      "name": "Gluteal extensors",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.head-neck",
+      "name": "Head and neck",
+      "occurrences": 53
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.hip-adductors",
+      "name": "Hip adductors",
+      "occurrences": 38
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.hip-flexors",
+      "name": "Hip flexors",
+      "occurrences": 30
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.lateral-deep-hip-stabilizers",
+      "name": "Lateral and deep hip stabilizers",
+      "occurrences": 46
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.lateral-knee-extensors",
+      "name": "Lateral knee extensors",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.medial-deep-knee-extensors",
+      "name": "Medial and deep knee extensors",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.posterior-lower-leg-plantar-foot",
+      "name": "Posterior lower leg and plantar foot",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r15.posterior-thigh-knee-flexors",
+      "name": "Posterior thigh and knee flexors",
+      "occurrences": 9
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r3.lower-limbs",
+      "name": "Lower limbs",
+      "occurrences": 2
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r5.head-neck-shoulder-girdle",
+      "name": "Head, neck and shoulder girdle",
+      "occurrences": 18
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r5.hips-thighs",
+      "name": "Hips and thighs",
+      "occurrences": 2
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r5.lower-legs-feet",
+      "name": "Lower legs and feet",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r7.gluteals-deep-hip",
+      "name": "Gluteals and deep hip stabilizers",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r7.hip-flexors-adductors",
+      "name": "Hip flexors and adductors",
+      "occurrences": 36
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r7.knee-extensors",
+      "name": "Knee extensors",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r7.lower-legs-feet",
+      "name": "Lower legs and feet",
+      "occurrences": 19
+    },
+    {
+      "uniformLevel": 5,
+      "groupId": "r7.posterior-thigh-knee-flexors",
+      "name": "Posterior thigh and knee flexors",
+      "occurrences": 9
+    }
+  ],
+  "examples": [
+    {
+      "minutes": 10,
+      "modifiers": 0,
+      "modifierNames": [],
+      "uniformLevel": 3,
+      "slots": [
+        {
+          "groupId": "r10.anterior-lateral-lower-leg-dorsal-foot",
+          "name": "Anterior/lateral lower leg and dorsal foot",
+          "distinctMovements": 0
+        }
+      ],
+      "emptySlots": 1,
+      "belowFiveSlots": 1
+    },
+    {
+      "minutes": 15,
+      "modifiers": 0,
+      "modifierNames": [],
+      "uniformLevel": 4,
+      "slots": [
+        {
+          "groupId": "r15.head-neck",
+          "name": "Head and neck",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+          "name": "Anterior/lateral lower leg and dorsal foot",
+          "distinctMovements": 0
+        }
+      ],
+      "emptySlots": 2,
+      "belowFiveSlots": 6
+    },
+    {
+      "minutes": 15,
+      "modifiers": 0,
+      "modifierNames": [],
+      "uniformLevel": 5,
+      "slots": [
+        {
+          "groupId": "r15.head-neck",
+          "name": "Head and neck",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.anterior-lateral-lower-leg-dorsal-foot",
+          "name": "Anterior/lateral lower leg and dorsal foot",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.hip-flexors",
+          "name": "Hip flexors",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.abdominal-pelvic-floor",
+          "name": "Abdominal wall and pelvic floor",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.lateral-deep-hip-stabilizers",
+          "name": "Lateral and deep hip stabilizers",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.back-spinal-stabilization",
+          "name": "Back and spinal stabilization",
+          "distinctMovements": 0
+        },
+        {
+          "groupId": "r15.hip-adductors",
+          "name": "Hip adductors",
+          "distinctMovements": 0
+        }
+      ],
+      "emptySlots": 7,
+      "belowFiveSlots": 13
+    },
+    {
+      "minutes": 5,
+      "modifiers": 16,
+      "modifierNames": [
+        "HardFloor"
+      ],
+      "uniformLevel": 4,
+      "slots": [
+        {
+          "groupId": "r5.lower-legs-feet",
+          "name": "Lower legs and feet",
+          "distinctMovements": 0
+        }
+      ],
+      "emptySlots": 1,
+      "belowFiveSlots": 3
+    },
+    {
+      "minutes": 3,
+      "modifiers": 17,
+      "modifierNames": [
+        "Insect",
+        "HardFloor"
+      ],
+      "uniformLevel": 5,
+      "slots": [
+        {
+          "groupId": "r3.lower-limbs",
+          "name": "Lower limbs",
+          "distinctMovements": 0
+        }
+      ],
+      "emptySlots": 1,
+      "belowFiveSlots": 3
+    }
+  ],
+  "phoneReplay": "A private read-only copy of the current phone state retained unfinished selections; local clones planned complete workouts at 3, 5, 7, 10 and 15 minutes. No real workout was ended or started for the replay."
+}

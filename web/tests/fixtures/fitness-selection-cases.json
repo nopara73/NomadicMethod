@@ -117,7 +117,7 @@
           4
         ]
       ],
-      "eligible": false
+      "eligible": true
     },
     {
       "name": "zone 3-4 with [[4, 5]]",
@@ -133,7 +133,7 @@
           4
         ]
       ],
-      "eligible": false
+      "eligible": true
     },
     {
       "name": "zone 3-4 with [[1, 2, 3, 4, 5]]",
@@ -152,7 +152,7 @@
           4
         ]
       ],
-      "eligible": false
+      "eligible": true
     },
     {
       "name": "zone 3-4 with None",
@@ -249,7 +249,7 @@
       "eligible": false
     },
     {
-      "name": "noncontiguous exact subset",
+      "name": "noncontiguous shared levels qualify",
       "levels": [
         [
           1,
@@ -265,7 +265,7 @@
       "eligible": true
     },
     {
-      "name": "range cannot bridge a hole",
+      "name": "range can share supported endpoints without filling the zone hole",
       "levels": [
         [
           1,
@@ -277,6 +277,103 @@
         [
           1,
           3
+        ]
+      ],
+      "eligible": true
+    },
+    {
+      "name": "level five accepts sprint-like three to five range",
+      "levels": [
+        [
+          3,
+          4,
+          5
+        ]
+      ],
+      "zones": [
+        [
+          5
+        ]
+      ],
+      "eligible": true
+    },
+    {
+      "name": "range shares its lower endpoint",
+      "levels": [
+        [
+          3,
+          4,
+          5
+        ]
+      ],
+      "zones": [
+        [
+          3
+        ]
+      ],
+      "eligible": true
+    },
+    {
+      "name": "levels outside a range still do not match",
+      "levels": [
+        [
+          3,
+          4,
+          5
+        ]
+      ],
+      "zones": [
+        [
+          2
+        ]
+      ],
+      "eligible": false
+    },
+    {
+      "name": "disjoint noncontiguous levels do not match",
+      "levels": [
+        [
+          1,
+          3,
+          5
+        ]
+      ],
+      "zones": [
+        [
+          2,
+          4
+        ]
+      ],
+      "eligible": false
+    },
+    {
+      "name": "noncontiguous range can match one shared level",
+      "levels": [
+        [
+          1,
+          3,
+          5
+        ]
+      ],
+      "zones": [
+        [
+          3
+        ]
+      ],
+      "eligible": true
+    },
+    {
+      "name": "numbers on different characteristics do not match",
+      "levels": [
+        [
+          5
+        ],
+        []
+      ],
+      "zones": [
+        [],
+        [
+          5
         ]
       ],
       "eligible": false
@@ -621,5 +718,39 @@
       7,
       3
     ]
-  }
+  },
+  "catalogCases": [
+    {
+      "id": 1052,
+      "dimension": 0,
+      "eligible": true,
+      "zone": [
+        5
+      ]
+    },
+    {
+      "id": 1052,
+      "dimension": 0,
+      "eligible": false,
+      "zone": [
+        2
+      ]
+    },
+    {
+      "id": 1604,
+      "dimension": 8,
+      "eligible": true,
+      "zone": [
+        5
+      ]
+    },
+    {
+      "id": 1604,
+      "dimension": 8,
+      "eligible": false,
+      "zone": [
+        2
+      ]
+    }
+  ]
 }

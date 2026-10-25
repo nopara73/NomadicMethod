@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import test from "node:test";
-import { roundFitnessLevel, isFitnessEligible, isFitnessSequenceEligible, fitnessZones, inspectFitnessProfile, orderFitnessCandidates,
+import { FITNESS_DIMENSIONS, roundFitnessLevel, isFitnessEligible, isFitnessSequenceEligible, fitnessZones, inspectFitnessProfile, orderFitnessCandidates,
   calculateFavouriteFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState, getResolution,
   WORKOUT_MODIFIERS as M } from "../workout.js";
@@ -20,6 +20,12 @@ for (const entry of fixture.cases) {
     const before = JSON.stringify(entry);
     assert.equal(isFitnessEligible(entry.levels, entry.zones), entry.eligible);
     assert.equal(JSON.stringify(entry), before);
+  });
+}
+for (const entry of fixture.catalogCases) {
+  test(`canonical exercise ${entry.id} overlaps axis ${entry.dimension} zone ${entry.zone}`, () => {
+    const zones = FITNESS_DIMENSIONS.map((_, index) => index === entry.dimension ? entry.zone : []);
+    assert.equal(isFitnessEligible(ratings.get(entry.id), zones), entry.eligible);
   });
 }
 for (const entry of fixture.ordering) {
@@ -41,7 +47,8 @@ function seededRandom(seed) {
 test("every sequence member must qualify, with bootstrap only for wholly unknown profiles", () => {
   assert.equal(isFitnessSequenceEligible([null, [[3]]], [[3]]), false);
   assert.equal(isFitnessSequenceEligible([[[3]], [[3,4]]], [[3,4]]), true);
-  assert.equal(isFitnessSequenceEligible([[[3]], [[2,3]]], [[3,4]]), false);
+  assert.equal(isFitnessSequenceEligible([[[3]], [[2,3]]], [[3,4]]), true);
+  assert.equal(isFitnessSequenceEligible([[[3]], [[1,2]]], [[3,4]]), false);
   assert.equal(isFitnessSequenceEligible([null, [[]]], [[]]), true);
 });
 
@@ -225,8 +232,10 @@ test("a coverage hole fails explicitly instead of admitting an out-of-zone or un
   assert.throws(() => session.startWorkout(3, 0), /No complete workout fits your current training zone/);
 });
 
-test("known zones apply to new work in duration and modifier edits while current work stays fixed", () => {
-  const {session} = discoveryFixture();
+test("overlapping ranges apply to duration and modifier edits while current work stays fixed", () => {
+  const {session, ratings} = discoveryFixture();
+  ratings.get(20)[1] = [1,2,3,4,5];
+  ratings.get(30)[1] = [2,3];
   session.startWorkout(3, 0);
   const current = session.getNextGroup(), id = session.getSelectedExercise(current).id;
   session.pauseMovement(current, 27000, true);

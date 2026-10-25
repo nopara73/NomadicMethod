@@ -8,7 +8,7 @@ export const FITNESS_LABELS = Object.freeze([
 ]);
 export const FITNESS_MAXIMUM_LEVEL = 5;
 export const FITNESS_WEB_BOUNDARY_LEVEL = 4;
-export const FITNESS_EVIDENCE_VERSION = 2;
+export const FITNESS_EVIDENCE_VERSION = 3;
 
 export function roundFitnessLevel(level) {
   return !Number.isFinite(level) || level <= 0 ? 0
@@ -29,7 +29,7 @@ export function fitnessZones(profile) {
 
 export function isFitnessEligible(levels, zones) {
   return !zones.some(zone => zone.length > 0) || !!levels?.some((set, dimension) =>
-    set.length > 0 && set.every(level => zones[dimension]?.includes(level)));
+    set.length > 0 && set.some(level => zones[dimension]?.includes(level)));
 }
 
 export function isFitnessSequenceEligible(members, zones) {
@@ -95,7 +95,9 @@ export function inspectFitnessProfile(exercises, state, ratings) {
     if (!levels) continue;
     const strongest = Math.max(0, ...levels.flat());
     levels.forEach((set, dimension) => {
-      if (!set.length || set.at(-1) !== strongest) return;
+      // Too easy applies to every rated axis; love and hard identify only
+      // the strongest demands. Empty cells never imply level zero evidence.
+      if (!set.length || decision.outcome !== "easy" && set.at(-1) !== strongest) return;
       const supportedLevels = decision.outcome === "tick" ? [...set]
         : decision.outcome === "easy"
           ? [1, 2, 3, 4, 5].filter(level => level >= Math.min(5, set.at(-1) + 1))

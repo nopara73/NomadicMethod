@@ -1,5 +1,7 @@
 # ZoPD catalog availability audit - 24 October 2026
 
+Historical whole-range containment results; superseded by the [25 October overlap audit](overlap-coverage-2026-10-25.md).
+
 Release: `01143d67` (Android 3.45 / web), catalog revision 91, 907 catalog records.
 
 ## Finding

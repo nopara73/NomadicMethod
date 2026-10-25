@@ -13,7 +13,7 @@ public sealed record FitnessProfileAxis(double Mean, IReadOnlyList<FitnessEviden
 /// <summary>Equal-weight challenge estimates from each movement's latest difficulty response.</summary>
 public static class FitnessProfilePolicy
 {
-    public const int EvidenceVersion = 2;
+    public const int EvidenceVersion = 3;
     public const int MaximumLevel = 5;
     public const int WebBoundaryLevel = 4;
 
@@ -95,7 +95,9 @@ public static class FitnessProfilePolicy
             for (int dimension = 0; dimension < Dimensions.Length; dimension++)
             {
                 int[] set = levels[dimension];
-                if (set.Length == 0 || set[^1] != strongest) continue;
+                // Too easy describes the whole exercise; love and too hard only
+                // identify its strongest demands as appropriate or excessive.
+                if (set.Length == 0 || decision.Outcome != ExerciseOutcome.TooEasy && set[^1] != strongest) continue;
                 contributions[dimension].Add(new(movementId, exercise.Id, exercise.Name,
                     [.. set], decision.Outcome, SupportedLevels(set, decision.Outcome)));
             }
