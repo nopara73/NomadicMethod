@@ -1,9 +1,69 @@
-# Shin movement supply investigation
+# Shin slot and grouping provenance investigation
 
-The small starting pool is a catalog supply imbalance. It is already small
-before modifiers, fitness, recovery, scores, Keeps or duration are consulted.
+The ten-movement pool follows from a mandatory shin-only bucket in the
+ten-minute definition. Its size does not by itself establish a catalog
+deficiency. The earlier conclusion that the catalog must expand its shin
+inventory was premature: the bucket definition needs scrutiny first.
+
 Correcting Wall Tibialis Raise's clothing eligibility restores one usable
-choice, but does not expand that underlying supply.
+choice within that bucket. It does not justify or repair the grouping policy.
+
+## Where the shin-only bucket entered the product
+
+The available original requests and Git history establish this sequence:
+
+1. The 2 August request supplied a fixed list of twenty muscle groups, with
+   Shins at position 20. Short workouts used a prefix of that list. Its
+   ten-minute plan did not contain a dedicated shin round.
+2. The attached implementation brief received on 3 August at 01:52 UTC changed
+   the product to seven resolutions. Under `10 GROUPS — 10% TARGET`, it
+   explicitly listed bucket 10 as `Anterior/lateral lower leg and dorsal foot`.
+   Bucket 9 was `Upper limbs`. This restrictive grouping was already present
+   in the brief before the implementation began.
+3. Commit [`cf05cb13`, Add mass grouping ladder](https://github.com/nopara73/NomadicMethod/commit/cf05cb135a81b6ba56b104552484973cab2ed9ef)
+   on 3 August implemented those entries in
+   `Flux/Services/MassGroupingTaxonomy.cs` and pinned them in its tests.
+   An exact source comparison shows that **all seven grouping declaration
+   tables are unchanged** in today's `NomadicMethod/Services/MassGroupingTaxonomy.cs`.
+4. Commit [`8d489bc7`, Reverse workout order](https://github.com/nopara73/NomadicMethod/commit/8d489bc7db6ad78f06f05f45e00e4784adbc7efc)
+   on 4 August reversed traversal and reassigned order numbers. It did not
+   change bucket membership. The later Nomadic Method rename also retained
+   the tables. Web uses the same memberships.
+
+This is a change from the earlier twenty-group prefix model, introduced with
+the first mass-resolution implementation. There is no later regrouping commit
+that changed an originally broader ten-minute lower-leg bucket into shins.
+The available evidence identifies the incoming brief as the point at which
+the current table entered the implementation; it does not establish who
+originally generated that brief.
+
+## What was never established by the implementation
+
+The brief called the ten-group percentage a nominal target and warned against
+claiming exact muscle masses. However, the implementation stores no estimated
+bucket masses or percentage calculation. Its validator checks the declared
+group count and exactly-once coverage of the thirty leaves.
+
+The tests named `ResolutionSchedulesRunFromSmallestToLargestMass` and
+`LeafToBucketMappingsAndAscendingScheduleOrdersAreStable` compare the
+implementation against copied group and order tables. They protect the
+configuration from drift; they do not establish the configuration's mass
+ordering or proximity to its stated percentage targets. The separate workload
+balancer sums training-load units into these same buckets; it does not measure
+muscle mass or choose their membership.
+
+The resolutions also are not a pure nested split/merge tree: the seven-minute
+`head-neck-upper-limbs` bucket crosses the five-minute `upper-limbs` and
+`head-neck-shoulder-girdle` boundaries, and the ten-minute
+`head-neck-scapular-chest-breathing` bucket crosses the seven-minute `torso`
+and `head-neck-upper-limbs` boundaries. Those choices are present in the
+original table too. This is a description of the configuration, not a newly
+introduced requirement that the existing product must use a nested tree.
+
+Calling this table an established, validated mass-derived allocation was
+therefore unjustified. Its historical provenance does not establish its
+suitability. A correction needs an explicitly justified grouping specification;
+increasing the number of shin demonstrations cannot repair that specification.
 
 ## Count the same thing at each stage
 
@@ -38,9 +98,9 @@ directions intentionally share identity 288; counting their names separately
 would manufacture variety. The existing identity rule was reviewed in
 [`standing-body-circles-2026-10-20.md`](standing-body-circles-2026-10-20.md).
 
-## Why the catalog total is misleading
+## Anatomical inventory is descriptive
 
-The supply is distributed very unevenly. These are distinct identities with a
+These are distinct identities with a
 primary or meaningful secondary training claim, before contextual filtering:
 
 | Canonical training target | Primary identities | All trained identities |
@@ -53,7 +113,9 @@ primary or meaningful secondary training claim, before contextual filtering:
 | Shoulder abductors | 77 | 227 |
 
 A movement can appear in several target inventories. The columns cannot be
-summed into a total number of exercises.
+summed into a total number of exercises. Differences between these counts do
+not establish how much workout time each target should receive or how many
+movements a valid catalog must contain for that target.
 
 The earlier training-claim review recorded **45 removed shin claims** in
 [`training-claim-corrections-2026-09-05.json`](training-claim-corrections-2026-09-05.json).
@@ -69,18 +131,17 @@ Examples explain why restoring those claims would be incorrect:
   independent shin training claims under the current catalog rubric.
 
 The source review found no omitted existing direct shin movement to reinstate.
-The catalog has not replaced the lost apparent variety with comparable genuine
-shin supply. Most later catalog growth went to other targets or fitness skills.
+Those training-claim corrections explain part of the candidate count; they do
+not justify reserving a dedicated shin round at ten minutes.
 
 ## What the existing coverage gates establish
 
 The five-choice availability gate checks complete atomic sequences under the
 approved modifier-pair policy. Fitness-level coverage is global across the
-catalog. Neither establishes a balanced supply of primary work per muscle, nor
-a large per-muscle supply at every fitness profile and combination of enabled
-controls. The separate primary invariant requires at least one genuine primary
-movement per canonical muscle. Passing these gates therefore did not reveal
-this concentration of choices.
+catalog. These checks operate on the configured buckets. They do not validate
+the rationale for those buckets. The separate primary invariant requires at
+least one genuine primary movement per canonical muscle. All these tests can
+pass while the underlying partition remains poorly justified.
 
 The slot-variety report now includes the complete raw anatomical inventory,
 including primary, trained, schedulable and one-block identity counts. Run
@@ -114,7 +175,9 @@ inventory expectations), the production web build and the Debug Android build.
 The packaged exercise was reviewed through Ready, the normal movement timer
 and rest with upper-body clothing off.
 
-The classification correction resolves the erroneous exclusion. The underlying
-ten-identity supply remains a catalog sourcing issue: expanding it requires
-additional established movements with exact reviewed demonstrations and
-truthful anatomy, rather than restoring incidental claims or splitting aliases.
+The classification correction resolves the erroneous exclusion. The grouping
+policy remains unchanged. The next design question is which anatomically
+justified targets a ten-minute workout should reserve, followed by availability
+validation against that corrected definition. This investigation does not add
+a shin-sourcing quota, inflate anatomy or ratings, or silently replace the
+runtime taxonomy.

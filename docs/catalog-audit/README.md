@@ -8,10 +8,11 @@ the action, name, muscular demand, anatomy, structure, and presentation.
 
 The current [slot-variety report](slot_variety_sourcing_targets_current.json)
 also records distinct raw movement supply by canonical muscle, before physical
-and fitness filters. A zero-deficit minimum-availability report does not imply
-balanced anatomical variety. See the
+and fitness filters. Candidate totals do not validate the workout partition
+that produced them. See the
 [26 October shin investigation](shin-variety-investigation-2026-10-26.md)
-for the narrow shin pool and the upper-body clothing correction.
+for the original grouping brief, unchanged implementation tables, validation
+limits, candidate inventory and upper-body clothing correction.
 
 ## Current audit status — 2026-09-11
 
