@@ -1,0 +1,1105 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 96,
+  "entries": [
+    {
+      "id": 419,
+      "metadataSha256": "cb4dc30b5a0c0c3d4e50645d05d4ec6737e0cc7bd990d30e58e7ea1a7ae27ce7",
+      "assets": {
+        "exercise_videos/exercise_0419.mp4": "7d321fa7faf300df73c0312c6ad7e66ccf6fa9a8392d7dd60bae103d21023547"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.769Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "Track the vertically moving thumb while nodding the head in the opposite direction.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-1.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Deliberate repeated cervical nodding supplies neck mobility/motor-control work. Restore both neck-region secondary associations; this does not claim resisted neck strength. The cranial primary, shoulder association, ratings and physical requirements remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. All 57 packaged frames inspected: complete 2.85-second opposing thumb/head cycle with a matching return seam at native speed."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Entire head, eyes, working hand and thumb stay visible. Wider native footage verifies unsupported standing; the final close crop makes the trained gaze action readable."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. All 57 packaged frames inspected: complete 2.85-second opposing thumb/head cycle with a matching return seam at native speed."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 2.850000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Screen-left arm first; horizontal mirroring switches the working arm for the second block without changing the vertical opposition."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The native standing position remains planted."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. No equipment or support; native feet-only standing is compatible with ordinary shoes."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 4 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 419
+      },
+      "workoutReplay": {
+        "rootId": 419,
+        "minutes": 60,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 419,
+            "index": 1,
+            "elapsedMilliseconds": 51681,
+            "playbackRate": 1
+          },
+          {
+            "id": 419,
+            "index": 2,
+            "elapsedMilliseconds": 45635,
+            "playbackRate": 1
+          },
+          {
+            "id": 419,
+            "index": 3,
+            "elapsedMilliseconds": 45618,
+            "playbackRate": 1
+          },
+          {
+            "id": 419,
+            "index": 4,
+            "elapsedMilliseconds": 45528,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 428,
+      "metadataSha256": "fda179ab7a24fafd283ebb256bfd88d0dd797bd6b1ca220a71ff902aa0eede17",
+      "assets": {
+        "exercise_videos/exercise_0428.mp4": "94befaf415635eae4d6d69873fea60b14198ef83da643ad3ea2d7b64e2897dfb"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.778Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer makes repeated two-foot ankle-driven pogo jumps with natural arm swings.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-1.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/production-428.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Complete native takeoffs and landings repeat without travel or a cut in the movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Complete native takeoffs and landings repeat without travel or a cut in the movement."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 3.500000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The performer stays in place within 2 m by 2 m; local stance changes do not travel across the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 428
+      },
+      "workoutReplay": {
+        "rootId": 428,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 428,
+            "index": 1,
+            "elapsedMilliseconds": 51457,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      },
+      "productionReplay": {
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 428,
+            "elapsedMilliseconds": 50461,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 434,
+      "metadataSha256": "a7615c2b1be88e7371e27806820e030836b9c598a701594f2597898de10fc745",
+      "assets": {
+        "exercise_videos/exercise_0434.mp4": "a18ade629577c28774385488373784a81e375210dc7c35f470d2391224393225"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.780Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer makes repeated small two-foot hops laterally across an imagined line and back.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-1.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native hop directions and complete landings are intact; the short lateral displacement is intrinsic to line hops."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native hop directions and complete landings are intact; the short lateral displacement is intrinsic to line hops."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 5.400000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The plainly named short lateral hops return to the starting area within 2 m by 2 m."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 434
+      },
+      "workoutReplay": {
+        "rootId": 434,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 434,
+            "index": 1,
+            "elapsedMilliseconds": 60086,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 439,
+      "metadataSha256": "637a82929e8af406f882e0e8772443c24c62cac2a0028af098b3428c1a0d5890",
+      "assets": {
+        "exercise_videos/exercise_0439.mp4": "82f567eacb3b283767514d637337fa21ffda74b07332adc06eb358806e3189a4"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.782Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer makes two-foot pogo bounces while turning the head from side to side with deliberately fixed forward gaze.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-2.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Complete native head turns and ankle-driven takeoffs and landings are intact."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Complete native head turns and ankle-driven takeoffs and landings are intact."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 3.200000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The performer stays in place within 2 m by 2 m; local stance changes do not travel across the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 439
+      },
+      "workoutReplay": {
+        "rootId": 439,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 439,
+            "index": 1,
+            "elapsedMilliseconds": 67451,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 441,
+      "metadataSha256": "46747468753c71239369df55c0a415e16a35f5d09b57cb0474e5efbe74ac9a42",
+      "assets": {
+        "exercise_videos/exercise_0441.mp4": "83ce734a86593fa7ad7baea47a994e23deda8d73fae80da383d23915d46b98bb"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.789Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer throws alternating hooks, then makes rope-free ankle jumps before returning to boxing guard.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-2.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The native punch-to-jump combination and guard return are complete. The workout rendering keeps the full performer legible."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The native punch-to-jump combination and guard return are complete. The workout rendering keeps the full performer legible."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 7.100000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The performer stays in place within 2 m by 2 m; local stance changes do not travel across the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 441
+      },
+      "workoutReplay": {
+        "rootId": 441,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 441,
+            "index": 1,
+            "elapsedMilliseconds": 50552,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 442,
+      "metadataSha256": "1f602ea1b33e2fdcdb2e5fce1fbbecdfc7678380adecb4e8b89780f9432dde3e",
+      "assets": {
+        "exercise_videos/exercise_0442.mp4": "1e55f003de8416b40977bf59aad5c286cd55d2c00c8d335786322e0edc49cda4"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.790Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer makes two-foot pogo bounces while nodding the head with fixed forward gaze.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-2.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Complete native nods, takeoffs and landings are retained."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Complete native nods, takeoffs and landings are retained."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 4.900000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The performer stays in place within 2 m by 2 m; local stance changes do not travel across the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 442
+      },
+      "workoutReplay": {
+        "rootId": 442,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 442,
+            "index": 1,
+            "elapsedMilliseconds": 50723,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 444,
+      "metadataSha256": "b3e7212b8115ee197c05ce642841774956d7767f295858d9685ad81e1e49f2d4",
+      "assets": {
+        "exercise_videos/exercise_0444.mp4": "8f809eb5f619b7c7f6bb3449dc32b5dc9961c8881d2223b710ffa716d1207455"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.792Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer makes two-foot pogo bounces while alternately tilting the head with fixed forward gaze.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-2.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native head tilts and complete bounce cycles remain visible."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native head tilts and complete bounce cycles remain visible."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 2.500000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The performer stays in place within 2 m by 2 m; local stance changes do not travel across the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 444
+      },
+      "workoutReplay": {
+        "rootId": 444,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 444,
+            "index": 1,
+            "elapsedMilliseconds": 50972,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 445,
+      "metadataSha256": "f7d9506bac9df668d1f9d5e6126f5cf61a4d23a645f68fb1d8a26461e7e7751f",
+      "assets": {
+        "exercise_videos/exercise_0445.mp4": "c45fad22b990342c9c1a90504c600acb60004c5e404169c85d33b62fed3d638a"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.797Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer makes rope-free skipping jumps, rotates empty hands and alternately changes the supporting feet.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-4.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The native changing-foot sequence is complete and uses no physical rope; both feet and hand motions remain visible."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged frames and actual workout card retain the complete human action, hands, feet and head."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The native changing-foot sequence is complete and uses no physical rope; both feet and hand motions remain visible."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 3.800000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Both native sides are present, or the action is bilateral; there is no synthesized within-loop alternation."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The performer stays in place within 2 m by 2 m; local stance changes do not travel across the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact. No equipment is required; ordinary shoes and clothing are compatible. The ordinary landing, clapping or body-tapping sound makes this unavailable with Silence enabled."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 6 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 445
+      },
+      "workoutReplay": {
+        "rootId": 465,
+        "minutes": 60,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 465,
+            "index": 1,
+            "elapsedMilliseconds": 50736,
+            "playbackRate": 1
+          },
+          {
+            "id": 465,
+            "index": 2,
+            "elapsedMilliseconds": 45786,
+            "playbackRate": 1
+          },
+          {
+            "id": 445,
+            "index": 3,
+            "elapsedMilliseconds": 45636,
+            "playbackRate": 1
+          },
+          {
+            "id": 465,
+            "index": 4,
+            "elapsedMilliseconds": 45155,
+            "playbackRate": 1
+          },
+          {
+            "id": 465,
+            "index": 5,
+            "elapsedMilliseconds": 45224,
+            "playbackRate": 1
+          },
+          {
+            "id": 445,
+            "index": 6,
+            "elapsedMilliseconds": 45238,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 458,
+      "metadataSha256": "900f47aa5ca6eddce6ff8536b134b57b4f8c24f9f8ad06ea06d33f1bd21c4216",
+      "assets": {
+        "exercise_videos/exercise_0458.mp4": "de78cfefa68e1568018f1f1f7f97e38d574467f877cebf370f0db68158c69690"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.798Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer repeatedly hops on the screen-right support leg, rotating a quarter turn and back.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-3.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Widened crop preserves the extended balancing hand throughout planted rotational hops."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Inspected every final packaged frame and the actual workout card: the full human action, head, hands and feet remain visible."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Widened crop preserves the extended balancing hand throughout planted rotational hops."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 5.500000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The first side cue matches the demonstrated working limb; the second block mirrors the whole human clip with the opposite cue."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The exercise stays within 2 m by 2 m. Local stance changes and named bounds do not cross the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact; ordinary shoes are compatible and no equipment is needed. Hops, jumps, stomps or claps naturally produce sound; Silence excludes this exercise."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 4 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 458
+      },
+      "workoutReplay": {
+        "rootId": 458,
+        "minutes": 60,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 458,
+            "index": 1,
+            "elapsedMilliseconds": 50833,
+            "playbackRate": 1
+          },
+          {
+            "id": 458,
+            "index": 2,
+            "elapsedMilliseconds": 45387,
+            "playbackRate": 1
+          },
+          {
+            "id": 458,
+            "index": 3,
+            "elapsedMilliseconds": 45602,
+            "playbackRate": 1
+          },
+          {
+            "id": 458,
+            "index": 4,
+            "elapsedMilliseconds": 45753,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 462,
+      "metadataSha256": "eb4ec2889dfe0ca1a46cb2fbd080340593876c213b1e0ec06b1713fbeb3a1ad8",
+      "assets": {
+        "exercise_videos/exercise_0462.mp4": "c9762bfc104398cae1dc931dfd34875e0eb8da6bb67a875cc5153bd6c4345e1d"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.800Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "Small two-foot hops accompany continuous empty-hand rope-turning circles.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-3.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The complete native cycle and return remain visible at natural cadence; the packaged loop repeats the demonstrated action without reversal or synthetic alternation."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Inspected every final packaged frame and the actual workout card: the full human action, head, hands and feet remain visible."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The complete native cycle and return remain visible at natural cadence; the packaged loop repeats the demonstrated action without reversal or synthetic alternation."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 2.800000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The natural bilateral or alternating action is preserved within the loop."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The exercise stays within 2 m by 2 m. Local stance changes and named bounds do not cross the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact; ordinary shoes are compatible and no equipment is needed. Hops, jumps, stomps or claps naturally produce sound; Silence excludes this exercise."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 462
+      },
+      "workoutReplay": {
+        "rootId": 462,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 462,
+            "index": 1,
+            "elapsedMilliseconds": 51553,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 464,
+      "metadataSha256": "26984ac1c4f2083f1567024b6bf06d43331ffa94302baaab97e7155fd696a5df",
+      "assets": {
+        "exercise_videos/exercise_0464.mp4": "a58cdae580cce6283a7e6fffa39b0a07859b482d5c9ed44fd9d96a82cfa8da24"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.801Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer alternates forward heel taps while hopping and turning an imaginary rope.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-3.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The complete native cycle and return remain visible at natural cadence; the packaged loop repeats the demonstrated action without reversal or synthetic alternation."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Inspected every final packaged frame and the actual workout card: the full human action, head, hands and feet remain visible."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The complete native cycle and return remain visible at natural cadence; the packaged loop repeats the demonstrated action without reversal or synthetic alternation."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 1.800000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The natural bilateral or alternating action is preserved within the loop."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The exercise stays within 2 m by 2 m. Local stance changes and named bounds do not cross the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact; ordinary shoes are compatible and no equipment is needed. Hops, jumps, stomps or claps naturally produce sound; Silence excludes this exercise."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 464
+      },
+      "workoutReplay": {
+        "rootId": 464,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 464,
+            "index": 1,
+            "elapsedMilliseconds": 51799,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 465,
+      "metadataSha256": "364c06b2dab925dd24730c6ff67b82d49936f53e978a43971f8ce4d7ea3f9569",
+      "assets": {
+        "exercise_videos/exercise_0465.mp4": "66ea5f9a72ba36ceadc82eecc8f7bfb80bbf673cd902f4459ef028eb8d6b4815"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.802Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "The performer hops on the screen-left support leg while making empty-hand rope circles.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-4.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The complete native cycle and return remain visible at natural cadence; the packaged loop repeats the demonstrated action without reversal or synthetic alternation."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Inspected every final packaged frame and the actual workout card: the full human action, head, hands and feet remain visible."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The complete native cycle and return remain visible at natural cadence; the packaged loop repeats the demonstrated action without reversal or synthetic alternation."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The 2.900000-second native excerpt retains natural timing at 20 fps. Actual workout playback stayed at rate 1 through a complete loop and seam on each block; application clock skips did not accelerate the media."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The first side cue matches the demonstrated working limb; the second block mirrors the whole human clip with the opposite cue."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The exercise stays within 2 m by 2 m. Local stance changes and named bounds do not cross the room."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural repetitions use video; no hold PNG is displayed."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Feet are the only ground contact; ordinary shoes are compatible and no equipment is needed. Hops, jumps, stomps or claps naturally produce sound; Silence excludes this exercise."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 6 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/review-evidence-2026-09-06.json",
+        "id": 465
+      },
+      "workoutReplay": {
+        "rootId": 465,
+        "minutes": 60,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 465,
+            "index": 1,
+            "elapsedMilliseconds": 50736,
+            "playbackRate": 1
+          },
+          {
+            "id": 465,
+            "index": 2,
+            "elapsedMilliseconds": 45786,
+            "playbackRate": 1
+          },
+          {
+            "id": 445,
+            "index": 3,
+            "elapsedMilliseconds": 45636,
+            "playbackRate": 1
+          },
+          {
+            "id": 465,
+            "index": 4,
+            "elapsedMilliseconds": 45155,
+            "playbackRate": 1
+          },
+          {
+            "id": 465,
+            "index": 5,
+            "elapsedMilliseconds": 45224,
+            "playbackRate": 1
+          },
+          {
+            "id": 445,
+            "index": 6,
+            "elapsedMilliseconds": 45238,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": 1051,
+      "metadataSha256": "3f1b24da5ea612ec4d5fc32a421ce32e947aa17439f34f8d15893fcaae06b0e0",
+      "assets": {
+        "exercise_videos/exercise_1051.mp4": "53746a7ecc38358a3dfaef346a810fc4b55851674c3fb53e150253ab95809877"
+      },
+      "reviewedAt": "2026-10-26T07:32:44.804Z",
+      "method": "Fresh anatomical and packaged-loop audit, exact binary verification against the original media review, and complete real-time actual-workout replay. Prior media findings are explicitly retained only for unchanged assets.",
+      "observedAction": "Actual human demonstration of Forward Two-Foot Hops, with its complete named action and declared Room travel.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/frames-4.jpg",
+        "docs/catalog-audit/evidence/2026-10-26-regional-followup/phases-4.jpg",
+        "docs/catalog-audit/regional-followup-2026-10-26.md"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Repeated loaded ankle propulsion supplies a meaningful lateral-compartment plantarflexor stimulus. Restore the full anterior/lateral lower-leg and dorsal-foot secondary association. Primary targets, ratings, Hard Floor and Silence restrictions, timing and identity remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final packaged natural action was reviewed through its complete chronological pass and loop boundary, with the still presentation checked separately for holds."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The final crop preserves the person and trained action. The new traveling demonstrations retain full-body and foot visibility; distance skipping ends before the close approach clips the body."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The loop returns to the start of the filmed action. Traveling passes visibly reset; no reversed or synthesized movement is inserted."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Natural source cadence and workout playback rate 1 were inspected; no time stretching is used."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. Only explicitly timed lead or hand configurations mirror their second block. Both configurations and intermediate-rest previews were checked in the workout."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The actual demonstration matches the Room category. Travel is plainly named; non-locomotor work stays planted."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. This is a repeated movement, without a static hold-frame timer phase."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "Prior approval retained after exact asset hash verification; unchanged playback and presentation. The reviewed action uses feet-only ground contact and accommodates ordinary shoes. Background furniture and equipment are not used for support or resistance."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Fresh actual web-player replay at playback rate 1, with real elapsed time through every full 45-second work block and the Ready/work/rest transitions. All 1 blocks of the complete selection were exercised, including both sides and linked component where applicable. Synthetic prior outcomes position the review fixture only; no user history is changed. No page errors."
+        }
+      },
+      "priorMediaReview": {
+        "path": "docs/catalog-audit/locomotion-review-2026-10-14.json",
+        "id": 1051
+      },
+      "workoutReplay": {
+        "rootId": 1051,
+        "minutes": 10,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1051,
+            "index": 1,
+            "elapsedMilliseconds": 56848,
+            "playbackRate": 1
+          }
+        ],
+        "errors": []
+      }
+    }
+  ]
+}

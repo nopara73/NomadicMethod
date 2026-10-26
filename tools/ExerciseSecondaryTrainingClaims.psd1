@@ -230,6 +230,8 @@
         # Anatomy and evidence: docs/catalog-audit/lower-leg-assignments-2026-10-26.md
         # Heel digs/rocking deliberately dorsiflex; kneeling stretches the front.
         AnteriorLateralLowerLegAndDorsalFoot = @(
+            # Reviewed repeated ankle propulsion loads lateral-compartment plantarflexors.
+            428, 434, 439, 441, 442, 444, 445, 458, 462, 464, 465, 1051,
             16, 119, 138, 139, 140, 141, 162, 187, 197, 198, 201, 252,
             253, 254, 255, 272, 273, 295, 389, 414, 415, 416, 549, 550,
             551, 552, 555, 557, 561, 562, 565, 566, 569, 570, 571, 581,
@@ -313,6 +315,8 @@
         )
 
         PosteriorNeckAndSuboccipitalMuscles = @(
+            # Deliberate cervical mobility is not limited to resisted strength work.
+            419,
             47, 202, 308, 309, 414, 415, 416, 418, 423, 425, 439, 444,
             474, 475, 481, 482, 491, 501, 561, 751, 919
         )
@@ -322,6 +326,8 @@
         )
 
         AnteriorLateralNeckAndHyoidMuscles = @(
+            # Deliberate cervical mobility is not limited to resisted strength work.
+            419,
             202, 409, 414, 415, 416, 418, 422, 442, 477, 483, 491, 501,
             513, 561, 843
         )

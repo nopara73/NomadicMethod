@@ -508,7 +508,9 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // lineups without discarding saved feedback.
 // Revision 95 adds reviewed lateral-compartment plantarflexor associations;
 // existing selections, Keeps and feedback remain valid.
-export const CURRENT_CATALOG_REVISION = 95;
+// Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
+// Existing identities, feedback and unfinished selections remain valid.
+export const CURRENT_CATALOG_REVISION = 96;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,

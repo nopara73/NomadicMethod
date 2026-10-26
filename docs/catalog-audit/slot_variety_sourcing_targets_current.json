@@ -1,6 +1,6 @@
 {
-  "catalogRevision": 95,
-  "catalogSha256": "65c826c865d5c063e63856762683d1261bfc085c708b8388647a1c0174836e05",
+  "catalogRevision": 96,
+  "catalogSha256": "2969bb0ec9a0dc1cb685a21001c8ca85ec28b4f8543d6e81855603427b8e7522",
   "catalogRecordCount": 909,
   "catalogSessionMovementCount": 797,
   "schedulableSessionMovementCount": 768,
@@ -76,13 +76,6 @@
       "singleBlockMovementCount": 19
     },
     {
-      "muscle": "AnteriorLateralNeckAndHyoidMuscles",
-      "primaryMovementCount": 16,
-      "trainedMovementCount": 31,
-      "schedulableMovementCount": 29,
-      "singleBlockMovementCount": 15
-    },
-    {
       "muscle": "CranialMuscles",
       "primaryMovementCount": 22,
       "trainedMovementCount": 31,
@@ -90,9 +83,9 @@
       "singleBlockMovementCount": 13
     },
     {
-      "muscle": "PosteriorNeckAndSuboccipitalMuscles",
-      "primaryMovementCount": 13,
-      "trainedMovementCount": 33,
+      "muscle": "AnteriorLateralNeckAndHyoidMuscles",
+      "primaryMovementCount": 16,
+      "trainedMovementCount": 32,
       "schedulableMovementCount": 30,
       "singleBlockMovementCount": 15
     },
@@ -104,6 +97,13 @@
       "singleBlockMovementCount": 12
     },
     {
+      "muscle": "PosteriorNeckAndSuboccipitalMuscles",
+      "primaryMovementCount": 13,
+      "trainedMovementCount": 34,
+      "schedulableMovementCount": 31,
+      "singleBlockMovementCount": 15
+    },
+    {
       "muscle": "ScapularGirdle",
       "primaryMovementCount": 18,
       "trainedMovementCount": 36,
@@ -111,18 +111,18 @@
       "singleBlockMovementCount": 23
     },
     {
-      "muscle": "AnteriorLateralLowerLegAndDorsalFoot",
-      "primaryMovementCount": 6,
-      "trainedMovementCount": 41,
-      "schedulableMovementCount": 40,
-      "singleBlockMovementCount": 31
-    },
-    {
       "muscle": "SpinalExtensors",
       "primaryMovementCount": 14,
       "trainedMovementCount": 46,
       "schedulableMovementCount": 47,
       "singleBlockMovementCount": 36
+    },
+    {
+      "muscle": "AnteriorLateralLowerLegAndDorsalFoot",
+      "primaryMovementCount": 6,
+      "trainedMovementCount": 53,
+      "schedulableMovementCount": 51,
+      "singleBlockMovementCount": 40
     },
     {
       "muscle": "HipAbductors",

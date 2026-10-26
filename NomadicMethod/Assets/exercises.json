@@ -12488,7 +12488,9 @@
     "video": "exercise_videos/exercise_0419.mp4",
     "primaryCanonicalGroup": "CranialMuscles",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralNeckAndHyoidMuscles",
+      "PosteriorNeckAndSuboccipitalMuscles"
     ],
     "practice": "Vestibular rehabilitation",
     "motionProfile": "VerticalX2Gaze",
@@ -12936,7 +12938,8 @@
     "video": "exercise_videos/exercise_0428.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Plyometric conditioning",
     "motionProfile": "PogoJumpArmSwing",
@@ -13224,7 +13227,8 @@
     "video": "exercise_videos/exercise_0434.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Plyometric conditioning",
     "motionProfile": "LateralLineHop",
@@ -13471,7 +13475,8 @@
       "PosteriorNeckAndSuboccipitalMuscles",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "CranialMuscles"
+      "CranialMuscles",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Vestibular and neck conditioning",
     "motionProfile": "PogoHeadTurn",
@@ -13571,7 +13576,8 @@
     "secondaryCanonicalGroups": [
       "Chest",
       "ShoulderAbductors",
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Boxing and cardio conditioning",
     "motionProfile": "HookPunchRopelessJump",
@@ -13620,7 +13626,8 @@
       "AnteriorLateralNeckAndHyoidMuscles",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "CranialMuscles"
+      "CranialMuscles",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Vestibular and neck conditioning",
     "motionProfile": "PogoHeadNod",
@@ -13720,7 +13727,8 @@
       "PosteriorNeckAndSuboccipitalMuscles",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "CranialMuscles"
+      "CranialMuscles",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Vestibular and neck conditioning",
     "motionProfile": "PogoHeadTilt",
@@ -13766,7 +13774,8 @@
     "video": "exercise_videos/exercise_0445.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Rope-free cardio conditioning",
     "motionProfile": "ImaginaryJumpRopeChangingFeet",
@@ -14382,7 +14391,8 @@
     "secondaryCanonicalGroups": [
       "Soleus",
       "MedialAndDeepKneeExtensors",
-      "LateralKneeExtensors"
+      "LateralKneeExtensors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Plyometric balance conditioning",
     "motionProfile": "SingleLegRotationalHop",
@@ -14578,7 +14588,8 @@
     "video": "exercise_videos/exercise_0462.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Rope-free cardio conditioning",
     "motionProfile": "FakeJumpRope",
@@ -14671,7 +14682,8 @@
     "video": "exercise_videos/exercise_0464.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Rope-free cardio conditioning",
     "motionProfile": "FakeJumpRopeHeelTaps",
@@ -14717,7 +14729,8 @@
     "video": "exercise_videos/exercise_0465.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Rope-free cardio conditioning",
     "motionProfile": "SingleLegImaginaryJumpRope",
@@ -27960,7 +27973,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1051.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "AnteriorLateralLowerLegAndDorsalFoot"
+    ],
     "practice": "Locomotor conditioning",
     "motionProfile": "ForwardTwoFootHops",
     "mode": "Repetition",
