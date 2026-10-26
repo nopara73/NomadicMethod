@@ -19,7 +19,7 @@ public sealed class ElevationEquipmentTests
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
         using JsonDocument review = JsonDocument.Parse(File.ReadAllText(
             Path.Combine(AppContext.BaseDirectory, "Assets", "elevation-admission.json")));
-        Assert.Equal(30, catalog.Count(e => e.ElevationRequired));
+        Assert.Equal(35, catalog.Count(e => e.ElevationRequired));
         Assert.Empty(WorkoutModifierPolicy.FindElevationCatalogDeficiencies(catalog));
         Assert.True(catalog.Count(e => e.WallRequired && !e.OnlyFeetTouchGround) >= 5);
         foreach (JsonElement item in review.RootElement.EnumerateArray())

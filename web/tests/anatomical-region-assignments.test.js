@@ -7,6 +7,7 @@ import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getResoluti
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 const review = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-region-review-2026-10-26.json", import.meta.url), "utf8"));
+const laterReview = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json", import.meta.url), "utf8"));
 const reactionDocument = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/reaction_drills.json", import.meta.url), "utf8"));
 const now = () => Date.parse("2026-10-26T00:00:00Z");
 
@@ -14,7 +15,13 @@ test("anatomy corrections remain bound to reviewed movements and media", () => {
   assert.equal(review.entries.length, 84);
   assert.equal(new Set(review.entries.map(e => e.id)).size, 84);
   for (const entry of review.entries) {
-    const exercise = catalog.find(e => e.id === entry.id);
+    const exercise = structuredClone(catalog.find(e => e.id === entry.id));
+    const amendment = laterReview.entries.find(e => e.id === entry.id && e.kind === 'AnatomyCorrection');
+    if (amendment) {
+      assert.equal(amendment.previousMetadataSha256, entry.metadataSha256, 'Explicit review chain: ' + entry.id);
+      assert.equal(createHash('sha256').update(JSON.stringify(exercise)).digest('hex'), amendment.metadataSha256);
+      exercise.secondaryCanonicalGroups = exercise.secondaryCanonicalGroups.filter(g => !amendment.addedSecondaryGroups.includes(g));
+    }
     assert.equal(createHash("sha256").update(JSON.stringify(exercise)).digest("hex"), entry.metadataSha256, String(entry.id));
     const previous = structuredClone(exercise);
     previous.secondaryCanonicalGroups = previous.secondaryCanonicalGroups.filter(g => !entry.addedSecondaryGroups.includes(g));
@@ -63,7 +70,11 @@ for (const [id, slot, modifiers] of [[301, "r30.rotator-cuff", 0], [1214, "r30.a
   });
 
 test("catalog 96 workouts, Keeps, history and downvotes survive the additive update", () => {
-  const legacy = structuredClone(catalog);
+  const legacy = structuredClone(catalog.filter(e => e.id < 1720 || e.id > 1729));
+  for (const entry of laterReview.entries.filter(e => e.kind === 'AnatomyCorrection')) {
+    const e = legacy.find(e => e.id === entry.id);
+    e.secondaryCanonicalGroups = e.secondaryCanonicalGroups.filter(g => !entry.addedSecondaryGroups.includes(g));
+  }
   for (const entry of review.entries) {
     const e = legacy.find(e => e.id === entry.id);
     e.secondaryCanonicalGroups = e.secondaryCanonicalGroups.filter(g => !entry.addedSecondaryGroups.includes(g));
@@ -84,5 +95,5 @@ test("catalog 96 workouts, Keeps, history and downvotes survive the additive upd
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 96);
-  assert.equal(restored.state.catalogRevision, 97);
+  assert.equal(restored.state.catalogRevision, 98);
 });

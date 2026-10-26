@@ -26,6 +26,13 @@ on:
       - "docs/catalog-audit/lower-leg-review-2026-10-26.json"
       - "docs/catalog-audit/regional-followup-review-2026-10-26.json"
       - "docs/catalog-audit/anatomical-region-review-2026-10-26.json"
+      - "docs/catalog-audit/anatomical-variety-admissions-2026-10-26.json"
+      - "docs/catalog-audit/anatomical-variety-review-2026-10-26.json"
+      - "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/**"
+      - "tools/Test-AnatomicalVarietyAdmissions.ps1"
+      - "tools/ExternalExerciseMedia.psd1"
+      - "tools/VerifiedExerciseDemos.psd1"
+      - "tools/ReviewedSourceMedia/variety-*-source.mp4"
       - "NomadicMethod/Assets/exercise_videos/**"
       - "NomadicMethod/Assets/exercise_direction_videos/**"
       - "NomadicMethod/Assets/exercise_hold_frames/**"
@@ -55,6 +62,10 @@ on:
       - "tools/CanonicalMuscleGroups.psd1"
       - "tools/ExerciseSecondaryTrainingClaims.psd1"
       - "tools/Test-ExerciseSecondaryTrainingClaimAudit.ps1"
+      - "tools/ExerciseCanonicalGroups.psd1"
+      - "tools/CatalogExerciseReplacements.psd1"
+      - "tools/ExerciseCanonicalSourceParity.ps1"
+      - "tools/Test-ExerciseCanonicalSourceParity.ps1"
       - "tools/RealExerciseCatalog.psd1"
       - "tools/AdditionalExerciseCatalog.psd1"
       - "tools/ExerciseCatalogDefinitions.ps1"
@@ -126,6 +137,13 @@ jobs:
             /docs/catalog-audit/lower-leg-review-2026-10-26.json
             /docs/catalog-audit/regional-followup-review-2026-10-26.json
             /docs/catalog-audit/anatomical-region-review-2026-10-26.json
+            /docs/catalog-audit/anatomical-variety-admissions-2026-10-26.json
+            /docs/catalog-audit/anatomical-variety-review-2026-10-26.json
+            /docs/catalog-audit/evidence/2026-10-26-anatomical-variety/**
+            /tools/Test-AnatomicalVarietyAdmissions.ps1
+            /tools/ExternalExerciseMedia.psd1
+            /tools/VerifiedExerciseDemos.psd1
+            /tools/ReviewedSourceMedia/variety-*-source.mp4
             /NomadicMethod/Assets/exercise_videos/**
             /NomadicMethod/Assets/exercise_direction_videos/**
             /NomadicMethod/Assets/exercise_hold_frames/**
@@ -157,6 +175,10 @@ jobs:
             /tools/CanonicalMuscleGroups.psd1
             /tools/ExerciseSecondaryTrainingClaims.psd1
             /tools/Test-ExerciseSecondaryTrainingClaimAudit.ps1
+            /tools/ExerciseCanonicalGroups.psd1
+            /tools/CatalogExerciseReplacements.psd1
+            /tools/ExerciseCanonicalSourceParity.ps1
+            /tools/Test-ExerciseCanonicalSourceParity.ps1
             /tools/RealExerciseCatalog.psd1
             /tools/AdditionalExerciseCatalog.psd1
             /tools/ExerciseCatalogDefinitions.ps1
@@ -207,6 +229,14 @@ jobs:
       - name: Validate catalog review evidence contracts
         shell: pwsh
         run: ./tools/Test-CatalogReviewEvidence.ps1
+
+      - name: Validate canonical generation sources
+        shell: pwsh
+        run: ./tools/Test-ExerciseCanonicalSourceParity.ps1
+
+      - name: Validate anatomical variety admissions
+        shell: pwsh
+        run: ./tools/Test-AnatomicalVarietyAdmissions.ps1
 
       - name: Validate precise skill admissions and reviewed media
         shell: pwsh

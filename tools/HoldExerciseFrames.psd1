@@ -201,4 +201,11 @@
 
     # ZoPD gap admissions, 24 October 2026.
     1718 = 55
+    # Anatomical variety admissions, 26 October 2026.
+    1723 = 50
+    # Anatomical variety admissions, 26 October 2026.
+    1726 = 50
+    1727 = 50
+    1728 = 50
+    1729 = 50
 }

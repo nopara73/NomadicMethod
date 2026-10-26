@@ -1,0 +1,1873 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 98,
+  "status": "PASS",
+  "anatomicalClaimBasis": "These are direct local mobility/relaxation or active training claims. Ordinary incidental activation, general pelvic-pain exercises, and an inventory of every active muscle do not count. Relaxation stretches are not presented as pelvic-floor strengthening.",
+  "entries": [
+    {
+      "id": 1069,
+      "name": "Seated Butterfly Stretch",
+      "kind": "AnatomyCorrection",
+      "metadataSha256": "537900fb1f608fb6df9716b67e753369ee2cb99a7546c81e4d2b2832ea6aa473",
+      "assets": {
+        "exercise_videos/exercise_1069.mp4": "3a9018b70097eac6278bd0781bff8e4ee43f32471bec70a476072a81c8dc60a1",
+        "exercise_hold_frames/exercise_1069.png": "113b55036c520515f85e54a2392d147a05ac9b6a2e56d8a485762f6beceacfc3"
+      },
+      "anatomySources": [
+        "https://www.ruh.nhs.uk/patients/patient_information/PHY046_Relaxing_the_Pelvic_Floor.pdf"
+      ],
+      "observedAction": "The held seated butterfly places the soles together and opens both knees to stretch the groin and provide the explicitly prescribed pelvic-floor relaxation position.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:57.318Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "addedSecondaryGroups": [
+        "PelvicFloorAndPerineum"
+      ],
+      "previousMetadataSha256": "a226b8ebe190effcfd0e1ffa01e9b62baec8b046f583b080d74ee27611e1026f",
+      "workoutReplay": {
+        "rootId": 1069,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1069,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50231,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1069-1-1069-ready.png",
+              "1069-1-1069-movement.png",
+              "1069-1-1069-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1071,
+      "name": "Child's Pose",
+      "kind": "AnatomyCorrection",
+      "metadataSha256": "580481f6d2c45336002f01235886f6083563a80187b4f8c380c8043850032f27",
+      "assets": {
+        "exercise_videos/exercise_1071.mp4": "a8a217d093be2d7702c7932a18e23781768d9f0385b9e3228f5eb11a70373643",
+        "exercise_hold_frames/exercise_1071.png": "b0fb5375afba4164242c43a97b3897db0e1661bac297fc7885da5d850c6c2b03"
+      },
+      "anatomySources": [
+        "https://www.dynamichealth.nhs.uk/media/huqitjg2/pelvic-floor-relaxation-leaflet-v2.pdf"
+      ],
+      "observedAction": "The held child pose rests the hips toward the heels, extends the arms and relaxes the trunk in the exact NHS pelvic-floor relaxation position.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:57.457Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "addedSecondaryGroups": [
+        "PelvicFloorAndPerineum"
+      ],
+      "previousMetadataSha256": "2623da132e267f8736cd801b1e3924faeec87e10ccc407fc40179328be7315e4",
+      "workoutReplay": {
+        "rootId": 1071,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1071,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50236,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1071-1-1071-ready.png",
+              "1071-1-1071-movement.png",
+              "1071-1-1071-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1209,
+      "name": "Happy Baby Stretch",
+      "kind": "AnatomyCorrection",
+      "metadataSha256": "171863f3c20b8f6385a5518c0e6c1f8227725eead402009faf967e491a34efbc",
+      "assets": {
+        "exercise_videos/exercise_1209.mp4": "79c6663bfa38089ad3755ef22ca64de1d1b5535a5c109b59279ed191084aea52",
+        "exercise_hold_frames/exercise_1209.png": "c89f7f0bc3b872de16cc9e06efd614106eeff9c56100e732ba1c1a961718d52d"
+      },
+      "anatomySources": [
+        "https://www.dynamichealth.nhs.uk/media/huqitjg2/pelvic-floor-relaxation-leaflet-v2.pdf",
+        "https://www.ruh.nhs.uk/patients/patient_information/PHY046_Relaxing_the_Pelvic_Floor.pdf"
+      ],
+      "observedAction": "The held happy baby flexes and opens both hips with the feet held above the knees, matching the clinical pelvic-floor relaxation stretch.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:57.578Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "addedSecondaryGroups": [
+        "PelvicFloorAndPerineum"
+      ],
+      "previousMetadataSha256": "1f0aea3f8c5ec2dd985a54599fa437c16ce36ee5ed01af32b24e3ae41de9b483",
+      "workoutReplay": {
+        "rootId": 1209,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1209,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50264,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1209-1-1209-ready.png",
+              "1209-1-1209-movement.png",
+              "1209-1-1209-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1216,
+      "name": "Single Knee-to-Chest Stretch",
+      "kind": "AnatomyCorrection",
+      "metadataSha256": "687497697602647def449e439b18bd1d919661182c9015fdfc718dc4a916d773",
+      "assets": {
+        "exercise_videos/exercise_1216.mp4": "ea34f0385477301fe9b8bd2367acb3c47a28d99d5e1178cdfe42a44324b8196c",
+        "exercise_hold_frames/exercise_1216.png": "c3413fef5b232da477a99d97d4755937eca5aed4a4d7157223021f5a5b37446e"
+      },
+      "anatomySources": [
+        "https://www.ruh.nhs.uk/patients/patient_information/PHY046_Relaxing_the_Pelvic_Floor.pdf"
+      ],
+      "observedAction": "One knee is gently hugged toward the chest while the opposite leg remains extended; both sides receive their complete held phases.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:57.719Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-mirroring-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both natural sides and repeated sets were replayed completely; the opposite side mirrors the exact same human movement and does not add an identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "addedSecondaryGroups": [
+        "PelvicFloorAndPerineum"
+      ],
+      "previousMetadataSha256": "65345686698dea5109d7d51b9d955bf2b0a84c5cd86f7786df8afba2eac1c9f8",
+      "workoutReplay": {
+        "rootId": 1216,
+        "minutes": 60,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1216,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50255,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1216-1-1216-ready.png",
+              "1216-1-1216-movement.png",
+              "1216-1-1216-rest.png"
+            ]
+          },
+          {
+            "id": 1216,
+            "index": 2,
+            "mode": "Hold",
+            "elapsedMilliseconds": 45035,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1216-2-1216-ready.png",
+              "1216-2-1216-movement.png",
+              "1216-2-1216-rest.png"
+            ]
+          },
+          {
+            "id": 1216,
+            "index": 3,
+            "mode": "Hold",
+            "elapsedMilliseconds": 45048,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1216-3-1216-ready.png",
+              "1216-3-1216-movement.png",
+              "1216-3-1216-rest.png"
+            ]
+          },
+          {
+            "id": 1216,
+            "index": 4,
+            "mode": "Hold",
+            "elapsedMilliseconds": 44916,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1216-4-1216-ready.png",
+              "1216-4-1216-movement.png",
+              "1216-4-1216-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum.set1.block1",
+          "r30.pelvic-floor-perineum.set1.block2",
+          "r30.pelvic-floor-perineum.set2.block1",
+          "r30.pelvic-floor-perineum.set2.block2"
+        ]
+      }
+    },
+    {
+      "id": 1292,
+      "name": "Wall Straddle Stretch",
+      "kind": "AnatomyCorrection",
+      "metadataSha256": "cec0c82cb93ef2e203a8e27124c77c39ebe66ea74af5f532546748cd051096c0",
+      "assets": {
+        "exercise_videos/exercise_1292.mp4": "a52469dfe2d6afaf5da183f7a55a064db50d547d25d7bb95b33b5ad92c67c3b4",
+        "exercise_hold_frames/exercise_1292.png": "76d43017c786901d52ad7116f53cc6eac7138bbab3d0faa607ae302adea8ac3d"
+      },
+      "anatomySources": [
+        "https://www.dynamichealth.nhs.uk/media/huqitjg2/pelvic-floor-relaxation-leaflet-v2.pdf",
+        "https://www.ruh.nhs.uk/patients/patient_information/PHY046_Relaxing_the_Pelvic_Floor.pdf"
+      ],
+      "observedAction": "Both straight legs relax into a V against the wall while the trunk rests on the floor, matching the NHS pelvic-floor relaxation position.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:57.855Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "addedSecondaryGroups": [
+        "PelvicFloorAndPerineum"
+      ],
+      "previousMetadataSha256": "fefb4ea451f7f0767dd7b37b68ed031fe09f311eb4fa9b433c593de002395205",
+      "workoutReplay": {
+        "rootId": 1292,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1292,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50628,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1292-1-1292-ready.png",
+              "1292-1-1292-movement.png",
+              "1292-1-1292-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1720,
+      "name": "Thumb Knuckle Bends with Base Supported",
+      "kind": "NewAdmission",
+      "metadataSha256": "2444a1e48b791b54ed37acd62bfbeeac95b97596643f07f1beddf3d714ca06b0",
+      "assets": {
+        "exercise_videos/exercise_1720.mp4": "82782590bbe29f206e42bd5d3f49fdde1877073a9832c9a35621bb5a8c97b19d"
+      },
+      "anatomySources": [
+        "https://www.southtees.nhs.uk/services/physiotherapy/hand-therapy/hand-therapy-exercise-videos/"
+      ],
+      "observedAction": "The opposite hand supports the thumb base while the working thumb repeatedly bends and straightens at the MCP knuckle.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:57.928Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-mirroring-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural source cycle, including return or both nostril phases where applicable, remains present in the runtime loop."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The loop repeats a complete observed cycle without reversed, duplicated-side or synthetic movement."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both natural sides and repeated sets were replayed completely; the opposite side mirrors the exact same human movement and does not add an identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "The exercise is a continuous repetition or breathing task, without a held frame."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.southtees.nhs.uk/services/physiotherapy/hand-therapy/hand-therapy-exercise-videos/",
+        "video": "https://www.youtube.com/watch?v=9bb6cLmKf1U",
+        "originalStartSeconds": 31.1,
+        "durationSeconds": 7.6,
+        "crop": "crop=900:570:0:0,pad=900:900:0:165:white",
+        "localFile": "variety-1720-source.mp4",
+        "localSha256": "a414d289324b4ed387715782b7c12ba6b60f5e7634fe4fd444d6ad314bdfaf66",
+        "originalSha256": "3e2d19c0d4497e82407eaa7dc8432fb9d61afdc0b60b681252081a53fae44dd8",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1720,
+        "minutes": 60,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1720,
+            "index": 1,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 50588,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1720.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 3.753439,
+              "rate": 1
+            },
+            "screenshots": [
+              "1720-1-1720-ready.png",
+              "1720-1-1720-movement.png",
+              "1720-1-1720-rest.png"
+            ]
+          },
+          {
+            "id": 1720,
+            "index": 2,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44907,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1720.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 1.776292,
+              "rate": 1
+            },
+            "screenshots": [
+              "1720-2-1720-ready.png",
+              "1720-2-1720-movement.png",
+              "1720-2-1720-rest.png"
+            ]
+          },
+          {
+            "id": 1720,
+            "index": 3,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44215,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1720.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 2.252131,
+              "rate": 1
+            },
+            "screenshots": [
+              "1720-3-1720-ready.png",
+              "1720-3-1720-movement.png",
+              "1720-3-1720-rest.png"
+            ]
+          },
+          {
+            "id": 1720,
+            "index": 4,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44905,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1720.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 1.871915,
+              "rate": 1
+            },
+            "screenshots": [
+              "1720-4-1720-ready.png",
+              "1720-4-1720-movement.png",
+              "1720-4-1720-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.intrinsic-hand.set1.block1",
+          "r30.intrinsic-hand.set1.block2",
+          "r30.intrinsic-hand.set2.block1",
+          "r30.intrinsic-hand.set2.block2"
+        ]
+      }
+    },
+    {
+      "id": 1721,
+      "name": "Thumb Opposition",
+      "kind": "NewAdmission",
+      "metadataSha256": "f3bb8de16bbed1d468108e396e227b099cc00aa8d7ee8460a2b772b2844b32ce",
+      "assets": {
+        "exercise_videos/exercise_1721.mp4": "f9c15377b6de2b0aff2143e2937b54d131162825ebd5ca747d06d2288a3ade50"
+      },
+      "anatomySources": [
+        "https://www.southtees.nhs.uk/services/physiotherapy/hand-therapy/hand-therapy-exercise-videos/"
+      ],
+      "observedAction": "The thumb successively opposes the fingertips and reaches across the palm, then returns to the open hand.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:58.993Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-mirroring-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural source cycle, including return or both nostril phases where applicable, remains present in the runtime loop."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The loop repeats a complete observed cycle without reversed, duplicated-side or synthetic movement."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both natural sides and repeated sets were replayed completely; the opposite side mirrors the exact same human movement and does not add an identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "The exercise is a continuous repetition or breathing task, without a held frame."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.southtees.nhs.uk/services/physiotherapy/hand-therapy/hand-therapy-exercise-videos/",
+        "video": "https://www.youtube.com/watch?v=9bb6cLmKf1U",
+        "originalStartSeconds": 47.5,
+        "durationSeconds": 12.3,
+        "crop": "crop=1040:500:0:30,pad=1040:1040:0:270:white",
+        "localFile": "variety-1721-source.mp4",
+        "localSha256": "685560bbd95cf43c2e767d24d99d9ecd2b8a38a77d6d4893c20cb7632d1e72f8",
+        "originalSha256": "3e2d19c0d4497e82407eaa7dc8432fb9d61afdc0b60b681252081a53fae44dd8",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1721,
+        "minutes": 60,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1721,
+            "index": 1,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 50551,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1721.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 3.712561,
+              "rate": 1
+            },
+            "screenshots": [
+              "1721-1-1721-ready.png",
+              "1721-1-1721-movement.png",
+              "1721-1-1721-rest.png"
+            ]
+          },
+          {
+            "id": 1721,
+            "index": 2,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44866,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1721.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 9.159126,
+              "rate": 1
+            },
+            "screenshots": [
+              "1721-2-1721-ready.png",
+              "1721-2-1721-movement.png",
+              "1721-2-1721-rest.png"
+            ]
+          },
+          {
+            "id": 1721,
+            "index": 3,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44463,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1721.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 9.452765,
+              "rate": 1
+            },
+            "screenshots": [
+              "1721-3-1721-ready.png",
+              "1721-3-1721-movement.png",
+              "1721-3-1721-rest.png"
+            ]
+          },
+          {
+            "id": 1721,
+            "index": 4,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44738,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1721.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 9.486749,
+              "rate": 1
+            },
+            "screenshots": [
+              "1721-4-1721-ready.png",
+              "1721-4-1721-movement.png",
+              "1721-4-1721-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.intrinsic-hand.set1.block1",
+          "r30.intrinsic-hand.set1.block2",
+          "r30.intrinsic-hand.set2.block1",
+          "r30.intrinsic-hand.set2.block2"
+        ]
+      }
+    },
+    {
+      "id": 1722,
+      "name": "Lift Thumb Away from Palm",
+      "kind": "NewAdmission",
+      "metadataSha256": "0b87a518a4f9ddc647d629ba865d51b3e4a21b662f76c72bdf9c9cf03534b700",
+      "assets": {
+        "exercise_videos/exercise_1722.mp4": "05a75c6b1544daf7e52ccee183218676a6b1f47e51b25e10f5df88f1f425a343"
+      },
+      "anatomySources": [
+        "https://www.southtees.nhs.uk/services/physiotherapy/hand-therapy/hand-therapy-exercise-videos/"
+      ],
+      "observedAction": "With the hand resting on its little-finger edge, the thumb repeatedly moves away from the palm and returns.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:50:59.860Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-mirroring-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural source cycle, including return or both nostril phases where applicable, remains present in the runtime loop."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The loop repeats a complete observed cycle without reversed, duplicated-side or synthetic movement."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both natural sides and repeated sets were replayed completely; the opposite side mirrors the exact same human movement and does not add an identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "The exercise is a continuous repetition or breathing task, without a held frame."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.southtees.nhs.uk/services/physiotherapy/hand-therapy/hand-therapy-exercise-videos/",
+        "video": "https://www.youtube.com/watch?v=9bb6cLmKf1U",
+        "originalStartSeconds": 117,
+        "durationSeconds": 12,
+        "crop": "crop=800:720:400:0,pad=800:800:0:40:white",
+        "localFile": "variety-1722-source.mp4",
+        "localSha256": "69f135eb76a1385b682f18d9520e2b324e52c93a35c1e122a0060ba82c68b9b7",
+        "originalSha256": "3e2d19c0d4497e82407eaa7dc8432fb9d61afdc0b60b681252081a53fae44dd8",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1722,
+        "minutes": 60,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1722,
+            "index": 1,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 50357,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1722.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 4.386433,
+              "rate": 1
+            },
+            "screenshots": [
+              "1722-1-1722-ready.png",
+              "1722-1-1722-movement.png",
+              "1722-1-1722-rest.png"
+            ]
+          },
+          {
+            "id": 1722,
+            "index": 2,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44536,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1722.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 9.113714,
+              "rate": 1
+            },
+            "screenshots": [
+              "1722-2-1722-ready.png",
+              "1722-2-1722-movement.png",
+              "1722-2-1722-rest.png"
+            ]
+          },
+          {
+            "id": 1722,
+            "index": 3,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 45486,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1722.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 8.961382,
+              "rate": 1
+            },
+            "screenshots": [
+              "1722-3-1722-ready.png",
+              "1722-3-1722-movement.png",
+              "1722-3-1722-rest.png"
+            ]
+          },
+          {
+            "id": 1722,
+            "index": 4,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 44873,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1722.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 9.460473,
+              "rate": 1
+            },
+            "screenshots": [
+              "1722-4-1722-ready.png",
+              "1722-4-1722-movement.png",
+              "1722-4-1722-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.intrinsic-hand.set1.block1",
+          "r30.intrinsic-hand.set1.block2",
+          "r30.intrinsic-hand.set2.block1",
+          "r30.intrinsic-hand.set2.block2"
+        ]
+      }
+    },
+    {
+      "id": 1723,
+      "name": "Thumb Adduction Against Opposite Finger",
+      "kind": "NewAdmission",
+      "metadataSha256": "cf8b6254c7e3fc190106d829c6b0234c3a495d916d6615ec5f9ca0b150d0ef2f",
+      "assets": {
+        "exercise_videos/exercise_1723.mp4": "efbf83058b32bb9bcfc8d6d6e773520e0d507c8a3b088600cdf5daf46c391178",
+        "exercise_hold_frames/exercise_1723.png": "42c1dbcb34dc30f28666c83414fe24f56e3fc91868b063711b9cbb1f5e2c2b8e"
+      },
+      "anatomySources": [
+        "https://www.chcpmsk.org.uk/uploads/resource/document/65/Thumb_osteoarthritis_exercises_-_MODERATE.pdf"
+      ],
+      "observedAction": "The opposite index finger resists thumb adduction while both hands remain in the demonstrated isometric position.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:01.245Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-mirroring-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Both natural sides and repeated sets were replayed completely; the opposite side mirrors the exact same human movement and does not add an identity."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.chcpmsk.org.uk/uploads/resource/document/65/Thumb_osteoarthritis_exercises_-_MODERATE.pdf",
+        "video": "https://www.youtube.com/watch?v=FCayWbsOeN4",
+        "originalStartSeconds": 1,
+        "durationSeconds": 10,
+        "crop": "crop=900:510:200:210,pad=900:900:0:195:white",
+        "localFile": "variety-1723-source.mp4",
+        "localSha256": "995c37753c70dbe99fd9166478353979409a81b860dd24c568808301c77ea469",
+        "originalSha256": "f95bc80f24f2dbca1330b9c4d7ee89a702430b2fef622d01f65aab23ebfab342",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1723,
+        "minutes": 60,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1723,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50225,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1723-1-1723-ready.png",
+              "1723-1-1723-movement.png",
+              "1723-1-1723-rest.png"
+            ]
+          },
+          {
+            "id": 1723,
+            "index": 2,
+            "mode": "Hold",
+            "elapsedMilliseconds": 43978,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1723-2-1723-ready.png",
+              "1723-2-1723-movement.png",
+              "1723-2-1723-rest.png"
+            ]
+          },
+          {
+            "id": 1723,
+            "index": 3,
+            "mode": "Hold",
+            "elapsedMilliseconds": 44942,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1723-3-1723-ready.png",
+              "1723-3-1723-movement.png",
+              "1723-3-1723-rest.png"
+            ]
+          },
+          {
+            "id": 1723,
+            "index": 4,
+            "mode": "Hold",
+            "elapsedMilliseconds": 44842,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1723-4-1723-ready.png",
+              "1723-4-1723-movement.png",
+              "1723-4-1723-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.intrinsic-hand.set1.block1",
+          "r30.intrinsic-hand.set1.block2",
+          "r30.intrinsic-hand.set2.block1",
+          "r30.intrinsic-hand.set2.block2"
+        ]
+      }
+    },
+    {
+      "id": 1724,
+      "name": "Pursed-Lip Breathing",
+      "kind": "NewAdmission",
+      "metadataSha256": "17ad5fda3c4daab94f4c3b0842abe4fb5f89e4d8b3039cf91c3128d2f01416ef",
+      "assets": {
+        "exercise_videos/exercise_1724.mp4": "04fc59f403e9c9b9df40d4654abb982a99d2a2c78a59182e43d372385fd8ae7a"
+      },
+      "anatomySources": [
+        "https://www.youtube.com/watch?v=0ZCNRqVqP68"
+      ],
+      "observedAction": "The demonstrator inhales through the nose and slowly exhales through pursed lips in a complete visible breathing cycle.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:01.594Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural source cycle, including return or both nostril phases where applicable, remains present in the runtime loop."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The loop repeats a complete observed cycle without reversed, duplicated-side or synthetic movement."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "The exercise is a continuous repetition or breathing task, without a held frame."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.youtube.com/watch?v=0ZCNRqVqP68",
+        "video": "https://www.youtube.com/watch?v=0ZCNRqVqP68",
+        "originalStartSeconds": 0.25,
+        "durationSeconds": 10.3,
+        "crop": "crop=640:720:0:0,pad=720:720:40:0:white",
+        "localFile": "variety-1724-source.mp4",
+        "localSha256": "48081fd9f5a4304e5ee345f1fdb99adcf678c1ecb829f7eb69aaf0f30e917a5c",
+        "originalSha256": "2e4f42b04b4a51dcb2f9d81c7aba97f88cc4a929cab19d0f6a5ffd2a3343243d",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1724,
+        "minutes": 10,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1724,
+            "index": 1,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 50211,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1724.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 5.265384,
+              "rate": 1
+            },
+            "screenshots": [
+              "1724-1-1724-ready.png",
+              "1724-1-1724-movement.png",
+              "1724-1-1724-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r10.head-neck-scapular-chest-breathing"
+        ]
+      }
+    },
+    {
+      "id": 1725,
+      "name": "Alternate-Nostril Breathing",
+      "kind": "NewAdmission",
+      "metadataSha256": "89c9e5b0cf89442432173e903b872a7233de7c224ab558c2d2b35408c515ecdd",
+      "assets": {
+        "exercise_videos/exercise_1725.mp4": "5d142b868d8164e84794fb69c31267f409aa09918ca2d010fec51692537e030f"
+      },
+      "anatomySources": [
+        "https://www.youtube.com/watch?v=0ZCNRqVqP68"
+      ],
+      "observedAction": "The demonstrator uses the thumb and ring finger to alternate the open nostril through a complete left/right breathing cycle.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:01.853Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural source cycle, including return or both nostril phases where applicable, remains present in the runtime loop."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The loop repeats a complete observed cycle without reversed, duplicated-side or synthetic movement."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "The exercise is a continuous repetition or breathing task, without a held frame."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.youtube.com/watch?v=0ZCNRqVqP68",
+        "video": "https://www.youtube.com/watch?v=0ZCNRqVqP68",
+        "originalStartSeconds": 23.55,
+        "durationSeconds": 26.15,
+        "crop": "crop=640:720:0:0,pad=720:720:40:0:white",
+        "localFile": "variety-1725-source.mp4",
+        "localSha256": "13448932ce4424e481f35deb9b26fd0809a6e052cf7bf8e114f4360d997d1c80",
+        "originalSha256": "2e4f42b04b4a51dcb2f9d81c7aba97f88cc4a929cab19d0f6a5ffd2a3343243d",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1725,
+        "minutes": 10,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1725,
+            "index": 1,
+            "mode": "Repetition",
+            "elapsedMilliseconds": 50325,
+            "sample": {
+              "source": "http://127.0.0.1:51178/assets/exercise_videos/exercise_1725.mp4",
+              "width": 256,
+              "height": 256,
+              "time": 4.591085,
+              "rate": 1
+            },
+            "screenshots": [
+              "1725-1-1725-ready.png",
+              "1725-1-1725-movement.png",
+              "1725-1-1725-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r10.head-neck-scapular-chest-breathing"
+        ]
+      }
+    },
+    {
+      "id": 1726,
+      "name": "Supine Butterfly Stretch",
+      "kind": "NewAdmission",
+      "metadataSha256": "80fbc90c16131aefbc6506687dacfff881afc0b88436f89e0a1374a9cad96aaa",
+      "assets": {
+        "exercise_videos/exercise_1726.mp4": "28449e91633ed6a1affa7249ee44ce7bdd6f55be7d4672610069d0575f7be43c",
+        "exercise_hold_frames/exercise_1726.png": "2e54ca6f1033eb609f049175ea6561d419a60c18a61e1d2b3c7072b64911d4ca"
+      },
+      "anatomySources": [
+        "https://www.ruh.nhs.uk/patients/patient_information/PHY046_Relaxing_the_Pelvic_Floor.pdf",
+        "https://www.dynamichealth.nhs.uk/media/huqitjg2/pelvic-floor-relaxation-leaflet-v2.pdf"
+      ],
+      "observedAction": "Lying supine, the soles meet and both knees open while the hands gently guide the thighs, matching the prescribed supine butterfly relaxation stretch.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:01.909Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://us.physitrack.com/home-exercise-video/supine-butterfly-stretch",
+        "video": "https://media.physitrack.com/exercises/f463ad6d-9548-48a8-a3af-6156c89b49ea/en/video_1280x720.mp4",
+        "originalStartSeconds": 1.4,
+        "durationSeconds": 9,
+        "crop": "crop=940:560:180:100,pad=940:940:0:190:black",
+        "localFile": "variety-1726-source.mp4",
+        "localSha256": "96306867952c3a4ca902a2740a4909e9924109a0360e4f59ce40d26a20ce717a",
+        "originalSha256": "c6877734a67c3166c764202ef141bab6e97e12c7f0bd181999a03ab8f8ad5a7f",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1726,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1726,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50029,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1726-1-1726-ready.png",
+              "1726-1-1726-movement.png",
+              "1726-1-1726-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1727,
+      "name": "Deep Squat Stretch",
+      "kind": "NewAdmission",
+      "metadataSha256": "50a263f7312be01537d6806b1c5c8cca61cc9cd409ebd9f02708865054e2a663",
+      "assets": {
+        "exercise_videos/exercise_1727.mp4": "85577fb67666a6ca09a26bb71ade3328782541f2234b5e89c3c1d77590f54e44",
+        "exercise_hold_frames/exercise_1727.png": "0469295efa7ff88941da24cda4a84778d2e95c9eb9a73efa22a7e2ec6befc8dd"
+      },
+      "anatomySources": [
+        "https://www.dynamichealth.nhs.uk/media/huqitjg2/pelvic-floor-relaxation-leaflet-v2.pdf",
+        "https://www.imperial.nhs.uk/-/media/website/patient-information-leaflets/physiotherapy/overactive-pelvic-floor.pdf"
+      ],
+      "observedAction": "The demonstrator holds a deep, wide squat with palms together and elbows between the knees; the raised heels and forefoot loading remain visible.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:02.182Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.youtube.com/watch?v=ntP8eQY74Cw",
+        "video": "https://www.youtube.com/watch?v=ntP8eQY74Cw",
+        "originalStartSeconds": 1103.5,
+        "durationSeconds": 5.5,
+        "crop": "crop=900:720:150:0,pad=900:900:0:90:white",
+        "localFile": "variety-1727-source.mp4",
+        "localSha256": "8980c6cecd1b0b17923f9fd81f4c9193eab5b49e6b8a92754637ee35fefabb72",
+        "originalSha256": "6afc4c9db57c69945756f6fe32e5bf1905dccbcb817407568c400c508aa40843",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1727,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1727,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50255,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1727-1-1727-ready.png",
+              "1727-1-1727-movement.png",
+              "1727-1-1727-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1728,
+      "name": "Wall-Supported Happy Baby Stretch",
+      "kind": "NewAdmission",
+      "metadataSha256": "26af214f2168280f968d9951875c34ae6af29663029f95ba9d20bf046537215f",
+      "assets": {
+        "exercise_videos/exercise_1728.mp4": "85bbbb5a3a2f85a71da1da94ceafaefa215fd5ecdc97c0dffcc57d822a7bf4f0",
+        "exercise_hold_frames/exercise_1728.png": "c107dcb314de8e318aa06397d59192bc6d1d8e0afaf4a3afc89f622053fe3267"
+      },
+      "anatomySources": [
+        "https://abuhb.nhs.wales/files/physiotherapy/easy-stretches-to-relax-the-pelvis-pdf/",
+        "https://imovedaily.com/stretch-pelvic-hip-openers/"
+      ],
+      "observedAction": "Lying supine with both soles supported on the wall, the hips and knees flex and open in the supported happy-baby stretch.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:04.754Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.youtube.com/watch?v=ptnwi13j6v8",
+        "video": "https://www.youtube.com/watch?v=ptnwi13j6v8",
+        "originalStartSeconds": 99.2,
+        "durationSeconds": 1.6,
+        "crop": "crop=640:370:300:340,pad=640:640:0:135:white",
+        "localFile": "variety-1728-source.mp4",
+        "localSha256": "bdb30d8f587b41f772087af85c43b228a0407d60b6e5b41a0800017d5ca6a91e",
+        "originalSha256": "265d15149042abc55c43fa670aacd0a4472664616de8916528976322d54a7f43",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1728,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1728,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50557,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1728-1-1728-ready.png",
+              "1728-1-1728-movement.png",
+              "1728-1-1728-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    },
+    {
+      "id": 1729,
+      "name": "Legs-Up-the-Wall Stretch",
+      "kind": "NewAdmission",
+      "metadataSha256": "846defe60dcd75f0b3452ea5f8a4e6396b33d223a33edb0230c2261e90986aa4",
+      "assets": {
+        "exercise_videos/exercise_1729.mp4": "d3448c8089818b11a3982b9d465482c342037aeef4328b61478c208d221340f2",
+        "exercise_hold_frames/exercise_1729.png": "e1315713907eea7b6c927d9ca1770fa255733015581359475a68e6b9fb8cde6d"
+      },
+      "anatomySources": [
+        "https://www.revitalize-pt.com/blog/3-pregnancy-stretches-for-the-pelvic-floor"
+      ],
+      "observedAction": "Both straight legs rest together against the wall while the arms and trunk remain supported on the floor in the prescribed relaxation stretch.",
+      "method": "Compared the exact source movement and final runtime loop or held target, then reviewed Ready, full real-time movement, Rest and every atomic side/set in the actual web workout at 412×915. Physical classifications and anatomical claims were checked against the cited clinical movement, without incidental-activation or fitness-rating credit.",
+      "reviewedAt": "2026-10-26T12:51:04.889Z",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-ready-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-movement-contact.png",
+        "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/final-rest-contact.png"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The accurate name, primary target, meaningful secondary claims, demand, sequence and restrictions match the observed movement and cited source. Existing correction identities and feedback remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The final static target shows the complete established held posture; it does not invent visible movement."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "All joints, working fingers, nostrils, feet and required support relevant to this execution remain visible. Publisher timers and unrelated adjacent panels are excluded."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "A single reviewed natural held target remains stable through the work phase."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "Source elapsed time is retained at normal speed; actual workout video samples report playbackRate1. Static holds use the normal 45-second timer."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "This bilateral or continuous movement has no invented extra side or direction."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The demonstrated non-locomotor exercise remains planted in place."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The exact packaged PNG and held MP4 match the complete source posture and remain correct in Ready, movement and Rest."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The exact floor, furniture support, wall/sole contact, clothing, surface, silence and public-context facts were reviewed; new wall stretches retain their actual support requirements."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "The actual workout completed every 45-second work phase, side and existing set, with correct Ready, movement and Rest presentation and no browser errors."
+        }
+      },
+      "source": {
+        "page": "https://www.youtube.com/watch?v=ptnwi13j6v8",
+        "video": "https://www.youtube.com/watch?v=ptnwi13j6v8",
+        "originalStartSeconds": 504.2,
+        "durationSeconds": 1.6,
+        "crop": "crop=600:510:340:200,pad=600:600:0:45:white",
+        "localFile": "variety-1729-source.mp4",
+        "localSha256": "f5e0bb5611a2e7bcb3e67ccc482481e9b60331ccad9c4b4b60f9bbe2d7c714bf",
+        "originalSha256": "265d15149042abc55c43fa670aacd0a4472664616de8916528976322d54a7f43",
+        "framesPerSecond": 20,
+        "sourceWidth": 1280,
+        "sourceHeight": 720
+      },
+      "workoutReplay": {
+        "rootId": 1729,
+        "minutes": 30,
+        "sourcePreview": true,
+        "modifiers": 29920,
+        "syntheticPriorOutcomes": true,
+        "realTimePlayback": true,
+        "blocks": [
+          {
+            "id": 1729,
+            "index": 1,
+            "mode": "Hold",
+            "elapsedMilliseconds": 50475,
+            "sample": {
+              "source": "",
+              "width": 0,
+              "height": 0,
+              "time": 0,
+              "rate": 1
+            },
+            "screenshots": [
+              "1729-1-1729-ready.png",
+              "1729-1-1729-movement.png",
+              "1729-1-1729-rest.png"
+            ]
+          }
+        ],
+        "errors": [],
+        "groupIds": [
+          "r30.pelvic-floor-perineum"
+        ]
+      }
+    }
+  ]
+}

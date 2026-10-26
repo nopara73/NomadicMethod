@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 98,
+  "minimumSessionMovementsPerGroup": 10,
+  "anatomicalGroupCount": 90,
+  "baselineRecordCount": 909,
+  "recordCount": 919,
+  "newExerciseIds": [
+    1720,
+    1721,
+    1722,
+    1723,
+    1724,
+    1725,
+    1726,
+    1727,
+    1728,
+    1729
+  ],
+  "anatomyCorrectionIds": [
+    1069,
+    1071,
+    1209,
+    1216,
+    1292
+  ],
+  "baselineShortfalls": [
+    {
+      "groupId": "r30.pelvic-floor-perineum",
+      "count": 1
+    },
+    {
+      "groupId": "r30.intrinsic-hand",
+      "count": 6
+    },
+    {
+      "groupId": "r30.breathing-muscles",
+      "count": 8
+    }
+  ],
+  "review": "docs/catalog-audit/anatomical-variety-review-2026-10-26.json"
+}

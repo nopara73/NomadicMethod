@@ -138,4 +138,11 @@
 
     # ZoPD gap admissions, 24 October 2026.
     1718 = $true
+    # Anatomical variety admissions, 26 October 2026.
+    1723 = $true
+    # Anatomical variety admissions, 26 October 2026.
+    1726 = $true
+    1727 = $true
+    1728 = $true
+    1729 = $true
 }

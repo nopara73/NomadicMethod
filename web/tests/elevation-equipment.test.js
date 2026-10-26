@@ -149,7 +149,7 @@ test("old unfinished workouts retain their original catalog", () => {
 test("reviewed catalog retains exact demos and independent floor and platform requirements", () => {
   const catalog = JSON.parse(source("../../NomadicMethod/Assets/exercises.json"));
   const review = JSON.parse(source("./fixtures/elevation-admission.json"));
-  assert.equal(catalog.filter(e => e.elevationRequired).length, 30);
+  assert.equal(catalog.filter(e => e.elevationRequired).length, 35);
   assert.deepEqual(findElevationCatalogDeficiencies(catalog), []);
   assert.ok(catalog.filter(e => e.wallRequired && !e.onlyFeetTouchGround).length >= 5);
   for (const item of review) {

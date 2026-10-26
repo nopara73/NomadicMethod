@@ -2,12 +2,12 @@
   "scoringVersion": 4,
   "representation": "trainable-level-sets",
   "status": "provisional",
-  "assessedOn": "2026-10-22",
+  "assessedOn": "2026-10-26",
   "blockSeconds": 45,
-  "catalogRevision": 97,
-  "catalogSha256": "aed8378d8d8b4ec1cec9446a027bccf985248d68584c4fbd411a49727cd44675",
-  "exerciseCount": 909,
-  "profileCount": 208,
+  "catalogRevision": 98,
+  "catalogSha256": "d8464a6361254d1d452a192f14989d301bae2c1a8353f65ff62525dadd53a13d",
+  "exerciseCount": 919,
+  "profileCount": 209,
   "coveragePolicy": {
     "schemaVersion": 2,
     "minimumDistinctSessionMovements": 5,
@@ -673,8 +673,8 @@
     },
     "muscularStrength": {
       "1": {
-        "count": 332,
-        "exerciseCount": 383,
+        "count": 333,
+        "exerciseCount": 384,
         "exerciseIds": [
           15,
           16,
@@ -1058,7 +1058,8 @@
           1642,
           1643,
           1644,
-          1706
+          1706,
+          1723
         ],
         "sessionMovementIds": [
           15,
@@ -1392,7 +1393,8 @@
           1533,
           1534,
           1535,
-          1706
+          1706,
+          1723
         ]
       },
       "2": {
@@ -2088,8 +2090,8 @@
     },
     "muscularEndurance": {
       "1": {
-        "count": 307,
-        "exerciseCount": 364,
+        "count": 308,
+        "exerciseCount": 365,
         "exerciseIds": [
           15,
           16,
@@ -2454,7 +2456,8 @@
           1634,
           1642,
           1643,
-          1644
+          1644,
+          1723
         ],
         "sessionMovementIds": [
           15,
@@ -2763,7 +2766,8 @@
           1416,
           1425,
           1430,
-          1516
+          1516,
+          1723
         ]
       },
       "2": {
@@ -4365,8 +4369,8 @@
     },
     "flexibility": {
       "1": {
-        "count": 116,
-        "exerciseCount": 134,
+        "count": 119,
+        "exerciseCount": 137,
         "exerciseIds": [
           17,
           59,
@@ -4501,7 +4505,10 @@
           1438,
           1632,
           1633,
-          1634
+          1634,
+          1720,
+          1721,
+          1722
         ],
         "sessionMovementIds": [
           17,
@@ -4619,12 +4626,15 @@
           1410,
           1413,
           1425,
-          1438
+          1438,
+          1720,
+          1721,
+          1722
         ]
       },
       "2": {
-        "count": 152,
-        "exerciseCount": 165,
+        "count": 156,
+        "exerciseCount": 169,
         "exerciseIds": [
           17,
           21,
@@ -4790,7 +4800,11 @@
           1418,
           1419,
           1420,
-          1710
+          1710,
+          1726,
+          1727,
+          1728,
+          1729
         ],
         "sessionMovementIds": [
           17,
@@ -4944,12 +4958,16 @@
           1418,
           1419,
           1420,
-          1710
+          1710,
+          1726,
+          1727,
+          1728,
+          1729
         ]
       },
       "3": {
-        "count": 91,
-        "exerciseCount": 98,
+        "count": 95,
+        "exerciseCount": 102,
         "exerciseIds": [
           115,
           163,
@@ -5048,7 +5066,11 @@
           1523,
           1524,
           1525,
-          1709
+          1709,
+          1726,
+          1727,
+          1728,
+          1729
         ],
         "sessionMovementIds": [
           115,
@@ -5141,7 +5163,11 @@
           1523,
           1524,
           1525,
-          1709
+          1709,
+          1726,
+          1727,
+          1728,
+          1729
         ]
       },
       "4": {
@@ -8183,7 +8209,7 @@
     }
   },
   "profileContributorCoverage": {
-    "recordsWithoutContribution": 620,
+    "recordsWithoutContribution": 626,
     "coverage": {
       "cardiorespiratoryEndurance": {
         "1": {
@@ -8238,9 +8264,13 @@
       },
       "muscularStrength": {
         "1": {
-          "count": 0,
-          "exerciseIds": [],
-          "sessionMovementIds": []
+          "count": 1,
+          "exerciseIds": [
+            1723
+          ],
+          "sessionMovementIds": [
+            1723
+          ]
         },
         "2": {
           "count": 1,
@@ -8293,20 +8323,22 @@
       },
       "muscularEndurance": {
         "1": {
-          "count": 5,
+          "count": 6,
           "exerciseIds": [
             257,
             289,
             520,
             993,
-            1003
+            1003,
+            1723
           ],
           "sessionMovementIds": [
             257,
             289,
             520,
             993,
-            1003
+            1003,
+            1723
           ]
         },
         "2": {
@@ -8586,7 +8618,7 @@
       },
       "flexibility": {
         "1": {
-          "count": 71,
+          "count": 74,
           "exerciseIds": [
             59,
             98,
@@ -8669,7 +8701,10 @@
             1408,
             1410,
             1413,
-            1438
+            1438,
+            1720,
+            1721,
+            1722
           ],
           "sessionMovementIds": [
             59,
@@ -8742,7 +8777,10 @@
             1408,
             1410,
             1413,
-            1438
+            1438,
+            1720,
+            1721,
+            1722
           ]
         },
         "2": {

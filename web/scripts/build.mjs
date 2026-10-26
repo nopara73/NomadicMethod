@@ -7,6 +7,8 @@ import { resolveReactionDrills } from "../reaction-drills.js";
 import {
   CURRENT_CATALOG_REVISION,
   MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP,
+  MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP,
+  getAnatomicalGroupVarietyInventory,
   findHardFloorCategoryCoverageDeficiencies,
   findMuscularDemandCoverageDeficiencies,
   findSoleWallContactRequiredCatalogDeficiencies,
@@ -203,8 +205,8 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 909) {
-  throw new Error(`Expected 909 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 919) {
+  throw new Error(`Expected 919 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 const reactionPlans = resolveReactionDrills(JSON.parse(reactionSource), catalog);
 if (reactionPlans.size !== 21) throw new Error('Expected twenty-one reviewed reaction protocols.');
@@ -220,6 +222,8 @@ for (const plan of reactionPlans.values()) {
   }
 }
 
+const anatomicalGroupInventory = getAnatomicalGroupVarietyInventory(catalog);
+const anatomicalGroupVarietyDeficiencies = anatomicalGroupInventory.filter(row => row.matchingExerciseCount < row.requiredExerciseCount);
 const pairwiseDeficiencies =
   findWorkoutModifierPairCoverageDeficiencies(catalog);
 const hardFloorCategoryDeficiencies =
@@ -250,6 +254,7 @@ const catalogSha256 = createHash("sha256")
   .update(normalizeLineEndings(catalogSource))
   .digest("hex");
 const expectedIntegritySummary = {
+  anatomicalGroupVarietyDeficiencyCount: anatomicalGroupVarietyDeficiencies.length,
   pairwiseDeficiencyCount: pairwiseDeficiencies.length,
   pairwiseAffectedGroupCount: affectedGroupCount(pairwiseDeficiencies),
   hardFloorCategoryDeficiencyCount: hardFloorCategoryDeficiencies.length,
@@ -282,6 +287,9 @@ const integrityDebtMatches =
   integrityDeficitReport.policy
     ?.muscularDemandMinimumPerCategoryPerGroup ===
       MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP &&
+  integrityDeficitReport.policy?.anatomicalGroupMinimum === MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP &&
+  exactlyEqual(integrityDeficitReport.anatomicalGroupInventory, anatomicalGroupInventory) &&
+  exactlyEqual(integrityDeficitReport.anatomicalGroupVariety, anatomicalGroupVarietyDeficiencies) &&
   exactlyEqual(integrityDeficitReport.summary, expectedIntegritySummary) &&
   exactlyEqual(integrityDeficitReport.pairwise, pairwiseDeficiencies) &&
   exactlyEqual(
@@ -301,6 +309,7 @@ const integrityDebtMatches =
 const catalogInvariantChecks = [
   ["modifier metadata completeness", isModifierMetadataComplete(catalog)],
   ["session movement metadata", isSessionMovementMetadataValid(catalog)],
+  ["anatomical group minimum of ten distinct selectable movements", anatomicalGroupVarietyDeficiencies.length === 0],
   ["hierarchical modifier-pair coverage", pairwiseDeficiencies.length === 0],
   ["hierarchical hard-floor category coverage",
     hardFloorCategoryDeficiencies.length === 0],

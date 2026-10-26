@@ -83,8 +83,19 @@ public sealed record WorkoutModifierMaterialityDeficiency(
     int AffectedBucketCount,
     int RequiredAffectedBucketCount);
 
+public sealed record WorkoutAnatomicalGroupVariety(
+    int Minutes,
+    string GroupId,
+    string GroupName,
+    int MatchingExerciseCount,
+    int RequiredExerciseCount,
+    IReadOnlyList<int> SessionMovementIds);
+
 public static class WorkoutModifierPolicy
 {
+    // Global supply includes every existing group, including historical fine slots.
+    // Pairwise context floors remain separate; no alias or repeated block adds variety.
+    public const int MinimumSessionMovementsPerAnatomicalGroup = 10;
     public const int BroadCoverageResolutionMinutes = 3;
     // Short workouts need a larger pool because the exact duration leaves
     // little room for longer atomic alternatives. Count complete movements
@@ -92,7 +103,7 @@ public static class WorkoutModifierPolicy
     public const int ShortWorkoutCoverageMaximumMinutes = 15;
     public const int MinimumExercisesPerShortPairStatePerGroup = 5;
     // Preserve the prior coverage invariant for historical resolutions only.
-    // New-workout setup stops at 15 minutes; no extra sourcing quota exists above it.
+    // New-workout setup stops at 15 minutes; the global anatomical supply rule is separate.
     public const int MinimumExercisesPerLegacyPairStatePerGroup = 1;
     // Historical demand targets are diagnostic inventories,
     // not admission requirements or release gates. Never fill them with
@@ -647,6 +658,35 @@ public static class WorkoutModifierPolicy
         return WorkoutCoveragePolicy.IsSelectable(exercise, group) &&
             IsCompatible(exercise, profile);
     }
+
+    public static IReadOnlyList<WorkoutAnatomicalGroupVariety>
+        GetAnatomicalGroupVarietyInventory(IReadOnlyCollection<Exercise> exercises)
+    {
+        ArgumentNullException.ThrowIfNull(exercises);
+        IReadOnlyDictionary<int, Exercise> byId = exercises.ToDictionary(exercise => exercise.Id);
+        WorkoutModifiers equipment = WorkoutModifiers.Mirror | WorkoutModifiers.TallMirror |
+            WorkoutModifiers.Wall | WorkoutModifiers.SoleWallContact |
+            WorkoutModifiers.Floor | WorkoutModifiers.Elevation | WorkoutModifiers.JumpPlatform |
+            WorkoutModifiers.RoomLocomotion | WorkoutModifiers.FieldLocomotion;
+        WorkoutModifiers[] profiles = [equipment, equipment | WorkoutModifiers.UpperBodyClothing];
+        return MassGroupingTaxonomy.SupportedMinutes.SelectMany(minutes =>
+            MassGroupingTaxonomy.GetResolution(minutes).Groups.Select(group =>
+            {
+                int[] movementIds = exercises.Where(exercise =>
+                    Rules.All(rule => rule.IsReviewed(exercise)) &&
+                    WorkoutSequencePolicy.GetBlockCount(exercise, minutes) <= minutes &&
+                    profiles.Any(profile => IsSequenceUnitEligible(
+                        exercise, byId, group, profile)))
+                    .Select(GetSessionMovementId).Distinct().Order().ToArray();
+                return new WorkoutAnatomicalGroupVariety(minutes, group.Id, group.DisplayName,
+                    movementIds.Length, MinimumSessionMovementsPerAnatomicalGroup, movementIds);
+            })).ToArray();
+    }
+
+    public static IReadOnlyList<WorkoutAnatomicalGroupVariety>
+        FindAnatomicalGroupVarietyDeficiencies(IReadOnlyCollection<Exercise> exercises) =>
+        GetAnatomicalGroupVarietyInventory(exercises).Where(row =>
+            row.MatchingExerciseCount < row.RequiredExerciseCount).ToArray();
 
     public static IReadOnlyList<WorkoutModifierPairCoverageDeficiency>
         FindPairwiseCoverageDeficiencies(

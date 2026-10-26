@@ -7,6 +7,8 @@ import {
   MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
   getMinimumExercisesPerModifierPairStatePerGroup,
+  MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP,
+  getAnatomicalGroupVarietyInventory,
   getSessionMovementId,
 } from "../workout.js";
 
@@ -18,6 +20,7 @@ const ledger = JSON.parse(await readFile(new URL(
 const catalogSha256 = createHash("sha256")
   .update(catalogSource.replaceAll("\r\n", "\n")).digest("hex");
 const policy = {
+  anatomicalGroupMinimum: MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP,
   shortWorkoutCoverageMaximumMinutes: SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
   shortWorkoutModifierPairMinimumPerStatePerGroup:
     MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
@@ -69,11 +72,16 @@ for (const row of ledger.pairwise) {
   target.deficientProfileCount++;
   targets.set(row.groupId, target);
 }
+const anatomicalGroupInventory = getAnatomicalGroupVarietyInventory(catalog);
+const anatomicalGroupDeficiencies = anatomicalGroupInventory.filter(row => row.matchingExerciseCount < row.requiredExerciseCount);
 const report = {
   catalogRevision: CURRENT_CATALOG_REVISION, catalogSha256, catalogRecordCount: catalog.length,
   catalogSessionMovementCount: movementCount(catalog),
   schedulableSessionMovementCount: movementCount(roots),
   anatomicalInventory,
+  anatomicalGroupInventory,
+  anatomicalGroupDeficiencies,
+  anatomicalGroupDeficiencyCount: anatomicalGroupDeficiencies.length,
   newWorkoutMinutes: NEW_WORKOUT_MINUTES, policy,
   acceptedCoverageExceptions: ledger.policy.acceptedCoverageExceptions,
   gateSummary: ledger.summary,
@@ -82,7 +90,7 @@ const report = {
   remainingShortWorkoutSlotCount: targets.size,
   targets: [...targets.values()],
   interpretation: [
-    "Anatomical inventory counts distinct movement identities before modifiers, fitness, recovery, preference or duration filtering; it is a supply diagnostic, not a new admission quota.",
+    "Canonical association counts are a supply diagnostic. The anatomical group gate separately requires ten distinct approved selectable complete movements in every existing group, including historical fine slots, with duration fit and a real supported physical setup.",
     "New workouts offer 3, 5, 7, 10 and 15 minutes. Longer durations remain only for existing sessions and history.",
     "Each available short-workout slot requires five distinct selectable complete session movements, except the exact owner-approved omissions.",
     "A grouped slot accepts a genuine primary or meaningful secondary association to any member muscle. It does not require every member muscle at once.",

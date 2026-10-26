@@ -30,6 +30,13 @@ up into seven complete anatomical partitions containing 3, 5, 7, 10, 15, 20,
 or 30 workout groups. Every canonical leaf belongs to exactly one group at each
 resolution.
 
+Every one of these 90 groups and subgroups requires at least ten distinct approved
+session movements globally, including historical fine slots. Count complete atomic
+sequences that individually fit their duration and one supported physical setup,
+before whole-lineup reservations or personal ranking. Sides, sets, directions and
+aliases count once. The native tests, web tests and production build reject any
+remaining shortage; existing contextual availability floors remain separate.
+
 Choosing a shorter session therefore coarsens the body map instead of cutting
 the end off a longer routine. The default 5-minute partition has five broad
 targets; the 30-minute partition addresses all 30 leaves individually. Selected exercise
@@ -612,7 +619,7 @@ Movement start and resume checkpoints use Android's non-blocking preference
 apply so the Play control responds without waiting for a disk flush; pausing,
 finishing, and score-changing actions still commit synchronously.
 
-The Android catalog uses SQLite schema version 96. Catalog migrations distinguish
+The Android catalog uses SQLite schema version 114. Catalog migrations distinguish
 semantic exercise replacements from approved name, timing, and media repairs.
 Unchanged identities retain their scores and valid keeps; changed identities
 invalidate only affected workout state. Score changes use a small recovery

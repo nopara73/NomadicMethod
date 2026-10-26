@@ -340,4 +340,9 @@
     1707 = 'ScreenRightThenLeft'
     1708 = 'ScreenLeftThenRight'
     1710 = 'ScreenLeftThenRight'
+    # Anatomical variety admissions, 26 October 2026.
+    1720 = 'ScreenRightThenLeft'
+    1721 = 'ScreenRightThenLeft'
+    1722 = 'ScreenRightThenLeft'
+    1723 = 'ScreenRightThenLeft'
 }

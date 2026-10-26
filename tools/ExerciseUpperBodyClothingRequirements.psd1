@@ -1,6 +1,7 @@
 @{
     # Covered torso or upper back is part of the demonstrated wall contact.
     ClothingRequired = @(
+        1726, 1728, 1729,
         1522, 1523,
         1436,
         1437,
@@ -26,6 +27,8 @@
     # demonstrated exercise. Keep this exhaustive so new catalog records fail
     # generation until they receive a real review.
     Agnostic = @(
+        1727,
+        1720, 1721, 1722, 1723, 1724, 1725,
         165, # Wall Tibialis Raise: upper-body clothing is optional (owner correction).
         1718, 1719,
         1717,

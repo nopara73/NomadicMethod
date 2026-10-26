@@ -13,6 +13,8 @@ import {
   MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP,
+  MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP,
+  getAnatomicalGroupVarietyInventory,
   findHardFloorCategoryCoverageDeficiencies,
   findMuscularDemandCoverageDeficiencies,
   findWorkoutModifierMaterialityDeficiencies,
@@ -39,6 +41,8 @@ const outputPath = path.join(
 
 const catalogSource = await readFile(catalogPath, "utf8");
 const catalog = JSON.parse(catalogSource);
+const anatomicalGroupInventory = getAnatomicalGroupVarietyInventory(catalog);
+const anatomicalGroupVariety = anatomicalGroupInventory.filter(row => row.matchingExerciseCount < row.requiredExerciseCount);
 const pairwise = findWorkoutModifierPairCoverageDeficiencies(catalog);
 const hardFloorCategory =
   findHardFloorCategoryCoverageDeficiencies(catalog);
@@ -54,6 +58,7 @@ const report = {
     .update(catalogSource.replaceAll("\r\n", "\n"))
     .digest("hex"),
   policy: {
+    anatomicalGroupMinimum: MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP,
     treatment: "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
     acceptedCoverageExceptions: ACCEPTED_COVERAGE_EXCEPTIONS,
     acceptedMaterialityExceptions: ACCEPTED_MATERIALITY_EXCEPTIONS,
@@ -68,6 +73,7 @@ const report = {
       MINIMUM_EXERCISES_PER_MUSCULAR_DEMAND_CATEGORY_PER_GROUP,
   },
   summary: {
+    anatomicalGroupVarietyDeficiencyCount: anatomicalGroupVariety.length,
     pairwiseDeficiencyCount: pairwise.length,
     pairwiseAffectedGroupCount: affectedGroupCount(pairwise),
     hardFloorCategoryDeficiencyCount: hardFloorCategory.length,
@@ -91,6 +97,8 @@ const report = {
     distinctLineupDeficiencyCount: distinctLineup.length,
     completeLineupDeficiencyCount: completeLineup.length,
   },
+  anatomicalGroupInventory,
+  anatomicalGroupVariety,
   pairwise,
   hardFloorCategory,
   muscularDemand,

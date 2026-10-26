@@ -1,6 +1,6 @@
 # Fitness training-level catalog coverage
 
-Catalog revision 97; 909 assessed exercise records.
+Catalog revision 98; 919 assessed exercise records.
 
 Required: **at least 5 distinct approved session movements that can train each characteristic-level combination**.
 An exercise can support multiple explicitly assessed levels. A maximum alone does not imply lower-level coverage. Sides, directions, sets, aliases and renamed duplicates do not multiply a movement.
@@ -10,9 +10,9 @@ Gate: **PASS**. 0 of 50 cells are below the minimum; 0 characteristic-level plac
 | Characteristic | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Cardiorespiratory endurance | 134 | 78 | 44 | 32 | 7 |
-| Muscular strength | 332 | 223 | 54 | 24 | 13 |
-| Muscular endurance | 307 | 465 | 235 | 24 | 11 |
-| Flexibility | 116 | 152 | 91 | 10 | 6 |
+| Muscular strength | 333 | 223 | 54 | 24 | 13 |
+| Muscular endurance | 308 | 465 | 235 | 24 | 11 |
+| Flexibility | 119 | 156 | 95 | 10 | 6 |
 | Agility | 14 | 13 | 13 | 13 | 5 |
 | Balance | 96 | 75 | 27 | 27 | 5 |
 | Coordination | 241 | 232 | 41 | 44 | 6 |
@@ -28,14 +28,14 @@ Ratings are provisional NM training-level judgments for repeated 45-second block
 
 ## Spiderweb contributors (diagnostic)
 
-620 records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.
+626 records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.
 
 | Characteristic | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Cardiorespiratory endurance | 0 | 5 | 5 | 0 | 0 |
-| Muscular strength | 0 | 1 | 2 | 5 | 2 |
-| Muscular endurance | 5 | 90 | 30 | 1 | 0 |
-| Flexibility | 71 | 15 | 4 | 1 | 1 |
+| Muscular strength | 1 | 1 | 2 | 5 | 2 |
+| Muscular endurance | 6 | 90 | 30 | 1 | 0 |
+| Flexibility | 74 | 15 | 4 | 1 | 1 |
 | Agility | 0 | 5 | 0 | 0 | 0 |
 | Balance | 3 | 20 | 4 | 3 | 0 |
 | Coordination | 36 | 46 | 3 | 3 | 1 |

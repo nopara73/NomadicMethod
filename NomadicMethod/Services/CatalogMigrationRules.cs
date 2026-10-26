@@ -15,7 +15,7 @@ public static class CatalogMigrationRules
     // Existing identities, feedback and unfinished selections remain valid.
     // Revision 97 restores reviewed cuff, accessory-adductor and forearm work.
     // These additive associations retain every existing selection and identity.
-    public const int CurrentCatalogRevision = 97;
+    public const int CurrentCatalogRevision = 98;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;

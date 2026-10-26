@@ -83,7 +83,7 @@ test("lateral-compartment work can actually fill the existing regional round", (
 for (const sourceRevision of [94, 95])
 for (const evidenceVersion of [3, 4])
 test(`additive anatomy correction preserves a workout, Keeps and feedback from catalog ${sourceRevision} and fitness evidence ${evidenceVersion}`, () => {
-  const legacy = structuredClone(catalog);
+  const legacy = structuredClone(catalog.filter(e => e.id < 1720 || e.id > 1729));
   for (const exercise of legacy) {
     if (sourceRevision === 95 && ![428,434,439,441,442,444,445,458,462,464,465,1051].includes(exercise.id)) continue;
     if (![1029,1210,1295,1410].includes(exercise.id))
@@ -108,7 +108,7 @@ test(`additive anatomy correction preserves a workout, Keeps and feedback from c
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, sourceRevision);
-  assert.equal(restored.state.catalogRevision, 97);
+  assert.equal(restored.state.catalogRevision, 98);
 });
 
 for (const [id, minutes, target] of [[428,10,"r10.anterior-lateral-lower-leg-dorsal-foot"]])

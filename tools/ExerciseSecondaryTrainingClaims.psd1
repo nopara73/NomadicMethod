@@ -344,7 +344,10 @@
             1296
         )
 
-        PelvicFloorAndPerineum = @()
+        PelvicFloorAndPerineum = @(
+            # Exact held relaxation stretches reviewed against NHS/clinical guidance.
+            1069, 1071, 1209, 1216, 1292, 1726, 1727, 1728, 1729
+        )
 
     }
 }

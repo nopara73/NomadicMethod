@@ -73,7 +73,7 @@ public sealed class SlotVarietyPolicyTests
         Assert.DoesNotContain(old, e => WorkoutCatalogPolicy.SlotVarietyExerciseIds.Contains(e.Id));
         Assert.Equal(new[] { CanonicalMuscleGroup.HipFlexors }, old.Single(e => e.Id == 906).SecondaryCanonicalGroups);
         Assert.Contains(CanonicalMuscleGroup.HipAbductors, catalog.Single(e => e.Id == 906).SecondaryCanonicalGroups);
-        Assert.Equal(catalog.Count(e => !WorkoutCatalogPolicy.ZoneGapExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.AbilityGapExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.PreciseSkillExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.ProfileContributorExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.FitnessCoverageExerciseIds.Contains(e.Id) && !e.ElevationRequired && !WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(e.Id) && e.Id != WorkoutCatalogPolicy.BodyCircleExerciseId),
+        Assert.Equal(catalog.Count(e => !WorkoutCatalogPolicy.AnatomicalVarietyExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.ZoneGapExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.AbilityGapExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.PreciseSkillExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.ProfileContributorExerciseIds.Contains(e.Id) && !WorkoutCatalogPolicy.FitnessCoverageExerciseIds.Contains(e.Id) && !e.ElevationRequired && !WorkoutCatalogPolicy.FloorLocomotionExerciseIds.Contains(e.Id) && e.Id != WorkoutCatalogPolicy.BodyCircleExerciseId),
             WorkoutCatalogPolicy.ForWorkout(catalog, 82).Count);
         Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, 82),
             e => e.Id == WorkoutCatalogPolicy.BodyCircleExerciseId);

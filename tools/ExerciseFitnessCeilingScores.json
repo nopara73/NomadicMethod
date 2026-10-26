@@ -1,10 +1,10 @@
 {
   "scoringVersion": 4,
   "status": "provisional",
-  "assessedOn": "2026-10-22",
+  "assessedOn": "2026-10-26",
   "blockSeconds": 45,
-  "catalogRevision": 97,
-  "catalogSha256": "aed8378d8d8b4ec1cec9446a027bccf985248d68584c4fbd411a49727cd44675",
+  "catalogRevision": 98,
+  "catalogSha256": "d8464a6361254d1d452a192f14989d301bae2c1a8353f65ff62525dadd53a13d",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -1399,7 +1399,10 @@
         1408,
         1410,
         1413,
-        1438
+        1438,
+        1720,
+        1721,
+        1722
       ],
       "levels": {
         "cardiorespiratoryEndurance": [],
@@ -1492,7 +1495,11 @@
         1414,
         1417,
         1418,
-        1419
+        1419,
+        1726,
+        1727,
+        1728,
+        1729
       ],
       "levels": {
         "cardiorespiratoryEndurance": [],
@@ -1675,7 +1682,9 @@
       "basis": "Breathing control, vocalized exhalation, or abdominal drawing-in does not itself establish cardiorespiratory endurance or another substantial stimulus on these ten axes. Zero does not mean the practice has no other purpose.",
       "exerciseIds": [
         518,
-        1005
+        1005,
+        1724,
+        1725
       ],
       "levels": {
         "cardiorespiratoryEndurance": [],
@@ -6601,6 +6610,29 @@
       "exerciseIds": [
         1719
       ]
+    },
+    "thumb-adduction-isometric": {
+      "basis": "The opposite index finger supplies adjustable resistance to deliberate thumb adduction. The demonstrated static effort supports basic local strength and endurance without implying training of unrelated fitness dimensions.",
+      "exerciseIds": [
+        1723
+      ],
+      "levels": {
+        "cardiorespiratoryEndurance": [],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [],
+        "agility": [],
+        "balance": [],
+        "coordination": [],
+        "power": [],
+        "reactionTime": [],
+        "speed": []
+      },
+      "trainingConditions": "Press the thumb toward the palm against the opposite finger without allowing joint movement; use comfortable self-resistance and breathe normally. Shorter holds and deliberate resets may share the 45-second opportunity."
     }
   },
   "representation": "trainable-level-sets"

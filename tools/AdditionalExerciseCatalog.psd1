@@ -560,4 +560,16 @@
     # ZoPD gap admissions, 24 October 2026.
     1718 = @{ Name = 'Floor Straddle Planche Hold'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1718' }
     1719 = @{ Name = 'Floor Tuck Planche Push-Ups'; Region = 'SHOULDERS'; Practice = 'Calisthenics'; MotionProfile = 'Fitness1719' }
+    # Anatomical variety admissions, 26 October 2026.
+    1720 = @{ Name = 'Thumb Knuckle Bends with Base Supported'; Region = 'HANDS'; Practice = 'Hand mobility'; MotionProfile = 'AnatomicalVariety1720' }
+    1721 = @{ Name = 'Thumb Opposition'; Region = 'HANDS'; Practice = 'Hand mobility'; MotionProfile = 'AnatomicalVariety1721' }
+    1722 = @{ Name = 'Lift Thumb Away from Palm'; Region = 'HANDS'; Practice = 'Hand mobility'; MotionProfile = 'AnatomicalVariety1722' }
+    1723 = @{ Name = 'Thumb Adduction Against Opposite Finger'; Region = 'HANDS'; Practice = 'Self-resisted hand strengthening'; MotionProfile = 'AnatomicalVariety1723' }
+    1724 = @{ Name = 'Pursed-Lip Breathing'; Region = 'CHEST'; Practice = 'Breathing control'; MotionProfile = 'AnatomicalVariety1724' }
+    1725 = @{ Name = 'Alternate-Nostril Breathing'; Region = 'CHEST'; Practice = 'Breathing control'; MotionProfile = 'AnatomicalVariety1725' }
+    # Anatomical variety admissions, 26 October 2026.
+    1726 = @{ Name = 'Supine Butterfly Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1726' }
+    1727 = @{ Name = 'Deep Squat Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1727' }
+    1728 = @{ Name = 'Wall-Supported Happy Baby Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1728' }
+    1729 = @{ Name = 'Legs-Up-the-Wall Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1729' }
 }

@@ -42,13 +42,14 @@ public sealed class AnatomicalRegionAuditTests
     [Fact]
     public void Revision96WorkoutAndFeedbackSurviveAdditiveClaims()
     {
-        JsonNode legacyJson = JsonSerializer.SerializeToNode(Catalog(), Options)!;
+        JsonNode legacyJson = JsonSerializer.SerializeToNode(Catalog().Where(e => !WorkoutCatalogPolicy.AnatomicalVarietyExerciseIds.Contains(e.Id)), Options)!;
         foreach (JsonNode? exercise in legacyJson.AsArray())
         {
             int id = exercise!["Id"]!.GetValue<int>();
             JsonArray groups = exercise["SecondaryCanonicalGroups"]!.AsArray();
             foreach (JsonNode? group in groups.ToArray())
-                if ((id == 301 && group!.GetValue<string>() == "RotatorCuff") ||
+                if ((new[] { 1069, 1071, 1209, 1216, 1292 }.Contains(id) && group!.GetValue<string>() == "PelvicFloorAndPerineum") ||
+                    (id == 301 && group!.GetValue<string>() == "RotatorCuff") ||
                     (id == 1214 && group!.GetValue<string>() == "AccessoryHipAdductors") ||
                     (id == 570 && new[] { "ForearmFlexorsAndPronators", "ForearmExtensorsAndSupinators" }
                         .Contains(group!.GetValue<string>()))) groups.Remove(group);
@@ -65,7 +66,7 @@ public sealed class AnatomicalRegionAuditTests
         string saved = JsonSerializer.Serialize(state);
         WorkoutState reopened = JsonSerializer.Deserialize<WorkoutState>(saved)!;
         Planner(Catalog()).RestoreAfterReopen(reopened);
-        Assert.Equal(97, reopened.CatalogRevision);
+        Assert.Equal(98, reopened.CatalogRevision);
         Assert.Equal(96, reopened.ActiveCatalogRevision);
         Assert.Equal(JsonSerializer.Serialize(state.SelectedExerciseIds), JsonSerializer.Serialize(reopened.SelectedExerciseIds));
         Assert.Equal(JsonSerializer.Serialize(state.KeptExerciseRootIdsBySelectionGroupId), JsonSerializer.Serialize(reopened.KeptExerciseRootIdsBySelectionGroupId));

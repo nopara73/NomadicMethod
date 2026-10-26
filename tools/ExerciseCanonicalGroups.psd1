@@ -593,9 +593,9 @@
     1066 = @{ Primary = 'SpinalExtensors'; Secondary = @('GlutealExtensors') }
     1067 = @{ Primary = 'GlutealExtensors'; Secondary = @() }
     1068 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors', 'MedialAndDeepKneeExtensors', 'LateralKneeExtensors', 'GlutealExtensors') }
-    1069 = @{ Primary = 'MajorHipAdductors'; Secondary = @() }
+    1069 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PelvicFloorAndPerineum') }
     1070 = @{ Primary = 'SpinalExtensors'; Secondary = @() }
-    1071 = @{ Primary = 'ShoulderAdductorsAndExtensors'; Secondary = @('SpinalExtensors') }
+    1071 = @{ Primary = 'ShoulderAdductorsAndExtensors'; Secondary = @('SpinalExtensors', 'PelvicFloorAndPerineum') }
     1072 = @{ Primary = 'DeepHipRotators'; Secondary = @('HipAbductors') }
     1073 = @{ Primary = 'AbdominalWall'; Secondary = @() }
     1074 = @{ Primary = 'AbdominalWall'; Secondary = @() }
@@ -733,14 +733,14 @@
     1206 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('SpinalExtensors') }
     1207 = @{ Primary = 'Chest'; Secondary = @('ElbowExtensors') }
     1208 = @{ Primary = 'GlutealExtensors'; Secondary = @('DeepHipRotators') }
-    1209 = @{ Primary = 'MajorHipAdductors'; Secondary = @('GlutealExtensors') }
+    1209 = @{ Primary = 'MajorHipAdductors'; Secondary = @('GlutealExtensors', 'PelvicFloorAndPerineum') }
     1210 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'AnteriorLateralLowerLegAndDorsalFoot') }
     1211 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors') }
     1212 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('AbdominalWall') }
     1213 = @{ Primary = 'AbdominalWall'; Secondary = @('PosteriorThighAndKneeFlexors') }
     1214 = @{ Primary = 'MajorHipAdductors'; Secondary = @('AccessoryHipAdductors') }
     1215 = @{ Primary = 'DeepHipRotators'; Secondary = @('GlutealExtensors') }
-    1216 = @{ Primary = 'GlutealExtensors'; Secondary = @('SpinalExtensors') }
+    1216 = @{ Primary = 'GlutealExtensors'; Secondary = @('SpinalExtensors', 'PelvicFloorAndPerineum') }
     1217 = @{ Primary = 'SpinalExtensors'; Secondary = @() }
     1218 = @{ Primary = 'HipFlexors'; Secondary = @('AbdominalWall') }
     1219 = @{ Primary = 'GlutealExtensors'; Secondary = @('AbdominalWall') }
@@ -817,7 +817,7 @@
     1289 = @{ Primary = 'AbdominalWall'; Secondary = @() }
     1290 = @{ Primary = 'ShoulderAbductors'; Secondary = @() }
     1291 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors') }
-    1292 = @{ Primary = 'MajorHipAdductors'; Secondary = @('AccessoryHipAdductors') }
+    1292 = @{ Primary = 'MajorHipAdductors'; Secondary = @('AccessoryHipAdductors', 'PelvicFloorAndPerineum') }
     1293 = @{ Primary = 'AbdominalWall'; Secondary = @('HipFlexors') }
     1294 = @{ Primary = 'IntrinsicHand'; Secondary = @() }
     1295 = @{ Primary = 'CalfDeepPosteriorLegAndPlantarFoot'; Secondary = @('AnteriorLateralLowerLegAndDorsalFoot') }
@@ -937,4 +937,16 @@
     # ZoPD gap admissions, 24 October 2026.
     1718 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ScapularGirdle') }
     1719 = @{ Primary = 'ShoulderAbductors'; Secondary = @('ElbowExtensors') }
+    # Anatomical variety admissions, 26 October 2026.
+    1720 = @{ Primary = 'IntrinsicHand'; Secondary = @() }
+    1721 = @{ Primary = 'IntrinsicHand'; Secondary = @() }
+    1722 = @{ Primary = 'IntrinsicHand'; Secondary = @() }
+    1723 = @{ Primary = 'IntrinsicHand'; Secondary = @() }
+    1724 = @{ Primary = 'BreathingMuscles'; Secondary = @() }
+    1725 = @{ Primary = 'BreathingMuscles'; Secondary = @() }
+    # Anatomical variety admissions, 26 October 2026.
+    1726 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PelvicFloorAndPerineum') }
+    1727 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PelvicFloorAndPerineum') }
+    1728 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PelvicFloorAndPerineum') }
+    1729 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('PelvicFloorAndPerineum') }
 }

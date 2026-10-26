@@ -510,7 +510,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // existing selections, Keeps and feedback remain valid.
 // Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
 // Existing identities, feedback and unfinished selections remain valid.
-export const CURRENT_CATALOG_REVISION = 97;
+export const CURRENT_CATALOG_REVISION = 98;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -2410,6 +2410,36 @@ function isSequenceCompatible(exercise, exercisesById, modifiers) {
       MODIFIER_RULES.every((rule) => rule.isReviewed(member)) &&
       isCompatibleWithWorkoutModifiers(member, modifiers);
   });
+}
+
+// Global catalog supply across every existing anatomical group and subgroup.
+// Equipment is available and restrictive contexts are off; clothing is checked
+// in both real states because bare-body and clothed exercises cannot coexist.
+// Each atomic sequence must fit the duration on its own. The existing pairwise
+// and complete-lineup gates separately check its fit alongside the other slots.
+export const MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP = 10;
+export function getAnatomicalGroupVarietyInventory(exercises) {
+  const byId = new Map(exercises.map(exercise => [exercise.id, exercise]));
+  const equipment = WORKOUT_MODIFIERS.Mirror | WORKOUT_MODIFIERS.TallMirror |
+    WORKOUT_MODIFIERS.Wall | WORKOUT_MODIFIERS.SoleWallContact |
+    WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.JumpPlatform |
+    WORKOUT_MODIFIERS.RoomLocomotion | WORKOUT_MODIFIERS.FieldLocomotion;
+  const profiles = [equipment, equipment | WORKOUT_MODIFIERS.UpperBodyClothing];
+  return [...RESOLUTIONS].flatMap(([minutes, resolution]) => resolution.groups.map(group => {
+    const sessionMovementIds = [...new Set(exercises.filter(exercise =>
+      MODIFIER_RULES.every(rule => rule.isReviewed(exercise)) &&
+      getSequenceBlockCount(exercise, minutes) <= minutes &&
+      profiles.some(profile => isSequenceUnitEligible(exercise, byId, group, profile)))
+      .map(getSessionMovementId))].sort((a, b) => a - b);
+    return { minutes, groupId: group.id, groupName: group.displayName,
+      matchingExerciseCount: sessionMovementIds.length,
+      requiredExerciseCount: MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP,
+      sessionMovementIds };
+  }));
+}
+export function findAnatomicalGroupVarietyDeficiencies(exercises) {
+  return getAnatomicalGroupVarietyInventory(exercises).filter(row =>
+    row.matchingExerciseCount < row.requiredExerciseCount);
 }
 
 export function findWorkoutModifierPairCoverageDeficiencies(exercises) {
@@ -4397,11 +4427,13 @@ export function getSequenceBlockCount(exercise, minutes) {
 }
 
 export const ZONE_GAP_EXERCISE_IDS = Object.freeze([1718, 1719]);
+export const ANATOMICAL_VARIETY_EXERCISE_IDS = Object.freeze(Array.from({ length: 10 }, (_, index) => 1720 + index));
 export const ABILITY_GAP_EXERCISE_IDS = Object.freeze([1717]);
 export const PRECISE_SKILL_EXERCISE_IDS = Object.freeze([1605, 1615, 1625, 1635, 1645, 1706, 1707, 1708, 1709, 1710, 1711, 1712, 1713, 1714, 1715, 1716]);
 export const PROFILE_CONTRIBUTOR_EXERCISE_IDS = Object.freeze([1621, 1701, 1702, 1703, 1704, 1705]);
 export const FITNESS_COVERAGE_EXERCISE_IDS = Object.freeze([1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644]);
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
+  if (activeRevision > 0 && activeRevision < 98) catalog = catalog.filter(exercise => !ANATOMICAL_VARIETY_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 92) catalog = catalog.filter(exercise => !ZONE_GAP_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 91) catalog = catalog.filter(exercise => !ABILITY_GAP_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 90) catalog = catalog.filter(exercise => !PRECISE_SKILL_EXERCISE_IDS.includes(exercise.id));

@@ -7,6 +7,7 @@
     # Incompatible
     # exercises remain available when the user selects a stable soft surface.
     Compatible = @(
+        1720, 1721, 1722, 1723, 1724, 1725,
         # Controlled dorsiflexion with stationary heels does not require cushioning.
         165,
         1615, 1625,
@@ -74,6 +75,7 @@
     # favorable classification.
     IncompatibleByReason = @{
         ConcentratedHeelOrForefootLoading = @(
+        1727,
             1425,
             119, 139, 140, 162, 166, 172, 194,
             198, 201, 273, 561, 575, 578, 583, 987
@@ -128,6 +130,7 @@
 
     # Floor admissions, 15 October 2026.
         ForbiddenFloorContacts = @(
+        1726, 1728, 1729,
         1718,
         1710, 1711, 1712, 1713,
         1704, 1705,

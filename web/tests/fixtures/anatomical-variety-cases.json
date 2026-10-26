@@ -1,0 +1,355 @@
+[
+  {
+    "name": "ten genuine movement identities reach the floor",
+    "expectedCount": 10,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001
+        ]
+      },
+      {
+        "id": 90002,
+        "sequenceIds": [
+          90002
+        ]
+      },
+      {
+        "id": 90003,
+        "sequenceIds": [
+          90003
+        ]
+      },
+      {
+        "id": 90004,
+        "sequenceIds": [
+          90004
+        ]
+      },
+      {
+        "id": 90005,
+        "sequenceIds": [
+          90005
+        ]
+      },
+      {
+        "id": 90006,
+        "sequenceIds": [
+          90006
+        ]
+      },
+      {
+        "id": 90007,
+        "sequenceIds": [
+          90007
+        ]
+      },
+      {
+        "id": 90008,
+        "sequenceIds": [
+          90008
+        ]
+      },
+      {
+        "id": 90009,
+        "sequenceIds": [
+          90009
+        ]
+      },
+      {
+        "id": 90010,
+        "sequenceIds": [
+          90010
+        ]
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "nine identities remain below the floor",
+    "expectedCount": 9,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001
+        ]
+      },
+      {
+        "id": 90002,
+        "sequenceIds": [
+          90002
+        ]
+      },
+      {
+        "id": 90003,
+        "sequenceIds": [
+          90003
+        ]
+      },
+      {
+        "id": 90004,
+        "sequenceIds": [
+          90004
+        ]
+      },
+      {
+        "id": 90005,
+        "sequenceIds": [
+          90005
+        ]
+      },
+      {
+        "id": 90006,
+        "sequenceIds": [
+          90006
+        ]
+      },
+      {
+        "id": 90007,
+        "sequenceIds": [
+          90007
+        ]
+      },
+      {
+        "id": 90008,
+        "sequenceIds": [
+          90008
+        ]
+      },
+      {
+        "id": 90009,
+        "sequenceIds": [
+          90009
+        ]
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "renamed aliases do not multiply an identity",
+    "expectedCount": 1,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90002,
+        "sequenceIds": [
+          90002
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90003,
+        "sequenceIds": [
+          90003
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90004,
+        "sequenceIds": [
+          90004
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90005,
+        "sequenceIds": [
+          90005
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90006,
+        "sequenceIds": [
+          90006
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90007,
+        "sequenceIds": [
+          90007
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90008,
+        "sequenceIds": [
+          90008
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90009,
+        "sequenceIds": [
+          90009
+        ],
+        "sessionMovementId": 90000
+      },
+      {
+        "id": 90010,
+        "sequenceIds": [
+          90010
+        ],
+        "sessionMovementId": 90000
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "members without an atomic root do not count",
+    "expectedCount": 0,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": []
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "a missing sequence member invalidates the whole choice",
+    "expectedCount": 0,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001,
+          99999
+        ]
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "repeated sets do not multiply movement identities",
+    "expectedCount": 1,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001,
+          90001
+        ]
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "a complete multi-region atomic selection can fit",
+    "expectedCount": 1,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001,
+          90002
+        ],
+        "upperBodyClothingRequirement": "ClothingRequired"
+      },
+      {
+        "id": 90002,
+        "sequenceIds": [],
+        "primaryCanonicalGroup": "Chest",
+        "upperBodyClothingRequirement": "ClothingRequired"
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "members needing incompatible clothing states cannot count",
+    "expectedCount": 0,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001,
+          90002
+        ],
+        "upperBodyClothingRequirement": "ClothingRequired"
+      },
+      {
+        "id": 90002,
+        "sequenceIds": [],
+        "primaryCanonicalGroup": "Chest",
+        "upperBodyClothingRequirement": "BareUpperBodyRequired"
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "unreviewed physical metadata cannot supply a choice",
+    "expectedCount": 0,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001
+        ],
+        "upperBodyClothingRequirement": "Unreviewed"
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  },
+  {
+    "name": "an atomic sequence longer than the duration cannot count",
+    "expectedCount": 0,
+    "exercises": [
+      {
+        "id": 90001,
+        "sequenceIds": [
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001,
+          90001
+        ]
+      }
+    ],
+    "groupId": "r30.pelvic-floor-perineum",
+    "templateId": 918
+  }
+]

@@ -4,6 +4,8 @@
     # shared space without asking the user to perform, mime, vocalize, or make
     # a conspicuous therapeutic gesture.
     Compatible = @(
+        1726, 1727, 1728, 1729,
+        1720, 1721, 1722, 1723, 1724, 1725,
         1718, 1719,
         1605, 1615, 1625, 1645,
         1621, 1701, 1702, 1703, 1704,
