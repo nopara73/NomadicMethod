@@ -9,7 +9,9 @@ public static class CatalogMigrationRules
     private const string AlternatingPrefix = "Alternating ";
     // Revision 73 corrects catalog training claims and complete movement sequences.
     // Revalidate impossible slot choices while preserving exercise feedback.
-    public const int CurrentCatalogRevision = 94;
+    // Revision 95 restores lateral-compartment plantarflexor associations.
+    // Additive claims preserve existing selections, Keeps and all feedback.
+    public const int CurrentCatalogRevision = 95;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;

@@ -1,5 +1,11 @@
 # Anterior/lateral lower-leg and dorsal-foot candidate investigation
 
+**Implemented in revision 95:** the subsequent demonstration and assignment
+audit restored 40 lateral-compartment secondary claims, expanding this region
+from 10 to 40 distinct movements. The saved setup has 19 complete fitting
+choices, up from 5. See [the assignment correction](lower-leg-assignments-2026-10-26.md).
+The counts and investigation below describe the preceding revision-94 state.
+
 **Correction:** `AnteriorLateralLowerLegAndDorsalFoot` is a regional muscle
 bucket, not a synonym for tibialis anterior or a shin-only target. The earlier
 "shin-only slot" description was an investigation error. Neither the candidate
@@ -174,11 +180,10 @@ muscle. These studies support reviewing exact demonstrated variants; they do
 not establish that every calf movement qualifies. EMG activation alone also
 does not establish the meaningful trainable stimulus required by the catalog.
 
-No runtime training claim has been added based solely on this anatomical
-correction. An unresolved candidate requires its exact movement and complete
-work interval to be assessed before a claim is changed. The ten-identity count
-is the current metadata result, not a proven upper limit on the region's
-eligible exercises.
+At revision 94, no runtime training claim had yet been added. The follow-up
+assignment audit inspected the exact packaged actions and restored deliberate
+loaded plantarflexion work for the lateral compartment. The ten-identity count
+was the prior metadata result, not an anatomical limit.
 
 ## What the existing coverage gates establish
 
@@ -221,8 +226,6 @@ inventory expectations), the production web build and the Debug Android build.
 The packaged exercise was reviewed through Ready, the normal movement timer
 and rest with upper-body clothing off.
 
-The classification correction resolves the erroneous clothing exclusion. The
-grouping policy remains unchanged. The remaining investigation concerns catalog
-training claims across the full anterior/lateral lower-leg and dorsal-foot
-region, rather than replacing that region because it was mistakenly described
-as a shin-only target.
+The clothing correction resolves that physical exclusion. Revision 95 separately
+corrects the full-region training assignments. The grouping policy remains
+unchanged.

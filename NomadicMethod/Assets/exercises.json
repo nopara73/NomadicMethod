@@ -50,7 +50,8 @@
     "video": "exercise_videos/exercise_0016.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing ankle strengthening",
     "motionProfile": "CalfRaise",
@@ -2055,7 +2056,8 @@
     "video": "exercise_videos/exercise_0119.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "LegBack",
@@ -3039,7 +3041,8 @@
       "GlutealExtensors",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -3089,7 +3092,8 @@
       "MedialAndDeepKneeExtensors",
       "LateralKneeExtensors",
       "GlutealExtensors",
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -3139,7 +3143,8 @@
       "GlutealExtensors",
       "MajorHipAdductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -3188,7 +3193,8 @@
       "CalfDeepPosteriorLegAndPlantarFoot",
       "MedialAndDeepKneeExtensors",
       "LateralKneeExtensors",
-      "GlutealExtensors"
+      "GlutealExtensors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -4107,7 +4113,8 @@
     "video": "exercise_videos/exercise_0162.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "HeelRaise",
@@ -5354,7 +5361,8 @@
     "video": "exercise_videos/exercise_0187.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf and ankle strengthening",
     "motionProfile": "CalfRaise",
@@ -5801,7 +5809,8 @@
       "GlutealExtensors",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Ballet",
     "motionProfile": "Squat",
@@ -5851,7 +5860,8 @@
       "GlutealExtensors",
       "MajorHipAdductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Ballet",
     "motionProfile": "Squat",
@@ -6007,7 +6017,8 @@
       "GlutealExtensors",
       "MajorHipAdductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight strength",
     "motionProfile": "SquatCalfRaise",
@@ -7826,7 +7837,8 @@
     "video": "exercise_videos/exercise_0252.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "HeelRaise",
@@ -7887,7 +7899,8 @@
     "video": "exercise_videos/exercise_0253.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "HeelRaise",
@@ -7926,7 +7939,8 @@
     "video": "exercise_videos/exercise_0254.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "HeelRaise",
@@ -7967,7 +7981,8 @@
     "secondaryCanonicalGroups": [
       "CalfDeepPosteriorLegAndPlantarFoot",
       "MedialAndDeepKneeExtensors",
-      "LateralKneeExtensors"
+      "LateralKneeExtensors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -8696,7 +8711,8 @@
     "video": "exercise_videos/exercise_0272.mp4",
     "primaryCanonicalGroup": "Soleus",
     "secondaryCanonicalGroups": [
-      "CalfDeepPosteriorLegAndPlantarFoot"
+      "CalfDeepPosteriorLegAndPlantarFoot",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "SingleLegBentKneeCalfRaise",
@@ -8751,7 +8767,8 @@
     "secondaryCanonicalGroups": [
       "CalfDeepPosteriorLegAndPlantarFoot",
       "MedialAndDeepKneeExtensors",
-      "LateralKneeExtensors"
+      "LateralKneeExtensors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "HeelRaise",
@@ -9875,7 +9892,8 @@
     "video": "exercise_videos/exercise_0295.mp4",
     "primaryCanonicalGroup": "Soleus",
     "secondaryCanonicalGroups": [
-      "CalfDeepPosteriorLegAndPlantarFoot"
+      "CalfDeepPosteriorLegAndPlantarFoot",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing bodyweight conditioning",
     "motionProfile": "BentKneeCalfRaise",
@@ -11041,7 +11059,8 @@
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Ballet",
     "motionProfile": "BackBalance",
@@ -12206,7 +12225,8 @@
       "AnteriorLateralNeckAndHyoidMuscles",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Vestibular rehabilitation",
     "motionProfile": "FixedThumbHeadTurn",
@@ -12263,7 +12283,8 @@
       "AnteriorLateralNeckAndHyoidMuscles",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Vestibular rehabilitation",
     "motionProfile": "FixedThumbHeadNod",
@@ -12334,7 +12355,8 @@
       "AnteriorLateralNeckAndHyoidMuscles",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Vestibular rehabilitation",
     "motionProfile": "FixedThumbHeadTilt",
@@ -18719,7 +18741,8 @@
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "CalfRaiseArmSwing",
@@ -18770,7 +18793,8 @@
       "GlutealExtensors",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Full-body strength training",
     "motionProfile": "SquatCalfRaiseOverheadReach",
@@ -18821,7 +18845,8 @@
       "GlutealExtensors",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Full-body strength training",
     "motionProfile": "SquatOverheadReachCalfRaise",
@@ -18869,7 +18894,8 @@
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "LateralArmRaiseCalfRaise",
@@ -18961,7 +18987,8 @@
     "video": "exercise_videos/exercise_0555.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Coordination training",
     "motionProfile": "HeelRaiseWalkingArms",
@@ -19061,7 +19088,8 @@
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Tai chi",
     "motionProfile": "TiptoeForwardPunch",
@@ -19163,7 +19191,8 @@
       "Soleus",
       "ShoulderAbductors",
       "AnteriorLateralNeckAndHyoidMuscles",
-      "PosteriorNeckAndSuboccipitalMuscles"
+      "PosteriorNeckAndSuboccipitalMuscles",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Ballet",
     "motionProfile": "TiptoeRunningHeadSpot",
@@ -19216,7 +19245,8 @@
     "video": "exercise_videos/exercise_0562.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "HeelRaise",
@@ -19370,7 +19400,8 @@
       "CalfDeepPosteriorLegAndPlantarFoot",
       "MedialAndDeepKneeExtensors",
       "LateralKneeExtensors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "MiniSquatCalfRaiseForwardReach",
@@ -19416,7 +19447,8 @@
     "video": "exercise_videos/exercise_0566.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "ParallelCalfRaise",
@@ -19584,7 +19616,8 @@
     "video": "exercise_videos/exercise_0569.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "SingleLegStraightKneeCalfRaise",
@@ -19638,7 +19671,8 @@
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Standing coordination exercise",
     "motionProfile": "CalfRaiseArmReachFistClose",
@@ -19690,7 +19724,8 @@
       "PosteriorThighAndKneeFlexors",
       "SpinalExtensors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Full-body strength training",
     "motionProfile": "HipHingeSquatCalfRaise",
@@ -20190,7 +20225,8 @@
     "video": "exercise_videos/exercise_0581.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "ToesInCalfRaise",
@@ -20229,7 +20265,8 @@
     "video": "exercise_videos/exercise_0582.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "ToesOutCalfRaise",
@@ -25272,7 +25309,8 @@
       "GlutealExtensors",
       "MajorHipAdductors",
       "Soleus",
-      "CalfDeepPosteriorLegAndPlantarFoot"
+      "CalfDeepPosteriorLegAndPlantarFoot",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Ballet conditioning",
     "motionProfile": "WidePlieAlternatingHeelLift",
@@ -39119,7 +39157,8 @@
     "primaryCanonicalGroup": "Soleus",
     "secondaryCanonicalGroups": [
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "GlutealExtensors"
+      "GlutealExtensors",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Wall and floor strength",
     "motionProfile": "FloorWallWallBridgeHeelRaises",
@@ -41209,7 +41248,8 @@
     "video": "exercise_videos/exercise_1425.mp4",
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
-      "Soleus"
+      "Soleus",
+      "AnteriorLateralLowerLegAndDorsalFoot"
     ],
     "practice": "Bodyweight strength",
     "motionProfile": "ElevationCalfRaisesonaStep",

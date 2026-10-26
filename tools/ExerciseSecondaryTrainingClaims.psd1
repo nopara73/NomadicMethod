@@ -223,12 +223,18 @@
             636, 906, 910, 914, 939, 971, 996, 997, 1001
         )
 
-        # Each heel dig deliberately raises the forefoot against its own weight;
-        # this is repeated ankle dorsiflexion, not an incidental gait claim.
+        # Full anterior/lateral leg and dorsal-foot region: PL/PB are lateral
+        # plantarflexors, not dorsiflexors. Reviewed loaded heel raises and
+        # deliberate sustained tiptoe work train them as plantarflexor synergists.
+        # This is an exact video-reviewed list, never an all-calf/balance rule.
+        # Anatomy and evidence: docs/catalog-audit/lower-leg-assignments-2026-10-26.md
+        # Heel digs/rocking deliberately dorsiflex; kneeling stretches the front.
         AnteriorLateralLowerLegAndDorsalFoot = @(
-            1410,
-        1295,
-            1210,1029)
+            16, 119, 138, 139, 140, 141, 162, 187, 197, 198, 201, 252,
+            253, 254, 255, 272, 273, 295, 389, 414, 415, 416, 549, 550,
+            551, 552, 555, 557, 561, 562, 565, 566, 569, 570, 571, 581,
+            582, 987, 1029, 1210, 1285, 1295, 1410, 1425
+        )
 
         DeepHipRotators = @(
         1298,

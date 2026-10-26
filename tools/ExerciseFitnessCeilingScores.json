@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-22",
   "blockSeconds": 45,
-  "catalogRevision": 94,
-  "catalogSha256": "b28e136ecec79d70de2009d935b123fe8b531c8f162234cb16372ba7566592d1",
+  "catalogRevision": 95,
+  "catalogSha256": "65c826c865d5c063e63856762683d1261bfc085c708b8388647a1c0174836e05",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",

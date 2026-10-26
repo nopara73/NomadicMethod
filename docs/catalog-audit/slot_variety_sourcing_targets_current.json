@@ -1,6 +1,6 @@
 {
-  "catalogRevision": 94,
-  "catalogSha256": "b28e136ecec79d70de2009d935b123fe8b531c8f162234cb16372ba7566592d1",
+  "catalogRevision": 95,
+  "catalogSha256": "65c826c865d5c063e63856762683d1261bfc085c708b8388647a1c0174836e05",
   "catalogRecordCount": 909,
   "catalogSessionMovementCount": 797,
   "schedulableSessionMovementCount": 768,
@@ -31,13 +31,6 @@
       "primaryMovementCount": 7,
       "trainedMovementCount": 8,
       "schedulableMovementCount": 8,
-      "singleBlockMovementCount": 8
-    },
-    {
-      "muscle": "AnteriorLateralLowerLegAndDorsalFoot",
-      "primaryMovementCount": 6,
-      "trainedMovementCount": 10,
-      "schedulableMovementCount": 10,
       "singleBlockMovementCount": 8
     },
     {
@@ -116,6 +109,13 @@
       "trainedMovementCount": 36,
       "schedulableMovementCount": 35,
       "singleBlockMovementCount": 23
+    },
+    {
+      "muscle": "AnteriorLateralLowerLegAndDorsalFoot",
+      "primaryMovementCount": 6,
+      "trainedMovementCount": 41,
+      "schedulableMovementCount": 40,
+      "singleBlockMovementCount": 31
     },
     {
       "muscle": "SpinalExtensors",

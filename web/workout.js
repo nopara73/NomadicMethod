@@ -506,7 +506,9 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revisions 71-72 correct overlooked arm positions, lead stances, and one-way
 // demonstrations to complete atomic side/direction sequences. Rebuild affected
 // lineups without discarding saved feedback.
-export const CURRENT_CATALOG_REVISION = 94;
+// Revision 95 adds reviewed lateral-compartment plantarflexor associations;
+// existing selections, Keeps and feedback remain valid.
+export const CURRENT_CATALOG_REVISION = 95;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,

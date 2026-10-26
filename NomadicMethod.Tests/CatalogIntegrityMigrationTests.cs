@@ -171,6 +171,8 @@ public sealed class CatalogIntegrityMigrationTests
             Assert.Equal(-4, state.PendingScoreValue);
             Assert.False(CatalogMigrationRules.ReconcileWorkoutState(state, byId));
         }
-        Assert.Equal(367, reviewedRoots);
+        // Revision 95 restores lateral plantarflexor claims on seven roots
+        // whose previous/current target sets had otherwise become identical.
+        Assert.Equal(374, reviewedRoots);
     }
 }
