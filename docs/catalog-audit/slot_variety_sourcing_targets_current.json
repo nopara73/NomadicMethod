@@ -1,6 +1,6 @@
 {
-  "catalogRevision": 96,
-  "catalogSha256": "2969bb0ec9a0dc1cb685a21001c8ca85ec28b4f8543d6e81855603427b8e7522",
+  "catalogRevision": 97,
+  "catalogSha256": "aed8378d8d8b4ec1cec9446a027bccf985248d68584c4fbd411a49727cd44675",
   "catalogRecordCount": 909,
   "catalogSessionMovementCount": 797,
   "schedulableSessionMovementCount": 768,
@@ -20,13 +20,6 @@
       "singleBlockMovementCount": 5
     },
     {
-      "muscle": "AccessoryHipAdductors",
-      "primaryMovementCount": 1,
-      "trainedMovementCount": 8,
-      "schedulableMovementCount": 8,
-      "singleBlockMovementCount": 4
-    },
-    {
       "muscle": "BreathingMuscles",
       "primaryMovementCount": 7,
       "trainedMovementCount": 8,
@@ -41,25 +34,25 @@
       "singleBlockMovementCount": 8
     },
     {
-      "muscle": "RotatorCuff",
-      "primaryMovementCount": 12,
-      "trainedMovementCount": 17,
-      "schedulableMovementCount": 16,
-      "singleBlockMovementCount": 4
-    },
-    {
       "muscle": "ForearmExtensorsAndSupinators",
       "primaryMovementCount": 7,
-      "trainedMovementCount": 18,
-      "schedulableMovementCount": 18,
-      "singleBlockMovementCount": 9
+      "trainedMovementCount": 19,
+      "schedulableMovementCount": 19,
+      "singleBlockMovementCount": 10
     },
     {
       "muscle": "ForearmFlexorsAndPronators",
       "primaryMovementCount": 6,
-      "trainedMovementCount": 18,
-      "schedulableMovementCount": 18,
-      "singleBlockMovementCount": 10
+      "trainedMovementCount": 19,
+      "schedulableMovementCount": 19,
+      "singleBlockMovementCount": 11
+    },
+    {
+      "muscle": "AccessoryHipAdductors",
+      "primaryMovementCount": 1,
+      "trainedMovementCount": 20,
+      "schedulableMovementCount": 20,
+      "singleBlockMovementCount": 12
     },
     {
       "muscle": "ShoulderAdductorsAndExtensors",
@@ -130,6 +123,13 @@
       "trainedMovementCount": 64,
       "schedulableMovementCount": 58,
       "singleBlockMovementCount": 27
+    },
+    {
+      "muscle": "RotatorCuff",
+      "primaryMovementCount": 12,
+      "trainedMovementCount": 72,
+      "schedulableMovementCount": 68,
+      "singleBlockMovementCount": 47
     },
     {
       "muscle": "MajorHipAdductors",

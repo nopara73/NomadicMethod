@@ -976,7 +976,7 @@ public sealed class CatalogInvariantTests
         Assert.Equal(
             CanonicalMuscleGroup.HipFlexors,
             overheadBreathingFlow.PrimaryCanonicalGroup);
-        Assert.Equal(new[] { CanonicalMuscleGroup.ShoulderAbductors },
+        Assert.Equal(new[] { CanonicalMuscleGroup.ShoulderAbductors, CanonicalMuscleGroup.RotatorCuff },
             overheadBreathingFlow.SecondaryCanonicalGroups);
         Exercise alternatingSideTap = exercises.Single(exercise => exercise.Id == 397);
         Assert.Equal(
@@ -993,7 +993,7 @@ public sealed class CatalogInvariantTests
         Assert.DoesNotContain(
             CanonicalMuscleGroup.BreathingMuscles,
             alternatingSideTap.SecondaryCanonicalGroups);
-        Assert.Empty(alternatingSideTap.SecondaryCanonicalGroups);
+        Assert.Equal(new[] { CanonicalMuscleGroup.RotatorCuff }, alternatingSideTap.SecondaryCanonicalGroups);
         Exercise standingKneeExtensionHold = exercises.Single(exercise => exercise.Id == 145);
         Assert.Equal("Wall-Supported Standing Knee-Extension Hold", standingKneeExtensionHold.Name);
         Assert.Equal(ExerciseMode.Hold, standingKneeExtensionHold.Mode);
@@ -1712,7 +1712,7 @@ public sealed class CatalogInvariantTests
         Assert.Equal(ExerciseMode.Repetition, restoredShoulderRaise.Mode);
         Assert.Equal(ExercisePresentation.Motion, restoredShoulderRaise.Presentation);
         Assert.Equal(0, restoredShoulderRaise.HoldFramePercent);
-        Assert.Empty(restoredShoulderRaise.SecondaryCanonicalGroups);
+        Assert.Equal(new[] { CanonicalMuscleGroup.RotatorCuff }, restoredShoulderRaise.SecondaryCanonicalGroups);
 
         Assert.Contains(exercises, exercise => exercise.Silent);
         Assert.Contains(exercises, exercise => !exercise.Silent);

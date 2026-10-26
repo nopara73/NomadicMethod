@@ -25,6 +25,7 @@ on:
       - "docs/catalog-audit/ability-skill-review-2026-10-23.json"
       - "docs/catalog-audit/lower-leg-review-2026-10-26.json"
       - "docs/catalog-audit/regional-followup-review-2026-10-26.json"
+      - "docs/catalog-audit/anatomical-region-review-2026-10-26.json"
       - "NomadicMethod/Assets/exercise_videos/**"
       - "NomadicMethod/Assets/exercise_direction_videos/**"
       - "NomadicMethod/Assets/exercise_hold_frames/**"
@@ -124,6 +125,7 @@ jobs:
             /docs/catalog-audit/ability-skill-review-2026-10-23.json
             /docs/catalog-audit/lower-leg-review-2026-10-26.json
             /docs/catalog-audit/regional-followup-review-2026-10-26.json
+            /docs/catalog-audit/anatomical-region-review-2026-10-26.json
             /NomadicMethod/Assets/exercise_videos/**
             /NomadicMethod/Assets/exercise_direction_videos/**
             /NomadicMethod/Assets/exercise_hold_frames/**

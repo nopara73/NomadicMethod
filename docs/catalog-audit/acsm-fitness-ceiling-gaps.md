@@ -1,6 +1,6 @@
 # Fitness training-level catalog coverage
 
-Catalog revision 96; 909 assessed exercise records.
+Catalog revision 97; 909 assessed exercise records.
 
 Required: **at least 5 distinct approved session movements that can train each characteristic-level combination**.
 An exercise can support multiple explicitly assessed levels. A maximum alone does not imply lower-level coverage. Sides, directions, sets, aliases and renamed duplicates do not multiply a movement.

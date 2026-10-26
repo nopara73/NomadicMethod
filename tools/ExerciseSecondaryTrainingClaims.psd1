@@ -274,6 +274,8 @@
         )
 
         ForearmFlexorsAndPronators = @(
+            # Full anatomical-region audit, 26 October 2026.
+            570,
             1032,
         1026, 1027,
             214, 218, 223, 224, 236, 269, 522, 523, 755, 756, 1006, 1007,
@@ -296,17 +298,23 @@
         )
 
         ForearmExtensorsAndSupinators = @(
+            # Full anatomical-region audit, 26 October 2026.
+            570,
             1032,
         1026, 1027,
             215, 289, 522, 523, 560, 1006, 1007, 1008, 1015
         )
 
         RotatorCuff = @(
+            # Full anatomical-region audit, 26 October 2026.
+            58, 59, 102, 108, 111, 133, 147, 188, 234, 264, 266, 268, 270, 275, 301, 302, 303, 304, 311, 315, 321, 340, 389, 390, 395, 397, 400, 402, 405, 407, 420, 421, 424, 426, 427, 446, 447, 451, 455, 459, 460, 461, 468, 469, 480, 496, 516, 517, 520, 550, 551, 552, 576, 579, 580, 647, 677, 743, 816, 943, 1009, 1168, 1194, 1246, 1274, 1621, 1622, 1623, 1624, 1625,
             1141,
             585, 1006, 1011, 1015
         )
 
         AccessoryHipAdductors = @(
+            # Full anatomical-region audit, 26 October 2026.
+            116, 733, 1064, 1214, 1221, 1222, 1229, 1241, 1245, 1292, 1429, 1522, 1525,
             1031,
             # The source explicitly cues continuous bilateral thigh pressure.
             1028,

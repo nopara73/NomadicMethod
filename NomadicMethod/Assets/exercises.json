@@ -593,7 +593,8 @@
     "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
     "secondaryCanonicalGroups": [
       "HipFlexors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bhangra",
     "motionProfile": "WalkingStep",
@@ -646,7 +647,8 @@
     "video": "exercise_videos/exercise_0059.mp4",
     "primaryCanonicalGroup": "AbdominalWall",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Taiji Qigong Shibashi",
     "motionProfile": "SideReach",
@@ -1254,7 +1256,8 @@
       "MedialAndDeepKneeExtensors",
       "GlutealExtensors",
       "ShoulderAbductors",
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -1500,7 +1503,8 @@
       "LateralKneeExtensors",
       "GlutealExtensors",
       "MajorHipAdductors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Ballet",
     "motionProfile": "Squat",
@@ -1646,7 +1650,8 @@
       "LateralKneeExtensors",
       "GlutealExtensors",
       "ShoulderAbductors",
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -1903,7 +1908,8 @@
     "secondaryCanonicalGroups": [
       "LateralKneeExtensors",
       "GlutealExtensors",
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "LateralSquat",
@@ -2790,7 +2796,8 @@
       "GlutealExtensors",
       "MajorHipAdductors",
       "ShoulderAbductors",
-      "AccessoryHipAdductors"
+      "AccessoryHipAdductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "LateralLungeReach",
@@ -3499,7 +3506,8 @@
     "secondaryCanonicalGroups": [
       "MedialAndDeepKneeExtensors",
       "GlutealExtensors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -5411,7 +5419,8 @@
     "secondaryCanonicalGroups": [
       "LateralKneeExtensors",
       "GlutealExtensors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Ballet",
     "motionProfile": "Squat",
@@ -7273,7 +7282,8 @@
     "video": "exercise_videos/exercise_0234.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
-      "ElbowExtensors"
+      "ElbowExtensors",
+      "RotatorCuff"
     ],
     "practice": "Shoulder mobility and conditioning",
     "motionProfile": "WExtension",
@@ -8367,7 +8377,9 @@
     "retiredName": "Backward Standing Arm Circles",
     "video": "exercise_videos/exercise_0264.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "ArmCircle",
     "mode": "Repetition",
@@ -8477,7 +8489,9 @@
     "retiredName": "Standing Palms-Up Arm Raise",
     "video": "exercise_videos/exercise_0266.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Shoulder endurance",
     "motionProfile": "ArmSweep",
     "mode": "Repetition",
@@ -8523,7 +8537,8 @@
     "video": "exercise_videos/exercise_0268.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
-      "ElbowFlexors"
+      "ElbowFlexors",
+      "RotatorCuff"
     ],
     "practice": "Standing shoulder mobility",
     "motionProfile": "GoalpostElbowExtension",
@@ -8621,7 +8636,9 @@
     "retiredName": "Palm-Squeeze Forward Press",
     "video": "exercise_videos/exercise_0270.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Shoulder isometrics",
     "motionProfile": "GoalpostArmHold",
     "mode": "Hold",
@@ -8859,7 +8876,9 @@
     "retiredName": "Backward Arm Circles",
     "video": "exercise_videos/exercise_0275.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Shoulder endurance",
     "motionProfile": "ArmCircle",
     "mode": "Repetition",
@@ -9991,7 +10010,9 @@
     "retiredName": "Large Arm Sweep Up and Down",
     "video": "exercise_videos/exercise_0301.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Shoulder endurance",
     "motionProfile": "ArmSweep",
     "mode": "Repetition",
@@ -10037,7 +10058,8 @@
     "video": "exercise_videos/exercise_0302.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
-      "HipFlexors"
+      "HipFlexors",
+      "RotatorCuff"
     ],
     "practice": "Low-impact conditioning",
     "motionProfile": "MarchingForwardArmCircle",
@@ -10092,7 +10114,8 @@
     "secondaryCanonicalGroups": [
       "MedialAndDeepKneeExtensors",
       "GlutealExtensors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -10138,7 +10161,8 @@
     "video": "exercise_videos/exercise_0304.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
-      "HipFlexors"
+      "HipFlexors",
+      "RotatorCuff"
     ],
     "practice": "Low-impact conditioning",
     "motionProfile": "MarchingBackwardArmCircle",
@@ -10415,7 +10439,8 @@
     "video": "exercise_videos/exercise_0311.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
-      "HipAbductors"
+      "HipAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "WalkingStep",
@@ -10511,7 +10536,8 @@
     "secondaryCanonicalGroups": [
       "MedialAndDeepKneeExtensors",
       "GlutealExtensors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Squat",
@@ -10556,7 +10582,9 @@
     "retiredName": "Alternating Cross-Step Arms Raise",
     "video": "exercise_videos/exercise_0321.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Low-impact conditioning",
     "motionProfile": "SideTapArmRaise",
     "mode": "Repetition",
@@ -10805,7 +10833,8 @@
     "primaryCanonicalGroup": "ElbowExtensors",
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
-      "Chest"
+      "Chest",
+      "RotatorCuff"
     ],
     "practice": "Standing mobility and movement practice",
     "motionProfile": "MartialHand",
@@ -11060,7 +11089,8 @@
     "secondaryCanonicalGroups": [
       "Soleus",
       "ShoulderAbductors",
-      "AnteriorLateralLowerLegAndDorsalFoot"
+      "AnteriorLateralLowerLegAndDorsalFoot",
+      "RotatorCuff"
     ],
     "practice": "Ballet",
     "motionProfile": "BackBalance",
@@ -11106,7 +11136,8 @@
     "video": "exercise_videos/exercise_0390.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
-      "Chest"
+      "Chest",
+      "RotatorCuff"
     ],
     "practice": "Standing mobility",
     "motionProfile": "GoalpostOpenClose",
@@ -11368,7 +11399,8 @@
     "video": "exercise_videos/exercise_0395.mp4",
     "primaryCanonicalGroup": "HipFlexors",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Standing coordination and conditioning",
     "motionProfile": "KneeLiftOverheadReach",
@@ -11467,7 +11499,9 @@
     "retiredName": "Exhale Forward, Inhale Back Weight Shift",
     "video": "exercise_videos/exercise_0397.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Low-impact conditioning",
     "motionProfile": "SideTapDiagonalReach",
     "mode": "Repetition",
@@ -11600,7 +11634,8 @@
     "secondaryCanonicalGroups": [
       "LateralKneeExtensors",
       "GlutealExtensors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Qigong",
     "motionProfile": "Squat",
@@ -11686,7 +11721,8 @@
     "secondaryCanonicalGroups": [
       "MedialAndDeepKneeExtensors",
       "LateralKneeExtensors",
-      "GlutealExtensors"
+      "GlutealExtensors",
+      "RotatorCuff"
     ],
     "practice": "Qigong",
     "motionProfile": "ShoulderCircle",
@@ -11825,7 +11861,8 @@
     "secondaryCanonicalGroups": [
       "MedialAndDeepKneeExtensors",
       "LateralKneeExtensors",
-      "GlutealExtensors"
+      "GlutealExtensors",
+      "RotatorCuff"
     ],
     "practice": "Qigong",
     "motionProfile": "ShoulderRaise",
@@ -11909,7 +11946,9 @@
     "retiredName": "Neck Half-Circle",
     "video": "exercise_videos/exercise_0407.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Breath-led mobility",
     "motionProfile": "BreathingArmCircle",
     "mode": "Repetition",
@@ -12545,7 +12584,8 @@
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Cardio conditioning",
     "motionProfile": "JumpingJack",
@@ -12607,7 +12647,8 @@
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Cardio conditioning",
     "motionProfile": "SealJack",
@@ -12755,7 +12796,8 @@
       "GlutealExtensors",
       "HipAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Cardio and bodyweight conditioning",
     "motionProfile": "SquatJack",
@@ -12850,7 +12892,8 @@
       "MajorHipAdductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Cardio conditioning",
     "motionProfile": "CrossJack",
@@ -12892,7 +12935,8 @@
       "GlutealExtensors",
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Cardio conditioning",
     "motionProfile": "JumpingLunge",
@@ -13812,7 +13856,9 @@
     "retiredName": "Horizontal VOR Cancellation",
     "video": "exercise_videos/exercise_0446.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Upper-body warm-up",
     "motionProfile": "OverheadArmClap",
     "mode": "Repetition",
@@ -13856,7 +13902,9 @@
     "retiredName": "Vertical VOR Cancellation",
     "video": "exercise_videos/exercise_0447.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Bodyweight upper-body warm-up",
     "motionProfile": "SealClap",
     "mode": "Repetition",
@@ -14049,7 +14097,8 @@
       "MajorHipAdductors",
       "HipAbductors",
       "ShoulderAbductors",
-      "CalfDeepPosteriorLegAndPlantarFoot"
+      "CalfDeepPosteriorLegAndPlantarFoot",
+      "RotatorCuff"
     ],
     "practice": "Plyometric conditioning",
     "motionProfile": "PowerJack",
@@ -14244,7 +14293,8 @@
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight cardio conditioning",
     "motionProfile": "StandingMountainClimberHighImpact",
@@ -14447,7 +14497,8 @@
     "secondaryCanonicalGroups": [
       "HipAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight cardio conditioning",
     "motionProfile": "GoalPostJack",
@@ -14494,7 +14545,8 @@
     "primaryCanonicalGroup": "ShoulderAbductors",
     "secondaryCanonicalGroups": [
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight cardio conditioning",
     "motionProfile": "JogInPlaceForwardArmCircle",
@@ -14542,7 +14594,8 @@
     "secondaryCanonicalGroups": [
       "HipFlexors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight cardio conditioning",
     "motionProfile": "HighKneeBentArmCircle",
@@ -14886,7 +14939,8 @@
     "secondaryCanonicalGroups": [
       "HipAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight cardio conditioning",
     "motionProfile": "ScarecrowJack",
@@ -14934,7 +14988,8 @@
     "secondaryCanonicalGroups": [
       "HipAbductors",
       "CalfDeepPosteriorLegAndPlantarFoot",
-      "Soleus"
+      "Soleus",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight cardio conditioning",
     "motionProfile": "ArmCircleJumpingJack",
@@ -15484,7 +15539,8 @@
     "primaryCanonicalGroup": "BreathingMuscles",
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
-      "PosteriorThighAndKneeFlexors"
+      "PosteriorThighAndKneeFlexors",
+      "RotatorCuff"
     ],
     "practice": "Breath-led yoga",
     "motionProfile": "BreathOfJoyFlow",
@@ -16297,7 +16353,9 @@
     "retiredName": "Kathak Alternating Side Gaze",
     "video": "exercise_videos/exercise_0496.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Chest and shoulder mobility",
     "motionProfile": "WideArmClap",
     "mode": "Repetition",
@@ -17246,7 +17304,8 @@
     "video": "exercise_videos/exercise_0516.mp4",
     "primaryCanonicalGroup": "ScapularGirdle",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Shoulder mobility",
     "motionProfile": "BentElbowShoulderCircle",
@@ -17300,7 +17359,8 @@
     "primaryCanonicalGroup": "BreathingMuscles",
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
-      "PosteriorThighAndKneeFlexors"
+      "PosteriorThighAndKneeFlexors",
+      "RotatorCuff"
     ],
     "practice": "Yoga breathing",
     "motionProfile": "BreathOfJoyHaExhale",
@@ -17442,7 +17502,8 @@
     "video": "exercise_videos/exercise_0520.mp4",
     "primaryCanonicalGroup": "BreathingMuscles",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Six Healing Sounds: fountain breathing movement",
     "motionProfile": "RepMotion",
@@ -18807,7 +18868,8 @@
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
       "ShoulderAbductors",
-      "AnteriorLateralLowerLegAndDorsalFoot"
+      "AnteriorLateralLowerLegAndDorsalFoot",
+      "RotatorCuff"
     ],
     "practice": "Full-body strength training",
     "motionProfile": "SquatCalfRaiseOverheadReach",
@@ -18859,7 +18921,8 @@
       "CalfDeepPosteriorLegAndPlantarFoot",
       "Soleus",
       "ShoulderAbductors",
-      "AnteriorLateralLowerLegAndDorsalFoot"
+      "AnteriorLateralLowerLegAndDorsalFoot",
+      "RotatorCuff"
     ],
     "practice": "Full-body strength training",
     "motionProfile": "SquatOverheadReachCalfRaise",
@@ -18908,7 +18971,8 @@
     "secondaryCanonicalGroups": [
       "Soleus",
       "ShoulderAbductors",
-      "AnteriorLateralLowerLegAndDorsalFoot"
+      "AnteriorLateralLowerLegAndDorsalFoot",
+      "RotatorCuff"
     ],
     "practice": "Calf strengthening",
     "motionProfile": "LateralArmRaiseCalfRaise",
@@ -19685,7 +19749,9 @@
     "secondaryCanonicalGroups": [
       "Soleus",
       "ShoulderAbductors",
-      "AnteriorLateralLowerLegAndDorsalFoot"
+      "AnteriorLateralLowerLegAndDorsalFoot",
+      "ForearmFlexorsAndPronators",
+      "ForearmExtensorsAndSupinators"
     ],
     "practice": "Standing coordination exercise",
     "motionProfile": "CalfRaiseArmReachFistClose",
@@ -19987,7 +20053,9 @@
     "retiredName": "Qigong Crane-Wing Shoulder Lift",
     "video": "exercise_videos/exercise_0576.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Low-impact conditioning",
     "motionProfile": "SideStepRainbowReach",
     "mode": "Repetition",
@@ -20143,7 +20211,8 @@
     "video": "exercise_videos/exercise_0579.mp4",
     "primaryCanonicalGroup": "ScapularGirdle",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Shoulder rehabilitation",
     "motionProfile": "ShoulderRaise",
@@ -20191,7 +20260,8 @@
     "primaryCanonicalGroup": "ScapularGirdle",
     "secondaryCanonicalGroups": [
       "ShoulderAbductors",
-      "Chest"
+      "Chest",
+      "RotatorCuff"
     ],
     "practice": "Shoulder mobility",
     "motionProfile": "ShoulderRaise",
@@ -21661,7 +21731,8 @@
     "video": "exercise_videos/exercise_0647.mp4",
     "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "HeelCurlOverheadReach",
@@ -21916,7 +21987,9 @@
     "retiredName": "Alternating Belly-Dance Hip Drop",
     "video": "exercise_videos/exercise_0677.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Shoulder isometrics",
     "motionProfile": "GoalpostArmHold",
     "mode": "Hold",
@@ -22553,7 +22626,8 @@
       "LateralKneeExtensors",
       "GlutealExtensors",
       "MajorHipAdductors",
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "Lunge",
@@ -22767,7 +22841,9 @@
     "retiredName": "Backward Standing Large Arm Circles",
     "video": "exercise_videos/exercise_0743.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Shoulder mobility",
     "motionProfile": "ArmCircle",
     "mode": "Repetition",
@@ -23543,7 +23619,9 @@
     "retiredName": "Torso Circle",
     "video": "exercise_videos/exercise_0816.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Standing coordination",
     "motionProfile": "StandingJack",
     "mode": "Repetition",
@@ -24793,7 +24871,8 @@
     "video": "exercise_videos/exercise_0943.mp4",
     "primaryCanonicalGroup": "HipFlexors",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight conditioning",
     "motionProfile": "CoreBrace",
@@ -26065,7 +26144,8 @@
       "MajorHipAdductors",
       "ShoulderAbductors",
       "ShoulderAdductorsAndExtensors",
-      "AccessoryHipAdductors"
+      "AccessoryHipAdductors",
+      "RotatorCuff"
     ],
     "practice": "Dynamic mobility",
     "motionProfile": "AlternatingLateralLungeOverheadReach",
@@ -28586,7 +28666,8 @@
     "video": "exercise_videos/exercise_1064.mp4",
     "primaryCanonicalGroup": "DeepHipRotators",
     "secondaryCanonicalGroups": [
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Floor mobility",
     "motionProfile": "FloorLyingBentKneeOpeners",
@@ -33647,7 +33728,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1168.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Floor mobility",
     "motionProfile": "FloorSideLyingArmRaises",
     "mode": "Repetition",
@@ -34896,7 +34979,8 @@
     "primaryCanonicalGroup": "SpinalExtensors",
     "secondaryCanonicalGroups": [
       "ScapularGirdle",
-      "GlutealExtensors"
+      "GlutealExtensors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight strength",
     "motionProfile": "FloorWArmSupermans",
@@ -35828,7 +35912,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1214.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "AccessoryHipAdductors"
+    ],
     "practice": "Bodyweight strength",
     "motionProfile": "FloorSideLyingInnerThighRaises",
     "mode": "Repetition",
@@ -36161,7 +36247,8 @@
     "primaryCanonicalGroup": "MajorHipAdductors",
     "secondaryCanonicalGroups": [
       "HipFlexors",
-      "AbdominalWall"
+      "AbdominalWall",
+      "AccessoryHipAdductors"
     ],
     "practice": "Bodyweight strength",
     "motionProfile": "FloorHorizontalScissorKicks",
@@ -36206,7 +36293,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1222.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "AccessoryHipAdductors"
+    ],
     "practice": "Bodyweight strength",
     "motionProfile": "FloorLyingVerticalLegOpens",
     "mode": "Repetition",
@@ -36550,7 +36639,8 @@
     "video": "exercise_videos/exercise_1229.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
     "secondaryCanonicalGroups": [
-      "HipFlexors"
+      "HipFlexors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Yoga",
     "motionProfile": "FloorExtendedSideAnglePose",
@@ -37144,7 +37234,8 @@
     "video": "exercise_videos/exercise_1241.mp4",
     "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
     "secondaryCanonicalGroups": [
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Yoga",
     "motionProfile": "FloorTrianglePosewithHandonFloor",
@@ -37345,7 +37436,8 @@
     "video": "exercise_videos/exercise_1245.mp4",
     "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
     "secondaryCanonicalGroups": [
-      "MajorHipAdductors"
+      "MajorHipAdductors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Yoga",
     "motionProfile": "FloorStandingStraddleFoldwithHandsonFloor",
@@ -37391,7 +37483,8 @@
     "video": "exercise_videos/exercise_1246.mp4",
     "primaryCanonicalGroup": "ScapularGirdle",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Bodyweight strength",
     "motionProfile": "FloorProneYtoTArmRaises",
@@ -38686,7 +38779,8 @@
     "video": "exercise_videos/exercise_1274.mp4",
     "primaryCanonicalGroup": "ScapularGirdle",
     "secondaryCanonicalGroups": [
-      "ShoulderAbductors"
+      "ShoulderAbductors",
+      "RotatorCuff"
     ],
     "practice": "Wall and floor mobility",
     "motionProfile": "FloorWallSeatedWallAngels",
@@ -39507,7 +39601,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1292.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "AccessoryHipAdductors"
+    ],
     "practice": "Wall and floor mobility",
     "motionProfile": "FloorWallWallStraddleStretch",
     "mode": "Hold",
@@ -41455,7 +41551,8 @@
     "video": "exercise_videos/exercise_1429.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
     "secondaryCanonicalGroups": [
-      "AbdominalWall"
+      "AbdominalWall",
+      "AccessoryHipAdductors"
     ],
     "practice": "Bodyweight strength",
     "motionProfile": "ElevationCopenhagenAdductions",
@@ -42203,7 +42300,8 @@
     "video": "exercise_videos/exercise_1522.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
     "secondaryCanonicalGroups": [
-      "PosteriorThighAndKneeFlexors"
+      "PosteriorThighAndKneeFlexors",
+      "AccessoryHipAdductors"
     ],
     "practice": "Flexibility training",
     "motionProfile": "Fitness1522",
@@ -42348,7 +42446,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1525.mp4",
     "primaryCanonicalGroup": "MajorHipAdductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "AccessoryHipAdductors"
+    ],
     "practice": "Flexibility training",
     "motionProfile": "Fitness1525",
     "mode": "Hold",
@@ -43131,7 +43231,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1621.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Reaction training",
     "motionProfile": "Fitness1621",
     "mode": "Repetition",
@@ -43176,7 +43278,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1622.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Reaction training",
     "motionProfile": "Fitness1622",
     "mode": "Repetition",
@@ -43221,7 +43325,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1623.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Reaction training",
     "motionProfile": "Fitness1623",
     "mode": "Repetition",
@@ -43266,7 +43372,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1624.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Reaction training",
     "motionProfile": "Fitness1624",
     "mode": "Repetition",
@@ -43311,7 +43419,9 @@
     "retiredName": null,
     "video": "exercise_videos/exercise_1625.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
-    "secondaryCanonicalGroups": [],
+    "secondaryCanonicalGroups": [
+      "RotatorCuff"
+    ],
     "practice": "Reaction training",
     "motionProfile": "Fitness1625",
     "mode": "Repetition",

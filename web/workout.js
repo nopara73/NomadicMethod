@@ -510,7 +510,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // existing selections, Keeps and feedback remain valid.
 // Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
 // Existing identities, feedback and unfinished selections remain valid.
-export const CURRENT_CATALOG_REVISION = 96;
+export const CURRENT_CATALOG_REVISION = 97;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
