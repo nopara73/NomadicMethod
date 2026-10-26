@@ -10,9 +10,9 @@ The current [slot-variety report](slot_variety_sourcing_targets_current.json)
 also records distinct raw movement supply by canonical muscle, before physical
 and fitness filters. Candidate totals do not validate the workout partition
 that produced them. See the
-[26 October shin investigation](shin-variety-investigation-2026-10-26.md)
-for the original grouping brief, unchanged implementation tables, validation
-limits, candidate inventory and upper-body clothing correction.
+[26 October lower-leg and dorsal-foot investigation](shin-variety-investigation-2026-10-26.md)
+for the anatomical region, original grouping brief, unchanged implementation
+tables, training-claim review limits, candidate inventory and clothing correction.
 
 ## Current audit status — 2026-09-11
 

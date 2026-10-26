@@ -1,24 +1,48 @@
-# Shin slot and grouping provenance investigation
+# Anterior/lateral lower-leg and dorsal-foot candidate investigation
 
-The ten-movement pool follows from a mandatory shin-only bucket in the
-ten-minute definition. Its size does not by itself establish a catalog
-deficiency. The earlier conclusion that the catalog must expand its shin
-inventory was premature: the bucket definition needs scrutiny first.
+**Correction:** `AnteriorLateralLowerLegAndDorsalFoot` is a regional muscle
+bucket, not a synonym for tibialis anterior or a shin-only target. The earlier
+"shin-only slot" description was an investigation error. Neither the candidate
+count nor the grouping's provenance establishes that the regional bucket is
+wrong or that additional tibialis exercises are required.
 
 Correcting Wall Tibialis Raise's clothing eligibility restores one usable
-choice within that bucket. It does not justify or repair the grouping policy.
+choice within that bucket. The separate issue is whether catalog assignments
+truthfully represent the entire anatomical region.
 
-## Where the shin-only bucket entered the product
+## What the anatomical region includes
+
+The [Texas Tech anatomy tables](https://anatomy.ttuhscep.edu/musculoskeletal_system/leg_tables.html)
+distinguish the following muscles and actions:
+
+| Part of the region | Muscles | Relevant actions |
+| --- | --- | --- |
+| Anterior lower leg | Tibialis anterior, extensor hallucis longus, extensor digitorum longus, fibularis tertius | Ankle dorsiflexion, toe extension, and muscle-specific inversion or eversion |
+| Lateral lower leg | Fibularis/peroneus longus and brevis | Foot eversion and plantarflexion |
+| Dorsal intrinsic foot muscles | Extensor digitorum brevis and extensor hallucis brevis | Toe extension |
+
+In particular, lateral-compartment muscles are plantarflexors as well as
+evertors. An argument that a movement does not train dorsiflexors cannot, on
+its own, exclude meaningful work for this entire bucket.
+
+The selection predicate tests the full canonical-group association. It does
+not impose a separate tibialis-only or dorsiflexion-only rule. The existing
+candidate pool includes Side-to-Side Ankle Rocks (284) and ankle-circle family
+288, whose reviewed actions include inversion and eversion. Their eligibility
+already demonstrates that the slot is broader than the earlier shorthand.
+
+## Where the regional bucket entered the product
 
 The available original requests and Git history establish this sequence:
 
 1. The 2 August request supplied a fixed list of twenty muscle groups, with
    Shins at position 20. Short workouts used a prefix of that list. Its
-   ten-minute plan did not contain a dedicated shin round.
+   ten-minute plan did not include its separately named Shins entry. That
+   historical label is not an anatomical definition of today's broader bucket.
 2. The attached implementation brief received on 3 August at 01:52 UTC changed
    the product to seven resolutions. Under `10 GROUPS — 10% TARGET`, it
    explicitly listed bucket 10 as `Anterior/lateral lower leg and dorsal foot`.
-   Bucket 9 was `Upper limbs`. This restrictive grouping was already present
+   Bucket 9 was `Upper limbs`. This regional grouping was already present
    in the brief before the implementation began.
 3. Commit [`cf05cb13`, Add mass grouping ladder](https://github.com/nopara73/NomadicMethod/commit/cf05cb135a81b6ba56b104552484973cab2ed9ef)
    on 3 August implemented those entries in
@@ -32,7 +56,7 @@ The available original requests and Git history establish this sequence:
 
 This is a change from the earlier twenty-group prefix model, introduced with
 the first mass-resolution implementation. There is no later regrouping commit
-that changed an originally broader ten-minute lower-leg bucket into shins.
+that narrowed the membership of the regional bucket to tibialis anterior.
 The available evidence identifies the incoming brief as the point at which
 the current table entered the implementation; it does not establish who
 originally generated that brief.
@@ -60,10 +84,10 @@ and `head-neck-upper-limbs` boundaries. Those choices are present in the
 original table too. This is a description of the configuration, not a newly
 introduced requirement that the existing product must use a nested tree.
 
-Calling this table an established, validated mass-derived allocation was
-therefore unjustified. Its historical provenance does not establish its
-suitability. A correction needs an explicitly justified grouping specification;
-increasing the number of shin demonstrations cannot repair that specification.
+The mass-target rationale is not quantitatively established by these tests.
+That observation does not prove this particular regional grouping is invalid.
+The investigation must not use its own erroneous "shin-only" interpretation
+as grounds to replace the original regional taxonomy.
 
 ## Count the same thing at each stage
 
@@ -73,13 +97,13 @@ roots. Records include aliases, direction members and cue protocols; they are
 not independent workout choices.
 
 For `AnteriorLateralLowerLegAndDorsalFoot`, there are 13 records, 12 sequence
-roots and **10 movement identities**. Six identities have primary shin work;
-four more have an approved secondary shin claim. All ten are present in the
-runtime planner's anatomical placement pool for the ten-minute shin slot.
+roots and **10 movement identities**. Six identities have a primary claim for
+this region; four more have an approved secondary regional claim. All ten are
+present in the runtime planner's anatomical placement pool for this bucket.
 There is no additional loss between the declared training claims and that
 placement pool.
 
-| Identity | Movement | Shin claim |
+| Identity | Movement | Regional claim |
 | --- | --- | --- |
 | 165 | Wall Tibialis Raise | Primary |
 | 191 | Unsupported Standing Toe Raises | Primary |
@@ -117,22 +141,44 @@ summed into a total number of exercises. Differences between these counts do
 not establish how much workout time each target should receive or how many
 movements a valid catalog must contain for that target.
 
-The earlier training-claim review recorded **45 removed shin claims** in
+The earlier training-claim review recorded **45 removed claims for this region** in
 [`training-claim-corrections-2026-09-05.json`](training-claim-corrections-2026-09-05.json).
 That is a count of reviewed records, not 45 distinct available movements.
-Examples explain why restoring those claims would be incorrect:
+Several recorded reasons considered the anterior compartment without
+establishing whether lateral-compartment work was meaningful:
 
 - Record 16's old "Split-Stance Toe Raises" footage raises the heels: it is
-  plantar-flexor work, now correctly named Split-Stance Calf Raises.
+  plantar-flexor work, now correctly named Split-Stance Calf Raises. This
+  supports correcting its primary target, but does not by itself decide a
+  lateral-compartment secondary claim.
 - Record 187's old "Standing Heel-and-Toe Raises" footage never raises the
-  forefeet: it is now Standing Heel Raise.
-- Marching, walking, hopping, squatting and balancing previously received shin
-  credit for foot clearance or postural coactivation. Those actions are not
-  independent shin training claims under the current catalog rubric.
+  forefeet: it is now Standing Heel Raise. Absence of dorsiflexion does not
+  settle whether a lateral plantarflexor receives meaningful work.
+- Records 252 and 253 describe dorsiflexors as antagonists or postural
+  controllers. That reasoning cannot cover the entire region, because the
+  region also contains lateral plantarflexors.
+- Ordinary foot clearance and incidental postural coactivation still do not
+  qualify under the training-claim rubric. The anatomical correction does not
+  justify restoring every removed association.
 
-The source review found no omitted existing direct shin movement to reinstate.
-Those training-claim corrections explain part of the candidate count; they do
-not justify reserving a dedicated shin round at ten minutes.
+Consequently, the earlier blanket conclusion that none of these exclusions
+needed reconsideration is withdrawn. Existing heel-raise variants warrant
+review for lateral-compartment training, while toe-extensor work warrants its
+own review against the exact demonstrations.
+
+[Akuzawa et al. (2017)](https://pubmed.ncbi.nlm.nih.gov/28950148/)
+measured differing peroneus-longus recruitment across heel-raise foot positions.
+[Kim et al. (2022)](https://www.nature.com/articles/s41598-022-14313-8)
+found ankle orientation mattered during heel raises intended to recruit that
+muscle. These studies support reviewing exact demonstrated variants; they do
+not establish that every calf movement qualifies. EMG activation alone also
+does not establish the meaningful trainable stimulus required by the catalog.
+
+No runtime training claim has been added based solely on this anatomical
+correction. An unresolved candidate requires its exact movement and complete
+work interval to be assessed before a claim is changed. The ten-identity count
+is the current metadata result, not a proven upper limit on the region's
+eligible exercises.
 
 ## What the existing coverage gates establish
 
@@ -175,9 +221,8 @@ inventory expectations), the production web build and the Debug Android build.
 The packaged exercise was reviewed through Ready, the normal movement timer
 and rest with upper-body clothing off.
 
-The classification correction resolves the erroneous exclusion. The grouping
-policy remains unchanged. The next design question is which anatomically
-justified targets a ten-minute workout should reserve, followed by availability
-validation against that corrected definition. This investigation does not add
-a shin-sourcing quota, inflate anatomy or ratings, or silently replace the
-runtime taxonomy.
+The classification correction resolves the erroneous clothing exclusion. The
+grouping policy remains unchanged. The remaining investigation concerns catalog
+training claims across the full anterior/lateral lower-leg and dorsal-foot
+region, rather than replacing that region because it was mistakenly described
+as a shin-only target.
