@@ -1,0 +1,121 @@
+{
+  "cases": [
+    {
+      "name": "easy feedback moves every axis within the same whole level",
+      "levelSets": [
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "feedback": [
+        "tick",
+        "tick",
+        "tick",
+        "easy"
+      ],
+      "mean": 2.25,
+      "bestLevels": [
+        2
+      ]
+    },
+    {
+      "name": "hard feedback moves every axis within the same whole level",
+      "levelSets": [
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ]
+      ],
+      "feedback": [
+        "tick",
+        "tick",
+        "tick",
+        "hard"
+      ],
+      "mean": 1.75,
+      "bestLevels": [
+        2
+      ]
+    },
+    {
+      "name": "full range love cannot dilute a fractional estimate",
+      "levelSets": [
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          2
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "feedback": [
+        "tick",
+        "tick",
+        "tick",
+        "easy",
+        "tick"
+      ],
+      "mean": 2.25,
+      "bestLevels": [
+        2
+      ]
+    },
+    {
+      "name": "fractional fitting searches every noncontiguous basin",
+      "levelSets": [
+        [
+          1,
+          5
+        ],
+        [
+          2
+        ],
+        [
+          4
+        ],
+        [
+          4
+        ]
+      ],
+      "feedback": [
+        "tick",
+        "tick",
+        "tick",
+        "tick"
+      ],
+      "mean": 3.75,
+      "bestLevels": [
+        4
+      ]
+    }
+  ]
+}

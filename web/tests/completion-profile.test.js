@@ -78,7 +78,7 @@ test("snapshots survive preparation, cold movement restore, duration and modifie
   assert.deepEqual(calculateFitnessProfile(catalog, session.state, ratings), final);
 });
 
-for (const version of [0, 1, 2]) test(`evidence version ${version} is never compared with range feedback`, () => {
+for (const version of [0, 1, 2, 3]) test(`evidence version ${version} is never compared with range feedback`, () => {
   let session = create();
   session.initialize();
   session.startWorkout(3);

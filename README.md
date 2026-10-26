@@ -115,6 +115,10 @@ Intermediate block rests do not score or offer the heart.
 difficulty evidence. “Too hard” updates difficulty evidence without a downvote.
 Both difficulty responses remove the movement family's saved Keeps.
 
+The spiderweb retains fractional difficulty estimates, so feedback can move an
+axis before it crosses a whole level. Existing saved responses are recalculated
+without changing the discrete training zones used to select exercises.
+
 Modifier profiles share a logical slot, so a Keep made with Insect off remains
 the Keep for that same slot with Insect on whenever the exercise is eligible.
 When the duration changes anatomical resolution, Nomadic Method maps a Keep through the

@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\fitness-precision-cases.json" Link="Assets\fitness-precision-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\wall-tibialis-hard-floor-cases.json" Link="Assets\wall-tibialis-hard-floor-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\exercise-feedback-cases.json" Link="Assets\exercise-feedback-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\reaction-drill-trace.json" Link="Assets\reaction-drill-trace.json" CopyToOutputDirectory="PreserveNewest" />

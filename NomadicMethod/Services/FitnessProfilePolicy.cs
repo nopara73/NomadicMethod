@@ -13,11 +13,11 @@ public sealed record FitnessProfileAxis(double Mean, IReadOnlyList<FitnessEviden
 /// <summary>Equal-weight challenge estimates from each movement's latest difficulty response.</summary>
 public static class FitnessProfilePolicy
 {
-    public const int EvidenceVersion = 3;
+    public const int EvidenceVersion = 4;
     public const int MaximumLevel = 5;
     public const int WebBoundaryLevel = 4;
 
-    // Rounding is only for display. Selection uses the complete best-fit set.
+    // Legacy tier displays may round. Selection uses the complete best-fit set.
     public static int RoundLevel(double level) => !double.IsFinite(level) || level <= 0
         ? 0 : (int)Math.Clamp(Math.Floor(level + 0.5), 1, MaximumLevel);
 
@@ -139,13 +139,37 @@ public static class FitnessProfilePolicy
     private static FitnessProfileAxis Fit(List<FitnessEvidence> evidence)
     {
         if (evidence.Count == 0) return new(0, [], []);
-        // Each movement has one equal vote. Evaluate only the five discrete levels;
-        // distance to the nearest supported member preserves noncontiguous sets.
+        // Keep the five discrete selection levels stable. The chart separately
+        // fits between them so a small amount of new feedback remains visible.
         int[] penalties = Enumerable.Range(1, MaximumLevel).Select(candidate => evidence.Sum(entry =>
             entry.SupportedLevels.Min(level => (candidate - level) * (candidate - level)))).ToArray();
         int minimum = penalties.Min();
         int[] best = Enumerable.Range(1, MaximumLevel).Where(level => penalties[level - 1] == minimum).ToArray();
-        return new(best.Length == MaximumLevel ? 0 : best.Average(), evidence.ToArray(), best);
+        return new(best.Length == MaximumLevel ? 0 : FitMean(evidence), evidence.ToArray(), best);
+    }
+
+    private static double FitMean(List<FitnessEvidence> evidence)
+    {
+        // A response supporting every level cannot pull an estimate toward an
+        // integer. Every informative movement still has one equal vote.
+        FitnessEvidence[] informative = evidence.Where(entry => entry.SupportedLevels.Length < MaximumLevel).ToArray();
+        double[] boundaries = informative.SelectMany(entry => entry.SupportedLevels.Zip(
+                entry.SupportedLevels.Skip(1), (left, right) => (left + right) / 2d))
+            .Append(1d).Append(MaximumLevel).Distinct().Order().ToArray();
+        var candidates = new List<double>();
+        for (int index = 1; index < boundaries.Length; index++)
+        {
+            double left = boundaries[index - 1], right = boundaries[index];
+            double midpoint = (left + right) / 2;
+            // Between nearest-level boundaries the loss is a single quadratic.
+            // Search every piece, including gaps in noncontiguous rating sets.
+            double mean = informative.Average(entry => entry.SupportedLevels.MinBy(level => Math.Abs(midpoint - level)));
+            candidates.Add(Math.Clamp(mean, left, right));
+        }
+        double Loss(double candidate) => informative.Sum(entry =>
+            entry.SupportedLevels.Min(level => (candidate - level) * (candidate - level)));
+        double minimum = candidates.Min(Loss);
+        return candidates.Distinct().Where(candidate => Math.Abs(Loss(candidate) - minimum) < 1e-9).Average();
     }
 
     public static string FormatLevels(IReadOnlyList<int> levels)
@@ -160,8 +184,7 @@ public static class FitnessProfilePolicy
         return string.Join(", ", parts);
     }
 
-    // The planner deliberately retains its existing favourite-based input. Updating
-    // the displayed estimate must not silently change fresh choices or saved lineups.
+    // Retained for legacy preference-based fixtures and historical interpretation.
     public static double[] CalculateFavourites(
         IReadOnlyList<Exercise> exercises,
         WorkoutState state,

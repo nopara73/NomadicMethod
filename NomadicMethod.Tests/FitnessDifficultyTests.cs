@@ -74,6 +74,44 @@ public sealed class FitnessDifficultyTests
     }
 
     [Fact]
+    public void SmallDifficultyChangesRemainFractionalWithoutChangingDiscreteSelectionZones()
+    {
+        using var fixture = JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,
+            "Assets", "fitness-precision-cases.json")));
+        foreach (var entry in fixture.RootElement.GetProperty("cases").EnumerateArray())
+        {
+            int[][] sets = entry.GetProperty("levelSets").Deserialize<int[][]>()!;
+            Exercise[] exercises = sets.Select((_, index) => new Exercise
+            {
+                Id = index + 1, SessionMovementId = index + 1, Name = "movement " + (index + 1),
+                Video = "", PrimaryCanonicalGroup = default, SecondaryCanonicalGroups = [],
+                Practice = "", MotionProfile = "", Mode = default, Presentation = default,
+                HoldFramePercent = 0, SideSequence = default, OnlyFeetTouchGround = true,
+                ShoeAgnostic = true, MaxSpaceMeters = 2, Equipment = "", Silent = true,
+            }).ToArray();
+            var ratings = exercises.ToDictionary(exercise => exercise.Id,
+                exercise => FitnessProfilePolicy.Dimensions.Select(_ => sets[exercise.Id - 1]).ToArray());
+            var state = new WorkoutState { ActiveWorkoutSession = new() { SessionId = 1 } };
+            string[] responses = entry.GetProperty("feedback").Deserialize<string[]>()!;
+            for (int index = 0; index < exercises.Length; index++)
+                state.ActiveWorkoutSession.Decisions.Add(new()
+                {
+                    RootExerciseId = exercises[index].Id, DecidedAtUnixMilliseconds = index + 1,
+                    Outcome = responses[index] switch
+                    {
+                        "easy" => ExerciseOutcome.TooEasy, "hard" => ExerciseOutcome.TooHard, _ => ExerciseOutcome.Tick,
+                    },
+                });
+            string before = JsonSerializer.Serialize(state);
+            var profile = FitnessProfilePolicy.Inspect(exercises, state, ratings);
+            Assert.All(profile, axis => Assert.Equal(entry.GetProperty("mean").GetDouble(), axis.Mean));
+            Assert.All(FitnessSelectionPolicy.Zones(profile), zone =>
+                Assert.Equal(entry.GetProperty("bestLevels").Deserialize<int[]>(), zone));
+            Assert.Equal(before, JsonSerializer.Serialize(state));
+        }
+    }
+
+    [Fact]
     public void LevelLabelsRetainNoncontiguousGaps()
     {
         Assert.Equal("1, 3–5", FitnessProfilePolicy.FormatLevels([1, 3, 4, 5]));
