@@ -4222,7 +4222,7 @@
     ],
     "insectCompatibility": "Incompatible",
     "hardFloorCompatibility": "Compatible",
-    "upperBodyClothingRequirement": "ClothingRequired",
+    "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": true,
     "elevationRequired": false,

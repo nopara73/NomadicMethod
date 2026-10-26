@@ -13,7 +13,7 @@
         1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216,
         1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246,
         1248, 1249, 1252, 1253, 1262,
-        134, 137, 165, 175, 579, 580, 801, 913
+        134, 137, 175, 579, 580, 801, 913
     )
 
     # The exercise is a mirror physique-inspection pose whose purpose depends
@@ -26,6 +26,7 @@
     # demonstrated exercise. Keep this exhaustive so new catalog records fail
     # generation until they receive a real review.
     Agnostic = @(
+        165, # Wall Tibialis Raise: upper-body clothing is optional (owner correction).
         1718, 1719,
         1717,
         1605, 1615, 1625, 1635, 1645, 1706, 1707, 1708, 1709, 1710, 1711, 1712, 1713, 1714, 1715, 1716,

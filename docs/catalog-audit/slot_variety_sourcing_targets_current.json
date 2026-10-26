@@ -1,7 +1,221 @@
 {
-  "catalogRevision": 83,
-  "catalogSha256": "aee813c1c73e93385a038a8c5fdb224101852675d8b19f933fda0d4282b0700f",
-  "catalogRecordCount": 815,
+  "catalogRevision": 94,
+  "catalogSha256": "b28e136ecec79d70de2009d935b123fe8b531c8f162234cb16372ba7566592d1",
+  "catalogRecordCount": 909,
+  "catalogSessionMovementCount": 797,
+  "schedulableSessionMovementCount": 768,
+  "anatomicalInventory": [
+    {
+      "muscle": "PelvicFloorAndPerineum",
+      "primaryMovementCount": 1,
+      "trainedMovementCount": 1,
+      "schedulableMovementCount": 1,
+      "singleBlockMovementCount": 1
+    },
+    {
+      "muscle": "IntrinsicHand",
+      "primaryMovementCount": 5,
+      "trainedMovementCount": 6,
+      "schedulableMovementCount": 6,
+      "singleBlockMovementCount": 5
+    },
+    {
+      "muscle": "AccessoryHipAdductors",
+      "primaryMovementCount": 1,
+      "trainedMovementCount": 8,
+      "schedulableMovementCount": 8,
+      "singleBlockMovementCount": 4
+    },
+    {
+      "muscle": "BreathingMuscles",
+      "primaryMovementCount": 7,
+      "trainedMovementCount": 8,
+      "schedulableMovementCount": 8,
+      "singleBlockMovementCount": 8
+    },
+    {
+      "muscle": "AnteriorLateralLowerLegAndDorsalFoot",
+      "primaryMovementCount": 6,
+      "trainedMovementCount": 10,
+      "schedulableMovementCount": 10,
+      "singleBlockMovementCount": 8
+    },
+    {
+      "muscle": "ElbowFlexors",
+      "primaryMovementCount": 6,
+      "trainedMovementCount": 15,
+      "schedulableMovementCount": 15,
+      "singleBlockMovementCount": 8
+    },
+    {
+      "muscle": "RotatorCuff",
+      "primaryMovementCount": 12,
+      "trainedMovementCount": 17,
+      "schedulableMovementCount": 16,
+      "singleBlockMovementCount": 4
+    },
+    {
+      "muscle": "ForearmExtensorsAndSupinators",
+      "primaryMovementCount": 7,
+      "trainedMovementCount": 18,
+      "schedulableMovementCount": 18,
+      "singleBlockMovementCount": 9
+    },
+    {
+      "muscle": "ForearmFlexorsAndPronators",
+      "primaryMovementCount": 6,
+      "trainedMovementCount": 18,
+      "schedulableMovementCount": 18,
+      "singleBlockMovementCount": 10
+    },
+    {
+      "muscle": "ShoulderAdductorsAndExtensors",
+      "primaryMovementCount": 12,
+      "trainedMovementCount": 23,
+      "schedulableMovementCount": 23,
+      "singleBlockMovementCount": 18
+    },
+    {
+      "muscle": "DeepAndIntersegmentalBack",
+      "primaryMovementCount": 24,
+      "trainedMovementCount": 28,
+      "schedulableMovementCount": 28,
+      "singleBlockMovementCount": 19
+    },
+    {
+      "muscle": "AnteriorLateralNeckAndHyoidMuscles",
+      "primaryMovementCount": 16,
+      "trainedMovementCount": 31,
+      "schedulableMovementCount": 29,
+      "singleBlockMovementCount": 15
+    },
+    {
+      "muscle": "CranialMuscles",
+      "primaryMovementCount": 22,
+      "trainedMovementCount": 31,
+      "schedulableMovementCount": 27,
+      "singleBlockMovementCount": 13
+    },
+    {
+      "muscle": "PosteriorNeckAndSuboccipitalMuscles",
+      "primaryMovementCount": 13,
+      "trainedMovementCount": 33,
+      "schedulableMovementCount": 30,
+      "singleBlockMovementCount": 15
+    },
+    {
+      "muscle": "DeepHipRotators",
+      "primaryMovementCount": 15,
+      "trainedMovementCount": 34,
+      "schedulableMovementCount": 33,
+      "singleBlockMovementCount": 12
+    },
+    {
+      "muscle": "ScapularGirdle",
+      "primaryMovementCount": 18,
+      "trainedMovementCount": 36,
+      "schedulableMovementCount": 35,
+      "singleBlockMovementCount": 23
+    },
+    {
+      "muscle": "SpinalExtensors",
+      "primaryMovementCount": 14,
+      "trainedMovementCount": 46,
+      "schedulableMovementCount": 47,
+      "singleBlockMovementCount": 36
+    },
+    {
+      "muscle": "HipAbductors",
+      "primaryMovementCount": 36,
+      "trainedMovementCount": 64,
+      "schedulableMovementCount": 58,
+      "singleBlockMovementCount": 27
+    },
+    {
+      "muscle": "MajorHipAdductors",
+      "primaryMovementCount": 14,
+      "trainedMovementCount": 73,
+      "schedulableMovementCount": 71,
+      "singleBlockMovementCount": 52
+    },
+    {
+      "muscle": "PosteriorThighAndKneeFlexors",
+      "primaryMovementCount": 40,
+      "trainedMovementCount": 77,
+      "schedulableMovementCount": 75,
+      "singleBlockMovementCount": 42
+    },
+    {
+      "muscle": "Chest",
+      "primaryMovementCount": 50,
+      "trainedMovementCount": 86,
+      "schedulableMovementCount": 86,
+      "singleBlockMovementCount": 59
+    },
+    {
+      "muscle": "Soleus",
+      "primaryMovementCount": 12,
+      "trainedMovementCount": 89,
+      "schedulableMovementCount": 85,
+      "singleBlockMovementCount": 64
+    },
+    {
+      "muscle": "ElbowExtensors",
+      "primaryMovementCount": 26,
+      "trainedMovementCount": 93,
+      "schedulableMovementCount": 91,
+      "singleBlockMovementCount": 65
+    },
+    {
+      "muscle": "CalfDeepPosteriorLegAndPlantarFoot",
+      "primaryMovementCount": 29,
+      "trainedMovementCount": 109,
+      "schedulableMovementCount": 105,
+      "singleBlockMovementCount": 77
+    },
+    {
+      "muscle": "AbdominalWall",
+      "primaryMovementCount": 89,
+      "trainedMovementCount": 131,
+      "schedulableMovementCount": 131,
+      "singleBlockMovementCount": 101
+    },
+    {
+      "muscle": "HipFlexors",
+      "primaryMovementCount": 68,
+      "trainedMovementCount": 145,
+      "schedulableMovementCount": 140,
+      "singleBlockMovementCount": 81
+    },
+    {
+      "muscle": "LateralKneeExtensors",
+      "primaryMovementCount": 27,
+      "trainedMovementCount": 166,
+      "schedulableMovementCount": 162,
+      "singleBlockMovementCount": 108
+    },
+    {
+      "muscle": "MedialAndDeepKneeExtensors",
+      "primaryMovementCount": 108,
+      "trainedMovementCount": 169,
+      "schedulableMovementCount": 165,
+      "singleBlockMovementCount": 111
+    },
+    {
+      "muscle": "GlutealExtensors",
+      "primaryMovementCount": 47,
+      "trainedMovementCount": 211,
+      "schedulableMovementCount": 205,
+      "singleBlockMovementCount": 128
+    },
+    {
+      "muscle": "ShoulderAbductors",
+      "primaryMovementCount": 77,
+      "trainedMovementCount": 227,
+      "schedulableMovementCount": 215,
+      "singleBlockMovementCount": 141
+    }
+  ],
   "newWorkoutMinutes": [
     3,
     5,
@@ -77,6 +291,7 @@
   "remainingShortWorkoutSlotCount": 0,
   "targets": [],
   "interpretation": [
+    "Anatomical inventory counts distinct movement identities before modifiers, fitness, recovery, preference or duration filtering; it is a supply diagnostic, not a new admission quota.",
     "New workouts offer 3, 5, 7, 10 and 15 minutes. Longer durations remain only for existing sessions and history.",
     "Each available short-workout slot requires five distinct selectable complete session movements, except the exact owner-approved omissions.",
     "A grouped slot accepts a genuine primary or meaningful secondary association to any member muscle. It does not require every member muscle at once.",

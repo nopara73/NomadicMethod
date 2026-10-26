@@ -9,7 +9,7 @@ const catalog = read("../../NomadicMethod/Assets/exercises.json");
 const tibialis = catalog.find(exercise => exercise.id === 165);
 const cases = read("./fixtures/wall-tibialis-hard-floor-cases.json");
 const now = () => Date.parse("2026-10-26T00:00:00Z");
-const profile = M.HardFloor | M.Wall | M.UpperBodyClothing | M.Silence;
+const profile = M.HardFloor | M.Wall | M.Silence;
 const slot = getResolution(10).groups.find(group =>
   group.id === "r10.anterior-lateral-lower-leg-dorsal-foot");
 
@@ -32,9 +32,12 @@ test("a saved wall tibialis Keep is available for the hard-floor shin slot", () 
   assert.deepEqual(session.state.keptExerciseRootIdsBySelectionGroupId[slot.id], [165]);
 });
 
-test("the compatibility correction preserves an unfinished revision-92 lineup and feedback", () => {
+for (const revision of [92, 93]) {
+test(`the compatibility correction preserves an unfinished revision-${revision} lineup and feedback`, () => {
   const legacyCatalog = structuredClone(catalog);
-  legacyCatalog.find(exercise => exercise.id === 165).hardFloorCompatibility = "Incompatible";
+  const legacyTibialis = legacyCatalog.find(exercise => exercise.id === 165);
+  legacyTibialis.upperBodyClothingRequirement = "ClothingRequired";
+  if (revision === 92) legacyTibialis.hardFloorCompatibility = "Incompatible";
   const state = createDefaultState();
   state.keptExerciseRootIdsBySelectionGroupId[slot.id] = [165];
   state.exerciseScoreAdjustmentsByPhase.Warmup = {1295: -2};
@@ -42,8 +45,8 @@ test("the compatibility correction preserves an unfinished revision-92 lineup an
   const previous = new WorkoutSession(legacyCatalog, state, () => 0, now);
   previous.initialize();
   previous.startWorkout(10, profile);
-  previous.state.catalogRevision = 92;
-  previous.state.activeCatalogRevision = 92;
+  previous.state.catalogRevision = revision;
+  previous.state.activeCatalogRevision = revision;
   const saved = structuredClone(previous.state);
   const restored = new WorkoutSession(catalog, structuredClone(saved), () => 0, now);
   restored.restoreAfterReopen();
@@ -54,3 +57,4 @@ test("the compatibility correction preserves an unfinished revision-92 lineup an
   assert.equal(restored.state.scores[165], 4);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
 });
+}

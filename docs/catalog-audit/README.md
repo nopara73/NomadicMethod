@@ -6,6 +6,13 @@ first-time user is not an admission requirement. Apply each movement's declared
 space, ground-contact, and equipment restrictions. The final packaged silent human demonstration is authoritative for
 the action, name, muscular demand, anatomy, structure, and presentation.
 
+The current [slot-variety report](slot_variety_sourcing_targets_current.json)
+also records distinct raw movement supply by canonical muscle, before physical
+and fitness filters. A zero-deficit minimum-availability report does not imply
+balanced anatomical variety. See the
+[26 October shin investigation](shin-variety-investigation-2026-10-26.md)
+for the narrow shin pool and the upper-body clothing correction.
+
 ## Current audit status — 2026-09-11
 
 Current integration status is recorded in

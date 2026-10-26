@@ -17,7 +17,7 @@ public sealed class WallTibialisHardFloorTests
     private static readonly DateTimeOffset Now = DateTimeOffset.Parse("2026-10-26T00:00:00Z");
     private const string ShinSlot = "r10.anterior-lateral-lower-leg-dorsal-foot";
     private const WorkoutModifiers Profile = WorkoutModifiers.HardFloor | WorkoutModifiers.Wall |
-        WorkoutModifiers.UpperBodyClothing | WorkoutModifiers.Silence;
+        WorkoutModifiers.Silence;
     private static Exercise[] Catalog() => JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
         Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
     private static ExerciseSessionService Planner(Exercise[] catalog) => new(catalog, new Random(1), () => Now);
@@ -55,11 +55,15 @@ public sealed class WallTibialisHardFloorTests
         Assert.Equal([165], state.KeptExerciseRootIdsBySelectionGroupId[ShinSlot]);
     }
 
-    [Fact]
-    public void CorrectionPreservesUnfinishedRevision92LineupAndFeedback()
+    [Theory]
+    [InlineData(92)]
+    [InlineData(93)]
+    public void CorrectionPreservesUnfinishedLineupAndFeedback(int revision)
     {
         JsonNode legacyJson = JsonSerializer.SerializeToNode(Catalog(), Options)!;
-        legacyJson.AsArray().Single(exercise => exercise!["Id"]!.GetValue<int>() == 165)!["HardFloorCompatibility"] = "Incompatible";
+        JsonNode tibialis = legacyJson.AsArray().Single(exercise => exercise!["Id"]!.GetValue<int>() == 165)!;
+        tibialis["UpperBodyClothingRequirement"] = "ClothingRequired";
+        if (revision == 92) tibialis["HardFloorCompatibility"] = "Incompatible";
         Exercise[] legacy = legacyJson.Deserialize<Exercise[]>(Options)!;
         legacy.Single(exercise => exercise.Id == 165).Score = 4;
         var state = new WorkoutState();
@@ -68,8 +72,8 @@ public sealed class WallTibialisHardFloorTests
         ExerciseSessionService previous = Planner(legacy);
         previous.Initialize(state);
         previous.StartWorkout(state, 10, Profile);
-        state.CatalogRevision = 92;
-        state.ActiveCatalogRevision = 92;
+        state.CatalogRevision = revision;
+        state.ActiveCatalogRevision = revision;
         string selections = JsonSerializer.Serialize(state.SelectedExerciseIds);
         string keeps = JsonSerializer.Serialize(state.KeptExerciseRootIdsBySelectionGroupId);
         string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);

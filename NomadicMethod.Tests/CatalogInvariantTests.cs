@@ -684,7 +684,7 @@ public sealed class CatalogInvariantTests
             exercise.UpperBodyClothingRequirement ==
                 ExerciseUpperBodyClothingRequirement.Unreviewed);
         Assert.Equal(
-            new HashSet<int> { 134, 137, 165, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428, 1436, 1437, 1522, 1523 },
+            new HashSet<int> { 134, 137, 175, 579, 580, 801, 913, 1057, 1058, 1060, 1062, 1064, 1067, 1068, 1072, 1075, 1078, 1079, 1083, 1084, 1088, 1090, 1093, 1097, 1098, 1099, 1101, 1104, 1105, 1106, 1110, 1112, 1115, 1117, 1118, 1122, 1123, 1138, 1139, 1140, 1141, 1148, 1149, 1150, 1155, 1156, 1157, 1158, 1160, 1168, 1169, 1170, 1171, 1172, 1173, 1176, 1177, 1178, 1179, 1180, 1181, 1182, 1183, 1184, 1185, 1187, 1191, 1193, 1194, 1201, 1202, 1204, 1205, 1208, 1209, 1214, 1216, 1217, 1218, 1221, 1222, 1224, 1225, 1226, 1227, 1230, 1231, 1233, 1238, 1240, 1246, 1248, 1249, 1252, 1253, 1262, 1272, 1274, 1276, 1281, 1283, 1284, 1285, 1286, 1287, 1288, 1291, 1292, 1293, 1427, 1428, 1436, 1437, 1522, 1523 },
             exercises.Where(exercise =>
                     exercise.UpperBodyClothingRequirement ==
                         ExerciseUpperBodyClothingRequirement.ClothingRequired)
@@ -697,7 +697,7 @@ public sealed class CatalogInvariantTests
                         ExerciseUpperBodyClothingRequirement.BareUpperBodyRequired)
                 .Select(exercise => exercise.Id)
                 .ToHashSet());
-        Assert.Equal(787, exercises.Count(exercise =>
+        Assert.Equal(788, exercises.Count(exercise =>
             exercise.UpperBodyClothingRequirement == ExerciseUpperBodyClothingRequirement.Agnostic));
         Assert.DoesNotContain(exercises, exercise =>
             exercise.ShyCompatibility == ExerciseShyCompatibility.Unreviewed);
