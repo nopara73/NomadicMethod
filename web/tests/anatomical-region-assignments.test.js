@@ -20,19 +20,28 @@ test("anatomy corrections remain bound to reviewed movements and media", () => {
     previous.secondaryCanonicalGroups = previous.secondaryCanonicalGroups.filter(g => !entry.addedSecondaryGroups.includes(g));
     assert.equal(createHash("sha256").update(JSON.stringify(previous)).digest("hex"), entry.previousMetadataSha256, "Only reviewed secondary claims change: " + entry.id);
     assert.ok(entry.addedSecondaryGroups.every(g => exercise.secondaryCanonicalGroups.includes(g)));
+    const expectedAssets = [exercise.video];
+    if (exercise.mode === "Hold") expectedAssets.push(`exercise_hold_frames/exercise_${String(exercise.id).padStart(4, "0")}.png`);
+    if (exercise.directionSequence !== "None") expectedAssets.push(`exercise_direction_videos/exercise_${String(exercise.id).padStart(4, "0")}.mp4`);
     if (exercise.practice === "Reaction training") {
       const plan = resolveReactionDrills(reactionDocument, catalog).get(exercise.id);
       assert.deepEqual(entry.reactionPlan, plan);
+      expectedAssets.push("reaction_drills.json");
       for (const action of plan.actions) {
+        expectedAssets.push(action.video, action.preview);
         assert.ok(entry.assets[action.video]);
         assert.ok(entry.assets[action.preview]);
       }
     }
+    assert.deepEqual(Object.keys(entry.assets).sort(), expectedAssets.sort());
+    assert.ok(entry.method.length > 0);
     assert.equal(entry.workoutReplay.realTimePlayback, true);
     assert.deepEqual(entry.workoutReplay.errors, []);
     assert.ok(entry.workoutReplay.blocks.some(block => block.id === entry.id));
     for (const [asset, expected] of Object.entries(entry.assets)) {
-      assert.equal(createHash("sha256").update(readFileSync(new URL("../../NomadicMethod/Assets/" + asset, import.meta.url))).digest("hex"), expected, asset);
+      const data = readFileSync(new URL("../../NomadicMethod/Assets/" + asset, import.meta.url));
+      const content = asset === "reaction_drills.json" ? data.toString("utf8").replaceAll("\r\n", "\n") : data;
+      assert.equal(createHash("sha256").update(content).digest("hex"), expected, asset);
     }
     assert.deepEqual(Object.keys(entry.checks).sort(), ["Metadata", "FullLoop", "Crop", "LoopSeam", "PlaybackSpeed", "Mirroring", "Travel", "HoldFrame", "Equipment", "Workout"].sort());
     for (const [dimension, check] of Object.entries(entry.checks)) {

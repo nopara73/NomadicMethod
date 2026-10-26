@@ -8,6 +8,7 @@ $catalog = @(Get-Content (Join-Path $assets 'exercises.json') -Raw | ConvertFrom
 $audit = Get-Content (Join-Path $root "docs/catalog-audit/$Admission.json") -Raw | ConvertFrom-Json -AsHashtable
 $expectedCount = if ($Admission -eq 'ability-admissions-2026-10-23') { 1 } elseif ($Admission -eq 'zopd-admissions-2026-10-24') { 2 } else { 16 }
 $reviews = Read-CatalogReviewEvidence -Path (Join-Path $root $audit.reviewEvidence)
+$anatomyReviews = Read-CatalogReviewEvidence -Path (Join-Path $root 'docs/catalog-audit/anatomical-region-review-2026-10-26.json')
 $assessment = Get-Content (Join-Path $PSScriptRoot 'ExerciseFitnessCeilingScores.json') -Raw | ConvertFrom-Json -AsHashtable
 $ratings = Get-Content (Join-Path $assets 'fitness_ratings.json') -Raw | ConvertFrom-Json -AsHashtable
 if ($audit.newRecordCount -ne $expectedCount -or @($audit.entries).Count -ne $expectedCount -or $reviews.Count -ne $expectedCount) {
@@ -23,7 +24,17 @@ foreach ($entry in $audit.entries) {
         $movementId -ne [int]$entry.sessionMovementId) {
         throw "Admission identity changed: $id."
     }
-    $result = Get-CatalogReviewResult -Exercise $exercise[0] -AssetsRoot $assets -Review $reviews[$id]
+    $review = $reviews[$id]
+    if ($anatomyReviews.ContainsKey($id)) {
+        # A later anatomy review may supersede only the exact admitted metadata.
+        # The full current media and all ten verdicts still pass the normal gate.
+        $updatedReview = $anatomyReviews[$id]
+        if ([string]$updatedReview.previousMetadataSha256 -cne [string]$review.metadataSha256) {
+            throw "Exercise $id anatomy review does not match its previous admission review."
+        }
+        $review = $updatedReview
+    }
+    $result = Get-CatalogReviewResult -Exercise $exercise[0] -AssetsRoot $assets -Review $review
     if ($result.Status -ne 'PASS') { throw "Exercise $id requires a new explicit media/metadata review: $($result.Status)." }
     $profiles = @($assessment.profiles.Values | Where-Object { $id -in $_.exerciseIds })
     if ($profiles.Count -ne 1 -or $entry.trainedLevels.Count -ne 10) {
