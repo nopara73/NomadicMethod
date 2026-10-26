@@ -78,12 +78,12 @@ public sealed class FitnessProfileView : FrameLayout
     public void SetProfile(FitnessProfileAxis[] profile)
     {
         _profile = profile;
-        _levels = profile.Select(axis => (double)FitnessProfilePolicy.RoundLevel(axis.Mean)).ToArray();
+        _levels = profile.Select(axis => axis.Mean).ToArray();
         for (int index = 0; index < 10; index++)
         {
             _buttons[index].Enabled = true;
             _buttons[index].ContentDescription = string.Join(" ", FitnessProfilePolicy.Labels[index]) + ": " +
-                (_levels[index] > 0 ? "level " + _levels[index].ToString("0") + " of 5" : "no evidence yet") +
+                (_levels[index] > 0 ? "level " + FitnessProfilePolicy.FormatMean(_levels[index]) + " of 5" : "no evidence yet") +
                 ". Show difficulty feedback";
             _buttons[index].SetTextColor(_levels[index] > 0 ? Graphite
                 : new Color(Context!.GetColor(Resource.Color.secondary_text)));
@@ -317,7 +317,7 @@ public sealed class FitnessProfileView : FrameLayout
         title.SetPadding((int)Dp(24), (int)Dp(20), (int)Dp(24), (int)Dp(8));
         var content = new LinearLayout(Context) { Orientation = Orientation.Vertical };
         content.SetPadding((int)Dp(24), 0, (int)Dp(24), (int)Dp(16));
-        content.AddView(Text(axis.Mean > 0 ? "level " + _levels[index].ToString("0") + " of 5"
+        content.AddView(Text(axis.Mean > 0 ? "level " + FitnessProfilePolicy.FormatMean(_levels[index]) + " of 5"
             : "No evidence yet", 24, Green));
         Color secondary = new(195, 194, 187);
         content.AddView(Text(axis.Mean > 0

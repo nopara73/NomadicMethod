@@ -38,8 +38,10 @@ public sealed class RegionalLowerLegAssignmentTests
             .Contains(exercise.Id)).Select(WorkoutModifierPolicy.GetSessionMovementId).Distinct());
     }
 
-    [Fact]
-    public void AdditiveAnatomyCorrectionPreservesUnfinishedWorkoutAndFeedback()
+    [Theory]
+    [InlineData(3)]
+    [InlineData(4)]
+    public void AdditiveAnatomyCorrectionPreservesUnfinishedWorkoutAndFeedback(int evidenceVersion)
     {
         JsonNode legacyJson = JsonSerializer.SerializeToNode(Catalog(), Options)!;
         foreach (JsonNode? exercise in legacyJson.AsArray())
@@ -60,6 +62,7 @@ public sealed class RegionalLowerLegAssignmentTests
         previous.StartWorkout(state, 10, Profile);
         state.CatalogRevision = 94;
         state.ActiveCatalogRevision = 94;
+        state.FitnessProfileEvidenceVersion = evidenceVersion;
         string selections = JsonSerializer.Serialize(state.SelectedExerciseIds);
         string keeps = JsonSerializer.Serialize(state.KeptExerciseRootIdsBySelectionGroupId);
         string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);

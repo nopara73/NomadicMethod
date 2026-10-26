@@ -8,7 +8,7 @@ export const FITNESS_LABELS = Object.freeze([
 ]);
 export const FITNESS_MAXIMUM_LEVEL = 5;
 export const FITNESS_WEB_BOUNDARY_LEVEL = 4;
-export const FITNESS_EVIDENCE_VERSION = 3;
+export const FITNESS_EVIDENCE_VERSION = 4;
 
 export function roundFitnessLevel(level) {
   return !Number.isFinite(level) || level <= 0 ? 0
@@ -113,10 +113,34 @@ export function inspectFitnessProfile(exercises, state, ratings) {
       sum + Math.min(...entry.supportedLevels.map(level => (candidate - level) ** 2)), 0));
     const minimum = Math.min(...penalties);
     axis.bestLevels = candidates.filter((_, index) => penalties[index] === minimum);
+    // Selection retains its discrete best-fit set; drawing keeps the fractional
+    // estimate so new feedback need not cross an entire tier to move the chart.
     if (axis.bestLevels.length < FITNESS_MAXIMUM_LEVEL)
-      axis.mean = axis.bestLevels.reduce((sum, level) => sum + level, 0) / axis.bestLevels.length;
+      axis.mean = fitFitnessMean(axis.contributions);
   }
   return profile;
+}
+
+function fitFitnessMean(evidence) {
+  // Supporting every level provides no preference for an integer over a fraction.
+  const informative = evidence.filter(entry => entry.supportedLevels.length < FITNESS_MAXIMUM_LEVEL);
+  const boundaries = [...new Set([1, FITNESS_MAXIMUM_LEVEL, ...informative.flatMap(entry =>
+    entry.supportedLevels.slice(1).map((right, index) => (entry.supportedLevels[index] + right) / 2))])]
+    .sort((a, b) => a - b);
+  const candidates = [];
+  for (let index = 1; index < boundaries.length; index++) {
+    const left = boundaries[index - 1], right = boundaries[index], midpoint = (left + right) / 2;
+    // Each piece has fixed nearest supported levels and a quadratic loss. Search
+    // all pieces so noncontiguous evidence cannot trap the fit in a local minimum.
+    const mean = informative.reduce((sum, entry) => sum + entry.supportedLevels.reduce((a, b) =>
+      Math.abs(midpoint - a) <= Math.abs(midpoint - b) ? a : b), 0) / informative.length;
+    candidates.push(Math.max(left, Math.min(right, mean)));
+  }
+  const loss = candidate => informative.reduce((sum, entry) => sum +
+    Math.min(...entry.supportedLevels.map(level => (candidate - level) ** 2)), 0);
+  const minimum = Math.min(...candidates.map(loss));
+  const best = [...new Set(candidates)].filter(candidate => Math.abs(loss(candidate) - minimum) < 1e-9);
+  return best.reduce((sum, candidate) => sum + candidate, 0) / best.length;
 }
 
 export function latestFitnessMovementDecisions(exercises, state) {
@@ -226,7 +250,7 @@ export class FitnessProfileView {
     this.host.setAttribute("aria-busy", "false");
     this.buttons.forEach(button => { button.disabled = false; });
     this.profile = profile;
-    this.values = profile.map(axis => roundFitnessLevel(axis.mean));
+    this.values = profile.map(axis => axis.mean);
     this.render();
   }
 
@@ -259,7 +283,7 @@ export class FitnessProfileView {
     const header = make("div", "fitness-details-header");
     header.append(title, close);
     const summary = make("p", "fitness-details-summary", axis.mean > 0
-      ? "level " + this.values[index] + " of 5" : "No evidence yet");
+      ? "level " + formatFitnessMean(this.values[index]) + " of 5" : "No evidence yet");
     summary.id = this.clipId + "-summary";
     dialog.setAttribute("aria-describedby", summary.id);
     const note = make("p", "fitness-details-note", axis.mean > 0
@@ -354,7 +378,7 @@ export class FitnessProfileView {
     svg.style.height = height + "px";
     const description = FITNESS_LABELS.map((label, index) =>
       label.join(" ") + ": " + (this.values[index] > 0
-        ? this.values[index].toLocaleString() + " of 5"
+        ? formatFitnessMean(this.values[index]) + " of 5"
         : "no qualifying difficulty feedback")).join("; ");
     svg.append(make("desc", {}, description));
     const vertices = this.values.map((value, index) =>
@@ -405,7 +429,7 @@ export class FitnessProfileView {
       const button = this.buttons[index];
       button.classList.toggle("is-unknown", !this.values[index]);
       button.setAttribute("aria-label", lines.join(" ") + ": " + (this.values[index]
-        ? "level " + this.values[index] + " of 5" : "no evidence yet") + ". Show difficulty feedback");
+        ? "level " + formatFitnessMean(this.values[index]) + " of 5" : "no evidence yet") + ". Show difficulty feedback");
       if (stacked) { button.removeAttribute("style"); return; }
       const labelWidth = Math.max(...lines.map(line => measure.measureText(line).width));
       const buttonWidth = Math.max(48, labelWidth + 8);

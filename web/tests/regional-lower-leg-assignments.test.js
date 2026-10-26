@@ -46,7 +46,8 @@ test("lateral-compartment work can actually fill the existing regional round", (
     .includes(exercise.id)).map(getSessionMovementId)).size, 1);
 });
 
-test("additive anatomy correction preserves an unfinished workout, Keeps and feedback", () => {
+for (const evidenceVersion of [3, 4])
+test(`additive anatomy correction preserves a workout, Keeps and feedback from fitness evidence ${evidenceVersion}`, () => {
   const legacy = structuredClone(catalog);
   for (const exercise of legacy) {
     if (![1029,1210,1295,1410].includes(exercise.id))
@@ -62,6 +63,7 @@ test("additive anatomy correction preserves an unfinished workout, Keeps and fee
   previous.startWorkout(10, profile);
   previous.state.catalogRevision = 94;
   previous.state.activeCatalogRevision = 94;
+  previous.state.fitnessProfileEvidenceVersion = evidenceVersion;
   const saved = structuredClone(previous.state);
   const restored = new WorkoutSession(catalog, structuredClone(saved), () => 0, now);
   restored.restoreAfterReopen();

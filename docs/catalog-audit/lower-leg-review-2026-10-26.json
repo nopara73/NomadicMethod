@@ -1207,7 +1207,7 @@
       "assets": {
         "exercise_videos/exercise_0389.mp4": "0cafe49f8c8356875f9e0a2e02b0646cca08b5352e339a7c502a6f8f4187a7dc"
       },
-      "reviewedAt": "2026-10-26T04:54:24.893819+00:00",
+      "reviewedAt": "2026-10-26T05:34:35.123228+00:00",
       "method": "Full-region anatomical reassignment audit with fresh packaged-frame inspection. Physical/media approvals are retained only after every binary asset hash matches the original explicit approval. Twenty-six standalone roots additionally replayed through real-time Ready, 45-second work and Rest in the current source player; exercise 389 also replayed in the final hashed production build. Linked sequence approvals are retained from their unchanged original complete-workout reviews, not claimed as freshly replayed.",
       "observedAction": "With toes turned out, raise the heels while pulling the elbows down, then lower the heels while reaching overhead.",
       "evidence": [
@@ -1271,7 +1271,9 @@
       },
       "productionBuildPlayback": {
         "sourcePreview": false,
-        "elapsedMilliseconds": 50659,
+        "elapsedMilliseconds": 50233,
+        "applicationVersion": 176,
+        "fitnessEvidenceVersion": 4,
         "errors": []
       }
     },
