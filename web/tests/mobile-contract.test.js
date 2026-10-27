@@ -2513,7 +2513,7 @@ test("atomic sequences are adjacent units that may satisfy multiple primary slot
   );
   assert.match(
     sessionService,
-    /phaseAfterAddingSetByGroupId[\s\S]*Score: hasPhaseScoreAdjustments[\s\S]*GetPhaseScoreAdjustment\([\s\S]*SetCount: setCounts\[groupId\][\s\S]*Kept: IsSequenceKept\(state, groupId, placement\.Root\)[\s\S]*OneBlock: cost == 1[\s\S]*rank\.Score > selectedRank\.Value\.Score/,
+    /keptByGroup = repeatablePlacements[\s\S]*IsSequenceKept\(state, p\.Anchor\.Id, p\.Root\)[\s\S]*phaseAfterAddingSetByGroupId[\s\S]*Score: hasPhaseScoreAdjustments[\s\S]*GetPhaseScoreAdjustment\([\s\S]*SetCount: setCounts\[groupId\][\s\S]*Kept: keptByGroup\[groupId\][\s\S]*OneBlock: cost == 1[\s\S]*rank\.Score > selectedRank\.Value\.Score/,
   );
   assert.match(
     workoutModule,
