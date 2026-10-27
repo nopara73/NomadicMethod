@@ -4902,6 +4902,15 @@ public partial class MainActivity : Activity
         _restTimer?.Dispose();
         _restTimer = null;
 
+        // Accepted feedback owns the transition. A lifecycle interruption must
+        // resume its confirmation, never revive the outgoing rest clock.
+        if (_feedbackEnabled &&
+            ExerciseSessionService.GetPendingRestFeedback(_state) is { } response)
+        {
+            AnimateFeedbackSelection(response);
+            return;
+        }
+
         long millisecondsRemaining = _sessionService
             .GetPendingRestMillisecondsRemaining(
                 _state,
@@ -4928,6 +4937,13 @@ public partial class MainActivity : Activity
 
     private void UpdateRestCountdownText()
     {
+        bool confirming = _feedbackEnabled &&
+            ExerciseSessionService.GetPendingRestFeedback(_state) is not null;
+        _restCountdownText.Visibility = confirming ? ViewStates.Invisible : ViewStates.Visible;
+        _restProgress.Visibility = confirming ? ViewStates.Invisible : ViewStates.Visible;
+        _restPlaybackAction.Visibility = confirming ? ViewStates.Invisible : ViewStates.Visible;
+        _restPlaybackAction.Enabled = !confirming;
+        if (confirming) return;
         long millisecondsRemaining = _sessionService
             .GetPendingRestMillisecondsRemaining(
                 _state,

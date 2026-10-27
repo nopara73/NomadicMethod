@@ -2305,6 +2305,10 @@ function startRestTimer() {
   clearInterval(restTimer);
   restTimer = null;
   updateRest();
+  if (restActive && feedbackView.active && session?.getPendingRestFeedback()) {
+    void feedbackView.finishSelection();
+    return;
+  }
   if (restActive && !session?.state.pendingRestPausedByUser) {
     restTimer = setInterval(updateRest, TIMER_INTERVAL_MS);
   }
@@ -2314,6 +2318,12 @@ function updateRest() {
   if (!restActive || !session) {
     return;
   }
+  const confirming = feedbackView.active && !!session.getPendingRestFeedback();
+  elements.restCountdown.style.visibility = confirming ? "hidden" : "";
+  elements.restProgressFill.parentElement.style.visibility = confirming ? "hidden" : "";
+  elements.restPlaybackToggle.style.visibility = confirming ? "hidden" : "";
+  elements.restPlaybackToggle.disabled = confirming;
+  if (confirming) return;
   const remaining = session.getPendingRestMillisecondsRemaining(Date.now());
   const seconds = Math.ceil(remaining / 1000);
   elements.restCountdown.value = String(seconds);
