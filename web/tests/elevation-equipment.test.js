@@ -34,6 +34,7 @@ function instantControls(state = createDefaultState()) {
     nomadicMethodLightCadence: { workoutsRemaining: () => 18, isDue: () => false },
     setTimeout: () => 1, clearTimeout() {}, requestAnimationFrame: (callback) => callback(),
   };
+  vm.runInNewContext(source("../workout-duration.js"), context);
   vm.runInNewContext(source("../instant-controls.js"), context);
   return { control: context.window.nomadicMethodStartupControls,
     button: element("elevation-equipment"), feedback: element("modifier-feedback") };

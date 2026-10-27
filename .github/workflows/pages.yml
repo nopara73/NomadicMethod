@@ -7,6 +7,7 @@ on:
       - ".github/workflows/pages.yml"
       - "web/**"
       - "NomadicMethod/Assets/exercises.json"
+      - "NomadicMethod/Assets/workout_durations.json"
       - "NomadicMethod/Assets/reaction_drills.json"
       - "NomadicMethod/Assets/fitness_ratings.json"
       - "NomadicMethod/FitnessProfileView.cs"
@@ -118,6 +119,7 @@ jobs:
           sparse-checkout: |
             /web/**
             /NomadicMethod/Assets/exercises.json
+            /NomadicMethod/Assets/workout_durations.json
             /NomadicMethod/Assets/reaction_drills.json
             /NomadicMethod/Assets/fitness_ratings.json
             /NomadicMethod/FitnessProfileView.cs

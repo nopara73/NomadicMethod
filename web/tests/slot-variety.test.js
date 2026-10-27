@@ -6,10 +6,7 @@ import {
   SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
   MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
-  NEW_WORKOUT_MINUTES,
-  getWorkoutMinuteOptions,
-  normalizeSetupMinutes,
-  normalizeMinutes,
+  SUPPORTED_MINUTES,
   WorkoutSession, createDefaultState, getWorkoutCatalog,
   SLOT_VARIETY_EXERCISE_IDS, SLOT_VARIETY_COVERAGE_EXCEPTION_GROUP_IDS, BODY_CIRCLE_EXERCISE_ID,
   RESOLUTIONS, isSelectionGroupAvailable,
@@ -18,7 +15,7 @@ import {
 test("slot variety retains the five-choice floor for short durations", async () => {
   const cases = JSON.parse(await readFile(
     new URL("./fixtures/slot-variety-cases.json", import.meta.url), "utf8"));
-  assert.deepEqual(cases.map(({ minutes }) => minutes), NEW_WORKOUT_MINUTES.filter(minutes => minutes <= 15));
+  assert.deepEqual(cases.map(({ minutes }) => minutes), SUPPORTED_MINUTES.filter(minutes => minutes <= 15));
   assert.equal(SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES, 15);
   assert.equal(MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP, 5);
   assert.equal(MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP, 1);
@@ -71,22 +68,5 @@ test("new choices, hip anatomy and exact exceptions do not alter frozen catalogs
     assert.equal(isSelectionGroupAvailable(group, 513, 81), true);
     assert.equal(isSelectionGroupAvailable(group, 513, 82), false);
     assert.equal(isSelectionGroupAvailable(group, 0), true);
-  }
-});
-
-test("setup caps new workouts and only shortens historical durations", () => {
-  assert.deepEqual(getWorkoutMinuteOptions(), [3, 5, 7, 10, 15]);
-  for (const minutes of NEW_WORKOUT_MINUTES) {
-    assert.equal(normalizeSetupMinutes(minutes), minutes);
-    assert.equal(Math.max(...getWorkoutMinuteOptions(minutes)), 15);
-  }
-  assert.equal(normalizeSetupMinutes(90), 15);
-  assert.equal(normalizeMinutes(90), 90);
-  assert.deepEqual(getWorkoutMinuteOptions(30), [3, 5, 7, 10, 15, 20, 30]);
-  assert.equal(normalizeSetupMinutes(90, 30), 30);
-  assert.equal(normalizeSetupMinutes(30, 30), 30);
-  for (const minutes of [20, 30, 45, 60, 90]) {
-    assert.equal(Math.max(...getWorkoutMinuteOptions(minutes)), minutes);
-    assert.equal(normalizeSetupMinutes(minutes, minutes), minutes);
   }
 });

@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\workout_durations.json" LogicalName="NomadicMethod.WorkoutDurations" />
     <!-- GIFs are reproducible generator inputs, not runtime assets. -->
     <AndroidAsset Remove="Assets\exercise_gifs\**\*.gif" />
   </ItemGroup>

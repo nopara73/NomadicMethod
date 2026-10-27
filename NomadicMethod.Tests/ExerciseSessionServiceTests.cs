@@ -2653,6 +2653,11 @@ public sealed class ExerciseSessionServiceTests
         Assert.Equal(expectedKeptExerciseIds.Order(), state.LastKeptExerciseIds.Order());
 
         service.StartWorkout(state, 45, WorkoutModifiers.None);
+        state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveWorkoutSession = null;
+        state.ActiveSetCountsBySelectionGroupId.Clear();
+        state.ActiveSelectionGroupOrder.Clear();
+        service.Initialize(state);
 
         WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
         string[] extraSetGroupIds = selectionGroups

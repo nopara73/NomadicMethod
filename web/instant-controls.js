@@ -1,8 +1,7 @@
 (() => {
   const storageKey = "nomadic-method.workout.state.v1";
-  const newWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15]);
-  const legacyWorkoutMinutes = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
-  let durationOptions = newWorkoutMinutes;
+  const durationPolicy = globalThis.nomadicMethodDuration;
+  const durationOptions = durationPolicy.minutes;
   const modifierFlags = Object.freeze({
     insect: 1,
     silence: 2,
@@ -57,7 +56,7 @@
 
   const persistedSetup = readPersistedSetup();
   let selectedMinutes = persistedSetup?.selectedMinutes ??
-    (Number(elements.value.textContent) || 10);
+    durationPolicy.defaultMinutes;
   let selectedModifiers = persistedSetup?.selectedModifiers ??
     readInitialModifiers();
   let lightWorkoutsRemaining = persistedSetup?.lightWorkoutsRemaining ??
@@ -69,7 +68,7 @@
   let handlers = null;
   let feedbackTimer = null;
   let activeWorkoutSetup = false;
-  let minimumActiveMinutes = 3;
+  let minimumActiveMinutes = durationOptions[0];
 
   elements.decrease.addEventListener("click", () => stepDuration(-1));
   elements.increase.addEventListener("click", () => stepDuration(1));
@@ -159,15 +158,10 @@
       recoveryLightMode = next;
       renderModifiers();
     },
-    setActiveWorkoutSetup(enabled, minimumMinutes = 3, activeMinutes = 0) {
+    setActiveWorkoutSetup(enabled, minimumMinutes = durationOptions[0]) {
       activeWorkoutSetup = enabled === true;
-      minimumActiveMinutes = activeWorkoutSetup ? minimumMinutes : 3;
-      durationOptions = activeWorkoutSetup && activeMinutes > 15
-        ? legacyWorkoutMinutes.filter(minutes => minutes <= activeMinutes)
-        : newWorkoutMinutes;
-      selectedMinutes = durationOptions.includes(selectedMinutes)
-        ? selectedMinutes
-        : durationOptions.at(-1);
+      minimumActiveMinutes = activeWorkoutSetup ? minimumMinutes : durationOptions[0];
+      selectedMinutes = Math.max(minimumActiveMinutes, durationPolicy.normalize(selectedMinutes));
       document.getElementById("duration-screen")?.classList.toggle(
         "active-workout-setup",
         activeWorkoutSetup,
@@ -240,9 +234,7 @@
       if (!raw || typeof raw !== "object") {
         return null;
       }
-      const selectedMinutes = legacyWorkoutMinutes.includes(raw.lastWorkoutMinutes)
-        ? Math.min(raw.lastWorkoutMinutes, 15)
-        : 10;
+      const selectedMinutes = durationPolicy.normalize(raw.lastWorkoutMinutes);
       let storedModifiers = Number.isInteger(raw.lastWorkoutModifiers)
         ? raw.lastWorkoutModifiers & ~modifierFlags.light
         : readInitialModifiers();

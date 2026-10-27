@@ -102,8 +102,8 @@ public static class WorkoutModifierPolicy
     // that actually fit, never aliases, sides, directions, or repeated sets.
     public const int ShortWorkoutCoverageMaximumMinutes = 15;
     public const int MinimumExercisesPerShortPairStatePerGroup = 5;
-    // Preserve the prior coverage invariant for historical resolutions only.
-    // New-workout setup stops at 15 minutes; the global anatomical supply rule is separate.
+    // Finer resolutions retain the prior pairwise floor.
+    // This audit threshold is independent of the selectable workout time budgets.
     public const int MinimumExercisesPerLegacyPairStatePerGroup = 1;
     // Historical demand targets are diagnostic inventories,
     // not admission requirements or release gates. Never fill them with

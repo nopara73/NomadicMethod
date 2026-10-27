@@ -73,6 +73,8 @@ public sealed class WorkoutSessionEditingTests
         WorkoutGroup current = service.GetNextGroup(state)!;
         var before = service.GetActiveGroups(state).Take(current.Order).ToArray();
         long id = state.ActiveWorkoutSession!.SessionId;
+        // Shared coverage may spend more sets on the current atomic selection.
+        to = Math.Max(to, service.GetMinimumActiveWorkoutMinutes(state));
         service.ResizeActiveWorkout(state, to);
         Assert.Equal(to, service.GetActiveGroups(state).Count);
         Assert.Equal(before, service.GetActiveGroups(state).Take(current.Order));

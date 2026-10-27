@@ -6,10 +6,9 @@ namespace NomadicMethod.Services;
 
 public sealed partial class ExerciseSessionService
 {
-    public const int MinimumWorkoutMinutes = 3;
-    public const int MaximumWorkoutMinutes = 90;
-    public const int MaximumNewWorkoutMinutes = 15;
-    public const int DefaultWorkoutMinutes = 10;
+    public static int MinimumWorkoutMinutes => WorkoutDurationPolicy.MinimumMinutes;
+    public static int MaximumWorkoutMinutes => WorkoutDurationPolicy.MaximumMinutes;
+    public static int DefaultWorkoutMinutes => WorkoutDurationPolicy.DefaultMinutes;
     public const WorkoutModifiers DefaultWorkoutModifiers =
         WorkoutModifiers.UpperBodyClothing |
         WorkoutModifiers.HardFloor |
@@ -30,24 +29,6 @@ public sealed partial class ExerciseSessionService
     private const int LegacyLineupStateVersion = 7;
     private const string SelectionProfilePrefix = "p";
     private const char SelectionProfileSeparator = '|';
-    private static readonly IReadOnlyList<int> WorkoutMinutes =
-        Array.AsReadOnly([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
-
-    // Keep historical durations available only to restore or shorten an active workout.
-    public static readonly IReadOnlyList<int> NewWorkoutMinutes =
-        Array.AsReadOnly([3, 5, 7, 10, 15]);
-
-    public static IReadOnlyList<int> GetWorkoutMinuteOptions(int activeWorkoutMinutes = 0) =>
-        activeWorkoutMinutes > MaximumNewWorkoutMinutes
-            ? WorkoutMinutes.Where(minutes => minutes <= activeWorkoutMinutes).ToArray()
-            : NewWorkoutMinutes;
-
-    public static int NormalizeSetupMinutes(int minutes, int activeWorkoutMinutes = 0) =>
-        GetWorkoutMinuteOptions(activeWorkoutMinutes)
-            .OrderBy(candidate => Math.Abs(candidate - minutes))
-            .ThenByDescending(candidate => candidate)
-            .First();
-
     private static readonly IReadOnlyDictionary<string, WorkoutGroup> KnownWorkoutGroups =
         MassGroupingTaxonomy.SupportedMinutes
             .SelectMany(minutes => MassGroupingTaxonomy.GetResolution(minutes).Groups)
@@ -144,7 +125,7 @@ public sealed partial class ExerciseSessionService
     }
 
     public static IReadOnlyList<int> SupportedWorkoutMinutes =>
-        WorkoutMinutes;
+        WorkoutDurationPolicy.Minutes;
 
     public WorkoutModifiers GetDefaultWorkoutModifiers(
         WorkoutState state,
@@ -437,7 +418,7 @@ public sealed partial class ExerciseSessionService
             throw new ArgumentOutOfRangeException(
                 nameof(minutes),
                 minutes,
-                "Workout duration must be one of 3, 5, 7, 10, 15, 20, 30, 45, 60, or 90 minutes.");
+                $"Workout duration must be one of {string.Join(", ", WorkoutDurationPolicy.Minutes)} minutes.");
         }
 
         if (state.ActiveWorkoutMinutes != 0)
@@ -5247,18 +5228,9 @@ public sealed partial class ExerciseSessionService
         UseWorkoutCatalog(state);
     }
 
-    public static int NormalizeLastWorkoutMinutes(int minutes)
-    {
-        return WorkoutMinutes
-            .OrderBy(candidate => Math.Abs(candidate - minutes))
-            .ThenByDescending(candidate => candidate)
-            .First();
-    }
+    public static int NormalizeLastWorkoutMinutes(int minutes) => WorkoutDurationPolicy.Normalize(minutes);
 
-    public static bool IsValidWorkoutMinutes(int minutes)
-    {
-        return WorkoutMinutes.Contains(minutes);
-    }
+    public static bool IsValidWorkoutMinutes(int minutes) => WorkoutDurationPolicy.IsSupported(minutes);
 
     public static WorkoutModifiers NormalizeWorkoutModifiers(
         WorkoutModifiers modifiers)

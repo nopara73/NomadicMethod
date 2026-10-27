@@ -32,7 +32,7 @@ public static class MassGroupingTaxonomy
             : throw new ArgumentOutOfRangeException(
                 nameof(minutes),
                 minutes,
-                "Workout duration must be one of 3, 5, 7, 10, 15, 20, or 30 minutes.");
+                "Unsupported anatomical resolution. Workout time budgets are defined by WorkoutDurationPolicy.");
     }
 
     public static int NormalizeMinutes(int minutes)

@@ -50,7 +50,6 @@ import {
   WALL_EQUIPMENT,
   WORKOUT_MODIFIER_VALIDATION_PROFILES,
   SUPPORTED_MINUTES,
-  NEW_WORKOUT_MINUTES,
   WORKOUT_MODIFIERS,
   WORKOUT_EXERCISE_PHASE,
   WorkoutSession,
@@ -9543,12 +9542,11 @@ test("initial document contains no exercise-media URL", async () => {
   assert.doesNotMatch(html, /exercise_(?:videos|direction_videos|hold_frames)\//);
   assert.match(html, /src="\.\/app\.js"/);
   assert.doesNotMatch(html, /settings|sign[ -]?in|learn more/i);
-  const durationLabels = html.match(/id="duration-labels"[\s\S]+?<\/div>/)?.[0] ?? "";
-  assert.deepEqual(
-    [...durationLabels.matchAll(/<span>(\d+)<\/span>/g)].map((item) => Number(item[1])),
-    NEW_WORKOUT_MINUTES,
-  );
-  assert.match(html, new RegExp(`max="${NEW_WORKOUT_MINUTES.length - 1}"`));
+  // The real startup controls render duration labels and slider bounds from
+  // the shared policy; the shell contains no second list or numeric cap.
+  assert.match(html, /id="duration-labels"[^>]*><\/div>/);
+  assert.match(html, /workout-duration.js[\s\S]*instant-controls.js/);
+
 });
 
 test("browser shell pauses for buffering and keeps desktop layouts bounded", async () => {

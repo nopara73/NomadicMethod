@@ -194,6 +194,7 @@ test("legacy histories remain readable without double-counting inferred dates", 
 });
 
 const instantSource = await readFile(new URL("../instant-controls.js", import.meta.url), "utf8");
+const durationSource = await readFile(new URL("../workout-duration.js", import.meta.url), "utf8");
 const cadenceSource = await readFile(new URL("../light-cadence.js", import.meta.url), "utf8");
 
 // Exercise the real early-loading controls with a minimal DOM. This runs before
@@ -240,6 +241,7 @@ function startup(history = [], duration = 10, now = atDay(4)) {
   });
   context.window = context;
   vm.runInContext(cadenceSource, context);
+  vm.runInContext(durationSource, context);
   vm.runInContext(instantSource, context);
   return { controls: context.nomadicMethodStartupControls, element, timers };
 }
@@ -307,36 +309,37 @@ test("mid-workout settings allow duration edits without crossing the protected p
   assert.equal(element("begin-workout").getAttribute("aria-label"), "Resume workout");
 });
 
-test("instant setup caps new workouts and preserves historical shortening and the protected minimum", () => {
-  const { controls, element } = startup([], 60);
-  assert.equal(controls.selectedMinutes, 15);
-  assert.equal(element("duration-range").max, "4");
-  element("duration-increase").fire("click");
-  assert.equal(controls.selectedMinutes, 15);
+test("instant setup preserves long preferences, permits extension and protects performed work", () => {
+  for (const minutes of [3, 5, 7, 10, 15, 20, 30, 45, 60, 90]) {
+    const { controls, element } = startup([], minutes);
+    assert.equal(controls.selectedMinutes, minutes);
+    assert.equal(element("duration-range").max, "9");
+    assert.deepEqual(element("duration-labels").children.map(label => Number(label.textContent)),
+      [3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
+    let handedOff;
+    controls.connect({ selectionChanged(selection) { handedOff = selection.selectedMinutes; } });
+    assert.equal(handedOff, minutes, "catalog handoff must retain the startup choice");
+  }
+  const { controls, element } = startup([], 15);
+  for (const minutes of [20, 30, 45, 60, 90]) {
+    element("duration-increase").fire("click");
+    assert.equal(controls.selectedMinutes, minutes);
+  }
+  assert.equal(element("duration-increase").disabled, true);
+  controls.setActiveWorkoutSetup(true, 20);
   controls.setSelection(60, 0);
-  assert.equal(controls.selectedMinutes, 15);
-  controls.setActiveWorkoutSetup(true, 20, 60);
-  controls.setSelection(60, 0);
-  assert.equal(controls.selectedMinutes, 60);
-  assert.equal(element("duration-range").max, "8");
   element("duration-increase").fire("click");
-  assert.equal(controls.selectedMinutes, 60);
-  controls.setSelection(90, 0);
-  assert.equal(controls.selectedMinutes, 60);
+  assert.equal(controls.selectedMinutes, 90);
   controls.setSelection(20, 0);
   element("duration-decrease").fire("click");
   assert.equal(controls.selectedMinutes, 20);
+  element("duration-range").value = "0";
+  element("duration-range").fire("input");
+  assert.equal(controls.selectedMinutes, 20);
   controls.setSelection(60, 0);
   controls.setActiveWorkoutSetup(false);
-  assert.equal(controls.selectedMinutes, 15);
-  assert.equal(element("duration-range").max, "4");
-  controls.setActiveWorkoutSetup(true, 3, 3);
-  controls.setSelection(3, 0);
-  assert.equal(controls.selectedMinutes, 3);
-  assert.equal(element("duration-range").max, "4");
-  assert.equal(element("duration-range").style.values["--range-progress"], "0%");
+  assert.equal(controls.selectedMinutes, 60);
 });
-
 test("startup countdown responds to duration and manual Light hides it", () => {
   const { controls, element } = startup([], 10);
   assert.equal(element("light-workout-countdown").textContent, "18");

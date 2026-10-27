@@ -46,9 +46,8 @@
                   class="duration-range"
                   type="range"
                   min="0"
-                  max="4"
                   step="1"
-                  value="3"
+                  disabled
                   aria-label="Workout duration"
                 />
                 <button
@@ -60,10 +59,7 @@
                   <span class="plus-icon" aria-hidden="true"></span>
                 </button>
               </div>
-              <div id="duration-labels" class="duration-labels" aria-hidden="true">
-                <span>3</span><span>5</span><span>7</span><span>10</span>
-                <span>15</span>
-              </div>
+              <div id="duration-labels" class="duration-labels" aria-hidden="true"></div>
               <div class="duration-modifiers">
                 <div class="modifier-personal-groups">
                 <div class="modifier-group modifier-context-group" role="group" aria-label="Workout conditions">
@@ -466,6 +462,7 @@
       </form>
     </dialog>
     <div id="status" class="visually-hidden" aria-live="polite"></div>
+    <script src="./workout-duration.js"></script>
     <script src="./light-cadence.js"></script>
     <script src="./instant-controls.js"></script>
   </body>
