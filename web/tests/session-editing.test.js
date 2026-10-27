@@ -150,11 +150,16 @@ for (const minutes of [60, 90]) {
   });
 }
 
-test("an unsupported duration plan leaves the entire active state untouched", () => {
+test("an unsupported legacy duration plan leaves the entire active state untouched", () => {
   const session = new WorkoutSession(catalog, createDefaultState(), () => 0);
   const profile = M.Insect | M.HardFloor | M.Silence | M.UpperBodyClothing;
   session.initialize();
   session.startWorkout(60, profile);
+  session.state.activeCoverageAccountingVersion = 0;
+  session.state.activeWorkoutSession = null;
+  session.state.activeSetCountsBySelectionGroupId = {};
+  session.state.activeSelectionGroupOrder = [];
+  session.initialize();
   for (let i = 0; i < 10; i++) finish(session);
   session.resizeActiveWorkout(30);
   session.reconfigureActiveWorkout(profile | M.Wall, session.getNextGroup().id);

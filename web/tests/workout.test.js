@@ -2499,11 +2499,12 @@ test("insect transition retains completed unavailable work across restart", () =
   session.startWorkout(30, WORKOUT_MODIFIERS.None);
   const initialRounds = session.getActiveGroups();
   const unavailableRound = initialRounds.find((round, index) =>
-    index < initialRounds.length - 1 &&
+    index < initialRounds.length - 1 && isFinalSequenceRound(round) &&
     !isSelectionGroupAvailable(round, WORKOUT_MODIFIERS.Insect));
   assert.ok(unavailableRound);
   for (const round of initialRounds) {
-    session.recordOutcome(round, false);
+    if (session.isIntermediateSequenceBlock(round)) session.advanceSequence(round);
+    else session.recordOutcome(round, false);
     if (round.id === unavailableRound.id) {
       break;
     }
@@ -2670,10 +2671,11 @@ test("modifier profiles share keeps without forgetting excluded exercises", () =
   );
 
   session.startWorkout(3, WORKOUT_MODIFIERS.None);
-  const keptIds = session.getActiveGroups().map((group) =>
-    session.getSelectedExercise(group).id);
+  const keptIds = [...new Set(session.getActiveGroups().map((group) =>
+    session.getSelectedExercise(group).id))];
   for (const group of session.getActiveGroups()) {
-    session.recordOutcome(group, true);
+    if (session.isIntermediateSequenceBlock(group)) session.advanceSequence(group);
+    else session.recordOutcome(group, true);
   }
   session.acknowledgeCompletion();
   session.startWorkout(3, WORKOUT_MODIFIERS.Insect);
@@ -2686,7 +2688,7 @@ test("modifier profiles share keeps without forgetting excluded exercises", () =
   session.finishInterruptedWorkout();
   session.startWorkout(3, WORKOUT_MODIFIERS.None);
   assert.deepEqual(
-    session.getActiveGroups().map((group) => session.getSelectedExercise(group).id).sort(),
+    [...new Set(session.getActiveGroups().map((group) => session.getSelectedExercise(group).id))].sort(),
     [...keptIds].sort(),
   );
 });
@@ -5567,8 +5569,10 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       .getActiveGroups()
       .map((group) => session.getSelectedExercise(group));
     assert.equal(selected.length, minutes);
-    assert.equal(new Set(selected.map((exercise) => exercise.id)).size, minutes);
-    assert.equal(new Set(selected.map(getSessionMovementId)).size, minutes);
+    const placements = session.getSelectedSequencePlacements();
+    assert.equal(new Set(placements.map(p => getSessionMovementId(p.root))).size, placements.length);
+    assert.deepEqual(new Set(placements.flatMap(p => p.coveredGroups.map(g => g.id))), new Set(resolution.groups.map(g => g.id)));
+    assert.equal(placements.reduce((sum,p)=>sum+p.root.sequenceBlocks.length*session.state.activeSetCountsBySelectionGroupId[p.anchor.id],0),minutes);
   }
 
   for (const minutes of [45, 60, 90]) {
@@ -5763,17 +5767,18 @@ test("legacy extra sets prefer keeps then hard exercises among unkept choices", 
 });
 
 for (const minutes of [3, 5, 7, 10, 15, 20, 30]) {
-  test(`same-primary sequences yield to exact ${minutes}-minute block capacity`, () => {
+  test(`same-primary sequences preserve complete ${minutes}-minute block capacity`, () => {
     const exercises = directionPairCatalog();
     const session = new WorkoutSession(exercises, createDefaultState(), () => 0);
     session.startWorkout(minutes, WORKOUT_MODIFIERS.None);
 
-    assert.ok(session.getSelectionGroups().every((group) => {
-      const selected = session.exercisesById.get(
-        session.state.selectedExerciseIds[group.id],
-      );
-      return selected.sequenceBlocks.length === 1;
-    }));
+    const rounds = session.getActiveGroups();
+    assert.equal(rounds.length, minutes);
+    for (const placement of session.getSelectedSequencePlacements()) {
+      const selected = rounds.filter(g=>getSelectionKey(g)===placement.anchor.id);
+      for (const set of new Set(selected.map(g=>g.setNumber)))
+        assert.deepEqual(selected.filter(g=>g.setNumber===set).map(g=>g.sequenceBlockIndex),placement.root.sequenceBlocks.map((_,i)=>i));
+    }
     assert.deepEqual(session.state.activeDirectionPartnerExerciseIds, {});
     assert.deepEqual(session.state.activeFullSideRoundIds, []);
   });
@@ -6219,12 +6224,17 @@ test("sequence shuffle rejects every member once and never starts mid-sequence",
   assert.ok(session.state.nextWorkoutExcludedExerciseIds.includes(1));
   assert.ok(session.state.nextWorkoutExcludedExerciseIds.includes(2));
 
-  const continuation = {
-    ...lead,
-    sequenceBlockIndex: 1,
-  };
-  assert.equal(session.canShuffleNextExercise(continuation), false);
-  assert.equal(session.shuffleNextExercise(continuation), null);
+  const continued = new WorkoutSession(exercises, createDefaultState(), () => 0);
+  continued.startWorkout(45, WORKOUT_MODIFIERS.None);
+  const nextLead = continued.getActiveGroups().find(round =>
+    continued.state.selectedExerciseIds[getSelectionKey(round)] === 1 && round.sequenceBlockIndex === 0 && round.setNumber === 1);
+  for (const prior of continued.getActiveGroups().filter(round => round.order < nextLead.order))
+    continued.state.outcomes[prior.id] = "tick";
+  continued.advanceSequence(nextLead);
+  const continuation = continued.getNextGroup();
+  assert.equal(continuation.sequenceBlockIndex, 1);
+  assert.equal(continued.canShuffleNextExercise(continuation), false);
+  assert.equal(continued.shuffleNextExercise(continuation), null);
 });
 
 test("one keep decision is available only after the final sequence block", () => {
