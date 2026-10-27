@@ -278,7 +278,11 @@ public sealed class FloorContactPolicyTests
         service.StartWorkout(state, 3, WorkoutModifiers.Floor | WorkoutModifiers.UpperBodyClothing);
         Assert.Contains(service.GetActiveGroups(state), g => service.GetSelectedExercise(state, g).Id == 1057);
         while (service.GetSelectedExercise(state, service.GetNextGroup(state)!).Id != 1057)
-            service.RecordOutcome(state, service.GetNextGroup(state)!, true);
+        {
+            var prior = service.GetNextGroup(state)!;
+            if (service.IsIntermediateSequenceBlock(state, prior)) service.AdvanceSequence(state, prior);
+            else service.RecordOutcome(state, prior, true);
+        }
         WorkoutGroup current = service.GetNextGroup(state)!;
         if (movement) service.BeginMovement(state, current, 28_000, now.ToUnixTimeMilliseconds() + 28_000);
         var completed = state.Outcomes.ToArray();

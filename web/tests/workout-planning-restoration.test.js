@@ -44,10 +44,6 @@ for (const item of cases) {
       for (const selection of log.initialSelections) {
         const root = session.getSelectedExercise(rounds.find(g =>
           (g.selectionGroupId ?? g.id) === selection.selectionGroupId));
-        if (item.minutes <= 7) {
-          assert.equal(selection.sequenceBlockCount, 1);
-          assert.equal(selection.setCount, 1);
-        }
         assert.equal(selection.sequenceBlockCount, root.sequenceBlocks.length);
         const selectedRounds = rounds.filter(g => (g.selectionGroupId ?? g.id) === selection.selectionGroupId);
         assert.equal(selectedRounds.length, selection.sequenceBlockCount * selection.setCount);
@@ -97,19 +93,23 @@ for (const minutes of [3, 5, 7]) {
       const modifiers = profile | (light ? M.Light : 0);
       session.initialize();
       session.startWorkout(minutes, modifiers);
-      assertSingleBlockGroups();
+      assertCompleteGroups();
       session.shuffleNextExercise(session.getNextGroup());
-      assertSingleBlockGroups();
+      assertCompleteGroups();
       session.reconfigureActiveWorkout(modifiers ^ M.Mirror ^ M.TallMirror, session.getNextGroup().id);
-      assertSingleBlockGroups();
+      assertCompleteGroups();
 
-      function assertSingleBlockGroups() {
+      function assertCompleteGroups() {
         const rounds = session.getActiveGroups();
         assert.equal(rounds.length, minutes);
         assert.deepEqual(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
           getResolution(minutes).groups.map(g => g.id).sort());
-        assert.ok(rounds.every(g => session.getSelectedExercise(g).sequenceBlocks.length === 1 &&
-          session.getSelectedExercise(g).sequenceBlocks.every(b => (b.sideCue ?? "None") === "None")));
+        for (const key of new Set(rounds.map(g => g.selectionGroupId ?? g.id))) {
+          const selected = rounds.filter(g => (g.selectionGroupId ?? g.id) === key);
+          const blocks = selected[0].sequenceBlockCount ?? 1;
+          assert.equal(selected.length % blocks, 0);
+          assert.deepEqual(selected.map(g => g.sequenceBlockIndex ?? 0), selected.map((_, i) => i % blocks));
+        }
       }
     });
   }

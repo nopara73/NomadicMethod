@@ -1290,13 +1290,11 @@ public sealed class WorkoutModifierPolicyTests
             Exercise(
                 1,
                 CanonicalMuscleGroup.MedialAndDeepKneeExtensors,
-                CanonicalMuscleGroup.PosteriorThighAndKneeFlexors,
-                CanonicalMuscleGroup.MajorHipAdductors),
+                CanonicalMuscleGroup.PosteriorThighAndKneeFlexors),
             Exercise(
                 2,
                 CanonicalMuscleGroup.MedialAndDeepKneeExtensors,
-                CanonicalMuscleGroup.PosteriorThighAndKneeFlexors,
-                CanonicalMuscleGroup.MajorHipAdductors),
+                CanonicalMuscleGroup.PosteriorThighAndKneeFlexors),
             Exercise(
                 3,
                 CanonicalMuscleGroup.MajorHipAdductors,
@@ -1332,15 +1330,13 @@ public sealed class WorkoutModifierPolicyTests
                 1,
                 CanonicalMuscleGroup.MedialAndDeepKneeExtensors,
                 CanonicalMuscleGroup.PosteriorThighAndKneeFlexors,
-                CanonicalMuscleGroup.MajorHipAdductors,
                 sessionMovementId: 1),
             Exercise(
                 2,
                 CanonicalMuscleGroup.MedialAndDeepKneeExtensors,
-                CanonicalMuscleGroup.PosteriorThighAndKneeFlexors,
                 CanonicalMuscleGroup.MajorHipAdductors,
                 sessionMovementId: 1),
-            Exercise(3, CanonicalMuscleGroup.MajorHipAdductors),
+            Exercise(3, CanonicalMuscleGroup.MedialAndDeepKneeExtensors),
         ];
 
         Assert.Equal(

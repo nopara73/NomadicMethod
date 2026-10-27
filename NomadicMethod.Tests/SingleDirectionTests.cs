@@ -119,7 +119,7 @@ public sealed class SingleDirectionTests
         var (service, state) = Start(minutes);
         WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
         Assert.Equal(minutes, rounds.Length);
-        WorkoutGroup selected = Assert.Single(rounds, g => service.GetSelectedExercise(state, g).Id == Cases.PreferredRoot);
+        WorkoutGroup selected = Assert.Single(rounds.DistinctBy(g => g.SelectionKey), g => service.GetSelectedExercise(state, g).Id == Cases.PreferredRoot);
         Assert.Equal(1, selected.SequenceBlockCount);
         Assert.Equal(Cases.DirectionCue, selected.SequenceDirectionCue);
         Assert.Equal(Cases.MediaSegment, selected.SequenceMediaSegment);

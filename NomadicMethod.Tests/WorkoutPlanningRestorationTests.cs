@@ -58,11 +58,6 @@ public sealed class WorkoutPlanningRestorationTests
         {
             Exercise root = service.GetSelectedExercise(state, service.GetActiveGroups(state)
                 .First(g => g.SelectionKey == selection.SelectionGroupId));
-            if (item.Minutes <= 7)
-            {
-                Assert.Equal(1, selection.SequenceBlockCount);
-                Assert.Equal(1, selection.SetCount);
-            }
             Assert.Equal(root.SequenceBlocks.Length, selection.SequenceBlockCount);
             var rounds = service.GetActiveGroups(state).Where(g => g.SelectionKey == selection.SelectionGroupId).ToArray();
             Assert.Equal(selection.SequenceBlockCount * selection.SetCount, rounds.Length);
@@ -97,7 +92,7 @@ public sealed class WorkoutPlanningRestorationTests
     [InlineData(3, true)]
     [InlineData(5, true)]
     [InlineData(7, true)]
-    public void ShortWorkoutsKeepMuscleGroupsEvenWhenPairedExercisesScoreHigher(int minutes, bool light)
+    public void ShortWorkoutsKeepMuscleGroupsAndCompletePreferredSequences(int minutes, bool light)
     {
         Exercise[] catalog = Catalog();
         foreach (Exercise exercise in catalog)
@@ -107,22 +102,24 @@ public sealed class WorkoutPlanningRestorationTests
         WorkoutModifiers modifiers = Profile | (light ? WorkoutModifiers.Light : WorkoutModifiers.None);
         service.Initialize(state);
         service.StartWorkout(state, minutes, modifiers);
-        AssertSingleBlockGroups();
+        AssertCompleteGroups();
         service.ShuffleNextExercise(state, service.GetNextGroup(state)!);
-        AssertSingleBlockGroups();
+        AssertCompleteGroups();
         service.ReconfigureActiveWorkout(state,
             modifiers ^ WorkoutModifiers.Mirror ^ WorkoutModifiers.TallMirror,
             service.GetNextGroup(state)!.Id);
-        AssertSingleBlockGroups();
+        AssertCompleteGroups();
 
-        void AssertSingleBlockGroups()
+        void AssertCompleteGroups()
         {
             var rounds = service.GetActiveGroups(state);
             Assert.Equal(minutes, rounds.Count);
-            var roots = rounds.Select(g => service.GetSelectedExercise(state, g)).DistinctBy(e => e.Id);
-            Assert.All(roots, root => Assert.DoesNotContain(root.SequenceBlocks,
-                block => block.SideCue != ExerciseSequenceSideCue.None));
-            Assert.All(roots, root => Assert.Single(root.SequenceBlocks));
+            foreach (var selection in rounds.GroupBy(g => g.SelectionKey))
+            {
+                int blocks = selection.First().SequenceBlockCount;
+                Assert.Equal(0, selection.Count() % blocks);
+                Assert.Equal(Enumerable.Range(0, selection.Count()).Select(i => i % blocks), selection.Select(g => g.SequenceBlockIndex));
+            }
             Assert.Equal(MassGroupingTaxonomy.GetResolution(minutes).Groups.Select(g => g.Id).Order(),
                 state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
         }

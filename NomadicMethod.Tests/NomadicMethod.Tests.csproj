@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\shared-coverage-cases.json" Link="Assets\shared-coverage-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\anatomical-variety-cases.json" Link="Assets\anatomical-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-precision-cases.json" Link="Assets\fitness-precision-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\wall-tibialis-hard-floor-cases.json" Link="Assets\wall-tibialis-hard-floor-cases.json" CopyToOutputDirectory="PreserveNewest" />

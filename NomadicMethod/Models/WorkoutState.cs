@@ -15,6 +15,10 @@ public sealed class WorkoutState
     // bundled revision. New sessions always use the current contract.
     public int ActiveCatalogRevision { get; set; }
 
+    // Missing on saved workouts: retain their original placements and sets.
+    // Only preparing a new workout opts into shared anatomical coverage.
+    public int ActiveCoverageAccountingVersion { get; set; }
+
     // Missing fields retain the complete sequences of an older unfinished
     // workout. Direction choices are frozen independently of later duration edits.
     public HashSet<int> ActiveSingleDirectionExerciseIds { get; set; } = [];

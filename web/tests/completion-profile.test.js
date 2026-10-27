@@ -106,7 +106,11 @@ test("legacy and explicit end never invent a comparison", () => {
   session = create(reload(session.state), ratings);
   session.restoreAfterReopen();
   assert.equal(session.state.activeFitnessProfileBaseline, null);
-  while (session.getNextGroup()) session.recordOutcome(session.getNextGroup(), true);
+  while (session.getNextGroup()) {
+    const group = session.getNextGroup();
+    if (session.isIntermediateSequenceBlock(group)) session.advanceSequence(group);
+    else session.recordOutcome(group, true);
+  }
   assert.deepEqual(completionProfileChanges(session.state.activeFitnessProfileBaseline,
     session.state.completionFitnessProfileSnapshot), []);
   session.acknowledgeCompletion();

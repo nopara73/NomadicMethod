@@ -57,6 +57,7 @@ import {
   calculateCanonicalMuscleLoadEighthUnits,
   calculateMuscleBalanceEvaluation,
   compareMuscleBalanceEvaluations,
+  compareWorkoutLoad,
   createWorkoutSchedule,
   createDefaultState,
   evaluateRecoveryLightMode,
@@ -495,7 +496,7 @@ test("one identity counts once per set and actual repeated sets count again", ()
   assert.equal(twoRounds.get("GlutealExtensors"), 8);
 });
 
-test("scheduled load does not double-count side blocks within one set", () => {
+test("scheduled load counts every performed side block", () => {
   const sideSpecific = exercise(1, "HipAbductors", ["GlutealExtensors"], 0);
   sideSpecific.muscularDemand = HARD_MUSCULAR_DEMAND;
   sideSpecific.sequenceBlocks = [
@@ -517,10 +518,10 @@ test("scheduled load does not double-count side blocks within one set", () => {
     allocation(2),
   );
 
-  assert.equal(oneSet.get("HipAbductors"), 8);
-  assert.equal(oneSet.get("GlutealExtensors"), 4);
-  assert.equal(twoSets.get("HipAbductors"), 16);
-  assert.equal(twoSets.get("GlutealExtensors"), 8);
+  assert.equal(oneSet.get("HipAbductors"), 16);
+  assert.equal(oneSet.get("GlutealExtensors"), 8);
+  assert.equal(twoSets.get("HipAbductors"), 32);
+  assert.equal(twoSets.get("GlutealExtensors"), 16);
 });
 
 test("all seven resolutions sum their canonical child loads", () => {
@@ -730,7 +731,7 @@ test("muscle balance never promotes a rejected lower-score exercise", () => {
   assert.equal(session.state.selectedExerciseIds[targetGroup.id], current.id);
 });
 
-test("long-workout balance uses the actual repeated-set allocation", () => {
+test("long-workout balance avoids adding secondary work to a loaded region", () => {
   const groups = RESOLUTIONS.get(30).groups;
   const targetGroup = groups.find((group) =>
     group.canonicalGroups.includes("HipFlexors"));
@@ -755,12 +756,12 @@ test("long-workout balance uses the actual repeated-set allocation", () => {
 
   session.startWorkout(45, WORKOUT_MODIFIERS.None);
 
-  assert.equal(session.state.selectedExerciseIds[targetGroup.id], alternative.id);
-  assert.equal(
-    session.getActiveGroups().filter((round) =>
-      getSelectionKey(round) === targetGroup.id).length,
-    2,
-  );
+  assert.notEqual(session.state.selectedExerciseIds[targetGroup.id], alternative.id);
+  const placements = session.getSelectedSequencePlacements();
+  const actual = calculateMuscleBalanceEvaluation(session.calculateScheduledCanonicalLoadEighthUnits(placements, session.chooseLongWorkoutAllocation()));
+  const proposed = placements.map(p => p.anchor.id === targetGroup.id ? {...p, root: alternative} : p);
+  const candidate = calculateMuscleBalanceEvaluation(session.calculateScheduledCanonicalLoadEighthUnits(proposed, session.chooseLongWorkoutAllocation(new Set(), proposed)));
+  assert.ok(compareWorkoutLoad(actual, candidate) >= 0);
 });
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -2801,10 +2802,11 @@ test("short-workout keeps carry into matching long-workout slots", () => {
     () => 0,
   );
   session.startWorkout(3, WORKOUT_MODIFIERS.Insect);
-  const keptExerciseIds = session.getActiveGroups().map((group) =>
-    session.getSelectedExercise(group).id);
+  const keptExerciseIds = [...new Set(session.getActiveGroups().map((group) =>
+    session.getSelectedExercise(group).id))];
   for (const group of session.getActiveGroups()) {
-    session.recordOutcome(group, true);
+    if (session.isIntermediateSequenceBlock(group)) session.advanceSequence(group);
+    else session.recordOutcome(group, true);
   }
   session.acknowledgeCompletion();
 
@@ -2820,7 +2822,7 @@ test("short-workout keeps carry into matching long-workout slots", () => {
     .flatMap(([, rootIds]) => rootIds);
   assert.ok(keptExerciseIds.every((exerciseId) => longKeepIds.includes(exerciseId)));
   assert.equal(session.getActiveGroups().length, 45);
-  assert.equal(session.state.activeExtraSetSelectionGroupIds.length, 17);
+  assert.equal(session.state.activeExtraSetSelectionGroupIds.length, new Set(session.getActiveGroups().filter(g => g.setCount > 1).map(getSelectionKey)).size);
   assert.equal(
     session.getSelectionGroups().some((group) =>
       group.id === "r30.intrinsic-hand" ||
@@ -2842,7 +2844,7 @@ test("a keep and downvote for one exercise remain independent across phases", ()
   const shared = exercise(
     1,
     primary,
-    allCanonicalGroups.filter((group) => group !== primary),
+    [],
     10,
   );
   const longAlternatives = longGroups.map((group, index) => exercise(
@@ -3532,8 +3534,8 @@ test("distinct-lineup matching detects a Hall deficit after modifier filtering",
     { id: "c", displayName: "C", canonicalGroups: ["C"] },
   ];
   const exercises = [
-    exercise(1, "A", ["B", "C"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
-    exercise(2, "A", ["B", "C"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
+    exercise(1, "A", ["B"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
+    exercise(2, "A", ["B"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
     exercise(3, "C", [], 0, EXERCISE_INSECT_COMPATIBILITY.Incompatible),
   ];
 
@@ -3554,16 +3556,16 @@ test("distinct-lineup capacity counts aliases as one session movement", () => {
     { id: "c", displayName: "C", canonicalGroups: ["C"] },
   ];
   const root = {
-    ...exercise(1, "A", ["B", "C"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
+    ...exercise(1, "A", ["B"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
     sessionMovementId: 1,
   };
   const alias = {
-    ...exercise(2, "A", ["B", "C"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
+    ...exercise(2, "A", ["C"], 0, EXERCISE_INSECT_COMPATIBILITY.Compatible),
     sessionMovementId: 1,
   };
   const lastOnly = exercise(
     3,
-    "C",
+    "A",
     [],
     0,
     EXERCISE_INSECT_COMPATIBILITY.Compatible,
@@ -3783,7 +3785,7 @@ test("global lineup and repair allow only one alias of a session movement", () =
 
   freshSession.startWorkout(3, WORKOUT_MODIFIERS.None);
 
-  let selected = groups.map((group) => freshSession.getSelectedExercise(group));
+  let selected = [...new Map(groups.map(group => { const item = freshSession.getSelectedExercise(group); return [item.id, item]; })).values()];
   assert.equal(selected.filter((item) => item.id === 1 || item.id === 2).length, 1);
   assert.equal(new Set(selected.map(getSessionMovementId)).size, selected.length);
 
@@ -5158,7 +5160,7 @@ test("completed moderate exercise starts only meaningful recovery", () => {
   assert.equal(session.getScore(moderate), 10);
 });
 
-test("rejected replacements use global matching instead of greedy group order", () => {
+test("rejected replacements credit shared coverage before adding work", () => {
   const groups = RESOLUTIONS.get(3).groups;
   const allCanonicalGroups = RESOLUTIONS.get(30).groups
     .flatMap((group) => group.canonicalGroups);
@@ -5224,7 +5226,7 @@ test("rejected replacements use global matching instead of greedy group order", 
 
   assert.equal(
     session.state.selectedExerciseIds[groups[0].id],
-    firstOnlyReplacement.id,
+    sharedReplacement.id,
   );
   assert.equal(
     session.state.selectedExerciseIds[groups[1].id],
@@ -5632,7 +5634,7 @@ for (const [minutes, expectedMultiBlockSets, expectedRepeatedSingles] of [
   [45, 1, 15],
   [60, 2, 28],
 ]) {
-  test(`${minutes}-minute extra sets prefer single blocks within each set round`, () => {
+  test(`legacy ${minutes}-minute extra sets prefer single blocks within each set round`, () => {
     const groups = RESOLUTIONS.get(30).groups;
     const first = exercise(
       1,
@@ -5666,6 +5668,7 @@ for (const [minutes, expectedMultiBlockSets, expectedRepeatedSingles] of [
     );
 
     session.startWorkout(minutes, WORKOUT_MODIFIERS.None);
+  restoreLegacyCoveragePlan(session);
 
     assert.equal(
       session.state.activeSetCountsBySelectionGroupId[groups[0].id],
@@ -5681,7 +5684,7 @@ for (const [minutes, expectedMultiBlockSets, expectedRepeatedSingles] of [
   });
 }
 
-test("kept multiblock sequence repeats before unkept single-block exercises", () => {
+test("extra sets balance workload while preserving kept complete sequences", () => {
   const groups = RESOLUTIONS.get(30).groups;
   const first = exercise(
     1,
@@ -5716,20 +5719,18 @@ test("kept multiblock sequence repeats before unkept single-block exercises", ()
 
   session.startWorkout(45, WORKOUT_MODIFIERS.None);
 
-  assert.equal(
-    session.state.activeSetCountsBySelectionGroupId[groups[0].id],
-    2,
-  );
-  assert.equal(
-    groups.slice(2).filter((group) =>
-      session.state.activeSetCountsBySelectionGroupId[group.id] === 2).length,
-    13,
-  );
-  assert.ok(Object.values(session.state.activeSetCountsBySelectionGroupId)
-    .every((setCount) => setCount >= 1 && setCount <= 2));
+  const rounds = session.getActiveGroups();
+  assert.equal(rounds.length, 45);
+  assert.deepEqual(session.state.keptExerciseRootIdsBySelectionGroupId[groups[0].id], [first.id]);
+  const keptRounds = rounds.filter(g => getSelectionKey(g) === groups[0].id);
+  assert.ok(keptRounds.length > 0 && keptRounds.length % 2 === 0);
+  for (let i = 0; i < keptRounds.length; i += 2)
+    assert.deepEqual(keptRounds.slice(i, i + 2).map(g => session.getSelectedExercise(g).id), [first.id, second.id]);
+  const load = calculateCanonicalMuscleLoadEighthUnits(rounds.map(g => session.getSelectedExercise(g)));
+  assert.ok(calculateMuscleBalanceEvaluation(load).resolutions.find(r => r.minutes === 3).isBalanced);
 });
 
-test("extra sets prefer keeps then hard exercises among unkept choices", () => {
+test("legacy extra sets prefer keeps then hard exercises among unkept choices", () => {
   const groups = RESOLUTIONS.get(30).groups;
   const exercises = groups.map((group, index) => exercise(
     index + 1,
@@ -5748,6 +5749,7 @@ test("extra sets prefer keeps then hard exercises among unkept choices", () => {
   const session = new WorkoutSession(exercises, state, () => 0);
 
   session.startWorkout(45, WORKOUT_MODIFIERS.None);
+  restoreLegacyCoveragePlan(session);
 
   assert.ok(groups.slice(0, 10).every((group) =>
     session.state.activeSetCountsBySelectionGroupId[group.id] === 2));
@@ -5859,9 +5861,10 @@ test("integration member keeps its rest when only the sequence targets the selec
   const session = new WorkoutSession(exercises, state, () => 0);
   session.startWorkout(60, WORKOUT_MODIFIERS.None);
   const target = session.getActiveGroups().findLast((group) =>
-    session.getSelectedExercise(group).id === member.id &&
-    !group.canonicalGroups.includes(member.primaryCanonicalGroup));
-  assert.ok(target, "the admitted sequence must have an integration member outside its selected fine muscle");
+    session.getSelectedExercise(group).id === member.id);
+  assert.ok(target);
+  assert.ok(!member.secondaryCanonicalGroups.includes("RotatorCuff"));
+  assert.ok(session.state.activeWorkoutSession.initialSelections.some(s => s.rootExerciseId === root.id && s.coveredWorkoutGroupIds.includes("r30.rotator-cuff")));
   while (session.getNextGroup().id !== target.id) {
     const group = session.getNextGroup();
     if (session.isIntermediateSequenceBlock(group)) session.advanceSequence(group);
@@ -6559,7 +6562,7 @@ test("keeps carry across workout duration resolutions", () => {
     );
     assert.equal(session.state.lastKeptExerciseIds.length, previousMinutes);
     assert.equal(
-      selectedExerciseIds.filter((exerciseId) => keptExerciseIds.has(exerciseId)).length,
+      new Set(selectedExerciseIds.filter((exerciseId) => keptExerciseIds.has(exerciseId))).size,
       Math.min(previousMinutes, nextMinutes),
     );
     assert.ok(Object.keys(session.state.keptExerciseRootIdsBySelectionGroupId)
@@ -6574,7 +6577,7 @@ test("keeps carry across workout duration resolutions", () => {
     assert.ok(selectedExerciseIds
       .filter((exerciseId) => keptExerciseIds.has(exerciseId))
       .every((exerciseId) => targetKeepIds.includes(exerciseId)));
-    assert.equal(new Set(selectedExerciseIds).size, nextMinutes);
+    assert.equal(session.getActiveGroups().length, nextMinutes);
   }
 });
 
@@ -9574,11 +9577,12 @@ test("browser shell pauses for buffering and keeps desktop layouts bounded", asy
 });
 
 for (const light of [false, true]) {
-  test(`repeated movement rounds preserve separate progress, Keeps and history, Light=${light}`, () => {
+  test(`legacy repeated movement rounds preserve separate progress, Keeps and history, Light=${light}`, () => {
     const muscles = RESOLUTIONS.get(30).groups.flatMap((group) => group.canonicalGroups);
     const exercises = [exercise(1, muscles[0], muscles.slice(1), 0)];
     let session = new WorkoutSession(exercises, createDefaultState(), () => 0);
     session.startWorkout(3, light ? WORKOUT_MODIFIERS.Light : 0);
+    restoreLegacyCoveragePlan(session);
     const rounds = session.getActiveGroups();
     assert.equal(rounds.length, 3);
     assert.equal(new Set(rounds.map((round) => round.id)).size, 3);
@@ -9617,8 +9621,8 @@ for (const light of [false, true]) {
   });
 }
 
-for (const crossPrimary of [false, true]) {
-  test(`repeated atomic sequences keep every block and cross-primary placement, cross=${crossPrimary}`, () => {
+for (const crossPrimary of [false, true]) for (const legacy of [false, true]) {
+  test(`repeated atomic sequences keep every block and cross-primary placement, cross=${crossPrimary}, legacy=${legacy}`, () => {
     const exercises = directionPairCatalog().slice(0, 2);
     if (crossPrimary) {
       exercises[1].primaryCanonicalGroup = "ForearmFlexorsAndPronators";
@@ -9627,8 +9631,9 @@ for (const crossPrimary of [false, true]) {
     }
     const session = new WorkoutSession(exercises, createDefaultState(), () => 0);
     session.startWorkout(60, 0);
+    if (legacy) restoreLegacyCoveragePlan(session);
     const rounds = session.getActiveGroups();
-    const placementCount = crossPrimary ? 29 : 30;
+    const placementCount = legacy ? (crossPrimary ? 29 : 30) : 1;
     assert.equal(rounds.length, 60);
     assert.equal(session.state.activeWorkoutSession.initialSelections.length, placementCount);
     assert.equal(new Set(rounds.map((round) => round.id)).size, 60);
@@ -9877,4 +9882,12 @@ async function assertFile(file) {
   const information = await stat(file);
   assert.equal(information.isFile(), true);
   assert.ok(information.size > 0);
+}
+
+function restoreLegacyCoveragePlan(session) {
+  session.state.activeCoverageAccountingVersion = 0;
+  session.state.activeWorkoutSession = null;
+  session.state.activeSetCountsBySelectionGroupId = {};
+  session.state.activeSelectionGroupOrder = [];
+  session.initialize();
 }

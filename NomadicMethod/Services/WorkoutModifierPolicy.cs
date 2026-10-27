@@ -1125,10 +1125,9 @@ public static class WorkoutModifierPolicy
                      WorkoutSequencePolicy.GetPlacementOptions(
                          exercise,
                          exercisesById,
-                         groups))
+                         groups, includeSharedCoverage: true))
             {
-                if (exercise.SequenceBlocks.Length +
-                        (groups.Count - placement.Length) > availableBlocks)
+                if (exercise.SequenceBlocks.Length > availableBlocks)
                 {
                     continue;
                 }

@@ -53,7 +53,7 @@ internal static class AtomicSequenceLineupSolver
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(groupCount, 1);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(groupCount, 63);
-        ArgumentOutOfRangeException.ThrowIfLessThan(workoutMinutes, groupCount);
+        ArgumentOutOfRangeException.ThrowIfLessThan(workoutMinutes, 1);
         ArgumentNullException.ThrowIfNull(sourceCandidates);
         ulong allGroupsMask = (1UL << groupCount) - 1UL;
         AtomicSequenceCandidate[] candidates = sourceCandidates

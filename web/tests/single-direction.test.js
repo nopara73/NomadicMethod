@@ -82,7 +82,7 @@ for (const minutes of contract.shortMinutes) test(`${minutes} minutes selects on
   const rounds = session.getActiveGroups();
   const selected = rounds.filter(g => session.getSelectedExercise(g).id === contract.preferredRoot);
   assert.equal(rounds.length, minutes);
-  assert.equal(selected.length, 1);
+  assert.equal(new Set(selected.map(g => g.selectionGroupId ?? g.id)).size, 1);
   assert.equal(selected[0].sequenceBlockCount ?? 1, 1);
   assert.equal(selected[0].sequenceDirectionCue, contract.directionCue);
   assert.equal(selected[0].sequenceMediaSegment, contract.mediaSegment);

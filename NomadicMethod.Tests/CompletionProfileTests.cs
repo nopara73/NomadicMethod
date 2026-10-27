@@ -136,7 +136,11 @@ public sealed class CompletionProfileTests
         state = Reload(state);
         service.Initialize(state);
         Assert.Null(state.ActiveFitnessProfileBaseline);
-        while (service.GetNextGroup(state) is { } group) service.RecordOutcome(state, group, true);
+        while (service.GetNextGroup(state) is { } group)
+        {
+            if (service.IsIntermediateSequenceBlock(state, group)) service.AdvanceSequence(state, group);
+            else service.RecordOutcome(state, group, true);
+        }
         Assert.Empty(CompletionProfilePolicy.Changes(state.ActiveFitnessProfileBaseline, state.CompletionFitnessProfileSnapshot));
         service.AcknowledgeCompletion(state);
         service.StartWorkout(state, 3);

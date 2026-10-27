@@ -446,6 +446,7 @@ public sealed partial class ExerciseSessionService
         }
 
         state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
+        state.ActiveCoverageAccountingVersion = 1;
         UpdateSequenceCatalog(state, minutes);
 
         int loadedStateVersion = state.Version;
@@ -986,12 +987,8 @@ public sealed partial class ExerciseSessionService
         OrderFreshCandidates(state, group, candidates, candidate => candidate.Exercise);
         ShuffleCandidate selected = candidates[0];
 
-        foreach (WorkoutGroup coveredGroup in selected.CoveredGroups)
-        {
-            state.SelectedExerciseIds[GetSelectionStorageKey(
-                coveredGroup.Id,
-                state.ActiveWorkoutModifiers)] = selected.Exercise.Id;
-        }
+        foreach ((string groupId, int exerciseId) in selected.Assignments)
+            state.SelectedExerciseIds[GetSelectionStorageKey(groupId, state.ActiveWorkoutModifiers)] = exerciseId;
         RecordWorkoutSelectionChange(
             state,
             group.SelectionKey,
@@ -1701,6 +1698,17 @@ public sealed partial class ExerciseSessionService
             .Append(WorkoutModifierPolicy.GetSessionMovementId(currentExercise))
             .ToHashSet();
         Dictionary<int, bool> fitnessEligibility = GetFitnessEligibility(state);
+        var coverageOwners = new Dictionary<string, int>(StringComparer.Ordinal);
+        if (state.ActiveCoverageAccountingVersion > 0)
+        {
+            var remaining = GetSelectedSequencePlacements(state).Where(p => p.Root.Id != currentPlacement.Root.Id &&
+                !startedSelectionGroupIds.Contains(p.Anchor.Id)).ToArray();
+            foreach (WorkoutGroup covered in currentPlacement.CoveredGroups)
+            {
+                var owner = remaining.FirstOrDefault(p => WorkoutSequencePolicy.IsSelectable(p.Root, _exercisesById, covered));
+                if (owner is not null) coverageOwners[covered.Id] = owner.Root.Id;
+            }
+        }
         var candidates = new List<ShuffleCandidate>();
         foreach (Exercise exercise in _exercises.Where(exercise =>
                      fitnessEligibility.GetValueOrDefault(exercise.Id) &&
@@ -1709,30 +1717,30 @@ public sealed partial class ExerciseSessionService
                      !unavailableExerciseIds.Contains(exercise.Id) &&
                      !unavailableMovementIds.Contains(
                           WorkoutModifierPolicy.GetSessionMovementId(exercise)) &&
-                     GetSequencePlacementOptions(
-                             exercise,
-                             GetSelectionGroups(state))
-                         .Any(option => option.Select(group => group.Id)
-                             .ToHashSet(StringComparer.Ordinal)
-                             .SetEquals(coveredGroupIds)) &&
+                     (state.ActiveCoverageAccountingVersion > 0
+                         ? currentPlacement.CoveredGroups.All(covered =>
+                             WorkoutSequencePolicy.IsSelectable(GetSequenceRoot(exercise), _exercisesById, covered) || coverageOwners.ContainsKey(covered.Id))
+                         : GetSequencePlacementOptions(exercise, GetSelectionGroups(state))
+                             .Any(option => option.Select(group => group.Id)
+                                 .ToHashSet(StringComparer.Ordinal).SetEquals(coveredGroupIds))) &&
                      IsWorkoutSelectionCandidate(
                          state,
                          exercise,
                          currentPlacement.Anchor,
                          state.ActiveWorkoutModifiers)))
         {
+            var assignments = currentPlacement.CoveredGroups.ToDictionary(g => g.Id, g =>
+                WorkoutSequencePolicy.IsSelectable(GetSequenceRoot(exercise), _exercisesById, g)
+                    ? exercise.Id : coverageOwners[g.Id]);
             if (TryGetCompatibleShuffleAllocation(
                     state,
                     currentPlacement.CoveredGroups,
                     exercise,
                     startedSelectionGroupIds,
                     rejectedExerciseIds,
-                    out LongWorkoutAllocation? allocation))
+                    out LongWorkoutAllocation? allocation, assignments))
             {
-                candidates.Add(new ShuffleCandidate(
-                    exercise,
-                    currentPlacement.CoveredGroups,
-                    allocation));
+                candidates.Add(new ShuffleCandidate(exercise, assignments, allocation));
             }
         }
 
@@ -1745,7 +1753,8 @@ public sealed partial class ExerciseSessionService
         Exercise candidate,
         IReadOnlySet<string> startedSelectionGroupIds,
         IReadOnlySet<int> rejectedExerciseIds,
-        [NotNullWhen(true)] out LongWorkoutAllocation? allocation)
+        [NotNullWhen(true)] out LongWorkoutAllocation? allocation,
+        IReadOnlyDictionary<string, int>? replacementAssignments = null)
     {
         Dictionary<string, int> previousExerciseIds = coveredGroups.ToDictionary(
             group => GetSelectionStorageKey(
@@ -1763,10 +1772,9 @@ public sealed partial class ExerciseSessionService
             state,
             selectionGroupId)
             .ToHashSet();
-        foreach (string selectionStorageKey in previousExerciseIds.Keys)
-        {
-            state.SelectedExerciseIds[selectionStorageKey] = candidate.Id;
-        }
+        foreach (WorkoutGroup group in coveredGroups)
+            state.SelectedExerciseIds[GetSelectionStorageKey(group.Id, state.ActiveWorkoutModifiers)] =
+                replacementAssignments?.GetValueOrDefault(group.Id) ?? candidate.Id;
         GetKeptRootIdsForSlot(state, selectionGroupId)
             .Remove(GetSequenceRoot(_exercisesById[rejectedExerciseIds.First()]).Id);
         try
@@ -1826,9 +1834,17 @@ public sealed partial class ExerciseSessionService
             new HashSet<string>(StringComparer.Ordinal);
 
         Dictionary<int, bool> fitnessEligibility = GetFitnessEligibility(state);
+        var frozenRoots = allowSavedSelectionException && state.ActiveWorkoutSession is not null
+            ? groups.Where(g => currentExerciseIds.TryGetValue(g.Id, out int id) &&
+                _exercisesById.TryGetValue(id, out var root) &&
+                (modifierTransitionProtectedGroupIds.Contains(g.Id) || IsSavedSelectionValid(state, root, g, modifiers, groups)))
+                .ToDictionary(g => g.Id, g => currentExerciseIds[g.Id])
+            : new Dictionary<string, int>();
 
         bool CalculateIsAllowed(Exercise exercise, WorkoutGroup group)
         {
+            // Valid frozen work is a constraint, not another candidate to enumerate.
+            if (frozenRoots.TryGetValue(group.Id, out int frozenRoot) && frozenRoot != exercise.Id) return false;
             if (fitnessEligibility.GetValueOrDefault(exercise.Id) && IsWorkoutSelectionCandidate(
                     state,
                     exercise,
@@ -2124,6 +2140,13 @@ public sealed partial class ExerciseSessionService
                     candidate,
                     groups)
                 .ToList();
+            if (state.ActiveCoverageAccountingVersion > 0)
+            {
+                WorkoutGroup[] shared = groups.Where(g =>
+                    WorkoutSequencePolicy.IsSelectable(candidate, _exercisesById, g)).ToArray();
+                WorkoutGroup[] frozen = groups.Where(g => currentExerciseIds.GetValueOrDefault(g.Id) == candidate.Id).ToArray();
+                if (frozen.Length > 1 && frozen.All(g => shared.Contains(g))) placementOptions.Add(frozen);
+            }
             if (allowSavedSelectionException)
             {
                 foreach (int groupIndex in Enumerable.Range(0, groups.Count)
@@ -2142,12 +2165,10 @@ public sealed partial class ExerciseSessionService
 
             foreach (WorkoutGroup[] placementGroups in placementOptions)
             {
-                if (candidate.SequenceBlocks.Length +
-                        (groups.Count - placementGroups.Length) >
-                    state.ActiveWorkoutMinutes)
+                if (candidate.SequenceBlocks.Length > state.ActiveWorkoutMinutes - reservedRepeatMinutes)
                 {
-                    // Even if every remaining slot used one block, this
-                    // placement could not fit the requested duration.
+                    // Other selections may cover several remaining groups;
+                    // the complete-lineup solver owns the total block budget.
                     continue;
                 }
                 ulong coverageMask = 0;
@@ -2182,8 +2203,9 @@ public sealed partial class ExerciseSessionService
                 {
                     if ((coverageMask & (1UL << groupIndex)) != 0)
                     {
-                        utilitiesByGroup[groupIndex] = groupIndex ==
-                                preferenceSlotIndex
+                        utilitiesByGroup[groupIndex] = (state.ActiveCoverageAccountingVersion > 0 &&
+                                allowSavedSelectionException && currentExerciseIds.GetValueOrDefault(groups[groupIndex].Id) == candidate.Id) ||
+                            groupIndex == preferenceSlotIndex
                             ? anchorUtilities[groupIndex, candidateIndex]
                             : baseUtilities[groupIndex, candidateIndex];
                     }
@@ -2229,10 +2251,28 @@ public sealed partial class ExerciseSessionService
         AtomicSequenceLineup? solution = AtomicSequenceLineupSolver.Solve(
             groups.Count,
             state.ActiveWorkoutMinutes - reservedRepeatMinutes,
-            atomicCandidates) ?? AtomicSequenceLineupSolver.SolveAllowingRepeatedMovements(
-                groups.Count,
-                state.ActiveWorkoutMinutes - reservedRepeatMinutes,
-                atomicCandidates);
+            atomicCandidates);
+        if (solution is null && state.ActiveCoverageAccountingVersion > 0)
+        {
+            // Shared coverage can make a complete sequence fit when separate
+            // per-slot selections cannot. Only invoke this larger search when
+            // the ordinary feasible-lineup seed is unavailable.
+            for (int candidateIndex = 0; candidateIndex < candidates.Count; candidateIndex++)
+            {
+                Exercise candidate = candidates[candidateIndex];
+                foreach (WorkoutGroup[] option in WorkoutSequencePolicy.GetPlacementOptions(candidate, _exercisesById, groups, includeSharedCoverage: true))
+                {
+                    var indexes = option.Select(g => groups.Select((item, index) => (item, index)).Single(e => e.item.Id == g.Id).index).ToArray();
+                    if (indexes.Any(index => !allowed[index, candidateIndex])) continue;
+                    ulong mask = indexes.Aggregate(0UL, (value, index) => value | 1UL << index);
+                    var utilities = Enumerable.Range(0, groups.Count).Select(index => indexes.Contains(index) ? anchorUtilities[index, candidateIndex] : BigInteger.Zero).ToArray();
+                    atomicCandidates.Add(new(candidate.Id, WorkoutModifierPolicy.GetSessionMovementId(candidate), mask, candidate.SequenceBlocks.Length, utilities, candidateIndex));
+                }
+            }
+            solution = AtomicSequenceLineupSolver.Solve(groups.Count, state.ActiveWorkoutMinutes - reservedRepeatMinutes, atomicCandidates);
+        }
+        solution ??= AtomicSequenceLineupSolver.SolveAllowingRepeatedMovements(
+            groups.Count, state.ActiveWorkoutMinutes - reservedRepeatMinutes, atomicCandidates);
         if (solution is null)
         {
             int movementCount = atomicCandidates
@@ -2245,10 +2285,60 @@ public sealed partial class ExerciseSessionService
                     (c.CoverageMask & (1UL << i)) != 0)).Select(g => g.Id)));
         }
 
-        return solution.ExerciseIdByGroupIndex.ToDictionary(
+        var lineup = solution.ExerciseIdByGroupIndex.ToDictionary(
             entry => groups[entry.Key].Id,
             entry => entry.Value,
             StringComparer.Ordinal);
+        // Active sessions keep their frozen placements, including completed/current
+        // atomic work. New prepared lineups share coverage without rewriting Keeps.
+        if (state.ActiveCoverageAccountingVersion == 0 || state.ActiveWorkoutSession is not null)
+            return lineup;
+        var priorities = lineup.Values.Distinct().ToDictionary(id => id, id =>
+            groups.Select((group, index) => (group, index))
+                .Where(entry => lineup[entry.group.Id] == id)
+                .Max(entry => anchorUtilities[entry.index, candidates.FindIndex(e => e.Id == id)]));
+        var protectedKeepRoots = new HashSet<int>();
+        BigInteger scoreTier = priorities.Values.Max() + BigInteger.One;
+        BigInteger preferenceTier = scoreTier * (scoreRanks.Count + 1);
+        foreach (int id in priorities.Keys.ToArray())
+        {
+            Exercise root = _exercisesById[id];
+            int bestScore = groups.Where(g => lineup[g.Id] == id).Max(g => GetSelectionScore(state, root, GetSelectionPhase(g)));
+            priorities[id] += scoreRanks[bestScore] * scoreTier;
+            if (groups.Any(g => lineup[g.Id] == id && (IsSequenceKept(state, g.Id, root) ||
+                    carriedKeepRootIdsBySelectionGroupId.GetValueOrDefault(g.Id)?.Contains(id) == true) &&
+                    GetMovementRoots(root).All(member => GetPhaseScoreAdjustment(state, member, GetSelectionPhase(g)) >= 0) &&
+                    WorkoutRecoveryPolicy.GetRotationStatus(GetSequenceSelectionExerciseForGroup(root, g), g,
+                        state.LastHardWorkUnixMillisecondsByPrimaryMuscle, selectionTimeUnixMilliseconds) != HardExerciseRotationStatus.RecoveringHard &&
+                    !WorkoutRecoveryPolicy.IsModerateExerciseRecovering(GetSequenceSelectionExerciseForGroup(root, g),
+                        state.LastMeaningfulWorkUnixMillisecondsByPrimaryMuscle, selectionTimeUnixMilliseconds)))
+            {
+                priorities[id] += preferenceTier;
+                protectedKeepRoots.Add(id);
+            }
+            if (modifiers.HasFlag(WorkoutModifiers.Light) && IsDemandZeroSequence(root))
+                priorities[id] += 2 * preferenceTier;
+        }
+        var coverageBalanceCache = new Dictionary<string, MuscleBalanceEvaluation?>(StringComparer.Ordinal);
+        return WorkoutSequencePolicy.ConsolidateCoverage(
+            lineup, groups, _exercisesById, priorities,
+            state.ActiveWorkoutMinutes - reservedRepeatMinutes,
+            candidate =>
+            {
+                var placements = candidate.GroupBy(e => e.Value).Select(entries =>
+                {
+                    WorkoutGroup[] covered = groups.Where(g => entries.Any(e => e.Key == g.Id)).OrderBy(g => g.Order).ToArray();
+                    return new SelectedSequencePlacement(_exercisesById[entries.Key], covered[0], covered);
+                }).ToArray();
+                string key = string.Join('|', placements.OrderBy(p => p.Anchor.Order).Select(p => $"{p.Root.Id}:{p.Anchor.Id}"));
+                if (coverageBalanceCache.TryGetValue(key, out var cached)) return cached;
+                try
+                {
+                    var allocation = ChooseLongWorkoutAllocation(state, selectedPlacements: placements);
+                    return coverageBalanceCache[key] = WorkoutMuscleBalancePolicy.Evaluate(CalculateScheduledCanonicalLoadEighthUnits(placements, allocation));
+                }
+                catch (InvalidOperationException) { coverageBalanceCache[key] = null; return null; }
+            }, protectedKeepRoots);
     }
 
     private void RepairActiveLineup(
@@ -2397,20 +2487,13 @@ public sealed partial class ExerciseSessionService
             clearChangedProgress: false);
 
         bool addedCarriedKeep = false;
-        foreach (SelectedSequencePlacement placement in
-                 GetSelectedSequencePlacements(state))
+        foreach (SelectedSequencePlacement placement in GetSelectedSequencePlacements(state))
         {
-            if (carriedKeepRootIdsByGroup
-                    .GetValueOrDefault(placement.Anchor.Id)?
-                    .Contains(placement.Root.Id) != true)
-            {
-                continue;
-            }
-
-            addedCarriedKeep |= GetKeptRootIdsForSlot(
-                    state,
-                    placement.Anchor.Id)
-                .Add(placement.Root.Id);
+            IEnumerable<WorkoutGroup> keepGroups = state.ActiveCoverageAccountingVersion > 0
+                ? placement.CoveredGroups : [placement.Anchor];
+            foreach (WorkoutGroup keepGroup in keepGroups)
+                if (carriedKeepRootIdsByGroup.GetValueOrDefault(keepGroup.Id)?.Contains(placement.Root.Id) == true)
+                    addedCarriedKeep |= GetKeptRootIdsForSlot(state, keepGroup.Id).Add(placement.Root.Id);
         }
         if (addedCarriedKeep)
         {
@@ -2456,13 +2539,13 @@ public sealed partial class ExerciseSessionService
 
                 Exercise sourceSelectionExercise =
                     GetSequenceSelectionExerciseForGroup(root, sourceGroup);
-                WorkoutGroup targetPrimaryGroup = targetGroups.Single(group =>
+                WorkoutGroup? targetPrimaryGroup = targetGroups.SingleOrDefault(group =>
                     group.CanonicalGroups.Contains(
                         sourceSelectionExercise.PrimaryCanonicalGroup));
                 WorkoutGroup[]? mappedPlacement = GetSequencePlacementOptions(
                         root,
                         targetGroups)
-                    .Where(option => option.Any(group =>
+                    .Where(option => targetPrimaryGroup is null || option.Any(group =>
                         group.Id == targetPrimaryGroup.Id))
                     .OrderByDescending(option => option.Length)
                     .ThenBy(option => option.Min(group => group.Order))
@@ -4090,7 +4173,13 @@ public sealed partial class ExerciseSessionService
         Exercise exercise) =>
         state.KeptExerciseRootIdsBySelectionGroupId
             .GetValueOrDefault(selectionGroupId)?
-            .Contains(GetSequenceRoot(exercise).Id) == true;
+            .Contains(GetSequenceRoot(exercise).Id) == true ||
+        state.ActiveCoverageAccountingVersion > 0 &&
+        state.KeptExerciseRootIdsBySelectionGroupId.Values.Any(ids => ids.Contains(GetSequenceRoot(exercise).Id)) &&
+        GetSelectionGroups(state).Any(group =>
+            WorkoutSequencePolicy.IsSelectable(GetSequenceRoot(exercise), _exercisesById, group) &&
+            state.KeptExerciseRootIdsBySelectionGroupId.GetValueOrDefault(group.Id)?
+                .Contains(GetSequenceRoot(exercise).Id) == true);
 
     private void KeepSequenceInSlot(
         WorkoutState state,
@@ -5123,6 +5212,7 @@ public sealed partial class ExerciseSessionService
         WorkoutCatalogPolicy.MigrateSplitJackPreferences(state,
             _catalogExercises, state.ActiveCatalogRevision);
         state.ActiveCatalogRevision = 0;
+        state.ActiveCoverageAccountingVersion = 0;
         state.ActiveSingleDirectionExerciseIds.Clear();
         state.ActiveDurationSelectionGroupIds = null;
         state.ActiveSimpleRoundSelectionGroupIds.Clear();
@@ -5336,6 +5426,18 @@ public sealed partial class ExerciseSessionService
                  selectedGroupsByRootId)
         {
             Exercise root = _exercisesById[rootId];
+            if (state.ActiveCoverageAccountingVersion > 0 && selectedGroups.All(group =>
+                    WorkoutSequencePolicy.IsSelectable(root, _exercisesById, group)))
+            {
+                WorkoutGroup[] covered = selectedGroups.OrderBy(group => group.Order).ToArray();
+                IEnumerable<string> frozenOrder = state.ActiveSelectionGroupOrder.Count > 0
+                    ? state.ActiveSelectionGroupOrder
+                    : state.ActiveWorkoutSession?.InitialSelections.Select(s => s.SelectionGroupId) ?? [];
+                WorkoutGroup anchor = frozenOrder.Select(id => covered.FirstOrDefault(g => g.Id == id))
+                    .OfType<WorkoutGroup>().FirstOrDefault() ?? covered[0];
+                placements.Add(new SelectedSequencePlacement(root, anchor, covered));
+                continue;
+            }
             var remainingGroupIds = selectedGroups.Select(group => group.Id)
                 .ToHashSet(StringComparer.Ordinal);
             // A cross-primary sequence claims its complete primary placement.
@@ -5508,9 +5610,32 @@ public sealed partial class ExerciseSessionService
             fillable[value] = repeatableCosts.Any(cost =>
                 cost <= value && fillable[value - cost]);
         }
+        int[]? lightBlocksByBudget = null;
+        if (state.ActiveCoverageAccountingVersion > 0 && state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light))
+        {
+            lightBlocksByBudget = Enumerable.Repeat(-1, remainingMinutes + 1).ToArray();
+            lightBlocksByBudget[0] = 0;
+            for (int value = 1; value <= remainingMinutes; value++)
+                foreach (SelectedSequencePlacement placement in repeatablePlacements)
+                {
+                    int cost = blockCostByGroup[placement.Anchor.Id];
+                    if (cost <= value && lightBlocksByBudget[value - cost] >= 0)
+                        lightBlocksByBudget[value] = Math.Max(lightBlocksByBudget[value],
+                            lightBlocksByBudget[value - cost] + (IsDemandZeroSequence(placement.Root) ? cost : 0));
+                }
+        }
         bool hasPhaseScoreAdjustments = state.ExerciseScoreAdjustmentsByPhase
             .Values
             .Any(adjustments => adjustments.Count > 0);
+        bool accountForSharedLoad = state.ActiveCoverageAccountingVersion > 0;
+        var scheduledLoad = new Dictionary<CanonicalMuscleGroup, int>();
+        var addedLoadByRoot = rankedPlacements.DistinctBy(p => p.Root.Id).ToDictionary(p => p.Root.Id, p =>
+            WorkoutMuscleBalancePolicy.CalculateCanonicalLoadEighthUnits(
+                p.Root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId])));
+        foreach (SelectedSequencePlacement placement in rankedPlacements)
+            foreach ((CanonicalMuscleGroup muscle, int load) in addedLoadByRoot[placement.Root.Id])
+                scheduledLoad[muscle] = scheduledLoad.GetValueOrDefault(muscle) +
+                    load * setCounts[placement.Anchor.Id];
 
         while (remainingMinutes > 0)
         {
@@ -5540,6 +5665,8 @@ public sealed partial class ExerciseSessionService
             SelectedSequencePlacement? selectedPlacement = null;
             (int Score, int SetCount, bool Kept, bool OneBlock)? selectedRank =
                 null;
+            (long Numerator, long Denominator) selectedLoad = default;
+            MuscleBalanceEvaluation? selectedBalance = null;
             foreach (SelectedSequencePlacement placement in repeatablePlacements)
             {
                 string groupId = placement.Anchor.Id;
@@ -5550,6 +5677,9 @@ public sealed partial class ExerciseSessionService
                     continue;
                 }
 
+                if (lightBlocksByBudget is not null &&
+                    lightBlocksByBudget[remainingMinutes - cost] + (IsDemandZeroSequence(placement.Root) ? cost : 0) !=
+                        lightBlocksByBudget[remainingMinutes]) continue;
                 var rank = (
                     Score: hasPhaseScoreAdjustments
                         ? GetPhaseScoreAdjustment(
@@ -5560,17 +5690,31 @@ public sealed partial class ExerciseSessionService
                     SetCount: setCounts[groupId],
                     Kept: IsSequenceKept(state, groupId, placement.Root),
                     OneBlock: cost == 1);
+                var load = WorkoutMuscleBalancePolicy.GetAdditionalSetLoad(
+                    scheduledLoad, addedLoadByRoot[placement.Root.Id]);
+                var projectedLoad = new Dictionary<CanonicalMuscleGroup, int>(scheduledLoad);
+                foreach ((CanonicalMuscleGroup muscle, int added) in addedLoadByRoot[placement.Root.Id])
+                    projectedLoad[muscle] = projectedLoad.GetValueOrDefault(muscle) + added;
+                MuscleBalanceEvaluation balance = WorkoutMuscleBalancePolicy.Evaluate(projectedLoad);
+                int loadComparison = selectedBalance is null || !accountForSharedLoad ? 0 :
+                    -WorkoutMuscleBalancePolicy.CompareWorkoutLoad(balance, selectedBalance);
+                if (loadComparison == 0 && selectedRank is not null && accountForSharedLoad)
+                    loadComparison = (load.Numerator * selectedLoad.Denominator).CompareTo(
+                        selectedLoad.Numerator * load.Denominator);
                 if (selectedRank is null ||
                     rank.Score > selectedRank.Value.Score ||
                     rank.Score == selectedRank.Value.Score &&
+                    (loadComparison < 0 || loadComparison == 0 &&
                     (rank.SetCount < selectedRank.Value.SetCount ||
                      rank.SetCount == selectedRank.Value.SetCount &&
                      (rank.Kept && !selectedRank.Value.Kept ||
                       rank.Kept == selectedRank.Value.Kept &&
-                      rank.OneBlock && !selectedRank.Value.OneBlock)))
+                      rank.OneBlock && !selectedRank.Value.OneBlock))))
                 {
                     selectedPlacement = placement;
                     selectedRank = rank;
+                    selectedLoad = load;
+                    selectedBalance = balance;
                 }
             }
             if (selectedPlacement is null)
@@ -5580,6 +5724,8 @@ public sealed partial class ExerciseSessionService
             }
 
             setCounts[selectedPlacement.Anchor.Id]++;
+            foreach ((CanonicalMuscleGroup muscle, int load) in addedLoadByRoot[selectedPlacement.Root.Id])
+                scheduledLoad[muscle] = scheduledLoad.GetValueOrDefault(muscle) + load;
             remainingMinutes -= blockCostByGroup[selectedPlacement.Anchor.Id];
         }
 
@@ -5627,7 +5773,8 @@ public sealed partial class ExerciseSessionService
         Dictionary<int, WorkoutGroup[][]> placementOptionsByRootId =
             rebalanceRoots.ToDictionary(
                 exercise => exercise.Id,
-                exercise => GetSequencePlacementOptions(exercise, groups));
+                exercise => WorkoutSequencePolicy.GetPlacementOptions(exercise, _exercisesById, groups,
+                    includeSharedCoverage: state.ActiveCoverageAccountingVersion > 0));
         var sequenceLoadByRootId =
             new Dictionary<int, IReadOnlyDictionary<CanonicalMuscleGroup, int>>();
         IReadOnlyDictionary<CanonicalMuscleGroup, int> GetSequenceLoad(
@@ -5639,7 +5786,7 @@ public sealed partial class ExerciseSessionService
             {
                 load = WorkoutMuscleBalancePolicy
                     .CalculateCanonicalLoadEighthUnits(
-                        GetSequenceExercises(root));
+                        root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId]));
                 sequenceLoadByRootId[root.Id] = load;
             }
 
@@ -5849,7 +5996,7 @@ public sealed partial class ExerciseSessionService
                     bool reusesCurrentAllocation =
                         currentAllocationHasOneSetPerPlacement &&
                             candidate.SequenceBlocks.Length == removedBlockCount ||
-                        removedPlacements.Length == 1 &&
+                        state.ActiveCoverageAccountingVersion == 0 && removedPlacements.Length == 1 &&
                             candidate.SequenceBlocks.Length ==
                                 removedPlacements[0].Root.SequenceBlocks.Length &&
                             GetSequenceExercises(candidate).Any(
@@ -5978,9 +6125,9 @@ public sealed partial class ExerciseSessionService
                         candidateBalance = WorkoutMuscleBalancePolicy.Evaluate(
                             candidateCanonicalLoad);
                     }
-                    if (WorkoutMuscleBalancePolicy.Compare(
-                            candidateBalance,
-                            currentBalance) <= 0)
+                    if ((state.ActiveCoverageAccountingVersion > 0
+                            ? WorkoutMuscleBalancePolicy.CompareWorkoutLoad(candidateBalance, currentBalance)
+                            : WorkoutMuscleBalancePolicy.Compare(candidateBalance, currentBalance)) <= 0)
                     {
                         continue;
                     }
@@ -5994,6 +6141,8 @@ public sealed partial class ExerciseSessionService
                             candidateBalance,
                             selectionTimeUnixMilliseconds);
                     if (bestAlternative is null ||
+                        state.ActiveCoverageAccountingVersion > 0 && WorkoutMuscleBalancePolicy.CompareWorkoutLoad(candidateBalance, bestAlternative.Balance) > 0 ||
+                        (state.ActiveCoverageAccountingVersion == 0 || WorkoutMuscleBalancePolicy.CompareWorkoutLoad(candidateBalance, bestAlternative.Balance) == 0) &&
                         IsPreferredMuscleBalanceCandidate(
                             alternative,
                             bestAlternative))
@@ -6199,6 +6348,12 @@ public sealed partial class ExerciseSessionService
         Exercise[] sequenceExercises = GetSequenceExercises(root);
         var keyParts = new List<object>
         {
+            state.ActiveCoverageAccountingVersion > 0
+                ? string.Join(',', WorkoutMuscleBalancePolicy.CalculateCanonicalLoadEighthUnits(
+                    root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId]))
+                    .OrderBy(e => e.Key).Select(e => $"{e.Key}={e.Value}"))
+                : string.Empty,
+            IsDemandZeroSequence(root),
             anchor.Id,
             root.SequenceBlocks.Length,
             sequenceExercises.Any(WorkoutRecoveryPolicy.IsHardExercise),
@@ -6245,7 +6400,7 @@ public sealed partial class ExerciseSessionService
         {
             int setCount = allocation.SetCountsBySelectionGroupId
                 .GetValueOrDefault(placement.Anchor.Id, 1);
-            foreach (Exercise exercise in GetSequenceExercises(placement.Root))
+            foreach (Exercise exercise in placement.Root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId]))
             {
                 WorkoutMuscleBalancePolicy.AddExerciseLoad(
                     loadEighthUnits,
@@ -6417,16 +6572,19 @@ public sealed partial class ExerciseSessionService
                     Exercise blockExercise = _exercisesById[block.ExerciseId];
                     WorkoutGroup blockGroup = placement.CoveredGroups.Count == 1
                         ? placement.Anchor
-                        : placement.CoveredGroups.Single(group =>
+                        : placement.CoveredGroups.FirstOrDefault(group =>
                             group.CanonicalGroups.Contains(
-                                blockExercise.PrimaryCanonicalGroup));
+                                blockExercise.PrimaryCanonicalGroup)) ?? placement.Anchor;
                     if ((state.ActiveDurationSelectionGroupIds is null
                             ? state.ActiveWorkoutMinutes <= 30
                             : state.ActiveSimpleRoundSelectionGroupIds.Contains(placement.Anchor.Id)) &&
                         placement.Root.SequenceBlocks.Length == 1 &&
                         setCount == 1)
                     {
-                        rounds.Add(blockGroup with { Order = rounds.Count + 1,
+                        rounds.Add(blockGroup with {
+                            Id = state.ActiveCoverageAccountingVersion > 0 ? placement.Anchor.Id : blockGroup.Id,
+                            SelectionGroupId = state.ActiveCoverageAccountingVersion > 0 ? placement.Anchor.Id : blockGroup.SelectionGroupId,
+                            Order = rounds.Count + 1,
                             SequenceSideCue = block.SideCue,
                             SequenceDirectionCue = block.DirectionCue,
                             MirrorSequenceMedia = block.MirrorMedia,
@@ -6475,7 +6633,7 @@ public sealed partial class ExerciseSessionService
 
     private sealed record ShuffleCandidate(
         Exercise Exercise,
-        IReadOnlyList<WorkoutGroup> CoveredGroups,
+        IReadOnlyDictionary<string, int> Assignments,
         LongWorkoutAllocation Allocation);
 
     private sealed record LegacyPhaseDownvoteEvent(

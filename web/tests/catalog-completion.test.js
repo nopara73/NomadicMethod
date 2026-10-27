@@ -10,6 +10,7 @@ import {
   createDefaultState,
   getSelectionKey,
   getSessionMovementId,
+  getResolution,
   getMaximumDistinctLineupSize,
   getMaximumCompleteLineupSize,
   isCompatibleWithWorkoutModifiers,
@@ -297,13 +298,13 @@ for (const insect of [false, true]) {
 
           const rounds = session.getActiveGroups();
           assert.equal(rounds.length, 3);
-          assert.equal(new Set(rounds.map((round) =>
-            getSessionMovementId(session.getSelectedExercise(round)))).size, 3);
+          assert.deepEqual(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
+            getResolution(3).groups.map(g => g.id).sort());
           for (const round of rounds) {
             const selected = session.getSelectedExercise(round);
             assert.equal(isSelectable(selected, round), true);
             assert.equal(isCompatibleWithWorkoutModifiers(selected, profile), true);
-            assert.equal(selected.sequenceBlocks.length, 1);
+            assert.ok(selected.sequenceBlocks.length <= rounds.length);
           }
           const upper = rounds.find((round) => getSelectionKey(round) === "r3.head-neck-upper-limbs");
           const selectedUpper = session.getSelectedExercise(upper);
@@ -311,7 +312,10 @@ for (const insect of [false, true]) {
           if (insect) assert.notEqual(selectedUpper.id, 239);
           else assert.equal(selectedUpper.id, 239);
           if (light && !insect) assert.equal(selectedUpper.muscularDemand, 0);
-          for (const round of rounds) session.recordOutcome(round, true);
+          for (const round of rounds) {
+            if (session.isIntermediateSequenceBlock(round)) session.advanceSequence(round);
+            else session.recordOutcome(round, true);
+          }
           assert.equal(session.state.workoutCompleted, true);
         }
       });
@@ -332,8 +336,9 @@ test("compound workout feedback and history survive reload", () => {
   assert.equal(session.getSelectedExercise(upper).id, 248);
   for (const round of rounds) {
     session.beginRest(round, Date.now() + 15_000);
-    assert.equal(session.keepPendingRest(), true);
-    session.recordOutcome(round, true);
+    assert.equal(session.keepPendingRest(), !session.isIntermediateSequenceBlock(round));
+    if (session.isIntermediateSequenceBlock(round)) session.advanceSequence(round);
+    else session.recordOutcome(round, true);
     session.clearPendingRest();
   }
   assert.equal(session.state.workoutCompleted, true);
@@ -385,12 +390,12 @@ test("planted teacup admission preserves existing catalog feedback", () => {
     catalog.find((item) => item.id === 1027), WORKOUT_MODIFIERS.Insect), false);
 });
 
-test("repeated spinal wave fills two forearm slots without inventing rotator coverage", () => {
+test("spinal wave covers two forearm slots without inventing rotator coverage", () => {
   const wave = catalog.filter((item) => item.id === 1032);
   const keys = ["r30.forearm-flexors-pronators", "r30.forearm-extensors-supinators", "r30.rotator-cuff"];
   const groups = keys.map((key) => RESOLUTIONS.get(30).groups.find((group) => group.id === key));
   const profile = WORKOUT_MODIFIERS.Insect | WORKOUT_MODIFIERS.HardFloor;
-  assert.equal(getMaximumDistinctLineupSize(wave, groups, profile, 3), 1);
+  assert.equal(getMaximumDistinctLineupSize(wave, groups, profile, 3), 2);
   assert.equal(getMaximumCompleteLineupSize(wave, groups, profile, 3), 2);
   assert.equal(isSelectable(wave[0], groups[2]), false);
 });

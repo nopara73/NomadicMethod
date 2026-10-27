@@ -59,6 +59,7 @@ internal sealed class FakeWorkoutStateStore : IWorkoutStateStore
             Version = state.Version,
             CatalogRevision = state.CatalogRevision,
             ActiveCatalogRevision = state.ActiveCatalogRevision,
+            ActiveCoverageAccountingVersion = state.ActiveCoverageAccountingVersion,
             ActiveSingleDirectionExerciseIds = [.. state.ActiveSingleDirectionExerciseIds],
             ActiveModifierRetainedSelectionGroupIds = [.. state.ActiveModifierRetainedSelectionGroupIds],
             ElevationEquipmentEnabled = state.ElevationEquipmentEnabled,

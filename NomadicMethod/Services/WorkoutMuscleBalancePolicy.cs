@@ -71,6 +71,22 @@ public static class WorkoutMuscleBalancePolicy
         }
     }
 
+    // Mean projected load on muscles trained by a complete additional set.
+    // Use the existing primary/secondary demand weights, never slot ownership.
+    public static (long Numerator, long Denominator) GetAdditionalSetLoad(
+        IReadOnlyDictionary<CanonicalMuscleGroup, int> scheduledLoad,
+        IReadOnlyDictionary<CanonicalMuscleGroup, int> additionalLoad)
+    {
+        long numerator = 0;
+        long denominator = 0;
+        foreach ((CanonicalMuscleGroup muscle, int load) in additionalLoad)
+        {
+            numerator += (2L * scheduledLoad.GetValueOrDefault(muscle) + load) * load;
+            denominator += load;
+        }
+        return (numerator, Math.Max(1, denominator));
+    }
+
     public static int GetPrimaryLoadEighthUnits(Exercise exercise)
     {
         ArgumentNullException.ThrowIfNull(exercise);
@@ -163,6 +179,19 @@ public static class WorkoutMuscleBalancePolicy
             }
         }
 
+        return 0;
+    }
+
+    // Balance whole-body regions before refining their anatomical subdivisions.
+    // A fine bucket must not pull extra work into an already loaded broad region.
+    public static int CompareWorkoutLoad(MuscleBalanceEvaluation left, MuscleBalanceEvaluation right)
+    {
+        foreach (var pair in left.Resolutions.OrderBy(r => r.Minutes)
+                     .Zip(right.Resolutions.OrderBy(r => r.Minutes)))
+        {
+            int comparison = CompareShare(pair.First, pair.Second);
+            if (comparison != 0) return comparison;
+        }
         return 0;
     }
 

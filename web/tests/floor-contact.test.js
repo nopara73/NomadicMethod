@@ -216,8 +216,11 @@ for (const target of [WORKOUT_MODIFIERS.UpperBodyClothing, WORKOUT_MODIFIERS.Flo
     const session=new WorkoutSession(exercises,createDefaultState(),()=>0.4,()=>now);
     session.startWorkout(3,WORKOUT_MODIFIERS.Floor|WORKOUT_MODIFIERS.UpperBodyClothing);
     assert.ok(session.getActiveGroups().some(g=>session.getSelectedExercise(g).id===1057));
-    while(session.getSelectedExercise(session.getNextGroup()).id!==1057)
-      session.recordOutcome(session.getNextGroup(),true);
+    while(session.getSelectedExercise(session.getNextGroup()).id!==1057){
+      const prior=session.getNextGroup();
+      if(session.isIntermediateSequenceBlock(prior))session.advanceSequence(prior);
+      else session.recordOutcome(prior,true);
+    }
     const current=session.getNextGroup();
     if(movement)session.beginMovement(current,28_000,now+28_000);
     const completed=structuredClone(session.state.outcomes);

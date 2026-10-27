@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "coverageResolutions": [
+    3,
+    5,
+    7,
+    10,
+    15,
+    20,
+    30
+  ],
+  "loadCases": [
+    {
+      "name": "secondary work already counted",
+      "scheduled": {
+        "CalfDeepPosteriorLegAndPlantarFoot": 8,
+        "AnteriorLateralLowerLegAndDorsalFoot": 4,
+        "ShoulderAbductors": 2
+      },
+      "overloaded": {
+        "AnteriorLateralLowerLegAndDorsalFoot": 4
+      },
+      "preferred": {
+        "ShoulderAbductors": 2
+      }
+    },
+    {
+      "name": "upper-body overlap",
+      "scheduled": {
+        "ElbowExtensors": 12,
+        "ShoulderAbductors": 8,
+        "AbdominalWall": 2
+      },
+      "overloaded": {
+        "ElbowExtensors": 4,
+        "ShoulderAbductors": 2
+      },
+      "preferred": {
+        "AbdominalWall": 2
+      }
+    }
+  ]
+}

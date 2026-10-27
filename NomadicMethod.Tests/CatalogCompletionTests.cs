@@ -68,14 +68,14 @@ public sealed class CatalogCompletionTests
         })!;
 
     [Fact]
-    public void RepeatedSpinalWaveFillsTwoForearmSlotsWithoutInventingRotatorCoverage()
+    public void SpinalWaveCoversTwoForearmSlotsWithoutInventingRotatorCoverage()
     {
         Exercise[] wave = [LoadCatalog().Single(exercise => exercise.Id == 1032)];
         WorkoutGroup[] groups = new[] { "r30.forearm-flexors-pronators",
             "r30.forearm-extensors-supinators", "r30.rotator-cuff" }
             .Select(key => MassGroupingTaxonomy.GetGroup(30, key)).ToArray();
         const WorkoutModifiers profile = WorkoutModifiers.Insect | WorkoutModifiers.HardFloor;
-        Assert.Equal(1, WorkoutModifierPolicy.GetMaximumDistinctLineupSize(wave, groups, profile, 3));
+        Assert.Equal(2, WorkoutModifierPolicy.GetMaximumDistinctLineupSize(wave, groups, profile, 3));
         Assert.Equal(2, WorkoutModifierPolicy.GetMaximumCompleteLineupSize(wave, groups, profile, 3));
         Assert.False(WorkoutCoveragePolicy.IsSelectable(wave[0], groups[2]));
     }
@@ -377,24 +377,26 @@ public sealed class CatalogCompletionTests
 
             WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
             Assert.Equal(3, rounds.Length);
-            Assert.Equal(3, rounds.Select(round =>
-                WorkoutModifierPolicy.GetSessionMovementId(
-                    service.GetSelectedExercise(state, round))).Distinct().Count());
+            Assert.Equal(MassGroupingTaxonomy.GetResolution(3).Groups.Select(g => g.Id).Order(),
+                state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
             foreach (WorkoutGroup round in rounds)
             {
                 Exercise selected = service.GetSelectedExercise(state, round);
                 Assert.True(WorkoutCoveragePolicy.IsSelectable(selected, round));
                 Assert.True(WorkoutModifierPolicy.IsCompatible(selected, profile));
-                Assert.Single(selected.SequenceBlocks);
+                Assert.InRange(selected.SequenceBlocks.Length, 1, rounds.Length);
             }
-            WorkoutGroup upper = rounds.Single(round => round.SelectionKey == "r3.head-neck-upper-limbs");
+            WorkoutGroup upper = rounds.First(round => round.SelectionKey == "r3.head-neck-upper-limbs");
             Exercise upperExercise = service.GetSelectedExercise(state, upper);
             Assert.True(WorkoutCoveragePolicy.IsSelectable(upperExercise, upper));
             if (insect) Assert.NotEqual(239, upperExercise.Id);
             else Assert.Equal(239, upperExercise.Id);
             if (light && !insect) Assert.Equal(0, upperExercise.MuscularDemand);
             foreach (WorkoutGroup round in rounds)
-                service.RecordOutcome(state, round, keep: true);
+            {
+                if (service.IsIntermediateSequenceBlock(state, round)) service.AdvanceSequence(state, round);
+                else service.RecordOutcome(state, round, keep: true);
+            }
             Assert.True(state.WorkoutCompleted);
         }
     }
@@ -409,13 +411,14 @@ public sealed class CatalogCompletionTests
         WorkoutModifiers profile = state.LastWorkoutModifiers | WorkoutModifiers.Insect | WorkoutModifiers.Shy;
         service.StartWorkout(state, 3, profile);
         WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
-        WorkoutGroup upper = rounds.Single(round => service.GetSelectedExercise(state, round).Id == 248);
+        WorkoutGroup upper = rounds.First(round => service.GetSelectedExercise(state, round).Id == 248);
         Assert.Equal(248, service.GetSelectedExercise(state, upper).Id);
         foreach (WorkoutGroup round in rounds)
         {
             service.BeginRest(state, round, DateTimeOffset.UtcNow.AddSeconds(15).ToUnixTimeMilliseconds());
-            Assert.True(service.KeepPendingRest(state));
-            service.RecordOutcome(state, round, keep: true);
+            Assert.Equal(!service.IsIntermediateSequenceBlock(state, round), service.KeepPendingRest(state));
+            if (service.IsIntermediateSequenceBlock(state, round)) service.AdvanceSequence(state, round);
+            else service.RecordOutcome(state, round, keep: true);
             service.ClearPendingRest(state);
         }
         Assert.True(state.WorkoutCompleted);

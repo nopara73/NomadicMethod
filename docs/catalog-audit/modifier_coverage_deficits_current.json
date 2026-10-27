@@ -84,7 +84,7 @@
     "demandTwoAffectedGroupCount": 2,
     "materialityDeficiencyCount": 0,
     "unacceptedMaterialityDeficiencyCount": 0,
-    "distinctLineupDeficiencyCount": 8,
+    "distinctLineupDeficiencyCount": 0,
     "completeLineupDeficiencyCount": 0
   },
   "anatomicalGroupInventory": [
@@ -12300,55 +12300,6 @@
     }
   ],
   "materiality": [],
-  "distinctLineup": [
-    {
-      "minutes": 30,
-      "profile": 17,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 26
-    },
-    {
-      "minutes": 30,
-      "profile": 513,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 27
-    },
-    {
-      "minutes": 45,
-      "profile": 17,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 26
-    },
-    {
-      "minutes": 45,
-      "profile": 513,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 27
-    },
-    {
-      "minutes": 60,
-      "profile": 17,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 26
-    },
-    {
-      "minutes": 60,
-      "profile": 513,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 27
-    },
-    {
-      "minutes": 90,
-      "profile": 17,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 26
-    },
-    {
-      "minutes": 90,
-      "profile": 513,
-      "maximumDistinctExerciseCount": 25,
-      "requiredDistinctExerciseCount": 27
-    }
-  ],
+  "distinctLineup": [],
   "completeLineup": []
 }

@@ -2503,11 +2503,11 @@ test("atomic sequences are adjacent units that may satisfy multiple primary slot
     atomicSequenceLineupSolver,
     /CoverageMask[\s\S]*BlockCount[\s\S]*workoutMinutes[\s\S]*ReduceToBlockCapacity/,
   );
-  assert.match(
+  assert.doesNotMatch(
     sessionService,
     /candidate\.SequenceBlocks\.Length \+[\s\S]*groups\.Count - placementGroups\.Length[\s\S]*state\.ActiveWorkoutMinutes/,
   );
-  assert.match(
+  assert.doesNotMatch(
     workoutModule,
     /candidate\.sequenceBlocks\.length \+[\s\S]*groups\.length - placementGroups\.length[\s\S]*this\.state\.activeWorkoutMinutes/,
   );
