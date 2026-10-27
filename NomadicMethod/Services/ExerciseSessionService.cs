@@ -44,6 +44,8 @@ public sealed partial class ExerciseSessionService
     private IReadOnlyDictionary<int, Exercise[]> _movementRootsById = null!;
     private readonly Dictionary<string, WorkoutGroup[][]>
         _sequencePlacementOptionsCache = new(StringComparer.Ordinal);
+    private readonly Dictionary<int, (IReadOnlyDictionary<CanonicalMuscleGroup, int> Canonical, int[][] Regional)>
+        _sequenceMuscleLoadCache = [];
     private readonly Random _random;
     private readonly Func<DateTimeOffset> _utcNowProvider;
     private readonly TimeZoneInfo _localTimeZone;
@@ -85,6 +87,7 @@ public sealed partial class ExerciseSessionService
     private void SetExercises(IReadOnlyList<Exercise> exercises)
     {
         _sequencePlacementOptionsCache.Clear();
+        _sequenceMuscleLoadCache.Clear();
         _exercises = exercises;
         _exercisesById = exercises.ToDictionary(exercise => exercise.Id);
         var sequenceRootByExerciseId = new Dictionary<int, Exercise>();
@@ -5601,14 +5604,18 @@ public sealed partial class ExerciseSessionService
             .Any(adjustments => adjustments.Count > 0);
         bool accountForSharedLoad = state.ActiveCoverageAccountingVersion > 0;
         var scheduledLoad = new Dictionary<CanonicalMuscleGroup, int>();
-        var addedLoadByRoot = rankedPlacements.DistinctBy(p => p.Root.Id).ToDictionary(p => p.Root.Id, p =>
-            WorkoutMuscleBalancePolicy.CalculateCanonicalLoadEighthUnits(
-                p.Root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId])));
+        var addedLoadByRoot = rankedPlacements.DistinctBy(p => p.Root.Id).ToDictionary(p => p.Root.Id,
+            p => GetSequenceMuscleLoad(p.Root).Canonical);
         foreach (SelectedSequencePlacement placement in rankedPlacements)
             foreach ((CanonicalMuscleGroup muscle, int load) in addedLoadByRoot[placement.Root.Id])
                 scheduledLoad[muscle] = scheduledLoad.GetValueOrDefault(muscle) +
                     load * setCounts[placement.Anchor.Id];
 
+        var scheduledRegionalLoad = WorkoutMuscleBalancePolicy.CreateRegionalLoad(scheduledLoad);
+        var addedRegionalLoadByRoot = rankedPlacements.DistinctBy(p => p.Root.Id).ToDictionary(p => p.Root.Id,
+            p => GetSequenceMuscleLoad(p.Root).Regional);
+        var keptByGroup = repeatablePlacements.ToDictionary(p => p.Anchor.Id,
+            p => IsSequenceKept(state, p.Anchor.Id, p.Root));
         while (remainingMinutes > 0)
         {
             // Compute every candidate's next-set phase in one prefix scan.
@@ -5638,7 +5645,7 @@ public sealed partial class ExerciseSessionService
             (int Score, int SetCount, bool Kept, bool OneBlock)? selectedRank =
                 null;
             (long Numerator, long Denominator) selectedLoad = default;
-            MuscleBalanceEvaluation? selectedBalance = null;
+            int[][]? selectedRegionalLoad = null;
             foreach (SelectedSequencePlacement placement in repeatablePlacements)
             {
                 string groupId = placement.Anchor.Id;
@@ -5660,16 +5667,14 @@ public sealed partial class ExerciseSessionService
                             phaseAfterAddingSetByGroupId![groupId])
                         : 0,
                     SetCount: setCounts[groupId],
-                    Kept: IsSequenceKept(state, groupId, placement.Root),
+                    Kept: keptByGroup[groupId],
                     OneBlock: cost == 1);
                 var load = WorkoutMuscleBalancePolicy.GetAdditionalSetLoad(
                     scheduledLoad, addedLoadByRoot[placement.Root.Id]);
-                var projectedLoad = new Dictionary<CanonicalMuscleGroup, int>(scheduledLoad);
-                foreach ((CanonicalMuscleGroup muscle, int added) in addedLoadByRoot[placement.Root.Id])
-                    projectedLoad[muscle] = projectedLoad.GetValueOrDefault(muscle) + added;
-                MuscleBalanceEvaluation balance = WorkoutMuscleBalancePolicy.Evaluate(projectedLoad);
-                int loadComparison = selectedBalance is null || !accountForSharedLoad ? 0 :
-                    -WorkoutMuscleBalancePolicy.CompareWorkoutLoad(balance, selectedBalance);
+                int[][] regionalLoad = addedRegionalLoadByRoot[placement.Root.Id];
+                int loadComparison = selectedRegionalLoad is null || !accountForSharedLoad ? 0 :
+                    -WorkoutMuscleBalancePolicy.CompareProjectedRegionalLoad(
+                        scheduledRegionalLoad, regionalLoad, selectedRegionalLoad);
                 if (loadComparison == 0 && selectedRank is not null && accountForSharedLoad)
                     loadComparison = (load.Numerator * selectedLoad.Denominator).CompareTo(
                         selectedLoad.Numerator * load.Denominator);
@@ -5686,7 +5691,7 @@ public sealed partial class ExerciseSessionService
                     selectedPlacement = placement;
                     selectedRank = rank;
                     selectedLoad = load;
-                    selectedBalance = balance;
+                    selectedRegionalLoad = regionalLoad;
                 }
             }
             if (selectedPlacement is null)
@@ -5698,6 +5703,9 @@ public sealed partial class ExerciseSessionService
             setCounts[selectedPlacement.Anchor.Id]++;
             foreach ((CanonicalMuscleGroup muscle, int load) in addedLoadByRoot[selectedPlacement.Root.Id])
                 scheduledLoad[muscle] = scheduledLoad.GetValueOrDefault(muscle) + load;
+            for (int r = 0; r < scheduledRegionalLoad.Length; r++)
+                for (int g = 0; g < scheduledRegionalLoad[r].Length; g++)
+                    scheduledRegionalLoad[r][g] += selectedRegionalLoad![r][g];
             remainingMinutes -= blockCostByGroup[selectedPlacement.Anchor.Id];
         }
 
@@ -5706,6 +5714,18 @@ public sealed partial class ExerciseSessionService
             .Select(entry => entry.Key)
             .ToHashSet(StringComparer.Ordinal);
         return new LongWorkoutAllocation(extraSetGroups, setCounts);
+    }
+
+    private (IReadOnlyDictionary<CanonicalMuscleGroup, int> Canonical, int[][] Regional) GetSequenceMuscleLoad(Exercise root)
+    {
+        if (!_sequenceMuscleLoadCache.TryGetValue(root.Id, out var load))
+        {
+            var canonical = WorkoutMuscleBalancePolicy.CalculateCanonicalLoadEighthUnits(
+                root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId]));
+            load = (canonical, WorkoutMuscleBalancePolicy.CreateRegionalLoad(canonical));
+            _sequenceMuscleLoadCache[root.Id] = load;
+        }
+        return load;
     }
 
     private void RebalanceNewExercisesByMuscleBalance(

@@ -76,6 +76,23 @@ public sealed class SharedCoverageTests
         var groups = MassGroupingTaxonomy.GetResolution(10).Groups.Where(g => g.Id.Contains("lower-leg")).ToArray();
         Assert.Equal(2, WorkoutModifierPolicy.GetMaximumDistinctLineupSize([root], groups, WorkoutModifiers.None, 10));
     }
+    [Fact]
+    public void AllocationProjectionExactlyMatchesFullBalanceEvaluation()
+    {
+        var muscles = Enum.GetValues<CanonicalMuscleGroup>();
+        for (int sample = 0; sample < 64; sample++)
+        {
+            Dictionary<CanonicalMuscleGroup, int> Load(int offset) => muscles.Select((m, i) =>
+                (m, value: sample < 3 && offset == sample ? 0 : (sample * (i + offset + 1) + offset) % 13))
+                .ToDictionary(e => e.m, e => e.value);
+            var current = Load(0); var left = Load(1); var right = Load(2);
+            MuscleBalanceEvaluation Projected(Dictionary<CanonicalMuscleGroup, int> extra) =>
+                WorkoutMuscleBalancePolicy.Evaluate(muscles.ToDictionary(m => m, m => current[m] + extra[m]));
+            Assert.Equal(WorkoutMuscleBalancePolicy.CompareWorkoutLoad(Projected(left), Projected(right)),
+                WorkoutMuscleBalancePolicy.CompareProjectedRegionalLoad(WorkoutMuscleBalancePolicy.CreateRegionalLoad(current),
+                    WorkoutMuscleBalancePolicy.CreateRegionalLoad(left), WorkoutMuscleBalancePolicy.CreateRegionalLoad(right)));
+        }
+    }
     private static Exercise Exercise(int id, CanonicalMuscleGroup primary, CanonicalMuscleGroup[] secondary, int blocks) => new()
     {
         Id = id, Name = $"Exercise {id}", Video = $"exercise_{id:D4}.mp4", PrimaryCanonicalGroup = primary,

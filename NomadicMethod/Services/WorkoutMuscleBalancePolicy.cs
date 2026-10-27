@@ -87,6 +87,34 @@ public static class WorkoutMuscleBalancePolicy
         return (numerator, Math.Max(1, denominator));
     }
 
+    private static readonly WorkoutResolution[] LoadResolutions = MassGroupingTaxonomy.SupportedMinutes
+        .Order().Select(MassGroupingTaxonomy.GetResolution).ToArray();
+
+    internal static int[][] CreateRegionalLoad(IReadOnlyDictionary<CanonicalMuscleGroup, int> load) =>
+        LoadResolutions.Select(r => r.Groups.Select(g =>
+            g.CanonicalGroups.Sum(m => load.GetValueOrDefault(m))).ToArray()).ToArray();
+
+    // Compare the same projected regional ratios without allocating ninety
+    // group dictionaries for every candidate in every additional set.
+    internal static int CompareProjectedRegionalLoad(int[][] current, int[][] left, int[][] right)
+    {
+        for (int r = 0; r < current.Length; r++)
+        {
+            int leftMin = int.MaxValue, leftMax = 0, rightMin = int.MaxValue, rightMax = 0;
+            for (int g = 0; g < current[r].Length; g++)
+            {
+                int a = current[r][g] + left[r][g], b = current[r][g] + right[r][g];
+                leftMin = Math.Min(leftMin, a); leftMax = Math.Max(leftMax, a);
+                rightMin = Math.Min(rightMin, b); rightMax = Math.Max(rightMax, b);
+            }
+            if (leftMax == 0) leftMin = leftMax = 1;
+            if (rightMax == 0) rightMin = rightMax = 1;
+            int comparison = ((long)leftMin * rightMax).CompareTo((long)rightMin * leftMax);
+            if (comparison != 0) return comparison;
+        }
+        return 0;
+    }
+
     public static int GetPrimaryLoadEighthUnits(Exercise exercise)
     {
         ArgumentNullException.ThrowIfNull(exercise);

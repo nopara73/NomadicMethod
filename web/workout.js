@@ -2155,6 +2155,29 @@ export function calculateMuscleBalanceEvaluation(canonicalLoadEighthUnits) {
   };
 }
 
+const MUSCLE_LOAD_RESOLUTIONS = [...RESOLUTIONS.values()].sort((a, b) => a.minutes - b.minutes);
+export function createRegionalMuscleLoad(load) {
+  return MUSCLE_LOAD_RESOLUTIONS.map(r => r.groups.map(g =>
+    g.canonicalGroups.reduce((sum, muscle) => sum + (load.get(muscle) ?? 0), 0)));
+}
+
+// Exact projected ratios, without per-candidate group Maps or result objects.
+export function compareProjectedRegionalLoad(current, left, right) {
+  for (let r = 0; r < current.length; r++) {
+    let leftMin = Infinity, leftMax = 0, rightMin = Infinity, rightMax = 0;
+    for (let g = 0; g < current[r].length; g++) {
+      const a = current[r][g] + left[r][g], b = current[r][g] + right[r][g];
+      leftMin = Math.min(leftMin, a); leftMax = Math.max(leftMax, a);
+      rightMin = Math.min(rightMin, b); rightMax = Math.max(rightMax, b);
+    }
+    if (leftMax === 0) leftMin = leftMax = 1;
+    if (rightMax === 0) rightMin = rightMax = 1;
+    const comparison = leftMin * rightMax - rightMin * leftMax;
+    if (comparison) return Math.sign(comparison);
+  }
+  return 0;
+}
+
 export function compareWorkoutLoad(left, right) {
   const a = [...left.resolutions].sort((x, y) => x.minutes - y.minutes);
   const b = [...right.resolutions].sort((x, y) => x.minutes - y.minutes);
@@ -4629,6 +4652,7 @@ export class WorkoutSession {
       throw new Error("Every exercise must belong to exactly one sequence.");
     }
     this.sequencePlacementOptionsCache = new Map();
+    this.sequenceMuscleLoadCache = new Map();
   }
 
   getCurrentUnixTimeMilliseconds() {
@@ -7698,6 +7722,14 @@ export class WorkoutSession {
     }
   }
 
+  getSequenceMuscleLoad(root) {
+    if (!this.sequenceMuscleLoadCache.has(root.id)) {
+      const canonical = calculateCanonicalMuscleLoadEighthUnits(root.sequenceBlocks.map(block => this.exercisesById.get(block.exerciseId)));
+      this.sequenceMuscleLoadCache.set(root.id, { canonical, regional: createRegionalMuscleLoad(canonical) });
+    }
+    return this.sequenceMuscleLoadCache.get(root.id);
+  }
+
   chooseLongWorkoutAllocation(
     lockedSelectionGroupIds = new Set(),
     selectedPlacements = null,
@@ -7783,13 +7815,15 @@ export class WorkoutSession {
     const accountForSharedLoad = this.state.activeCoverageAccountingVersion > 0;
     const scheduledLoad = new Map();
     const addedLoadByRoot = new Map(rankedPlacements.map(placement => [placement.root.id,
-      calculateCanonicalMuscleLoadEighthUnits(placement.root.sequenceBlocks.map(block => this.exercisesById.get(block.exerciseId))),
+      this.getSequenceMuscleLoad(placement.root).canonical,
     ]));
     for (const placement of rankedPlacements) {
       for (const [muscle, load] of addedLoadByRoot.get(placement.root.id))
         scheduledLoad.set(muscle, (scheduledLoad.get(muscle) ?? 0) + load * setCountsBySelectionGroupId.get(placement.anchor.id));
     }
 
+    const scheduledRegionalLoad = createRegionalMuscleLoad(scheduledLoad);
+    const addedRegionalLoadByRoot = new Map(rankedPlacements.map(p => [p.root.id, this.getSequenceMuscleLoad(p.root).regional]));
     while (remainingMinutes > 0) {
       // Compute every candidate's next-set phase in one prefix scan. The old
       // comparator rescanned the entire schedule for both sides of every sort
@@ -7809,11 +7843,10 @@ export class WorkoutSession {
         }
       }
 
-      const currentBalance = calculateMuscleBalanceEvaluation(scheduledLoad);
       let selectedMetadata = null;
       let selectedScore = Number.MIN_SAFE_INTEGER;
       let selectedLoad = null;
-      let selectedBalance = null;
+      let selectedRegionalLoad = null;
       for (const metadata of repeatableMetadata) {
         const { placement, groupId, cost, setCount, kept } = metadata;
         if (cost > remainingMinutes || !fillable[remainingMinutes - cost]) {
@@ -7828,9 +7861,9 @@ export class WorkoutSession {
             )
           : 0;
         const load = getAdditionalSetLoad(scheduledLoad, addedLoadByRoot.get(placement.root.id));
-        const balance = calculateMuscleBalanceAfterCanonicalDelta(currentBalance, addedLoadByRoot.get(placement.root.id));
-        let loadComparison = !accountForSharedLoad || !selectedBalance ? 0 :
-          -compareWorkoutLoad(balance, selectedBalance);
+        const regionalLoad = addedRegionalLoadByRoot.get(placement.root.id);
+        let loadComparison = !accountForSharedLoad || !selectedRegionalLoad ? 0 :
+          -compareProjectedRegionalLoad(scheduledRegionalLoad, regionalLoad, selectedRegionalLoad);
         if (loadComparison === 0 && accountForSharedLoad && selectedLoad)
           loadComparison = load.numerator * selectedLoad.denominator - selectedLoad.numerator * load.denominator;
         if (!selectedMetadata ||
@@ -7846,7 +7879,7 @@ export class WorkoutSession {
           selectedMetadata = metadata;
           selectedScore = score;
           selectedLoad = load;
-          selectedBalance = balance;
+          selectedRegionalLoad = regionalLoad;
         }
       }
       if (!selectedMetadata) {
@@ -7858,6 +7891,9 @@ export class WorkoutSession {
       selectedMetadata.setCount += 1;
       for (const [muscle, load] of addedLoadByRoot.get(selectedPlacement.root.id))
         scheduledLoad.set(muscle, (scheduledLoad.get(muscle) ?? 0) + load);
+      for (let r = 0; r < scheduledRegionalLoad.length; r++)
+        for (let g = 0; g < scheduledRegionalLoad[r].length; g++)
+          scheduledRegionalLoad[r][g] += selectedRegionalLoad[r][g];
       setCountsBySelectionGroupId.set(
         selectedPlacement.anchor.id,
         selectedMetadata.setCount,

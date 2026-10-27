@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import test from 'node:test';
-import {consolidateWorkoutCoverage,getAdditionalSetLoad,getMaximumDistinctLineupSize,getResolution,WorkoutSession,createDefaultState,WORKOUT_MODIFIERS as M} from '../workout.js';
+import {consolidateWorkoutCoverage,getAdditionalSetLoad,createRegionalMuscleLoad,compareProjectedRegionalLoad,calculateMuscleBalanceEvaluation,compareWorkoutLoad,getMaximumDistinctLineupSize,getResolution,WorkoutSession,createDefaultState,WORKOUT_MODIFIERS as M} from '../workout.js';
 const cases=JSON.parse(await readFile(new URL('fixtures/shared-coverage-cases.json',import.meta.url),'utf8'));
 for(const minutes of cases.coverageResolutions) test('shared coverage in every '+minutes+'-minute anatomical group',()=>{
  const groups=getResolution(minutes).groups;
@@ -47,4 +47,14 @@ test('one real compound can cover two groups without repeating its movement',asy
  const root=catalog.find(e=>e.id===555);
  const groups=getResolution(10).groups.filter(g=>g.id.includes('lower-leg'));
  assert.equal(getMaximumDistinctLineupSize([root],groups,M.None,10),2);
+});
+
+test('allocation projection exactly matches full balance evaluation',()=>{
+ const muscles=[...new Set(getResolution(30).groups.flatMap(g=>g.canonicalGroups))];
+ for(let sample=0;sample<64;sample++){
+  const load=offset=>new Map(muscles.map((m,i)=>[m,sample<3&&offset===sample?0:(sample*(i+offset+1)+offset)%13]));
+  const current=load(0),left=load(1),right=load(2);
+  const projected=extra=>calculateMuscleBalanceEvaluation(new Map(muscles.map(m=>[m,current.get(m)+extra.get(m)])));
+  assert.equal(compareProjectedRegionalLoad(createRegionalMuscleLoad(current),createRegionalMuscleLoad(left),createRegionalMuscleLoad(right)),compareWorkoutLoad(projected(left),projected(right)));
+ }
 });
