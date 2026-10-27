@@ -12,9 +12,8 @@ import {
   ELEVATION_EQUIPMENT,
   LOCOMOTION_SPACE,
   REST_DURATION_MS,
-  NEW_WORKOUT_MINUTES,
-  getWorkoutMinuteOptions,
-  normalizeSetupMinutes,
+  SUPPORTED_MINUTES,
+  normalizeMinutes,
   WORKOUT_MODIFIERS,
   WorkoutSession,
   findSoleWallContactRequiredCatalogDeficiencies,
@@ -152,7 +151,7 @@ const startupControls = window.nomadicMethodStartupControls ?? null;
 let session = null;
 let exerciseCatalog = null;
 let assetVersions = Object.freeze({});
-let selectedMinutes = startupControls?.selectedMinutes ?? 10;
+let selectedMinutes = startupControls?.selectedMinutes ?? globalThis.nomadicMethodDuration.defaultMinutes;
 let selectedModifiers = startupControls?.selectedModifiers ??
   DEFAULT_WORKOUT_MODIFIERS;
 let startupSelectionChanged = startupControls?.selectionChanged ?? false;
@@ -517,7 +516,7 @@ function persistState() {
 }
 
 function workoutMinuteOptions() {
-  return getWorkoutMinuteOptions(activeWorkoutSetup ? session?.state.activeWorkoutMinutes : 0);
+  return SUPPORTED_MINUTES;
 }
 
 function stepDuration(direction) {
@@ -537,7 +536,7 @@ function selectDurationByIndex(index, userInitiated) {
 
 function renderDuration(minutes, userInitiated) {
   const previousMinutes = selectedMinutes;
-  minutes = normalizeSetupMinutes(minutes, activeWorkoutSetup ? session?.state.activeWorkoutMinutes : 0);
+  minutes = normalizeMinutes(minutes);
   if (activeWorkoutSetup && session)
     minutes = Math.max(minutes, session.getMinimumActiveWorkoutMinutes());
   selectedMinutes = minutes;
@@ -885,7 +884,7 @@ function renderLightModeCountdown() {
     ? session.getWorkoutsUntilLightWorkout(selectedMinutes)
     : startupControls?.lightWorkoutsRemaining;
   const maximumWorkoutCount = Math.ceil(
-    LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT / Math.min(...NEW_WORKOUT_MINUTES));
+    LIGHT_DAY_REGULAR_MINUTES_BEFORE_LIGHT / Math.min(...SUPPORTED_MINUTES));
   const workoutsRemaining = Number.isInteger(candidateWorkoutsRemaining) &&
       candidateWorkoutsRemaining >= 0 &&
       candidateWorkoutsRemaining <= maximumWorkoutCount
@@ -1013,7 +1012,7 @@ function showActiveWorkoutSetup() {
   selectedModifiers = session.state.activeWorkoutModifiers;
   renderDuration(selectedMinutes, false);
   renderWorkoutModifiers();
-  startupControls?.setActiveWorkoutSetup(true, session.getMinimumActiveWorkoutMinutes(), session.state.activeWorkoutMinutes);
+  startupControls?.setActiveWorkoutSetup(true, session.getMinimumActiveWorkoutMinutes());
   startupControls?.setSelection(selectedMinutes, selectedModifiers);
   elements.durationScreen.classList.add("active-workout-setup");
   if (!startupControls) {

@@ -187,6 +187,7 @@ public partial class MainActivity : Activity
     private bool _applicationStartupCompleted;
     private bool _startWorkoutWhenReady;
     private CancellationTokenSource? _workoutPreparationCancellation;
+    private readonly WorkoutPreparationQueue _workoutPreparationQueue = new();
     private Task<PreparedWorkout>? _workoutPreparationTask;
     private PreparedWorkout? _preparedWorkout;
     private int _preparingWorkoutMinutes;
@@ -200,8 +201,7 @@ public partial class MainActivity : Activity
     private bool _hasRenderedScreen;
     private bool _editingActiveWorkoutSetup;
     private IReadOnlyList<int> WorkoutMinuteOptions =>
-        ExerciseSessionService.GetWorkoutMinuteOptions(
-            _editingActiveWorkoutSetup ? _state.ActiveWorkoutMinutes : 0);
+        ExerciseSessionService.SupportedWorkoutMinutes;
     private WorkoutPhase _workoutSetupReturnPhase = WorkoutPhase.Ready;
     private bool _workoutSetupShouldResume;
     private string? _workoutSetupCurrentGroupId;
@@ -234,7 +234,7 @@ public partial class MainActivity : Activity
         _state = _stateStore.Load();
         WorkoutModifierPolicy.MigrateLegacyElevationSetup(_state);
         InitializeOuraRecovery();
-        _selectedWorkoutMinutes = ExerciseSessionService.NormalizeSetupMinutes(_state.LastWorkoutMinutes);
+        _selectedWorkoutMinutes = WorkoutDurationPolicy.Normalize(_state.LastWorkoutMinutes);
         _selectedWorkoutModifiers = _state.LastWorkoutModifiers;
         ShowDurationSelection();
         _ = InitializeApplicationAsync();
@@ -413,9 +413,8 @@ public partial class MainActivity : Activity
         OuraRecoverySnapshot? recoveryContext = _state.OuraRecovery;
         IReadOnlyList<Exercise> exercises = _exerciseDatabase.Exercises;
         IReadOnlyDictionary<int, int[][]> fitnessRatings = _fitnessRatings;
-        _workoutPreparationTask = Task.Run(() =>
+        _workoutPreparationTask = _workoutPreparationQueue.RunAsync(() =>
         {
-            cancellationToken.ThrowIfCancellationRequested();
             WorkoutState preparedState = JsonSerializer.Deserialize(
                     stateJson,
                     WorkoutJsonContext.Default.WorkoutState)
@@ -438,7 +437,6 @@ public partial class MainActivity : Activity
                     minutes,
                     modifiers);
             }
-            cancellationToken.ThrowIfCancellationRequested();
             return new PreparedWorkout(
                 preparedState,
                 minutes,
@@ -689,6 +687,15 @@ public partial class MainActivity : Activity
             Resource.Id.duration_increase_button);
         _durationOptionSegments = FindRequiredView<LinearLayout>(
             Resource.Id.duration_option_segments);
+        foreach (int minutes in WorkoutMinuteOptions)
+        {
+            var label = (TextView)LayoutInflater!.Inflate(
+                Resource.Layout.duration_option_label, _durationOptionLabels, false)!;
+            label.Text = minutes.ToString();
+            _durationOptionLabels.AddView(label);
+            _durationOptionSegments.AddView(LayoutInflater.Inflate(
+                Resource.Layout.duration_route_segment, _durationOptionSegments, false));
+        }
         _beginWorkoutButton = FindRequiredView<Button>(Resource.Id.begin_workout_button);
         _endSessionButton = FindRequiredView<ImageButton>(Resource.Id.end_session_button);
         _workoutScreen = FindRequiredView<View>(Resource.Id.workout_screen);
@@ -760,9 +767,12 @@ public partial class MainActivity : Activity
 
         _exerciseMediaArea.LayoutChange += (_, _) => ResizeMediaCard();
         _completionHero.LayoutChange += (_, _) => ResizeCompletionHalo();
-        _durationSeekBar.LayoutChange += (_, _) => AlignDurationOptionLabels();
+        _durationStepRow.LayoutChange += (_, _) =>
+            _durationOptionLabels.Post(AlignDurationOptionLabels);
+        _durationSeekBar.LayoutChange += (_, _) =>
+            _durationOptionLabels.Post(AlignDurationOptionLabels);
         _durationOptionLabels.LayoutChange += (_, _) =>
-            AlignDurationOptionLabels();
+            _durationOptionLabels.Post(AlignDurationOptionLabels);
     }
 
     private void BindEvents()
@@ -1374,13 +1384,6 @@ public partial class MainActivity : Activity
             View label = _durationOptionLabels.GetChildAt(index)
                 ?? throw new InvalidOperationException(
                     "A duration option label is missing.");
-            if (label.LayoutParameters is FrameLayout.LayoutParams layout &&
-                layout.Width != labelSlotWidth)
-            {
-                layout.Width = labelSlotWidth;
-                label.LayoutParameters = layout;
-            }
-
             float fraction = index / (float)(optionCount - 1);
             if (rightToLeft)
             {
@@ -1388,8 +1391,21 @@ public partial class MainActivity : Activity
             }
 
             float center = trackStart + ((trackEnd - trackStart) * fraction);
-            float targetLeft = center - (labelSlotWidth / 2f);
-            label.TranslationX = targetLeft - label.Left;
+            int targetLeft = (int)Math.Round(center - (labelSlotWidth / 2f)) -
+                _durationOptionLabels.PaddingLeft;
+            if (label.LayoutParameters is not FrameLayout.LayoutParams layout)
+                throw new InvalidOperationException("A duration label requires frame layout parameters.");
+            GravityFlags gravity = GravityFlags.Top | GravityFlags.Left;
+            if (layout.Width != labelSlotWidth || layout.LeftMargin != targetLeft ||
+                layout.RightMargin != 0 || layout.Gravity != gravity)
+            {
+                layout.Width = labelSlotWidth;
+                layout.LeftMargin = targetLeft;
+                layout.RightMargin = 0;
+                layout.Gravity = gravity;
+                label.LayoutParameters = layout;
+            }
+            label.TranslationX = 0;
         }
     }
 
@@ -2000,7 +2016,7 @@ public partial class MainActivity : Activity
         ReleaseReactionDrillView();
         _manualLightModeRequested = false;
         _editingActiveWorkoutSetup = false;
-        _selectedWorkoutMinutes = ExerciseSessionService.NormalizeSetupMinutes(_state.LastWorkoutMinutes);
+        _selectedWorkoutMinutes = WorkoutDurationPolicy.Normalize(_state.LastWorkoutMinutes);
         _workoutSetupCurrentGroupId = null;
         CancelCountdown(resetToStart: false);
         PauseRestCountdown();
@@ -2310,7 +2326,7 @@ public partial class MainActivity : Activity
     {
         _durationSeekBar.Enabled = true;
         _durationDecreaseButton.Enabled = _selectedWorkoutMinutes >
-            (editing ? _sessionService.GetMinimumActiveWorkoutMinutes(_state) : 3);
+            (editing ? _sessionService.GetMinimumActiveWorkoutMinutes(_state) : WorkoutDurationPolicy.MinimumMinutes);
         _durationIncreaseButton.Enabled =
             GetSupportedMinuteIndex(_selectedWorkoutMinutes) <
                 WorkoutMinuteOptions.Count - 1;
@@ -2782,10 +2798,9 @@ public partial class MainActivity : Activity
 
     private void SetSelectedWorkoutMinutes(int minutes, bool userInitiated = false)
     {
-        int activeMinutes = _editingActiveWorkoutSetup ? _state.ActiveWorkoutMinutes : 0;
         int previousOptionIndex = GetSupportedMinuteIndex(
-            ExerciseSessionService.NormalizeSetupMinutes(_selectedWorkoutMinutes, activeMinutes));
-        int normalizedMinutes = ExerciseSessionService.NormalizeSetupMinutes(minutes, activeMinutes);
+            WorkoutDurationPolicy.Normalize(_selectedWorkoutMinutes));
+        int normalizedMinutes = WorkoutDurationPolicy.Normalize(minutes);
         if (_editingActiveWorkoutSetup)
             normalizedMinutes = Math.Max(normalizedMinutes, _sessionService.GetMinimumActiveWorkoutMinutes(_state));
         _selectedWorkoutMinutes = normalizedMinutes;
@@ -2831,14 +2846,12 @@ public partial class MainActivity : Activity
         {
             View segment = _durationOptionSegments.GetChildAt(index)
                 ?? throw new InvalidOperationException("A duration route segment is missing.");
-            segment.Visibility = index < WorkoutMinuteOptions.Count ? ViewStates.Visible : ViewStates.Gone;
             segment.SetBackgroundResource(index <= optionIndex
                 ? Resource.Drawable.duration_segment_active
                 : Resource.Drawable.duration_segment_inactive);
 
             if (_durationOptionLabels.GetChildAt(index) is TextView label)
             {
-                label.Visibility = index < WorkoutMinuteOptions.Count ? ViewStates.Visible : ViewStates.Gone;
                 label.Animate()?.Cancel();
                 bool selected = index == optionIndex;
                 label.SetTextColor(new Android.Graphics.Color(GetColor(

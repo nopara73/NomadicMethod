@@ -136,7 +136,6 @@ import {
   SCOPED_CATALOG_INVALIDATIONS_BY_REVISION,
   SCOPED_SCORE_INVALIDATIONS_BY_REVISION,
   SUPPORTED_MINUTES,
-  NEW_WORKOUT_MINUTES,
   WORKOUT_MODIFIERS,
   WORKOUT_EXERCISE_PHASE,
   getMuscularDemandSchedulePriority,
@@ -274,22 +273,19 @@ test("accepted coverage exceptions have the exact same native and web conditions
   assert.equal(nativeRules.length, 10);
 });
 
-test("web duration choices match the mobile workout contract", () => {
-  assert.deepEqual(
-    SUPPORTED_MINUTES,
-    integerArray(sessionService, "WorkoutMinutes"),
-  );
-  assert.deepEqual(
-    [...RESOLUTIONS.keys()],
-    integerArray(taxonomy, "SupportedMinutes"),
-  );
-  assert.deepEqual(NEW_WORKOUT_MINUTES, integerArray(sessionService, "NewWorkoutMinutes"));
-  assert.deepEqual(NEW_WORKOUT_MINUTES, JSON.parse(instantControls.match(
-    /newWorkoutMinutes = Object\.freeze\((\[[^\]]+\])\)/)[1]));
-  assert.match(mainActivity, /NormalizeSetupMinutes\(_state\.LastWorkoutMinutes\)/);
-  assert.match(webApp, /minutes = normalizeSetupMinutes\(minutes, activeWorkoutSetup/);
+test("web duration choices match the mobile workout contract", async () => {
+  const contract = JSON.parse(await source("NomadicMethod", "Assets", "workout_durations.json"));
+  assert.deepEqual(SUPPORTED_MINUTES, contract.minutes);
+  assert.deepEqual([...RESOLUTIONS.keys()], integerArray(taxonomy, "SupportedMinutes"));
+  assert.match(sessionService, /SupportedWorkoutMinutes =>\s*WorkoutDurationPolicy.Minutes/);
+  assert.match(mainActivity, /WorkoutDurationPolicy\.Normalize\(_state\.LastWorkoutMinutes\)/);
+  assert.match(mainActivity, /foreach \(int minutes in WorkoutMinuteOptions\)/);
+  assert.match(mainActivity, /IReadOnlyList<int> WorkoutMinuteOptions =>\s*ExerciseSessionService.SupportedWorkoutMinutes;/);
+  assert.match(webApp, /function workoutMinuteOptions\(\) \{\s*return SUPPORTED_MINUTES;/);
+  assert.match(webApp, /minutes = normalizeMinutes\(minutes\)/);
+  assert.match(instantControls, /durationOptions = durationPolicy.minutes/);
+  assert.match(webIndex, /workout-duration.js[\s\S]*instant-controls.js/);
 });
-
 test("web and mobile persist the same complete workout audit trail", () => {
   assert.equal(WORKOUT_MODIFIERS.Light, 256);
   assert.match(workoutModifiers, /Light\s*=\s*256/);
@@ -1762,7 +1758,8 @@ test("duration controls do not wait for catalog startup on either platform", () 
   );
 });
 
-test("Start activates an off-thread prepared workout on Android and web", () => {
+test("Start activates an off-thread prepared workout on Android and web", async () => {
+  const preparationQueue = await source("NomadicMethod", "Services", "WorkoutPreparationQueue.cs");
   assert.match(
     sessionService,
     /StartWorkout\([\s\S]*PrepareWorkout\(state, minutes, modifiers\);[\s\S]*ActivatePreparedWorkout\(state\);/,
@@ -1773,8 +1770,9 @@ test("Start activates an off-thread prepared workout on Android and web", () => 
   );
   assert.match(
     mainActivity,
-    /QueueWorkoutPreparation\([\s\S]*Task\.Run\([\s\S]*PrepareWorkout\([\s\S]*StartSelectedWorkout\([\s\S]*ActivatePreparedWorkout/,
+    /QueueWorkoutPreparation\([\s\S]*_workoutPreparationQueue\.RunAsync\([\s\S]*PrepareWorkout\([\s\S]*StartSelectedWorkout\([\s\S]*ActivatePreparedWorkout/,
   );
+  assert.match(preparationQueue, /await _gate\.WaitAsync\(cancellationToken\)[\s\S]*Task\.Run\([\s\S]*prepare\(\)[\s\S]*finally[\s\S]*_gate\.Release\(\)/);
   assert.match(
     webApp,
     /queueWorkoutPreparation\([\s\S]*new Worker\([\s\S]*ensureWorkoutPrepared\([\s\S]*activatePreparedWorkout\(\)/,
@@ -1789,15 +1787,17 @@ test("Start activates an off-thread prepared workout on Android and web", () => 
   );
 });
 
-test("prepared Android state retains its planner and cancellation survives rapid setup changes", () => {
+test("prepared Android state retains its planner and cancellation survives rapid setup changes", async () => {
+  const preparationQueue = await source("NomadicMethod", "Services", "WorkoutPreparationQueue.cs");
   const preparation = methodBody(mainActivity, "private void QueueWorkoutPreparation()",
     "private async Task ObserveWorkoutPreparationAsync(");
   const start = methodBody(mainActivity, "private async void StartSelectedWorkout()",
     "private static void RecoverPendingScoreUpdate(");
-  const background = preparation.slice(preparation.indexOf("Task.Run("));
+  const background = preparation.slice(preparation.indexOf("_workoutPreparationQueue.RunAsync("));
   assert.match(preparation, /CancellationToken cancellationToken = cancellation\.Token;/);
   assert.doesNotMatch(background, /cancellation\.Token/);
-  assert.match(background, /cancellationToken\.ThrowIfCancellationRequested\(\)/);
+  assert.match(background, /}, cancellationToken\);/);
+  assert.equal((preparationQueue.match(/cancellationToken\.ThrowIfCancellationRequested\(\)/g) ?? []).length, 2);
   assert.match(background, /new PreparedWorkout\([\s\S]*preparationService\)/);
   assert.match(start, /prepared\.SessionService\.ActivatePreparedWorkout\(nextState\)/);
   assert.equal((start.match(/_sessionService = prepared\.SessionService;/g) ?? []).length, 2);
@@ -2020,7 +2020,7 @@ test("mid-workout modifiers revalidate the active exercise on both platforms", (
     webRestore,
     /restorePendingMovement\(\)[\s\S]*showNextExercise\(\)/,
   );
-  assert.match(instantControls, /setActiveWorkoutSetup\(enabled, minimumMinutes = 3, activeMinutes = 0\)/);
+  assert.match(instantControls, /setActiveWorkoutSetup\(enabled, minimumMinutes = durationOptions\[0\]\)/);
   assert.match(instantControls, /elements\.range\.disabled = false/);
   assert.match(mainActivity, /_durationSeekBar.Enabled = true/);
   assert.match(preparationWorker, /mode === "reconfigure"[\s\S]*reconfigureActiveWorkout/);

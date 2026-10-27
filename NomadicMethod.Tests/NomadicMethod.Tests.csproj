@@ -81,6 +81,9 @@
     <Compile Include="..\NomadicMethod\Services\MovementPhaseSchedule.cs" Link="Production\Services\MovementPhaseSchedule.cs" />
     <Compile Include="..\NomadicMethod\Services\MovementPhasePresentationPolicy.cs" Link="Production\Services\MovementPhasePresentationPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutCoveragePolicy.cs" Link="Production\Services\WorkoutCoveragePolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutDurationPolicy.cs" Link="Production\Services\WorkoutDurationPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutPreparationQueue.cs" Link="Production\Services\WorkoutPreparationQueue.cs" />
+    <EmbeddedResource Include="..\NomadicMethod\Assets\workout_durations.json" LogicalName="NomadicMethod.WorkoutDurations" />
     <Compile Include="..\NomadicMethod\Services\WorkoutDisplayPolicy.cs" Link="Production\Services\WorkoutDisplayPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutLightDayPolicy.cs" Link="Production\Services\WorkoutLightDayPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutModifierPolicy.cs" Link="Production\Services\WorkoutModifierPolicy.cs" />

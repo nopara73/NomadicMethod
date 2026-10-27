@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile, rename, rm } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import {
-  CURRENT_CATALOG_REVISION, NEW_WORKOUT_MINUTES, RESOLUTIONS,
+  CURRENT_CATALOG_REVISION, SUPPORTED_MINUTES, RESOLUTIONS,
   SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
   MINIMUM_EXERCISES_PER_SHORT_MODIFIER_PAIR_STATE_PER_GROUP,
   MINIMUM_EXERCISES_PER_LEGACY_MODIFIER_PAIR_STATE_PER_GROUP,
@@ -82,7 +82,7 @@ const report = {
   anatomicalGroupInventory,
   anatomicalGroupDeficiencies,
   anatomicalGroupDeficiencyCount: anatomicalGroupDeficiencies.length,
-  newWorkoutMinutes: NEW_WORKOUT_MINUTES, policy,
+  workoutMinutes: SUPPORTED_MINUTES, policy,
   acceptedCoverageExceptions: ledger.policy.acceptedCoverageExceptions,
   gateSummary: ledger.summary,
   shortWorkoutDeficiencyCount: ledger.pairwise.filter(r => r.minutes <= SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES).length,
@@ -91,7 +91,7 @@ const report = {
   targets: [...targets.values()],
   interpretation: [
     "Canonical association counts are a supply diagnostic. The anatomical group gate separately requires ten distinct approved selectable complete movements in every existing group, including historical fine slots, with duration fit and a real supported physical setup.",
-    "New workouts offer 3, 5, 7, 10 and 15 minutes. Longer durations remain only for existing sessions and history.",
+    "Workout durations come from the shared duration contract; short-workout coverage floors do not limit selectable time budgets.",
     "Each available short-workout slot requires five distinct selectable complete session movements, except the exact owner-approved omissions.",
     "A grouped slot accepts a genuine primary or meaningful secondary association to any member muscle. It does not require every member muscle at once.",
     "The maximum shortage in a slot is a sourcing target, not a count of approved new exercises. Overlapping slots and movement families must not be summed as independent additions.",

@@ -3,21 +3,9 @@ import { copyProfileSnapshot } from "./completion-profile.js";
 import { calculateFitnessProfile, inspectFitnessProfile, FITNESS_EVIDENCE_VERSION, fitnessZones,
   isFitnessSequenceEligible, latestFitnessMovementDecisions, FITNESS_UNAVAILABLE_MESSAGE, orderFitnessCandidates } from "./fitness-profile.js";
 
-export const SUPPORTED_MINUTES = Object.freeze([3, 5, 7, 10, 15, 20, 30, 45, 60, 90]);
-export const NEW_WORKOUT_MINUTES = Object.freeze([3, 5, 7, 10, 15]);
+import "./workout-duration.js";
 
-// Historical durations remain available only to restore or shorten an active workout.
-export function getWorkoutMinuteOptions(activeWorkoutMinutes = 0) {
-  return activeWorkoutMinutes > 15
-    ? SUPPORTED_MINUTES.filter(minutes => minutes <= activeWorkoutMinutes)
-    : NEW_WORKOUT_MINUTES;
-}
-
-export function normalizeSetupMinutes(minutes, activeWorkoutMinutes = 0) {
-  const requested = Number.isFinite(minutes) ? minutes : 10;
-  return [...getWorkoutMinuteOptions(activeWorkoutMinutes)]
-    .sort((left, right) => Math.abs(left - requested) - Math.abs(right - requested) || right - left)[0];
-}
+export const SUPPORTED_MINUTES = globalThis.nomadicMethodDuration.minutes;
 export const WORKOUT_MODIFIERS = Object.freeze({
   None: 0,
   Insect: 1,
@@ -1439,7 +1427,7 @@ const ALL_GROUPS = new Map(
 export function getResolution(minutes) {
   const item = RESOLUTIONS.get(minutes);
   if (!item) {
-    throw new RangeError("Workout duration must be 3, 5, 7, 10, 15, 20, or 30 minutes.");
+    throw new RangeError("Unsupported anatomical resolution. Workout time budgets are defined by SUPPORTED_MINUTES.");
   }
   return item;
 }
@@ -1803,13 +1791,7 @@ function createDefaultWorkoutSetCounts(
 }
 
 export function normalizeMinutes(minutes) {
-  if (!Number.isFinite(Number(minutes))) {
-    return 10;
-  }
-  return [...SUPPORTED_MINUTES].sort((left, right) => {
-    const distance = Math.abs(left - Number(minutes)) - Math.abs(right - Number(minutes));
-    return distance || right - left;
-  })[0];
+  return globalThis.nomadicMethodDuration.normalize(minutes);
 }
 
 export function getCanonicalCoverage(exercise, group) {
@@ -3633,7 +3615,7 @@ export function createDefaultState() {
     pendingRestKept: false,
     pendingRestFeedback: null,
     pendingRestMediaPositionMilliseconds: 0,
-    lastWorkoutMinutes: 10,
+    lastWorkoutMinutes: globalThis.nomadicMethodDuration.defaultMinutes,
     elevationEquipmentEnabled: false,
     lastWorkoutModifiers: DEFAULT_WORKOUT_MODIFIERS,
     activeCatalogRevision: 0,

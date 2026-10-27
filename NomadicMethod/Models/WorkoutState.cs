@@ -128,7 +128,7 @@ public sealed class WorkoutState
 
     public Dictionary<int, int> PendingScoreUpdates { get; set; } = [];
 
-    public int LastWorkoutMinutes { get; set; } = 10;
+    public int LastWorkoutMinutes { get; set; } = Services.WorkoutDurationPolicy.DefaultMinutes;
 
     // Migration input for the former binary furniture switch. New setup uses
     // the elevation capability bits in LastWorkoutModifiers, like Wall.

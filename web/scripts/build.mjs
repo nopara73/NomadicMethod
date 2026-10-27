@@ -1,3 +1,4 @@
+import { checkDurationPolicy } from "./workout-duration-policy.mjs";
 import { createHash } from "node:crypto";
 import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -38,6 +39,8 @@ if (!outputRoot.startsWith(`${webRoot}${path.sep}`)) {
   throw new Error("Refusing to build outside the web project.");
 }
 
+await checkDurationPolicy();
+
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
 for (const stem of ['reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile', 'exercise-feedback']) {
@@ -59,14 +62,20 @@ for (const directory of ['reaction_videos', 'reaction_previews']) {
   await copyDirectory(path.join(repositoryRoot, 'NomadicMethod/Assets', directory), path.join(outputRoot, 'assets', directory));
 }
 
+const durationSource = await readFile(path.join(webRoot, "workout-duration.js"), "utf8");
+const durationOutputName = fingerprintedName("workout-duration", "js", durationSource);
+await writeFile(path.join(outputRoot, durationOutputName), durationSource, "utf8");
 const lightCadenceSource = await readFile(path.join(webRoot, "light-cadence.js"), "utf8");
 const lightCadenceOutputName = fingerprintedName("light-cadence", "js", lightCadenceSource);
 await writeFile(path.join(outputRoot, lightCadenceOutputName), lightCadenceSource, "utf8");
 const workoutSource = (await readFile(path.join(webRoot, "workout.js"), "utf8"))
+  .replace('./workout-duration.js', `./${durationOutputName}`)
   .replace('./light-cadence.js', `./${lightCadenceOutputName}`)
   .replace('./completion-profile.js', `./${moduleOutputs.get('completion-profile')}`)
   .replace('./fitness-profile.js', `./${moduleOutputs.get('fitness-profile')}`);
-if (!workoutSource.includes(`./${lightCadenceOutputName}`) ||
+if (!workoutSource.includes(`./${durationOutputName}`) ||
+    workoutSource.includes("./workout-duration.js") ||
+    !workoutSource.includes(`./${lightCadenceOutputName}`) ||
     workoutSource.includes('./light-cadence.js')) {
   throw new Error("Could not content-address the shared Light cadence policy.");
 }
@@ -422,10 +431,14 @@ const instantControlsSource = await readFile(
   path.join(webRoot, "instant-controls.js"),
   "utf8",
 );
-if (instantControlsSource.includes("</script") || lightCadenceSource.includes("</script")) {
+if (instantControlsSource.includes("</script") || lightCadenceSource.includes("</script") || durationSource.includes("</script")) {
   throw new Error("The inline startup controls contain a closing script tag.");
 }
 const fingerprintedIndex = indexSource
+  .replace(
+    '<script src="./workout-duration.js"></script>',
+    `<script>\n${durationSource}\n</script>`,
+  )
   .replace(
     '<script src="./light-cadence.js"></script>',
     `<script>\n${lightCadenceSource}\n</script>`,
@@ -450,6 +463,8 @@ if (fingerprintedIndex === indexSource ||
     !fingerprintedIndex.includes(catalogOutputName) ||
     !fingerprintedIndex.includes(
       assetVersionsOutputName) ||
+    fingerprintedIndex.includes('./workout-duration.js') ||
+    !fingerprintedIndex.includes(durationSource) ||
     fingerprintedIndex.includes('./instant-controls.js') ||
     fingerprintedIndex.includes('./light-cadence.js') ||
     !fingerprintedIndex.includes(lightCadenceSource)) {

@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { WorkoutSession, createDefaultState, NEW_WORKOUT_MINUTES,
+import { WorkoutSession, createDefaultState, SUPPORTED_MINUTES, SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
   WORKOUT_MODIFIERS, WORKOUT_MODIFIER_VALIDATION_PROFILES, getSessionMovementId,
   CURRENT_CATALOG_REVISION } from "../workout.js";
 import { FITNESS_DIMENSIONS, isFitnessSequenceEligible, parseFitnessRatings } from "../fitness-profile.js";
@@ -32,7 +32,8 @@ const levelCells = FITNESS_DIMENSIONS.flatMap((characteristic, dimension) =>
 const profiles = [...new Set(WORKOUT_MODIFIER_VALIDATION_PROFILES)];
 const availability = [];
 const singleAxisAvailability = [];
-for (const minutes of NEW_WORKOUT_MINUTES) {
+// This diagnostic audits short-workout variety, not the duration selector.
+for (const minutes of SUPPORTED_MINUTES.filter(value => value <= SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES)) {
   session.state.activeWorkoutMinutes = minutes;
   for (const modifiers of profiles) {
     session.state.activeWorkoutModifiers = modifiers;
@@ -98,7 +99,7 @@ const report = {
   catalogSha256: createHash("sha256").update(source.replaceAll("\r\n", "\n")).digest("hex"),
   ratingsSha256: createHash("sha256").update(ratingsSource.replaceAll("\r\n", "\n")).digest("hex"),
   policy: "Any explicitly rated level overlaps the corresponding known zone; every atomic member qualifies; SessionMovementId deduplicated.",
-  scope: "50 single-axis singleton cells globally under the overlap rule, plus all five uniform singleton profiles across new workout durations and the existing single/pair physical validation profiles. It also checks each single known characteristic/level against the same physical/duration profiles. These are representative profiles, not every possible mixed user zone. Slot availability does not prove a simultaneous complete lineup; --verify-lineups additionally runs the normal planner with fixed synthetic zones on uniform-level profiles without an empty slot.",
+  scope: "50 single-axis singleton cells globally under the overlap rule, plus all five uniform singleton profiles across short-workout durations and the existing single/pair physical validation profiles. It also checks each single known characteristic/level against the same physical/duration profiles. These are representative profiles, not every possible mixed user zone. Slot availability does not prove a simultaneous complete lineup; --verify-lineups additionally runs the normal planner with fixed synthetic zones on uniform-level profiles without an empty slot.",
   summary: {
     levelCellsBelowFive: levelCells.filter(row => row.missingToFive > 0).length,
     levelCellsEmpty: levelCells.filter(row => row.distinctMovements === 0).length,
