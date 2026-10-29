@@ -48,7 +48,8 @@ internal static class ExerciseDatabaseMigrationSql
                     'ScreenRightThenLeft',
                     'ScreenLeftLeadThenRightLead',
                     'ScreenRightLeadThenLeftLead',
-                    'ShownHandPositionThenOpposite')),
+                    'ShownHandPositionThenOpposite',
+                    'ShownHandAndFootPositionThenOpposite')),
             direction_sequence TEXT NOT NULL DEFAULT 'None'
                 CHECK (direction_sequence IN (
                     'None',

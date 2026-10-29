@@ -117,7 +117,7 @@ $invalidDirectionExercises = @($directionExercises | Where-Object {
         [string]$_.sideSequence -notin @('Continuous', 'Alternating',
             'ScreenLeftThenRight', 'ScreenRightThenLeft',
             'ScreenLeftLeadThenRightLead', 'ScreenRightLeadThenLeftLead',
-            'ShownHandPositionThenOpposite') -or
+            'ShownHandPositionThenOpposite', 'ShownHandAndFootPositionThenOpposite') -or
         [string]$_.mode -ne 'Repetition' -or
         [string]$_.presentation -ne 'Motion' -or
         [string]$_.directionSequence -notin @(

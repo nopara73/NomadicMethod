@@ -4707,8 +4707,10 @@ public partial class MainActivity : Activity
             ExerciseSequenceSideCue.ScreenRight => "Right side",
             ExerciseSequenceSideCue.ShownLeadStance => "Shown lead stance",
             ExerciseSequenceSideCue.OppositeLeadStance => "Opposite lead stance",
-                    ExerciseSequenceSideCue.ShownHandPosition => "Shown hand position",
-                    ExerciseSequenceSideCue.OppositeHandPosition => "Opposite hand position",
+            ExerciseSequenceSideCue.ShownHandPosition => "Shown hand position",
+            ExerciseSequenceSideCue.OppositeHandPosition => "Opposite hand position",
+            ExerciseSequenceSideCue.ShownHandAndFootPosition => "Shown hands and feet",
+            ExerciseSequenceSideCue.OppositeHandAndFootPosition => "Opposite hands and feet",
             _ => throw new ArgumentOutOfRangeException(
                 nameof(presentation), presentation.SideCue, null),
         };

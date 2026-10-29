@@ -1,5 +1,5 @@
-# Explicitly reviewed screen-side order for movements that are not naturally
-# alternating. The source demonstration shows the first listed screen side;
+# Explicitly reviewed fixed positions, even when the main movement alternates.
+# The source demonstration shows the first listed position;
 # NomadicMethod mirrors that same human demonstration for the second 45-second side.
 # Review the complete pose, including a fixed supporting arm, crossed-arm
 # order, held target, or lead stance; primary-limb alternation is not enough.
@@ -220,6 +220,10 @@
     510 = 'ShownHandPositionThenOpposite'
     740 = 'ShownHandPositionThenOpposite'
     1012 = 'ShownHandPositionThenOpposite'
+
+    # Fixed clasp/crossed ankles and crossed arms stay asymmetric while twisting.
+    1223 = 'ShownHandAndFootPositionThenOpposite'
+    1413 = 'ShownHandPositionThenOpposite'
 
     # Floor admissions, 15 October 2026.
     1058 = 'ScreenLeftThenRight'

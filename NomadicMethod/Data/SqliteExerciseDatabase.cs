@@ -230,7 +230,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                         'ScreenRightThenLeft',
                         'ScreenLeftLeadThenRightLead',
                         'ScreenRightLeadThenLeftLead',
-                        'ShownHandPositionThenOpposite')),
+                        'ShownHandPositionThenOpposite',
+                        'ShownHandAndFootPositionThenOpposite')),
                 direction_sequence TEXT NOT NULL DEFAULT 'None'
                     CHECK (direction_sequence IN (
                         'None',
@@ -322,7 +323,9 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
                     'ShownLeadStance',
                     'OppositeLeadStance',
                     'ShownHandPosition',
-                    'OppositeHandPosition')),
+                    'OppositeHandPosition',
+                    'ShownHandAndFootPosition',
+                    'OppositeHandAndFootPosition')),
                 direction_cue TEXT NOT NULL CHECK (direction_cue IN (
                     'None',
                     'Forward',

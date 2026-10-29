@@ -498,7 +498,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // existing selections, Keeps and feedback remain valid.
 // Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
 // Existing identities, feedback and unfinished selections remain valid.
-export const CURRENT_CATALOG_REVISION = 98;
+export const CURRENT_CATALOG_REVISION = 99;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -1461,10 +1461,12 @@ export function getWorkoutBlockAccent(group) {
     case "ScreenRight":
     case "ShownLeadStance":
     case "ShownHandPosition":
+    case "ShownHandAndFootPosition":
       return "blue";
     case "ScreenLeft":
     case "OppositeLeadStance":
     case "OppositeHandPosition":
+    case "OppositeHandAndFootPosition":
       return "red";
     default:
       break;
@@ -2300,6 +2302,7 @@ export function isSessionMovementMetadataValid(exercises) {
   const validSideCues = new Set([
     "None", "ScreenLeft", "ScreenRight", "ShownLeadStance", "OppositeLeadStance",
     "ShownHandPosition", "OppositeHandPosition",
+    "ShownHandAndFootPosition", "OppositeHandAndFootPosition",
   ]);
   const validDirectionCues = new Set([
     "None", "Forward", "Backward", "Clockwise", "Counterclockwise", "Inward", "Outward",
@@ -4505,7 +4508,8 @@ const SHY_CORRECTION_IDS = new Set([
 export function canUseSingleDirection(exercise) {
   return typeof exercise.directionSequence === "string" && exercise.directionSequence !== "None" &&
     !["ScreenLeftThenRight", "ScreenRightThenLeft", "ScreenLeftLeadThenRightLead",
-      "ScreenRightLeadThenLeftLead", "ShownHandPositionThenOpposite"].includes(exercise.sideSequence) &&
+      "ScreenRightLeadThenLeftLead", "ShownHandPositionThenOpposite",
+      "ShownHandAndFootPositionThenOpposite"].includes(exercise.sideSequence) &&
     exercise.sequenceBlocks.length === 2 &&
     exercise.sequenceBlocks.every(block => block.exerciseId === exercise.id &&
       (block.sideCue ?? "None") === "None" && block.directionCue && block.directionCue !== "None") &&
@@ -4524,6 +4528,11 @@ export const PRECISE_SKILL_EXERCISE_IDS = Object.freeze([1605, 1615, 1625, 1635,
 export const PROFILE_CONTRIBUTOR_EXERCISE_IDS = Object.freeze([1621, 1701, 1702, 1703, 1704, 1705]);
 export const FITNESS_COVERAGE_EXERCISE_IDS = Object.freeze([1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644]);
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
+  if (activeRevision > 0 && activeRevision < 99) catalog = catalog.map(exercise =>
+    [1223, 1413].includes(exercise.id) ? { ...exercise, sideSequence: "Alternating",
+      sequenceBlocks: [{ exerciseId: exercise.id, sideCue: "None", directionCue: "None",
+        mirrorMedia: false, mediaSegment: "Full" }],
+    } : exercise);
   if (activeRevision > 0 && activeRevision < 98) catalog = catalog.filter(exercise => !ANATOMICAL_VARIETY_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 92) catalog = catalog.filter(exercise => !ZONE_GAP_EXERCISE_IDS.includes(exercise.id));
   if (activeRevision > 0 && activeRevision < 91) catalog = catalog.filter(exercise => !ABILITY_GAP_EXERCISE_IDS.includes(exercise.id));
@@ -8762,6 +8771,7 @@ export class WorkoutSession {
         "ScreenLeftLeadThenRightLead",
         "ScreenRightLeadThenLeftLead",
         "ShownHandPositionThenOpposite",
+        "ShownHandAndFootPositionThenOpposite",
       ].includes(member.sideSequence) || member.directionSequence !== "None");
     if (!usedTimedPair) {
       return { representedRoundIndex: 0, remainingMilliseconds: remaining };
@@ -9588,6 +9598,7 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
     "ScreenLeftLeadThenRightLead",
     "ScreenRightLeadThenLeftLead",
     "ShownHandPositionThenOpposite",
+    "ShownHandAndFootPositionThenOpposite",
   ].includes(currentExercise.sideSequence);
   const timedSideNormalization =
     usesLegacyTimedSides &&

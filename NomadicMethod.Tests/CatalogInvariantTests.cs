@@ -1006,7 +1006,7 @@ public sealed class CatalogInvariantTests
         Exercise[] timedSideExercises = exercises
             .Where(exercise => exercise.SideSequence.UsesTimedSides())
             .ToArray();
-        Assert.Equal(332, timedSideExercises.Length);
+        Assert.Equal(334, timedSideExercises.Length);
         Dictionary<int, (string Name, ExerciseSideSequence SideSequence)>
             auditedMirroredSideSequences = new()
             {
@@ -1047,7 +1047,7 @@ public sealed class CatalogInvariantTests
             .Where(exercise =>
                 exercise.SideSequence == ExerciseSideSequence.Alternating)
             .ToArray();
-        Assert.Equal(249, alternatingExercises.Length);
+        Assert.Equal(247, alternatingExercises.Length);
         Assert.DoesNotContain(alternatingExercises, exercise => exercise.Id == 219);
         Assert.Contains(alternatingExercises, exercise => exercise.Id == 15);
         Assert.Contains(alternatingExercises, exercise => exercise.Id == 429);
@@ -1161,8 +1161,8 @@ public sealed class CatalogInvariantTests
         });
         Dictionary<int, int> expectedSequenceBlockDistribution = new()
         {
-            [1] = 535,
-            [2] = 306,
+            [1] = 533,
+            [2] = 308,
             [3] = 20,
             [4] = 17,
         };

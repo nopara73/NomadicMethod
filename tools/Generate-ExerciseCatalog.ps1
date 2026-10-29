@@ -463,7 +463,8 @@ $invalidReplacementDefinitions = @(
                 'Continuous', 'Alternating',
                 'ScreenLeftThenRight', 'ScreenRightThenLeft',
                 'ScreenLeftLeadThenRightLead',
-                'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite') -or
+                'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite',
+                'ShownHandAndFootPositionThenOpposite') -or
             -not $replacement.ContainsKey('Mode') -or
             [string]$replacement.Mode -notin @('Repetition', 'Hold') -or
             -not $replacement.ContainsKey('Presentation') -or
@@ -835,7 +836,8 @@ $validSideSequences = @(
     'ScreenLeftThenRight',
     'ScreenRightThenLeft',
     'ScreenLeftLeadThenRightLead',
-    'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite')
+    'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite',
+    'ShownHandAndFootPositionThenOpposite')
 $validDirectionSequences = @(
     'ForwardThenBackward',
     'BackwardThenForward',
@@ -2007,7 +2009,8 @@ function New-ExternalExerciseGif {
     if ($Media.MirrorForAlternation -and $SideSequence -notin @(
             'ScreenLeftThenRight', 'ScreenRightThenLeft',
             'ScreenLeftLeadThenRightLead',
-            'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite')) {
+            'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite',
+            'ShownHandAndFootPositionThenOpposite')) {
         $mirroredPaths = [System.Collections.Generic.List[string]]::new()
         for ($index = 0; $index -lt $framePaths.Count; $index++) {
             $mirroredPath = Join-Path $frameRoot ('mirror_{0:D4}.png' -f $index)
@@ -2060,7 +2063,8 @@ function New-ExternalExerciseGif {
         if ($Media.MirrorForAlternation -and $SideSequence -notin @(
                 'ScreenLeftThenRight', 'ScreenRightThenLeft',
                 'ScreenLeftLeadThenRightLead',
-                'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite')) {
+                'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite',
+                'ShownHandAndFootPositionThenOpposite')) {
             $patterns += (Join-Path $frameRoot 'mirror_*.png')
         }
         $patterns
@@ -3273,6 +3277,12 @@ function New-ExerciseSequenceBlocks {
                 @{ SideCue = 'OppositeLeadStance'; MirrorMedia = $true }
             )
         }
+        'ShownHandAndFootPositionThenOpposite' {
+            @(
+                @{ SideCue = 'ShownHandAndFootPosition'; MirrorMedia = $false }
+                @{ SideCue = 'OppositeHandAndFootPosition'; MirrorMedia = $true }
+            )
+        }
         'ShownHandPositionThenOpposite' {
             @(
                 @{ SideCue = 'ShownHandPosition'; MirrorMedia = $false }
@@ -3874,7 +3884,8 @@ $constraintViolations = $records | Where-Object {
         'ScreenLeftThenRight',
         'ScreenRightThenLeft',
         'ScreenLeftLeadThenRightLead',
-        'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite') -or
+        'ScreenRightLeadThenLeftLead', 'ShownHandPositionThenOpposite',
+        'ShownHandAndFootPositionThenOpposite') -or
     $_['directionSequence'] -notin @(
         'None',
         'ForwardThenBackward',
@@ -3907,7 +3918,8 @@ foreach ($record in $records) {
 }
 $validSequenceSideCues = @(
     'None', 'ScreenLeft', 'ScreenRight', 'ShownLeadStance',
-    'OppositeLeadStance', 'ShownHandPosition', 'OppositeHandPosition')
+    'OppositeLeadStance', 'ShownHandPosition', 'OppositeHandPosition',
+    'ShownHandAndFootPosition', 'OppositeHandAndFootPosition')
 $validSequenceDirectionCues = @(
     'None', 'Forward', 'Backward', 'Clockwise',
     'Counterclockwise', 'Inward', 'Outward')

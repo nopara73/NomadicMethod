@@ -9,6 +9,8 @@ public enum ExerciseSequenceSideCue
     OppositeLeadStance,
     ShownHandPosition,
     OppositeHandPosition,
+    ShownHandAndFootPosition,
+    OppositeHandAndFootPosition,
 }
 
 public enum ExerciseSequenceDirectionCue

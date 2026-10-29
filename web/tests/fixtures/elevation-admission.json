@@ -111,7 +111,7 @@
     "id": 1413,
     "name": "Seated Trunk Rotations",
     "primary": "AbdominalWall",
-    "side": "Alternating",
+    "side": "ShownHandPositionThenOpposite",
     "floor": false,
     "platform": false,
     "hold": false

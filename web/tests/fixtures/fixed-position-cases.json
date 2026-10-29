@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1223,
+    "sessionMovementId": 1154,
+    "sideSequence": "ShownHandAndFootPositionThenOpposite",
+    "sideCues": ["ShownHandAndFootPosition", "OppositeHandAndFootPosition"]
+  },
+  {
+    "id": 1413,
+    "sessionMovementId": 1413,
+    "sideSequence": "ShownHandPositionThenOpposite",
+    "sideCues": ["ShownHandPosition", "OppositeHandPosition"]
+  }
+]

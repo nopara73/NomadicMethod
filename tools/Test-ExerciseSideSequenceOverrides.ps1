@@ -104,3 +104,14 @@ if ($combined.Count -ne 4 -or
     throw 'Combined sides and directions lost a phase or mislabeled mirrored motion.'
 }
 Write-Output 'Combined side/direction execution regression checks passed.'
+
+# Alternating repetitions do not alternate an interlaced clasp or ankle order.
+$fixedPose = @(New-ExerciseSequenceBlocks -ExerciseId 1223 `
+    -SideSequence 'ShownHandAndFootPositionThenOpposite' -DirectionSequence 'None')
+if ($fixedPose.Count -ne 2 -or
+    ($fixedPose.sideCue -join ',') -ne 'ShownHandAndFootPosition,OppositeHandAndFootPosition' -or
+    $fixedPose[0].mirrorMedia -or -not $fixedPose[1].mirrorMedia -or
+    @($fixedPose | Where-Object exerciseId -ne 1223).Count -gt 0) {
+    throw 'Fixed hand and foot positions must remain one complete mirrored pair.'
+}
+Write-Output 'Fixed hand and foot position regression checks passed.'

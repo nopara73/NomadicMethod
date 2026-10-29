@@ -69,6 +69,12 @@ public static class WorkoutCatalogPolicy
         IReadOnlyList<Exercise> catalog, int activeCatalogRevision,
         IReadOnlySet<int>? singleDirectionExerciseIds = null)
     {
+        if (activeCatalogRevision is > 0 and < 99)
+            catalog = catalog.Select(exercise => exercise.Id is 1223 or 1413
+                ? exercise.WithWorkoutMetadata(ExerciseSideSequence.Alternating,
+                    [new ExerciseSequenceBlock { ExerciseId = exercise.Id, MirrorMedia = false }],
+                    exercise.ShyCompatibility)
+                : exercise).ToArray();
         if (activeCatalogRevision is > 0 and < 98)
             catalog = catalog.Where(exercise => !AnatomicalVarietyExerciseIds.Contains(exercise.Id)).ToArray();
         if (activeCatalogRevision is > 0 and < 92)
