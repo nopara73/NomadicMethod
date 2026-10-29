@@ -1666,6 +1666,8 @@ export function createWorkoutSchedule(
   selectionGroups = null,
   simpleRoundSelectionGroupIds = null,
   shareCoverage = false,
+  modifiers = WORKOUT_MODIFIERS.None,
+  setupOrderVersion = 1,
 ) {
   if (!SUPPORTED_MINUTES.includes(minutes)) {
     throw new RangeError("Unsupported workout duration.");
@@ -1691,6 +1693,8 @@ export function createWorkoutSchedule(
     ),
     exerciseMap,
     frozenSelectionGroupIds,
+    modifiers,
+    setupOrderVersion,
   );
   const setCounts = setCountsBySelectionGroupId instanceof Map
     ? setCountsBySelectionGroupId
@@ -2014,6 +2018,8 @@ export function orderSelectedSequencePlacementsForSchedule(
   placements,
   exercisesById,
   frozenSelectionGroupIds = [],
+  modifiers = WORKOUT_MODIFIERS.None,
+  setupOrderVersion = 1,
 ) {
   const placementArray = [...placements];
   const frozenIds = Array.isArray(frozenSelectionGroupIds)
@@ -2030,12 +2036,115 @@ export function orderSelectedSequencePlacementsForSchedule(
     }
   }
 
-  return placementArray.sort((left, right) =>
-    getMuscularDemandSchedulePriority(
-      getSequenceMuscularDemand(left.root, exercisesById),
-    ) - getMuscularDemandSchedulePriority(
-      getSequenceMuscularDemand(right.root, exercisesById),
-    ) || left.anchor.order - right.anchor.order);
+  if (setupOrderVersion === 0) return placementArray.sort((a, b) =>
+    getMuscularDemandSchedulePriority(getSequenceMuscularDemand(a.root, exercisesById)) -
+    getMuscularDemandSchedulePriority(getSequenceMuscularDemand(b.root, exercisesById)) ||
+    a.anchor.order - b.anchor.order);
+  return orderPlacementsBySetup(placementArray, exercisesById, modifiers);
+}
+
+// Keep each station in one visit: it may be occupied or in another room by the
+// time the user returns. Requirements can overlap; enabled equipment alone
+// does not mean that it is all at the same station.
+export function getSequenceSetup(root, exercisesById, modifiers) {
+  let station = 0, floor = false;
+  for (const block of root.sequenceBlocks) {
+    const member = exercisesById.get(block.exerciseId);
+    if (member.wallRequired || member.soleWallContactRequired) station |= 1;
+    if (isMirrorPreferred(member, modifiers)) station |= 2;
+    if (member.elevationRequired || member.jumpPlatformRequired) station |= 4;
+    if (["Room", "Field"].includes(member.locomotionSpace)) station |= 8;
+    if (member.locomotionSpace === "Field") station |= 16;
+    if (member.hardFloorCompatibility === "Incompatible") station |= 32;
+    floor ||= !member.onlyFeetTouchGround;
+  }
+  return { station, floor };
+}
+
+export function orderPlacementsBySetup(placements, exercisesById,
+  modifiers = WORKOUT_MODIFIERS.None, current = null) {
+  const ranked = [...placements].sort((a, b) =>
+    getMuscularDemandSchedulePriority(getSequenceMuscularDemand(a.root, exercisesById)) -
+    getMuscularDemandSchedulePriority(getSequenceMuscularDemand(b.root, exercisesById)) ||
+    a.anchor.order - b.anchor.order);
+  if (ranked.length < 2) return ranked;
+  const setups = ranked.map(p => getSequenceSetup(p.root, exercisesById, modifiers));
+  const start = current ? getSequenceSetup(current, exercisesById, modifiers) : null;
+  const bitCount = bits => {
+    let count = 0;
+    for (; bits !== 0; bits &= bits - 1) count++;
+    return count;
+  };
+  // Compatible work can stay on a soft surface, beside equipment, or in the
+  // larger travel area. Never insert a fictitious trip back to an empty station.
+  const stations = [...new Set(setups.map(s => s.station))]
+    .filter(station => !setups.some(s => s.station !== station &&
+      (s.station & station) === station)).sort((a, b) => a - b);
+  const members = stations.map(() => []);
+  for (const i of ranked.map((_, i) => i).sort((a, b) =>
+    bitCount(setups[b].station) - bitCount(setups[a].station))) {
+    const targets = stations.map((_, g) => g).filter(g =>
+      (stations[g] & setups[i].station) === setups[i].station);
+    targets.sort((a, b) =>
+      Number(start?.station !== stations[a]) - Number(start?.station !== stations[b]) ||
+      Number(!setups.some(s => s.station === stations[a] && s.floor === setups[i].floor)) -
+      Number(!setups.some(s => s.station === stations[b] && s.floor === setups[i].floor)) ||
+      bitCount(stations[a] ^ setups[i].station) - bitCount(stations[b] ^ setups[i].station) ||
+      setups.findIndex(s => s.station === stations[a]) - setups.findIndex(s => s.station === stations[b]));
+    members[targets[0]].push(i);
+  }
+  const choices = [];
+  for (let g = 0; g < stations.length; g++) {
+    const standing = members[g].filter(i => !setups[i].floor).sort((a, b) => a - b);
+    const floor = members[g].filter(i => setups[i].floor).sort((a, b) => a - b);
+    const indices = [...standing, ...floor];
+    choices.push({ group: g, station: stations[g], startsOnFloor: setups[indices[0]].floor,
+      endsOnFloor: setups[indices.at(-1)].floor, indices });
+    if (standing.length && floor.length) choices.push({ group: g, station: stations[g],
+      startsOnFloor: true, endsOnFloor: false, indices: [...floor, ...standing] });
+  }
+  choices.sort((a, b) => a.indices[0] - b.indices[0]);
+  const transition = (previous, next) =>
+    (previous && previous.station !== next.station
+      ? 1_000 + 100 * bitCount(previous.station ^ next.station) : 0) +
+    ((previous?.floor ?? false) !== next.startsOnFloor ? 10 : 0) +
+    (next.startsOnFloor !== next.endsOnFloor ? 10 : 0);
+  const context = index => index < 0 ? start :
+    { station: choices[index].station, floor: choices[index].endsOnFloor };
+  const memo = new Map();
+  const best = (remaining, previous) => {
+    if (remaining === 0) return 0;
+    const key = remaining * (choices.length + 1) + previous + 1;
+    if (memo.has(key)) return memo.get(key);
+    let cost = Infinity;
+    for (let i = 0; i < choices.length; i++) {
+      const next = choices[i];
+      if (!(remaining & (1 << next.group))) continue;
+      cost = Math.min(cost, transition(context(previous), next) +
+        best(remaining & ~(1 << next.group), i));
+    }
+    memo.set(key, cost);
+    return cost;
+  };
+  const result = [];
+  let mask = (1 << stations.length) - 1, last = -1;
+  while (mask !== 0) {
+    let selected = -1, cost = Infinity;
+    for (let i = 0; i < choices.length; i++) {
+      const next = choices[i];
+      if (!(mask & (1 << next.group))) continue;
+      // Exact routing is over stations, with a bounded fallback for unusually
+      // diverse future catalogs. Sides, directions and sets remain atomic.
+      const candidate = transition(context(last), next) + (stations.length <= 12
+        ? best(mask & ~(1 << next.group), i) : 0);
+      if (candidate < cost) { cost = candidate; selected = i; }
+    }
+    const visit = choices[selected];
+    result.push(...visit.indices.map(i => ranked[i]));
+    mask &= ~(1 << visit.group);
+    last = selected;
+  }
+  return result;
 }
 
 export function isPrimaryForGroup(exercise, group) {
@@ -3734,6 +3843,7 @@ export function createDefaultState() {
     lastWorkoutModifiers: DEFAULT_WORKOUT_MODIFIERS,
     activeCatalogRevision: 0,
     activeCoverageAccountingVersion: 0,
+    activeSetupOrderVersion: 0,
     activeSingleDirectionExerciseIds: [],
     activeWorkoutMinutes: 0,
     activeWorkoutModifiers: WORKOUT_MODIFIERS.None,
@@ -3773,6 +3883,7 @@ function normalizeStateShape(raw) {
     ? raw.catalogRevision
     : 0;
   state.activeCoverageAccountingVersion = raw.activeCoverageAccountingVersion === 1 ? 1 : 0;
+  state.activeSetupOrderVersion = raw.activeSetupOrderVersion === 1 ? 1 : 0;
   state.activeCatalogRevision = Number.isInteger(raw.activeCatalogRevision)
     ? raw.activeCatalogRevision : 0;
   state.activeSingleDirectionExerciseIds = uniquePositiveIntegers(raw.activeSingleDirectionExerciseIds);
@@ -4841,6 +4952,7 @@ export class WorkoutSession {
 
     this.state.activeCatalogRevision = CURRENT_CATALOG_REVISION;
     this.state.activeCoverageAccountingVersion = 1;
+    this.state.activeSetupOrderVersion = 1;
     this.updateSequenceCatalog(minutes);
     this.normalizeSlotPreferences();
     const workoutStartedAtUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
@@ -4991,9 +5103,9 @@ export class WorkoutSession {
     }
 
     this.applyDistinctLineup(selectionGroups, replannedLineup, false);
-    this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements);
+    this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements, getSelectionKey(currentRound));
     this.rebalanceNewExercisesByMuscleBalance(lockedSelectionGroupIds);
-    this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements);
+    this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements, getSelectionKey(currentRound));
     this.applyLongWorkoutAllocation(this.chooseLongWorkoutAllocation(
       lockedSelectionGroupIds,
     ));
@@ -5187,11 +5299,11 @@ export class WorkoutSession {
   }
 
   setEditedSelectionOrder(prefixOrder) {
+    const placements = this.getSelectedSequencePlacements();
+    const current = placements.find(p => p.anchor.id === prefixOrder.at(-1))?.root ?? null;
     this.state.activeSelectionGroupOrder = [...prefixOrder,
-      ...this.getSelectedSequencePlacements()
-        .filter(p => !prefixOrder.includes(p.anchor.id))
-        .sort((a, b) => getMuscularDemandSchedulePriority(getSequenceMuscularDemand(a.root, this.exercisesById)) -
-          getMuscularDemandSchedulePriority(getSequenceMuscularDemand(b.root, this.exercisesById)) || a.anchor.order - b.anchor.order)
+      ...orderPlacementsBySetup(placements.filter(p => !prefixOrder.includes(p.anchor.id)),
+        this.exercisesById, this.state.activeWorkoutModifiers, current)
         .map(p => p.anchor.id)];
   }
 
@@ -5318,9 +5430,9 @@ export class WorkoutSession {
           ? getSelectionKey(currentRound)
           : null;
       this.applyDistinctLineup(selectionGroups, replannedLineup, false);
-      this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements);
+      this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements, getSelectionKey(currentRound));
       this.rebalanceNewExercisesByMuscleBalance(lockedSelectionGroupIds);
-      this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements);
+      this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements, getSelectionKey(currentRound));
       this.applyLongWorkoutAllocation(this.chooseLongWorkoutAllocation(
         lockedSelectionGroupIds,
       ));
@@ -5467,23 +5579,28 @@ export class WorkoutSession {
       placements,
       this.exercisesById,
       frozenSelectionGroupIds,
+      this.state.activeWorkoutModifiers,
+      this.state.activeSetupOrderVersion,
     );
   }
 
-  updateSelectionOrderAfterReconfiguration(priorOrderedPlacements) {
+  updateSelectionOrderAfterReconfiguration(priorOrderedPlacements, currentSelectionKey) {
     const priorRankByWorkoutGroupId = new Map(priorOrderedPlacements.flatMap(
       (placement, rank) => placement.coveredGroups.map((group) =>
         [group.id, rank]),
     ));
-    this.state.activeSelectionGroupOrder = this.getSelectedSequencePlacements()
+    const mapped = this.getSelectedSequencePlacements()
       .sort((left, right) => {
         const leftRank = Math.min(...left.coveredGroups.map((group) =>
           priorRankByWorkoutGroupId.get(group.id) ?? Number.MAX_SAFE_INTEGER));
         const rightRank = Math.min(...right.coveredGroups.map((group) =>
           priorRankByWorkoutGroupId.get(group.id) ?? Number.MAX_SAFE_INTEGER));
         return leftRank - rightRank || left.anchor.order - right.anchor.order;
-      })
-      .map((placement) => placement.anchor.id);
+      });
+    const currentRank = priorRankByWorkoutGroupId.get(currentSelectionKey);
+    this.setEditedSelectionOrder(mapped.filter(p => p.coveredGroups.some(g =>
+      (priorRankByWorkoutGroupId.get(g.id) ?? Number.MAX_SAFE_INTEGER) <= currentRank))
+      .map(p => p.anchor.id));
   }
 
   createActiveWorkoutSchedule(setCountsBySelectionGroupId) {
@@ -5512,6 +5629,8 @@ export class WorkoutSession {
       this.state.activeDurationSelectionGroupIds === null
         ? null : this.state.activeSimpleRoundSelectionGroupIds,
       this.state.activeCoverageAccountingVersion > 0,
+      this.state.activeWorkoutModifiers,
+      this.state.activeSetupOrderVersion,
     );
   }
 
@@ -9526,6 +9645,7 @@ export class WorkoutSession {
     this.migrateSplitJackPreferences(this.state.activeCatalogRevision, this.catalogExercises);
     this.state.activeCatalogRevision = 0;
     this.state.activeCoverageAccountingVersion = 0;
+    this.state.activeSetupOrderVersion = 0;
     this.state.activeSingleDirectionExerciseIds = [];
     this.state.activeDurationSelectionGroupIds = null;
     this.state.activeSimpleRoundSelectionGroupIds = [];

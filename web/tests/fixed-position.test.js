@@ -28,6 +28,11 @@ for (const c of cases) {
     const s = new WorkoutSession(catalog, state, () => 0.4, () => now);
     s.initialize();
     s.startWorkout(60, M.Floor | M.Elevation | M.UpperBodyClothing);
+    // Exercise order now follows setup requirements. Put the target first so
+    // this tests shortening its complete selection, independent of its station.
+    const targetKey = s.getActiveGroups().find(g => s.getSelectedExercise(g).id === c.id).selectionGroupId;
+    s.state.activeSelectionGroupOrder = [targetKey,
+      ...new Set(s.getActiveGroups().map(g => g.selectionGroupId ?? g.id).filter(id => id !== targetKey))];
     while (s.getSelectedExercise(s.getNextGroup()).id !== c.id) {
       const next = s.getNextGroup();
       s.beginRest(next, now + 15000);

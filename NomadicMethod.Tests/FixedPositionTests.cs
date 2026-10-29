@@ -40,6 +40,33 @@ public sealed class FixedPositionTests
     }
 
     [Theory]
+    [InlineData(1223)]
+    [InlineData(1413)]
+    public void ShorteningRetainsBothPositionsOfTheCurrentSelection(int id)
+    {
+        Exercise[] catalog = Catalog();
+        catalog.Single(e => e.Id == id).Score = 100000;
+        var service = new ExerciseSessionService(catalog, new Random(1));
+        var state = new WorkoutState();
+        service.Initialize(state);
+        service.StartWorkout(state, 60, WorkoutModifiers.Floor | WorkoutModifiers.Elevation |
+            WorkoutModifiers.UpperBodyClothing);
+        WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
+        string targetKey = rounds.First(g => service.GetSelectedExercise(state, g).Id == id).SelectionKey;
+        state.ActiveSelectionGroupOrder = new[] { targetKey }.Concat(rounds.Select(g => g.SelectionKey)
+            .Where(key => key != targetKey).Distinct()).ToList();
+        WorkoutGroup[] before = service.GetActiveGroups(state).Where(g => g.SelectionKey == targetKey).ToArray();
+        Assert.True(before.Length >= 2 && before.Length % 2 == 0);
+        int minimum = service.GetMinimumActiveWorkoutMinutes(state);
+        Assert.True(minimum < 60);
+        service.ResizeActiveWorkout(state, minimum);
+        Assert.Equal(before, service.GetActiveGroups(state).Where(g => g.SelectionKey == targetKey));
+        service.AdvanceSequence(state, service.GetNextGroup(state)!);
+        Assert.Equal(catalog.Single(e => e.Id == id).SequenceBlocks[1].SideCue,
+            service.GetNextGroup(state)!.SequenceSideCue);
+    }
+
+    [Theory]
     [InlineData(1223, "Ready")]
     [InlineData(1223, "Movement")]
     [InlineData(1223, "Rest")]

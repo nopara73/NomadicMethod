@@ -433,6 +433,7 @@ public sealed partial class ExerciseSessionService
 
         state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
         state.ActiveCoverageAccountingVersion = 1;
+        state.ActiveSetupOrderVersion = 1;
         UpdateSequenceCatalog(state, minutes);
 
         int loadedStateVersion = state.Version;
@@ -692,13 +693,13 @@ public sealed partial class ExerciseSessionService
                 clearChangedProgress: false);
             UpdateSelectionOrderAfterReconfiguration(
                 state,
-                priorOrderedPlacements);
+                priorOrderedPlacements, currentRound.SelectionKey);
             RebalanceNewExercisesByMuscleBalance(
                 state,
                 lockedSelectionGroupIds);
             UpdateSelectionOrderAfterReconfiguration(
                 state,
-                priorOrderedPlacements);
+                priorOrderedPlacements, currentRound.SelectionKey);
             ApplyLongWorkoutAllocation(
                 state,
                 ChooseLongWorkoutAllocation(
@@ -4508,13 +4509,13 @@ public sealed partial class ExerciseSessionService
             clearChangedProgress: false);
         UpdateSelectionOrderAfterReconfiguration(
             state,
-            priorOrderedPlacements);
+            priorOrderedPlacements, currentRound.SelectionKey);
         RebalanceNewExercisesByMuscleBalance(
             state,
             lockedSelectionGroupIds);
         UpdateSelectionOrderAfterReconfiguration(
             state,
-            priorOrderedPlacements);
+            priorOrderedPlacements, currentRound.SelectionKey);
         ApplyLongWorkoutAllocation(
             state,
             ChooseLongWorkoutAllocation(
@@ -5199,6 +5200,7 @@ public sealed partial class ExerciseSessionService
             _catalogExercises, state.ActiveCatalogRevision);
         state.ActiveCatalogRevision = 0;
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveSetupOrderVersion = 0;
         state.ActiveSingleDirectionExerciseIds.Clear();
         state.ActiveDurationSelectionGroupIds = null;
         state.ActiveSimpleRoundSelectionGroupIds.Clear();
@@ -5484,19 +5486,19 @@ public sealed partial class ExerciseSessionService
             }
         }
 
-        return placementArray
-            .OrderBy(placement =>
-                WorkoutSchedulePolicy.GetMuscularDemandPriority(
-                    WorkoutSchedulePolicy.GetSequenceMuscularDemand(
-                        placement.Root,
-                        _exercisesById)))
-            .ThenBy(placement => placement.Anchor.Order)
-            .ToArray();
+        if (state.ActiveSetupOrderVersion == 0)
+            return placementArray.OrderBy(p => WorkoutSchedulePolicy.GetMuscularDemandPriority(
+                    WorkoutSchedulePolicy.GetSequenceMuscularDemand(p.Root, _exercisesById)))
+                .ThenBy(p => p.Anchor.Order).ToArray();
+
+        return WorkoutSchedulePolicy.OrderBySetup(placementArray,
+            p => p.Root, p => p.Anchor.Order, _exercisesById, state.ActiveWorkoutModifiers);
     }
 
     private void UpdateSelectionOrderAfterReconfiguration(
         WorkoutState state,
-        IReadOnlyList<SelectedSequencePlacement> priorOrderedPlacements)
+        IReadOnlyList<SelectedSequencePlacement> priorOrderedPlacements,
+        string currentSelectionKey)
     {
         Dictionary<string, int> priorRankByWorkoutGroupId =
             priorOrderedPlacements
@@ -5507,14 +5509,18 @@ public sealed partial class ExerciseSessionService
                     entry => entry.Id,
                     entry => entry.Rank,
                     StringComparer.Ordinal);
-        state.ActiveSelectionGroupOrder = GetSelectedSequencePlacements(state)
+        SelectedSequencePlacement[] mapped = GetSelectedSequencePlacements(state)
             .OrderBy(placement => placement.CoveredGroups.Min(group =>
                 priorRankByWorkoutGroupId.GetValueOrDefault(
                     group.Id,
                     int.MaxValue)))
             .ThenBy(placement => placement.Anchor.Order)
-            .Select(placement => placement.Anchor.Id)
-            .ToList();
+            .ToArray();
+        int currentRank = priorRankByWorkoutGroupId[currentSelectionKey];
+        string[] prefix = mapped.Where(p => p.CoveredGroups.Any(g =>
+                priorRankByWorkoutGroupId.GetValueOrDefault(g.Id, int.MaxValue) <= currentRank))
+            .Select(p => p.Anchor.Id).ToArray();
+        SetEditedSelectionOrder(state, prefix);
     }
 
     private LongWorkoutAllocation ChooseLongWorkoutAllocation(
@@ -6424,7 +6430,7 @@ public sealed partial class ExerciseSessionService
             return;
         }
 
-        // Candidate scores are phase-local, while demand ordering and repeated
+        // Candidate scores are phase-local, while setup ordering and repeated
         // sets determine the phase in which a selected sequence actually ends.
         // Resolve that circular dependency to a stable lineup rather than
         // estimating phase from the unrelated anatomical bucket order.

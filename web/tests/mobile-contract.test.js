@@ -1330,7 +1330,7 @@ test("reaction cues use the same five schedules and legacy gate on both platform
   assert.match(webIndex, /id="reaction-cue"/);
 });
 
-test("web and mobile schedule demand zero then two then one before muscle order", () => {
+test("web and mobile group setups before using demand and muscle order as tie breakers", () => {
   assert.deepEqual(
     [
       MINIMUM_MUSCULAR_DEMAND,
@@ -1349,7 +1349,7 @@ test("web and mobile schedule demand zero then two then one before muscle order"
   );
   assert.match(
     sessionService,
-    /GetScheduleOrderedPlacements[\s\S]*GetSequenceMuscularDemand[\s\S]*ThenBy\(placement => placement\.Anchor\.Order\)/,
+    /GetScheduleOrderedPlacements[\s\S]*WorkoutSchedulePolicy\.OrderBySetup/,
   );
   assert.match(
     sessionService,
@@ -1357,12 +1357,19 @@ test("web and mobile schedule demand zero then two then one before muscle order"
   );
   assert.match(
     workoutModule,
-    /orderSelectedSequencePlacementsForSchedule[\s\S]*getSequenceMuscularDemand[\s\S]*left\.anchor\.order - right\.anchor\.order/,
+    /orderSelectedSequencePlacementsForSchedule[\s\S]*orderPlacementsBySetup/,
   );
   assert.match(
     workoutModule,
     /createWorkoutSchedule[\s\S]*orderSelectedSequencePlacementsForSchedule/,
   );
+  assert.match(workoutSchedulePolicy, /ExactStationLimit = 12/);
+  assert.match(workoutSchedulePolicy, /StationChangeCost = 1_000/);
+  assert.match(workoutSchedulePolicy, /RequirementChangeCost = 100/);
+  assert.match(workoutSchedulePolicy, /FloorChangeCost = 10/);
+  assert.match(workoutModule, /stations\.length <= 12/);
+  assert.match(workoutState, /ActiveSetupOrderVersion/);
+  assert.match(workoutModule, /raw\.activeSetupOrderVersion === 1/);
 });
 
 test("web and mobile apply rolling muscular recovery by primary muscle", () => {

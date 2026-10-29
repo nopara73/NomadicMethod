@@ -19,6 +19,9 @@ public sealed class WorkoutState
     // Only preparing a new workout opts into shared anatomical coverage.
     public int ActiveCoverageAccountingVersion { get; set; }
 
+    // Missing on older workouts: their demand order remains the restoration fallback.
+    public int ActiveSetupOrderVersion { get; set; }
+
     // Missing fields retain the complete sequences of an older unfinished
     // workout. Direction choices are frozen independently of later duration edits.
     public HashSet<int> ActiveSingleDirectionExerciseIds { get; set; } = [];

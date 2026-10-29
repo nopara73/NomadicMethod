@@ -206,10 +206,11 @@ public sealed partial class ExerciseSessionService
 
     private void SetEditedSelectionOrder(WorkoutState state, IReadOnlyList<string> prefixOrder)
     {
-        state.ActiveSelectionGroupOrder = prefixOrder.Concat(GetSelectedSequencePlacements(state)
-            .Where(p => !prefixOrder.Contains(p.Anchor.Id))
-            .OrderBy(p => WorkoutSchedulePolicy.GetMuscularDemandPriority(
-                WorkoutSchedulePolicy.GetSequenceMuscularDemand(p.Root, _exercisesById)))
-            .ThenBy(p => p.Anchor.Order).Select(p => p.Anchor.Id)).ToList();
+        SelectedSequencePlacement[] placements = GetSelectedSequencePlacements(state);
+        Exercise? current = placements.FirstOrDefault(p => p.Anchor.Id == prefixOrder.LastOrDefault())?.Root;
+        state.ActiveSelectionGroupOrder = prefixOrder.Concat(WorkoutSchedulePolicy.OrderBySetup(
+                placements.Where(p => !prefixOrder.Contains(p.Anchor.Id)),
+                p => p.Root, p => p.Anchor.Order, _exercisesById, state.ActiveWorkoutModifiers, current)
+            .Select(p => p.Anchor.Id)).ToList();
     }
 }

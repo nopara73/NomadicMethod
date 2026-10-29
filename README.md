@@ -40,9 +40,12 @@ remaining shortage; existing contextual availability floors remain separate.
 Choosing a shorter session therefore coarsens the body map instead of cutting
 the end off a longer routine. The default 5-minute partition has five broad
 targets; the 30-minute partition addresses all 30 leaves individually. Selected exercise
-sequences are scheduled first by muscular demand: demand `0`, then demand `2`,
-then demand `1`. Within each demand tier, groups retain their existing order
-from smaller to larger estimated bilateral skeletal-muscle mass.
+sequences are grouped by physical setup before muscular demand: finish work at a
+station before moving to another, and group floor-contact work within each visit.
+Wall, mirror, elevation, locomotion space and soft-surface requirements all count.
+Flexible work can stay at a compatible station. Within equivalent setups, demand
+`0`, then `2`, then `1` precedes the existing anatomical order. See
+[`docs/SETUP_ORDER.md`](docs/SETUP_ORDER.md).
 
 The supported workout durations are 3, 5, 7, 10, 15, 20, 30, 45, 60, and 90
 minutes. Durations above 30 begin with the 30-group resolution and spend the
@@ -139,7 +142,7 @@ three execution phases.
 
 At the start of every session, the global assignment evaluates anatomical Keeps
 and the adjustment for the phase in which each candidate's final block is
-actually scheduled after demand ordering and repeated-set allocation. Selection
+actually scheduled after setup grouping and repeated-set allocation. Selection
 and allocation are reconciled until that real phase assignment is stable; the
 unrelated anatomical bucket order is never used as the final phase. A fresh hard
 keep, or a fresh suitable hard exercise already in the highest available score
@@ -436,12 +439,13 @@ Sequence structure is derived from the demonstrated movement:
   sharing a movement family does not make either one mandatory preparation for
   the other.
 
-Scheduling never splits an atomic sequence to obtain the demand order. A
-sequence's scheduling demand is the highest `muscularDemand` among all of its
-blocks, and the complete sequence moves as one unit into the corresponding
-`0`, `2`, or `1` tier. Repeated sets remain adjacent to that sequence. Once a
+Scheduling never splits an atomic sequence to group setups. A sequence's setup
+includes every member's requirements; its demand tie breaker is the highest
+`muscularDemand` among its blocks. Repeated sets remain adjacent to that sequence. Once a
 workout has started, its resolved sequence order is frozen so restoring or
-continuing it cannot move completed and remaining work around.
+continuing it cannot move completed and remaining work around. Explicit duration
+and modifier edits preserve the protected prefix and group only the remaining work,
+starting from the current setup. Existing workouts retain their saved order.
 
 Every retained catalog record has an explicit scheduling verdict in
 `tools/ExerciseSequences.psd1`: it is either a member of exactly one mandatory

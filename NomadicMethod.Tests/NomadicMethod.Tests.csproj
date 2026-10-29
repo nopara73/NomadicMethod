@@ -140,4 +140,7 @@
           Link="Assets\exercise_hold_frames\%(Filename)%(Extension)"
           CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\web\tests\fixtures\setup-order-cases.json" Link="Assets\setup-order-cases.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
