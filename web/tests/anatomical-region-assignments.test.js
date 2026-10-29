@@ -3,9 +3,11 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
 import { resolveReactionDrills } from "../reaction-drills.js";
-import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getResolution, getMaximumDistinctLineupSize } from "../workout.js";
+import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getWorkoutCatalog, getResolution, getMaximumDistinctLineupSize } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
+// Historical anatomy evidence keeps its reviewed protocol; the later pose audit owns revision 100.
+const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99);
 const review = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-region-review-2026-10-26.json", import.meta.url), "utf8"));
 const laterReview = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json", import.meta.url), "utf8"));
 const reactionDocument = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/reaction_drills.json", import.meta.url), "utf8"));
@@ -15,7 +17,7 @@ test("anatomy corrections remain bound to reviewed movements and media", () => {
   assert.equal(review.entries.length, 84);
   assert.equal(new Set(review.entries.map(e => e.id)).size, 84);
   for (const entry of review.entries) {
-    const exercise = structuredClone(catalog.find(e => e.id === entry.id));
+    const exercise = structuredClone(anatomyReviewCatalog.find(e => e.id === entry.id));
     const amendment = laterReview.entries.find(e => e.id === entry.id && e.kind === 'AnatomyCorrection');
     if (amendment) {
       assert.equal(amendment.previousMetadataSha256, entry.metadataSha256, 'Explicit review chain: ' + entry.id);
@@ -95,5 +97,5 @@ test("catalog 96 workouts, Keeps, history and downvotes survive the additive upd
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 96);
-  assert.equal(restored.state.catalogRevision, 99);
+  assert.equal(restored.state.catalogRevision, 100);
 });

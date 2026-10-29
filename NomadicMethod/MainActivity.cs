@@ -4707,6 +4707,8 @@ public partial class MainActivity : Activity
             ExerciseSequenceSideCue.ScreenRight => "Right side",
             ExerciseSequenceSideCue.ShownLeadStance => "Shown lead stance",
             ExerciseSequenceSideCue.OppositeLeadStance => "Opposite lead stance",
+            ExerciseSequenceSideCue.ShownFootPosition => "Shown foot position",
+            ExerciseSequenceSideCue.OppositeFootPosition => "Opposite foot position",
             ExerciseSequenceSideCue.ShownHandPosition => "Shown hand position",
             ExerciseSequenceSideCue.OppositeHandPosition => "Opposite hand position",
             ExerciseSequenceSideCue.ShownHandAndFootPosition => "Shown hands and feet",

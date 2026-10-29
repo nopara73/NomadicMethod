@@ -183,7 +183,7 @@
     "id": 1421,
     "name": "Box Jumps",
     "primary": "MedialAndDeepKneeExtensors",
-    "side": "Continuous",
+    "side": "ShownFootPositionThenOpposite",
     "floor": false,
     "platform": true,
     "hold": false
@@ -237,7 +237,7 @@
     "id": 1427,
     "name": "Bench Hip Thrusts",
     "primary": "GlutealExtensors",
-    "side": "Continuous",
+    "side": "ShownHandPositionThenOpposite",
     "floor": true,
     "platform": false,
     "hold": false
@@ -264,7 +264,7 @@
     "id": 1430,
     "name": "Elevated Forearm Pike Scapular Push-Ups",
     "primary": "ScapularGirdle",
-    "side": "Continuous",
+    "side": "ShownHandPositionThenOpposite",
     "floor": true,
     "platform": false,
     "hold": false

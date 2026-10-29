@@ -2,11 +2,13 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import test from 'node:test';
-import { getAnatomicalGroupVarietyInventory, getSessionMovementId } from '../workout.js';
+import { getWorkoutCatalog, getAnatomicalGroupVarietyInventory, getSessionMovementId } from '../workout.js';
 
 const load = name => JSON.parse(readFileSync(new URL(name, import.meta.url), 'utf8'));
 const catalog = load('../../NomadicMethod/Assets/exercises.json');
 const admissions = load('../../docs/catalog-audit/anatomical-variety-admissions-2026-10-26.json');
+// Historical anatomy evidence keeps its reviewed protocol; the later pose audit owns revision 100.
+const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99);
 const review = load('../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json');
 const hash = data => createHash('sha256').update(data).digest('hex');
 const dimensions = ['Metadata', 'FullLoop', 'Crop', 'LoopSeam', 'PlaybackSpeed', 'Mirroring', 'Travel', 'HoldFrame', 'Equipment', 'Workout'];
@@ -32,7 +34,7 @@ test('every changed exercise has an explicit current review and complete workout
   const ids = [...admissions.newExerciseIds, ...admissions.anatomyCorrectionIds].sort((a, b) => a - b);
   assert.deepEqual(review.entries.map(e => e.id).sort((a, b) => a - b), ids);
   for (const entry of review.entries) {
-    const e = catalog.find(e => e.id === entry.id);
+    const e = anatomyReviewCatalog.find(e => e.id === entry.id);
     assert.equal(hash(JSON.stringify(e)), entry.metadataSha256, String(e.id));
     if (entry.kind === 'AnatomyCorrection') {
       const previous = structuredClone(e);

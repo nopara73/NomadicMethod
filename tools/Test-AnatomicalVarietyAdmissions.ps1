@@ -11,13 +11,33 @@ if ($document.catalogRevision -ne 98 -or $document.status -cne 'PASS' -or
     throw 'Every anatomical-variety admission and correction needs an explicit completed review.'
 }
 $catalog = @(Get-Content -LiteralPath (Join-Path $assetsRoot 'exercises.json') -Raw | ConvertFrom-Json)
+$protocolHistory = Get-Content -LiteralPath (Join-Path $assetsRoot 'catalog_protocol_history.json') -Raw | ConvertFrom-Json
+$poseReview = Get-Content -LiteralPath (Join-Path $repositoryRoot 'docs/catalog-audit/fixed-position-review-2026-10-29.json') -Raw | ConvertFrom-Json
 $media = Import-PowerShellDataFile -LiteralPath (Join-Path $PSScriptRoot 'ExternalExerciseMedia.psd1') -SkipLimitCheck
 $verified = Import-PowerShellDataFile -LiteralPath (Join-Path $PSScriptRoot 'VerifiedExerciseDemos.psd1') -SkipLimitCheck
 foreach ($id in $expectedIds) {
     $exercise = @($catalog | Where-Object id -eq $id)
     if ($exercise.Count -ne 1) { throw "Missing admitted exercise $id." }
     $entry = $reviews[$id]
-    $result = Get-CatalogReviewResult -Exercise $exercise[0] -AssetsRoot $assetsRoot -Review $entry
+    $reviewedExercise = $exercise[0]
+    $protocol = @($protocolHistory.exercises | Where-Object id -eq $id)
+    if ($protocol.Count -gt 0) {
+        # Preserve the original anatomy evidence while requiring an explicit,
+        # hash-bound later review of the changed execution geometry.
+        $amendment = @($poseReview.entries | Where-Object id -eq $id)
+        if ($protocol.Count -ne 1 -or $amendment.Count -ne 1 -or
+            (Get-CatalogMetadataHash -Exercise $exercise[0]) -cne $amendment[0].metadataSha256) {
+            throw "Exercise $id lacks its exact later execution review."
+        }
+        $reviewedExercise = $exercise[0] | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+        foreach ($field in @('sideSequence', 'directionSequence', 'sequenceBlocks')) {
+            $reviewedExercise.$field = $protocol[0].$field
+        }
+        if ((Get-CatalogMetadataHash -Exercise $reviewedExercise) -cne $amendment[0].previousMetadataSha256) {
+            throw "Exercise $id changed more than its reviewed execution geometry."
+        }
+    }
+    $result = Get-CatalogReviewResult -Exercise $reviewedExercise -AssetsRoot $assetsRoot -Review $entry
     if ($result.Status -cne 'PASS') { throw "Exercise ${id}: $($result.Status) - $($result.Reason)" }
     foreach ($evidence in $entry.evidence) {
         if (-not (Test-Path -LiteralPath (Join-Path $repositoryRoot $evidence) -PathType Leaf)) {

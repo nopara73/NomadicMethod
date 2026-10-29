@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\catalog-position-cases.json" Link="Assets\catalog-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fixed-position-cases.json" Link="Assets\fixed-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\shared-coverage-cases.json" Link="Assets\shared-coverage-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\anatomical-variety-cases.json" Link="Assets\anatomical-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
@@ -73,6 +74,7 @@
     <Compile Include="..\NomadicMethod\Models\ExerciseFloorContact.cs" Link="Production\Models\ExerciseFloorContact.cs" />
     <Compile Include="..\NomadicMethod\Services\FloorContactPolicy.cs" Link="Production\Services\FloorContactPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutCatalogPolicy.cs" Link="Production\Services\WorkoutCatalogPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutProtocolHistory.cs" Link="Production\Services\WorkoutProtocolHistory.cs" />
     <Compile Include="..\NomadicMethod\Models\WorkoutState.cs" Link="Production\Models\WorkoutState.cs" />
     <Compile Include="..\NomadicMethod\Services\ExerciseSessionService.cs" Link="Production\Services\ExerciseSessionService.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutSessionEditing.cs" Link="Production\Services\WorkoutSessionEditing.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="..\NomadicMethod\Services\WorkoutDurationPolicy.cs" Link="Production\Services\WorkoutDurationPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutPreparationQueue.cs" Link="Production\Services\WorkoutPreparationQueue.cs" />
     <EmbeddedResource Include="..\NomadicMethod\Assets\workout_durations.json" LogicalName="NomadicMethod.WorkoutDurations" />
+    <EmbeddedResource Include="..\NomadicMethod\Assets\catalog_protocol_history.json" LogicalName="NomadicMethod.WorkoutProtocolHistory" />
     <Compile Include="..\NomadicMethod\Services\WorkoutDisplayPolicy.cs" Link="Production\Services\WorkoutDisplayPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutLightDayPolicy.cs" Link="Production\Services\WorkoutLightDayPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutModifierPolicy.cs" Link="Production\Services\WorkoutModifierPolicy.cs" />

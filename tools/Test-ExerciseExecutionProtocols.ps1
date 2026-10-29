@@ -3,8 +3,10 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $corrections = Import-PowerShellDataFile (Join-Path $PSScriptRoot 'ExerciseExecutionCorrections.psd1')
 $cases = @(Get-Content (Join-Path $root 'web/tests/fixtures/execution-protocol-cases.json') -Raw | ConvertFrom-Json)
+$poseCases = @(Get-Content (Join-Path $root 'web/tests/fixtures/catalog-position-cases.json') -Raw | ConvertFrom-Json)
 $catalog = @(Get-Content (Join-Path $root 'NomadicMethod/Assets/exercises.json') -Raw | ConvertFrom-Json)
-if (@(Compare-Object @($corrections.Keys | ForEach-Object { [int]$_ } | Sort-Object) @($cases.id | Sort-Object)).Count) {
+$expectedIds = @($cases.id) + @($poseCases.id)
+if (@(Compare-Object @($corrections.Keys | ForEach-Object { [int]$_ } | Sort-Object) @($expectedIds | Sort-Object)).Count) {
     throw 'Reviewed execution corrections differ from the shared Android/web contract.'
 }
 $archive = Join-Path $root 'NomadicMethod/Assets/exercise_videos/revision82'
@@ -30,4 +32,14 @@ foreach ($case in $cases) {
         throw "Exercise $id changed the footage owned by an unfinished workout."
     }
 }
-Write-Output "Execution protocols audited: $($cases.Count) corrections; original workout footage preserved byte-for-byte."
+foreach ($case in $poseCases) {
+    $id = [int]$case.id
+    $exercise = @($catalog | Where-Object id -eq $id)
+    if ($exercise.Count -ne 1 -or
+        $exercise[0].sideSequence -cne $case.sideSequence -or
+        $corrections[$id].SideSequence -cne $case.sideSequence -or
+        $corrections[$id].DirectionSequence -cne 'None') {
+        throw "Exercise $id lost its reviewed whole-pose correction."
+    }
+}
+Write-Output "Execution protocols audited: $($cases.Count) earlier and $($poseCases.Count) whole-pose corrections; original workout footage preserved byte-for-byte."

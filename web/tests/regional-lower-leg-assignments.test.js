@@ -2,9 +2,11 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
-import { WorkoutSession, createDefaultState, getSessionMovementId, isCompatibleWithWorkoutModifiers as isExerciseCompatible, WORKOUT_MODIFIERS as M } from "../workout.js";
+import { WorkoutSession, createDefaultState, getWorkoutCatalog, getSessionMovementId, isCompatibleWithWorkoutModifiers as isExerciseCompatible, WORKOUT_MODIFIERS as M } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
+// The revision 100 protocol audit supersedes execution, preserving the reviewed anatomy and media.
+const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99);
 const supersedingReview = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-region-review-2026-10-26.json", import.meta.url), "utf8"));
 const region = "AnteriorLateralLowerLegAndDorsalFoot";
 const slot = "r10.anterior-lateral-lower-leg-dorsal-foot";
@@ -19,7 +21,7 @@ test("restored assignments remain bound to reviewed metadata and exact runtime m
   for (const entry of review.entries) {
     assert.deepEqual(Object.keys(entry.checks).sort(), ["Metadata", "FullLoop", "Crop", "LoopSeam",
       "PlaybackSpeed", "Mirroring", "Travel", "HoldFrame", "Equipment", "Workout"].sort());
-    const exercise = catalog.find(candidate => candidate.id === entry.id);
+    const exercise = anatomyReviewCatalog.find(candidate => candidate.id === entry.id);
     assert.ok(exercise.secondaryCanonicalGroups.includes(region), String(entry.id));
     const superseding = supersedingReview.entries.find(e => e.id === entry.id);
     if (superseding) assert.equal(superseding.previousMetadataSha256, entry.metadataSha256);
@@ -45,7 +47,7 @@ test("follow-up assignments remain bound to reviewed metadata and exact runtime 
   for (const entry of review.entries) {
     assert.deepEqual(Object.keys(entry.checks).sort(), ["Metadata", "FullLoop", "Crop", "LoopSeam",
       "PlaybackSpeed", "Mirroring", "Travel", "HoldFrame", "Equipment", "Workout"].sort());
-    const exercise = catalog.find(candidate => candidate.id === entry.id);
+    const exercise = anatomyReviewCatalog.find(candidate => candidate.id === entry.id);
     const groups = entry.id === 419
       ? ["AnteriorLateralNeckAndHyoidMuscles", "PosteriorNeckAndSuboccipitalMuscles"] : [region];
     assert.ok(groups.every(group => exercise.secondaryCanonicalGroups.includes(group)), String(entry.id));
@@ -108,7 +110,7 @@ test(`additive anatomy correction preserves a workout, Keeps and feedback from c
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, sourceRevision);
-  assert.equal(restored.state.catalogRevision, 99);
+  assert.equal(restored.state.catalogRevision, 100);
 });
 
 for (const [id, minutes, target] of [[428,10,"r10.anterior-lateral-lower-leg-dorsal-foot"]])

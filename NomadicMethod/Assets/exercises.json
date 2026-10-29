@@ -1313,14 +1313,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 103,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 103,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -1362,14 +1369,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 104,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 104,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -1511,14 +1525,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 108,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 108,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -1607,14 +1628,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 110,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 110,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -1916,14 +1944,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 116,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 116,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -2023,14 +2058,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 118,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 118,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -2487,14 +2529,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 127,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 127,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -2753,14 +2802,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 132,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 132,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -3004,14 +3060,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 137,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 137,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -3056,14 +3119,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 138,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 138,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -3158,14 +3228,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 140,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 140,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -3208,14 +3285,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 141,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 141,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -3256,14 +3340,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 142,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 142,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -3671,14 +3762,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 150,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 150,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -5006,9 +5104,16 @@
       },
       {
         "exerciseId": 534,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 534,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -5069,9 +5174,16 @@
       },
       {
         "exerciseId": 536,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 536,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -5826,14 +5938,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 197,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 197,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -6034,14 +6153,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 201,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 201,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -7388,14 +7514,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 237,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 237,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -7613,14 +7746,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 242,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 242,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -7999,14 +8139,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 255,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 255,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -9713,14 +9860,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 291,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 291,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       },
       {
@@ -10251,21 +10405,35 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 307,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 307,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 310,
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
         "mediaSegment": "Full"
       },
       {
         "exerciseId": 310,
-        "sideCue": "None",
+        "sideCue": "OppositeHandPosition",
         "directionCue": "None",
-        "mirrorMedia": false,
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -10408,7 +10576,7 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Incompatible",
@@ -11257,9 +11425,16 @@
       },
       {
         "exerciseId": 400,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 400,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -11360,14 +11535,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 394,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 394,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -11642,7 +11824,7 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Incompatible",
@@ -11869,14 +12051,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 405,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 405,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -12440,14 +12629,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 417,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 417,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -12611,9 +12807,16 @@
       },
       {
         "exerciseId": 426,
-        "sideCue": "None",
+        "sideCue": "ShownHandAndFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 426,
+        "sideCue": "OppositeHandAndFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -12900,7 +13103,7 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandAndFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Compatible",
@@ -13133,14 +13336,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 431,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 431,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -13183,14 +13393,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 432,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 432,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -14854,14 +15071,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 466,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 466,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -15248,14 +15472,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 474,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 474,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -15834,14 +16065,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 486,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 486,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -16756,14 +16994,21 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 504,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 504,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -16919,14 +17164,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 508,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 508,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -17981,7 +18233,7 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Incompatible",
@@ -18167,7 +18419,7 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Compatible",
@@ -18247,7 +18499,7 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Compatible",
@@ -18602,14 +18854,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 544,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 544,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -18684,14 +18943,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 546,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 546,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -21053,9 +21319,16 @@
       },
       {
         "exerciseId": 530,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 530,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -21233,14 +21506,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 616,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 616,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -21533,14 +21813,21 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 626,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 626,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -21895,14 +22182,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 654,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 654,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -22583,14 +22877,21 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 712,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 712,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -23446,9 +23747,16 @@
       },
       {
         "exerciseId": 1000,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1000,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -23723,14 +24031,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 825,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 825,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -25310,14 +25625,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 973,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 973,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -25358,14 +25680,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 986,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 986,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -25453,14 +25782,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 993,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 993,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -25664,14 +26000,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 999,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 999,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -25710,7 +26053,7 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [],
     "insectCompatibility": "Incompatible",
@@ -26970,14 +27313,21 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 50,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1028,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1028,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -27532,14 +27882,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1040,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1040,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -30011,14 +30368,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1092,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1092,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -31669,14 +32033,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1125,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1125,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -32219,14 +32590,21 @@
     "mode": "Hold",
     "presentation": "Still",
     "holdFramePercent": 45,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1137,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1137,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -32545,14 +32923,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1144,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1144,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -34282,14 +34667,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1179,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1179,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -34562,14 +34954,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1185,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1185,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -35506,14 +35905,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1205,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1205,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -35646,14 +36052,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1208,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1208,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -36260,14 +36673,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1221,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1221,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -38601,14 +39021,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Alternating",
+    "sideSequence": "ShownHandAndFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1270,
-        "sideCue": "None",
+        "sideCue": "ShownHandAndFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1270,
+        "sideCue": "OppositeHandAndFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -41177,14 +41604,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1421,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1421,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -41479,14 +41913,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1427,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1427,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -41630,14 +42071,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1430,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1430,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],
@@ -45066,14 +45514,21 @@
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownHandPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 1725,
-        "sideCue": "None",
+        "sideCue": "ShownHandPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 1725,
+        "sideCue": "OppositeHandPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       }
     ],

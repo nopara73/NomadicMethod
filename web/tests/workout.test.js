@@ -814,7 +814,7 @@ test("complete pose determines sides including supporting arms and lead stances"
     assert.notEqual(blocks[0].sideCue, blocks[1].sideCue);
     assert.ok(blocks.every(b => b.sideCue !== "None"));
   }
-  for (const id of [237, 238, 255, 307, 310, 398, 520, 522, 562]) {
+  for (const id of [238, 398, 520, 522, 562]) {
     assert.ok(["Continuous", "Alternating"].includes(catalog.find(e => e.id === id).sideSequence));
   }
   assert.equal(catalog.find(e => e.id === 958).name, "Standing Overhead Side-Stretch Hold");
@@ -1498,9 +1498,9 @@ test("dance and hand filler are replaced by coherent silent upper-body work", ()
   assert.equal(wallPushUps.muscularDemand, 2);
   const knifeHandSequence = catalog.find((exercise) => exercise.id === 291);
   assert.deepEqual(knifeHandSequence.sequenceBlocks.map((block) => block.exerciseId),
-    [291, 294, 294]);
+    [291, 291, 294, 294]);
   const reviewedSides = new Map([
-    [283, "ScreenLeftThenRight"], [291, "Alternating"],
+    [283, "ScreenLeftThenRight"], [291, "ShownFootPositionThenOpposite"],
     [294, "ScreenRightThenLeft"], [556, "ScreenLeftThenRight"],
   ]);
   assert.ok([...reviewedSides].every(([exerciseId, sideSequence]) => {
@@ -1525,7 +1525,7 @@ test("reduced demand coverage adds only reviewed atomic movements", () => {
   assert.equal(twist.muscularDemand, 1);
 
   const flexion = catalog.find((exercise) => exercise.id === 307);
-  assert.deepEqual(flexion.sequenceBlocks.map((block) => block.exerciseId), [307, 310]);
+  assert.deepEqual(flexion.sequenceBlocks.map((block) => block.exerciseId), [307, 307, 310, 310]);
   for (const exerciseId of [307, 308, 309, 310]) {
     const exercise = catalog.find((candidate) => candidate.id === exerciseId);
     assert.equal(exercise.practice, "Self-resistance");
@@ -6015,14 +6015,14 @@ test("four-block side-by-direction sequences preserve independent cues", () => {
   assert.deepEqual(catalog.find((exercise) => exercise.id === 755).sequenceBlocks, []);
 });
 
-test("simultaneous and alternating bilateral movements remain one block", () => {
+test("symmetric and fully alternating bilateral poses remain one block", () => {
   const ownerByExerciseId = new Map();
   for (const root of catalog.filter((item) => item.sequenceBlocks.length > 0)) {
     for (const block of root.sequenceBlocks) {
       ownerByExerciseId.set(block.exerciseId, root);
     }
   }
-  for (const exerciseId of [248, 394, 397, 421, 427, 468]) {
+  for (const exerciseId of [248, 397, 421, 427, 468]) {
     const owner = ownerByExerciseId.get(exerciseId);
     assert.equal(
       owner.sequenceBlocks.filter((block) => block.exerciseId === exerciseId).length,
@@ -6030,7 +6030,7 @@ test("simultaneous and alternating bilateral movements remain one block", () => 
     );
   }
   assert.equal(catalog.find((exercise) => exercise.id === 421).sideSequence, "Continuous");
-  for (const exerciseId of [248, 394, 397, 427, 468]) {
+  for (const exerciseId of [248, 397, 427, 468]) {
     assert.equal(
       catalog.find((exercise) => exercise.id === exerciseId).sideSequence,
       "Alternating",
@@ -6507,11 +6507,11 @@ test("every catalog exercise has exactly one atomic sequence owner", () => {
     assert.equal(catalog.find((exercise) => exercise.id === rootId)
       .sequenceBlocks.length, 4);
   }
-  for (const rootId of [327, 414]) {
+  for (const rootId of [327, 414, 546]) {
     assert.equal(catalog.find((exercise) => exercise.id === rootId)
       .sequenceBlocks.length, 2);
   }
-  for (const rootId of [418, 546]) {
+  for (const rootId of [418]) {
     assert.equal(catalog.find((exercise) => exercise.id === rootId)
       .sequenceBlocks.length, 1);
   }
@@ -8148,7 +8148,7 @@ test("slippery hard-floor revision rebuilds placements without erasing feedback"
 
 test("sole-wall revision rebuilds changed workout state and resets scores", () => {
   const changedIds = [563, 564, 567, 568, 574];
-  assert.equal(CURRENT_CATALOG_REVISION, 99);
+  assert.equal(CURRENT_CATALOG_REVISION, 100);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(54)],
     changedIds,
@@ -8743,7 +8743,7 @@ test("bodybuilding posing revision replaces static work and resets feedback", ()
 
 test("material-training revision removes only anatomically invalid slots and keeps", () => {
   const addedIds = [911, 913, 916, 917];
-  assert.equal(CURRENT_CATALOG_REVISION, 99);
+  assert.equal(CURRENT_CATALOG_REVISION, 100);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(67)],
     addedIds,
@@ -8833,7 +8833,7 @@ test("material-training revision removes only anatomically invalid slots and kee
 
 test("training-claim revision removes only newly invalid slot feedback", () => {
   const addedIds = [918, 919];
-  assert.equal(CURRENT_CATALOG_REVISION, 99);
+  assert.equal(CURRENT_CATALOG_REVISION, 100);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(69)],
     addedIds,
@@ -8945,7 +8945,7 @@ test("complete-pose revision rebuilds affected placements without erasing feedba
 
 test("corrected two-sided revision rebuilds placements and preserves feedback", () => {
   const changedIds = new Set([32, 483, 493]);
-  assert.equal(CURRENT_CATALOG_REVISION, 99);
+  assert.equal(CURRENT_CATALOG_REVISION, 100);
   assert.deepEqual(SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(71), changedIds);
   assert.equal(SCOPED_SCORE_INVALIDATIONS_BY_REVISION.has(71), false);
 

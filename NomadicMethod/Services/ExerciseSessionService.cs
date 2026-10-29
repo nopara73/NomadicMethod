@@ -74,7 +74,9 @@ public sealed partial class ExerciseSessionService
     {
         ArgumentNullException.ThrowIfNull(state);
         bool hasWorkout = state.ActiveWorkoutMinutes > 0 || state.ActiveCatalogRevision > 0;
-        int revision = hasWorkout ? state.ActiveCatalogRevision : 0;
+        int revision = hasWorkout
+            ? (state.ActiveCatalogRevision > 0 ? state.ActiveCatalogRevision : state.CatalogRevision)
+            : 0;
         IReadOnlySet<int> directions = hasWorkout && state.ActiveSingleDirectionExerciseIds is { } ids
             ? ids : NoSingleDirections;
         if (_boundCatalogRevision == revision && _boundSingleDirectionExerciseIds.SetEquals(directions)) return;

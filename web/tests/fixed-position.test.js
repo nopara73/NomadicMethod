@@ -37,7 +37,7 @@ for (const c of cases) {
     const first = s.getNextGroup();
     const key = first.selectionGroupId ?? first.id;
     const before = s.getActiveGroups().filter(g => (g.selectionGroupId ?? g.id) === key);
-    assert.equal(before.length, 2);
+    assert.ok(before.length >= 2 && before.length % 2 === 0);
     const minimum = s.getMinimumActiveWorkoutMinutes();
     assert.ok(minimum < 60);
     s.resizeActiveWorkout(minimum);

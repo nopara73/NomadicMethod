@@ -6,6 +6,10 @@ on:
     paths:
       - ".github/workflows/pages.yml"
       - "web/**"
+      - "NomadicMethod/Assets/catalog_protocol_history.json"
+      - "tools/ExercisePositionReviews.json"
+      - "tools/check-exercise-position-reviews.mjs"
+      - "docs/catalog-audit/fixed-position-review-2026-10-29.json"
       - "NomadicMethod/Assets/exercises.json"
       - "NomadicMethod/Assets/workout_durations.json"
       - "NomadicMethod/Assets/reaction_drills.json"
@@ -118,6 +122,10 @@ jobs:
         with:
           sparse-checkout: |
             /web/**
+            /NomadicMethod/Assets/catalog_protocol_history.json
+            /tools/ExercisePositionReviews.json
+            /tools/check-exercise-position-reviews.mjs
+            /docs/catalog-audit/fixed-position-review-2026-10-29.json
             /NomadicMethod/Assets/exercises.json
             /NomadicMethod/Assets/workout_durations.json
             /NomadicMethod/Assets/reaction_drills.json

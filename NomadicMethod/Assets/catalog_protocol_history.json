@@ -1,0 +1,1048 @@
+{
+  "beforeRevision": 100,
+  "exercises": [
+    {
+      "id": 103,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 103,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 104,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 108,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 110,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 116,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 118,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 118,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 127,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 132,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 137,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 138,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 140,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 140,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 141,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 141,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 142,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 142,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 150,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 150,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 180,
+      "sideSequence": "ScreenRightThenLeft",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 180,
+          "sideCue": "ScreenRight",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 180,
+          "sideCue": "ScreenLeft",
+          "directionCue": "None",
+          "mirrorMedia": true,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 534,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 181,
+      "sideSequence": "ScreenRightThenLeft",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 181,
+          "sideCue": "ScreenRight",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 181,
+          "sideCue": "ScreenLeft",
+          "directionCue": "None",
+          "mirrorMedia": true,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 536,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 197,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 197,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 201,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 201,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 237,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 237,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 242,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 242,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 255,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 255,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 291,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 291,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 294,
+          "sideCue": "ScreenRight",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 294,
+          "sideCue": "ScreenLeft",
+          "directionCue": "None",
+          "mirrorMedia": true,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 307,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 307,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 310,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 310,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 392,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 392,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 399,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 400,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 394,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 394,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 400,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 405,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 405,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 417,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 417,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 420,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 420,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 421,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 426,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 426,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 431,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 431,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 432,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 432,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 466,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 466,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 474,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 474,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 486,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 486,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 504,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 504,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 508,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 508,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 530,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 534,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 536,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 544,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 544,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 546,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 546,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 612,
+      "sideSequence": "ScreenRightThenLeft",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 612,
+          "sideCue": "ScreenRight",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 612,
+          "sideCue": "ScreenLeft",
+          "directionCue": "None",
+          "mirrorMedia": true,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 530,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 616,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 616,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 626,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 626,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 654,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 654,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 712,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 712,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 784,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 784,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 969,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        },
+        {
+          "exerciseId": 1000,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 825,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 825,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 973,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 973,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 986,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 986,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 993,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 993,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 999,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 999,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1000,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": []
+    },
+    {
+      "id": 1028,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1028,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1040,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1040,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1092,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1092,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1125,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1125,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1137,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1137,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1144,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1144,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1179,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1179,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1185,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1185,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1205,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1205,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1208,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1208,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1221,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1221,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1270,
+      "sideSequence": "Alternating",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1270,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1421,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1421,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1427,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1427,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1430,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1430,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    },
+    {
+      "id": 1725,
+      "sideSequence": "Continuous",
+      "directionSequence": "None",
+      "sequenceBlocks": [
+        {
+          "exerciseId": 1725,
+          "sideCue": "None",
+          "directionCue": "None",
+          "mirrorMedia": false,
+          "mediaSegment": "Full"
+        }
+      ]
+    }
+  ]
+}

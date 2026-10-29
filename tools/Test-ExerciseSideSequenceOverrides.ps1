@@ -115,3 +115,12 @@ if ($fixedPose.Count -ne 2 -or
     throw 'Fixed hand and foot positions must remain one complete mirrored pair.'
 }
 Write-Output 'Fixed hand and foot position regression checks passed.'
+
+# A fixed crossing/lead foot stays fixed even when the hands alternate.
+$feet = @(New-ExerciseSequenceBlocks -ExerciseId 242 -SideSequence 'ShownFootPositionThenOpposite' -DirectionSequence 'None')
+if ($feet.Count -ne 2 -or
+    ($feet.sideCue -join ',') -ne 'ShownFootPosition,OppositeFootPosition' -or
+    $feet[0].mirrorMedia -or -not $feet[1].mirrorMedia) {
+    throw 'Fixed foot positions must remain one complete mirrored pair.'
+}
+Write-Output 'Fixed foot position regression checks passed.'

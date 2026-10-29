@@ -1,0 +1,508 @@
+{
+  "reviewedOn": "2026-10-29",
+  "beforeRevision": 99,
+  "catalogRevision": 100,
+  "catalogCount": 919,
+  "newFixedPositionCount": 65,
+  "method": "Whole-pose screening of every unpaired catalog demonstration, focused source-frame review for candidates, and exact media inventories. Existing paired sequences were checked for both mirrors of every media segment and linked member. Main alternating motion is evaluated separately from grip, crossing order, stance and support.",
+  "reviewManifest": "tools/ExercisePositionReviews.json",
+  "entries": [
+    {
+      "id": 103,
+      "kind": "FixedPositionCorrection",
+      "reason": "Source close-up confirms a fixed cupped grip under chin.",
+      "previousMetadataSha256": "386f424ec8774f07033ad6e828f52565e67743e851ad7b7cdb19e418d80db5d6",
+      "metadataSha256": "d4077ccf342cbee2eff90351e7c9e06797a5fc3b8ccada02984f356c4ffcca1c"
+    },
+    {
+      "id": 104,
+      "kind": "FixedPositionCorrection",
+      "reason": "One fixed cupped/interlaced grip remains at chin through sumo squat.",
+      "previousMetadataSha256": "95ec1d08fbadf585c3ae5e8f94660d2d88f03257a155413b6f22572730c97e35",
+      "metadataSha256": "d1bc95250805aa79fa9faf6bb57d27d6acafc97066585d4d2b2d964867b083ca"
+    },
+    {
+      "id": 108,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same wrist crosses above the other at every low arm sweep.",
+      "previousMetadataSha256": "84ea624e7573b1e28d0fa44581a1fd39e3a175beb08d8a78f99632296acf7824",
+      "metadataSha256": "3315621e0c23e775496410e83f08c818fac19eee4634b9aa683c9cfcf7d2355b"
+    },
+    {
+      "id": 110,
+      "kind": "FixedPositionCorrection",
+      "reason": "Source close-up confirms a fixed cupped grip under chin.",
+      "previousMetadataSha256": "1b586e1d0205aae2bde84e37014dda90786157c94009e5ac5db161b586eeafcb",
+      "metadataSha256": "80b0487feac7146ec3ae53ed285039b721937d87da9f16dcd13dec09e4c8c140"
+    },
+    {
+      "id": 116,
+      "kind": "FixedPositionCorrection",
+      "reason": "Interlaced grip remains fixed as lateral squats alternate.",
+      "previousMetadataSha256": "6b8f998711b3b83d936de4975989d076c240acdd67833e738c45421026b32b71",
+      "metadataSha256": "638fd4d9f4d1dcfbe409371dfb30547c00264972d485e1656b099b4adab039d7"
+    },
+    {
+      "id": 118,
+      "kind": "FixedPositionCorrection",
+      "reason": "Squat reforms the same hand clasp between alternating knee drives.",
+      "previousMetadataSha256": "8e87a39c83b5a80934ddf886f0beb95ccd740a887c6c3272d063519e407485c3",
+      "metadataSha256": "651189862d90d0a3f40658a961c383cd1ca23dd43207f1aef0acd21aaa36cdb8"
+    },
+    {
+      "id": 127,
+      "kind": "FixedPositionCorrection",
+      "reason": "Behind-back grip retains hand order during alternating lunges and overhead reaches.",
+      "previousMetadataSha256": "0419dabe1ba715d2dab12a1b94e1cf7c38d0afe4e1bec4b40fab2a73be89d162",
+      "metadataSha256": "c5e19c10cd5be6f2356b5ca02563ced3087a888ecebececeb54758d4cc709142"
+    },
+    {
+      "id": 132,
+      "kind": "FixedPositionCorrection",
+      "reason": "Clasp remains fixed during alternating oblique crunch and squat.",
+      "previousMetadataSha256": "9daf0578da2f00a4f50597ef73485bb9bce097ce3a40ec6897b3bdcd19504b19",
+      "metadataSha256": "2243a9697483556a2d78b55cb67317864d3d798fcea7d52f0d986a1f074ca32d"
+    },
+    {
+      "id": 137,
+      "kind": "FixedPositionCorrection",
+      "reason": "Crossed forearms keep the same upper arm during wall squats.",
+      "previousMetadataSha256": "5899482adf78420d639a9242927fcc36b6efed22703bf3f108f34b424c911501",
+      "metadataSha256": "ee5b62a063b9ba2fa70a0661f928c2d5c5e56666fe0e9e3bb3593fc731236ea3"
+    },
+    {
+      "id": 138,
+      "kind": "FixedPositionCorrection",
+      "reason": "One hand remains stacked above the other during forward reach.",
+      "previousMetadataSha256": "195a6170e62118785c749164fe24a985770148dc5d684333671ff93db6f54538",
+      "metadataSha256": "d9a83f18a39b692ff7ce47968a5dccd29e58e4e6cb2935d1c8313f8fb3b5100d"
+    },
+    {
+      "id": 140,
+      "kind": "FixedPositionCorrection",
+      "reason": "Squat repeatedly forms the same clasp near face.",
+      "previousMetadataSha256": "bc13f90c0afbb41f368561e6065e8fefaa3d266ba468618d521c8929b130af61",
+      "metadataSha256": "a87f9faf14d7700d85587ad2ed2f615439bdc61563a20d8d278f9503c5563c4f"
+    },
+    {
+      "id": 141,
+      "kind": "FixedPositionCorrection",
+      "reason": "One palm cups the other fist while heels alternate.",
+      "previousMetadataSha256": "11986bdfeb5e68e8414bf6ca007eb7acb6cfc34721c8409c40c73532fc0df3c5",
+      "metadataSha256": "09becb7fbe9043d047fbb7501617beed69794a6726aaadc9078f661b4d8786e3"
+    },
+    {
+      "id": 142,
+      "kind": "FixedPositionCorrection",
+      "reason": "Squat walk retains the same hand clasp.",
+      "previousMetadataSha256": "49350a3e908de2c222047932e80e61f45da75fa3d3da7d3193cc9e847c33b50a",
+      "metadataSha256": "132fc277c05a8504f973be45441c7c74f68034e9cf417a02bde026be3710df6b"
+    },
+    {
+      "id": 150,
+      "kind": "FixedPositionCorrection",
+      "reason": "Forward hand grip remains fixed while lunges alternate.",
+      "previousMetadataSha256": "949d2da1f055b7a88d0079997508d340fdb5bc504a9e51fd203d8d773463ee51",
+      "metadataSha256": "ca263eb52e76996351d23b60ff16df653035d030143f785a5a2f9dae56e401d6"
+    },
+    {
+      "id": 180,
+      "kind": "SequenceOwnerCorrection",
+      "reason": "Retain the complete fixed-position pairs of every linked member in this owning sequence.",
+      "previousMetadataSha256": "69df09b5a8d662cae36c6c89771dd05dbd2d691b22ab00a7ff2c3c22c8191f0b",
+      "metadataSha256": "eef26bc9a1e7158bfaace66da91830ede007c0d7425598754e59fa3d4ac1433e"
+    },
+    {
+      "id": 181,
+      "kind": "SequenceOwnerCorrection",
+      "reason": "Retain the complete fixed-position pairs of every linked member in this owning sequence.",
+      "previousMetadataSha256": "b5b0f9dc42606099a46b0f0fa27124e31dff82041e5bd4e904cf02d2dae5a66f",
+      "metadataSha256": "6a546c8ebf29eba23c3ce77946dd7ef83b1b2114a393430d66bcd74c9aa4c920"
+    },
+    {
+      "id": 197,
+      "kind": "FixedPositionCorrection",
+      "reason": "Fixed fist-in-palm grip under chin during squat and calf raise.",
+      "previousMetadataSha256": "634d6fb844f3daa282f046e663dca0bc5ecb25047e4eaf6575984f8b0bd178e0",
+      "metadataSha256": "e215dbbed1531fe3187c1f094b1d4a4d4ec3e3f8d968ecdf262991cb88c5d923"
+    },
+    {
+      "id": 201,
+      "kind": "FixedPositionCorrection",
+      "reason": "Squat repeatedly forms the same hand clasp near face.",
+      "previousMetadataSha256": "902ac51b81471d910c71d70ecc3a5ea99599d2ef51fdc802c3adf91f39c6f389",
+      "metadataSha256": "d9018ff8f21a679c783d65425daa81aa5e9f7bcedb09dbd4f4e74f92cc058f12"
+    },
+    {
+      "id": 237,
+      "kind": "FixedPositionCorrection",
+      "reason": "Overhead extensions use one unchanged joined-hand grip.",
+      "previousMetadataSha256": "f8a0bc9047504fe4a71cbccf4086594186ed722dc22134101a76da0620213de4",
+      "metadataSha256": "c7c60df38637b319f4cc3f973ef9b802ce0c4ae14e59d05cc9a814e73fc995cc"
+    },
+    {
+      "id": 242,
+      "kind": "FixedPositionCorrection",
+      "reason": "Complete jazz-square loop crosses with the same foot and repeats the same lead.",
+      "previousMetadataSha256": "3976ae7ceb3d4915d52a682451ad19abd7f48a100d6260c3af202c0409f57cb4",
+      "metadataSha256": "dc63095dc2c5a870afc5ad6b64001d283fc3f57ffc9bf080974eed6187ef2d56"
+    },
+    {
+      "id": 255,
+      "kind": "FixedPositionCorrection",
+      "reason": "Forearms remain crossed in the same upper/lower order.",
+      "previousMetadataSha256": "d9e3a0574267d9e2a502bcae56accf26262f1e92909a4d0f7ab24c124ab37adb",
+      "metadataSha256": "7d11a7966f8b9010d3eaf97def64f83a5f5a31b4b6dc7a6281626ce6c516aae1"
+    },
+    {
+      "id": 291,
+      "kind": "FixedPositionCorrection",
+      "reason": "Alternating strikes retain the same front foot in a staggered stance.",
+      "previousMetadataSha256": "28153c9129412c62af97f78c6f4addb109603969c2e01437ae3cbb5272bf3e52",
+      "metadataSha256": "9217775f92c858823fdaae425dec8f25cc2ab9dd432e96c01fe8a1d84cc192c9"
+    },
+    {
+      "id": 307,
+      "kind": "FixedPositionCorrection",
+      "reason": "One hand supplies forehead resistance throughout hold.",
+      "previousMetadataSha256": "f4d395174721e0138f606809a8c4902a46f4d2a2bd34838df2688e42296c6d37",
+      "metadataSha256": "8aebf6535d49eedf6c234a28b8fea0198047f05c40b8d8662bb668f02cbe97d1"
+    },
+    {
+      "id": 310,
+      "kind": "FixedPositionCorrection",
+      "reason": "Joined hands keep the same order behind head during resistance hold.",
+      "previousMetadataSha256": "4bd1ca5518c73afc70a66ec1e65db5b7bde7091bf5a091afee49573d550f9f1f",
+      "metadataSha256": "a773cdc8f968155c03d9f00beef59f32c1ab9ca0421e3738a2ac00d444df7f59"
+    },
+    {
+      "id": 392,
+      "kind": "SequenceOwnerCorrection",
+      "reason": "Retain the complete fixed-position pairs of every linked member in this owning sequence.",
+      "previousMetadataSha256": "4e61b8d32b4206703ea657645c57a88dbd35c419583fc44eb2bd1508b3e1b578",
+      "metadataSha256": "828bfce69b9953eae8efff8a7d1d405d650c2f59cf242273343415e971cef7c9"
+    },
+    {
+      "id": 394,
+      "kind": "FixedPositionCorrection",
+      "reason": "Joined hand grip stays fixed through alternating cross-body knee sweeps.",
+      "previousMetadataSha256": "6a826d838473bdf18acd56c989cdd0c6eeed10407eefa1bf73320d92f3040725",
+      "metadataSha256": "3a989414a40b3e5bfd2247331dcca6598362a2db82220a43190f6648cbc2488a"
+    },
+    {
+      "id": 400,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same wrist crosses in front during each overhead sweep.",
+      "previousMetadataSha256": "2c2ea25c447ecdb87570ab62c25fd19ee81e0b262b6dcf2f24bea15e42ccea9c",
+      "metadataSha256": "553f554249bf81f890c6c778aa85882a82421b12c059ea27ff043a2ad95b3759"
+    },
+    {
+      "id": 405,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same wrist crosses above the other in low wing-arm phase.",
+      "previousMetadataSha256": "be8678356a201463c6f46f4361dc65b248ba6609ea2d81a47a23d384d8be95d9",
+      "metadataSha256": "840f639a414a5ae2c3f7e50fdffe40679051f886b7dac17f9fa953f4db0de307"
+    },
+    {
+      "id": 417,
+      "kind": "FixedPositionCorrection",
+      "reason": "Interlaced hands remain joined overhead and at toes.",
+      "previousMetadataSha256": "18fbe19c45a6b1720ff2f4bb2785049695898c1bc3cb7c18e6ac0c7443ce31c6",
+      "metadataSha256": "9b6e22bb20b106b7969dc29caebc5a30e23d5369ae7338f577142793edda038a"
+    },
+    {
+      "id": 420,
+      "kind": "SequenceOwnerCorrection",
+      "reason": "Retain the complete fixed-position pairs of every linked member in this owning sequence.",
+      "previousMetadataSha256": "6c8c6304f293fde07aac8d0b6449631ac38ccdb96249d5657e4f292e78198a62",
+      "metadataSha256": "b3661493fad44ef8c58a5933a6ed69a0582c6d7aec810d11b76204143e62788b"
+    },
+    {
+      "id": 426,
+      "kind": "FixedPositionCorrection",
+      "reason": "Both crossed landings repeat the same upper forearm and front crossing foot.",
+      "previousMetadataSha256": "8a5bd9b2b083237cd294400ded8ce3fdfb80f569b3e08dd006df8bd99bf6f837",
+      "metadataSha256": "5875d0a8cf7c514dc95be84db46bfde588cc7dfda81220c71c0adbdaa6bcc409"
+    },
+    {
+      "id": 431,
+      "kind": "FixedPositionCorrection",
+      "reason": "Jump squat repeatedly joins the same grip near forehead.",
+      "previousMetadataSha256": "dbf349ab2f5d8b63eaa03edb5247a1a60885a715076b64f1be6902115af85855",
+      "metadataSha256": "61e3db2bc58eb3baa5e711eb7c03ec5e53ea3bc35f734fbf21e3f8220978e442"
+    },
+    {
+      "id": 432,
+      "kind": "FixedPositionCorrection",
+      "reason": "Clasp order remains fixed while half turns reverse naturally.",
+      "previousMetadataSha256": "79572596c41f73a6fc587e57813aa961946651f63b348c42462b3dabcd787619",
+      "metadataSha256": "a9b81229e6cdb98bc2970b1637af14603782c02356ebad9ff9e951535279e05b"
+    },
+    {
+      "id": 466,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same clasp remains at pelvis through alternating stomps.",
+      "previousMetadataSha256": "725b2432a926aebbb940afd0ef37323afd788c1e9e7a4a35844b3820235d3aa6",
+      "metadataSha256": "96c73db9303e6192ccb94b2e2ea84a7d66029b7e18e2db40a45ac1c80514c13d"
+    },
+    {
+      "id": 474,
+      "kind": "FixedPositionCorrection",
+      "reason": "Hands retain joined order at base of neck.",
+      "previousMetadataSha256": "ac61f12c818c133cd1f8050f2472b0483b2c10b7dbe0a9be9232aa6cc10b49b9",
+      "metadataSha256": "9b36122b1ee35be16f93d873ba784cfaa8e16f2f3fbbed1abeeee029623d22dd"
+    },
+    {
+      "id": 486,
+      "kind": "FixedPositionCorrection",
+      "reason": "Overhead clasp stays joined during alternating knee pulldowns.",
+      "previousMetadataSha256": "8d7af042815352651958a30fcb11f8ad98fb1bb616b90b44e32b5b8c2b0ad00a",
+      "metadataSha256": "09b7bfcda5e3c6bec49f92ad06b5351e6f53e7cb032290d7482894cad3303676"
+    },
+    {
+      "id": 504,
+      "kind": "FixedPositionCorrection",
+      "reason": "One palm remains stacked on the other at crown throughout hold.",
+      "previousMetadataSha256": "fbcb2d5fce37c24e2140679fe4c1db4e7ca8d9723b3a02a3ae254aaabee93e64",
+      "metadataSha256": "cc4b810cb2c5eeff169147346757edea4beac37ac7b02f8623e1750f461ca35a"
+    },
+    {
+      "id": 508,
+      "kind": "FixedPositionCorrection",
+      "reason": "Joined grip remains fixed during forward/overhead raises.",
+      "previousMetadataSha256": "49a0dd484725b0dcbe5ee07ecc57ceaff7dcf9aeab948190a2b6eba37fb20c3d",
+      "metadataSha256": "3d24a416beff0e37a53e97f6088b16ba2684d00a3df4fe40a33a8221db20ad96"
+    },
+    {
+      "id": 530,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same fist-in-palm grip remains under chin as legs alternate.",
+      "previousMetadataSha256": "8bb91f529266704a929b74f69d9504691005661b3c0c1eac33282c161778a275",
+      "metadataSha256": "137fb3bf3c51508643701296f41ecc414d07a4b19e415981c95fcbc766044b45"
+    },
+    {
+      "id": 534,
+      "kind": "FixedPositionCorrection",
+      "reason": "Front kicks alternate but the same fist-in-palm grip remains.",
+      "previousMetadataSha256": "7551203f3e62d3ca623e542a96f535b40c5a68b4cbb9f9efafb8fa56c660574b",
+      "metadataSha256": "ba9bbdbe7267b2c2d382776b0aef0e9c27aecd0094c99bd56f49f002542024ea"
+    },
+    {
+      "id": 536,
+      "kind": "FixedPositionCorrection",
+      "reason": "Joined fist/palm grip remains fixed during alternating side thrust kicks.",
+      "previousMetadataSha256": "d45f1815094760271d478628fcc6b533e096068512056d57f4d254c427a924d5",
+      "metadataSha256": "6f0db338d7919dd9c8e5a4ceb0710cc034f155113eb99ea678ba0e07b7ce7f56"
+    },
+    {
+      "id": 544,
+      "kind": "FixedPositionCorrection",
+      "reason": "Overhead slam retains the same cupped grip.",
+      "previousMetadataSha256": "238f9ef6f6f0b05bf0503cc246dff50f90a7aa23a0d2c821e81f78bdeae4c59b",
+      "metadataSha256": "c0aeeb7d7ab4f489bb5bca376ee52cad77a11608ac585e433d4dba0c83dd2b1c"
+    },
+    {
+      "id": 546,
+      "kind": "FixedPositionCorrection",
+      "reason": "Elbows alternate from one unchanged staggered boxing stance.",
+      "previousMetadataSha256": "d615e8fe818f1b7fdd745b8c3b8dc5605b3cb7d64c9d000799a200e4a9585c08",
+      "metadataSha256": "9fafa7fb750977d0cd344488c51770aa89bd43c796cbc9f4b76a600377128468"
+    },
+    {
+      "id": 612,
+      "kind": "SequenceOwnerCorrection",
+      "reason": "Retain the complete fixed-position pairs of every linked member in this owning sequence.",
+      "previousMetadataSha256": "5429f18e998e8d614efd88122ecc822d3456bc2a2c2eb04e6c0aaa9bcf9cb772",
+      "metadataSha256": "188e42d87af318ce3848747aa259c2a4ed3e0fa48bfe2294aec778a66d633df8"
+    },
+    {
+      "id": 616,
+      "kind": "FixedPositionCorrection",
+      "reason": "Interlaced grip remains fixed through overhead chops.",
+      "previousMetadataSha256": "9eb32578a018e78a20fb8102dc80b9d77e4485a2a4b96935556d5f61707911b4",
+      "metadataSha256": "3ba7cd050c3b8c038af3b39486cfa54ac7c67576cf77313415660e9d18306e5f"
+    },
+    {
+      "id": 626,
+      "kind": "FixedPositionCorrection",
+      "reason": "Squat hold retains a joined hand grip under chin.",
+      "previousMetadataSha256": "0629a6c86a9680f914caf660841ab6ca3094237a352ca5ddd72b30b45d785079",
+      "metadataSha256": "341a1e1a430f42f43a10ca9679a6a59b8f464d4ebcaaedc4c213ac8ccc0f16fa"
+    },
+    {
+      "id": 654,
+      "kind": "FixedPositionCorrection",
+      "reason": "Overhead heel-curl phase forms the same interlaced grip.",
+      "previousMetadataSha256": "aff28d5175f2b8bcc1707bf3f142237c162cc1ff7d46ae9dde2058d991718e31",
+      "metadataSha256": "e857ad3b4512b5e15f7bb5a03f131d4d96a8331e376e9dded6dd06e73e6bb929"
+    },
+    {
+      "id": 712,
+      "kind": "FixedPositionCorrection",
+      "reason": "Behind-back clasp retains hand order throughout chest opener.",
+      "previousMetadataSha256": "563fa1bcbf41dd92ab2b26f937edd9eea02945e682f9cede22cf2ee81956be39",
+      "metadataSha256": "0ff996510618c7b5966dd858c671161ecdbf3d83571ab1af87175f78672cfb38"
+    },
+    {
+      "id": 784,
+      "kind": "SequenceOwnerCorrection",
+      "reason": "Retain the complete fixed-position pairs of every linked member in this owning sequence.",
+      "previousMetadataSha256": "10b5d11827100b290d0ba9514444f08b3676abf80858f1c1141bd06a77241b09",
+      "metadataSha256": "a4481c1e2c8b9ffe9f5d46bfe16c3a5fcabc57ccdbe3bc79fb80a3343153da7f"
+    },
+    {
+      "id": 825,
+      "kind": "FixedPositionCorrection",
+      "reason": "Hand clasp stays fixed through hip hinges and alternating twists.",
+      "previousMetadataSha256": "e763c36a3d561d559724c035e12385b7e2aaa978983414ed2b4b1d342391e8bf",
+      "metadataSha256": "e2c805e205e94fd6a921cc409b5eaf962b29c6f5f0cbb92202db8bcb01d8e741"
+    },
+    {
+      "id": 973,
+      "kind": "FixedPositionCorrection",
+      "reason": "One horizontal palm remains above the other at sternum while lunges alternate.",
+      "previousMetadataSha256": "12bc11ca98eeed84941a4dca2e52512d251bd766a19fcc74c1c4fe313b129a3d",
+      "metadataSha256": "240b160dfa1f71cf5db9ed97046a9b6c5665791bdd79bb23b54a236b8d649687"
+    },
+    {
+      "id": 986,
+      "kind": "FixedPositionCorrection",
+      "reason": "Fixed cupped fist under chin during side-to-side shifts.",
+      "previousMetadataSha256": "f406350732f428ee11d0256cee63df5d589ebb90b157b8dd22c605dd41f30deb",
+      "metadataSha256": "00fd81dc1155c864380b3165ebfe8a91e465f1f5faaacfdaf327d716c2e18e7b"
+    },
+    {
+      "id": 993,
+      "kind": "FixedPositionCorrection",
+      "reason": "Hands remain asymmetrically stacked at abdomen.",
+      "previousMetadataSha256": "97061d23ab01b69ef2770b44338fbf450b335f033fb7d93b841d35e3676bacbc",
+      "metadataSha256": "8d680c5abf3ccc531bfc62f500465b4da1f19d0c7a8b3e026f2bcec22983a3e3"
+    },
+    {
+      "id": 999,
+      "kind": "FixedPositionCorrection",
+      "reason": "Deep-squat walk retains fist-in-palm grip.",
+      "previousMetadataSha256": "146bbd881232d9c6ed2c15734d7f229e232ce556c403aa6ab9d3cc9ba8fef3c9",
+      "metadataSha256": "232f29b06ccdefc70d0879ce2234ad71caed04a23261eed9d6522c7708ca74ef"
+    },
+    {
+      "id": 1000,
+      "kind": "FixedPositionCorrection",
+      "reason": "Ragdoll hold grasps opposite elbows with fixed upper forearm.",
+      "previousMetadataSha256": "a054df253b3efad132e21e52c132fd7691b602020cad1d156442c1960b146492",
+      "metadataSha256": "08f73463c9e07da752d474836393c0a3d24262f0f3a9be18f0ca6866e862e6a9"
+    },
+    {
+      "id": 1028,
+      "kind": "FixedPositionCorrection",
+      "reason": "Hands remain stacked at abdomen throughout chair hold.",
+      "previousMetadataSha256": "fdf789dedf6d15705533086e91c0c9ed8b28ca26f8eb8718f2344850e03e425b",
+      "metadataSha256": "271c016443e1e86f46aff7cae379fef9115d34aa9307501410e84c2dd1bec2eb"
+    },
+    {
+      "id": 1040,
+      "kind": "FixedPositionCorrection",
+      "reason": "Hands remain joined behind head while walking hip circles alternate legs.",
+      "previousMetadataSha256": "a9a9ddd3dd8364fa7efa98cebaca018a08b3a15dfa12327001002ff2f7adf031",
+      "metadataSha256": "9ed327d66c402f97153987d2829b977728ae18032554bf0021169d17cebd854d"
+    },
+    {
+      "id": 1092,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same forearm remains above the other across crossed-arm chest hold.",
+      "previousMetadataSha256": "c96a3e4d9af58a045a9d230ccffd17be33def4f9aab24a8244c3c94b9fcbe6ff",
+      "metadataSha256": "69c26969ae6d192f00ec7761c9168bb47813a37522c19d71b7e60d3157c180c8"
+    },
+    {
+      "id": 1125,
+      "kind": "FixedPositionCorrection",
+      "reason": "Joined hand grip remains fixed while hips dip to alternate sides.",
+      "previousMetadataSha256": "078ba0e81081b3f69240f80c6f7430739333ac4d71d0570d9f23ca1ea898158d",
+      "metadataSha256": "690f865f221c3d10f69bc3768a4b12bc8ea5713d22da2da5a80afe2341204d03"
+    },
+    {
+      "id": 1137,
+      "kind": "FixedPositionCorrection",
+      "reason": "Actual hold frame retains a joined hand grip under chin.",
+      "previousMetadataSha256": "f1567ae1f1d7f87cbdefe1092d5b9bae520de9147f69b7a1f4989a000497b0a0",
+      "metadataSha256": "27c383accccef3d7fc187b4e0e216de6b98f2bb732e56f7f4669f9db13912c24"
+    },
+    {
+      "id": 1144,
+      "kind": "FixedPositionCorrection",
+      "reason": "Same ankle remains crossed over the other through knee push-ups.",
+      "previousMetadataSha256": "1d79a39707150cf1134ce8d721e176f47be9892d0e679c03e9925c13baca097e",
+      "metadataSha256": "2624158602117e70ae04734a792d4ade516d63b5ac92c6a317a168fafe325e85"
+    },
+    {
+      "id": 1179,
+      "kind": "FixedPositionCorrection",
+      "reason": "Fingers remain interlaced behind head while bicycle legs alternate.",
+      "previousMetadataSha256": "e0168d6e5f488ef8f77fe7015baf8028bc5bdf13024ca43529cb79a9ae2de3f9",
+      "metadataSha256": "fe08db7081cb64eb1bc380de2f0a135c68dc91f30e47f6fbdce83255634f05d8"
+    },
+    {
+      "id": 1185,
+      "kind": "FixedPositionCorrection",
+      "reason": "Interlaced grip remains fixed through alternating upper-trunk rotations.",
+      "previousMetadataSha256": "5e483bc928facb3239a5484f448fe5378b9a34c280e8eb04f7bd75d12a71f1b5",
+      "metadataSha256": "1da743212966cf9fbe2bd815a816629c421538066c705db444448bc44ee0ab83"
+    },
+    {
+      "id": 1205,
+      "kind": "FixedPositionCorrection",
+      "reason": "Behind-back grip remains fixed through double-leg kicks.",
+      "previousMetadataSha256": "38b1fcebb9ce69d153dc7c216c8207412a0bcda2e3b680774c1e619c5842878b",
+      "metadataSha256": "981433494b50df35f5c9e10c57bf5d59d5440fe73342e35a10fecc2496a826c6"
+    },
+    {
+      "id": 1208,
+      "kind": "FixedPositionCorrection",
+      "reason": "Forehead rests on the same stacked palms throughout leg lifts.",
+      "previousMetadataSha256": "bdf850298dd7eaeee03b306796af355df69ce7ee2cc3c65b50a0d8f8b650f05e",
+      "metadataSha256": "5501d9a0e20dafcda762dcb38e4f40ba98271b56d985f5686f97643c9fa1e483"
+    },
+    {
+      "id": 1221,
+      "kind": "FixedPositionCorrection",
+      "reason": "Horizontal scissor crossovers retain the same leg above the other throughout full loop.",
+      "previousMetadataSha256": "1d376b986ad35250fac993ecb2bf17033c3901672fa4373631c79fa92fdec33e",
+      "metadataSha256": "6dc2989a92f3553f9597cff6b9bc17e8fe3c640f20efaf478ffb63ff360ca467"
+    },
+    {
+      "id": 1270,
+      "kind": "FixedPositionCorrection",
+      "reason": "Crawl repeats the same sit-through leg and planted supporting hand.",
+      "previousMetadataSha256": "d2de23de1de68b16bf974cd2a71d3796814cfa79b2a6e6facd29cc6c90086681",
+      "metadataSha256": "20215e928c062b7cd3e4dbb8045e6e0328403324154f51496f82e0a7d327a54e"
+    },
+    {
+      "id": 1421,
+      "kind": "FixedPositionCorrection",
+      "reason": "Each box-jump loop steps down with the same foot first.",
+      "previousMetadataSha256": "c975e992056974590333623f711435eba60c92c77934c0ed6eab274641ed4647",
+      "metadataSha256": "e9bc1b18fb296b142382869198cd24f0834198d238f6ead31aaf799b2803c3d7"
+    },
+    {
+      "id": 1427,
+      "kind": "FixedPositionCorrection",
+      "reason": "Crossed-arm order remains fixed on chest through hip thrusts.",
+      "previousMetadataSha256": "5ebfe02c71e201bca569d9f137e6e66d3a88d2be2384a66a11f73a786be6a8b4",
+      "metadataSha256": "7a1dc5df3e6f42ba43625a79760a9b7a736681fa833bd48c44da688a6358130e"
+    },
+    {
+      "id": 1430,
+      "kind": "FixedPositionCorrection",
+      "reason": "Interlaced hands retain order through elevated forearm pike movement.",
+      "previousMetadataSha256": "161da0e19a3d7b19f34e2cf4a4c6d286e3adfbdaf101652a696e60020753f791",
+      "metadataSha256": "a272cb19efb7963b8ce2f1f60f50b267c007670f6564065b8dd8357f7140cc7e"
+    },
+    {
+      "id": 1725,
+      "kind": "FixedPositionCorrection",
+      "reason": "One hand supplies both alternating nostril closures throughout.",
+      "previousMetadataSha256": "89c9e5b0cf89442432173e903b872a7233de7c224ab558c2d2b35408c515ecdd",
+      "metadataSha256": "9052aa6350969e4a4b8a690c259a513adf3f33bc0e256ed76893e41235851218"
+    }
+  ]
+}

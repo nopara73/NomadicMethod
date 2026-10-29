@@ -69,6 +69,7 @@ public static class WorkoutCatalogPolicy
         IReadOnlyList<Exercise> catalog, int activeCatalogRevision,
         IReadOnlySet<int>? singleDirectionExerciseIds = null)
     {
+        catalog = WorkoutProtocolHistory.ForWorkout(catalog, activeCatalogRevision);
         if (activeCatalogRevision is > 0 and < 99)
             catalog = catalog.Select(exercise => exercise.Id is 1223 or 1413
                 ? exercise.WithWorkoutMetadata(ExerciseSideSequence.Alternating,

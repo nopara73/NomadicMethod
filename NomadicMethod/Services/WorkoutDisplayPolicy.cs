@@ -129,12 +129,14 @@ public static class WorkoutDisplayPolicy
             ExerciseSequenceSideCue.ScreenRight or
                 ExerciseSequenceSideCue.ShownLeadStance or
                 ExerciseSequenceSideCue.ShownHandPosition or
-                ExerciseSequenceSideCue.ShownHandAndFootPosition =>
+                ExerciseSequenceSideCue.ShownHandAndFootPosition or
+                ExerciseSequenceSideCue.ShownFootPosition =>
                 WorkoutBlockAccent.Blue,
             ExerciseSequenceSideCue.ScreenLeft or
                 ExerciseSequenceSideCue.OppositeLeadStance or
                 ExerciseSequenceSideCue.OppositeHandPosition or
-                ExerciseSequenceSideCue.OppositeHandAndFootPosition =>
+                ExerciseSequenceSideCue.OppositeHandAndFootPosition or
+                ExerciseSequenceSideCue.OppositeFootPosition =>
                 WorkoutBlockAccent.Red,
             _ => group.SequenceDirectionCue switch
             {

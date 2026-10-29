@@ -2547,6 +2547,8 @@ function movementCueDescription(sideCue, directionCue) {
     ScreenRight: "Right side",
     ShownLeadStance: "Shown lead stance",
     OppositeLeadStance: "Opposite lead stance",
+    ShownFootPosition: "Shown foot position",
+    OppositeFootPosition: "Opposite foot position",
     ShownHandPosition: "Shown hand position",
     OppositeHandPosition: "Opposite hand position",
     ShownHandAndFootPosition: "Shown hands and feet",

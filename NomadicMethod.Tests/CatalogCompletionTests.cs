@@ -83,10 +83,10 @@ public sealed class CatalogCompletionTests
     [Theory]
     [InlineData(10, true, false, 1029, "r10.anterior-lateral-lower-leg-dorsal-foot")]
     [InlineData(10, true, true, 1029, "r10.anterior-lateral-lower-leg-dorsal-foot")]
-    [InlineData(20, false, false, 1028, "r20.accessory-hip-adductors")]
-    [InlineData(20, false, true, 1028, "r20.accessory-hip-adductors")]
-    [InlineData(30, false, false, 1028, "r30.accessory-hip-adductors")]
-    [InlineData(30, false, true, 1028, "r30.accessory-hip-adductors")]
+    [InlineData(20, false, false, 1031, "r20.accessory-hip-adductors")]
+    [InlineData(20, false, true, 1031, "r20.accessory-hip-adductors")]
+    [InlineData(30, false, false, 1031, "r30.accessory-hip-adductors")]
+    [InlineData(30, false, true, 1031, "r30.accessory-hip-adductors")]
     public void ReviewedHeelDigsAndChairSqueezeCompleteHardFloorWorkouts(
         int minutes, bool insect, bool light, int expectedId, string selectionKey)
     {
@@ -270,14 +270,14 @@ public sealed class CatalogCompletionTests
         Assert.Equal(2, chair.MuscularDemand);
         Assert.Equal(969, chair.SessionMovementId);
         Assert.Equal(969, catalog.Single(exercise => exercise.Id == 969).SessionMovementId);
-        Assert.Equal(new[] { 784, 969, 1000 }, catalog.Single(exercise => exercise.Id == 784)
+        Assert.Equal(new[] { 784, 969, 1000, 1000 }, catalog.Single(exercise => exercise.Id == 784)
             .SequenceBlocks.Select(block => block.ExerciseId));
         Assert.Equal(CanonicalMuscleGroup.HipFlexors, heel.PrimaryCanonicalGroup);
         Assert.Equal(new[] { CanonicalMuscleGroup.AnteriorLateralLowerLegAndDorsalFoot },
             heel.SecondaryCanonicalGroups);
         Assert.Equal(1, heel.MuscularDemand);
         Assert.Equal(ExerciseSideSequence.Alternating, heel.SideSequence);
-        Assert.Single(chair.SequenceBlocks);
+        Assert.Equal(2, chair.SequenceBlocks.Length);
         Assert.Single(heel.SequenceBlocks);
         Assert.False(WorkoutModifierPolicy.IsCompatible(chair, WorkoutModifiers.Insect));
         Assert.False(WorkoutModifierPolicy.IsCompatible(

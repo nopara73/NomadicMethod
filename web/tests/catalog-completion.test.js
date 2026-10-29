@@ -64,8 +64,8 @@ test("accepted gaps apply only to their declared modifier combinations", () => {
 
 for (const [minutes, insect, expectedId, selectionKey] of [
   [10, true, 1029, "r10.anterior-lateral-lower-leg-dorsal-foot"],
-  [20, false, 1028, "r20.accessory-hip-adductors"],
-  [30, false, 1028, "r30.accessory-hip-adductors"],
+  [20, false, 1031, "r20.accessory-hip-adductors"],
+  [30, false, 1031, "r30.accessory-hip-adductors"],
 ]) for (const light of [false, true]) {
   test(`reviewed heel digs and chair squeeze complete ${minutes}-minute Hard Floor workout, Light=${light}`, () => {
     for (const randomValue of [0.01, 0.2, 0.4]) {
@@ -221,12 +221,12 @@ test("new direct movements preserve existing anatomy, sequence and feedback", ()
   assert.equal(getSessionMovementId(chair), 969);
   assert.equal(getSessionMovementId(catalog.find((exercise) => exercise.id === 969)), 969);
   assert.deepEqual(catalog.find((exercise) => exercise.id === 784).sequenceBlocks
-    .map((block) => block.exerciseId), [784, 969, 1000]);
+    .map((block) => block.exerciseId), [784, 969, 1000, 1000]);
   assert.equal(heel.primaryCanonicalGroup, "HipFlexors");
   assert.deepEqual(heel.secondaryCanonicalGroups, ["AnteriorLateralLowerLegAndDorsalFoot"]);
   assert.equal(heel.muscularDemand, 1);
   assert.equal(heel.sideSequence, "Alternating");
-  assert.equal(chair.sequenceBlocks.length, 1);
+  assert.equal(chair.sequenceBlocks.length, 2);
   assert.equal(heel.sequenceBlocks.length, 1);
   assert.equal(isCompatibleWithWorkoutModifiers(chair, WORKOUT_MODIFIERS.Insect), false);
   assert.equal(isCompatibleWithWorkoutModifiers(catalog.find((exercise) => exercise.id === 194),
