@@ -210,7 +210,8 @@ public sealed partial class ExerciseSessionService
         Exercise? current = placements.FirstOrDefault(p => p.Anchor.Id == prefixOrder.LastOrDefault())?.Root;
         state.ActiveSelectionGroupOrder = prefixOrder.Concat(WorkoutSchedulePolicy.OrderBySetup(
                 placements.Where(p => !prefixOrder.Contains(p.Anchor.Id)),
-                p => p.Root, p => p.Anchor.Order, _exercisesById, state.ActiveWorkoutModifiers, current)
+                p => p.Root, p => p.Anchor.Order, _exercisesById, state.ActiveWorkoutModifiers, current,
+                _planningCancellationToken)
             .Select(p => p.Anchor.Id)).ToList();
     }
 }

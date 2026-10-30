@@ -50,6 +50,21 @@ public sealed partial class ExerciseSessionService
     private readonly Func<DateTimeOffset> _utcNowProvider;
     private readonly TimeZoneInfo _localTimeZone;
     private readonly IReadOnlyDictionary<int, int[][]> _fitnessRatings;
+    private CancellationToken _planningCancellationToken;
+
+    internal IDisposable ObservePlanningCancellation(CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var scope = new PlanningCancellationScope(this, _planningCancellationToken);
+        _planningCancellationToken = cancellationToken;
+        return scope;
+    }
+
+    private sealed class PlanningCancellationScope(
+        ExerciseSessionService service, CancellationToken previous) : IDisposable
+    {
+        public void Dispose() => service._planningCancellationToken = previous;
+    }
 
     public ExerciseSessionService(
         IReadOnlyList<Exercise> exercises,
@@ -72,6 +87,7 @@ public sealed partial class ExerciseSessionService
     // Cache only the derived catalog; the saved state remains authoritative.
     private void UseWorkoutCatalog(WorkoutState state)
     {
+        _planningCancellationToken.ThrowIfCancellationRequested();
         ArgumentNullException.ThrowIfNull(state);
         bool hasWorkout = state.ActiveWorkoutMinutes > 0 || state.ActiveCatalogRevision > 0;
         int revision = hasWorkout
@@ -1864,6 +1880,7 @@ public sealed partial class ExerciseSessionService
                      exercise.SequenceBlocks.Length > 0 &&
                      GetSequenceRoot(exercise).Id == exercise.Id))
         {
+            _planningCancellationToken.ThrowIfCancellationRequested();
             HashSet<string> allowedGroupIds = groups
                 .Where(group => CalculateIsAllowed(exercise, group))
                 .Select(group => group.Id)
@@ -2238,7 +2255,7 @@ public sealed partial class ExerciseSessionService
         AtomicSequenceLineup? solution = AtomicSequenceLineupSolver.Solve(
             groups.Count,
             state.ActiveWorkoutMinutes - reservedRepeatMinutes,
-            atomicCandidates);
+            atomicCandidates, _planningCancellationToken);
         if (solution is null && state.ActiveCoverageAccountingVersion > 0)
         {
             // Shared coverage can make a complete sequence fit when separate
@@ -2256,10 +2273,10 @@ public sealed partial class ExerciseSessionService
                     atomicCandidates.Add(new(candidate.Id, WorkoutModifierPolicy.GetSessionMovementId(candidate), mask, candidate.SequenceBlocks.Length, utilities, candidateIndex));
                 }
             }
-            solution = AtomicSequenceLineupSolver.Solve(groups.Count, state.ActiveWorkoutMinutes - reservedRepeatMinutes, atomicCandidates);
+            solution = AtomicSequenceLineupSolver.Solve(groups.Count, state.ActiveWorkoutMinutes - reservedRepeatMinutes, atomicCandidates, _planningCancellationToken);
         }
         solution ??= AtomicSequenceLineupSolver.SolveAllowingRepeatedMovements(
-            groups.Count, state.ActiveWorkoutMinutes - reservedRepeatMinutes, atomicCandidates);
+            groups.Count, state.ActiveWorkoutMinutes - reservedRepeatMinutes, atomicCandidates, _planningCancellationToken);
         if (solution is null)
         {
             int movementCount = atomicCandidates
@@ -2611,6 +2628,7 @@ public sealed partial class ExerciseSessionService
     {
         for (int index = items.Count - 1; index > 0; index--)
         {
+            _planningCancellationToken.ThrowIfCancellationRequested();
             int swapIndex = _random.Next(index + 1);
             (items[index], items[swapIndex]) = (items[swapIndex], items[index]);
         }
@@ -5492,7 +5510,8 @@ public sealed partial class ExerciseSessionService
                 .ThenBy(p => p.Anchor.Order).ToArray();
 
         return WorkoutSchedulePolicy.OrderBySetup(placementArray,
-            p => p.Root, p => p.Anchor.Order, _exercisesById, state.ActiveWorkoutModifiers);
+            p => p.Root, p => p.Anchor.Order, _exercisesById, state.ActiveWorkoutModifiers,
+            cancellationToken: _planningCancellationToken);
     }
 
     private void UpdateSelectionOrderAfterReconfiguration(
@@ -5528,6 +5547,7 @@ public sealed partial class ExerciseSessionService
         IReadOnlySet<string>? lockedSelectionGroupIds = null,
         IReadOnlyList<SelectedSequencePlacement>? selectedPlacements = null)
     {
+        _planningCancellationToken.ThrowIfCancellationRequested();
         lockedSelectionGroupIds ??= new HashSet<string>(StringComparer.Ordinal);
         SelectedSequencePlacement[] rankedPlacements =
             (selectedPlacements ?? GetSelectedSequencePlacements(state))
@@ -5626,6 +5646,7 @@ public sealed partial class ExerciseSessionService
             p => IsSequenceKept(state, p.Anchor.Id, p.Root));
         while (remainingMinutes > 0)
         {
+            _planningCancellationToken.ThrowIfCancellationRequested();
             // Compute every candidate's next-set phase in one prefix scan.
             // The former sort comparator rescanned the complete schedule for
             // both sides of every comparison.
@@ -5849,6 +5870,7 @@ public sealed partial class ExerciseSessionService
              pass < WorkoutMuscleBalancePolicy.MaximumRebalancePasses;
              pass++)
         {
+            _planningCancellationToken.ThrowIfCancellationRequested();
             string signature = string.Join(
                 ',',
                 groups.Select(group => state.SelectedExerciseIds.GetValueOrDefault(
@@ -5913,6 +5935,7 @@ public sealed partial class ExerciseSessionService
                     StringComparer.Ordinal);
             foreach (var candidateMetadata in rebalanceCandidates)
             {
+                _planningCancellationToken.ThrowIfCancellationRequested();
                 Exercise candidate = candidateMetadata.Candidate;
                 int candidateMovementId = candidateMetadata.MovementId;
                 if (currentRootIds.Contains(candidate.Id) ||
@@ -6349,8 +6372,7 @@ public sealed partial class ExerciseSessionService
         var keyParts = new List<object>
         {
             state.ActiveCoverageAccountingVersion > 0
-                ? string.Join(',', WorkoutMuscleBalancePolicy.CalculateCanonicalLoadEighthUnits(
-                    root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId]))
+                ? string.Join(',', GetSequenceMuscleLoad(root).Canonical
                     .OrderBy(e => e.Key).Select(e => $"{e.Key}={e.Value}"))
                 : string.Empty,
             IsDemandZeroSequence(root),
@@ -6400,12 +6422,9 @@ public sealed partial class ExerciseSessionService
         {
             int setCount = allocation.SetCountsBySelectionGroupId
                 .GetValueOrDefault(placement.Anchor.Id, 1);
-            foreach (Exercise exercise in placement.Root.SequenceBlocks.Select(block => _exercisesById[block.ExerciseId]))
+            foreach ((CanonicalMuscleGroup muscle, int load) in GetSequenceMuscleLoad(placement.Root).Canonical)
             {
-                WorkoutMuscleBalancePolicy.AddExerciseLoad(
-                    loadEighthUnits,
-                    exercise,
-                    setCount);
+                loadEighthUnits[muscle] = loadEighthUnits.GetValueOrDefault(muscle) + load * setCount;
             }
         }
 

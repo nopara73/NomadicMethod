@@ -7,8 +7,8 @@ public sealed class WorkoutPreparationQueue
     public async Task<T> RunAsync<T>(Func<T> prepare, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(prepare);
-        // Planning is synchronous. Cancelled requests waiting for the current
-        // calculation must never compete with its replacement for CPU time.
+        // Planning is synchronous and cooperatively observes this token. Stop
+        // stale calculations before their replacements acquire the CPU gate.
         await _gate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {

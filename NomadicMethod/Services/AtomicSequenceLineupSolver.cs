@@ -25,8 +25,10 @@ internal static class AtomicSequenceLineupSolver
     public static AtomicSequenceLineup? SolveAllowingRepeatedMovements(
         int groupCount,
         int workoutMinutes,
-        IReadOnlyList<AtomicSequenceCandidate> sourceCandidates)
+        IReadOnlyList<AtomicSequenceCandidate> sourceCandidates,
+        CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         // Separate complete placements may repeat a movement. Only the solver's
         // occupancy keys change: exercise identities, blocks and utilities stay
         // intact, and aliases still compete for the same placement.
@@ -43,14 +45,16 @@ internal static class AtomicSequenceLineupSolver
                 return candidate with { MovementId = occupancyKey };
             })
             .ToArray();
-        return Solve(groupCount, workoutMinutes, repeatableCandidates);
+        return Solve(groupCount, workoutMinutes, repeatableCandidates, cancellationToken);
     }
 
     public static AtomicSequenceLineup? Solve(
         int groupCount,
         int workoutMinutes,
-        IReadOnlyList<AtomicSequenceCandidate> sourceCandidates)
+        IReadOnlyList<AtomicSequenceCandidate> sourceCandidates,
+        CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         ArgumentOutOfRangeException.ThrowIfLessThan(groupCount, 1);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(groupCount, 63);
         ArgumentOutOfRangeException.ThrowIfLessThan(workoutMinutes, 1);
@@ -85,7 +89,7 @@ internal static class AtomicSequenceLineupSolver
                 allGroupsMask,
                 [],
                 new HashSet<int>(),
-                singletonCandidatesByGroup);
+                singletonCandidatesByGroup, cancellationToken);
         }
 
         BigInteger[] maximumUtilityByGroup = Enumerable.Range(0, groupCount)
@@ -107,12 +111,13 @@ internal static class AtomicSequenceLineupSolver
             allGroupsMask,
             [],
             new HashSet<int>(),
-            singletonCandidatesByGroup);
+            singletonCandidatesByGroup, cancellationToken);
         var selected = new List<AtomicSequenceCandidate>();
         var selectedMovementIds = new HashSet<int>();
 
         void Search(ulong decidedMask, ulong coveredMask, BigInteger utility)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             BigInteger upperBound = utility;
             for (int groupIndex = 0; groupIndex < groupCount; groupIndex++)
             {
@@ -134,7 +139,7 @@ internal static class AtomicSequenceLineupSolver
                     allGroupsMask & ~coveredMask,
                     selected,
                     selectedMovementIds,
-                    singletonCandidatesByGroup);
+                    singletonCandidatesByGroup, cancellationToken);
                 if (completed is not null &&
                     (best is null || completed.Utility > best.Utility))
                 {
@@ -188,8 +193,10 @@ internal static class AtomicSequenceLineupSolver
         ulong singletonGroupsMask,
         IReadOnlyList<AtomicSequenceCandidate> fixedCandidates,
         IReadOnlySet<int> fixedMovementIds,
-        IReadOnlyList<AtomicSequenceCandidate[]> singletonCandidatesByGroup)
+        IReadOnlyList<AtomicSequenceCandidate[]> singletonCandidatesByGroup,
+        CancellationToken cancellationToken)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         int[] singletonGroupIndexes = Enumerable.Range(0, groupCount)
             .Where(groupIndex =>
                 (singletonGroupsMask & (1UL << groupIndex)) != 0)
@@ -258,7 +265,7 @@ internal static class AtomicSequenceLineupSolver
             int[] assignment = SolveMaximumWeightAssignment(
                 utilities,
                 allowed,
-                maximumUtility);
+                maximumUtility, cancellationToken);
             for (int row = 0; row < singletonGroupIndexes.Length; row++)
             {
                 int column = assignment[row];
@@ -387,7 +394,8 @@ internal static class AtomicSequenceLineupSolver
     private static int[] SolveMaximumWeightAssignment(
         BigInteger[,] utilities,
         bool[,] allowed,
-        BigInteger maximumUtility)
+        BigInteger maximumUtility,
+        CancellationToken cancellationToken)
     {
         int rowCount = utilities.GetLength(0);
         int columnCount = utilities.GetLength(1);
@@ -415,6 +423,7 @@ internal static class AtomicSequenceLineupSolver
         var previousColumn = new int[columnCount + 1];
         for (int row = 1; row <= rowCount; row++)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             matchedRowByColumn[0] = row;
             int column = 0;
             var minimumReducedCost = new BigInteger?[columnCount + 1];

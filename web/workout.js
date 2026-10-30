@@ -8509,7 +8509,7 @@ export class WorkoutSession {
     const sequenceExercises = this.getSequenceExercises(root);
     const keyParts = [
       this.state.activeCoverageAccountingVersion > 0
-        ? [...calculateCanonicalMuscleLoadEighthUnits(root.sequenceBlocks.map(block => this.exercisesById.get(block.exerciseId)))]
+        ? [...this.getSequenceMuscleLoad(root).canonical]
           .sort(([a], [b]) => a.localeCompare(b)).map(([muscle, load]) => `${muscle}=${load}`).join(",")
         : "",
       Number(this.isDemandZeroSequence(root)),
@@ -8545,12 +8545,8 @@ export class WorkoutSession {
       const setCount = allocation.setCountsBySelectionGroupId.get(
         placement.anchor.id,
       ) ?? 1;
-      for (const exercise of placement.root.sequenceBlocks.map(block => this.exercisesById.get(block.exerciseId))) {
-        addExerciseMuscleLoadEighthUnits(
-          loadEighthUnits,
-          exercise,
-          setCount,
-        );
+      for (const [muscle, load] of this.getSequenceMuscleLoad(placement.root).canonical) {
+        loadEighthUnits.set(muscle, (loadEighthUnits.get(muscle) ?? 0) + load * setCount);
       }
     }
     return loadEighthUnits;

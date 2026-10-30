@@ -39,8 +39,10 @@ public static class WorkoutSchedulePolicy
     public static T[] OrderBySetup<T>(IEnumerable<T> selections,
         Func<T, Exercise> root, Func<T, int> anatomyOrder,
         IReadOnlyDictionary<int, Exercise> exercisesById, WorkoutModifiers modifiers,
-        Exercise? current = null)
+        Exercise? current = null,
+        CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         T[] ranked = selections.OrderBy(item => GetMuscularDemandPriority(
                 GetSequenceMuscularDemand(root(item), exercisesById)))
             .ThenBy(anatomyOrder).ToArray();
@@ -95,6 +97,7 @@ public static class WorkoutSchedulePolicy
         var memo = new Dictionary<(int Remaining, int Previous), int>();
         int Best(int remaining, int previous)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             if (remaining == 0) return 0;
             if (memo.TryGetValue((remaining, previous), out int saved)) return saved;
             Setup? from = previous < 0 ? start :

@@ -422,20 +422,23 @@ public partial class MainActivity : Activity
                     "Unable to clone the workout state for preparation.");
             preparedState.OuraRecovery = recoveryContext;
             var preparationService = new ExerciseSessionService(exercises, fitnessRatings: fitnessRatings);
-            if (isReconfiguration)
+            using (preparationService.ObservePlanningCancellation(cancellationToken))
             {
-                preparationService.ReconfigureActiveWorkout(
-                    preparedState,
-                    modifiers,
-                    currentWorkoutGroupId!);
-                preparationService.ResizeActiveWorkout(preparedState, minutes);
-            }
-            else
-            {
-                preparationService.PrepareWorkout(
-                    preparedState,
-                    minutes,
-                    modifiers);
+                if (isReconfiguration)
+                {
+                    preparationService.ReconfigureActiveWorkout(
+                        preparedState,
+                        modifiers,
+                        currentWorkoutGroupId!);
+                    preparationService.ResizeActiveWorkout(preparedState, minutes);
+                }
+                else
+                {
+                    preparationService.PrepareWorkout(
+                        preparedState,
+                        minutes,
+                        modifiers);
+                }
             }
             return new PreparedWorkout(
                 preparedState,

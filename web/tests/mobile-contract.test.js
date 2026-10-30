@@ -559,11 +559,11 @@ test("web and mobile apply the same multi-resolution muscle balancing", () => {
   );
   assert.match(
     sessionService,
-    /CalculateScheduledCanonicalLoadEighthUnits[\s\S]*WorkoutMuscleBalancePolicy\.AddExerciseLoad/,
+    /CalculateScheduledCanonicalLoadEighthUnits[\s\S]*GetSequenceMuscleLoad\(placement\.Root\)\.Canonical[\s\S]*load \* setCount/,
   );
   assert.match(
     workoutModule,
-    /calculateScheduledCanonicalLoadEighthUnits[\s\S]*addExerciseMuscleLoadEighthUnits/,
+    /calculateScheduledCanonicalLoadEighthUnits[\s\S]*this\.getSequenceMuscleLoad\(placement\.root\)\.canonical[\s\S]*load \* setCount/,
   );
   assert.match(
     sessionService,
@@ -1780,6 +1780,12 @@ test("Start activates an off-thread prepared workout on Android and web", async 
     /QueueWorkoutPreparation\([\s\S]*_workoutPreparationQueue\.RunAsync\([\s\S]*PrepareWorkout\([\s\S]*StartSelectedWorkout\([\s\S]*ActivatePreparedWorkout/,
   );
   assert.match(preparationQueue, /await _gate\.WaitAsync\(cancellationToken\)[\s\S]*Task\.Run\([\s\S]*prepare\(\)[\s\S]*finally[\s\S]*_gate\.Release\(\)/);
+  assert.match(mainActivity,
+    /using \(preparationService\.ObservePlanningCancellation\(cancellationToken\)\)[\s\S]*ReconfigureActiveWorkout\([\s\S]*ResizeActiveWorkout\([\s\S]*PrepareWorkout\(/);
+  assert.match(sessionService,
+    /AtomicSequenceLineupSolver\.Solve\([\s\S]*atomicCandidates, _planningCancellationToken/);
+  assert.match(webApp,
+    /function cancelWorkoutPreparation\(\)[\s\S]*workoutPreparationWorker\?\.terminate\(\)/);
   assert.match(
     webApp,
     /queueWorkoutPreparation\([\s\S]*new Worker\([\s\S]*ensureWorkoutPrepared\([\s\S]*activatePreparedWorkout\(\)/,
