@@ -1717,6 +1717,21 @@ test("Android device builds embed their managed assemblies", async () => {
   assert.match(project, /<EmbedAssembliesIntoApk>true<\/EmbedAssembliesIntoApk>/);
 });
 
+test("phone Debug builds use optimized JIT execution for workout planning", async () => {
+  const project = await source("NomadicMethod", "NomadicMethod.csproj");
+  const debugProperties = project.match(/<PropertyGroup Condition="[^\"]*Debug[^\"]*">([\s\S]*?)<\/PropertyGroup>/)?.[1];
+  assert.ok(debugProperties, "The phone's Debug runtime policy must be explicit.");
+  assert.match(debugProperties, /<Optimize>true<\/Optimize>/);
+  assert.match(debugProperties, /<AndroidUseInterpreter>false<\/AndroidUseInterpreter>/);
+  assert.match(debugProperties, /<UseInterpreter>false<\/UseInterpreter>/);
+  assert.match(debugProperties, /<AndroidUseDebugRuntime>true<\/AndroidUseDebugRuntime>/);
+  assert.match(debugProperties, /<NomadicDebuggable>true<\/NomadicDebuggable>/);
+  assert.match(project, /<NomadicDebuggable>false<\/NomadicDebuggable>/);
+  assert.match(project, /nomadicDebuggable=\$\(NomadicDebuggable\)/);
+  const manifest = await source("NomadicMethod", "AndroidManifest.xml");
+  assert.match(manifest, /android:debuggable="\$\{nomadicDebuggable\}"/);
+});
+
 test("duration controls do not wait for catalog startup on either platform", () => {
   const mobileCreate = methodBody(
     mainActivity,

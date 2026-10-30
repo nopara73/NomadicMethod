@@ -6,8 +6,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationId>com.local.nomadicmethod</ApplicationId>
-    <ApplicationVersion>186</ApplicationVersion>
-    <ApplicationDisplayVersion>3.62</ApplicationDisplayVersion>
+    <ApplicationVersion>187</ApplicationVersion>
+    <ApplicationDisplayVersion>3.63</ApplicationDisplayVersion>
+    <NomadicDebuggable>false</NomadicDebuggable>
     <!-- Device deployments must remain launchable without transient fast-deploy files. -->
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <!--
@@ -15,6 +16,21 @@
       To learn more, see: https://learn.microsoft.com/dotnet/core/deploying/trimming/trimming-options#trimming-granularity
     -->
     <TrimMode>full</TrimMode>
+  </PropertyGroup>
+
+  <!-- Physical-phone Debug deployments must use optimized JIT execution.
+       The interpreter makes long-workout planning visibly stall. The package
+       remains an Android-debuggable Debug package with run-as access. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <Optimize>true</Optimize>
+    <AndroidUseInterpreter>false</AndroidUseInterpreter>
+    <UseInterpreter>false</UseInterpreter>
+    <AndroidUseDebugRuntime>true</AndroidUseDebugRuntime>
+    <NomadicDebuggable>true</NomadicDebuggable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AndroidManifestPlaceholders>nomadicDebuggable=$(NomadicDebuggable)</AndroidManifestPlaceholders>
   </PropertyGroup>
 
   <ItemGroup>
