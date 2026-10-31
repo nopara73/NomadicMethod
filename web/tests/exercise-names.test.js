@@ -18,6 +18,17 @@ test('the Android app packages the reviewed name table used at startup', async (
   'The production assembly must embed the same name table as the domain tests.');
 });
 
+test('Android stores unique exercise identities and restores reviewed display aliases', async () => {
+  const database = await readFile(new URL('../../NomadicMethod/Data/SqliteExerciseDatabase.cs', import.meta.url), 'utf8');
+  assert.equal([...database.matchAll(/values\.Put\("name", ExerciseNamePolicy\.IdentityName\(exercise\.Id, exercise\.Name\)\)/g)].length, 2,
+    'Both insertion and metadata updates must persist stable identities, not duplicate display labels.');
+  assert.match(database, /Name = ExerciseNamePolicy\.DisplayName\(id, cursor\.GetString\(1\)/);
+  assert.match(database, /!ExerciseNamePolicy\.HasDistinctIdentityNames\(exercises\)/);
+  assert.match(database, /current\.Name != ExerciseNamePolicy\.IdentityName\(/);
+  assert.ok(new Set(catalog.map(exercise => exercise.name)).size < catalog.length);
+  assert.equal(new Set(catalog.map(exercise => exerciseIdentityName(exercise.id, exercise.name))).size, catalog.length);
+});
+
 test('shared reviewed names are display aliases of the existing movements', () => {
   assert.equal(policy.names.length, 709);
   for (const entry of policy.names) {

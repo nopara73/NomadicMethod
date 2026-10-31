@@ -587,7 +587,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             exercise,
             includeId: false,
             includeIdentity: false);
-        values.Put("name", exercise.Name);
+        values.Put("name", ExerciseNamePolicy.IdentityName(exercise.Id, exercise.Name));
         int updated = database.Update(
             ExerciseTable,
             values,
@@ -613,7 +613,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
 
         if (includeIdentity)
         {
-            values.Put("name", exercise.Name);
+            values.Put("name", ExerciseNamePolicy.IdentityName(exercise.Id, exercise.Name));
             values.Put("video", exercise.Video);
         }
         values.Put("practice", exercise.Practice);
@@ -729,7 +729,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
         foreach ((int exerciseId, StoredExerciseSnapshot previous) in before)
         {
             if (!after.TryGetValue(exerciseId, out StoredExerciseSnapshot? current) ||
-                current.Name != bundledById[exerciseId].Name ||
+                current.Name != ExerciseNamePolicy.IdentityName(
+                    exerciseId, bundledById[exerciseId].Name) ||
                 current.Video != previous.Video ||
                 current.Score != previous.Score ||
                 string.IsNullOrWhiteSpace(current.Video))
@@ -779,8 +780,8 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             exercises.Add(new Exercise
             {
                 Id = id,
-                Name = cursor.GetString(1)
-                    ?? throw new InvalidOperationException("An exercise has no name."),
+                Name = ExerciseNamePolicy.DisplayName(id, cursor.GetString(1)
+                    ?? throw new InvalidOperationException("An exercise has no name.")),
                 Video = cursor.GetString(2)
                     ?? throw new InvalidOperationException("An exercise has no video."),
                 PrimaryCanonicalGroup = assignments.Primary.Value,
@@ -1127,7 +1128,7 @@ public sealed class SqliteExerciseDatabase : SQLiteOpenHelper, IExerciseDatabase
             hasUndersizedFloorAndLocomotionCatalog ||
             !WorkoutModifierPolicy.IsCatalogMetadataComplete(exercises) ||
             exercises.Select(exercise => exercise.Id).Distinct().Count() != exercises.Count ||
-            exercises.Select(exercise => exercise.Name).Distinct().Count() != exercises.Count ||
+            !ExerciseNamePolicy.HasDistinctIdentityNames(exercises) ||
             exercises.Select(exercise => exercise.Video).Distinct().Count() != exercises.Count ||
             violatesRequirements ||
             hasInvalidInitialScore ||

@@ -1,7 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Nodes;
 using NomadicMethod.Models;
 using NomadicMethod.Services;
+using Microsoft.Data.Sqlite;
 
 namespace NomadicMethod.Tests;
 
@@ -14,6 +16,63 @@ public sealed class ExerciseNamePolicyTests
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             Converters = { new JsonStringEnumConverter() },
         })!;
+
+    [Fact]
+    public void ReviewedDisplayAliasesFitTheExistingUniqueIdentitySchema()
+    {
+        Exercise[] catalog = Catalog();
+        Assert.Contains(catalog.GroupBy(exercise => exercise.Name), group => group.Count() > 1);
+        Assert.True(ExerciseNamePolicy.HasDistinctIdentityNames(catalog));
+        using var database = new SqliteConnection("Data Source=:memory:");
+        database.Open();
+        using SqliteCommand command = database.CreateCommand();
+        command.CommandText = "CREATE TABLE exercises (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, video TEXT NOT NULL UNIQUE, score INTEGER NOT NULL)";
+        command.ExecuteNonQuery();
+        foreach (Exercise exercise in catalog)
+        {
+            command.CommandText = "INSERT INTO exercises VALUES ($id, $name, $video, $score)";
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("$id", exercise.Id);
+            command.Parameters.AddWithValue("$name", ExerciseNamePolicy.IdentityName(exercise.Id, exercise.Name));
+            command.Parameters.AddWithValue("$video", exercise.Video);
+            command.Parameters.AddWithValue("$score", -exercise.Id);
+            command.ExecuteNonQuery();
+        }
+        command.CommandText = "SELECT id, name, video, score FROM exercises";
+        command.Parameters.Clear();
+        using SqliteDataReader reader = command.ExecuteReader();
+        var byId = catalog.ToDictionary(exercise => exercise.Id);
+        var stored = new Dictionary<int, StoredExerciseSnapshot>();
+        while (reader.Read())
+        {
+            int id = reader.GetInt32(0);
+            string identity = reader.GetString(1);
+            Assert.Equal(byId[id].Name, ExerciseNamePolicy.DisplayName(id, identity));
+            Assert.Equal(-id, reader.GetInt32(3));
+            stored.Add(id, new(identity, reader.GetString(2), reader.GetInt32(3)));
+        }
+        Assert.Equal(catalog.Length, stored.Count);
+        Assert.Equal(stored.Keys.Order(), CatalogMigrationRules.ValidatePreservedCatalog(catalog, stored).Order());
+    }
+
+    [Fact]
+    public void UnreviewedDuplicateOrEmptyNamesRemainInvalid()
+    {
+        JsonArray source = JsonNode.Parse(File.ReadAllText(Path.Combine(
+            AppContext.BaseDirectory, "Assets", "exercises.json")))!.AsArray();
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new JsonStringEnumConverter() },
+        };
+        source[0]!["name"] = "Unreviewed duplicate";
+        source[1]!["name"] = "Unreviewed duplicate";
+        Assert.False(ExerciseNamePolicy.HasDistinctIdentityNames(
+            JsonSerializer.Deserialize<Exercise[]>(source.ToJsonString(), options)!));
+        source[1]!["name"] = "";
+        Assert.False(ExerciseNamePolicy.HasDistinctIdentityNames(
+            JsonSerializer.Deserialize<Exercise[]>(source.ToJsonString(), options)!));
+    }
 
     [Fact]
     public void SharedReviewedAliasesPreserveEveryExistingCatalogIdentity()
