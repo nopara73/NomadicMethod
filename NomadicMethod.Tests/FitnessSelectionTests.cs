@@ -420,7 +420,7 @@ public sealed class FitnessSelectionTests
         var ratings = FitnessProfilePolicy.Load(source);
         // Longer workouts originate in an older catalog and reopen with the full current catalog.
         Exercise[] initialCatalog = minutes > 15 ? LegacyPelvicCatalogFixture.Load() : catalog;
-      var service = new ExerciseSessionService(initialCatalog, new Random(minutes), () => Now, fitnessRatings: ratings);
+        var service = new ExerciseSessionService(initialCatalog, new Random(minutes), () => Now, fitnessRatings: ratings);
         var state = new WorkoutState();
         service.Initialize(state);
         Exercise anchor = catalog.Single(e => e.Id == 218);
@@ -447,12 +447,27 @@ public sealed class FitnessSelectionTests
         string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
         string log = JsonSerializer.Serialize(state.ActiveWorkoutSession);
         state = JsonSerializer.Deserialize<WorkoutState>(JsonSerializer.Serialize(state))!;
-        var restored = new ExerciseSessionService(catalog, new Random(999), () => Now, fitnessRatings: ratings);
+        var restored = minutes > 15
+            ? ExerciseSessionService.CreateForApplication(catalog, new Random(999), () => Now, fitnessRatings: ratings)
+            : new ExerciseSessionService(catalog, new Random(999), () => Now, fitnessRatings: ratings);
         restored.RestoreAfterReopen(state);
         Assert.Equal(selected, state.SelectedExerciseIds.OrderBy(entry => entry.Key).ToArray());
         Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
         Assert.Equal(log, JsonSerializer.Serialize(state.ActiveWorkoutSession));
         Assert.Equal(27000, restored.GetPendingMovementMillisecondsRemaining(state, Now.ToUnixTimeMilliseconds()));
+        if (minutes > 15)
+        {
+            // The historic Floor-off pelvic pool is below five. Opening remains
+            // valid, while explicit edits must honor the current product gate.
+            string before = JsonSerializer.Serialize(state);
+            Assert.Contains("fewer than five", Assert.Throws<InvalidOperationException>(() =>
+                restored.ReconfigureActiveWorkout(state, flags ^ WorkoutModifiers.Mirror ^ WorkoutModifiers.TallMirror, current.Id)).Message);
+            Assert.Equal(before, JsonSerializer.Serialize(state));
+            Assert.Contains("fewer than five", Assert.Throws<InvalidOperationException>(() =>
+                restored.ResizeActiveWorkout(state, 30)).Message);
+            Assert.Equal(before, JsonSerializer.Serialize(state));
+            return;
+        }
         restored.ReconfigureActiveWorkout(state, flags ^ WorkoutModifiers.Mirror ^ WorkoutModifiers.TallMirror, current.Id);
         int selectedId = restored.GetSelectedExercise(state, restored.GetNextGroup(state)!).Id;
         int duration = minutes == 3 ? 5 : minutes == 45 ? 30 : minutes;

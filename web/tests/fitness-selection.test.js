@@ -340,13 +340,24 @@ for (const minutes of [3,5,7,10,15,45]) {
       const selected = structuredClone(session.state.selectedExerciseIds);
       const feedback = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
       const log = structuredClone(session.state.activeWorkoutSession);
-      const restored = new WorkoutSession(catalog, structuredClone(session.state),
-        seededRandom(999), now, ratings);
+      const restored = minutes > 15
+        ? WorkoutSession.createForApplication(catalog, structuredClone(session.state), seededRandom(999), now, ratings)
+        : new WorkoutSession(catalog, structuredClone(session.state), seededRandom(999), now, ratings);
       restored.restoreAfterReopen();
       assert.deepEqual(restored.state.selectedExerciseIds, selected);
       assert.deepEqual(restored.state.exerciseScoreAdjustmentsByPhase, feedback);
       assert.deepEqual(restored.state.activeWorkoutSession, log);
       assert.equal(restored.getPendingMovementMillisecondsRemaining(now()), 27000);
+      if (minutes > 15) {
+        // Preserve a historical Floor-off checkpoint, but reject new edits
+        // while its pelvic pool is below the current five-choice requirement.
+        const before = structuredClone(restored.state);
+        assert.throws(() => restored.reconfigureActiveWorkout(flags ^ M.Mirror ^ M.TallMirror, current.id), /fewer than five/);
+        assert.deepEqual(restored.state, before);
+        assert.throws(() => restored.resizeActiveWorkout(30), /fewer than five/);
+        assert.deepEqual(restored.state, before);
+        return;
+      }
       restored.reconfigureActiveWorkout(flags ^ M.Mirror ^ M.TallMirror, current.id);
       const selectedAfterModifierChange = restored.getSelectedExercise(restored.getNextGroup()).id;
       const duration = minutes === 3 ? 5 : minutes === 45 ? 30 : minutes;
