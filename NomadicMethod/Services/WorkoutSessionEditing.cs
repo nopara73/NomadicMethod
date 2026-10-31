@@ -144,6 +144,8 @@ public sealed partial class ExerciseSessionService
             state.ActiveSetCountsBySelectionGroupId = new(previousCounts, StringComparer.Ordinal);
             state.ActiveExtraSetSelectionGroupIds = new(previousExtra, StringComparer.Ordinal);
             state.ActiveSelectionGroupOrder = [];
+            EnsurePlannableWorkoutAvailability(state, state.ActiveWorkoutMinutes, state.ActiveWorkoutModifiers, groups, lockedExercises,
+                locked.Sum(p => (previousCounts.GetValueOrDefault(p.Anchor.Id, 1) - 1) * p.Root.SequenceBlocks.Length));
             var lineup = ChooseBestDistinctLineup(state, groups, state.ActiveWorkoutModifiers,
                 currentExerciseIds: lockedExercises,
                 allowSavedSelectionException: lockedSelectionGroupIds is not null,
@@ -162,7 +164,8 @@ public sealed partial class ExerciseSessionService
                     after.LightBlocks >= before.LightBlocks);
             return accepted;
         }
-        catch (InvalidOperationException error) when (error.Message.Contains("No complete exercise lineup", StringComparison.Ordinal) ||
+        catch (InvalidOperationException error) when (error.Message == WorkoutVarietyPolicy.UnavailableMessage ||
+            error.Message.Contains("No complete exercise lineup", StringComparison.Ordinal) ||
             error.Message.StartsWith("The selected ", StringComparison.Ordinal))
         {
             // Eligibility alone does not prove a complete atomic lineup fits.

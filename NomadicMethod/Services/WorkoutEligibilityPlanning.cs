@@ -1,9 +1,41 @@
 using NomadicMethod.Models;
+using NomadicMethod.Data;
+using System.Text.Json;
 
 namespace NomadicMethod.Services;
 
 public sealed partial class ExerciseSessionService
 {
+    private string[]? PreflightPreparedGroups(WorkoutState state, int minutes, WorkoutModifiers modifiers)
+    {
+        if (_minimumMovementChoices <= 1) return null;
+        // Preserve the application's fail-without-mutation contract while
+        // resolving the effective coverage before enforcing its variety gate.
+        string json = JsonSerializer.Serialize(state, WorkoutJsonContext.Default.WorkoutState);
+        WorkoutState probe = JsonSerializer.Deserialize(json, WorkoutJsonContext.Default.WorkoutState)!;
+        probe.OuraRecovery = state.OuraRecovery;
+        probe.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
+        probe.ActiveCoverageAccountingVersion = 2;
+        probe.ActiveWorkoutMinutes = minutes;
+        probe.ActiveWorkoutModifiers = NormalizeWorkoutModifiers(modifiers);
+        probe.ActiveDurationSelectionGroupIds = null;
+        probe.ActiveSimpleRoundSelectionGroupIds.Clear();
+        probe.ActiveModifierRetainedSelectionGroupIds.Clear();
+        probe.ActiveModifierProtectedSelectionGroupId = null;
+        probe.ActiveSelectionGroupOrder.Clear();
+        try
+        {
+            UpdateSequenceCatalog(probe, minutes);
+            WorkoutGroup[] initial = GetSelectionGroups(probe).ToArray();
+            ResolveEligibleLineup(probe, initial, probe.ActiveWorkoutModifiers,
+                new HashSet<string>(StringComparer.Ordinal), 0,
+                _ => new Dictionary<string, int>(StringComparer.Ordinal), out WorkoutGroup[] resolved);
+            return initial.Select(group => group.Id).SequenceEqual(resolved.Select(group => group.Id))
+                ? null : resolved.Select(group => group.Id).ToArray();
+        }
+        finally { UseWorkoutCatalog(state); }
+    }
+
     private void ApplyResolvedSelectionGroups(WorkoutState state, IReadOnlyList<WorkoutGroup> groups,
         IReadOnlySet<string>? protectedGroupIds = null)
     {
@@ -28,6 +60,15 @@ public sealed partial class ExerciseSessionService
         out WorkoutGroup[] resolvedGroups)
     {
         Dictionary<int, bool> fitness = GetFitnessEligibility(state);
+        Dictionary<string, int> protectedRoots = protectedGroupIds
+            .Where(id => state.SelectedExerciseIds.ContainsKey(GetSelectionStorageKey(id, modifiers)))
+            .ToDictionary(id => id, id => state.SelectedExerciseIds[GetSelectionStorageKey(id, modifiers)], StringComparer.Ordinal);
+        IReadOnlyDictionary<string, int> Solve(WorkoutGroup[] groups)
+        {
+            EnsurePlannableWorkoutAvailability(state, state.ActiveWorkoutMinutes, modifiers,
+                groups, protectedRoots, reservedRepeatMinutes);
+            return plan(groups);
+        }
         int budget = state.ActiveWorkoutMinutes - reservedRepeatMinutes;
         Exercise[] roots = _exercises.Where(root => root.SequenceBlocks.Length > 0 &&
             root.SequenceBlocks.Length <= budget && GetSequenceRoot(root).Id == root.Id &&
@@ -62,12 +103,13 @@ public sealed partial class ExerciseSessionService
             {
                 try
                 {
-                    IReadOnlyDictionary<string, int> lineup = plan(groups);
+                    IReadOnlyDictionary<string, int> lineup = Solve(groups);
                     resolvedGroups = groups;
                     return lineup;
                 }
                 catch (InvalidOperationException error) when (
-                    error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal))
+                    error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal) ||
+                    error.Message == WorkoutVarietyPolicy.UnavailableMessage)
                 {
                     // Nonempty slots alone do not prove a simultaneous atomic
                     // lineup fits the remaining budget. Try complete parents.
@@ -116,6 +158,6 @@ public sealed partial class ExerciseSessionService
         if (firstError is not null) throw firstError;
         // Retain the ordinary, precise unavailable diagnostic for genuinely
         // impossible physical/assessed profiles; never substitute unsuitable work.
-        return plan(initialGroups);
+        return Solve(initialGroups);
     }
 }

@@ -46,7 +46,7 @@ await checkFixedPositionReviews();
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
-for (const stem of ['exercise-names', 'workout-protocol-history', 'reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile', 'exercise-feedback']) {
+for (const stem of ['workout-variety', 'exercise-names', 'workout-protocol-history', 'reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile', 'exercise-feedback']) {
   let source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
   for (const [dependency, output] of moduleOutputs)
     source = source.replaceAll(`./${dependency}.js`, `./${output}`);
@@ -73,11 +73,15 @@ const lightCadenceOutputName = fingerprintedName("light-cadence", "js", lightCad
 await writeFile(path.join(outputRoot, lightCadenceOutputName), lightCadenceSource, "utf8");
 const workoutSource = (await readFile(path.join(webRoot, "workout.js"), "utf8"))
   .replace('./exercise-names.js', `./${moduleOutputs.get('exercise-names')}`)
+  .replace('./workout-variety.js', `./${moduleOutputs.get('workout-variety')}`)
   .replace('./workout-protocol-history.js', `./${moduleOutputs.get('workout-protocol-history')}`)
   .replace('./workout-duration.js', `./${durationOutputName}`)
   .replace('./light-cadence.js', `./${lightCadenceOutputName}`)
   .replace('./completion-profile.js', `./${moduleOutputs.get('completion-profile')}`)
   .replace('./fitness-profile.js', `./${moduleOutputs.get('fitness-profile')}`);
+if (workoutSource.includes('./workout-variety.js')) {
+  throw new Error("Could not content-address the final selectable-variety policy.");
+}
 if (!workoutSource.includes(`./${durationOutputName}`) ||
     workoutSource.includes("./workout-duration.js") ||
     !workoutSource.includes(`./${lightCadenceOutputName}`) ||
@@ -231,8 +235,8 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 919) {
-  throw new Error(`Expected 919 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 930) {
+  throw new Error(`Expected 930 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 const reactionPlans = resolveReactionDrills(JSON.parse(reactionSource), catalog);
 if (reactionPlans.size !== 21) throw new Error('Expected twenty-one reviewed reaction protocols.');
@@ -404,6 +408,7 @@ await writeFile(
 
 const appSource = await readFile(path.join(webRoot, "app.js"), "utf8");
 const fingerprintedAppSource = appSource
+  .replace('"./workout-variety.js"', `"./${moduleOutputs.get('workout-variety')}"`)
   .replace('"./exercise-feedback.js"', `"./${moduleOutputs.get('exercise-feedback')}"`)
   .replace('"./reaction-drills.js"', `"./${moduleOutputs.get('reaction-drills')}"`)
   .replace('"./reaction-drill-view.js"', `"./${moduleOutputs.get('reaction-drill-view')}"`)

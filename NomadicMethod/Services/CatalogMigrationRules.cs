@@ -24,7 +24,8 @@ public static class CatalogMigrationRules
     // Existing identities, lineups, Keeps, feedback and history remain valid.
     // Revision 104 replaces jargon with reviewed position and movement cues.
     // Revision 105 restores established exercise names; prior display labels remain aliases.
-    public const int CurrentCatalogRevision = 105;
+    // Revision 106 adds reviewed choices and checks five after physical and training-zone filters.
+    public const int CurrentCatalogRevision = 106;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;

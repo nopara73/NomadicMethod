@@ -10,6 +10,7 @@ on:
       - "tools/ExercisePositionReviews.json"
       - "tools/check-exercise-position-reviews.mjs"
       - "tools/map-concurrent.mjs"
+      - "tools/check-android-startup.mjs"
       - "docs/catalog-audit/fixed-position-review-2026-10-29.json"
       - "docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json"
       - "NomadicMethod/Assets/exercises.json"
@@ -42,6 +43,10 @@ on:
       - "docs/catalog-audit/anatomical-variety-review-2026-10-26.json"
       - "docs/catalog-audit/evidence/2026-10-26-anatomical-variety/**"
       - "tools/Test-AnatomicalVarietyAdmissions.ps1"
+      - "tools/Test-PostFilterVarietyAdmissions.ps1"
+      - "docs/catalog-audit/post-filter-variety-review-2026-10-31.json"
+      - "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/**"
+      - "tools/ReviewedSourceMedia/post-filter-*-source.mp4"
       - "tools/ExternalExerciseMedia.psd1"
       - "tools/VerifiedExerciseDemos.psd1"
       - "tools/ReviewedSourceMedia/variety-*-source.mp4"
@@ -133,6 +138,7 @@ jobs:
             /tools/ExercisePositionReviews.json
             /tools/check-exercise-position-reviews.mjs
             /tools/map-concurrent.mjs
+            /tools/check-android-startup.mjs
             /docs/catalog-audit/fixed-position-review-2026-10-29.json
             /docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json
             /NomadicMethod/Assets/exercises.json
@@ -165,6 +171,10 @@ jobs:
             /docs/catalog-audit/anatomical-variety-review-2026-10-26.json
             /docs/catalog-audit/evidence/2026-10-26-anatomical-variety/**
             /tools/Test-AnatomicalVarietyAdmissions.ps1
+            /tools/Test-PostFilterVarietyAdmissions.ps1
+            /docs/catalog-audit/post-filter-variety-review-2026-10-31.json
+            /docs/catalog-audit/evidence/2026-10-31-post-filter-variety/**
+            /tools/ReviewedSourceMedia/post-filter-*-source.mp4
             /tools/ExternalExerciseMedia.psd1
             /tools/VerifiedExerciseDemos.psd1
             /tools/ReviewedSourceMedia/variety-*-source.mp4
@@ -261,6 +271,10 @@ jobs:
       - name: Validate anatomical variety admissions
         shell: pwsh
         run: ./tools/Test-AnatomicalVarietyAdmissions.ps1
+
+      - name: Validate post-filter variety admissions
+        shell: pwsh
+        run: ./tools/Test-PostFilterVarietyAdmissions.ps1
 
       - name: Validate precise skill admissions and reviewed media
         shell: pwsh

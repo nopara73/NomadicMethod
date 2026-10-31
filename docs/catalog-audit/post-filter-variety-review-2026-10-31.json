@@ -1,0 +1,1209 @@
+{
+  "schemaVersion": 1,
+  "catalogRevision": 106,
+  "status": "PASS",
+  "methodScope": "Exact human sources and final packaged media reviewed in the actual web workout UI. Isolated synthetic 45-minute checkpoints cover Ready, five-second Preparation, paused work and paused 15-second-transition previews, plus opposite positions. These checkpoints and their navigation markers are not user exercise records or evidence of performed work. Source/runtime loops are checked separately; no elapsed workout completion is invented.",
+  "baselineRatingCommit": "1bb7d793",
+  "entries": [
+    {
+      "id": 1069,
+      "name": "Sit, Soles Together, Let Knees Fall Apart",
+      "kind": "HardFloorCorrection",
+      "sessionMovementId": 1069,
+      "metadataSha256": "199b951c02936fd5d7089d1a94ea5b0ef14ec1f3015904cbc3e68fd5e48d7a0a",
+      "assets": {
+        "exercise_videos/exercise_1069.mp4": "3a9018b70097eac6278bd0781bff8e4ee43f32471bec70a476072a81c8dc60a1",
+        "exercise_hold_frames/exercise_1069.png": "113b55036c520515f85e54a2392d147a05ac9b6a2e56d8a485762f6beceacfc3"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Seated with the soles together and hands holding the feet, the knees fall outward. Broad seated/lower-leg support is visible, with no loaded sliding or twisting against the floor.",
+      "anatomySources": [
+        "https://pelvicpainrehab.com/blog/meditation-yoga-for-pelvic-pain-relief-videos-links-included/"
+      ],
+      "trainingClaimBasis": "Only Hard Floor compatibility changes: the mutual sole contact and broad seated support require neither cushioning nor dependable lateral/rotational traction. Anatomy, identity, ratings, video, hold frame and timed geometry remain unchanged.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-4.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1069.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Only Hard Floor compatibility changes: the mutual sole contact and broad seated support require neither cushioning nor dependable lateral/rotational traction. Anatomy, identity, ratings, video, hold frame and timed geometry remain unchanged."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: Continuous; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The movement phase shows the exact reviewed complete held pose, including support and fixed positions."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": false,
+        "errors": []
+      },
+      "previousMetadataSha256": "537900fb1f608fb6df9716b67e753369ee2cb99a7546c81e4d2b2832ea6aa473",
+      "previousCompatibility": "Incompatible",
+      "compatibility": "Compatible"
+    },
+    {
+      "id": 1730,
+      "name": "Interlaced Finger Folds",
+      "kind": "Admission",
+      "sessionMovementId": 1730,
+      "metadataSha256": "c7ad6f870c046d624b508c2c83ed64d95037d31fe3697824d9957ef37c28690f",
+      "assets": {
+        "exercise_videos/exercise_1730.mp4": "e208159efc9219de7b05d53993bd4e7a5ce52d289fb5e7770bf88c23cfd59c7a"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "With opposed palms, individual fingers fold across the other hand then reopen through the demonstrated independent combinations. The hand crossing order receives a full mirrored block.",
+      "anatomySources": [
+        "https://www.handhealth.com/finger-fitness"
+      ],
+      "trainingClaimBasis": "Finger individuation and bilateral coordination are the direct hand task; only coordination 2 is a training claim. No strength, speed or reaction score is inferred.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1730.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/loop-1730.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Finger individuation and bilateral coordination are the direct hand task; only coordination 2 is a training claim. No strength, speed or reaction score is inferred."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ShownHandPositionThenOpposite; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 600,
+        "SourcePage": "https://www.handhealth.com/finger-fitness",
+        "MirrorForAlternation": false,
+        "Crop": "crop=600:420:0:60,pad=600:600:0:90:white",
+        "LocalSourceSha256": "ad5f22be8ac3d3fea40a9e3fb4d9edfb3fa8e61a40cd1ded60371a6ac2a298be",
+        "OriginalSourceSha256": "7de2ef8a4b0a96a4d429e62fcc85b3277111375cdda584f4c98fe41577f0c65d",
+        "SourceHeight": 480,
+        "DurationSeconds": 32.8,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=BRF4EICO2G0",
+        "OriginalSourceStartSeconds": 82,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1730-source.mp4",
+        "Human": true,
+        "File": "post-filter-1730.mp4"
+      }
+    },
+    {
+      "id": 1731,
+      "name": "Opposing Fingertip Taps",
+      "kind": "Admission",
+      "sessionMovementId": 1731,
+      "metadataSha256": "df18a64500e0be8b4a9e3f3c1dacfc9d841369b69ae97b1423abb0d4652fcd2a",
+      "assets": {
+        "exercise_videos/exercise_1731.mp4": "c78853d3b66f5e58eba6f5cb7efcd80d2ee36d0eefa7671733e8d534b8abc962"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Opposed fingertips repeatedly separate and meet in independent finger combinations. No fingers interlace and neither hand is a fixed support.",
+      "anatomySources": [
+        "https://www.handhealth.com/finger-fitness"
+      ],
+      "trainingClaimBasis": "Direct independent finger coordination with actual fingertip contact, distinct from folding the fingers across the other palm. No resistance or speed claim.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1731.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/loop-1731.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Direct independent finger coordination with actual fingertip contact, distinct from folding the fingers across the other palm. No resistance or speed claim."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: Continuous; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": false,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 600,
+        "SourcePage": "https://www.handhealth.com/finger-fitness",
+        "MirrorForAlternation": false,
+        "Crop": "crop=600:420:0:60,pad=600:600:0:90:white",
+        "LocalSourceSha256": "93bc6315903b19f61fbcc70310addbd639b78d27ab7624e92f2f0d756afb36ca",
+        "OriginalSourceSha256": "e47b8727af8e668a95cb7f22f90e8bccb2fcd5880b8b71c021756f289090dab3",
+        "SourceHeight": 480,
+        "DurationSeconds": 46,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=HVLJs6ttPUc",
+        "OriginalSourceStartSeconds": 24,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1731-source.mp4",
+        "Human": true,
+        "File": "post-filter-1731.mp4"
+      }
+    },
+    {
+      "id": 1732,
+      "name": "Finger Splits",
+      "kind": "Admission",
+      "sessionMovementId": 1732,
+      "metadataSha256": "2603dc9f8c5d18deebf514e83bac501d88a258c634ae22609ed06d0e3b87788f",
+      "assets": {
+        "exercise_videos/exercise_1732.mp4": "6e6de23775d629a42a941fc0142f00fc498b02a9372600dd45ec26657fd82edd"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Both hands repeatedly split and reunite named finger groups, including opposed split patterns; both hands complete the pattern within the natural source loop.",
+      "anatomySources": [
+        "https://www.handhealth.com/finger-fitness"
+      ],
+      "trainingClaimBasis": "Active independent abduction/adduction patterns train the intrinsic-hand coordination task. This is not a renamed thumb-switch or fingertip-tap exercise.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-1.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1732.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/loop-1732.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Active independent abduction/adduction patterns train the intrinsic-hand coordination task. This is not a renamed thumb-switch or fingertip-tap exercise."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: Continuous; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": false,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 600,
+        "SourcePage": "https://www.handhealth.com/finger-fitness",
+        "MirrorForAlternation": false,
+        "Crop": "crop=600:420:0:60,pad=600:600:0:90:white",
+        "LocalSourceSha256": "2803a8be59492d1265a512a619a9f0b47cc3a882f45ce66737991e3fe0c97361",
+        "OriginalSourceSha256": "d5bd811c02c165fafb15ccb0553a2f4ae9b34e2645b1028c10e1c6b52a022233",
+        "SourceHeight": 480,
+        "DurationSeconds": 19.5,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=60frM4Pw9hk",
+        "OriginalSourceStartSeconds": 24.8,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1732-source.mp4",
+        "Human": true,
+        "File": "post-filter-1732.mp4"
+      }
+    },
+    {
+      "id": 1733,
+      "name": "Standing Hip Adduction",
+      "kind": "Admission",
+      "sessionMovementId": 1733,
+      "metadataSha256": "b5eb3639bd4694ba82b31b4661d8211342791fcc22086f34c066fdb3a767297b",
+      "assets": {
+        "exercise_videos/exercise_1733.mp4": "dadd84155890ceb273c3be6f917778b4434cd6b27edb220f7b133a51e839e1c4"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Standing on one planted foot, the opposite straight leg lifts across the body and returns to neutral. Complete repetitions are followed by the opposite-leg block.",
+      "anatomySources": [
+        "https://www.youtube.com/watch?v=SO3uz2viSVk"
+      ],
+      "trainingClaimBasis": "Direct unloaded hip-adduction repetitions load the major and accessory adductors. The leg supplies modest resistance: strength 1 and local endurance 1–2, without a balance or higher-strength claim.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1733.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Direct unloaded hip-adduction repetitions load the major and accessory adductors. The leg supplies modest resistance: strength 1 and local endurance 1–2, without a balance or higher-strength claim."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ScreenLeftThenRight; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.youtube.com/watch?v=SO3uz2viSVk",
+        "MirrorForAlternation": false,
+        "Crop": "crop=720:720:280:0",
+        "LocalSourceSha256": "40471ca3f7f9baea9b2c4caba46e7064d7bd3ec37a91176b6935a22b88c43873",
+        "OriginalSourceSha256": "24990f6f096281d7032ea5f43c67cac4dc25d88d57de2d0275d4fd808991deb3",
+        "SourceHeight": 720,
+        "DurationSeconds": 9.9,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=SO3uz2viSVk",
+        "OriginalSourceStartSeconds": 12.8,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1733-source.mp4",
+        "Human": true,
+        "File": "post-filter-1733.mp4"
+      }
+    },
+    {
+      "id": 1734,
+      "name": "Seated Straddle Forward Fold",
+      "kind": "Admission",
+      "sessionMovementId": 1522,
+      "metadataSha256": "956391a8fecae9fd0b45cc983653c14d947b73168388d7297a61d3891feaa624",
+      "assets": {
+        "exercise_videos/exercise_1734.mp4": "a62605319c292547aee1576a7ddea6f8b77f3c71b001f3e2acca62e23e1efe82",
+        "exercise_hold_frames/exercise_1734.png": "36a7173ed78fb1f18dc804293ba0dbd481e49e82b310bfc6eebbefd98bafab1e"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "The person sits in a wide straddle and folds forward with straight legs, both palms and broad seated support. The complete held pose stays visible.",
+      "anatomySources": [
+        "https://www.acefitness.org/resources/everyone/exercise-library/210/seated-straddle-stretch/",
+        "https://pelvicpainrehab.com/blog/meditation-yoga-for-pelvic-pain-relief-videos-links-included/"
+      ],
+      "trainingClaimBasis": "Wide-leg forward folding directly lengthens the adductors and hamstrings; the pelvic-floor physical-therapy source explicitly prescribes the seated wide-leg fold for opening/lengthening. This is relaxation/mobility, not pelvic-floor strength.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1734.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "Wide-leg forward folding directly lengthens the adductors and hamstrings; the pelvic-floor physical-therapy source explicitly prescribes the seated wide-leg fold for opening/lengthening. This is relaxation/mobility, not pelvic-floor strength."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: Continuous; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The movement phase shows the exact reviewed complete held pose, including support and fixed positions."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": false,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1024,
+        "SourcePage": "https://www.dvidshub.net/video/774072/seated-straddle-stretch-fitness-workout",
+        "MirrorForAlternation": false,
+        "Crop": "crop=1024:530:0:0,pad=1024:1024:0:247:white",
+        "LocalSourceSha256": "bd370b3324bf7f9616eeb74bc1fed3a3f35442b56350c75957b9ba8ca7e0fa64",
+        "OriginalSourceSha256": "b60de82ce984187c50a871e378fde0a154cd9a8c34f88bbec54846bef4865597",
+        "SourceHeight": 576,
+        "DurationSeconds": 2.4,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.dvidshub.net/video/774072/seated-straddle-stretch-fitness-workout",
+        "OriginalSourceStartSeconds": 22,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1734-source.mp4",
+        "Human": true,
+        "File": "post-filter-1734.mp4"
+      }
+    },
+    {
+      "id": 1735,
+      "name": "Seated Straddle Side Stretch",
+      "kind": "Admission",
+      "sessionMovementId": 256,
+      "metadataSha256": "a0768c90d8e5e76779f7babf0d56c356eca853c60c7e857fc5dab74a5325df9c",
+      "assets": {
+        "exercise_videos/exercise_1735.mp4": "0109d36fad23574c57c885bd43ddb90f4f99481b3fd1330ffa1802ec13047c63",
+        "exercise_hold_frames/exercise_1735.png": "9635a9e008cdbea00fc678ffa8f53ea08926d865b3f54b6fb467a2489f074c39"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "In a seated wide straddle, the lower hand holds the foot and the opposite arm reaches overhead into a held side bend. The lower elbow and torso remain off the floor. The other side receives a full block.",
+      "anatomySources": [
+        "https://www.cedars-sinai.org/health-topics/the-side-bend-stretch-a-gentle-exercise",
+        "https://www.youtube.com/watch?v=AWWa3QltAH4"
+      ],
+      "trainingClaimBasis": "The overhead side bend directly lengthens the shoulder adductors/extensors, lateral abdominal wall and rib/intercostal tissues; the wide straight-leg straddle meaningfully stretches major/accessory adductors. It remains one overhead-side-stretch family.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-2.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1735.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The overhead side bend directly lengthens the shoulder adductors/extensors, lateral abdominal wall and rib/intercostal tissues; the wide straight-leg straddle meaningfully stretches major/accessory adductors. It remains one overhead-side-stretch family."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ScreenRightThenLeft; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The movement phase shows the exact reviewed complete held pose, including support and fixed positions."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.youtube.com/watch?v=AWWa3QltAH4",
+        "MirrorForAlternation": false,
+        "Crop": "crop=1280:650:0:70,pad=1280:1280:0:315:white",
+        "LocalSourceSha256": "5841818130ff2f011d5e6283bc100207a6e054cf4f93491b46f6906e6056ea06",
+        "OriginalSourceSha256": "a94fef5be763bbe69f73008fc549bb082bc0b06e1ecd1561a331c91b04adfeda",
+        "SourceHeight": 720,
+        "DurationSeconds": 2.4,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=AWWa3QltAH4",
+        "OriginalSourceStartSeconds": 28,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1735-source.mp4",
+        "Human": true,
+        "File": "post-filter-1735.mp4"
+      }
+    },
+    {
+      "id": 1736,
+      "name": "Cross-Legged Side Stretch",
+      "kind": "Admission",
+      "sessionMovementId": 256,
+      "metadataSha256": "17b34d94ee37a5b151461b9fb1ae999d0682850fda31c7c9255e114b34960832",
+      "assets": {
+        "exercise_videos/exercise_1736.mp4": "89cfa6639062b57a7865c3da01080c0ecda2f53148f95e310df1fd4325117693",
+        "exercise_hold_frames/exercise_1736.png": "4f2ae0d20aa86a77fac4ffca856878cddbea2f2a1faca9cd20fcd9f1f4bd20af"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Sitting cross-legged with both knees raised, one palm supports the held overhead side bend. Mirroring reverses both the side and fixed leg-crossing order.",
+      "anatomySources": [
+        "https://pelvicpainrehab.com/blog/exercises-short-tight-pelvic-floor-muscles/",
+        "https://www.cedars-sinai.org/health-topics/the-side-bend-stretch-a-gentle-exercise"
+      ],
+      "trainingClaimBasis": "The pelvic-floor physical-therapy source explicitly permits the cross-legged mermaid/side-bend variant for pelvic/rib expansion. Shoulder, lateral abdominal and intercostal mobility are direct stretch claims, not incidental bracing.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1736.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The pelvic-floor physical-therapy source explicitly permits the cross-legged mermaid/side-bend variant for pelvic/rib expansion. Shoulder, lateral abdominal and intercostal mobility are direct stretch claims, not incidental bracing."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ScreenLeftThenRight; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The movement phase shows the exact reviewed complete held pose, including support and fixed positions."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.youtube.com/watch?v=f--wJV22Kas",
+        "MirrorForAlternation": false,
+        "Crop": "crop=700:600:350:100,pad=700:700:0:50:white",
+        "LocalSourceSha256": "a577018ad3d00bb39e684507c5e6b298dab310307ef6c66cb5802af78395d353",
+        "OriginalSourceSha256": "74c066ee6dd5511b50ccf381327f1014274b529859b552ca73743fde50c58656",
+        "SourceHeight": 720,
+        "DurationSeconds": 2.4,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=f--wJV22Kas",
+        "OriginalSourceStartSeconds": 47,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1736-source.mp4",
+        "Human": true,
+        "File": "post-filter-1736.mp4"
+      }
+    },
+    {
+      "id": 1737,
+      "name": "Ragdoll Forward Fold",
+      "kind": "Admission",
+      "sessionMovementId": 1206,
+      "metadataSha256": "e3ccf9b0e123cd7eb6eb01d0fc2c0f505698baccdefc1ea2c588932ba5eb0882",
+      "assets": {
+        "exercise_videos/exercise_1737.mp4": "818c955791d25725d5fde0a7a233376abc4a299b60416e662c3dd51d3a959942",
+        "exercise_hold_frames/exercise_1737.png": "7810c5def08587d2b040c724e09af8265fcc3bd7f0c10bfcad80e9f5abd9b0ef"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Standing with slightly bent knees, the person folds forward, holds the opposite elbows and lets the head and arms hang. Mirroring changes the fixed forearm crossing. The nearby blocks are not used.",
+      "anatomySources": [
+        "https://www.plymouthhospitals.nhs.uk/display-pil/pil-pelvic-floor-relaxation-5338",
+        "https://www.youtube.com/watch?v=bLbvNBUlORY"
+      ],
+      "trainingClaimBasis": "The NHS pelvic-floor relaxation leaflet explicitly prescribes this bent-knee standing fold. Hamstring/spinal lengthening and pelvic-floor relaxation are mobility claims only. It remains the existing standing-forward-fold family.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1737.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The NHS pelvic-floor relaxation leaflet explicitly prescribes this bent-knee standing fold. Hamstring/spinal lengthening and pelvic-floor relaxation are mobility claims only. It remains the existing standing-forward-fold family."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ShownHandPositionThenOpposite; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "PASS",
+          "reason": "The movement phase shows the exact reviewed complete held pose, including support and fixed positions."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.youtube.com/watch?v=bLbvNBUlORY",
+        "MirrorForAlternation": false,
+        "Crop": "crop=600:480:350:220,pad=600:600:0:60:white",
+        "LocalSourceSha256": "d6cc2ca4f6ed742de108d65f1afac55426d3e2f15ef472759952dd6718a9d0c8",
+        "OriginalSourceSha256": "3846658ed0e0d35aa60617f2ff77f8a1c247e591698bb5afe0e56c5242f174b3",
+        "SourceHeight": 720,
+        "DurationSeconds": 2.4,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=bLbvNBUlORY",
+        "OriginalSourceStartSeconds": 20,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1737-source.mp4",
+        "Human": true,
+        "File": "post-filter-1737.mp4"
+      }
+    },
+    {
+      "id": 1738,
+      "name": "Standing Rounded-Back Rib Stretch",
+      "kind": "Admission",
+      "sessionMovementId": 740,
+      "metadataSha256": "4e49001a286ca20cb8d1e251f275651ce9d36053c36dc1294f0d6e5e3203e638",
+      "assets": {
+        "exercise_videos/exercise_1738.mp4": "c552172a50ae90bce2b8d158dba5602c41a130a65a27610c1590f153286d11b1"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "With hands clasped forward, the person bends the knees slightly, reaches forward while rounding the upper back, then returns to upright. The complete standing person and hands remain visible.",
+      "anatomySources": [
+        "https://www.erca.go.jp/yobou/event/r02remote02/",
+        "https://www.ncnp.go.jp/nimh/behavior/phn/stretch_explanation.pdf"
+      ],
+      "trainingClaimBasis": "This is the named back/rib stretch in a medical respiratory-muscle stretching program supervised by Dr Ikuo Homma. Primary scapular mobility remains explicit; the secondary breathing-muscle claim is rib/intercostal mobility, not aerobic capacity or diaphragm strengthening.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-3.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1738.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/loop-1738.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "This is the named back/rib stretch in a medical respiratory-muscle stretching program supervised by Dr Ikuo Homma. Primary scapular mobility remains explicit; the secondary breathing-muscle claim is rib/intercostal mobility, not aerobic capacity or diaphragm strengthening."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ShownHandPositionThenOpposite; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.erca.go.jp/yobou/event/r02remote02/",
+        "MirrorForAlternation": false,
+        "Crop": "crop=460:580:150:80,pad=580:580:60:0:white",
+        "LocalSourceSha256": "1301276f357f69c53f0e6da6b3de5e4605d14d88411319d98a86e90112235b85",
+        "OriginalSourceSha256": "eb1d2164f100f446889242db4f23bdeb0d1f7e09a23e5f750439bdd481647d93",
+        "SourceHeight": 720,
+        "DurationSeconds": 12.2,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=kt0lxacUAAs",
+        "OriginalSourceStartSeconds": 778.3,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1738-source.mp4",
+        "Human": true,
+        "File": "post-filter-1738.mp4"
+      }
+    },
+    {
+      "id": 1739,
+      "name": "Standing Hands-Behind Rib Stretch",
+      "kind": "Admission",
+      "sessionMovementId": 712,
+      "metadataSha256": "93d9485b36784925bf8ac4be390aaff9a0712ebe2a7d4f0858701ef43302564c",
+      "assets": {
+        "exercise_videos/exercise_1739.mp4": "3b9aef899c4fcd665df2ad38bb889e035af6cb1677810018e33f208af57165a3"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Standing side-on with clasped hands behind the pelvis, the person opens the chest and lifts the hands slightly, then releases to the starting position. Opposite hand-clasp order gets its own block.",
+      "anatomySources": [
+        "https://www.erca.go.jp/yobou/event/r02remote02/",
+        "https://www.ncnp.go.jp/nimh/behavior/phn/stretch_explanation.pdf"
+      ],
+      "trainingClaimBasis": "The same medical program identifies the rib-cage respiratory-muscle stretch. Primary chest mobility and secondary rib/intercostal mobility describe the actual action; normal breathing alone would not justify the claim.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-4.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1739.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/loop-1739.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The same medical program identifies the rib-cage respiratory-muscle stretch. Primary chest mobility and secondary rib/intercostal mobility describe the actual action; normal breathing alone would not justify the claim."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ShownHandPositionThenOpposite; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.erca.go.jp/yobou/event/r02remote02/",
+        "MirrorForAlternation": false,
+        "Crop": "crop=460:580:150:80,pad=580:580:60:0:white",
+        "LocalSourceSha256": "251bca971d59adf7df38bb7732ac4cbd451050728c66be477aade2ae213964c0",
+        "OriginalSourceSha256": "eb1d2164f100f446889242db4f23bdeb0d1f7e09a23e5f750439bdd481647d93",
+        "SourceHeight": 720,
+        "DurationSeconds": 12.2,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=kt0lxacUAAs",
+        "OriginalSourceStartSeconds": 939.5,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1739-source.mp4",
+        "Human": true,
+        "File": "post-filter-1739.mp4"
+      }
+    },
+    {
+      "id": 1740,
+      "name": "Standing Elbow-Lift Rib Stretch",
+      "kind": "Admission",
+      "sessionMovementId": 784,
+      "metadataSha256": "56c0d2a115feee4fa68c46f4dd0a197266c3da8a1a4a9da7ca3af7277ca7bb8e",
+      "assets": {
+        "exercise_videos/exercise_1740.mp4": "6673b92d0516f5e553478619e7c065b76a5891d8ecb759b501e57b654bd1e12e"
+      },
+      "reviewedAt": "2026-10-31T05:24:56Z",
+      "method": "Source and runtime-loop inspection plus actual workout UI checkpoints; see methodScope.",
+      "observedAction": "Starting with joined hands above/behind the head, the person lifts the joined hands and elbows overhead, lengthens through the ribs, then returns. Hands, head and planted feet stay in frame.",
+      "anatomySources": [
+        "https://www.erca.go.jp/yobou/event/r02remote02/",
+        "https://www.ncnp.go.jp/nimh/behavior/phn/stretch_explanation.pdf"
+      ],
+      "trainingClaimBasis": "The medical respiratory-muscle stretching program supplies the exact overhead trunk/rib stretch. Primary shoulder-abductor mobility is retained; secondary breathing-muscle mobility is separate from strength or endurance.",
+      "evidence": [
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/phases-4.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/workout-1740.jpg",
+        "docs/catalog-audit/evidence/2026-10-31-post-filter-variety/loop-1740.jpg"
+      ],
+      "checks": {
+        "Metadata": {
+          "status": "PASS",
+          "reason": "The medical respiratory-muscle stretching program supplies the exact overhead trunk/rib stretch. Primary shoulder-abductor mobility is retained; secondary breathing-muscle mobility is separate from strength or endurance."
+        },
+        "FullLoop": {
+          "status": "PASS",
+          "reason": "The complete natural repetition pattern or held posture is present in the exact human source and packaged clip; timing follows the source."
+        },
+        "Crop": {
+          "status": "PASS",
+          "reason": "The actual workout view retains all trained fingers/limbs, support contacts and the full held pose; no action is hidden by the card crop."
+        },
+        "LoopSeam": {
+          "status": "PASS",
+          "reason": "The retained natural cycles or stable hold restart clearly without synthetic reversal, compositing or a fabricated movement. Hip-adduction endpoint returns to neutral."
+        },
+        "PlaybackSpeed": {
+          "status": "PASS",
+          "reason": "The authored excerpt retains original speed; the actual HTML5 workout player uses playbackRate 1. Held movement uses its reviewed still frame."
+        },
+        "Mirroring": {
+          "status": "PASS",
+          "reason": "Reviewed whole pose: ShownHandPositionThenOpposite; every required fixed grip, supporting limb, crossing order and side has its full opposite block."
+        },
+        "Travel": {
+          "status": "PASS",
+          "reason": "The movement is planted in place; no advancing, retreating or room crossing is added."
+        },
+        "HoldFrame": {
+          "status": "NOT_APPLICABLE",
+          "reason": "This is a natural repetition sequence, not a timed static hold."
+        },
+        "Equipment": {
+          "status": "PASS",
+          "reason": "The demonstrated support requires no wall, elevation or mirror. Floor contacts, ordinary-shoe execution, clothing, silence and traction classification match the actual movement."
+        },
+        "Workout": {
+          "status": "PASS",
+          "reason": "Ready, Preparation, work, rest/upcoming preview and required opposite positions were visually checked in the actual product with isolated synthetic checkpoints; media loaded without an error."
+        }
+      },
+      "workoutReview": {
+        "minutes": 45,
+        "modifiers": 5232,
+        "syntheticFixture": true,
+        "phases": [
+          "Ready",
+          "Preparation",
+          "Movement",
+          "Rest"
+        ],
+        "oppositePosition": true,
+        "errors": []
+      },
+      "source": {
+        "SourceWidth": 1280,
+        "SourcePage": "https://www.erca.go.jp/yobou/event/r02remote02/",
+        "MirrorForAlternation": false,
+        "Crop": "crop=460:580:150:80,pad=580:580:60:0:white",
+        "LocalSourceSha256": "97821394c3bba03c7ec50df6bb9261317452fea2491f56225b66b18826b1a279",
+        "OriginalSourceSha256": "eb1d2164f100f446889242db4f23bdeb0d1f7e09a23e5f750439bdd481647d93",
+        "SourceHeight": 720,
+        "DurationSeconds": 15.1,
+        "Video": true,
+        "FramesPerSecond": 20,
+        "PingPong": false,
+        "Url": "https://www.youtube.com/watch?v=kt0lxacUAAs",
+        "OriginalSourceStartSeconds": 993.1,
+        "StartSeconds": 0,
+        "LocalSourceFile": "post-filter-1740-source.mp4",
+        "Human": true,
+        "File": "post-filter-1740.mp4"
+      }
+    }
+  ],
+  "metadataAmendments": [
+    {
+      "id": 1069,
+      "catalogRevision": 105,
+      "metadataSha256": "199b951c02936fd5d7089d1a94ea5b0ef14ec1f3015904cbc3e68fd5e48d7a0a",
+      "previousMetadataSha256": "537900fb1f608fb6df9716b67e753369ee2cb99a7546c81e4d2b2832ea6aa473",
+      "previousFields": {
+        "hardFloorCompatibility": "Incompatible"
+      },
+      "previousAbsentFields": [],
+      "currentFields": {
+        "hardFloorCompatibility": "Compatible"
+      },
+      "reason": "Only Hard Floor compatibility changes: the mutual sole contact and broad seated support require neither cushioning nor dependable lateral/rotational traction. Anatomy, identity, ratings, video, hold frame and timed geometry remain unchanged."
+    },
+    {
+      "id": 740,
+      "catalogRevision": 105,
+      "metadataSha256": "a5b0c10893cab8243e9dafbd04218347dbdfe3038b0b6284725af2e4961fada6",
+      "previousMetadataSha256": "47d9328ca4f921bc9fbb067ec86aa2fc107c83f6fbd123e29108b842b023460d",
+      "previousFields": {},
+      "previousAbsentFields": [
+        "sessionMovementId"
+      ],
+      "currentFields": {
+        "sessionMovementId": 740
+      },
+      "reason": "Declare the existing effective identity explicitly so new demonstrated variants share it. GetSessionMovementId remains the same numeric ID; no movement, score, rating, anatomy, media or execution geometry changes."
+    },
+    {
+      "id": 784,
+      "catalogRevision": 105,
+      "metadataSha256": "387b02691283c2c86e6a88ffb246c3f7135b13d4b965616f95aaab0b5f5e51f1",
+      "previousMetadataSha256": "a4481c1e2c8b9ffe9f5d46bfe16c3a5fcabc57ccdbe3bc79fb80a3343153da7f",
+      "previousFields": {},
+      "previousAbsentFields": [
+        "sessionMovementId"
+      ],
+      "currentFields": {
+        "sessionMovementId": 784
+      },
+      "reason": "Declare the existing effective identity explicitly so new demonstrated variants share it. GetSessionMovementId remains the same numeric ID; no movement, score, rating, anatomy, media or execution geometry changes."
+    },
+    {
+      "id": 1522,
+      "catalogRevision": 105,
+      "metadataSha256": "132ef9c9221f23286eabcab7e2491ac6df8c9668180d9896a53f5e136b0aefc5",
+      "previousMetadataSha256": "c5b2ffaf2f09b12dbddbdf2323d0c941b2876f3251d4cf90520ee6372a01f60f",
+      "previousFields": {},
+      "previousAbsentFields": [
+        "sessionMovementId"
+      ],
+      "currentFields": {
+        "sessionMovementId": 1522
+      },
+      "reason": "Declare the existing effective identity explicitly so new demonstrated variants share it. GetSessionMovementId remains the same numeric ID; no movement, score, rating, anatomy, media or execution geometry changes."
+    }
+  ]
+}

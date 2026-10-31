@@ -200,7 +200,7 @@ public sealed class WorkoutSessionEditingTests
     }
 
     [Fact]
-    public void UnsupportedDurationPlanLeavesTheEntireActiveStateUntouched()
+    public void LegacyDurationPlanCanResolveRemainingCoverageAndRejectDestructiveShortening()
     {
         var service = new ExerciseSessionService(Catalog(), new Random(0));
         var state = new WorkoutState();
@@ -211,10 +211,14 @@ public sealed class WorkoutSessionEditingTests
         for (int i = 0; i < 10; i++) Finish(service, state);
         service.ResizeActiveWorkout(state, 30);
         service.ReconfigureActiveWorkout(state, profile | WorkoutModifiers.Wall, service.GetNextGroup(state)!.Id);
+        var outcomes = state.Outcomes.ToArray();
+        string currentId = service.GetNextGroup(state)!.Id;
+        service.ResizeActiveWorkout(state, 45);
+        Assert.Equal(45, service.GetActiveGroups(state).Count);
+        Assert.Equal(currentId, service.GetNextGroup(state)!.Id);
+        Assert.Equal(outcomes, state.Outcomes.ToArray());
         string before = JsonSerializer.Serialize(state);
-        // The catalog has no hard-floor Insect hand movement for this newly
-        // available finer Wall slot. A failed plan must not discard progress.
-        Assert.Throws<InvalidOperationException>(() => service.ResizeActiveWorkout(state, 45));
+        Assert.Throws<InvalidOperationException>(() => service.ResizeActiveWorkout(state, 3));
         Assert.Equal(before, JsonSerializer.Serialize(state));
     }
 }

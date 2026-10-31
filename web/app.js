@@ -1,4 +1,5 @@
 import { ExerciseFeedbackView } from "./exercise-feedback.js";
+import { WORKOUT_VARIETY_UNAVAILABLE_MESSAGE } from "./workout-variety.js";
 import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings, serializeFitnessRatings, FITNESS_EVIDENCE_VERSION, FITNESS_UNAVAILABLE_MESSAGE } from "./fitness-profile.js";
 import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
@@ -273,7 +274,7 @@ async function bootstrap() {
         findElevationCatalogDeficiencies(exercises).length > 0) {
       throw new Error("Catalog does not satisfy workout invariants.");
     }
-    session = new WorkoutSession(exercises, loadState(), undefined, undefined, fitnessRatings);
+    session = WorkoutSession.createForApplication(exercises, loadState(), undefined, undefined, fitnessRatings);
     session.restoreAfterReopen();
     const pendingRestGroup = session.getPendingRestGroup();
     const pendingMovementGroup = session.getPendingMovementGroup();
@@ -1035,7 +1036,7 @@ function endActiveWorkout() {
   cancelWorkoutPreparation();
   const state = cloneWorkoutState(session.state);
   try {
-    const next = new WorkoutSession(exerciseCatalog, state, undefined, undefined, fitnessRatings);
+    const next = WorkoutSession.createForApplication(exerciseCatalog, state, undefined, undefined, fitnessRatings);
     next.endActiveWorkout();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next.state));
     session = next;
@@ -1152,7 +1153,7 @@ function queueWorkoutPreparation(
         return;
       }
       try {
-        const preparedSession = new WorkoutSession(
+        const preparedSession = WorkoutSession.createForApplication(
           exerciseCatalog,
           cloneWorkoutState(session.state),
           undefined,
@@ -1193,7 +1194,7 @@ function queueWorkoutPreparation(
         return;
       }
       if (event.data.error) {
-        if (event.data.error.startsWith(FITNESS_UNAVAILABLE_MESSAGE)) {
+        if (event.data.error.startsWith(FITNESS_UNAVAILABLE_MESSAGE) || event.data.error.startsWith(WORKOUT_VARIETY_UNAVAILABLE_MESSAGE)) {
           workoutPreparationError = event.data.error;
           complete(null);
           return;
@@ -1315,7 +1316,7 @@ async function startWorkout() {
       return;
     }
     cancelWorkoutPreparation();
-    const nextSession = new WorkoutSession(exerciseCatalog, prepared.state, undefined, undefined, fitnessRatings);
+    const nextSession = WorkoutSession.createForApplication(exerciseCatalog, prepared.state, undefined, undefined, fitnessRatings);
     if (prepared.isReconfiguration) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSession.state));
       session = nextSession;
@@ -1337,7 +1338,8 @@ async function startWorkout() {
     elements.beginWorkout.disabled = false;
     startupControls?.markReady();
     showWorkoutModifierFeedback("workout unavailable", error.message?.startsWith(FITNESS_UNAVAILABLE_MESSAGE)
-      ? FITNESS_UNAVAILABLE_MESSAGE : "Could not prepare this workout. Your progress is safe.");
+      ? FITNESS_UNAVAILABLE_MESSAGE : error.message?.startsWith(WORKOUT_VARIETY_UNAVAILABLE_MESSAGE)
+        ? WORKOUT_VARIETY_UNAVAILABLE_MESSAGE : "Could not prepare this workout. Your progress is safe.");
   }
 }
 

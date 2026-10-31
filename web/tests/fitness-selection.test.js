@@ -192,9 +192,12 @@ test("sharing cannot borrow a hard opportunity from another slot", () => {
 
 for (const outcome of preferences.difficultyResponses) {
   test("latest difficulty broadens a trapped slot without inventing scores: " + outcome, () => {
+    // Keep the historical singleton scenario after filling the actual catalog.
+    const legacyCatalog=structuredClone(catalog.filter(e=>e.id<1730));
+    legacyCatalog.find(e=>e.id===1069).hardFloorCompatibility="Incompatible";
     const state = {...createDefaultState(), workoutHistory: [{sessionId:1, status:"Interrupted", blocks:[],
       decisions:[{rootExerciseId:918,outcome,decidedAtUnixMilliseconds:now()-3600000}]}]};
-    const session = new WorkoutSession(catalog, state, seededRandom(5), now);
+    const session = new WorkoutSession(legacyCatalog, state, seededRandom(5), now);
     session.initialize();
     const history = structuredClone(session.state.workoutHistory);
     const scores = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
@@ -269,6 +272,7 @@ for (const [light, recovering, expected] of [[false,false,3], [true,false,7], [f
 test("worker receives the same read-only rating dependency as foreground planning", () => {
   let receive, args, sent;
   class Session {
+    static createForApplication(...values) { return new Session(...values); }
     constructor(...values) { args = values; this.state = values[1]; }
     prepareWorkout() {}
   }
@@ -311,7 +315,11 @@ for (const minutes of [3,5,7,10,15,45]) {
   for (const light of [false, true]) {
     test("bootstrap planning and restoration preserve " + minutes + " minutes, Light " + light, () => {
       const state = createDefaultState();
-      const session = new WorkoutSession(catalog, state, seededRandom(minutes), now, ratings);
+      // Setup now stops at 15 minutes. A longer checkpoint must originate
+      // in its historical catalog, then reopen and edit with today's catalog.
+      const initialCatalog = minutes > 15 ? structuredClone(catalog.filter(e => e.id < 1730)) : catalog;
+      if (minutes > 15) initialCatalog.find(e => e.id === 1069).hardFloorCompatibility = "Incompatible";
+      const session = new WorkoutSession(initialCatalog, state, seededRandom(minutes), now, ratings);
       session.initialize();
       const anchor = catalog.find(e => e.id === 218);
       const slot = getResolution(30).groups.find(g => g.canonicalGroups.includes(anchor.primaryCanonicalGroup));
@@ -332,8 +340,9 @@ for (const minutes of [3,5,7,10,15,45]) {
       const selected = structuredClone(session.state.selectedExerciseIds);
       const feedback = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
       const log = structuredClone(session.state.activeWorkoutSession);
-      const restored = new WorkoutSession(catalog, structuredClone(session.state),
-        seededRandom(999), now, ratings);
+      const restored = minutes > 15
+        ? WorkoutSession.createForApplication(catalog, structuredClone(session.state), seededRandom(999), now, ratings)
+        : new WorkoutSession(catalog, structuredClone(session.state), seededRandom(999), now, ratings);
       restored.restoreAfterReopen();
       assert.deepEqual(restored.state.selectedExerciseIds, selected);
       assert.deepEqual(restored.state.exerciseScoreAdjustmentsByPhase, feedback);
@@ -341,11 +350,15 @@ for (const minutes of [3,5,7,10,15,45]) {
       assert.equal(restored.getPendingMovementMillisecondsRemaining(now()), 27000);
       restored.reconfigureActiveWorkout(flags ^ M.Mirror ^ M.TallMirror, current.id);
       const selectedAfterModifierChange = restored.getSelectedExercise(restored.getNextGroup()).id;
+      const currentAfterModifier = restored.getNextGroup().id;
+      const remainingAfterModifier = restored.getPendingMovementMillisecondsRemaining(now());
       const duration = minutes === 3 ? 5 : minutes === 45 ? 30 : minutes;
       restored.resizeActiveWorkout(duration);
       assert.equal(restored.getActiveGroups().length, duration);
       assert.equal(restored.getSelectedExercise(restored.getNextGroup()).id,
         selectedAfterModifierChange);
+      assert.equal(restored.getNextGroup().id, currentAfterModifier);
+      assert.equal(restored.getPendingMovementMillisecondsRemaining(now()), remainingAfterModifier);
     });
   }
 }

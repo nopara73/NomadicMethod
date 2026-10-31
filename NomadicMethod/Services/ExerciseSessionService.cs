@@ -71,7 +71,8 @@ public sealed partial class ExerciseSessionService
         Random? random = null,
         Func<DateTimeOffset>? utcNowProvider = null,
         TimeZoneInfo? localTimeZone = null,
-        IReadOnlyDictionary<int, int[][]>? fitnessRatings = null)
+        IReadOnlyDictionary<int, int[][]>? fitnessRatings = null,
+        int minimumMovementChoices = 1)
     {
         ArgumentNullException.ThrowIfNull(exercises);
         _catalogExercises = exercises;
@@ -80,6 +81,8 @@ public sealed partial class ExerciseSessionService
         _utcNowProvider = utcNowProvider ?? (() => DateTimeOffset.UtcNow);
         _localTimeZone = localTimeZone ?? TimeZoneInfo.Local;
         _fitnessRatings = fitnessRatings ?? new Dictionary<int, int[][]>();
+        if (minimumMovementChoices < 1) throw new ArgumentOutOfRangeException(nameof(minimumMovementChoices));
+        _minimumMovementChoices = minimumMovementChoices;
     }
 
     // Every public state operation crosses this boundary. A service can be
@@ -447,6 +450,8 @@ public sealed partial class ExerciseSessionService
             throw new InvalidOperationException("A workout is already active.");
         }
 
+        string[]? preparedGroupIds = PreflightPreparedGroups(state, minutes, modifiers);
+
         state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
         state.ActiveCoverageAccountingVersion = 2;
         state.ActiveSetupOrderVersion = 1;
@@ -482,8 +487,10 @@ public sealed partial class ExerciseSessionService
         state.ActiveWorkoutIsLightDay = modifiers.HasFlag(
             WorkoutModifiers.Light);
         state.ActiveSelectionGroupOrder.Clear();
-        state.ActiveDurationSelectionGroupIds = null;
+        state.ActiveDurationSelectionGroupIds = preparedGroupIds?.ToList();
         state.ActiveSimpleRoundSelectionGroupIds.Clear();
+        if (preparedGroupIds is not null && minutes <= 30)
+            state.ActiveSimpleRoundSelectionGroupIds.UnionWith(preparedGroupIds);
         state.ActiveModifierRetainedSelectionGroupIds.Clear();
         state.ActiveModifierProtectedSelectionGroupId = null;
         state.Outcomes.Clear();
@@ -500,8 +507,7 @@ public sealed partial class ExerciseSessionService
         state.NextWorkoutExcludedExerciseIds.Clear();
         RemoveDifficultyKeeps(state);
         CarrySlotPreferencesForward(state, resolveEmptySlots: true);
-        RepairActiveLineup(state, preserveCurrentSelections:
-            !modifiers.HasFlag(WorkoutModifiers.Light), resolveEmptySlots: true);
+        RepairActiveLineup(state, preserveCurrentSelections: false, resolveEmptySlots: true);
         SetActiveLongWorkoutAllocation(state);
         BroadenRejectedSelectionSlots(state);
         ReconcileLineupWithScheduledPhases(state);
@@ -678,7 +684,13 @@ public sealed partial class ExerciseSessionService
                     (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length),
                 selectionGeometryOverride: geometry,
                 preserveGeometryBlockLengths: false);
-            if (geometry is not null) return Plan(selectionGroups);
+            if (geometry is not null)
+            {
+                EnsurePlannableWorkoutAvailability(state, state.ActiveWorkoutMinutes, modifiers, selectionGroups,
+                    lockedExerciseIdsByGroup, lockedPlacements.Sum(p =>
+                        (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length));
+                return Plan(selectionGroups);
+            }
             return ResolveEligibleLineup(state, selectionGroups, modifiers, protectedBaseGroupIds,
                 lockedPlacements.Sum(p => (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length),
                 Plan, out selectionGroups);
@@ -695,7 +707,8 @@ public sealed partial class ExerciseSessionService
             replannedLineup = ChooseReconfiguredLineup(canRetainPartition ? priorPlacements : null);
         }
         catch (InvalidOperationException error) when (canRetainPartition &&
-            error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal))
+            (error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal) ||
+             error.Message == WorkoutVarietyPolicy.UnavailableMessage))
         {
             replannedLineup = ChooseReconfiguredLineup(null);
         }
@@ -2731,10 +2744,12 @@ public sealed partial class ExerciseSessionService
         candidates.AddRange(ordered);
     }
 
+    private int[][] GetFitnessSelectionZones(WorkoutState state) =>
+        FitnessSelectionPolicy.Zones(FitnessProfilePolicy.Inspect(_catalogExercises, state, _fitnessRatings));
+
     private Dictionary<int, bool> GetFitnessEligibility(WorkoutState state)
     {
-        int[][] zones = FitnessSelectionPolicy.Zones(FitnessProfilePolicy.Inspect(
-            _catalogExercises, state, _fitnessRatings));
+        int[][] zones = GetFitnessSelectionZones(state);
         return _sequenceExercisesByRootId.ToDictionary(entry => entry.Key,
             entry => FitnessSelectionPolicy.IsSequenceEligible(entry.Value.Select(member =>
                 _fitnessRatings.GetValueOrDefault(member.Id)), zones,

@@ -3839,7 +3839,11 @@ if ($records.Count -ne $expectedExerciseCount) {
     throw "Expected $expectedExerciseCount exercise records but generated $($records.Count)."
 }
 
-$duplicateNames = $records | Group-Object { $_['name'] } | Where-Object Count -ne 1
+# Reviewed display aliases can coincide. Stable identity names remain unique;
+# movement-family deduplication is validated independently below.
+$duplicateNames = $records | Group-Object {
+    Get-ExerciseIdentityName -ExerciseId ([int]$_['id']) -Name ([string]$_['name'])
+} | Where-Object Count -ne 1
 $duplicateVideos = $records | Group-Object { $_['video'] } | Where-Object Count -ne 1
 $duplicateIds = $records | Group-Object { $_['id'] } | Where-Object Count -ne 1
 $constraintViolations = $records | Where-Object {

@@ -109,11 +109,11 @@ test('unavailable, malformed or duplicate response definitions fail closed', () 
   const ordinaryCatalog = catalog.map(item => item.id === 1602 ? { ...item, practice: 'Boxing' } : item);
   assert.throws(() => resolveReactionDrills(document, ordinaryCatalog), /Invalid reaction plan/);
   const old = getWorkoutCatalog(catalog, 87);
-  assert.equal(old.length, 853);
+  assert.equal(old.length, 864);
   assert.ok(old.every(item => !FITNESS_COVERAGE_EXERCISE_IDS.includes(item.id)));
-  assert.equal(getWorkoutCatalog(catalog, 88).length, 884);
-  assert.equal(getWorkoutCatalog(catalog, 89).length, 890);
-  assert.equal(getWorkoutCatalog(catalog, 90).length, 906);
+  assert.equal(getWorkoutCatalog(catalog, 88).length, 895);
+  assert.equal(getWorkoutCatalog(catalog, 89).length, 901);
+  assert.equal(getWorkoutCatalog(catalog, 90).length, 917);
 });
 
 test('single-cue initiation waits unpredictably and reveals only the prepared arm raise', () => {

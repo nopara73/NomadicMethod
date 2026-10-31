@@ -74,11 +74,12 @@ public sealed class WorkoutEligibilityPlanningTests
         {
             var (catalog, ratings) = Load();
             WorkoutState state = Evidence([new() { RootExerciseId = entry.GetProperty("exerciseId").GetInt32(),
-                Outcome = ExerciseOutcome.Tick, DecidedAtUnixMilliseconds = 1 }]);
+                Outcome = entry.TryGetProperty("outcome", out JsonElement outcome)
+                    ? Enum.Parse<ExerciseOutcome>(outcome.GetString()!) : ExerciseOutcome.Tick, DecidedAtUnixMilliseconds = 1 }]);
             string history = JsonSerializer.Serialize(state.WorkoutHistory);
             string ratingsBefore = JsonSerializer.Serialize(ratings);
             var scores = catalog.Select(exercise => exercise.Score).ToArray();
-            var service = new ExerciseSessionService(catalog, new Random(42), () => DateTimeOffset.FromUnixTimeMilliseconds(Now), fitnessRatings: ratings);
+            var service = ExerciseSessionService.CreateForApplication(catalog, new Random(42), () => DateTimeOffset.FromUnixTimeMilliseconds(Now), fitnessRatings: ratings);
             int minutes = entry.GetProperty("minutes").GetInt32();
             service.StartWorkout(state, minutes, (WorkoutModifiers)entry.GetProperty("modifiers").GetInt32());
             AssertComplete(service, state, catalog, ratings, minutes);

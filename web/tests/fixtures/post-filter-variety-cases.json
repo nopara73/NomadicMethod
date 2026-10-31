@@ -1,0 +1,44 @@
+[
+  {
+    "name": "five movement families meet the long-workout requirement",
+    "groups": 1, "minutes": 90, "required": 5,
+    "candidates": [[1,1,1,1],[2,2,1,1],[3,3,1,1],[4,4,1,1],[5,5,1,1]],
+    "expected": []
+  },
+  {
+    "name": "five aliases remain one physical choice",
+    "groups": 1, "minutes": 45, "required": 5,
+    "candidates": [[1,1,1,1],[2,1,1,1],[3,1,1,1],[4,1,1,1],[5,1,1,1]],
+    "expected": [[0,1,5]]
+  },
+  {
+    "name": "complete two-block sequences cannot fill an odd duration",
+    "groups": 1, "minutes": 45, "required": 5,
+    "candidates": [[1,1,1,2],[2,2,1,2],[3,3,1,2],[4,4,1,2],[5,5,1,2]],
+    "expected": [[0,0,5]]
+  },
+  {
+    "name": "a movement needed in another slot is not an alternative here",
+    "groups": 2, "minutes": 3, "required": 2,
+    "candidates": [[1,1,1,1],[2,1,2,1],[3,2,1,1]],
+    "expected": [[0,1,2],[1,1,2]]
+  },
+  {
+    "name": "genuine multi-muscle coverage makes room for a full sequence",
+    "groups": 3, "minutes": 3, "required": 2,
+    "candidates": [[1,1,1,2],[2,2,1,2],[3,3,6,1],[4,4,6,1]],
+    "expected": []
+  },
+  {
+    "name": "completed work is a constraint, not another five-choice quota",
+    "groups": 2, "minutes": 3, "required": 2, "validateMask": 2,
+    "candidates": [[1,1,1,1],[2,2,2,1],[3,3,2,2]],
+    "expected": []
+  },
+  {
+    "name": "reserved time removes a full sequence from the remaining alternatives",
+    "groups": 2, "minutes": 2, "required": 2, "validateMask": 2,
+    "candidates": [[1,1,1,1],[2,2,2,1],[3,3,2,2]],
+    "expected": [[1,1,2]]
+  }
+]

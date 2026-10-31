@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using NomadicMethod.Models;
 using NomadicMethod.Services;
@@ -94,7 +95,12 @@ public sealed class WorkoutPlanningRestorationTests
     [MemberData(nameof(RejectedSlotCases))]
     public void RejectedSingletonCanUseABroaderSiblingTarget(RejectedSlotCase item)
     {
-        Exercise[] catalog = Catalog();
+        // Retain the historical singleton scenario after genuine catalog gaps
+        // are filled. The current full catalog has separate five-choice tests.
+        JsonArray legacy = JsonSerializer.SerializeToNode(Catalog().Where(e => e.Id < 1730),
+            new JsonSerializerOptions(JsonOptions) { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })!.AsArray();
+        legacy.Single(e => e!["id"]!.GetValue<int>() == 1069)!["hardFloorCompatibility"] = "Incompatible";
+        Exercise[] catalog = legacy.Deserialize<Exercise[]>(JsonOptions)!;
         var state = new WorkoutState
         {
             CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,

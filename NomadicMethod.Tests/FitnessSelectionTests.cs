@@ -141,8 +141,7 @@ public sealed class FitnessSelectionTests
     [InlineData(ExerciseOutcome.TooHard)]
     public void LatestDifficultyCanBroadenATrappedSlotWithoutInventingScores(ExerciseOutcome outcome)
     {
-        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
-            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
+        Exercise[] catalog = LegacyPelvicCatalogFixture.Load();
         var state = new WorkoutState
         {
             CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
@@ -419,7 +418,9 @@ public sealed class FitnessSelectionTests
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
         using FileStream source = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "fitness_ratings.json"));
         var ratings = FitnessProfilePolicy.Load(source);
-        var service = new ExerciseSessionService(catalog, new Random(minutes), () => Now, fitnessRatings: ratings);
+        // Longer workouts originate in an older catalog and reopen with the full current catalog.
+        Exercise[] initialCatalog = minutes > 15 ? LegacyPelvicCatalogFixture.Load() : catalog;
+        var service = new ExerciseSessionService(initialCatalog, new Random(minutes), () => Now, fitnessRatings: ratings);
         var state = new WorkoutState();
         service.Initialize(state);
         Exercise anchor = catalog.Single(e => e.Id == 218);
@@ -446,7 +447,9 @@ public sealed class FitnessSelectionTests
         string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
         string log = JsonSerializer.Serialize(state.ActiveWorkoutSession);
         state = JsonSerializer.Deserialize<WorkoutState>(JsonSerializer.Serialize(state))!;
-        var restored = new ExerciseSessionService(catalog, new Random(999), () => Now, fitnessRatings: ratings);
+        var restored = minutes > 15
+            ? ExerciseSessionService.CreateForApplication(catalog, new Random(999), () => Now, fitnessRatings: ratings)
+            : new ExerciseSessionService(catalog, new Random(999), () => Now, fitnessRatings: ratings);
         restored.RestoreAfterReopen(state);
         Assert.Equal(selected, state.SelectedExerciseIds.OrderBy(entry => entry.Key).ToArray());
         Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
@@ -454,10 +457,14 @@ public sealed class FitnessSelectionTests
         Assert.Equal(27000, restored.GetPendingMovementMillisecondsRemaining(state, Now.ToUnixTimeMilliseconds()));
         restored.ReconfigureActiveWorkout(state, flags ^ WorkoutModifiers.Mirror ^ WorkoutModifiers.TallMirror, current.Id);
         int selectedId = restored.GetSelectedExercise(state, restored.GetNextGroup(state)!).Id;
+        string currentAfterModifier = restored.GetNextGroup(state)!.Id;
+        int remainingAfterModifier = (int)restored.GetPendingMovementMillisecondsRemaining(state, Now.ToUnixTimeMilliseconds());
         int duration = minutes == 3 ? 5 : minutes == 45 ? 30 : minutes;
         restored.ResizeActiveWorkout(state, duration);
         Assert.Equal(duration, restored.GetActiveGroups(state).Count);
         Assert.Equal(selectedId, restored.GetSelectedExercise(state, restored.GetNextGroup(state)!).Id);
+        Assert.Equal(currentAfterModifier, restored.GetNextGroup(state)!.Id);
+        Assert.Equal(remainingAfterModifier, restored.GetPendingMovementMillisecondsRemaining(state, Now.ToUnixTimeMilliseconds()));
     }
     [Fact]
     public void CoverageHolesCannotFallBackOutsideTheZone()

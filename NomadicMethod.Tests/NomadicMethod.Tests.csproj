@@ -9,11 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\catalog-display-title-case.json" Link="Assets\catalog-display-title-case.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-selection-preferences.json" Link="Assets\fitness-selection-preferences.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\docs\catalog-audit\hard-floor-locomotion-review-2026-10-31.json" Link="Assets\hard-floor-locomotion-review.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\arm-pulses.json" Link="Assets\arm-pulses.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\complete-fitness-ratings-cases.json" Link="Assets\complete-fitness-ratings-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\workout-variety-cases.json" Link="Assets\workout-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutVarietyPolicy.cs" Link="Production\Services\WorkoutVarietyPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\ExerciseSessionService.Variety.cs" Link="Production\Services\ExerciseSessionService.Variety.cs" />
+    <None Include="..\web\tests\fixtures\post-filter-variety-cases.json" Link="Assets\post-filter-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\post-filter-variety-profiles.json" Link="Assets\post-filter-variety-profiles.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\catalog-position-cases.json" Link="Assets\catalog-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fixed-position-cases.json" Link="Assets\fixed-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\shared-coverage-cases.json" Link="Assets\shared-coverage-cases.json" CopyToOutputDirectory="PreserveNewest" />
@@ -37,6 +42,8 @@
     domain sources so these tests run as ordinary .NET tests without an emulator.
   -->
   <ItemGroup>
+    <Compile Include="..\NomadicMethod\Data\ExerciseCatalogValidator.cs" Link="Production\Data\ExerciseCatalogValidator.cs" />
+    <Compile Include="..\NomadicMethod\Data\ExerciseCatalogJsonContext.cs" Link="Production\Data\ExerciseCatalogJsonContext.cs" />
     <Compile Include="..\NomadicMethod\Data\IExerciseDatabase.cs" Link="Production\Data\IExerciseDatabase.cs" />
     <Compile Include="..\NomadicMethod\Data\OuraRecoveryStore.cs" Link="Production\Data\OuraRecoveryStore.cs" />
     <Compile Include="..\NomadicMethod\Models\OuraRecoverySnapshot.cs" Link="Production\Models\OuraRecoverySnapshot.cs" />
@@ -85,6 +92,7 @@
     <Compile Include="..\NomadicMethod\Services\ExerciseSessionService.cs" Link="Production\Services\ExerciseSessionService.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutSessionEditing.cs" Link="Production\Services\WorkoutSessionEditing.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutEligibilityPlanning.cs" Link="Production\Services\WorkoutEligibilityPlanning.cs" />
+    <Compile Include="..\NomadicMethod\Data\WorkoutJsonContext.cs" Link="Production\Data\WorkoutJsonContext.cs" />
     <None Include="..\web\tests\fixtures\eligibility-planning-cases.json" Link="Assets\eligibility-planning-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <Compile Include="..\NomadicMethod\Services\AtomicSequenceLineupSolver.cs" Link="Production\Services\AtomicSequenceLineupSolver.cs" />
     <Compile Include="..\NomadicMethod\Services\LegacyWorkoutStateMigration.cs" Link="Production\Services\LegacyWorkoutStateMigration.cs" />

@@ -4,6 +4,11 @@ internal static class ExerciseDatabaseMigrationSql
 {
     internal const string RebuiltExerciseTableName = "exercises_rebuilt";
 
+    // Fresh creation and upgrades share one schema. The name column stores the
+    // canonical identity; reviewed display titles are projected by exercise ID.
+    internal static string CreateExerciseTable => CreateRebuiltExerciseTable.Replace(
+        RebuiltExerciseTableName, "exercises", StringComparison.Ordinal);
+
     internal static readonly string DropRebuiltExerciseTableIfPresent =
         $"DROP TABLE IF EXISTS {RebuiltExerciseTableName}";
 

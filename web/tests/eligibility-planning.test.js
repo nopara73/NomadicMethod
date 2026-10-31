@@ -45,10 +45,10 @@ function assertComplete(session, minutes) {
 
 for (const entry of fixture.partialFeedback) {
   test(`partial feedback prepares ${entry.minutes} minutes under modifiers ${entry.modifiers}`, () => {
-    const state = evidence([{ rootExerciseId: entry.exerciseId, outcome: "tick", decidedAtUnixMilliseconds: 1 }]);
+    const state = evidence([{ rootExerciseId: entry.exerciseId, outcome: entry.outcome === "TooEasy" ? "easy" : "tick", decidedAtUnixMilliseconds: 1 }]);
     const catalogBefore = JSON.stringify(catalog);
     const ratingsBefore = JSON.stringify([...ratings]);
-    const session = new WorkoutSession(catalog, state, () => 0.42, now, ratings);
+    const session = WorkoutSession.createForApplication(catalog, state, () => 0.42, now, ratings);
     const history = structuredClone(session.state.workoutHistory);
     session.startWorkout(entry.minutes, entry.modifiers);
     assertComplete(session, entry.minutes);
@@ -110,4 +110,3 @@ test("saved Keeps and paused atomic work survive coverage resolution and explici
   assertComplete(session, 10);
   assert.ok(session.state.keptExerciseRootIdsBySelectionGroupId[originalSlot.id].includes(kept.id));
 });
-

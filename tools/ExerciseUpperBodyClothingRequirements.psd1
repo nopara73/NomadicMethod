@@ -27,6 +27,8 @@
     # demonstrated exercise. Keep this exhaustive so new catalog records fail
     # generation until they receive a real review.
     Agnostic = @(
+        1734, 1735, 1736, 1737, 1738, 1739, 1740,
+        1730, 1731, 1732, 1733,
         1727,
         1720, 1721, 1722, 1723, 1724, 1725,
         165, # Wall Tibialis Raise: upper-body clothing is optional (owner correction).

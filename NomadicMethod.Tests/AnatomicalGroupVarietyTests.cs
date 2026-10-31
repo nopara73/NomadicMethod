@@ -61,7 +61,7 @@ public sealed class AnatomicalGroupVarietyTests
         int[] additions = Enumerable.Range(1720, 10).ToArray();
         Assert.Equal(additions, WorkoutCatalogPolicy.AnatomicalVarietyExerciseIds.Order());
         Assert.DoesNotContain(WorkoutCatalogPolicy.ForWorkout(catalog, 97), e => additions.Contains(e.Id));
-        Assert.Equal(909, WorkoutCatalogPolicy.ForWorkout(catalog, 97).Count);
+        Assert.Equal(920, WorkoutCatalogPolicy.ForWorkout(catalog, 97).Count);
         Assert.All(additions, id => Assert.Contains(WorkoutCatalogPolicy.ForWorkout(catalog, 98), e => e.Id == id));
     }
 }

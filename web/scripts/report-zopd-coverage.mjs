@@ -94,12 +94,8 @@ for (const [index, profile] of checks.entries()) {
     if (index % shard[1] !== shard[0]) continue;
     const zones = FITNESS_DIMENSIONS.map(characteristic => profile.characteristic
       ? characteristic === profile.characteristic ? [profile.level] : [] : [profile.uniformLevel]);
-    const planner = new WorkoutSession(catalog, createDefaultState(), () => 0.42, () => 1, ratings);
-    planner.getFitnessEligibility = () => new Map([...planner.sequenceExercisesByRootId]
-      .map(([id, members]) => [id,
-        isFitnessSequenceEligible(members.map(member => ratings.get(member.id)), zones,
-          members.map(member => FITNESS_DIMENSIONS.map((_, dimension) =>
-            hasFitnessTrainingClaim(ratings, member.id, dimension))))]));
+    const planner = WorkoutSession.createForApplication(catalog, createDefaultState(), () => 0.42, () => 1, ratings);
+    planner.getFitnessSelectionZones = () => zones;
     try {
       planner.prepareWorkout(profile.minutes, profile.modifiers);
       completeLineups.push({ minutes: profile.minutes, modifiers: profile.modifiers,

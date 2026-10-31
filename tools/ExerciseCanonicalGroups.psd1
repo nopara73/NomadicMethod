@@ -949,4 +949,15 @@
     1727 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PelvicFloorAndPerineum') }
     1728 = @{ Primary = 'MajorHipAdductors'; Secondary = @('PelvicFloorAndPerineum') }
     1729 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('PelvicFloorAndPerineum') }
+    1730 = @{ Primary = 'IntrinsicHand'; Secondary = @( ) }
+    1731 = @{ Primary = 'IntrinsicHand'; Secondary = @( ) }
+    1732 = @{ Primary = 'IntrinsicHand'; Secondary = @( ) }
+    1733 = @{ Primary = 'MajorHipAdductors'; Secondary = @('AccessoryHipAdductors') }
+    1734 = @{ Primary = 'MajorHipAdductors'; Secondary = @('AccessoryHipAdductors', 'PosteriorThighAndKneeFlexors', 'PelvicFloorAndPerineum') }
+    1735 = @{ Primary = 'ShoulderAdductorsAndExtensors'; Secondary = @('AbdominalWall', 'MajorHipAdductors', 'AccessoryHipAdductors', 'BreathingMuscles') }
+    1736 = @{ Primary = 'ShoulderAdductorsAndExtensors'; Secondary = @('AbdominalWall', 'BreathingMuscles', 'PelvicFloorAndPerineum') }
+    1737 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('SpinalExtensors', 'PelvicFloorAndPerineum') }
+    1738 = @{ Primary = 'ScapularGirdle'; Secondary = @('BreathingMuscles') }
+    1739 = @{ Primary = 'Chest'; Secondary = @('BreathingMuscles') }
+    1740 = @{ Primary = 'ShoulderAbductors'; Secondary = @('BreathingMuscles') }
 }

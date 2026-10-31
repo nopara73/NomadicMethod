@@ -844,6 +844,7 @@ test("canonical training claims require direct primaries and material secondarie
   }
 
   const reviewedSecondaryIds = new Set([
+    1735, 1736,
     1523, 1713, 1714,
     124, 125, 132, 176, 219, 338, 394, 408, 577, 636, 684, 790, 818, 825, 884, 885, 905, 917, 960, 973, 998, 1008, 1010, 1013, 1014, 1018, 1022, 1032,
     1108, 1116, 1143, 1157, 1164, 1165, 1174, 1200, 1212, 1218, 1219, 1221, 1231, 1243, 1429,
@@ -876,7 +877,7 @@ test("canonical training claims require direct primaries and material secondarie
   }
 
   assert.deepEqual(catalog.filter(item => item.secondaryCanonicalGroups.includes("PelvicFloorAndPerineum")).map(item => item.id),
-    [1069, 1071, 1209, 1216, 1292, 1726, 1727, 1728, 1729]);
+    [1069, 1071, 1209, 1216, 1292, 1726, 1727, 1728, 1729, 1734, 1736, 1737]);
   const pelvicFloorSlowSqueeze = catalog.find((item) => item.id === 918);
   assert.equal(pelvicFloorSlowSqueeze.name,
     "Standing Pelvic-Floor Slow Squeeze and Release");
@@ -948,7 +949,7 @@ test("muscular demand is fully reviewed and independent of user scores", () => {
   assert.deepEqual(
     [0, 1, 2].map((rating) =>
       catalog.filter((exercise) => exercise.muscularDemand === rating).length),
-    [234, 432, 253],
+    [244, 433, 253],
   );
   assert.ok(catalog.every(hasReviewedMuscularDemand));
   assert.ok(catalog.every((exercise) => exercise.score === 0));
@@ -1403,10 +1404,10 @@ test("shy mode filters only reviewed incompatible exercises while enabled", () =
 test("hard floor catalog verdicts include slippery-floor traction", () => {
   assert.equal(catalog.filter((exercise) =>
       exercise.hardFloorCompatibility ===
-      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 427);
+      EXERCISE_HARD_FLOOR_COMPATIBILITY.Compatible).length, 439);
   assert.equal(catalog.filter((exercise) =>
     exercise.hardFloorCompatibility ===
-      EXERCISE_HARD_FLOOR_COMPATIBILITY.Incompatible).length, 492);
+      EXERCISE_HARD_FLOOR_COMPATIBILITY.Incompatible).length, 491);
 
   for (const exerciseId of [37, 610, 326]) {
     assert.equal(
@@ -2935,9 +2936,9 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     .map((exercise) => exercise.id)), new Set([524, 525, 526, 527, 528, 790]));
   assert.equal(catalog.filter((exercise) =>
     exercise.upperBodyClothingRequirement ===
-      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 795);
+      EXERCISE_UPPER_BODY_CLOTHING_REQUIREMENT.Agnostic).length, 806);
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 702);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 713);
   assert.equal(catalog.filter((exercise) =>
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 217);
   for (const exerciseId of [56, 185, 377, 379, 401, 403, 557]) {
@@ -3003,7 +3004,7 @@ test("reviewed production catalog satisfies the enforceable coverage hierarchy",
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.BenefitsGreatly).length, 99);
   assert.equal(catalog.filter((exercise) =>
-    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 820);
+    exercise.mirrorRelationship === EXERCISE_MIRROR_RELATIONSHIP.Agnostic).length, 831);
   assert.equal(catalog.filter((exercise) =>
     exercise.mirrorRelationship ===
       EXERCISE_MIRROR_RELATIONSHIP.MirrorOnly).length, 0);
@@ -5361,9 +5362,9 @@ test("mixed-demand sequence uses its highest demand and remains atomic", () => {
 });
 
 test("the reviewed catalog satisfies every roll-up and selects distinct exercises", () => {
-  assert.equal(catalog.length, 919);
-  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 919);
-  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 919);
+  assert.equal(catalog.length, 930);
+  assert.equal(new Set(catalog.map((exercise) => exercise.id )).size, 930);
+  assert.equal(new Set(catalog.map((exercise) => exercise.name )).size, 930);
   assert.equal(isSessionMovementMetadataValid(catalog), true);
   const actualSessionMovements = {};
   for (const exercise of catalog.filter((item) => item.sessionMovementId > 0)) {
@@ -5397,7 +5398,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       211: [211, 233],
       214: [214, 223, 236, 755, 756],
       231: [231, 685],
-      256: [256, 845, 958],
+      256: [256, 845, 958, 1735, 1736],
       262: [262, 507],
       264: [264, 275],
       266: [266, 301, 1621, 1622, 1623, 1624, 1625],
@@ -5419,7 +5420,10 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
       568: [568, 633],
       579: [579, 580],
       588: [588, 1300],
-      712: [712, 1012],
+      712: [712, 1012, 1739],
+      740: [740, 1738],
+      784: [784, 1740],
+      1522: [1522, 1734],
       625: [625, 1021],
       1010: [1010, 1018],
       1026: [1026, 1027],
@@ -5440,7 +5444,7 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
 
       180: [180, 534, 1632, 1633, 1634, 1635],
       1516: [1516, 1642, 1643, 1644, 1645],
-      1206: [1206, 1521],
+      1206: [1206, 1521, 1737],
     },
   );
   const exercisesById = new Map(catalog.map((exercise) => [exercise.id, exercise]));
@@ -8186,7 +8190,7 @@ test("slippery hard-floor revision rebuilds placements without erasing feedback"
 
 test("sole-wall revision rebuilds changed workout state and resets scores", () => {
   const changedIds = [563, 564, 567, 568, 574];
-  assert.equal(CURRENT_CATALOG_REVISION, 105);
+  assert.equal(CURRENT_CATALOG_REVISION, 106);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(54)],
     changedIds,
@@ -8781,7 +8785,7 @@ test("bodybuilding posing revision replaces static work and resets feedback", ()
 
 test("material-training revision removes only anatomically invalid slots and keeps", () => {
   const addedIds = [911, 913, 916, 917];
-  assert.equal(CURRENT_CATALOG_REVISION, 105);
+  assert.equal(CURRENT_CATALOG_REVISION, 106);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(67)],
     addedIds,
@@ -8871,7 +8875,7 @@ test("material-training revision removes only anatomically invalid slots and kee
 
 test("training-claim revision removes only newly invalid slot feedback", () => {
   const addedIds = [918, 919];
-  assert.equal(CURRENT_CATALOG_REVISION, 105);
+  assert.equal(CURRENT_CATALOG_REVISION, 106);
   assert.deepEqual(
     [...SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(69)],
     addedIds,
@@ -8983,7 +8987,7 @@ test("complete-pose revision rebuilds affected placements without erasing feedba
 
 test("corrected two-sided revision rebuilds placements and preserves feedback", () => {
   const changedIds = new Set([32, 483, 493]);
-  assert.equal(CURRENT_CATALOG_REVISION, 105);
+  assert.equal(CURRENT_CATALOG_REVISION, 106);
   assert.deepEqual(SCOPED_CATALOG_INVALIDATIONS_BY_REVISION.get(71), changedIds);
   assert.equal(SCOPED_SCORE_INVALIDATIONS_BY_REVISION.has(71), false);
 
@@ -9561,7 +9565,7 @@ test("runtime media maps to MP4s and reviewed hold frames, never GIFs", async ()
     }
     if (item.mode === "Hold") {
       holds.push(item);
-      assert.match(item.name, /\b(?:hold|isometric|pose|posing|stance|stretch|sit|against|plank)\b/i);
+      assert.match(item.name, /\b(?:hold|isometric|pose|posing|stance|stretch|fold|sit|against|plank)\b/i);
       await assertFile(
         path.join(repositoryRoot, "NomadicMethod", "Assets", getHoldFramePath(item)),
       );

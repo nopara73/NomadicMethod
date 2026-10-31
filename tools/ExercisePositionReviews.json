@@ -7532,6 +7532,94 @@
         "exercise_videos/exercise_1729.mp4": "d3448c8089818b11a3982b9d465482c342037aeef4328b61478c208d221340f2",
         "exercise_hold_frames/exercise_1729.png": "e1315713907eea7b6c927d9ca1770fa255733015581359475a68e6b9fb8cde6d"
       }
+    },
+    {
+      "id": 1730,
+      "coverage": "OppositeBlocks",
+      "reason": "With opposed palms, individual fingers fold across the other hand then reopen through the demonstrated independent combinations. The hand crossing order receives a full mirrored block.",
+      "media": {
+        "exercise_videos/exercise_1730.mp4": "e208159efc9219de7b05d53993bd4e7a5ce52d289fb5e7770bf88c23cfd59c7a"
+      }
+    },
+    {
+      "id": 1731,
+      "coverage": "Symmetric",
+      "reason": "Opposed fingertips repeatedly separate and meet in independent finger combinations. No fingers interlace and neither hand is a fixed support.",
+      "media": {
+        "exercise_videos/exercise_1731.mp4": "c78853d3b66f5e58eba6f5cb7efcd80d2ee36d0eefa7671733e8d534b8abc962"
+      }
+    },
+    {
+      "id": 1732,
+      "coverage": "WholeLoop",
+      "reason": "Both hands repeatedly split and reunite named finger groups, including opposed split patterns; both hands complete the pattern within the natural source loop.",
+      "media": {
+        "exercise_videos/exercise_1732.mp4": "6e6de23775d629a42a941fc0142f00fc498b02a9372600dd45ec26657fd82edd"
+      }
+    },
+    {
+      "id": 1733,
+      "coverage": "OppositeBlocks",
+      "reason": "Standing on one planted foot, the opposite straight leg lifts across the body and returns to neutral. Complete repetitions are followed by the opposite-leg block.",
+      "media": {
+        "exercise_videos/exercise_1733.mp4": "dadd84155890ceb273c3be6f917778b4434cd6b27edb220f7b133a51e839e1c4"
+      }
+    },
+    {
+      "id": 1734,
+      "coverage": "Symmetric",
+      "reason": "The person sits in a wide straddle and folds forward with straight legs, both palms and broad seated support. The complete held pose stays visible.",
+      "media": {
+        "exercise_videos/exercise_1734.mp4": "a62605319c292547aee1576a7ddea6f8b77f3c71b001f3e2acca62e23e1efe82"
+      }
+    },
+    {
+      "id": 1735,
+      "coverage": "OppositeBlocks",
+      "reason": "In a seated wide straddle, the lower hand holds the foot and the opposite arm reaches overhead into a held side bend. The lower elbow and torso remain off the floor. The other side receives a full block.",
+      "media": {
+        "exercise_videos/exercise_1735.mp4": "0109d36fad23574c57c885bd43ddb90f4f99481b3fd1330ffa1802ec13047c63"
+      }
+    },
+    {
+      "id": 1736,
+      "coverage": "OppositeBlocks",
+      "reason": "Sitting cross-legged with both knees raised, one palm supports the held overhead side bend. Mirroring reverses both the side and fixed leg-crossing order.",
+      "media": {
+        "exercise_videos/exercise_1736.mp4": "89cfa6639062b57a7865c3da01080c0ecda2f53148f95e310df1fd4325117693"
+      }
+    },
+    {
+      "id": 1737,
+      "coverage": "OppositeBlocks",
+      "reason": "Standing with slightly bent knees, the person folds forward, holds the opposite elbows and lets the head and arms hang. Mirroring changes the fixed forearm crossing. The nearby blocks are not used.",
+      "media": {
+        "exercise_videos/exercise_1737.mp4": "818c955791d25725d5fde0a7a233376abc4a299b60416e662c3dd51d3a959942"
+      }
+    },
+    {
+      "id": 1738,
+      "coverage": "OppositeBlocks",
+      "reason": "With hands clasped forward, the person bends the knees slightly, reaches forward while rounding the upper back, then returns to upright. The complete standing person and hands remain visible.",
+      "media": {
+        "exercise_videos/exercise_1738.mp4": "c552172a50ae90bce2b8d158dba5602c41a130a65a27610c1590f153286d11b1"
+      }
+    },
+    {
+      "id": 1739,
+      "coverage": "OppositeBlocks",
+      "reason": "Standing side-on with clasped hands behind the pelvis, the person opens the chest and lifts the hands slightly, then releases to the starting position. Opposite hand-clasp order gets its own block.",
+      "media": {
+        "exercise_videos/exercise_1739.mp4": "3b9aef899c4fcd665df2ad38bb889e035af6cb1677810018e33f208af57165a3"
+      }
+    },
+    {
+      "id": 1740,
+      "coverage": "OppositeBlocks",
+      "reason": "Starting with joined hands above/behind the head, the person lifts the joined hands and elbows overhead, lengthens through the ribs, then returns. Hands, head and planted feet stay in frame.",
+      "media": {
+        "exercise_videos/exercise_1740.mp4": "6673b92d0516f5e553478619e7c065b76a5891d8ecb759b501e57b654bd1e12e"
+      }
     }
   ],
   "reactionMedia": {

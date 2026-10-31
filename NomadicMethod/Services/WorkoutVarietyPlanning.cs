@@ -80,6 +80,7 @@ public sealed partial class ExerciseSessionService
                 IReadOnlyDictionary<string, int> lineup;
                 try
                 {
+                    EnsurePlannableWorkoutAvailability(state, state.ActiveWorkoutMinutes, state.ActiveWorkoutModifiers, expanded);
                     lineup = ChooseBestDistinctLineup(state, [extraGroup], state.ActiveWorkoutModifiers,
                         carriedKeepRootIdsBySelectionGroupId: carriedKeeps,
                         reservedRepeatMinutes: state.ActiveWorkoutMinutes - remaining,
@@ -94,6 +95,7 @@ public sealed partial class ExerciseSessionService
                     { allowedRoots.Remove(extraRoot.Id); continue; }
                 }
                 catch (InvalidOperationException error) when (
+                    error.Message == WorkoutVarietyPolicy.UnavailableMessage ||
                     error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal) ||
                     error.Message.Contains("selected sequence lengths cannot fill", StringComparison.Ordinal))
                 {

@@ -37,6 +37,17 @@ before whole-lineup reservations or personal ranking. Sides, sets, directions an
 aliases count once. The native tests, web tests and production build reject any
 remaining shortage; existing contextual availability floors remain separate.
 
+Application planning checks complete-workout feasibility after physical settings
+and the personal training zone. For a partially assessed profile with reviewed
+training claims, fewer than five alternatives must not block a complete eligible
+workout: the planner proves a full atomic lineup without relaxing any rating.
+Wholly unknown and fully assessed profiles retain the five-choice preflight.
+The independent catalog and explicit variety audits still require five distinct
+movement families; partial-profile shortages remain visible there. These checks
+also cover added slots and explicit edits. Saved workouts retain their progress
+on reopen. The [post-filter review](docs/catalog-audit/post-filter-variety-review-2026-10-31.json)
+records the reviewed demonstrations and unchanged existing ratings.
+
 Choosing a shorter session therefore coarsens the body map instead of cutting
 the end off a longer routine. The default 5-minute partition has five broad
 targets; the 30-minute partition addresses all 30 leaves individually. Selected exercise
@@ -682,7 +693,9 @@ Movement start and resume checkpoints use Android's non-blocking preference
 apply so the Play control responds without waiting for a disk flush; pausing,
 finishing, and score-changing actions still commit synchronously.
 
-The Android catalog uses SQLite schema version 114. Catalog migrations distinguish
+The Android catalog uses a versioned SQLite schema. Exercise titles are display
+labels and may repeat; stable IDs own scores, Keeps and session identity.
+Catalog migrations distinguish
 semantic exercise replacements from approved name, timing, and media repairs.
 Unchanged identities retain their scores and valid keeps; changed identities
 invalidate only affected workout state. Score changes use a small recovery
@@ -747,6 +760,18 @@ The connected development phone must always receive this debuggable build. Use
 an in-place replacement to preserve its saved workout state; never uninstall or
 clear the package during deployment. A successful `run-as` check verifies that
 the installed build is actually debuggable.
+
+Verify usable startup on the phone, then inspect the saved screenshot:
+
+```powershell
+node tools/check-android-startup.mjs --serial PHONE_SERIAL --expected-version 3.77
+```
+
+This check requires an enabled setup or workout action and rejects the unavailable
+screen, caught initialization exceptions and fatal crashes. It saves the actual
+screen, accessibility hierarchy and startup log under `.artifacts/android-startup/`.
+The domain tests also run the production startup catalog validator with the
+production JSON context and test both fresh and upgraded SQLite schemas.
 
 Create a release APK:
 

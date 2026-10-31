@@ -29,11 +29,19 @@ const surfaceReview = JSON.parse(readFileSync(new URL(
 const corrections = new Map(surfaceReview.entries
   .filter(entry => entry.compatibility !== entry.previousCompatibility)
   .map(entry => [entry.id, entry]));
+const varietyReview = JSON.parse(readFileSync(new URL(
+  "../../docs/catalog-audit/post-filter-variety-review-2026-10-31.json", import.meta.url), "utf8"));
 
 // Dated fingerprints retain every field. Restore only the separately reviewed
 // later surface correction when comparing metadata from an earlier review.
 export function beforeSurfaceReview(exercise, reviewedRevision) {
   exercise = beforeNameReview(exercise);
+  const amendment = varietyReview.metadataAmendments.find(entry => entry.id === exercise.id);
+  if (amendment && reviewedRevision < varietyReview.catalogRevision) {
+    for (const [field, value] of Object.entries(amendment.currentFields)) assert.equal(exercise[field], value);
+    exercise = {...exercise, ...amendment.previousFields};
+    for (const field of amendment.previousAbsentFields) delete exercise[field];
+  }
   const correction = corrections.get(exercise.id);
   if (!correction || reviewedRevision >= surfaceReview.catalogRevision) return exercise;
   assert.equal(exercise.hardFloorCompatibility, correction.compatibility);

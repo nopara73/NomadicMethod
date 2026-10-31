@@ -3,7 +3,13 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from "../workout.js";
 
-const catalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
+const currentCatalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
+// These standalone one-choice regressions exercise historical 20–90-minute
+// plans, including extensions no longer offered by setup. Freeze their prior
+// catalog pool; current five-choice application behavior and real inventory
+// are covered by post-filter-variety.test.js.
+const catalog = structuredClone(currentCatalog.filter(exercise => exercise.id < 1730));
+catalog.find(exercise => exercise.id === 1069).hardFloorCompatibility = "Incompatible";
 function finish(session) {
   const group = session.getNextGroup();
   session.beginRest(group, Date.now() + 15_000);
@@ -159,7 +165,7 @@ for (const minutes of [60, 90]) {
   });
 }
 
-test("an unsupported legacy duration plan leaves the entire active state untouched", () => {
+test("legacy duration plans resolve remaining coverage and reject destructive shortening", () => {
   const session = new WorkoutSession(catalog, createDefaultState(), () => 0);
   const profile = M.Insect | M.HardFloor | M.Silence | M.UpperBodyClothing;
   session.initialize();
@@ -173,7 +179,12 @@ test("an unsupported legacy duration plan leaves the entire active state untouch
   for (let i = 0; i < 10; i++) finish(session);
   session.resizeActiveWorkout(30);
   session.reconfigureActiveWorkout(profile | M.Wall, session.getNextGroup().id);
+  const outcomes=structuredClone(session.state.outcomes),currentId=session.getNextGroup().id;
+  session.resizeActiveWorkout(45);
+  assert.equal(session.getActiveGroups().length,45);
+  assert.equal(session.getNextGroup().id,currentId);
+  assert.deepEqual(session.state.outcomes,outcomes);
   const before = JSON.stringify(session.state);
-  assert.throws(() => session.resizeActiveWorkout(45));
+  assert.throws(() => session.resizeActiveWorkout(3));
   assert.equal(JSON.stringify(session.state), before);
 });

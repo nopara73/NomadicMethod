@@ -56,13 +56,16 @@ for (const item of cases) {
 
 for (const item of rejectedSlotCases) {
   test(`rejected singleton fallback: ${item.name}`, () => {
+    // Preserve the actual older singleton fixture after filling the catalog.
+    const legacyCatalog=structuredClone(catalog.filter(e=>e.id<1730));
+    legacyCatalog.find(e=>e.id===1069).hardFloorCompatibility="Incompatible";
     const state = {...createDefaultState(),
       catalogRevision: CURRENT_CATALOG_REVISION,
       exerciseScoreAdjustmentsByPhase: Object.fromEntries(['Warmup', 'PeakPerformance', 'Fatigued']
         .map(phase => [phase, {[item.rejectedRoot]: -2}])),
       keptExerciseRootIdsBySelectionGroupId: {'r30.pelvic-floor-perineum': [item.rejectedRoot]},
     };
-    let session = new WorkoutSession(catalog, state, () => 0.5, () => now);
+    let session = new WorkoutSession(legacyCatalog, state, () => 0.5, () => now);
     session.initialize();
     const feedback = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
     session.startWorkout(item.minutes, item.modifiers);

@@ -223,7 +223,8 @@ const [
   source("NomadicMethod", "Services", "WorkoutRecoveryLightPolicy.cs"),
   source("NomadicMethod", "Services", "ReactionCuePolicy.cs"),
   source("NomadicMethod", "Services", "WorkoutLightDayPolicy.cs"),
-  source("NomadicMethod", "Data", "SqliteExerciseDatabase.cs"),
+  Promise.all(["SqliteExerciseDatabase.cs", "ExerciseCatalogValidator.cs", "ExerciseDatabaseMigrationSql.cs"]
+    .map(file => source("NomadicMethod", "Data", file))).then(parts => parts.join("\n")),
   source("NomadicMethod.Tests", "CatalogInvariantTests.cs"),
   source("NomadicMethod", "Data", "ExerciseDatabaseVersionPolicy.cs"),
   source("NomadicMethod", "Models", "WorkoutSessionLog.cs"),
@@ -454,15 +455,15 @@ test("web and mobile persist hard-first block-aware workout allocation", () => {
 });
 
 test("web and mobile carry keeps across duration resolutions", () => {
-  assert.match(sessionService, /PrepareWorkout\([\s\S]*CarrySlotPreferencesForward\(state\);[\s\S]*RepairActiveLineup\(state, preserveCurrentSelections:/);
-  assert.match(workoutModule, /prepareWorkout\([\s\S]*this\.carrySlotPreferencesForward\(\);[\s\S]*this\.repairActiveLineup\(/);
+  assert.match(sessionService, /PrepareWorkout\([\s\S]*CarrySlotPreferencesForward\(state, resolveEmptySlots: true\);[\s\S]*RepairActiveLineup\(state, preserveCurrentSelections:/);
+  assert.match(workoutModule, /prepareWorkout\([\s\S]*this\.carrySlotPreferencesForward\(true\);[\s\S]*this\.repairActiveLineup\(/);
   assert.match(
     sessionService,
     /CarrySlotPreferencesForward\([\s\S]*BuildCrossResolutionKeepPreferences[\s\S]*ChooseBestDistinctLineup/,
   );
   assert.match(
     workoutModule,
-    /carrySlotPreferencesForward\(\)[\s\S]*buildCrossResolutionKeepPreferences[\s\S]*chooseBestDistinctLineup/,
+    /carrySlotPreferencesForward\(resolveEmptySlots = false\)[\s\S]*buildCrossResolutionKeepPreferences[\s\S]*chooseBestDistinctLineup/,
   );
 });
 
@@ -539,11 +540,11 @@ test("web and mobile apply the same multi-resolution muscle balancing", () => {
   );
   assert.match(
     sessionService,
-    /RepairActiveLineup\(state, preserveCurrentSelections:[\s\S]*!modifiers\.HasFlag\(WorkoutModifiers\.Light\)\);[\s\S]*RebalanceNewExercisesByMuscleBalance\(state\);[\s\S]*SetActiveLongWorkoutAllocation\(state\);/,
+    /RepairActiveLineup\(state, preserveCurrentSelections: false, resolveEmptySlots: true\);[\s\S]*RebalanceNewExercisesByMuscleBalance\(state\);[\s\S]*SetActiveLongWorkoutAllocation\(state\);/,
   );
   assert.match(
     workoutModule,
-    /this\.repairActiveLineup\(\(modifiers & WORKOUT_MODIFIERS\.Light\) === 0\);[\s\S]*this\.rebalanceNewExercisesByMuscleBalance\(\);[\s\S]*this\.setActiveLongWorkoutAllocation\(\);/,
+    /this\.repairActiveLineup\(false, true\);[\s\S]*this\.rebalanceNewExercisesByMuscleBalance\(\);[\s\S]*this\.setActiveLongWorkoutAllocation\(\);/,
   );
   assert.match(
     muscleBalancePolicy,
@@ -914,7 +915,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 702);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 713);
   assert.equal(catalog.filter((exercise) =>
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 217);
   assert.deepEqual(
@@ -1499,7 +1500,7 @@ test("runtime media and the deployable web shell are content-addressed", () => {
   assert.match(webBuild, /reloadRequired: true, catalogRevision: CURRENT_CATALOG_REVISION/);
   assert.match(webBuild, /readFile\(path\.join\(outputRoot, "data", catalogOutputName\), "utf8"\)/,
     "Production validation must read the fingerprinted catalog, never the cached-client reload guard");
-  assert.ok(webApp.indexOf("if (!Array.isArray(exercises))") < webApp.indexOf("new WorkoutSession(exercises, loadState(), undefined, undefined, fitnessRatings)"),
+  assert.ok(webApp.indexOf("if (!Array.isArray(exercises))") < webApp.indexOf("WorkoutSession.createForApplication(exercises, loadState(), undefined, undefined, fitnessRatings)"),
     "An outdated runtime must reject the guard before it can migrate or write a session");
 });
 
@@ -1812,7 +1813,7 @@ test("Start activates an off-thread prepared workout on Android and web", async 
   );
   assert.match(
     preparationWorker,
-    /new WorkoutSession\(exercises, state, undefined, undefined, fitnessRatings\)[\s\S]*prepareWorkout\(minutes, modifiers\)[\s\S]*postMessage/,
+    /WorkoutSession\.createForApplication\(exercises, state, undefined, undefined, fitnessRatings\)[\s\S]*prepareWorkout\(minutes, modifiers\)[\s\S]*postMessage/,
   );
   assert.match(
     webBuild,
@@ -1834,7 +1835,7 @@ test("prepared Android state retains its planner and cancellation survives rapid
   assert.match(background, /new PreparedWorkout\([\s\S]*preparationService\)/);
   assert.match(start, /prepared\.SessionService\.ActivatePreparedWorkout\(nextState\)/);
   assert.equal((start.match(/_sessionService = prepared\.SessionService;/g) ?? []).length, 2);
-  assert.match(webApp, /new WorkoutSession\(exerciseCatalog, prepared\.state, undefined, undefined, fitnessRatings\)/);
+  assert.match(webApp, /WorkoutSession\.createForApplication\(exerciseCatalog, prepared\.state, undefined, undefined, fitnessRatings\)/);
 });
 
 test("Android persistence rejects malformed stored shapes without crashing launch", async () => {
