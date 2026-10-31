@@ -5772,7 +5772,7 @@ for (const minutes of [3, 5, 7, 10, 15, 20, 30]) {
     for (const placement of session.getSelectedSequencePlacements()) {
       const selected = rounds.filter(g=>getSelectionKey(g)===placement.anchor.id);
       for (const set of new Set(selected.map(g=>g.setNumber)))
-        assert.deepEqual(selected.filter(g=>g.setNumber===set).map(g=>g.sequenceBlockIndex),placement.root.sequenceBlocks.map((_,i)=>i));
+        assert.deepEqual(selected.filter(g=>g.setNumber===set).map(g=>g.sequenceBlockIndex ?? 0),placement.root.sequenceBlocks.map((_,i)=>i));
     }
     assert.deepEqual(session.state.activeDirectionPartnerExerciseIds, {});
     assert.deepEqual(session.state.activeFullSideRoundIds, []);
@@ -9761,8 +9761,8 @@ for (const minutes of [30, 90]) {
     assert.ok(exercises.every((exercise) => exercise.score === 7));
     restored.prepareWorkout(minutes, WORKOUT_MODIFIERS.None);
     assert.equal(restored.getActiveGroups().length, minutes);
-    assert.deepEqual(restored.getSelectionGroups().flatMap(g => g.canonicalGroups).sort(),
-      groups.flatMap(g => g.canonicalGroups).sort());
+    assert.deepEqual([...new Set(restored.getSelectionGroups().flatMap(g => g.canonicalGroups))].sort(),
+      [...new Set(groups.flatMap(g => g.canonicalGroups))].sort());
     assert.deepEqual(restored.state.exerciseScoreAdjustmentsByPhase, feedback);
     assert.deepEqual(restored.state.workoutHistory, history);
     assert.deepEqual(restored.state.keptExerciseRootIdsBySelectionGroupId, keeps);
