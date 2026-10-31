@@ -1,3 +1,4 @@
+import { mapConcurrent } from "../../tools/map-concurrent.mjs";
 import { checkFixedPositionReviews } from "../../tools/check-exercise-position-reviews.mjs";
 import { checkDurationPolicy } from "./workout-duration-policy.mjs";
 import { createHash } from "node:crypto";
@@ -354,7 +355,7 @@ if (failedCatalogInvariants.length > 0) {
   );
 }
 
-for (const exercise of catalog) {
+await mapConcurrent(catalog, 8, async (exercise) => {
   await requireFile(path.join(outputRoot, "assets", exercise.video));
 
   if (exercise.mode === "Hold") {
@@ -378,18 +379,16 @@ for (const exercise of catalog) {
       ),
     );
   }
-}
+});
 
-const assetVersions = {};
-for (const file of await walk(path.join(outputRoot, "assets"))) {
+const assetFiles = (await walk(path.join(outputRoot, "assets"))).sort();
+const assetVersions = Object.fromEntries(await mapConcurrent(assetFiles, 8, async (file) => {
   const relativePath = path
     .relative(path.join(outputRoot, "assets"), file)
     .split(path.sep)
     .join("/");
-  assetVersions[relativePath] = createHash("sha256")
-    .update(await readFile(file))
-    .digest("hex");
-}
+  return [relativePath, createHash("sha256").update(await readFile(file)).digest("hex")];
+}));
 const assetVersionsSource = `${JSON.stringify(assetVersions, null, 2)}\n`;
 const assetVersionsVersion = contentFingerprint(assetVersionsSource);
 const assetVersionsOutputName = `asset-versions.${assetVersionsVersion}.json`;
@@ -492,7 +491,7 @@ if (forbiddenGifs.length > 0) {
 }
 
 const outputBytes = (
-  await Promise.all(outputFiles.map(async (file) => (await stat(file)).size))
+  await mapConcurrent(outputFiles, 8, async (file) => (await stat(file)).size)
 ).reduce((total, size) => total + size, 0);
 
 console.log(
@@ -506,8 +505,13 @@ async function copyInto(source, destination) {
 }
 
 async function copyDirectory(source, destination) {
-  await mkdir(path.dirname(destination), { recursive: true });
-  await cp(source, destination, { recursive: true });
+  await mkdir(destination, { recursive: true });
+  const entries = await readdir(source, { withFileTypes: true });
+  await mapConcurrent(entries, 8, async (entry) => {
+    const from = path.join(source, entry.name), to = path.join(destination, entry.name);
+    if (entry.isDirectory()) await copyDirectory(from, to);
+    else await cp(from, to);
+  });
 }
 
 async function copyOptionalDirectory(source, destination) {
