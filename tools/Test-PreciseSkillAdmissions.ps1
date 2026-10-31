@@ -1,5 +1,36 @@
 param([ValidateSet('precise-admissions-2026-10-23', 'ability-admissions-2026-10-23', 'zopd-admissions-2026-10-24')]
     [string]$Admission = 'precise-admissions-2026-10-23')
+
+function Assert-PreciseAdmissionFitnessRatings {
+    param([int]$Id, [hashtable]$Entry, [hashtable]$Profile,
+        [object[]]$Dimensions, [hashtable]$Ratings)
+    for ($axis = 0; $axis -lt $Dimensions.Count; $axis++) {
+        $dimension = $Dimensions[$axis]
+        $trainedLevels = $Entry.trainedLevels[$dimension]
+        if ($null -eq $trainedLevels -or $trainedLevels.Count -gt 1 -or
+            ($trainedLevels.Count -eq 1 -and
+                (($trainedLevels[0] -isnot [int] -and $trainedLevels[0] -isnot [long]) -or
+                    $trainedLevels[0] -lt 1 -or $trainedLevels[0] -gt 5))) {
+            throw "Exercise $Id requires its exact reviewed $dimension training claim."
+        }
+        $trained = $trainedLevels.Count -eq 1
+        # Historical trainedLevels records describe training claims. Their empty
+        # claims now require an explicit minimum rating of [1] and false flags;
+        # neither the source nor the runtime rating may be empty or defaulted.
+        [object[]]$expectedLevels = if ($trained) { $trainedLevels } else { @(1) }
+        if ($Profile.trainingCharacteristics[$dimension] -isnot [bool] -or
+            $Profile.trainingCharacteristics[$dimension] -cne $trained -or
+            $Ratings.trainingCharacteristics[[string]$Id][$axis] -isnot [bool] -or
+            $Ratings.trainingCharacteristics[[string]$Id][$axis] -cne $trained -or
+            (ConvertTo-Json -InputObject $expectedLevels -Compress) -cne
+                (ConvertTo-Json -InputObject $Profile.levels[$dimension] -Compress) -or
+            (ConvertTo-Json -InputObject $expectedLevels -Compress) -cne
+                (ConvertTo-Json -InputObject $Ratings.ratings[[string]$Id][$axis] -Compress)) {
+            throw "Exercise $Id has a range or a changed $dimension assessment; review the admission explicitly."
+        }
+    }
+}
+
 $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'CatalogReviewEvidence.ps1')
 $root = Split-Path -Parent $PSScriptRoot
@@ -40,16 +71,7 @@ foreach ($entry in $audit.entries) {
     if ($profiles.Count -ne 1 -or $entry.trainedLevels.Count -ne 10) {
         throw "Exercise $id requires exactly one complete ten-characteristic assessment."
     }
-    for ($axis = 0; $axis -lt $assessment.dimensions.Count; $axis++) {
-        $dimension = $assessment.dimensions[$axis]
-        $levels = $entry.trainedLevels[$dimension]
-        if ($null -eq $levels -or $levels.Count -gt 1 -or
-            (ConvertTo-Json -InputObject $levels -Compress) -cne
-                (ConvertTo-Json -InputObject $profiles[0].levels[$dimension] -Compress) -or
-            (ConvertTo-Json -InputObject $levels -Compress) -cne
-                (ConvertTo-Json -InputObject $ratings.ratings[[string]$id][$axis] -Compress)) {
-            throw "Exercise $id has a range or a changed $dimension assessment; review the admission explicitly."
-        }
-    }
+    Assert-PreciseAdmissionFitnessRatings -Id $id -Entry $entry -Profile $profiles[0] `
+        -Dimensions $assessment.dimensions -Ratings $ratings
 }
-Write-Output "$expectedCount precise admissions match their explicit reviews, canonical identities and all ten runtime rating cells."
+Write-Output "$expectedCount precise admissions match their explicit reviews, training claims, canonical identities and all ten complete runtime rating cells."
