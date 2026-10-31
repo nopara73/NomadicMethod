@@ -19,7 +19,7 @@
           "previewSha256": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
         },
         {
-          "label": "Jab–cross",
+          "label": "Two straight punches",
           "sourceId": 279,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "27d1daa5c16d5274c8e1834330813536ab3adadc5fee8ab1f1be9d03466005d3",
@@ -33,7 +33,7 @@
           "previewSha256": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3"
         },
         {
-          "label": "Hook",
+          "label": "Curved punch",
           "sourceId": 280,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "25a49a8e33bd5baf1fb8e648a58614c06e53bd4cf31163e60935c469e8b5adc5",
@@ -47,7 +47,7 @@
           "previewSha256": "e12e72b0a35d7e9d45eff61fa82c90f418781ac352484c600170ba86f7daa91c"
         },
         {
-          "label": "Uppercuts",
+          "label": "Upward punches",
           "sourceId": 274,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "42a9561a248e3778ae1467ec64c97028350b82faa6c366a8bab9a8ac98c9b09e",
@@ -80,7 +80,7 @@
           "previewSha256": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
         },
         {
-          "label": "Cross-body knee drive",
+          "label": "Knee across body",
           "sourceId": 170,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "18d58e995ef9134bd56e264446ae379818627af0debc30bb4b7c73d3c463090d",
@@ -108,7 +108,7 @@
           "previewSha256": "0e709cb571f530ab0a9f7a56f8833615495121a163c1b5ede2100740f6272b2f"
         },
         {
-          "label": "Knee lift with pull-down",
+          "label": "Lift knee, pull arms down",
           "sourceId": 31,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "86ed2aca3282d3b453c594d5ed10fe4fc5a8c5e38915320a6cdb3e93de956f75",
@@ -141,7 +141,7 @@
           "previewSha256": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
         },
         {
-          "label": "W extensions",
+          "label": "Elbows bent, raise arms overhead",
           "sourceId": 234,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "4fa27dd526cb997f22247d058294da7488348e208d5960683658ab2e016838cb",
@@ -155,7 +155,7 @@
           "previewSha256": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121"
         },
         {
-          "label": "Arm circles",
+          "label": "Small arm raises",
           "sourceId": 264,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "a66110f1464dd6261e0afb1648d584c6c8b45e942c8676e450d1e70b723bb37e",
@@ -169,7 +169,7 @@
           "previewSha256": "15e6f255251b8943a08ee09ebf894dc553846094c0779bdddda7043593cdb5e7"
         },
         {
-          "label": "Goalpost to T",
+          "label": "Straighten arms out to sides",
           "sourceId": 268,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "49857d1d6156086ce3f4f7c65a3fc9a269584c92af05c6b2e11c40103fe89c1f",
@@ -188,7 +188,7 @@
       "id": "kick",
       "actions": [
         {
-          "label": "Front snap kick",
+          "label": "Quick front kick",
           "sourceId": 180,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "506542231cd6136725427438745e9ab699c930dc35055d6b1786014309f1179d",
@@ -202,7 +202,7 @@
           "previewSha256": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
         },
         {
-          "label": "Toe-touch kicks",
+          "label": "Straight-leg kick to hand",
           "sourceId": 174,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "7045a1065d930f45544c5a79aef7a7b35fec8774229a64c5305cf266f77baa9e",
@@ -216,7 +216,7 @@
           "previewSha256": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435"
         },
         {
-          "label": "Inward crescent",
+          "label": "Straight-leg kick in inward arc",
           "sourceId": 182,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "ff88110ed35bf8b079ef448cb1c526d1d5a15009246b20bd8babb531a8098aa0",
@@ -230,7 +230,7 @@
           "previewSha256": "028347f5a86c79bde0422015cddeaee450f10f692fc28850603bfd8acc6e63d8"
         },
         {
-          "label": "Outward crescent",
+          "label": "Straight-leg kick in outward arc",
           "sourceId": 178,
           "sourceStartSeconds": 0,
           "sourceVideoSha256": "3ee2f82832a4616020cc1249dcda7fe525a768c6c759173ba3793025adce8122",
@@ -249,7 +249,7 @@
       "id": "crouch",
       "actions": [
         {
-          "label": "Near hand",
+          "label": "Touch near hand",
           "sourceId": 1516,
           "sourceStartSeconds": 1.7,
           "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
@@ -263,7 +263,7 @@
           "previewSha256": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
         },
         {
-          "label": "Far hand",
+          "label": "Touch far hand",
           "sourceId": 1516,
           "sourceStartSeconds": 3,
           "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
@@ -277,7 +277,7 @@
           "previewSha256": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e"
         },
         {
-          "label": "Near foot",
+          "label": "Touch near foot",
           "sourceId": 1516,
           "sourceStartSeconds": 0.2,
           "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
@@ -291,7 +291,7 @@
           "previewSha256": "bf5f7e7de753d59dbc262b64ad90e00825e7c45de53b1c6aa4625be3b91be00c"
         },
         {
-          "label": "Far foot",
+          "label": "Touch far foot",
           "sourceId": 1516,
           "sourceStartSeconds": 5.5,
           "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",

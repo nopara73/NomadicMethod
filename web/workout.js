@@ -1,3 +1,4 @@
+import { exerciseIdentityName } from "./exercise-names.js";
 import { frozenWorkoutProtocols } from "./workout-protocol-history.js";
 import "./light-cadence.js";
 import { copyProfileSnapshot } from "./completion-profile.js";
@@ -500,7 +501,8 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
 // Existing identities, feedback and unfinished selections remain valid.
 // Revision 101 clarifies push-up hand placement without replacing the movement.
-export const CURRENT_CATALOG_REVISION = 103;
+// Revision 104 improves display wording without changing movement identities.
+export const CURRENT_CATALOG_REVISION = 104;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -9981,7 +9983,7 @@ export class WorkoutSession {
 
 function catalogIdentity(exercise) {
   // Workout-specific archived footage does not create a new exercise identity.
-  return `${exercise.name}\u001f${exercise.catalogVideo ?? exercise.video}`;
+  return `${exerciseIdentityName(exercise.id, exercise.name)}\u001f${exercise.catalogVideo ?? exercise.video}`;
 }
 
 function catalogInvalidationIdsSince(
@@ -10014,16 +10016,13 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
   if (!currentExercise) {
     return false;
   }
-  // These reviewed replacements introduce a different action at the same ID.
-  // Ordinary anatomy and clarity corrections continue to preserve feedback.
-  if (SCOPED_SCORE_INVALIDATIONS_BY_REVISION.get(73).has(exerciseId)) {
-    return false;
-  }
   const separatorIndex = previousIdentity.indexOf("\u001f");
   if (separatorIndex < 0) {
     return false;
   }
-  const previousName = previousIdentity.slice(0, separatorIndex);
+  const storedName = previousIdentity.slice(0, separatorIndex);
+  const previousName = exerciseIdentityName(exerciseId, storedName);
+  const currentName = exerciseIdentityName(exerciseId, currentExercise.name);
   if (DISCARDED_EXERCISE_IDENTITY_NAMES.get(exerciseId)?.has(previousName)) {
     return false;
   }
@@ -10031,6 +10030,11 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
   if (previousVideo !== (currentExercise.catalogVideo ?? currentExercise.video)) {
     return false;
   }
+
+  // Reviewed display-only aliases keep their existing identity. Unknown names
+  // and historical different-action replacements still follow the strict gates.
+  if (previousName === currentName) return true;
+  if (SCOPED_SCORE_INVALIDATIONS_BY_REVISION.get(73).has(exerciseId)) return false;
 
   const usesLegacyTimedSides = [
     "ScreenLeftThenRight",
@@ -10043,12 +10047,12 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
   const timedSideNormalization =
     usesLegacyTimedSides &&
     previousName.startsWith(ALTERNATING_PREFIX) &&
-    previousName.slice(ALTERNATING_PREFIX.length) === currentExercise.name;
+    previousName.slice(ALTERNATING_PREFIX.length) === currentName;
   const continuousAlternationNormalization =
     CONTINUOUS_ALTERNATION_NORMALIZATION_IDS.has(exerciseId) &&
     !usesLegacyTimedSides &&
-    currentExercise.name.startsWith(ALTERNATING_PREFIX) &&
-    previousName === currentExercise.name.slice(ALTERNATING_PREFIX.length);
+    currentName.startsWith(ALTERNATING_PREFIX) &&
+    previousName === currentName.slice(ALTERNATING_PREFIX.length);
   const correction = APPROVED_EXERCISE_CORRECTIONS.get(exerciseId);
   const additionalCorrectionNames =
     ADDITIONAL_APPROVED_EXERCISE_CORRECTION_NAMES.get(exerciseId);
@@ -10056,7 +10060,7 @@ function isApprovedIdentityPreservingNameChange(exerciseId, previousIdentity, cu
     correction !== undefined &&
     (previousName === correction[0] ||
       additionalCorrectionNames?.has(previousName) === true) &&
-    currentExercise.name === correction[1];
+    currentName === correction[1];
 
   return (
     timedSideNormalization ||

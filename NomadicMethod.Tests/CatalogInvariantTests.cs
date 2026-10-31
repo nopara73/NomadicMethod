@@ -1,3 +1,4 @@
+using System.Text.Json.Nodes;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using NomadicMethod.Models;
@@ -13,12 +14,22 @@ public sealed class CatalogInvariantTests
         Converters = { new JsonStringEnumConverter() },
     };
 
+    // Display wording has its own shared policy tests. These historical physical
+    // contracts retain the exact reviewed identity labels, including their hashes.
+    private static Exercise[] ReadIdentityCatalog()
+    {
+        JsonArray catalog = JsonNode.Parse(File.ReadAllText(Path.Combine(
+            AppContext.BaseDirectory, "Assets", "exercises.json")))!.AsArray();
+        foreach (JsonNode? entry in catalog)
+            entry!["name"] = ExerciseNamePolicy.IdentityName(
+                entry["id"]!.GetValue<int>(), entry["name"]!.GetValue<string>());
+        return catalog.Deserialize<Exercise[]>(JsonOptions)!;
+    }
+
     [Fact]
     public void EachDirectionUsesItsOwnCompleteVideoLoop()
     {
-        Exercise[] exercises = JsonSerializer.Deserialize<Exercise[]>(
-            File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")),
-            JsonOptions)!;
+        Exercise[] exercises = ReadIdentityCatalog();
         Exercise[] directional = exercises.Where(exercise =>
             exercise.DirectionSequence != ExerciseDirectionSequence.None).ToArray();
         Assert.NotEmpty(directional);
@@ -36,9 +47,7 @@ public sealed class CatalogInvariantTests
     [Fact]
     public void CompletePoseDeterminesSidesIncludingSupportingArmsAndLeadStances()
     {
-        Exercise[] exercises = JsonSerializer.Deserialize<Exercise[]>(
-            File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")),
-            JsonOptions)!;
+        Exercise[] exercises = ReadIdentityCatalog();
         Dictionary<int, ExerciseSideSequence> expectedSides = new()
         {
             [490] = ExerciseSideSequence.ScreenLeftThenRight,
@@ -72,9 +81,7 @@ public sealed class CatalogInvariantTests
     [Fact]
     public void BundledCatalogSatisfiesEligibilityAndWorkoutProfiles()
     {
-        Exercise[] exercises = JsonSerializer.Deserialize<Exercise[]>(
-            File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")),
-            JsonOptions)!;
+        Exercise[] exercises = ReadIdentityCatalog();
         Assert.Empty(WorkoutModifierPolicy.FindAnatomicalGroupVarietyDeficiencies(exercises));
         WorkoutModifierPairCoverageDeficiency[] pairwiseDeficiencies =
             WorkoutModifierPolicy.FindPairwiseCoverageDeficiencies(exercises).ToArray();
@@ -247,8 +254,7 @@ public sealed class CatalogInvariantTests
             "exercises.json");
         string json = File.ReadAllText(catalogPath);
         using JsonDocument document = JsonDocument.Parse(json);
-        Exercise[] exercises = JsonSerializer.Deserialize<Exercise[]>(json, JsonOptions)
-            ?? throw new InvalidOperationException("The bundled catalog is empty.");
+        Exercise[] exercises = ReadIdentityCatalog();
 
         Assert.DoesNotContain(document.RootElement.EnumerateArray(), element =>
             element.TryGetProperty("muscleGroups", out _));

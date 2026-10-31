@@ -1,3 +1,4 @@
+import { beforeSurfaceReview, beforeReactionLabelReview, beforeReactionLabelReviewSource } from "./catalog-review-history.js";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -12,10 +13,11 @@ const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exer
 const armPulseCorrection = JSON.parse(readFileSync(new URL("./fixtures/arm-pulses.json", import.meta.url), "utf8"));
 const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99).map(exercise =>
   exercise.id === armPulseCorrection.id ? { ...exercise,
-    name: armPulseCorrection.previousName, motionProfile: armPulseCorrection.previousMotionProfile } : exercise);
+    name: armPulseCorrection.previousName, motionProfile: armPulseCorrection.previousMotionProfile } : exercise)
+  .map(exercise => beforeSurfaceReview(exercise, 99));
 const review = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-region-review-2026-10-26.json", import.meta.url), "utf8"));
 const laterReview = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json", import.meta.url), "utf8"));
-const reactionDocument = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/reaction_drills.json", import.meta.url), "utf8"));
+const reactionDocument = beforeReactionLabelReview(JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/reaction_drills.json", import.meta.url), "utf8")));
 const now = () => Date.parse("2026-10-26T00:00:00Z");
 
 test("anatomy corrections remain bound to reviewed movements and media", () => {
@@ -54,7 +56,7 @@ test("anatomy corrections remain bound to reviewed movements and media", () => {
     assert.ok(entry.workoutReplay.blocks.some(block => block.id === entry.id));
     for (const [asset, expected] of Object.entries(entry.assets)) {
       const data = readFileSync(new URL("../../NomadicMethod/Assets/" + asset, import.meta.url));
-      const content = asset === "reaction_drills.json" ? data.toString("utf8").replaceAll("\r\n", "\n") : data;
+      const content = asset === "reaction_drills.json" ? beforeReactionLabelReviewSource(data.toString("utf8").replaceAll("\r\n", "\n")) : data;
       assert.equal(createHash("sha256").update(content).digest("hex"), expected, asset);
     }
     assert.deepEqual(Object.keys(entry.checks).sort(), ["Metadata", "FullLoop", "Crop", "LoopSeam", "PlaybackSpeed", "Mirroring", "Travel", "HoldFrame", "Equipment", "Workout"].sort());
@@ -102,5 +104,5 @@ test("catalog 96 workouts, Keeps, history and downvotes survive the additive upd
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 96);
-  assert.equal(restored.state.catalogRevision, 103);
+  assert.equal(restored.state.catalogRevision, 104);
 });

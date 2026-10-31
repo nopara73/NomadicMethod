@@ -46,7 +46,7 @@ await checkFixedPositionReviews();
 
 await rm(outputRoot, { recursive: true, force: true });
 await mkdir(outputRoot, { recursive: true });
-for (const stem of ['workout-protocol-history', 'reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile', 'exercise-feedback']) {
+for (const stem of ['exercise-names', 'workout-protocol-history', 'reaction-drills', 'reaction-drill-view', 'fitness-profile', 'completion-profile', 'exercise-feedback']) {
   let source = await readFile(path.join(webRoot, `${stem}.js`), 'utf8');
   for (const [dependency, output] of moduleOutputs)
     source = source.replaceAll(`./${dependency}.js`, `./${output}`);
@@ -72,6 +72,7 @@ const lightCadenceSource = await readFile(path.join(webRoot, "light-cadence.js")
 const lightCadenceOutputName = fingerprintedName("light-cadence", "js", lightCadenceSource);
 await writeFile(path.join(outputRoot, lightCadenceOutputName), lightCadenceSource, "utf8");
 const workoutSource = (await readFile(path.join(webRoot, "workout.js"), "utf8"))
+  .replace('./exercise-names.js', `./${moduleOutputs.get('exercise-names')}`)
   .replace('./workout-protocol-history.js', `./${moduleOutputs.get('workout-protocol-history')}`)
   .replace('./workout-duration.js', `./${durationOutputName}`)
   .replace('./light-cadence.js', `./${lightCadenceOutputName}`)
@@ -86,6 +87,9 @@ if (!workoutSource.includes(`./${durationOutputName}`) ||
 if (!workoutSource.includes(moduleOutputs.get('fitness-profile')) ||
     workoutSource.includes('./fitness-profile.js')) {
   throw new Error("Could not content-address the shared fitness policy.");
+}
+if (!workoutSource.includes(moduleOutputs.get('exercise-names')) || workoutSource.includes('./exercise-names.js')) {
+  throw new Error('Could not content-address the exercise-name policy.');
 }
 if (!workoutSource.includes(moduleOutputs.get('workout-protocol-history')) ||
     workoutSource.includes('./workout-protocol-history.js')) {
@@ -427,7 +431,7 @@ if (fingerprintedAppSource === appSource ||
     !fingerprintedAppSource.includes(workoutOutputName) ||
     !fingerprintedAppSource.includes(reactionOutputName) ||
     [...moduleOutputs].some(([stem, name]) =>
-      stem !== 'workout-protocol-history' && !fingerprintedAppSource.includes(name)) ||
+      !['workout-protocol-history', 'exercise-names'].includes(stem) && !fingerprintedAppSource.includes(name)) ||
     !fingerprintedAppSource.includes(fitnessOutputName) ||
     !fingerprintedAppSource.includes(preparationWorkerOutputName) ||
     !fingerprintedAppSource.includes(catalogOutputName) ||

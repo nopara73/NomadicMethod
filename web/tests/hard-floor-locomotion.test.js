@@ -22,7 +22,7 @@ test('the locomotion review covers the exact 44 original exclusions once', () =>
 for (const entry of review.entries) {
   test(`reviewed Hard Floor locomotion: ${entry.id} ${entry.name}`, () => {
     const exercise = byId.get(entry.id);
-    assert.equal(exercise.name, entry.name);
+    assert.equal(exercise.name, exerciseDisplayName(exercise.id, entry.name));
     assert.equal(exercise.floorContactPoints, entry.floorContactPoints);
     assert.equal(exercise.hardFloorCompatibility, entry.compatibility);
     assert.equal(isCompatibleWithWorkoutModifiers(exercise, profile), entry.compatibility === 'Compatible');
@@ -74,3 +74,4 @@ for (const phase of ['Ready', 'Movement', 'Rest']) {
       assert.deepEqual(restored.state[key], saved[key], key);
   });
 }
+import { exerciseDisplayName } from "../exercise-names.js";

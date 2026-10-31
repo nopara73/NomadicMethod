@@ -2344,7 +2344,7 @@ test("lead-stance exercises use the same two-block sequence cues on mobile and w
 
 test("uppercut replacement is a clear one-block alternating floor-safe contract", () => {
   const uppercuts = catalog.find((exercise) => exercise.id === 287);
-  assert.equal(uppercuts.name, "Wide-Stance Alternating Uppercuts");
+  assert.equal(uppercuts.name, exerciseDisplayName(uppercuts.id, "Wide-Stance Alternating Uppercuts"));
   assert.equal(uppercuts.primaryCanonicalGroup, "ShoulderAbductors");
   assert.equal(uppercuts.sideSequence, "Alternating");
   assert.equal(uppercuts.sequenceBlocks.length, 1);
@@ -2768,3 +2768,4 @@ function scopedCatalogInvalidations(
     [...item[2].matchAll(/\d+/g)].map((exerciseId) => Number(exerciseId[0])),
   ]);
 }
+import { exerciseDisplayName } from "../exercise-names.js";

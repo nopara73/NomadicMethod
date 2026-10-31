@@ -1,12 +1,17 @@
 # Only explicit review records can establish approval. Unchanged metadata and
 # successful decoding do not establish visual or anatomical correctness.
+. (Join-Path $PSScriptRoot 'ExerciseDisplayNames.ps1')
 $catalogReviewDimensions = @(
     'Metadata', 'FullLoop', 'Crop', 'LoopSeam', 'PlaybackSpeed',
     'Mirroring', 'Travel', 'HoldFrame', 'Equipment', 'Workout')
 
 function Get-CatalogMetadataHash {
     param([Parameter(Mandatory)]$Exercise)
-    $json = ConvertTo-Json -InputObject $Exercise -Depth 100 -Compress
+    # Dated physical reviews keep their original identity wording. Only exact
+    # reviewed display aliases normalize; other metadata and unknown names do not.
+    $reviewed = $Exercise | ConvertTo-Json -Depth 100 | ConvertFrom-Json
+    $reviewed.name = Get-ExerciseIdentityName -ExerciseId ([int]$reviewed.id) -Name ([string]$reviewed.name)
+    $json = ConvertTo-Json -InputObject $reviewed -Depth 100 -Compress
     $bytes = [Text.Encoding]::UTF8.GetBytes($json)
     [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
 }
@@ -54,6 +59,7 @@ function Get-CatalogAssetHashes {
             # Checkouts may change JSON newlines. Bind the exact UTF-8 text
             # after LF normalization; all binary movie/frame hashes stay raw.
             $text = [IO.File]::ReadAllText($path).Replace("`r`n", "`n")
+            $text = Restore-ReviewedReactionLabels -Text $text
             $bytes = [Text.Encoding]::UTF8.GetBytes($text)
             $hashes[$relative] = [Convert]::ToHexString(
                 [Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()

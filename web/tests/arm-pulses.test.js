@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
+import { exerciseDisplayName } from "../exercise-names.js";
 import { WorkoutSession, createDefaultState, getWorkoutCatalog, getSequenceBlockCount,
   canUseSingleDirection, WORKOUT_MODIFIERS as M } from "../workout.js";
 
@@ -10,7 +11,7 @@ const c = JSON.parse(readFileSync(new URL("./fixtures/arm-pulses.json", import.m
 
 test("arm pulses complete both fixed stances before the two wheel directions", () => {
   const root = catalog.find(e => e.id === c.id);
-  assert.equal(root.name, c.name);
+  assert.equal(root.name, exerciseDisplayName(root.id, c.name));
   assert.equal(root.motionProfile, c.motionProfile);
   assert.equal(root.sideSequence, c.sideSequence);
   assert.deepEqual(root.sequenceBlocks, c.blocks);

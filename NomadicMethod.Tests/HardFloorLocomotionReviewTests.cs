@@ -33,7 +33,8 @@ public sealed class HardFloorLocomotionReviewTests
         {
             Exercise exercise = byId[entry.GetProperty("id").GetInt32()];
             bool compatible = entry.GetProperty("compatibility").GetString() == "Compatible";
-            Assert.Equal(entry.GetProperty("name").GetString(), exercise.Name);
+            Assert.Equal(ExerciseNamePolicy.DisplayName(exercise.Id,
+                entry.GetProperty("name").GetString()!), exercise.Name);
             Assert.Equal(Enum.Parse<ExerciseFloorContact>(entry.GetProperty("floorContactPoints").GetString()!), exercise.FloorContactPoints);
             Assert.Equal(compatible ? ExerciseHardFloorCompatibility.Compatible : ExerciseHardFloorCompatibility.Incompatible, exercise.HardFloorCompatibility);
             Assert.Equal(compatible, WorkoutModifierPolicy.IsCompatible(exercise, Profile));
