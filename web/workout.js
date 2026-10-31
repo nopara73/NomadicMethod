@@ -499,7 +499,8 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // existing selections, Keeps and feedback remain valid.
 // Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
 // Existing identities, feedback and unfinished selections remain valid.
-export const CURRENT_CATALOG_REVISION = 100;
+// Revision 101 clarifies push-up hand placement without replacing the movement.
+export const CURRENT_CATALOG_REVISION = 101;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -1091,6 +1092,8 @@ export const APPROVED_EXERCISE_CORRECTIONS = new Map([
   [949, ["Standing Reverse Wood Chop", "Standing Low-to-High Wood Chop"]],
   [962, ["Alternating Standing Knee-to-Elbow Crunch", "Alternating Standing Knee Taps"]],
   [993, ["Mirror Standing Vacuum Repetitions", "Standing Stomach Vacuum, Then Release"]],
+  [1195, ["Wide-Grip Push-Ups", "Wide-Hand Push-Ups"]],
+  [1255, ["Close-Grip Push-Ups", "Narrow-Hand Push-Ups"]],
 ]);
 
 // Exact historical actions that must never inherit a later replacement identity.

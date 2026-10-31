@@ -341,7 +341,7 @@
     1192 = @{ Name = 'Plank Opposite Arm-and-Leg Raises'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlankOppositeArmandLegRaises' }
     1193 = @{ Name = 'Bent-Knee V-Ups'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBentKneeVUps' }
     1194 = @{ Name = 'W-Arm Supermans'; Region = 'BACK'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorWArmSupermans' }
-    1195 = @{ Name = 'Wide-Grip Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorWideGripPushUps' }
+    1195 = @{ Name = 'Wide-Hand Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorWideGripPushUps' }
     1196 = @{ Name = 'World''s Greatest Stretch'; Region = 'CORE'; Practice = 'Floor mobility'; MotionProfile = 'FloorWorldsGreatestStretch' }
     1197 = @{ Name = 'Seated 90/90 Hip Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'FloorSeatedHipStretch' }
     1198 = @{ Name = 'Barre Pretzel Leg Lifts'; Region = 'HIPS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBarrePretzelLegLifts' }
@@ -401,7 +401,7 @@
     1252 = @{ Name = 'Dead Bugs with Opposite Arm Reach'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorDeadBugswithOppositeArmReach' }
     1253 = @{ Name = 'Reverse Crunches'; Region = 'CORE'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorReverseCrunches' }
     1254 = @{ Name = 'Plyometric Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPlyometricPushUps' }
-    1255 = @{ Name = 'Close-Grip Push-Ups'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorCloseGripPushUps' }
+    1255 = @{ Name = 'Narrow-Hand Push-Ups'; Region = 'ARMS'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorCloseGripPushUps' }
     1256 = @{ Name = 'Knuckle Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorKnucklePushUps' }
     1257 = @{ Name = 'Bird Dog Push-Ups'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorBirdDogPushUps' }
     1258 = @{ Name = 'Push-Ups with Cross-Body Leg Kick'; Region = 'CHEST'; Practice = 'Bodyweight strength'; MotionProfile = 'FloorPushUpswithCrossBodyLegKick' }

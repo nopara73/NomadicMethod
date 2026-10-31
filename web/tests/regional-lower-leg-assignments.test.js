@@ -110,7 +110,7 @@ test(`additive anatomy correction preserves a workout, Keeps and feedback from c
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, sourceRevision);
-  assert.equal(restored.state.catalogRevision, 100);
+  assert.equal(restored.state.catalogRevision, 101);
 });
 
 for (const [id, minutes, target] of [[428,10,"r10.anterior-lateral-lower-leg-dorsal-foot"]])

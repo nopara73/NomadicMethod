@@ -51,5 +51,5 @@ test('additions preserve an unfinished revision-97 workout and its preferences',
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 97);
-  assert.equal(restored.state.catalogRevision, 100);
+  assert.equal(restored.state.catalogRevision, 101);
 });

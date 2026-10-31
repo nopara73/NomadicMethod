@@ -83,7 +83,7 @@ public sealed class RegionalLowerLegAssignmentTests
         Assert.Equal(history, JsonSerializer.Serialize(reopened.WorkoutHistory));
         Assert.Equal(sessionId, reopened.ActiveWorkoutSession!.SessionId);
         Assert.Equal(sourceRevision, reopened.ActiveCatalogRevision);
-        Assert.Equal(100, reopened.CatalogRevision);
+        Assert.Equal(101, reopened.CatalogRevision);
         Assert.Equal(-4, current.Single(exercise => exercise.Id == 187).Score);
     }
     [Theory]
