@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
+import { beforeSurfaceReview } from "./catalog-review-history.js";
 import { WorkoutSession, createDefaultState, getWorkoutCatalog, getSessionMovementId, isCompatibleWithWorkoutModifiers as isExerciseCompatible, WORKOUT_MODIFIERS as M } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
@@ -25,7 +26,7 @@ test("restored assignments remain bound to reviewed metadata and exact runtime m
     assert.ok(exercise.secondaryCanonicalGroups.includes(region), String(entry.id));
     const superseding = supersedingReview.entries.find(e => e.id === entry.id);
     if (superseding) assert.equal(superseding.previousMetadataSha256, entry.metadataSha256);
-    assert.equal(createHash("sha256").update(JSON.stringify(exercise)).digest("hex"), superseding?.metadataSha256 ?? entry.metadataSha256,
+    assert.equal(createHash("sha256").update(JSON.stringify(beforeSurfaceReview(exercise, 99))).digest("hex"), superseding?.metadataSha256 ?? entry.metadataSha256,
       `metadata ${entry.id}`);
     for (const [asset, expected] of Object.entries(entry.assets)) {
       const data = readFileSync(new URL("../../NomadicMethod/Assets/" + asset, import.meta.url));
@@ -56,7 +57,7 @@ test("follow-up assignments remain bound to reviewed metadata and exact runtime 
     assert.ok(entry.workoutReplay.blocks.some(block => block.id === entry.id));
     const superseding = supersedingReview.entries.find(e => e.id === entry.id);
     if (superseding) assert.equal(superseding.previousMetadataSha256, entry.metadataSha256);
-    assert.equal(createHash("sha256").update(JSON.stringify(exercise)).digest("hex"), superseding?.metadataSha256 ?? entry.metadataSha256,
+    assert.equal(createHash("sha256").update(JSON.stringify(beforeSurfaceReview(exercise, 99))).digest("hex"), superseding?.metadataSha256 ?? entry.metadataSha256,
       `metadata ${entry.id}`);
     for (const [asset, expected] of Object.entries(entry.assets)) {
       const data = readFileSync(new URL("../../NomadicMethod/Assets/" + asset, import.meta.url));
@@ -110,7 +111,7 @@ test(`additive anatomy correction preserves a workout, Keeps and feedback from c
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, sourceRevision);
-  assert.equal(restored.state.catalogRevision, 102);
+  assert.equal(restored.state.catalogRevision, 103);
 });
 
 for (const [id, minutes, target] of [[428,10,"r10.anterior-lateral-lower-leg-dorsal-foot"]])

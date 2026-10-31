@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Include="..\web\tests\fixtures\fitness-selection-preferences.json" Link="Assets\fitness-selection-preferences.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\docs\catalog-audit\hard-floor-locomotion-review-2026-10-31.json" Link="Assets\hard-floor-locomotion-review.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\arm-pulses.json" Link="Assets\arm-pulses.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\complete-fitness-ratings-cases.json" Link="Assets\complete-fitness-ratings-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\workout-variety-cases.json" Link="Assets\workout-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />

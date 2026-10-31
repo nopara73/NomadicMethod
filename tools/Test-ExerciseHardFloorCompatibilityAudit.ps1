@@ -23,6 +23,7 @@ $requiredIncompatibilityReasons = @(
     'PivotingStrikingOrKicking'
     'ForbiddenFloorContacts'
     'ConcentratedHandLoading'
+    'ConcentratedHipLoading'
     'TractionDependentFloorLoading'
 )
 

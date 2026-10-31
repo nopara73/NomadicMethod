@@ -2124,7 +2124,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -5787,7 +5787,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -26026,7 +26026,7 @@
       }
     ],
     "insectCompatibility": "Incompatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -29003,7 +29003,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -29618,7 +29618,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -32328,7 +32328,7 @@
       }
     ],
     "insectCompatibility": "Incompatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -36264,7 +36264,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -38728,7 +38728,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -38816,7 +38816,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -39091,7 +39091,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -42185,7 +42185,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
