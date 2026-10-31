@@ -10,6 +10,7 @@ on:
       - "tools/ExercisePositionReviews.json"
       - "tools/check-exercise-position-reviews.mjs"
       - "tools/map-concurrent.mjs"
+      - "tools/check-android-startup.mjs"
       - "docs/catalog-audit/fixed-position-review-2026-10-29.json"
       - "docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json"
       - "NomadicMethod/Assets/exercises.json"
@@ -133,6 +134,7 @@ jobs:
             /tools/ExercisePositionReviews.json
             /tools/check-exercise-position-reviews.mjs
             /tools/map-concurrent.mjs
+            /tools/check-android-startup.mjs
             /docs/catalog-audit/fixed-position-review-2026-10-29.json
             /docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json
             /NomadicMethod/Assets/exercises.json
