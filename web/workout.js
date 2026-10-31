@@ -7245,9 +7245,15 @@ export class WorkoutSession {
           this.state.lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle, selectionTimeUnixMilliseconds));
       if (kept) protectedKeepRoots.add(id);
     }
+    const minimumCoverageUtility = groups.reduce((sum, group) =>
+      sum + calculateUtility(this.exercisesById.get(lineup.get(group.id)), group, true), 0n);
     const coverageBalanceCache = new Map();
     return consolidateWorkoutCoverage(lineup, groups, this.exercisesById, priorities,
       this.state.activeWorkoutMinutes - reservedRepeatMinutes, candidate => {
+        // Recheck eligibility and utility in each target slot's own context.
+        if (groups.some(group => !isAllowed(this.exercisesById.get(candidate.get(group.id)), group)) ||
+            groups.reduce((sum, group) => sum + calculateUtility(
+              this.exercisesById.get(candidate.get(group.id)), group, true), 0n) < minimumCoverageUtility) return null;
         const placements = [...new Set(candidate.values())].map(id => {
           const coveredGroups = groups.filter(g => candidate.get(g.id) === id).sort((a, b) => a.order - b.order);
           return { root: this.exercisesById.get(id), anchor: coveredGroups[0], coveredGroups };

@@ -2347,12 +2347,20 @@ public sealed partial class ExerciseSessionService
                 protectedKeepRoots.Add(id);
             }
         }
+        BigInteger minimumCoverageUtility = groups.Aggregate(BigInteger.Zero, (sum, group) =>
+            sum + CalculateUtility(_exercisesById[lineup[group.Id]], group, includeSlotPreference: true));
         var coverageBalanceCache = new Dictionary<string, MuscleBalanceEvaluation?>(StringComparer.Ordinal);
         return WorkoutSequencePolicy.ConsolidateCoverage(
             lineup, groups, _exercisesById, priorities,
             state.ActiveWorkoutMinutes - reservedRepeatMinutes,
             candidate =>
             {
+                // A preference earned in one slot cannot be borrowed in another.
+                // Recheck the same eligibility and each slot's own utility.
+                if (groups.Any(group => !IsAllowed(_exercisesById[candidate[group.Id]], group)) ||
+                    groups.Aggregate(BigInteger.Zero, (sum, group) => sum + CalculateUtility(
+                        _exercisesById[candidate[group.Id]], group, includeSlotPreference: true)) < minimumCoverageUtility)
+                    return null;
                 var placements = candidate.GroupBy(e => e.Value).Select(entries =>
                 {
                     WorkoutGroup[] covered = groups.Where(g => entries.Any(e => e.Key == g.Id)).OrderBy(g => g.Order).ToArray();
