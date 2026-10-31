@@ -2075,16 +2075,21 @@ export function orderPlacementsBySetup(placements, exercisesById,
     for (; bits !== 0; bits &= bits - 1) count++;
     return count;
   };
-  // Compatible work can stay on a soft surface, beside equipment, or in the
-  // larger travel area. Never insert a fictitious trip back to an empty station.
+  // Keep exact equipment requirements together, including no equipment. Only
+  // surface and travel requirements may share a compatible station within that
+  // equipment group.
+  const equipmentMask = 1 | 2 | 4;
+  const canHost = (station, requirements) =>
+    (station & equipmentMask) === (requirements & equipmentMask) &&
+    (station & requirements) === requirements;
   const stations = [...new Set(setups.map(s => s.station))]
     .filter(station => !setups.some(s => s.station !== station &&
-      (s.station & station) === station)).sort((a, b) => a - b);
+      canHost(s.station, station))).sort((a, b) => a - b);
   const members = stations.map(() => []);
   for (const i of ranked.map((_, i) => i).sort((a, b) =>
     bitCount(setups[b].station) - bitCount(setups[a].station))) {
     const targets = stations.map((_, g) => g).filter(g =>
-      (stations[g] & setups[i].station) === setups[i].station);
+      canHost(stations[g], setups[i].station));
     targets.sort((a, b) =>
       Number(start?.station !== stations[a]) - Number(start?.station !== stations[b]) ||
       Number(!setups.some(s => s.station === stations[a] && s.floor === setups[i].floor)) -
@@ -2111,15 +2116,23 @@ export function orderPlacementsBySetup(placements, exercisesById,
     (next.startsOnFloor !== next.endsOnFloor ? 10 : 0);
   const context = index => index < 0 ? start :
     { station: choices[index].station, floor: choices[index].endsOnFloor };
+  // Finish this equipment group across all of its surfaces/travel spaces before
+  // moving to another. Keep this constraint in both exact and fallback routing.
+  const continuingEquipment = (remaining, previous) =>
+    previous && stations.some((station, g) => (remaining & (1 << g)) &&
+      (station & equipmentMask) === (previous.station & equipmentMask))
+      ? previous.station & equipmentMask : null;
   const memo = new Map();
   const best = (remaining, previous) => {
     if (remaining === 0) return 0;
     const key = remaining * (choices.length + 1) + previous + 1;
     if (memo.has(key)) return memo.get(key);
+    const equipment = continuingEquipment(remaining, context(previous));
     let cost = Infinity;
     for (let i = 0; i < choices.length; i++) {
       const next = choices[i];
       if (!(remaining & (1 << next.group))) continue;
+      if (equipment !== null && (next.station & equipmentMask) !== equipment) continue;
       cost = Math.min(cost, transition(context(previous), next) +
         best(remaining & ~(1 << next.group), i));
     }
@@ -2129,10 +2142,12 @@ export function orderPlacementsBySetup(placements, exercisesById,
   const result = [];
   let mask = (1 << stations.length) - 1, last = -1;
   while (mask !== 0) {
+    const equipment = continuingEquipment(mask, context(last));
     let selected = -1, cost = Infinity;
     for (let i = 0; i < choices.length; i++) {
       const next = choices[i];
       if (!(mask & (1 << next.group))) continue;
+      if (equipment !== null && (next.station & equipmentMask) !== equipment) continue;
       // Exact routing is over stations, with a bounded fallback for unusually
       // diverse future catalogs. Sides, directions and sets remain atomic.
       const candidate = transition(context(last), next) + (stations.length <= 12

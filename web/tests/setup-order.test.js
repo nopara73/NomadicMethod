@@ -39,6 +39,29 @@ for (const entry of cases) {
   });
 }
 
+for (const equipmentCount of [2, 8]) {
+  for (const hasCurrent of [false, true]) {
+    test(`${equipmentCount} equipment groups stay contiguous across surfaces and spaces (current: ${hasCurrent})`, () => {
+      // Four stations use exact routing; sixteen exercise the bounded fallback.
+      const exercises = Array.from({ length: equipmentCount * 2 }, (_, i) => makeExercise({
+        id: i + 1, wall: Boolean((i >> 1) & 1), mirror: Boolean((i >> 1) & 2),
+        elevation: Boolean((i >> 1) & 4), demand: i % 2,
+        floor: Boolean(i % 2), soft: Boolean(i % 2),
+        locomotion: i % 2 === 0 ? "Room" : "None",
+      }));
+      const byId = new Map(exercises.map(e => [e.id, e]));
+      const placements = exercises.map(root => ({ root, anchor: { id: String(root.id), order: root.id } }));
+      const ordered = orderPlacementsBySetup(placements, byId, profile, hasCurrent ? exercises[0] : null);
+      const equipment = ordered.map(p => (p.root.id - 1) >> 1);
+      const visits = equipment.filter((value, i) => i === 0 || value !== equipment[i - 1]);
+      assert.equal(visits.length, equipmentCount);
+      assert.equal(new Set(visits).size, equipmentCount);
+      assert.deepEqual(new Set(ordered), new Set(placements));
+      if (hasCurrent) assert.equal(visits[0], 0);
+    });
+  }
+}
+
 const profile = WORKOUT_MODIFIERS.Wall | WORKOUT_MODIFIERS.Mirror |
   WORKOUT_MODIFIERS.TallMirror | WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.UpperBodyClothing |
   WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.RoomLocomotion;

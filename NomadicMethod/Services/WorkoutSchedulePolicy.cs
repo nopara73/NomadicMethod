@@ -8,6 +8,7 @@ public static class WorkoutSchedulePolicy
     // considering posture changes or demand. These are requirements, not an
     // inference that every enabled piece of equipment is in the same place.
     private const int Wall = 1, Mirror = 2, Elevation = 4;
+    private const int EquipmentMask = Wall | Mirror | Elevation;
     private const int Room = 8, Field = 16, SoftSurface = 32;
     private const int StationChangeCost = 1_000;
     private const int RequirementChangeCost = 100;
@@ -51,18 +52,22 @@ public static class WorkoutSchedulePolicy
             root(item), exercisesById, modifiers)).ToArray();
         Setup? start = current is null ? null : GetSequenceSetup(current, exercisesById, modifiers);
 
-        // Flexible work stays at a compatible, already-needed station. In
-        // particular hard-floor-compatible work can stay on a soft surface,
-        // and stationary/room work can stay in the larger travel space.
+        // Equipment requirements define separate groups, including no equipment.
+        // Within the same group, compatible work may share a soft surface or
+        // larger travel space. It must never be absorbed into another equipment
+        // group merely because that station could also host it.
+        bool CanHost(int station, int requirements) =>
+            (station & EquipmentMask) == (requirements & EquipmentMask) &&
+            (station & requirements) == requirements;
         int[] stations = setups.Select(s => s.Station).Distinct()
             .Where(station => !setups.Any(s => s.Station != station &&
-                (s.Station & station) == station)).Order().ToArray();
+                CanHost(s.Station, station))).Order().ToArray();
         var members = stations.Select(_ => new List<int>()).ToArray();
         foreach (int i in Enumerable.Range(0, ranked.Length)
                      .OrderByDescending(i => BitCount(setups[i].Station)))
         {
             int target = Enumerable.Range(0, stations.Length)
-                .Where(g => (stations[g] & setups[i].Station) == setups[i].Station)
+                .Where(g => CanHost(stations[g], setups[i].Station))
                 .OrderBy(g => start?.Station == stations[g] ? 0 : 1)
                 .ThenBy(g => setups.Any(s => s.Station == stations[g] && s.Floor == setups[i].Floor) ? 0 : 1)
                 .ThenBy(g => BitCount(stations[g] ^ setups[i].Station))
@@ -92,6 +97,16 @@ public static class WorkoutSchedulePolicy
             ((previous?.Floor ?? false) != next.StartsOnFloor ? FloorChangeCost : 0) +
             (next.StartsOnFloor != next.EndsOnFloor ? FloorChangeCost : 0);
 
+        // Finish all physical stations for the current equipment before leaving
+        // it. Otherwise route optimization can still produce none/wall/none
+        // when, for example, the two equipment-free stations need different
+        // surfaces or travel spaces. Apply the same rule to the bounded fallback.
+        int? ContinuingEquipment(int remaining, Setup? previous) =>
+            previous is { } p && Enumerable.Range(0, stations.Length).Any(g =>
+                (remaining & (1 << g)) != 0 &&
+                (stations[g] & EquipmentMask) == (p.Station & EquipmentMask))
+                ? p.Station & EquipmentMask : null;
+
         // Exact routing is over stations, never over every exercise. A bounded
         // fallback keeps unusual future catalogs from making preparation slow.
         var memo = new Dictionary<(int Remaining, int Previous), int>();
@@ -102,10 +117,12 @@ public static class WorkoutSchedulePolicy
             if (memo.TryGetValue((remaining, previous), out int saved)) return saved;
             Setup? from = previous < 0 ? start :
                 new Setup(choices[previous].Station, choices[previous].EndsOnFloor);
+            int? equipment = ContinuingEquipment(remaining, from);
             int cost = int.MaxValue;
             foreach ((Visit next, int index) in choices.Select((v, i) => (v, i)))
             {
                 if ((remaining & (1 << next.Group)) == 0) continue;
+                if (equipment is { } required && (next.Station & EquipmentMask) != required) continue;
                 cost = Math.Min(cost, Transition(from, next) +
                     Best(remaining & ~(1 << next.Group), index));
             }
@@ -118,11 +135,13 @@ public static class WorkoutSchedulePolicy
         while (mask != 0)
         {
             Setup? from = last < 0 ? start : new Setup(choices[last].Station, choices[last].EndsOnFloor);
+            int? equipment = ContinuingEquipment(mask, from);
             int selected = -1, best = int.MaxValue;
             for (int i = 0; i < choices.Length; i++)
             {
                 Visit next = choices[i];
                 if ((mask & (1 << next.Group)) == 0) continue;
+                if (equipment is { } required && (next.Station & EquipmentMask) != required) continue;
                 int cost = Transition(from, next) + (stations.Length <= ExactStationLimit
                     ? Best(mask & ~(1 << next.Group), i) : 0);
                 if (cost < best) { best = cost; selected = i; }

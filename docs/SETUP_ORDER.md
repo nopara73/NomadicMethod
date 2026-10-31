@@ -13,17 +13,20 @@ soft surface when hard-floor compatibility is absent. Floor contact beyond
 the feet is a separate posture dimension. Enabled equipment does not by itself
 place otherwise unrelated stations together.
 
-Only required station combinations appear in the plan. A less constrained
-selection can stay at an already required station that supplies its needs:
-hard-floor-compatible work may stay on the softer surface; stationary and room
-work may stay in the larger travel area. A compound wall/mirror requirement can
-also host its simpler wall-only and mirror-only selections. When several stations
-fit, prefer the current station, matching posture, fewer extra requirements,
-then the earlier demand/anatomy rank. No equipment-free transition erases the
-station context or invents a trip to an empty station.
+Exact equipment requirements define contiguous groups, including equipment-free
+work. Wall-only, mirror-only and combined wall/mirror work remain separate groups.
+Only within the same equipment group may a less constrained selection share an
+already required surface or travel space: hard-floor-compatible work may stay on
+the softer surface; stationary and room work may stay in the larger travel area.
+When several stations fit, prefer the current station, matching posture, fewer
+extra requirements, then the earlier demand/anatomy rank. Equipment-free work
+must never be absorbed into an equipment group and interleaved with its exercises.
 
-Each station gets one contiguous visit. Within it, standing and floor work each
-get one contiguous run. Up to twelve stations, dynamic programming chooses the
+Each equipment group gets one contiguous visit across all of its physical
+stations, even when switching equipment would shorten the route. Replanning
+finishes the current equipment group first when it has remaining work.
+Each physical station gets one contiguous visit. Within it, standing and floor
+work each get one contiguous run. Up to twelve stations, dynamic programming chooses the
 route and each visit's posture orientation; beyond that a deterministic greedy
 route bounds preparation time. Changing station costs 1,000 plus 100 per changed
 requirement bit; a posture change costs 10. Initial posture is standing, with no
@@ -46,7 +49,8 @@ exercise requirements, not room maps. The app adds no setup control or prompt.
 
 `web/tests/fixtures/setup-order-cases.json` is shared by native and web tests.
 It covers station priority over demand, both floor states, compatible surfaces,
-wall/mirror/elevation combinations, room/field travel, flexible work, linked
+wall/mirror/elevation combinations, room/field travel, equipment-free work, linked
 members, and replanning from the current station. Platform tests also cover
 Ready/movement/rest restoration, pre-logging restoration, frozen order, duration
-edits, modifier transitions and complete atomic sequences.
+edits, modifier transitions and complete atomic sequences. Both routing strategies
+also verify contiguous equipment groups across incompatible surface/travel needs.

@@ -43,7 +43,9 @@ targets; the 30-minute partition addresses all 30 leaves individually. Selected 
 sequences are grouped by physical setup before muscular demand: finish work at a
 station before moving to another, and group floor-contact work within each visit.
 Wall, mirror, elevation, locomotion space and soft-surface requirements all count.
-Flexible work can stay at a compatible station. Within equivalent setups, demand
+Each equipment combination forms a contiguous group, including equipment-free
+work. Surface and travel needs can share a compatible station
+within the same equipment group. Within equivalent setups, demand
 `0`, then `2`, then `1` precedes the existing anatomical order. See
 [`docs/SETUP_ORDER.md`](docs/SETUP_ORDER.md).
 

@@ -37,6 +37,35 @@ public sealed class WorkoutSetupOrderTests
     }
 
     [Theory]
+    [InlineData(2, false)]
+    [InlineData(2, true)]
+    [InlineData(8, false)]
+    [InlineData(8, true)]
+    public void EquipmentGroupsStayContiguousAcrossDifferentSurfacesAndSpaces(
+        int equipmentCount, bool hasCurrent)
+    {
+        // Two incomparable physical stations per equipment combination exercise
+        // both exact routing (four stations) and its bounded fallback (sixteen).
+        Exercise[] exercises = Enumerable.Range(0, equipmentCount * 2).Select(i =>
+            MakeExercise(new ExerciseSpec
+            {
+                Id = i + 1, Wall = (i / 2 & 1) != 0, Mirror = (i / 2 & 2) != 0,
+                Elevation = (i / 2 & 4) != 0, Demand = i % 2,
+                Floor = i % 2 != 0, Soft = i % 2 != 0,
+                Locomotion = i % 2 == 0 ? LocomotionSpace.Room : LocomotionSpace.None,
+            })).ToArray();
+        var byId = exercises.ToDictionary(e => e.Id);
+        Exercise[] ordered = WorkoutSchedulePolicy.OrderBySetup(exercises,
+            e => e, e => e.Id, byId, Profile, hasCurrent ? exercises[0] : null);
+        int[] equipment = ordered.Select(e => (e.Id - 1) / 2).ToArray();
+        int[] visits = equipment.Where((value, i) => i == 0 || value != equipment[i - 1]).ToArray();
+        Assert.Equal(equipmentCount, visits.Length);
+        Assert.Equal(equipmentCount, visits.Distinct().Count());
+        Assert.Equal(exercises.OrderBy(e => e.Id), ordered.OrderBy(e => e.Id));
+        if (hasCurrent) Assert.Equal(0, visits[0]);
+    }
+
+    [Theory]
     [InlineData("ready")]
     [InlineData("movement")]
     [InlineData("rest")]
