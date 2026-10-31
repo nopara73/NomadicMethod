@@ -44,6 +44,24 @@ test('all pre-rename scores survive catalog reconciliation', () => {
   assert.equal(restored.state.catalogRevision, CURRENT_CATALOG_REVISION);
 });
 
+test('standard names return without losing feedback stored under instruction labels', () => {
+  const previous = new Map(policy.names.map(e => [e.id, e.previousNames[0] ?? e.identityName]));
+  const state = createDefaultState();
+  state.catalogRevision = 104;
+  for (const e of catalog) {
+    state.catalogIdentities[e.id] = `${previous.get(e.id) ?? e.name}\u001f${e.video}`;
+    state.scores[e.id] = -e.id;
+  }
+  const restored = new WorkoutSession(catalog, state, () => 0);
+  restored.reconcileCatalog();
+  for (const e of catalog) assert.equal(restored.getScore(e), -e.id, `${e.id}: feedback retained`);
+  for (const [id, name] of [[1093, 'Glute Bridges'], [1066, 'Bird Dogs'],
+    [1200, 'Cat-Cow'], [1080, 'Diamond Push-Ups'], [1255, 'Narrow-Hand Push-Ups'],
+    [1244, 'Bird Dogs'], [1073, 'Side Plank Rotations']])
+    assert.equal(catalog.find(e => e.id === id).name, name);
+  assert.equal(exerciseDisplayName(1093, 'On Back, Lift and Lower Hips'), 'Glute Bridges');
+});
+
 test('display renames retain Ready, paused movement and paused rest checkpoints', () => {
   const exercise = catalog.find(e => e.id === 1255);
   const group = RESOLUTIONS.get(30).groups.find(g => isSelectable(exercise, g));
