@@ -82,6 +82,7 @@ public sealed class ExerciseSessionServiceTests
         service.StartWorkout(state, 3, light ? WorkoutModifiers.Light : WorkoutModifiers.None);
         // Recreate the saved pre-coverage contract before any work was performed.
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveDurationSelectionGroupIds = null;
         state.ActiveWorkoutSession = null;
         state.ActiveSetCountsBySelectionGroupId.Clear();
         state.ActiveSelectionGroupOrder.Clear();
@@ -145,6 +146,7 @@ public sealed class ExerciseSessionServiceTests
         if (legacy)
         {
             state.ActiveCoverageAccountingVersion = 0;
+            state.ActiveDurationSelectionGroupIds = null;
             state.ActiveWorkoutSession = null;
             state.ActiveSetCountsBySelectionGroupId.Clear();
             state.ActiveSelectionGroupOrder.Clear();
@@ -228,16 +230,21 @@ public sealed class ExerciseSessionServiceTests
         service.PrepareWorkout(restored, minutes, WorkoutModifiers.None);
         Assert.Equal(minutes, service.GetActiveGroups(restored).Count);
         // Rejected singleton slots may merge, but the complete anatomical
-        // partition, time budget and the user's recorded feedback must survive.
+        // coverage, time budget and the user's recorded feedback must survive.
         var knownGroups = MassGroupingTaxonomy.SupportedMinutes
             .SelectMany(value => MassGroupingTaxonomy.GetResolution(value).Groups).ToDictionary(g => g.Id);
         WorkoutGroup[] plannedGroups = restored.ActiveDurationSelectionGroupIds is { } ids
             ? ids.Select(id => knownGroups[id]).ToArray() : groups;
-        Assert.Equal(groups.SelectMany(g => g.CanonicalGroups).Order(),
-            plannedGroups.SelectMany(g => g.CanonicalGroups).Order());
+        Assert.Equal(groups.SelectMany(g => g.CanonicalGroups).Distinct().Order(),
+            plannedGroups.SelectMany(g => g.CanonicalGroups).Distinct().Order());
         Assert.Equal(feedback, JsonSerializer.Serialize(restored.ExerciseScoreAdjustmentsByPhase));
         Assert.Equal(history, JsonSerializer.Serialize(restored.WorkoutHistory));
-        Assert.Equal(keeps, JsonSerializer.Serialize(restored.KeptExerciseRootIdsBySelectionGroupId));
+        var originalKeeps = JsonSerializer.Deserialize<Dictionary<string, HashSet<int>>>(keeps)!;
+        Assert.All(originalKeeps, entry => Assert.True(
+            restored.KeptExerciseRootIdsBySelectionGroupId.TryGetValue(entry.Key, out var actual) &&
+            entry.Value.IsSubsetOf(actual)));
+        Assert.Equal(originalKeeps.Values.SelectMany(ids => ids).Distinct().Order(),
+            restored.KeptExerciseRootIdsBySelectionGroupId.Values.SelectMany(ids => ids).Distinct().Order());
     }
 
     [Fact]
@@ -476,7 +483,7 @@ public sealed class ExerciseSessionServiceTests
             [.. selected, alternative],
             new AlwaysZeroRandom());
 
-        service.StartWorkout(state, 45, WorkoutModifiers.None);
+        StartSavedRepeatedWorkout(service, state, 45, WorkoutModifiers.None);
 
         Assert.NotEqual(alternative.Id, state.SelectedExerciseIds[targetGroup.Id]);
         var rounds = service.GetActiveGroups(state);
@@ -1102,7 +1109,7 @@ public sealed class ExerciseSessionServiceTests
             ordinary.Concat(wallRequired).ToArray(),
             new AlwaysZeroRandom());
         var state = new WorkoutState();
-        service.StartWorkout(state, 45, WorkoutModifiers.Wall);
+        StartSavedRepeatedWorkout(service, state, 45, WorkoutModifiers.Wall);
         WorkoutGroup[] initialRounds = service.GetActiveGroups(state).ToArray();
         WorkoutGroup firstRepeatedSet = initialRounds.First(round =>
             round.SetCount > 1 && round.SetNumber == 1);
@@ -1163,7 +1170,7 @@ public sealed class ExerciseSessionServiceTests
             ordinary.Concat(wallRequired).ToArray(),
             new AlwaysZeroRandom());
         var state = new WorkoutState();
-        service.StartWorkout(state, 45, WorkoutModifiers.Wall);
+        StartSavedRepeatedWorkout(service, state, 45, WorkoutModifiers.Wall);
         WorkoutGroup[] initialRounds = service.GetActiveGroups(state).ToArray();
         WorkoutGroup firstRepeatedSet = initialRounds.First(round =>
             round.SetCount > 1 && round.SetNumber == 1);
@@ -1487,10 +1494,12 @@ public sealed class ExerciseSessionServiceTests
             },
         };
 
-        service.StartWorkout(state, 60, WorkoutModifiers.None);
+        StartSavedRepeatedWorkout(service, state, 60, WorkoutModifiers.None);
         WorkoutGroup longRound = service.GetActiveGroups(state)
             .Last(round => round.SelectionKey == longSlot.Id);
         Assert.Equal(shared.Id, service.GetSelectedExercise(state, longRound).Id);
+        WorkoutExercisePhase longPhase = WorkoutExercisePhasePolicy.FromOneBasedBlockOrder(longRound.Order);
+        Assert.NotEqual(WorkoutExercisePhase.Warmup, longPhase);
 
         CompleteRoundsBefore(service, state, longRound);
         service.RecordOutcome(state, longRound, keep: false);
@@ -1505,14 +1514,12 @@ public sealed class ExerciseSessionServiceTests
         Assert.Equal(
             -1,
             state.ExerciseScoreAdjustmentsByPhase[
-                WorkoutExercisePhase.PeakPerformance][
+                longPhase][
                 shared.Id]);
         Assert.DoesNotContain(
             WorkoutExercisePhase.Warmup,
             state.ExerciseScoreAdjustmentsByPhase.Keys);
-        Assert.DoesNotContain(
-            WorkoutExercisePhase.Fatigued,
-            state.ExerciseScoreAdjustmentsByPhase.Keys);
+        Assert.Single(state.ExerciseScoreAdjustmentsByPhase);
         Assert.Contains(shared.Id, state.LastKeptExerciseIds);
         Assert.Equal(10, shared.Score);
 
@@ -1523,7 +1530,7 @@ public sealed class ExerciseSessionServiceTests
         Assert.Equal(
             -1,
             state.ExerciseScoreAdjustmentsByPhase[
-                WorkoutExercisePhase.PeakPerformance][
+                longPhase][
                 shared.Id]);
     }
 
@@ -1721,6 +1728,7 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, minutes, WorkoutModifiers.None);
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveDurationSelectionGroupIds = null;
         state.ActiveWorkoutSession = null;
         state.ActiveSetCountsBySelectionGroupId.Clear();
         state.ActiveSelectionGroupOrder.Clear();
@@ -1882,7 +1890,7 @@ public sealed class ExerciseSessionServiceTests
         Exercise[] exercises = [.. DirectionPairCatalog(), third, fourth];
         var service = new ExerciseSessionService(exercises, new Random(1));
         var state = new WorkoutState();
-        service.StartWorkout(state, 45, WorkoutModifiers.None);
+        StartSavedRepeatedWorkout(service, state, 45, WorkoutModifiers.None);
         WorkoutGroup lead = service.GetActiveGroups(state).Single(round =>
             round.SequenceBlockIndex == 0 &&
             service.GetSelectedExercise(state, round).Id == 1);
@@ -2642,6 +2650,7 @@ public sealed class ExerciseSessionServiceTests
         var state = new WorkoutState();
         service.StartWorkout(state, 30, WorkoutModifiers.None);
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveDurationSelectionGroupIds = null;
         state.ActiveWorkoutSession = null;
         state.ActiveSetCountsBySelectionGroupId.Clear();
         state.ActiveSelectionGroupOrder.Clear();
@@ -2663,6 +2672,7 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, 45, WorkoutModifiers.None);
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveDurationSelectionGroupIds = null;
         state.ActiveWorkoutSession = null;
         state.ActiveSetCountsBySelectionGroupId.Clear();
         state.ActiveSelectionGroupOrder.Clear();
@@ -2716,6 +2726,7 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, 45, WorkoutModifiers.None);
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveDurationSelectionGroupIds = null;
         state.ActiveWorkoutSession = null;
         state.ActiveSetCountsBySelectionGroupId.Clear();
         state.ActiveSelectionGroupOrder.Clear();
@@ -2772,6 +2783,7 @@ public sealed class ExerciseSessionServiceTests
 
         service.StartWorkout(state, minutes, WorkoutModifiers.None);
         state.ActiveCoverageAccountingVersion = 0;
+        state.ActiveDurationSelectionGroupIds = null;
         state.ActiveWorkoutSession = null;
         state.ActiveSetCountsBySelectionGroupId.Clear();
         state.ActiveSelectionGroupOrder.Clear();
@@ -3474,6 +3486,8 @@ public sealed class ExerciseSessionServiceTests
             [.. canonicalExercises, broaderOutsideLeaf],
             new AlwaysZeroRandom());
         var state = new WorkoutState();
+        state.KeptExerciseRootIdsBySelectionGroupId[MassGroupingTaxonomy.GetGroup(
+            30, broaderOutsideLeaf.PrimaryCanonicalGroup).Id] = [broaderOutsideLeaf.Id];
 
         service.StartWorkout(state, 30, WorkoutModifiers.None);
 
@@ -6508,6 +6522,22 @@ public sealed class ExerciseSessionServiceTests
                 service.RecordOutcome(state, round, keep: true);
             }
         }
+    }
+
+    private static void StartSavedRepeatedWorkout(ExerciseSessionService service, WorkoutState state,
+        int minutes, WorkoutModifiers modifiers)
+    {
+        // Restore a version-1 shared-coverage workout with genuine repeat sets.
+        // New plans spend spare time on additional distinct movements instead.
+        var selections = new Dictionary<string, int>(state.SelectedExerciseIds);
+        service.PrepareWorkout(state, minutes, modifiers);
+        state.SelectedExerciseIds = selections;
+        state.ActiveCoverageAccountingVersion = 1;
+        state.ActiveDurationSelectionGroupIds = null;
+        state.ActiveSetCountsBySelectionGroupId.Clear();
+        state.ActiveExtraSetSelectionGroupIds.Clear();
+        state.ActiveSelectionGroupOrder.Clear();
+        service.Initialize(state);
     }
 
     private sealed class AlwaysZeroRandom : Random

@@ -448,7 +448,7 @@ public sealed partial class ExerciseSessionService
         }
 
         state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
-        state.ActiveCoverageAccountingVersion = 1;
+        state.ActiveCoverageAccountingVersion = 2;
         state.ActiveSetupOrderVersion = 1;
         UpdateSequenceCatalog(state, minutes);
 
@@ -502,10 +502,15 @@ public sealed partial class ExerciseSessionService
         CarrySlotPreferencesForward(state);
         RepairActiveLineup(state, preserveCurrentSelections:
             !modifiers.HasFlag(WorkoutModifiers.Light));
+        SetActiveLongWorkoutAllocation(state);
+        ReconcileLineupWithScheduledPhases(state);
+        BroadenRejectedSelectionSlots(state);
+        FillRemainingTimeWithDistinctSelections(state);
         RebalanceNewExercisesByMuscleBalance(state);
         SetActiveLongWorkoutAllocation(state);
         ReconcileLineupWithScheduledPhases(state);
         BroadenRejectedSelectionSlots(state);
+        FillRemainingTimeWithDistinctSelections(state);
     }
 
     public void ActivatePreparedWorkout(WorkoutState state)
@@ -531,10 +536,15 @@ public sealed partial class ExerciseSessionService
         {
             EnableLightModeForExistingActiveWorkout(state);
             RepairActiveLineup(state, preserveCurrentSelections: false);
+            SetActiveLongWorkoutAllocation(state);
+            ReconcileLineupWithScheduledPhases(state);
+            BroadenRejectedSelectionSlots(state);
+            FillRemainingTimeWithDistinctSelections(state);
             RebalanceNewExercisesByMuscleBalance(state);
             SetActiveLongWorkoutAllocation(state);
             ReconcileLineupWithScheduledPhases(state);
             BroadenRejectedSelectionSlots(state);
+            FillRemainingTimeWithDistinctSelections(state);
         }
         int[] keptExerciseIdsAtStart = state.LastKeptExerciseIds
             .Order()
@@ -657,7 +667,7 @@ public sealed partial class ExerciseSessionService
         bool currentSelectionGroupAvailable = selectionGroups.Any(group =>
             group.Id == currentRound.SelectionKey);
 
-        IReadOnlyDictionary<string, int> replannedLineup =
+        IReadOnlyDictionary<string, int> ChooseReconfiguredLineup(SelectedSequencePlacement[]? geometry) =>
             ChooseBestDistinctLineup(
                 state,
                 selectionGroups,
@@ -666,7 +676,25 @@ public sealed partial class ExerciseSessionService
                 allowSavedSelectionException: true,
                 modifierTransitionProtectedGroupIds: protectedBaseGroupIds,
                 reservedRepeatMinutes: lockedPlacements.Sum(p =>
-                    (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length));
+                    (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length),
+                selectionGeometryOverride: geometry,
+                preserveGeometryBlockLengths: false);
+        IReadOnlyDictionary<string, int> replannedLineup;
+        bool canRetainPartition = state.ActiveCoverageAccountingVersion >= 2 &&
+            state.ActiveDurationSelectionGroupIds is not null && !targetIsLightDay &&
+            priorPlacements.SelectMany(p => p.CoveredGroups).Select(g => g.Id)
+                .ToHashSet(StringComparer.Ordinal).SetEquals(selectionGroups.Select(g => g.Id));
+        try
+        {
+            // Keep the distinct anatomical partition when the new physical
+            // context can fill it. Choices and whole sequence lengths may change.
+            replannedLineup = ChooseReconfiguredLineup(canRetainPartition ? priorPlacements : null);
+        }
+        catch (InvalidOperationException error) when (canRetainPartition &&
+            error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal))
+        {
+            replannedLineup = ChooseReconfiguredLineup(null);
+        }
 
         var selectedExerciseIdsBefore = new Dictionary<string, int>(
             state.SelectedExerciseIds,
@@ -1825,7 +1853,11 @@ public sealed partial class ExerciseSessionService
         IReadOnlySet<string>? modifierTransitionProtectedGroupIds = null,
         IReadOnlyDictionary<string, WorkoutExercisePhase>?
             scheduledPhaseByGroupId = null,
-        int reservedRepeatMinutes = 0)
+        int reservedRepeatMinutes = 0,
+        IReadOnlySet<int>? allowedExerciseIds = null,
+        bool preserveSelectionGeometry = false,
+        SelectedSequencePlacement[]? selectionGeometryOverride = null,
+        bool preserveGeometryBlockLengths = true)
     {
         if (groups.Count == 0)
         {
@@ -1837,9 +1869,16 @@ public sealed partial class ExerciseSessionService
             new Dictionary<string, HashSet<int>>(StringComparer.Ordinal);
         modifierTransitionProtectedGroupIds ??=
             new HashSet<string>(StringComparer.Ordinal);
+        SelectedSequencePlacement[]? selectionGeometry = selectionGeometryOverride ??
+            (preserveSelectionGeometry ? GetSelectedSequencePlacements(state) : null);
+        HashSet<string>? requiredGroupIds = selectionGeometry is null ? null :
+            GetSelectionGroups(state.ActiveWorkoutMinutes, modifiers).Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
 
         Dictionary<int, bool> fitnessEligibility = GetFitnessEligibility(state);
-        var frozenRoots = allowSavedSelectionException && state.ActiveWorkoutSession is not null
+        bool hasFrozenSavedLineup = allowSavedSelectionException &&
+            (state.ActiveWorkoutSession is not null ||
+             state.ActiveCoverageAccountingVersion >= 2 && state.ActiveDurationSelectionGroupIds is not null);
+        var frozenRoots = hasFrozenSavedLineup
             ? groups.Where(g => currentExerciseIds.TryGetValue(g.Id, out int id) &&
                 _exercisesById.TryGetValue(id, out var root) &&
                 (modifierTransitionProtectedGroupIds.Contains(g.Id) || IsSavedSelectionValid(state, root, g, modifiers, groups)))
@@ -1866,7 +1905,7 @@ public sealed partial class ExerciseSessionService
                 return true;
             }
 
-            return allowSavedSelectionException && state.ActiveWorkoutSession is not null &&
+            return hasFrozenSavedLineup &&
                 currentExerciseIds.GetValueOrDefault(group.Id) == exercise.Id &&
                 IsSavedSelectionValid(
                     state,
@@ -1880,7 +1919,8 @@ public sealed partial class ExerciseSessionService
         var candidates = new List<Exercise>();
         foreach (Exercise exercise in _exercises.Where(exercise =>
                      exercise.SequenceBlocks.Length > 0 &&
-                     GetSequenceRoot(exercise).Id == exercise.Id))
+                     GetSequenceRoot(exercise).Id == exercise.Id &&
+                     (allowedExerciseIds is null || allowedExerciseIds.Contains(exercise.Id))))
         {
             _planningCancellationToken.ThrowIfCancellationRequested();
             HashSet<string> allowedGroupIds = groups
@@ -2142,18 +2182,24 @@ public sealed partial class ExerciseSessionService
              candidateIndex++)
         {
             Exercise candidate = candidates[candidateIndex];
-            var placementOptions = GetSequencePlacementOptions(
-                    candidate,
-                    groups)
-                .ToList();
-            if (state.ActiveCoverageAccountingVersion > 0)
+            // Once distinct additions fill the budget, phase reconciliation
+            // may replace choices, but cannot merge them or recreate spare time.
+            var placementOptions = selectionGeometry is null
+                ? GetSequencePlacementOptions(candidate, groups).ToList()
+                : selectionGeometry.Where(p => (!preserveGeometryBlockLengths ||
+                    p.Root.SequenceBlocks.Length == candidate.SequenceBlocks.Length) &&
+                    p.CoveredGroups.All(g => WorkoutSequencePolicy.IsSelectable(candidate, _exercisesById, g)) &&
+                    (requiredGroupIds!.Contains(p.Anchor.Id) || GetSequenceExercises(candidate).All(member =>
+                        WorkoutCoveragePolicy.GetCanonicalCoverage(member, p.Anchor) * 2 >= p.Anchor.CanonicalGroups.Count)))
+                    .Select(p => p.CoveredGroups.ToArray()).ToList();
+            if (state.ActiveCoverageAccountingVersion > 0 && selectionGeometry is null)
             {
                 WorkoutGroup[] shared = groups.Where(g =>
                     WorkoutSequencePolicy.IsSelectable(candidate, _exercisesById, g)).ToArray();
                 WorkoutGroup[] frozen = groups.Where(g => currentExerciseIds.GetValueOrDefault(g.Id) == candidate.Id).ToArray();
-                if (frozen.Length > 1 && frozen.All(g => shared.Contains(g))) placementOptions.Add(frozen);
+                if (frozen.Length > 0 && frozen.All(g => shared.Contains(g))) placementOptions.Add(frozen);
             }
-            if (allowSavedSelectionException)
+            if (allowSavedSelectionException && selectionGeometry is null)
             {
                 foreach (int groupIndex in Enumerable.Range(0, groups.Count)
                              .Where(groupIndex =>
@@ -2258,7 +2304,7 @@ public sealed partial class ExerciseSessionService
             groups.Count,
             state.ActiveWorkoutMinutes - reservedRepeatMinutes,
             atomicCandidates, _planningCancellationToken);
-        if (solution is null && state.ActiveCoverageAccountingVersion > 0)
+        if (solution is null && state.ActiveCoverageAccountingVersion > 0 && selectionGeometryOverride is null)
         {
             // Shared coverage can make a complete sequence fit when separate
             // per-slot selections cannot. Only invoke this larger search when
@@ -2297,7 +2343,8 @@ public sealed partial class ExerciseSessionService
             StringComparer.Ordinal);
         // Active sessions keep their frozen placements, including completed/current
         // atomic work. New prepared lineups share coverage without rewriting Keeps.
-        if (state.ActiveCoverageAccountingVersion == 0 || state.ActiveWorkoutSession is not null)
+        if (groups.Count == 1 || state.ActiveCoverageAccountingVersion == 0 || state.ActiveWorkoutSession is not null ||
+            state.ActiveDurationSelectionGroupIds is not null)
             return lineup;
         var priorities = lineup.Values.Distinct().ToDictionary(id => id, id =>
             groups.Select((group, index) => (group, index))
@@ -5712,7 +5759,11 @@ public sealed partial class ExerciseSessionService
                 if (loadComparison == 0 && selectedRank is not null && accountForSharedLoad)
                     loadComparison = (load.Numerator * selectedLoad.Denominator).CompareTo(
                         selectedLoad.Numerator * load.Denominator);
-                if (selectedRank is null ||
+                int varietyComparison = selectedRank is null || state.ActiveCoverageAccountingVersion < 2 ? 0 :
+                    rank.OneBlock != selectedRank.Value.OneBlock
+                        ? rank.OneBlock.CompareTo(selectedRank.Value.OneBlock)
+                        : selectedRank.Value.SetCount.CompareTo(rank.SetCount);
+                if (selectedRank is null || varietyComparison > 0 || varietyComparison == 0 && (
                     rank.Score > selectedRank.Value.Score ||
                     rank.Score == selectedRank.Value.Score &&
                     (loadComparison < 0 || loadComparison == 0 &&
@@ -5720,7 +5771,7 @@ public sealed partial class ExerciseSessionService
                      rank.SetCount == selectedRank.Value.SetCount &&
                      (rank.Kept && !selectedRank.Value.Kept ||
                       rank.Kept == selectedRank.Value.Kept &&
-                      rank.OneBlock && !selectedRank.Value.OneBlock))))
+                      rank.OneBlock && !selectedRank.Value.OneBlock)))))
                 {
                     selectedPlacement = placement;
                     selectedRank = rank;
@@ -5769,6 +5820,9 @@ public sealed partial class ExerciseSessionService
         lockedSelectionGroupIds ??=
             new HashSet<string>(StringComparer.Ordinal);
         WorkoutGroup[] groups = GetSelectionGroups(state).ToArray();
+        HashSet<string> requiredGroups = GetSelectionGroups(
+            state.ActiveWorkoutMinutes, state.ActiveWorkoutModifiers)
+            .Select(group => group.Id).ToHashSet(StringComparer.Ordinal);
         if (groups.Length == 0)
         {
             return;
@@ -5953,6 +6007,16 @@ public sealed partial class ExerciseSessionService
                 {
                     WorkoutGroup[] option = optionMetadata.Groups;
                     WorkoutGroup anchor = optionMetadata.Anchor;
+                    if (state.ActiveCoverageAccountingVersion >= 2 &&
+                        GetSequenceExercises(candidate).Any(member => !WorkoutCoveragePolicy.IsSelectable(
+                            member,
+                            option.FirstOrDefault(group => group.CanonicalGroups.Contains(member.PrimaryCanonicalGroup)) ?? anchor)))
+                        continue;
+                    if (state.ActiveCoverageAccountingVersion >= 2 &&
+                        option.Any(group => !requiredGroups.Contains(group.Id) &&
+                            GetSequenceExercises(candidate).Any(member =>
+                                WorkoutCoveragePolicy.GetCanonicalCoverage(member, group) * 2 < group.CanonicalGroups.Count)))
+                        continue;
                     SelectedSequencePlacement[] removedPlacements = option
                         .Select(group => placementByGroupId[group.Id])
                         .Distinct()
@@ -6016,6 +6080,9 @@ public sealed partial class ExerciseSessionService
                     MuscleBalanceEvaluation candidateBalance;
                     int removedBlockCount = removedPlacements.Sum(placement =>
                         placement.Root.SequenceBlocks.Length);
+                    if (state.ActiveCoverageAccountingVersion >= 2 &&
+                        candidate.SequenceBlocks.Length < removedBlockCount)
+                        continue;
                     if (currentAllocationHasOneSetPerPlacement &&
                         candidate.SequenceBlocks.Length > removedBlockCount)
                     {
@@ -6500,7 +6567,9 @@ public sealed partial class ExerciseSessionService
                         .Where(p => lockedSelectionGroupIds?.Contains(p.Anchor.Id) == true)
                         .Sum(p => (state.ActiveSetCountsBySelectionGroupId.GetValueOrDefault(p.Anchor.Id, 1) - 1) *
                             p.Root.SequenceBlocks.Length),
-                    scheduledPhaseByGroupId: scheduledPhaseByGroupId);
+                    scheduledPhaseByGroupId: scheduledPhaseByGroupId,
+                    preserveSelectionGeometry: state.ActiveCoverageAccountingVersion >= 2 &&
+                        state.ActiveWorkoutSession is null && state.ActiveDurationSelectionGroupIds is not null);
             if (selectionGroups.All(group =>
                     nextLineup[group.Id] == currentLineup[group.Id]))
             {

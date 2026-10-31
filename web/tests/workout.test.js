@@ -754,7 +754,7 @@ test("long-workout balance avoids adding secondary work to a loaded region", () 
   }
   const session = new WorkoutSession([...selected, alternative], state, () => 0);
 
-  session.startWorkout(45, WORKOUT_MODIFIERS.None);
+  startSavedRepeatedWorkout(session, 45, WORKOUT_MODIFIERS.None);
 
   assert.notEqual(session.state.selectedExerciseIds[targetGroup.id], alternative.id);
   const placements = session.getSelectedSequencePlacements();
@@ -2356,7 +2356,7 @@ test("compatible modifier transition preserves repeated selection without protec
     createDefaultState(),
     () => 0,
   );
-  session.startWorkout(45, WORKOUT_MODIFIERS.Wall);
+  startSavedRepeatedWorkout(session, 45, WORKOUT_MODIFIERS.Wall);
   const initialRounds = session.getActiveGroups();
   const firstRepeatedSet = initialRounds.find((round) =>
     round.setCount > 1 && round.setNumber === 1);
@@ -2419,7 +2419,7 @@ test("incompatible modifier transition replaces current repeated set", () => {
     createDefaultState(),
     () => 0,
   );
-  session.startWorkout(45, WORKOUT_MODIFIERS.Wall);
+  startSavedRepeatedWorkout(session, 45, WORKOUT_MODIFIERS.Wall);
   const initialRounds = session.getActiveGroups();
   const firstRepeatedSet = initialRounds.find((round) =>
     round.setCount > 1 && round.setNumber === 1);
@@ -2818,9 +2818,10 @@ test("short-workout keeps carry into matching long-workout slots", () => {
     [...session.state.lastKeptExerciseIds].sort((left, right) => left - right),
     [...keptExerciseIds].sort((left, right) => left - right),
   );
+  const longSlotIds = new Set(session.getSelectionGroups().map(group => group.id));
   const longKeepIds = Object.entries(
     session.state.keptExerciseRootIdsBySelectionGroupId,
-  ).filter(([selectionGroupId]) => selectionGroupId.startsWith("r30."))
+  ).filter(([selectionGroupId]) => longSlotIds.has(selectionGroupId))
     .flatMap(([, rootIds]) => rootIds);
   assert.ok(keptExerciseIds.every((exerciseId) => longKeepIds.includes(exerciseId)));
   assert.equal(session.getActiveGroups().length, 45);
@@ -2871,7 +2872,7 @@ test("a keep and downvote for one exercise remain independent across phases", ()
     () => 0,
   );
 
-  session.startWorkout(60, WORKOUT_MODIFIERS.None);
+  startSavedRepeatedWorkout(session, 60, WORKOUT_MODIFIERS.None);
   const longRound = session.getActiveGroups().filter((round) =>
     getSelectionKey(round) === longSlot.id).at(-1);
   assert.equal(session.getSelectedExercise(longRound).id, shared.id);
@@ -2893,11 +2894,11 @@ test("a keep and downvote for one exercise remain independent across phases", ()
       ?.includes(shared.id) ?? false,
     true,
   );
-  assert.equal(getWorkoutExercisePhase(longRound.order),
-    WORKOUT_EXERCISE_PHASE.PeakPerformance);
+  const longPhase = getWorkoutExercisePhase(longRound.order);
+  assert.notEqual(longPhase, WORKOUT_EXERCISE_PHASE.Warmup);
   assert.equal(
     session.state.exerciseScoreAdjustmentsByPhase[
-      WORKOUT_EXERCISE_PHASE.PeakPerformance
+      longPhase
     ][shared.id],
     -1,
   );
@@ -2907,12 +2908,7 @@ test("a keep and downvote for one exercise remain independent across phases", ()
     ],
     undefined,
   );
-  assert.equal(
-    session.state.exerciseScoreAdjustmentsByPhase[
-      WORKOUT_EXERCISE_PHASE.Fatigued
-    ],
-    undefined,
-  );
+  assert.equal(Object.keys(session.state.exerciseScoreAdjustmentsByPhase).length, 1);
   assert.equal(session.state.lastKeptExerciseIds.includes(shared.id), true);
   assert.equal(session.getScore(shared), 10);
 
@@ -2922,7 +2918,7 @@ test("a keep and downvote for one exercise remain independent across phases", ()
   assert.equal(session.state.selectedExerciseIds[shortSlot.id], shared.id);
   assert.equal(
     session.state.exerciseScoreAdjustmentsByPhase[
-      WORKOUT_EXERCISE_PHASE.PeakPerformance
+      longPhase
     ][shared.id],
     -1,
   );
@@ -5572,7 +5568,8 @@ test("the reviewed catalog satisfies every roll-up and selects distinct exercise
     assert.equal(selected.length, minutes);
     const placements = session.getSelectedSequencePlacements();
     assert.equal(new Set(placements.map(p => getSessionMovementId(p.root))).size, placements.length);
-    assert.deepEqual(new Set(placements.flatMap(p => p.coveredGroups.map(g => g.id))), new Set(resolution.groups.map(g => g.id)));
+    const coveredGroupIds = new Set(placements.flatMap(p => p.coveredGroups.map(g => g.id)));
+    assert.ok(resolution.groups.every(group => coveredGroupIds.has(group.id)));
     assert.equal(placements.reduce((sum,p)=>sum+p.root.sequenceBlocks.length*session.state.activeSetCountsBySelectionGroupId[p.anchor.id],0),minutes);
   }
 
@@ -6199,7 +6196,7 @@ test("shuffle visits every eligible alternative without repeating", () => {
 test("sequence shuffle rejects every member once and never starts mid-sequence", () => {
   const exercises = directionPairCatalog();
   const session = new WorkoutSession(exercises, createDefaultState(), () => 0);
-  session.startWorkout(45, WORKOUT_MODIFIERS.None);
+  startSavedRepeatedWorkout(session, 45, WORKOUT_MODIFIERS.None);
   const lead = session.getActiveGroups().find((round) =>
     session.state.selectedExerciseIds[getSelectionKey(round)] === 1 &&
     round.sequenceBlockIndex === 0 &&
@@ -6226,7 +6223,7 @@ test("sequence shuffle rejects every member once and never starts mid-sequence",
   assert.ok(session.state.nextWorkoutExcludedExerciseIds.includes(2));
 
   const continued = new WorkoutSession(exercises, createDefaultState(), () => 0);
-  continued.startWorkout(45, WORKOUT_MODIFIERS.None);
+  startSavedRepeatedWorkout(continued, 45, WORKOUT_MODIFIERS.None);
   const nextLead = continued.getActiveGroups().find(round =>
     continued.state.selectedExerciseIds[getSelectionKey(round)] === 1 && round.sequenceBlockIndex === 0 && round.setNumber === 1);
   for (const prior of continued.getActiveGroups().filter(round => round.order < nextLead.order))
@@ -9767,11 +9764,13 @@ for (const minutes of [30, 90]) {
     assert.ok(exercises.every((exercise) => exercise.score === 7));
     restored.prepareWorkout(minutes, WORKOUT_MODIFIERS.None);
     assert.equal(restored.getActiveGroups().length, minutes);
-    assert.deepEqual(restored.getSelectionGroups().flatMap(g => g.canonicalGroups).sort(),
-      groups.flatMap(g => g.canonicalGroups).sort());
+    assert.deepEqual([...new Set(restored.getSelectionGroups().flatMap(g => g.canonicalGroups))].sort(),
+      [...new Set(groups.flatMap(g => g.canonicalGroups))].sort());
     assert.deepEqual(restored.state.exerciseScoreAdjustmentsByPhase, feedback);
     assert.deepEqual(restored.state.workoutHistory, history);
-    assert.deepEqual(restored.state.keptExerciseRootIdsBySelectionGroupId, keeps);
+    const actualKeeps=restored.state.keptExerciseRootIdsBySelectionGroupId;
+    assert.ok(Object.entries(keeps).every(([slot,roots])=>roots.every(id=>actualKeeps[slot]?.includes(id))));
+    assert.deepEqual(new Set(Object.values(actualKeeps).flat()),new Set(Object.values(keeps).flat()));
   });
 }
 
@@ -9939,8 +9938,21 @@ async function assertFile(file) {
 
 function restoreLegacyCoveragePlan(session) {
   session.state.activeCoverageAccountingVersion = 0;
+  session.state.activeDurationSelectionGroupIds = null;
   session.state.activeWorkoutSession = null;
   session.state.activeSetCountsBySelectionGroupId = {};
+  session.state.activeSelectionGroupOrder = [];
+  session.initialize();
+}
+
+function startSavedRepeatedWorkout(session, minutes, modifiers) {
+  const selections = structuredClone(session.state.selectedExerciseIds);
+  session.prepareWorkout(minutes, modifiers);
+  session.state.selectedExerciseIds = selections;
+  session.state.activeCoverageAccountingVersion = 1;
+  session.state.activeDurationSelectionGroupIds = null;
+  session.state.activeSetCountsBySelectionGroupId = {};
+  session.state.activeExtraSetSelectionGroupIds = [];
   session.state.activeSelectionGroupOrder = [];
   session.initialize();
 }

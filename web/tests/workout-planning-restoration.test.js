@@ -36,8 +36,8 @@ for (const item of cases) {
       assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, feedback);
       assert.deepEqual(session.state.scores, scores);
       assert.equal(session.state.workoutHistory.length, 0);
-      assert.deepEqual(log.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
-        getResolution(item.expectedResolution).groups.map(g => g.id).sort());
+      const covered = new Set(log.initialSelections.flatMap(s => s.coveredWorkoutGroupIds));
+      assert.ok(getResolution(item.expectedResolution).groups.every(g => covered.has(g.id)), 'required anatomy remains covered alongside distinct additions');
       assert.equal(log.initialSelections.filter(s => s.selectionScoreAtStart < 0)
         .reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.expectedRejectedBlocks);
       assert.ok(log.initialSelections.every(s => !item.excludedRoots.includes(s.rootExerciseId)));
@@ -68,8 +68,9 @@ for (const item of rejectedSlotCases) {
     session.startWorkout(item.minutes, item.modifiers);
     const log = structuredClone(session.state.activeWorkoutSession);
     assert.ok(log.initialSelections.every(s => s.rootExerciseId !== item.rejectedRoot));
-    assert.equal(session.state.activeDurationSelectionGroupIds !== null, item.broaden);
-    if (item.broaden) assert.ok(session.state.activeDurationSelectionGroupIds.includes('r15.abdominal-pelvic-floor'));
+    assert.equal(session.getSelectionGroups().some(group=>group.id==='r30.pelvic-floor-perineum'), !item.broaden);
+    if (item.broaden) assert.ok(session.getSelectionGroups().some(group=>
+      group.canonicalGroups.includes('PelvicFloorAndPerineum') && group.canonicalGroups.length>1));
     assert.equal(log.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.minutes);
     assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, feedback);
     assert.ok(session.state.keptExerciseRootIdsBySelectionGroupId['r30.pelvic-floor-perineum'].includes(item.rejectedRoot));
@@ -116,7 +117,7 @@ test("a still-kept singleton retains priority over an old global negative score"
   const session = new WorkoutSession(catalog, state, () => 0.5, () => now);
   session.initialize();
   session.startWorkout(30, 5232);
-  assert.equal(session.state.activeDurationSelectionGroupIds, null);
+  assert.ok(session.getSelectionGroups().some(group=>group.id==='r30.pelvic-floor-perineum'));
   assert.ok(session.state.activeWorkoutSession.initialSelections.some(s => s.rootExerciseId === 918));
   assert.equal(session.getScore(session.exercisesById.get(918)), -2);
 });
@@ -144,11 +145,12 @@ test("an existing Ready workout does not replan its grouping on upgrade", () => 
   session.state.exerciseScoreAdjustmentsByPhase = rejectedState().exerciseScoreAdjustmentsByPhase;
   const rounds = session.getActiveGroups();
   const log = structuredClone(session.state.activeWorkoutSession);
+  const groups = structuredClone(session.state.activeDurationSelectionGroupIds);
   session = new WorkoutSession(catalog, structuredClone(session.state), () => 0.5, () => now);
   session.restoreAfterReopen();
   assert.deepEqual(session.getActiveGroups(), rounds);
   assert.deepEqual(session.state.activeWorkoutSession, log);
-  assert.equal(session.state.activeDurationSelectionGroupIds, null);
+  assert.deepEqual(session.state.activeDurationSelectionGroupIds, groups);
 });
 
 for (const minutes of [3, 5, 7]) {
@@ -170,8 +172,8 @@ for (const minutes of [3, 5, 7]) {
       function assertCompleteGroups() {
         const rounds = session.getActiveGroups();
         assert.equal(rounds.length, minutes);
-        assert.deepEqual(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
-          getResolution(minutes).groups.map(g => g.id).sort());
+        const covered = new Set(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds));
+        assert.ok(getResolution(minutes).groups.every(g => covered.has(g.id)));
         for (const key of new Set(rounds.map(g => g.selectionGroupId ?? g.id))) {
           const selected = rounds.filter(g => (g.selectionGroupId ?? g.id) === key);
           const blocks = selected[0].sequenceBlockCount ?? 1;

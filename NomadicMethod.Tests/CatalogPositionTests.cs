@@ -71,10 +71,18 @@ public sealed class CatalogPositionTests
     {
         DateTimeOffset now = DateTimeOffset.Parse("2026-10-29T00:00:00Z");
         Exercise[] catalog = Catalog();
-        catalog.Single(e => e.Id == id).Score = 100000;
         var legacy = WorkoutCatalogPolicy.ForWorkout(catalog, 99).ToArray();
+        // Selection scores belong to complete owning sequences, including
+        // zero-block linked members; raise the whole sequence for this fixture.
+        HashSet<int> members = legacy.Where(e => e.SequenceBlocks.Any(b => b.ExerciseId == id))
+            .SelectMany(e => e.SequenceBlocks).Select(b => b.ExerciseId).ToHashSet();
+        foreach (Exercise exercise in legacy.Concat(catalog).Where(e => members.Contains(e.Id)))
+            exercise.Score = 100000;
         var service = new ExerciseSessionService(legacy, new Random(1), () => now);
         var state = new WorkoutState();
+        foreach (WorkoutExercisePhase scorePhase in new[] { WorkoutExercisePhase.Warmup, WorkoutExercisePhase.PeakPerformance, WorkoutExercisePhase.Fatigued })
+            state.ExerciseScoreAdjustmentsByPhase[scorePhase] = legacy.Where(e => e.SequenceBlocks.Any(b => b.ExerciseId == id))
+                .ToDictionary(e => e.Id, _ => 100000);
         service.Initialize(state);
         service.StartWorkout(state, 60, WorkoutModifiers.Floor | WorkoutModifiers.Elevation | WorkoutModifiers.UpperBodyClothing);
         WorkoutGroup current = service.GetActiveGroups(state).First(g => service.GetSelectedExercise(state, g).Id == id);

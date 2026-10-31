@@ -48,8 +48,8 @@ public sealed class WorkoutPlanningRestorationTests
         Assert.All(catalog, e => Assert.Equal(item.LegacyScore, e.Score));
         Assert.Empty(state.WorkoutHistory);
         var selections = state.ActiveWorkoutSession.InitialSelections;
-        Assert.Equal(MassGroupingTaxonomy.GetResolution(item.ExpectedResolution).Groups.Select(g => g.Id).Order(),
-            selections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
+        Assert.All(MassGroupingTaxonomy.GetResolution(item.ExpectedResolution).Groups, group =>
+            Assert.Contains(group.Id, selections.SelectMany(s => s.CoveredWorkoutGroupIds)));
         Assert.Equal(item.ExpectedRejectedBlocks, selections.Where(s => s.SelectionScoreAtStart < 0)
             .Sum(s => s.SequenceBlockCount * s.SetCount));
         Assert.DoesNotContain(selections, s => item.ExcludedRoots.Contains(s.RootExerciseId));
@@ -112,9 +112,12 @@ public sealed class WorkoutPlanningRestorationTests
         service.StartWorkout(state, item.Minutes, (WorkoutModifiers)item.Modifiers);
         var selections = state.ActiveWorkoutSession!.InitialSelections;
         Assert.DoesNotContain(selections, s => s.RootExerciseId == item.RejectedRoot);
-        Assert.Equal(item.Broaden, state.ActiveDurationSelectionGroupIds is not null);
+        Assert.Equal(!item.Broaden, service.GetActiveGroups(state).Any(group =>
+            group.SelectionKey == "r30.pelvic-floor-perineum"));
         if (item.Broaden)
-            Assert.Contains("r15.abdominal-pelvic-floor", state.ActiveDurationSelectionGroupIds!);
+            Assert.Contains(service.GetActiveGroups(state), group =>
+                group.CanonicalGroups.Contains(CanonicalMuscleGroup.PelvicFloorAndPerineum) &&
+                group.CanonicalGroups.Count > 1);
         Assert.Equal(item.Minutes, service.GetActiveGroups(state).Count);
         Assert.Equal(item.Minutes, selections.Sum(s => s.SequenceBlockCount * s.SetCount));
         Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
@@ -175,7 +178,7 @@ public sealed class WorkoutPlanningRestorationTests
         var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
         service.Initialize(state);
         service.StartWorkout(state, 30, (WorkoutModifiers)5232);
-        Assert.Null(state.ActiveDurationSelectionGroupIds);
+        Assert.Contains(service.GetActiveGroups(state), group => group.SelectionKey == "r30.pelvic-floor-perineum");
         Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, s => s.RootExerciseId == 918);
         Assert.Equal(-2, catalog.Single(e => e.Id == 918).Score);
     }
@@ -215,8 +218,8 @@ public sealed class WorkoutPlanningRestorationTests
                 Assert.Equal(0, selection.Count() % blocks);
                 Assert.Equal(Enumerable.Range(0, selection.Count()).Select(i => i % blocks), selection.Select(g => g.SequenceBlockIndex));
             }
-            Assert.Equal(MassGroupingTaxonomy.GetResolution(minutes).Groups.Select(g => g.Id).Order(),
-                state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
+            Assert.All(MassGroupingTaxonomy.GetResolution(minutes).Groups, group =>
+                Assert.Contains(group.Id, state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds)));
         }
     }
 
@@ -230,11 +233,12 @@ public sealed class WorkoutPlanningRestorationTests
         state.ExerciseScoreAdjustmentsByPhase = RejectedState().ExerciseScoreAdjustmentsByPhase;
         WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
         string session = JsonSerializer.Serialize(state.ActiveWorkoutSession);
+        string groups = JsonSerializer.Serialize(state.ActiveDurationSelectionGroupIds);
         state = Reload(state);
         service.RestoreAfterReopen(state);
         Assert.Equal(rounds, service.GetActiveGroups(state));
         Assert.Equal(session, JsonSerializer.Serialize(state.ActiveWorkoutSession));
-        Assert.Null(state.ActiveDurationSelectionGroupIds);
+        Assert.Equal(groups, JsonSerializer.Serialize(state.ActiveDurationSelectionGroupIds));
     }
 
     [Fact]

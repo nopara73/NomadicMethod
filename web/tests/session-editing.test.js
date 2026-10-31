@@ -52,7 +52,11 @@ for (const [from, to] of [[3, 60], [10, 5], [30, 45], [60, 30], [60, 90], [90, 1
     session.restoreAfterReopen();
     assert.equal(session.getNextGroup().id, current.id);
     assert.equal(session.getActiveGroups().length, to);
-    while (!session.state.workoutCompleted) finish(session);
+    for (let steps = 0; !session.state.workoutCompleted; steps++) {
+      assert.ok(steps <= session.state.activeWorkoutMinutes + 1,
+        JSON.stringify({from,to,next:session.getNextGroup(),state:session.state}));
+      finish(session);
+    }
     assert.equal(session.state.workoutHistory.at(-1).status, "Completed");
   });
 }
@@ -116,7 +120,12 @@ for (const profile of [M.None, M.Insect | M.Silence | M.UpperBodyClothing,
 test("equipment changes retain a compatible paused second set after shortening", () => {
   const session = new WorkoutSession(catalog, createDefaultState(), () => 0);
   session.initialize();
-  session.startWorkout(60, M.None);
+  session.prepareWorkout(60, M.None);
+  session.state.activeCoverageAccountingVersion = 1;
+  session.state.activeDurationSelectionGroupIds = null;
+  session.state.activeSetCountsBySelectionGroupId = {};
+  session.state.activeSelectionGroupOrder = [];
+  session.initialize();
   while (session.getNextGroup().setNumber !== 2 ||
       session.getNextGroup().sequenceBlockCount !== 1) finish(session);
   const current = session.getNextGroup();
@@ -156,6 +165,7 @@ test("an unsupported legacy duration plan leaves the entire active state untouch
   session.initialize();
   session.startWorkout(60, profile);
   session.state.activeCoverageAccountingVersion = 0;
+  session.state.activeDurationSelectionGroupIds = null;
   session.state.activeWorkoutSession = null;
   session.state.activeSetCountsBySelectionGroupId = {};
   session.state.activeSelectionGroupOrder = [];
