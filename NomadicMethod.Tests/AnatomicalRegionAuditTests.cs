@@ -66,7 +66,7 @@ public sealed class AnatomicalRegionAuditTests
         string saved = JsonSerializer.Serialize(state);
         WorkoutState reopened = JsonSerializer.Deserialize<WorkoutState>(saved)!;
         Planner(Catalog()).RestoreAfterReopen(reopened);
-        Assert.Equal(101, reopened.CatalogRevision);
+        Assert.Equal(CatalogMigrationRules.CurrentCatalogRevision, reopened.CatalogRevision);
         Assert.Equal(96, reopened.ActiveCatalogRevision);
         Assert.Equal(JsonSerializer.Serialize(state.SelectedExerciseIds), JsonSerializer.Serialize(reopened.SelectedExerciseIds));
         Assert.Equal(JsonSerializer.Serialize(state.KeptExerciseRootIdsBySelectionGroupId), JsonSerializer.Serialize(reopened.KeptExerciseRootIdsBySelectionGroupId));

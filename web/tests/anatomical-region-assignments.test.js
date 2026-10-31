@@ -6,8 +6,13 @@ import { resolveReactionDrills } from "../reaction-drills.js";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getWorkoutCatalog, getResolution, getMaximumDistinctLineupSize } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
-// Historical anatomy evidence keeps its reviewed protocol; the later pose audit owns revision 100.
-const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99);
+// Historical anatomy evidence predates the pose audit and the explicit arm-pulse
+// clarity correction. Rewind only those reviewed name/profile fields for 264;
+// the remaining metadata and media must still match the original evidence.
+const armPulseCorrection = JSON.parse(readFileSync(new URL("./fixtures/arm-pulses.json", import.meta.url), "utf8"));
+const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99).map(exercise =>
+  exercise.id === armPulseCorrection.id ? { ...exercise,
+    name: armPulseCorrection.previousName, motionProfile: armPulseCorrection.previousMotionProfile } : exercise);
 const review = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-region-review-2026-10-26.json", import.meta.url), "utf8"));
 const laterReview = JSON.parse(readFileSync(new URL("../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json", import.meta.url), "utf8"));
 const reactionDocument = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/reaction_drills.json", import.meta.url), "utf8"));
@@ -97,5 +102,5 @@ test("catalog 96 workouts, Keeps, history and downvotes survive the additive upd
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 96);
-  assert.equal(restored.state.catalogRevision, 101);
+  assert.equal(restored.state.catalogRevision, 102);
 });

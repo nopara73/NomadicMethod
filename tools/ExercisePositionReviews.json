@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedOn": "2026-10-29",
+  "reviewedOn": "2026-10-31",
   "scope": "Whole pose: hands, arm crossing, feet, support and lead; all base/hold/direction clips and all reaction responses.",
   "exercises": [
     {
@@ -1348,8 +1348,8 @@
     },
     {
       "id": 264,
-      "coverage": "Symmetric",
-      "reason": "Whole-pose screening: separate or symmetric hand/foot placements; no residual fixed grip, crossing order or supporting limb.",
+      "coverage": "OppositeBlocks",
+      "reason": "Arm pulses retain one turned-out foot, asymmetric knee bend and facing direction throughout the loop; perform the shown stance and its horizontal mirror before the linked wheel circles. Reviewed complete packaged loop on 2026-10-31.",
       "media": {
         "exercise_videos/exercise_0264.mp4": "a66110f1464dd6261e0afb1648d584c6c8b45e942c8676e450d1e70b723bb37e"
       }

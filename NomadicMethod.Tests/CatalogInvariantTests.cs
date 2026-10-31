@@ -1006,7 +1006,7 @@ public sealed class CatalogInvariantTests
         Exercise[] timedSideExercises = exercises
             .Where(exercise => exercise.SideSequence.UsesTimedSides())
             .ToArray();
-        Assert.Equal(399, timedSideExercises.Length);
+        Assert.Equal(400, timedSideExercises.Length);
         Dictionary<int, (string Name, ExerciseSideSequence SideSequence)>
             auditedMirroredSideSequences = new()
             {
@@ -1164,8 +1164,8 @@ public sealed class CatalogInvariantTests
         {
             [1] = 477,
             [2] = 363,
-            [3] = 13,
-            [4] = 25,
+            [3] = 12,
+            [4] = 26,
         };
         Dictionary<int, int> actualSequenceBlockDistribution = exercises
             .Where(exercise => exercise.SequenceBlocks.Length > 0)
@@ -1502,7 +1502,7 @@ public sealed class CatalogInvariantTests
             [399] = "Inhale Chest Open, Exhale Arms Close with Shallow Squat",
             [400] = "Inhale Rise and Lift Arms, Exhale Squat and Sweep Down",
             [401] = "Alternating Inhale-Twist, Exhale-Push",
-            [264] = "Standing Arm Circles",
+            [264] = "Staggered-Stance Arm Pulses",
             [275] = "Small Arm Circles",
             [406] = "Standing Wheel Arm Circles",
             [409] = "Full Neck Circles",

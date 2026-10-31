@@ -1044,5 +1044,40 @@
         }
       ]
     }
+  ],
+  "laterSnapshots": [
+    {
+      "beforeRevision": 102,
+      "exercises": [
+        {
+          "id": 264,
+          "sideSequence": "Continuous",
+          "directionSequence": "None",
+          "sequenceBlocks": [
+            {
+              "exerciseId": 264,
+              "sideCue": "None",
+              "directionCue": "None",
+              "mirrorMedia": false,
+              "mediaSegment": "Full"
+            },
+            {
+              "exerciseId": 406,
+              "sideCue": "None",
+              "directionCue": "Clockwise",
+              "mirrorMedia": false,
+              "mediaSegment": "FirstDirection"
+            },
+            {
+              "exerciseId": 406,
+              "sideCue": "None",
+              "directionCue": "Counterclockwise",
+              "mirrorMedia": false,
+              "mediaSegment": "SecondDirection"
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -500,7 +500,7 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revision 96 adds direct cervical-mobility and ankle-propulsion claims.
 // Existing identities, feedback and unfinished selections remain valid.
 // Revision 101 clarifies push-up hand placement without replacing the movement.
-export const CURRENT_CATALOG_REVISION = 101;
+export const CURRENT_CATALOG_REVISION = 102;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -870,6 +870,7 @@ export const SCOPED_SCORE_INVALIDATIONS_BY_REVISION = new Map([
 const ALTERNATING_PREFIX = "Alternating ";
 const CONTINUOUS_ALTERNATION_NORMALIZATION_IDS = new Set();
 export const APPROVED_EXERCISE_CORRECTIONS = new Map([
+  [264, ["Standing Arm Circles", "Staggered-Stance Arm Pulses"]],
   [31, ["High-Knee Overhead-Reach March", "Alternating Knee Raises with Two-Arm Pull-Down"]],
   [21, ["Standing-Scale Balance", "Alternating Single-Leg Hinge with Forward Reach"]],
   [105, ["Plie Squat", "Wide Turned-Out Squat"]],
@@ -4661,9 +4662,11 @@ export const PRECISE_SKILL_EXERCISE_IDS = Object.freeze([1605, 1615, 1625, 1635,
 export const PROFILE_CONTRIBUTOR_EXERCISE_IDS = Object.freeze([1621, 1701, 1702, 1703, 1704, 1705]);
 export const FITNESS_COVERAGE_EXERCISE_IDS = Object.freeze([1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644]);
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
-  if (activeRevision > 0 && activeRevision < frozenWorkoutProtocols.beforeRevision)
+  const snapshots = [frozenWorkoutProtocols, ...(frozenWorkoutProtocols.laterSnapshots ?? [])]
+    .sort((a, b) => b.beforeRevision - a.beforeRevision);
+  for (const snapshot of snapshots.filter(s => activeRevision > 0 && activeRevision < s.beforeRevision))
     catalog = catalog.map(exercise => {
-      const frozen = frozenWorkoutProtocols.exercises.find(p => p.id === exercise.id);
+      const frozen = snapshot.exercises.find(p => p.id === exercise.id);
       return frozen ? { ...exercise, ...frozen, sequenceBlocks: frozen.sequenceBlocks.map(b => ({ ...b })) } : exercise;
     });
   if (activeRevision > 0 && activeRevision < 99) catalog = catalog.map(exercise =>

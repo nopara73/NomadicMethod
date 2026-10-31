@@ -54,7 +54,7 @@ public sealed class CatalogPositionTests
             Assert.Equal(old.GetProperty("directionSequence").GetString(), actual.DirectionSequence.ToString());
             Assert.Equal(JsonSerializer.Deserialize<ExerciseSequenceBlock[]>(old.GetProperty("sequenceBlocks"), Options), actual.SequenceBlocks);
         }
-        Assert.Equal(catalog, WorkoutCatalogPolicy.ForWorkout(catalog, 100));
+        Assert.Equal(catalog, WorkoutCatalogPolicy.ForWorkout(catalog, CatalogMigrationRules.CurrentCatalogRevision));
     }
 
     [Theory]
