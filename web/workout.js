@@ -7178,7 +7178,9 @@ export class WorkoutSession {
   getFitnessEligibility() {
     const zones = fitnessZones(inspectFitnessProfile(this.catalogExercises, this.state, this.fitnessRatings));
     return new Map([...this.sequenceExercisesByRootId].map(([id, members]) => [id,
-      isFitnessSequenceEligible(members.map(member => this.fitnessRatings.get(member.id)), zones)]));
+      isFitnessSequenceEligible(members.map(member => this.fitnessRatings.get(member.id)), zones,
+        this.fitnessRatings.trainingCharacteristics
+          ? members.map(member => this.fitnessRatings.trainingCharacteristics.get(member.id)) : null)]));
   }
 
   getMovementRoots(exercise) {

@@ -27,13 +27,20 @@ export function fitnessZones(profile) {
   return profile.map(axis => axis.mean > 0 ? [...axis.bestLevels] : []);
 }
 
-export function isFitnessEligible(levels, zones) {
-  return !zones.some(zone => zone.length > 0) || !!levels?.some((set, dimension) =>
-    set.length > 0 && set.some(level => zones[dimension]?.includes(level)));
+export function isFitnessEligible(levels, zones, trainingCharacteristics = null) {
+  if (!zones.some(zone => zone.length > 0)) return true;
+  if (!levels || trainingCharacteristics && trainingCharacteristics.length !== levels.length) return false;
+  if (trainingCharacteristics && !trainingCharacteristics.some(Boolean))
+    return zones.every((zone, dimension) => !zone.length || levels[dimension]?.some(level => zone.includes(level)));
+  return levels.some((set, dimension) => set.length > 0 &&
+    (!trainingCharacteristics || trainingCharacteristics[dimension]) &&
+    set.some(level => zones[dimension]?.includes(level)));
 }
 
-export function isFitnessSequenceEligible(members, zones) {
-  return members.every(levels => isFitnessEligible(levels, zones));
+export function isFitnessSequenceEligible(members, zones, trainingCharacteristics = null) {
+  if (trainingCharacteristics && (trainingCharacteristics.length !== members.length || trainingCharacteristics.some(claim => !claim)))
+    return false;
+  return members.every((levels, index) => isFitnessEligible(levels, zones, trainingCharacteristics?.[index]));
 }
 
 export function orderFitnessCandidates(candidates, movementId, tier, random) {
@@ -63,24 +70,52 @@ export function fitnessProfileRadiusFraction(level) {
 }
 
 export function parseFitnessRatings(source) {
-  if (source?.schemaVersion !== 1 ||
+  if (source?.schemaVersion !== 2 ||
       JSON.stringify(source.dimensions) !== JSON.stringify(FITNESS_DIMENSIONS) ||
-      !source.ratings || typeof source.ratings !== "object" || Array.isArray(source.ratings)) {
+      !source.ratings || typeof source.ratings !== "object" || Array.isArray(source.ratings) ||
+      !source.trainingCharacteristics || typeof source.trainingCharacteristics !== "object" ||
+      Array.isArray(source.trainingCharacteristics)) {
     throw new Error("Invalid fitness rating schema.");
   }
-  const ratings = new Map();
+  const ratings = new Map(), trainingCharacteristics = new Map();
   for (const [key, levels] of Object.entries(source.ratings)) {
-    const id = Number(key);
+    const id = Number(key), claims = source.trainingCharacteristics[key];
     if (!Number.isSafeInteger(id) || id <= 0 || !Array.isArray(levels) ||
         levels.length !== FITNESS_DIMENSIONS.length || levels.some(set =>
-          !Array.isArray(set) || set.some((value, index) =>
+          !Array.isArray(set) || set.length === 0 || set.some((value, index) =>
             !Number.isInteger(value) || value < 1 || value > 5 ||
-            (index > 0 && value <= set[index - 1])))) {
-      throw new Error("Invalid exercise fitness ratings.");
+            (index > 0 && value <= set[index - 1]))) ||
+        !Array.isArray(claims) || claims.length !== FITNESS_DIMENSIONS.length ||
+        claims.some(value => typeof value !== "boolean") ||
+        levels.some((set, dimension) => !claims[dimension] && (set.length !== 1 || set[0] !== 1))) {
+      throw new Error("Every exercise requires ten nonempty fitness ratings from 1 through 5 and reviewed training claims.");
     }
     ratings.set(id, levels);
+    trainingCharacteristics.set(id, [...claims]);
   }
+  if (Object.keys(source.trainingCharacteristics).length !== ratings.size)
+    throw new Error("Training characteristics must match the rated exercises.");
+  Object.defineProperty(ratings, "trainingCharacteristics", { value: trainingCharacteristics });
   return ratings;
+}
+
+export function serializeFitnessRatings(ratings) {
+  if (!(ratings.trainingCharacteristics instanceof Map))
+    throw new Error("Reviewed training characteristics are required for worker transport.");
+  return { schemaVersion: 2, dimensions: [...FITNESS_DIMENSIONS],
+    ratings: Object.fromEntries(ratings),
+    trainingCharacteristics: Object.fromEntries(ratings.trainingCharacteristics) };
+}
+
+export function hasFitnessTrainingClaim(ratings, exerciseId, dimension) {
+  return ratings.trainingCharacteristics
+    ? ratings.trainingCharacteristics.get(exerciseId)?.[dimension] === true
+    : (ratings.get(exerciseId)?.[dimension]?.length ?? 0) > 0;
+}
+
+function strongestTrainingLevel(ratings, exerciseId, levels) {
+  return Math.max(0, ...levels.flatMap((set, dimension) =>
+    hasFitnessTrainingClaim(ratings, exerciseId, dimension) ? set : []));
 }
 
 export function calculateFitnessProfile(exercises, state, ratings) {
@@ -93,11 +128,12 @@ export function inspectFitnessProfile(exercises, state, ratings) {
   for (const [movementId, { exercise, decision }] of [...latest].sort((a, b) => a[0] - b[0])) {
     const levels = ratings.get(exercise.id);
     if (!levels) continue;
-    const strongest = Math.max(0, ...levels.flat());
+    const strongest = strongestTrainingLevel(ratings, exercise.id, levels);
     levels.forEach((set, dimension) => {
       // Too easy applies to every rated axis; love and hard identify only
       // the strongest demands. Empty cells never imply level zero evidence.
-      if (!set.length || decision.outcome !== "easy" && set.at(-1) !== strongest) return;
+      if (!hasFitnessTrainingClaim(ratings, exercise.id, dimension) ||
+          !set.length || decision.outcome !== "easy" && set.at(-1) !== strongest) return;
       const supportedLevels = decision.outcome === "tick" ? [...set]
         : decision.outcome === "easy"
           ? [1, 2, 3, 4, 5].filter(level => level >= Math.min(5, set.at(-1) + 1))
@@ -186,12 +222,13 @@ export function inspectFavouriteFitnessProfile(exercises, state, ratings) {
     if (!kept.has(exercise.id)) continue;
     const levels = ratings.get(exercise.id);
     if (!levels) continue;
-    const strongest = Math.max(0, ...levels.flat());
+    const strongest = strongestTrainingLevel(ratings, exercise.id, levels);
     const movementId = exercise.sessionMovementId > 0 ? exercise.sessionMovementId : exercise.id;
     if (!movements.has(movementId)) movements.set(movementId, new Array(10).fill(null));
     const values = movements.get(movementId);
     levels.forEach((set, dimension) => {
-      if (set.length === 1 && set[0] === strongest && (!values[dimension] ||
+      if (hasFitnessTrainingClaim(ratings, exercise.id, dimension) &&
+          set.length === 1 && set[0] === strongest && (!values[dimension] ||
           set[0] > values[dimension].level ||
           (set[0] === values[dimension].level && exercise.id < values[dimension].exerciseId)))
         values[dimension] = { movementId, exerciseId: exercise.id, name: exercise.name, level: set[0] };

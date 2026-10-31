@@ -1,10 +1,11 @@
 import { WorkoutSession } from "./workout.js";
+import { parseFitnessRatings } from "./fitness-profile.js";
 
 self.addEventListener("message", (event) => {
   const {
     generation,
     exercises,
-    fitnessRatings,
+    fitnessRatings: fitnessRatingSource,
     state,
     minutes,
     modifiers,
@@ -12,6 +13,7 @@ self.addEventListener("message", (event) => {
     currentWorkoutGroupId,
   } = event.data ?? {};
   try {
+    const fitnessRatings = parseFitnessRatings(fitnessRatingSource);
     const session = new WorkoutSession(exercises, state, undefined, undefined, fitnessRatings);
     if (mode === "reconfigure") {
       session.reconfigureActiveWorkout(modifiers, currentWorkoutGroupId);

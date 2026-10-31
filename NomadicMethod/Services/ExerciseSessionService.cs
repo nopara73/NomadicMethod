@@ -2655,7 +2655,10 @@ public sealed partial class ExerciseSessionService
             _catalogExercises, state, _fitnessRatings));
         return _sequenceExercisesByRootId.ToDictionary(entry => entry.Key,
             entry => FitnessSelectionPolicy.IsSequenceEligible(entry.Value.Select(member =>
-                _fitnessRatings.GetValueOrDefault(member.Id)), zones));
+                _fitnessRatings.GetValueOrDefault(member.Id)), zones,
+                _fitnessRatings is FitnessRatingCatalog
+                    ? entry.Value.Select(member => FitnessProfilePolicy.GetTrainingCharacteristics(_fitnessRatings, member.Id))
+                    : null));
     }
 
     private Exercise[] GetMovementRoots(Exercise exercise) =>

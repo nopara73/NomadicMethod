@@ -99,9 +99,14 @@ const preparationWorkerSource = await readFile(
 const fingerprintedPreparationWorkerSource = preparationWorkerSource.replace(
   'from "./workout.js";',
   `from "./${workoutOutputName}";`,
+).replace(
+  'from "./fitness-profile.js";',
+  `from "./${moduleOutputs.get('fitness-profile')}";`,
 );
 if (fingerprintedPreparationWorkerSource === preparationWorkerSource ||
-    !fingerprintedPreparationWorkerSource.includes(workoutOutputName)) {
+    !fingerprintedPreparationWorkerSource.includes(workoutOutputName) ||
+    !fingerprintedPreparationWorkerSource.includes(moduleOutputs.get('fitness-profile')) ||
+    fingerprintedPreparationWorkerSource.includes('./fitness-profile.js')) {
   throw new Error("Could not content-address the workout preparation worker.");
 }
 const preparationWorkerOutputName = fingerprintedName(

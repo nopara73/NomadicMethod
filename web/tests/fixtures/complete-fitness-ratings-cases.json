@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "ratings": {
+    "schemaVersion": 2,
+    "dimensions": [
+      "cardiorespiratoryEndurance",
+      "muscularStrength",
+      "muscularEndurance",
+      "flexibility",
+      "agility",
+      "balance",
+      "coordination",
+      "power",
+      "reactionTime",
+      "speed"
+    ],
+    "ratings": {
+      "1": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "2": [
+        [
+          1
+        ],
+        [
+          3
+        ],
+        [
+          2
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    "trainingCharacteristics": {
+      "1": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "2": [
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  },
+  "expectedEasyProfile": [
+    0,
+    4.5,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "invalidLevelSets": [
+    [],
+    [
+      0
+    ],
+    [
+      6
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1.5
+    ]
+  ]
+}

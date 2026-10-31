@@ -86,8 +86,10 @@ test("native and web use the app palette and fixed-size labels for the larger sp
 });
 for (const entry of fixture.cases) {
   test("fitness profile: " + entry.name, () => {
-    const source = { schemaVersion: 1, dimensions: fixture.dimensions,
-      ratings: Object.fromEntries(entry.exercises.map(row => [row.id, row.levels])) };
+    // Preserve the historical sparse fixture expectations through the complete rating format.
+    const source = { schemaVersion: 2, dimensions: fixture.dimensions,
+      ratings: Object.fromEntries(entry.exercises.map(row => [row.id, row.levels.map(set => set.length ? set : [1])])),
+      trainingCharacteristics: Object.fromEntries(entry.exercises.map(row => [row.id, row.levels.map(set => set.length > 0)])) };
     const before = JSON.stringify(entry);
     assert.deepEqual(calculateFavouriteFitnessProfile(entry.exercises, entry.state, parseFitnessRatings(source)), entry.expected);
     const exercises = entry.exercises.map(e => ({...e, name: "movement " + e.id}));
@@ -113,10 +115,11 @@ test("canonical runtime fitness ratings cover every Android catalog identity", (
   assert.deepEqual(FITNESS_DIMENSIONS, fixture.dimensions);
 });
 test("invalid fitness rating sets are rejected", () => {
-  for (const set of [[0], [6], [2,1], [1,1], [1.5]]) {
-    const levels = FITNESS_DIMENSIONS.map(() => []);
+  for (const set of [[], [0], [6], [2,1], [1,1], [1.5]]) {
+    const levels = FITNESS_DIMENSIONS.map(() => [1]);
     levels[0] = set;
-    assert.throws(() => parseFitnessRatings({schemaVersion:1, dimensions:FITNESS_DIMENSIONS, ratings: {1:levels}}));
+    assert.throws(() => parseFitnessRatings({schemaVersion:2, dimensions:FITNESS_DIMENSIONS, ratings: {1:levels},
+      trainingCharacteristics:{1:FITNESS_DIMENSIONS.map(() => true)}}));
   }
 });
 test("homepage profile reads canonical data with the same native and web contract", () => {

@@ -735,3 +735,9 @@ Its narrower promise is concrete: for the exact time and constraints selected,
 Nomadic Method constructs a varied workout while preserving anatomical targets, meaningful
 exercise-to-target assignments, bilateral execution, and the user's durable
 preferences.
+
+### Complete fitness ratings
+
+Every catalog exercise has ten explicit nonempty level sets, containing only levels 1–5. Level 1 is the minimum assessed demand, including characteristics that impose minimal demand. Empty sets, missing axes, zero and implicit defaults are rejected by catalog generation and both runtime loaders.
+
+The reviewed training-characteristic flags separately record the actual training claims. They govern fitness evidence and characteristic-level coverage, so a minimum speed rating on a static hold does not count as speed training. They do not exempt an exercise from the fitness-selection rules. Android and web share schema version 2, including the background web planner; saved workout history, scores and selections retain their existing identities.
