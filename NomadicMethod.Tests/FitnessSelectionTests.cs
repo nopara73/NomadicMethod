@@ -77,7 +77,7 @@ public sealed class FitnessSelectionTests
         var (exercises, ratings, state) = DiscoveryFixture();
         state.WorkoutHistory.Clear();
         state.KeptExerciseRootIdsBySelectionGroupId.Clear();
-        exercises.Single(e => e.Id == 6).Score = 10000;
+        exercises.Single(e => e.Id == 6).Score = 100;
         state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.Warmup] = new() { [3] = -1 };
         var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
         service.StartWorkout(state, 3, WorkoutModifiers.None);
@@ -115,6 +115,18 @@ public sealed class FitnessSelectionTests
         state.KeptExerciseRootIdsBySelectionGroupId.Clear();
         exercises.Single(e => e.Id == 30).Score = 10000;
         state.WorkoutHistory[0].Decisions.Add(new() { RootExerciseId = 30, Outcome = ExerciseOutcome.TooHard, DecidedAtUnixMilliseconds = 2 });
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 20);
+        Assert.Contains(state.ActiveWorkoutSession.InitialSelections, selection => selection.RootExerciseId == 30);
+    }
+
+    [Fact]
+    public void SharingCannotBorrowAHardOpportunityFromAnotherSlot()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture(higherHard: true, shareDeclinedCoverage: true);
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        exercises.Single(exercise => exercise.Id == 20).Score = 10000;
         var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
         service.StartWorkout(state, 3, WorkoutModifiers.None);
         Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 20);
@@ -259,7 +271,8 @@ public sealed class FitnessSelectionTests
                 SideSequence = ExerciseSideSequence.Continuous, SequenceBlocks = [new() { ExerciseId = id, MirrorMedia = false }],
                 SessionMovementId = row.TryGetProperty("movementId", out var movement) ? movement.GetInt32() : id,
                 Score = row.TryGetProperty("score", out var score) ? score.GetInt32() : 0,
-                MuscularDemand = lightStress && id < 20 && id != 7 || higherHard && id is 3 or 4 or 5 ? 2 : 0,
+                MuscularDemand = lightStress && id < 20 && id != 7 ||
+                    higherHard && (id is 3 or 4 or 5 || shareDeclinedCoverage && id == 30) ? 2 : 0,
                 OnlyFeetTouchGround = true, ShoeAgnostic = true, MaxSpaceMeters = 2, Equipment = "None", Silent = true,
                 MirrorRelationship = ExerciseMirrorRelationship.Agnostic,
                 HardFloorCompatibility = ExerciseHardFloorCompatibility.Compatible,

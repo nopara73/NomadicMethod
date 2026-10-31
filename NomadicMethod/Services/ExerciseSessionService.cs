@@ -504,6 +504,7 @@ public sealed partial class ExerciseSessionService
             !modifiers.HasFlag(WorkoutModifiers.Light));
         SetActiveLongWorkoutAllocation(state);
         BroadenRejectedSelectionSlots(state);
+        ReconcileLineupWithScheduledPhases(state);
         FillRemainingTimeWithDistinctSelections(state);
         RebalanceNewExercisesByMuscleBalance(state);
         SetActiveLongWorkoutAllocation(state);
@@ -536,6 +537,7 @@ public sealed partial class ExerciseSessionService
             RepairActiveLineup(state, preserveCurrentSelections: false);
             SetActiveLongWorkoutAllocation(state);
             BroadenRejectedSelectionSlots(state);
+            ReconcileLineupWithScheduledPhases(state);
             FillRemainingTimeWithDistinctSelections(state);
             RebalanceNewExercisesByMuscleBalance(state);
             SetActiveLongWorkoutAllocation(state);
@@ -1999,6 +2001,8 @@ public sealed partial class ExerciseSessionService
         BigInteger moderateRecoveryAvoidanceWeight = hasFitnessEvidence ? BigInteger.Zero : AddPriorityDimension(1L);
         BigInteger hardRecoveryAvoidanceWeight = hasFitnessEvidence ? BigInteger.Zero : AddPriorityDimension(1L);
         BigInteger freshHardWeight = AddPriorityDimension(1L);
+        BigInteger refusalWeight = hasFitnessEvidence ? BigInteger.Zero :
+            AddPriorityDimension(Math.Max(0, refusalRanks.Count - 1));
         BigInteger scoreWeight = AddPriorityDimension(
             Math.Max(0, orderedScores.Length - 1));
         BigInteger hardOpportunityWeight = AddPriorityDimension(1L);
@@ -2007,7 +2011,7 @@ public sealed partial class ExerciseSessionService
             moderateRecoveryAvoidanceWeight = AddPriorityDimension(1L);
             hardRecoveryAvoidanceWeight = AddPriorityDimension(1L);
         }
-        BigInteger refusalWeight = AddPriorityDimension(Math.Max(0, refusalRanks.Count - 1));
+        if (hasFitnessEvidence) refusalWeight = AddPriorityDimension(Math.Max(0, refusalRanks.Count - 1));
         BigInteger keptExerciseWeight = AddPriorityDimension(1L);
         BigInteger acceptedDifficultyWeight = hasDifficultyPreference ? AddPriorityDimension(1L) : BigInteger.Zero;
         BigInteger unexcludedWeight = AddPriorityDimension(1L);

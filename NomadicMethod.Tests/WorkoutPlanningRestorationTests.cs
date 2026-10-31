@@ -175,7 +175,8 @@ public sealed class WorkoutPlanningRestorationTests
         var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
         service.Initialize(state);
         service.StartWorkout(state, 30, (WorkoutModifiers)5232);
-        Assert.Null(state.ActiveDurationSelectionGroupIds);
+        Assert.Contains("r30.pelvic-floor-perineum", service.GetActiveGroups(state).Select(g => g.SelectionKey));
+        Assert.DoesNotContain("r15.abdominal-pelvic-floor", service.GetActiveGroups(state).Select(g => g.SelectionKey));
         Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, s => s.RootExerciseId == 918);
         Assert.Equal(-2, catalog.Single(e => e.Id == 918).Score);
     }

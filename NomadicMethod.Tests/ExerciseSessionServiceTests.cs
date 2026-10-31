@@ -230,13 +230,13 @@ public sealed class ExerciseSessionServiceTests
         service.PrepareWorkout(restored, minutes, WorkoutModifiers.None);
         Assert.Equal(minutes, service.GetActiveGroups(restored).Count);
         // Rejected singleton slots may merge, but the complete anatomical
-        // partition, time budget and the user's recorded feedback must survive.
+        // coverage, time budget and the user's recorded feedback must survive.
         var knownGroups = MassGroupingTaxonomy.SupportedMinutes
             .SelectMany(value => MassGroupingTaxonomy.GetResolution(value).Groups).ToDictionary(g => g.Id);
         WorkoutGroup[] plannedGroups = restored.ActiveDurationSelectionGroupIds is { } ids
             ? ids.Select(id => knownGroups[id]).ToArray() : groups;
-        Assert.Equal(groups.SelectMany(g => g.CanonicalGroups).Order(),
-            plannedGroups.SelectMany(g => g.CanonicalGroups).Order());
+        Assert.Equal(groups.SelectMany(g => g.CanonicalGroups).Distinct().Order(),
+            plannedGroups.SelectMany(g => g.CanonicalGroups).Distinct().Order());
         Assert.Equal(feedback, JsonSerializer.Serialize(restored.ExerciseScoreAdjustmentsByPhase));
         Assert.Equal(history, JsonSerializer.Serialize(restored.WorkoutHistory));
         Assert.Equal(keeps, JsonSerializer.Serialize(restored.KeptExerciseRootIdsBySelectionGroupId));

@@ -5021,6 +5021,7 @@ export class WorkoutSession {
     this.repairActiveLineup((modifiers & WORKOUT_MODIFIERS.Light) === 0);
     this.setActiveLongWorkoutAllocation();
     this.broadenRejectedSelectionSlots();
+    this.reconcileLineupWithScheduledPhases();
     this.fillRemainingTimeWithDistinctSelections();
     this.rebalanceNewExercisesByMuscleBalance();
     this.setActiveLongWorkoutAllocation();
@@ -5251,6 +5252,7 @@ export class WorkoutSession {
       this.repairActiveLineup(false);
       this.setActiveLongWorkoutAllocation();
       this.broadenRejectedSelectionSlots();
+      this.reconcileLineupWithScheduledPhases();
       this.fillRemainingTimeWithDistinctSelections();
       this.rebalanceNewExercisesByMuscleBalance();
       this.setActiveLongWorkoutAllocation();
@@ -6984,6 +6986,7 @@ export class WorkoutSession {
     let moderateRecoveryAvoidanceWeight = hasFitnessEvidence ? 0n : addPriorityDimension(1);
     let hardRecoveryAvoidanceWeight = hasFitnessEvidence ? 0n : addPriorityDimension(1);
     const freshHardWeight = addPriorityDimension(1);
+    let refusalWeight = hasFitnessEvidence ? 0n : addPriorityDimension(Math.max(0, refusalRanks.size - 1));
     const scoreWeight = addPriorityDimension(Math.max(0, orderedScores.length - 1));
     const hardOpportunityWeight = addPriorityDimension(1);
     // Within the eligible pool, preserve recovery and refusal priorities.
@@ -6991,7 +6994,7 @@ export class WorkoutSession {
       moderateRecoveryAvoidanceWeight = addPriorityDimension(1);
       hardRecoveryAvoidanceWeight = addPriorityDimension(1);
     }
-    const refusalWeight = addPriorityDimension(Math.max(0, refusalRanks.size - 1));
+    if (hasFitnessEvidence) refusalWeight = addPriorityDimension(Math.max(0, refusalRanks.size - 1));
     const keptExerciseWeight = addPriorityDimension(1);
     const acceptedDifficultyWeight = hasDifficultyPreference ? addPriorityDimension(1) : 0n;
     const unexcludedWeight = addPriorityDimension(1);

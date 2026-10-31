@@ -92,7 +92,8 @@ function discoveryFixture(higherHard = false, lightStress = false, shareDeclined
     mode: "Repetition", presentation: "Motion", holdFramePercent: 0, sideSequence: "Continuous",
     sequenceBlocks: [{exerciseId: row.id, sideCue: "None", directionCue: "None", mediaSegment: "Full", mirrorMedia: false}],
     sessionMovementId: row.movementId ?? row.id, score: row.score ?? 0,
-    muscularDemand: lightStress && row.id<20 && row.id!==7 || higherHard && [3,4,5].includes(row.id) ? 2 : 0,
+    muscularDemand: lightStress && row.id<20 && row.id!==7 ||
+      higherHard && ([3,4,5].includes(row.id) || shareDeclinedCoverage && row.id===30) ? 2 : 0,
     onlyFeetTouchGround: true, shoeAgnostic: true, maxSpaceMeters: 2, equipment: "None", silent: true,
     mirrorRelationship: "Agnostic", minimumMirrorCoverage: "None", hardFloorCompatibility: "Compatible",
     shyCompatibility: "Compatible", upperBodyClothingRequirement: "Agnostic", floorContactPoints: "Feet",
@@ -148,7 +149,7 @@ test("phase refusals apply to aliases before a fitness profile exists", () => {
   const {session}=discoveryFixture();
   session.state.workoutHistory=[];
   session.state.keptExerciseRootIdsBySelectionGroupId={};
-  session.state.scores[6]=10000;
+  session.state.scores[6]=100;
   session.state.exerciseScoreAdjustmentsByPhase.Warmup={3:-1};
   session.startWorkout(3,0);
   assert.notEqual(session.getSelectedExercise(session.getNextGroup()).sessionMovementId,3);
@@ -179,6 +180,14 @@ test("shared coverage cannot undo a difficulty preference", () => {
   session.state.workoutHistory[0].decisions.push({rootExerciseId:30,outcome:"hard",decidedAtUnixMilliseconds:2});
   session.startWorkout(3,0);
   for(const id of [20,30]) assert.ok(session.state.activeWorkoutSession.initialSelections.some(s=>s.rootExerciseId===id));
+});
+
+test("sharing cannot borrow a hard opportunity from another slot", () => {
+  const {session} = discoveryFixture(true,false,true);
+  session.state.keptExerciseRootIdsBySelectionGroupId = {};
+  session.state.scores[20] = 10000;
+  session.startWorkout(3,0);
+  for (const id of [20,30]) assert.ok(session.state.activeWorkoutSession.initialSelections.some(s=>s.rootExerciseId===id));
 });
 
 for (const outcome of preferences.difficultyResponses) {

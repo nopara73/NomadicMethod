@@ -116,7 +116,8 @@ test("a still-kept singleton retains priority over an old global negative score"
   const session = new WorkoutSession(catalog, state, () => 0.5, () => now);
   session.initialize();
   session.startWorkout(30, 5232);
-  assert.equal(session.state.activeDurationSelectionGroupIds, null);
+  assert.ok(session.getActiveGroups().some(g => (g.selectionGroupId ?? g.id) === 'r30.pelvic-floor-perineum'));
+  assert.ok(session.getActiveGroups().every(g => (g.selectionGroupId ?? g.id) !== 'r15.abdominal-pelvic-floor'));
   assert.ok(session.state.activeWorkoutSession.initialSelections.some(s => s.rootExerciseId === 918));
   assert.equal(session.getScore(session.exercisesById.get(918)), -2);
 });

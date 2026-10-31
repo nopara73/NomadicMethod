@@ -99,12 +99,14 @@ The optimizer applies these priorities lexicographically:
 4. prefer families whose latest difficulty response is neither too easy nor too hard;
 5. retain contextual keeps, except demand-`1` and demand-`2` keeps whose
    primary muscle is still inside the applicable recovery window;
-6. prefer a smaller refusal depth across the movement family's aliases;
+6. when the fitness zone restricts the pool, prefer a smaller refusal depth across
+   the movement family's aliases;
 7. when the fitness zone restricts the pool, prefer work outside recovery;
 8. give a fresh hard keep, or a suitable highest-score fresh hard exercise, a
    hard-work opportunity;
 9. prefer exercises with better saved keep/discard scores;
-10. apply the remaining recovery and fresh-hard rotation preferences, then
+10. otherwise use family refusal depth to break score ties; apply the remaining
+    recovery and fresh-hard rotation preferences, then
     prefer the longest-rested primary muscle;
 11. preserve a valid existing selection when the higher priorities tie;
 12. apply the soft available-equipment preference for Wall and Mirror;
