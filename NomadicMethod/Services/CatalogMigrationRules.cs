@@ -20,7 +20,9 @@ public static class CatalogMigrationRules
     // Revision 101 describes push-up hand placement without grip terminology.
     // Name-only corrections preserve feedback and unfinished workout progress.
     // Revision 102 names arm pulses accurately and completes their fixed stance.
-    public const int CurrentCatalogRevision = 102;
+    // Revision 103 relaxes only reviewed locomotion surface classifications.
+    // Existing identities, lineups, Keeps, feedback and history remain valid.
+    public const int CurrentCatalogRevision = 103;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;

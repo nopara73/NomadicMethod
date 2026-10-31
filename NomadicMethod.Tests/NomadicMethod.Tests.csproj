@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\docs\catalog-audit\hard-floor-locomotion-review-2026-10-31.json" Link="Assets\hard-floor-locomotion-review.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\arm-pulses.json" Link="Assets\arm-pulses.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\catalog-position-cases.json" Link="Assets\catalog-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fixed-position-cases.json" Link="Assets\fixed-position-cases.json" CopyToOutputDirectory="PreserveNewest" />

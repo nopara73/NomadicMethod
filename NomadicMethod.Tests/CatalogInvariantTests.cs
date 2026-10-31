@@ -618,12 +618,12 @@ public sealed class CatalogInvariantTests
             exercise.InsectCompatibility == ExerciseInsectCompatibility.Unreviewed);
         Assert.DoesNotContain(exercises, exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Unreviewed);
-        Assert.Equal(416, exercises.Count(exercise =>
+        Assert.Equal(427, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Compatible));
-        Assert.Equal(503, exercises.Count(exercise =>
+        Assert.Equal(492, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Incompatible));
         Assert.All(
-            new[] { 37, 194, 610, 326 },
+            new[] { 37, 610, 326 },
             exerciseId => Assert.Equal(
                 ExerciseHardFloorCompatibility.Incompatible,
                 exercises.Single(exercise => exercise.Id == exerciseId)
