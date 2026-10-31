@@ -8,4 +8,8 @@ Extra sets count the actual timed blocks of every sequence, including sides and 
 
 The persisted ActiveCoverageAccountingVersion marker is set to 1 for new plans. Missing or zero markers retain legacy placement and allocation behavior. Reopening never upgrades an unfinished plan. Current/completed selections, their sets, round IDs, history, score and Keep records survive restoration and explicit duration changes.
 
+If every eligible movement for a fine anatomical slot has been rejected in its scheduled workout phase, preparation can merge complete neighboring slots into the smallest existing broader target with an unrejected option. The ordinary planner still checks fitness eligibility, equipment, anatomy, complete sequences and exact duration. The broader plan is retained only when its final scheduled blocks contain less rejected work; Light must retain at least as many demand-zero blocks. Old global negative scores continue to rank movements but do not trigger anatomical broadening; this preserves existing contextual Keep priority. No exercise is rerated or assigned new anatomy. Scores, Keeps and historical decisions remain intact.
+
+Explicit duration edits apply the same fallback only to future slots. Completed work and the whole current atomic selection, including its allocated sets and stable round IDs, remain protected. Cold reopening never triggers this fallback. Native and web share `rejected-slot-fallback-cases.json`, including the hard-floor pelvic-floor bottleneck, longer saved durations, Light and ordinary fine-slot alternatives.
+
 Android and web use the same shared-coverage fixtures across every taxonomy resolution; real-catalog regressions cover Heel Raise with Walking Arms, stored Keeps, exact duration and reopening.

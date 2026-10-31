@@ -4,6 +4,149 @@ namespace NomadicMethod.Services;
 
 public sealed partial class ExerciseSessionService
 {
+    // Merge only complete sibling slots into an existing broader target, and
+    // retain the change only when the final schedule reduces refused work.
+    // Run only for preparation or an explicit duration edit, never on reopen.
+    private void BroadenRejectedSelectionSlots(WorkoutState state,
+        IReadOnlySet<string>? lockedSelectionGroupIds = null)
+    {
+        if (state.ExerciseScoreAdjustmentsByPhase.Values.All(entries => entries.Values.All(value => value >= 0)) &&
+            _exercises.All(exercise => exercise.Score >= 0)) return;
+        Dictionary<int, bool> fitness = GetFitnessEligibility(state);
+        Exercise[] roots = _exercises.Where(e => e.SequenceBlocks.Length > 0 &&
+            GetSequenceRoot(e).Id == e.Id && fitness.GetValueOrDefault(e.Id)).ToArray();
+        while (true)
+        {
+            _planningCancellationToken.ThrowIfCancellationRequested();
+            var before = GetPreparedWorkoutFeedbackCost(state);
+            if (before.RefusedBlocks == 0) return;
+            WorkoutGroup[] groups = GetSelectionGroups(state).ToArray();
+            HashSet<string> protectedGroups = GetSelectedSequencePlacements(state)
+                .Where(p => lockedSelectionGroupIds?.Contains(p.Anchor.Id) == true)
+                .SelectMany(p => p.CoveredGroups).Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
+            var phases = GetScheduledPhaseByGroupId(state, state.ActiveSetCountsBySelectionGroupId);
+            bool improved = false;
+            foreach (WorkoutGroup trapped in groups)
+            {
+                if (protectedGroups.Contains(trapped.Id)) continue;
+                WorkoutExercisePhase phase = phases[trapped.Id];
+                Exercise[] eligible = roots.Where(root => IsWorkoutSelectionCandidate(
+                    state, root, trapped, state.ActiveWorkoutModifiers, groups)).ToArray();
+                if (state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) && eligible.Any(IsDemandZeroSequence))
+                    eligible = eligible.Where(IsDemandZeroSequence).ToArray();
+                if (eligible.Length == 0 || eligible.Any(root =>
+                        GetPhaseRefusalDepth(state, root, phase) == 0)) continue;
+                foreach (WorkoutGroup broader in KnownWorkoutGroups.Values
+                    .Where(g => g.CanonicalGroups.IsProperSupersetOf(trapped.CanonicalGroups) &&
+                        WorkoutModifierPolicy.IsSelectionGroupAvailable(g, state.ActiveWorkoutModifiers,
+                            state.ActiveCatalogRevision))
+                    .OrderBy(g => g.CanonicalGroups.Count).ThenBy(g => g.Id, StringComparer.Ordinal))
+                {
+                    _planningCancellationToken.ThrowIfCancellationRequested();
+                    WorkoutGroup[] siblings = groups.Where(g => g.CanonicalGroups.Overlaps(
+                        broader.CanonicalGroups)).ToArray();
+                    if (siblings.Length < 2 || siblings.Any(g => protectedGroups.Contains(g.Id) ||
+                            !g.CanonicalGroups.IsSubsetOf(broader.CanonicalGroups)) ||
+                        !siblings.SelectMany(g => g.CanonicalGroups).ToHashSet().SetEquals(
+                            broader.CanonicalGroups)) continue;
+                    HashSet<string> replaced = siblings.Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
+                    WorkoutGroup[] proposed = groups.SelectMany(g => g.Id == siblings[0].Id
+                        ? new[] { broader } : replaced.Contains(g.Id) ? [] : new[] { g }).ToArray();
+                    if (!roots.Any(root => GetPhaseRefusalDepth(state, root, phase) == 0 &&
+                            IsWorkoutSelectionCandidate(state, root, broader,
+                                state.ActiveWorkoutModifiers, proposed))) continue;
+                    if (!TryBroaderPreparedWorkout(state, proposed, before, lockedSelectionGroupIds)) continue;
+                    improved = true;
+                    break;
+                }
+                if (improved) break;
+            }
+            if (!improved) return;
+        }
+    }
+
+    // Old global scores still rank choices. Only an explicit phase rejection
+    // can change the anatomical grouping of a new plan.
+    private long GetPhaseRefusalDepth(WorkoutState state, Exercise root, WorkoutExercisePhase phase) =>
+        GetMovementRoots(root).Max(variant => Math.Max(0L,
+            -(long)GetPhaseScoreAdjustment(state, variant, phase)));
+
+    private (int RefusedBlocks, int LightBlocks) GetPreparedWorkoutFeedbackCost(WorkoutState state)
+    {
+        var phases = GetScheduledPhaseByGroupId(state, state.ActiveSetCountsBySelectionGroupId);
+        int refused = 0, light = 0;
+        foreach (SelectedSequencePlacement placement in GetSelectedSequencePlacements(state))
+        {
+            int blocks = placement.Root.SequenceBlocks.Length *
+                state.ActiveSetCountsBySelectionGroupId.GetValueOrDefault(placement.Anchor.Id, 1);
+            if (GetPhaseRefusalDepth(state, placement.Root, phases[placement.Anchor.Id]) > 0)
+                refused += blocks;
+            if (IsDemandZeroSequence(placement.Root)) light += blocks;
+        }
+        return (refused, light);
+    }
+
+    private bool TryBroaderPreparedWorkout(WorkoutState state, WorkoutGroup[] groups,
+        (int RefusedBlocks, int LightBlocks) before, IReadOnlySet<string>? lockedSelectionGroupIds)
+    {
+        var previousGroups = state.ActiveDurationSelectionGroupIds;
+        var previousSimple = state.ActiveSimpleRoundSelectionGroupIds;
+        var previousSelections = state.SelectedExerciseIds;
+        var previousCounts = state.ActiveSetCountsBySelectionGroupId;
+        var previousExtra = state.ActiveExtraSetSelectionGroupIds;
+        var previousOrder = state.ActiveSelectionGroupOrder;
+        SelectedSequencePlacement[] locked = GetScheduleOrderedPlacements(state, GetSelectedSequencePlacements(state))
+            .Where(p => lockedSelectionGroupIds?.Contains(p.Anchor.Id) == true).ToArray();
+        Dictionary<string, int> lockedExercises = locked.SelectMany(p => p.CoveredGroups.Select(g =>
+            (g.Id, RootId: p.Root.Id))).ToDictionary(e => e.Id, e => e.RootId, StringComparer.Ordinal);
+        bool accepted = false;
+        try
+        {
+            state.ActiveDurationSelectionGroupIds = groups.Select(g => g.Id).ToList();
+            state.ActiveSimpleRoundSelectionGroupIds = lockedSelectionGroupIds is not null
+                ? new(previousSimple, StringComparer.Ordinal)
+                : state.ActiveWorkoutMinutes <= 30 ? groups.Select(g => g.Id).ToHashSet(StringComparer.Ordinal) : [];
+            state.SelectedExerciseIds = new(previousSelections, StringComparer.Ordinal);
+            state.ActiveSetCountsBySelectionGroupId = new(previousCounts, StringComparer.Ordinal);
+            state.ActiveExtraSetSelectionGroupIds = new(previousExtra, StringComparer.Ordinal);
+            state.ActiveSelectionGroupOrder = [];
+            var lineup = ChooseBestDistinctLineup(state, groups, state.ActiveWorkoutModifiers,
+                currentExerciseIds: lockedExercises,
+                allowSavedSelectionException: lockedSelectionGroupIds is not null,
+                modifierTransitionProtectedGroupIds: lockedExercises.Keys.ToHashSet(StringComparer.Ordinal),
+                reservedRepeatMinutes: locked.Sum(p => (previousCounts.GetValueOrDefault(p.Anchor.Id, 1) - 1) *
+                    p.Root.SequenceBlocks.Length));
+            ApplyDistinctLineup(state, groups, lineup, clearChangedProgress: false);
+            RebalanceNewExercisesByMuscleBalance(state, lockedSelectionGroupIds);
+            if (lockedSelectionGroupIds is not null) SetEditedSelectionOrder(state, locked.Select(p => p.Anchor.Id).ToArray());
+            ApplyLongWorkoutAllocation(state, ChooseLongWorkoutAllocation(state, lockedSelectionGroupIds));
+            ReconcileLineupWithScheduledPhases(state, lockedSelectionGroupIds);
+            var after = GetPreparedWorkoutFeedbackCost(state);
+            accepted = after.RefusedBlocks < before.RefusedBlocks &&
+                (!state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) ||
+                    after.LightBlocks >= before.LightBlocks);
+            return accepted;
+        }
+        catch (InvalidOperationException error) when (error.Message.Contains("No complete exercise lineup", StringComparison.Ordinal) ||
+            error.Message.StartsWith("The selected ", StringComparison.Ordinal))
+        {
+            // Eligibility alone does not prove a complete atomic lineup fits.
+            return false;
+        }
+        finally
+        {
+            if (!accepted)
+            {
+                state.ActiveDurationSelectionGroupIds = previousGroups;
+                state.ActiveSimpleRoundSelectionGroupIds = previousSimple;
+                state.SelectedExerciseIds = previousSelections;
+                state.ActiveSetCountsBySelectionGroupId = previousCounts;
+                state.ActiveExtraSetSelectionGroupIds = previousExtra;
+                state.ActiveSelectionGroupOrder = previousOrder;
+            }
+        }
+    }
+
     private void UpdateSequenceCatalog(WorkoutState state, int minutes,
         IReadOnlySet<int>? protectedRootIds = null)
     {
@@ -157,6 +300,7 @@ public sealed partial class ExerciseSessionService
                     SetEditedSelectionOrder(state, lockedIds);
                     ApplyLongWorkoutAllocation(state, ChooseLongWorkoutAllocation(state, locked));
                     ReconcileLineupWithScheduledPhases(state, locked);
+                    BroadenRejectedSelectionSlots(state, locked);
                     WorkoutGroup[] resized = GetActiveGroups(state).ToArray();
                     if (!priorRounds.Take(protectedCount).SequenceEqual(resized.Take(protectedCount)) ||
                         GetNextGroup(state)?.Id != current.Id)

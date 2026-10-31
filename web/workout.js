@@ -5021,6 +5021,113 @@ export class WorkoutSession {
     this.rebalanceNewExercisesByMuscleBalance();
     this.setActiveLongWorkoutAllocation();
     this.reconcileLineupWithScheduledPhases();
+    this.broadenRejectedSelectionSlots();
+  }
+
+  // Match native preparation and explicit duration edits, never cold reopen.
+  // Broaden complete siblings only when the final plan reduces refused work.
+  broadenRejectedSelectionSlots(lockedSelectionGroupIds = null) {
+    if (Object.values(this.state.exerciseScoreAdjustmentsByPhase).every(entries =>
+        Object.values(entries).every(value => value >= 0)) && this.exercises.every(exercise => this.getScore(exercise) >= 0)) return;
+    const fitness = this.getFitnessEligibility();
+    const roots = this.exercises.filter(e => e.sequenceBlocks.length > 0 &&
+      this.getSequenceRoot(e).id === e.id && fitness.get(e.id));
+    while (true) {
+      const before = this.getPreparedWorkoutFeedbackCost();
+      if (before.refusedBlocks === 0) return;
+      const groups = this.getSelectionGroups();
+      const protectedGroups = new Set(this.getSelectedSequencePlacements()
+        .filter(p => lockedSelectionGroupIds?.has(p.anchor.id)).flatMap(p => p.coveredGroups.map(g => g.id)));
+      const phases = this.getScheduledPhaseByGroupId();
+      let improved = false;
+      for (const trapped of groups) {
+        if (protectedGroups.has(trapped.id)) continue;
+        const phase = phases.get(trapped.id);
+        let eligible = roots.filter(root => this.isWorkoutSelectionCandidate(
+          root, trapped, this.state.activeWorkoutModifiers, groups));
+        if ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0 && eligible.some(root => this.isDemandZeroSequence(root)))
+          eligible = eligible.filter(root => this.isDemandZeroSequence(root));
+        if (!eligible.length || eligible.some(root => this.getPhaseRefusalDepth(root, phase) === 0)) continue;
+        const broaderGroups = [...ALL_GROUPS.values()].filter(g =>
+          g.canonicalGroups.length > trapped.canonicalGroups.length &&
+          trapped.canonicalGroups.every(muscle => g.canonicalGroups.includes(muscle)) &&
+          isSelectionGroupAvailable(g, this.state.activeWorkoutModifiers, this.state.activeCatalogRevision))
+          .sort((a, b) => a.canonicalGroups.length - b.canonicalGroups.length ||
+            (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+        for (const broader of broaderGroups) {
+          const siblings = groups.filter(g => g.canonicalGroups.some(muscle => broader.canonicalGroups.includes(muscle)));
+          if (siblings.length < 2 || siblings.some(g => protectedGroups.has(g.id) || g.canonicalGroups.some(muscle =>
+              !broader.canonicalGroups.includes(muscle))) ||
+              new Set(siblings.flatMap(g => g.canonicalGroups)).size !== broader.canonicalGroups.length) continue;
+          const replaced = new Set(siblings.map(g => g.id));
+          const proposed = groups.flatMap(g => g.id === siblings[0].id ? [broader] : replaced.has(g.id) ? [] : [g]);
+          if (!roots.some(root => this.getPhaseRefusalDepth(root, phase) === 0 &&
+              this.isWorkoutSelectionCandidate(root, broader, this.state.activeWorkoutModifiers, proposed))) continue;
+          if (!this.tryBroaderPreparedWorkout(proposed, before, lockedSelectionGroupIds)) continue;
+          improved = true;
+          break;
+        }
+        if (improved) break;
+      }
+      if (!improved) return;
+    }
+  }
+
+  // Global legacy scores rank choices; explicit phase refusals change grouping.
+  getPhaseRefusalDepth(root, phase) {
+    return Math.max(0, ...this.getMovementRoots(root).map(variant => -this.getPhaseScoreAdjustment(variant, phase)));
+  }
+
+  getPreparedWorkoutFeedbackCost() {
+    const phases = this.getScheduledPhaseByGroupId();
+    let refusedBlocks = 0, lightBlocks = 0;
+    for (const placement of this.getSelectedSequencePlacements()) {
+      const blocks = placement.root.sequenceBlocks.length *
+        (this.state.activeSetCountsBySelectionGroupId[placement.anchor.id] ?? 1);
+      if (this.getPhaseRefusalDepth(placement.root, phases.get(placement.anchor.id)) > 0) refusedBlocks += blocks;
+      if (this.isDemandZeroSequence(placement.root)) lightBlocks += blocks;
+    }
+    return {refusedBlocks, lightBlocks};
+  }
+
+  tryBroaderPreparedWorkout(groups, before, lockedSelectionGroupIds) {
+    const keys = ['activeDurationSelectionGroupIds', 'activeSimpleRoundSelectionGroupIds', 'selectedExerciseIds',
+      'activeSetCountsBySelectionGroupId', 'activeExtraSetSelectionGroupIds', 'activeSelectionGroupOrder'];
+    const previous = Object.fromEntries(keys.map(key => [key, this.state[key]]));
+    const locked = this.getScheduleOrderedPlacements(this.getSelectedSequencePlacements())
+      .filter(p => lockedSelectionGroupIds?.has(p.anchor.id));
+    const lockedExercises = new Map(locked.flatMap(p => p.coveredGroups.map(g => [g.id, p.root.id])));
+    let accepted = false;
+    try {
+      this.state.activeDurationSelectionGroupIds = groups.map(g => g.id);
+      this.state.activeSimpleRoundSelectionGroupIds = lockedSelectionGroupIds !== null
+        ? [...previous.activeSimpleRoundSelectionGroupIds] : this.state.activeWorkoutMinutes <= 30 ? groups.map(g => g.id) : [];
+      this.state.selectedExerciseIds = {...previous.selectedExerciseIds};
+      this.state.activeSetCountsBySelectionGroupId = {...previous.activeSetCountsBySelectionGroupId};
+      this.state.activeExtraSetSelectionGroupIds = [...previous.activeExtraSetSelectionGroupIds];
+      this.state.activeSelectionGroupOrder = [];
+      const lineup = this.chooseBestDistinctLineup(groups, this.state.activeWorkoutModifiers, {
+        currentExerciseIds: lockedExercises,
+        allowSavedSelectionException: lockedSelectionGroupIds !== null,
+        modifierTransitionProtectedGroupIds: new Set(lockedExercises.keys()),
+        reservedRepeatMinutes: locked.reduce((sum, p) => sum +
+          ((previous.activeSetCountsBySelectionGroupId[p.anchor.id] ?? 1) - 1) * p.root.sequenceBlocks.length, 0),
+      });
+      this.applyDistinctLineup(groups, lineup, false);
+      this.rebalanceNewExercisesByMuscleBalance(lockedSelectionGroupIds);
+      if (lockedSelectionGroupIds !== null) this.setEditedSelectionOrder(locked.map(p => p.anchor.id));
+      this.applyLongWorkoutAllocation(this.chooseLongWorkoutAllocation(lockedSelectionGroupIds ?? new Set()));
+      this.reconcileLineupWithScheduledPhases(lockedSelectionGroupIds);
+      const after = this.getPreparedWorkoutFeedbackCost();
+      accepted = after.refusedBlocks < before.refusedBlocks &&
+        ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0 || after.lightBlocks >= before.lightBlocks);
+      return accepted;
+    } catch (error) {
+      if (!(error instanceof Error) || !/No complete exercise lineup|The selected (?:mandatory sequences|sequence lengths|sequences)/.test(error.message)) throw error;
+      return false;
+    } finally {
+      if (!accepted) Object.assign(this.state, previous);
+    }
   }
 
   activatePreparedWorkout() {
@@ -5045,6 +5152,7 @@ export class WorkoutSession {
       this.rebalanceNewExercisesByMuscleBalance();
       this.setActiveLongWorkoutAllocation();
       this.reconcileLineupWithScheduledPhases();
+      this.broadenRejectedSelectionSlots();
     }
     const keptExerciseIdsAtStart = [...this.state.lastKeptExerciseIds]
       .sort((left, right) => left - right);
@@ -5295,6 +5403,7 @@ export class WorkoutSession {
           this.setEditedSelectionOrder(lockedIds);
           this.applyLongWorkoutAllocation(this.chooseLongWorkoutAllocation(locked));
           this.reconcileLineupWithScheduledPhases(locked);
+          this.broadenRejectedSelectionSlots(locked);
           if (JSON.stringify(priorRounds.slice(0, protectedCount)) !==
               JSON.stringify(this.getActiveGroups().slice(0, protectedCount)) ||
               this.getNextGroup()?.id !== current.id) {
@@ -8642,10 +8751,10 @@ export class WorkoutSession {
     this.applyLongWorkoutAllocation(this.chooseLongWorkoutAllocation(lockedSelectionGroupIds ?? undefined));
   }
 
-  getScheduledPhaseByGroupId(allocation) {
+  getScheduledPhaseByGroupId(allocation = null) {
     const phaseBySelectionGroupId = new Map();
     for (const group of this.createActiveWorkoutSchedule(
-      allocation.setCountsBySelectionGroupId,
+      allocation?.setCountsBySelectionGroupId ?? new Map(Object.entries(this.state.activeSetCountsBySelectionGroupId)),
     )) {
       phaseBySelectionGroupId.set(
         getSelectionKey(group),
