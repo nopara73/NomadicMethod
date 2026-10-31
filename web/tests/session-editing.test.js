@@ -3,7 +3,13 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from "../workout.js";
 
-const catalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
+const currentCatalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
+// These standalone one-choice regressions exercise historical 20–90-minute
+// plans, including extensions no longer offered by setup. Freeze their prior
+// catalog pool; current five-choice application behavior and real inventory
+// are covered by post-filter-variety.test.js.
+const catalog = structuredClone(currentCatalog.filter(exercise => exercise.id < 1730));
+catalog.find(exercise => exercise.id === 1069).hardFloorCompatibility = "Incompatible";
 function finish(session) {
   const group = session.getNextGroup();
   session.beginRest(group, Date.now() + 15_000);
