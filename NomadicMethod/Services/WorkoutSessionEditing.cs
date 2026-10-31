@@ -325,11 +325,15 @@ public sealed partial class ExerciseSessionService
                 state.ActiveDurationSelectionGroupIds = groups.Select(g => g.Id).ToList();
                 try
                 {
-                    IReadOnlyDictionary<string, int> lineup = ChooseBestDistinctLineup(
-                        state, groups, state.ActiveWorkoutModifiers,
+                    IReadOnlyDictionary<string, int> Plan(WorkoutGroup[] target) => ChooseBestDistinctLineup(
+                        state, target, state.ActiveWorkoutModifiers,
                         currentExerciseIds: lockedExercises, allowSavedSelectionException: true,
                         modifierTransitionProtectedGroupIds: protectedGroups,
                         reservedRepeatMinutes: protectedCount - prefix.Sum(p => p.Root.SequenceBlocks.Length));
+                    IReadOnlyDictionary<string, int> lineup = ResolveEligibleLineup(state, groups,
+                        state.ActiveWorkoutModifiers, protectedGroups,
+                        protectedCount - prefix.Sum(p => p.Root.SequenceBlocks.Length), Plan, out groups);
+                    ApplyResolvedSelectionGroups(state, groups, protectedGroups);
                     ApplyDistinctLineup(state, groups, lineup, clearChangedProgress: false);
                     RebalanceNewExercisesByMuscleBalance(state, locked);
                     SetEditedSelectionOrder(state, lockedIds);

@@ -21,6 +21,13 @@ public static class FitnessSelectionPolicy
             return zones.Select((zone, dimension) => zone.Length == 0 || dimension < levels.Length &&
                 levels[dimension].Any(zone.Contains)).All(matches => matches);
 
+        // Missing user evidence is not a negative assessment. Explore genuine
+        // training whose axes have not been assessed, without using an unknown
+        // axis to bypass a mismatch on another assessed training axis.
+        if (trainingCharacteristics is not null && !trainingCharacteristics
+                .Select((trained, dimension) => trained && dimension < zones.Count && zones[dimension].Length > 0)
+                .Any(assessed => assessed)) return levels.All(set => set.Length > 0);
+
         return levels.Select((set, dimension) => set.Length > 0 && dimension < zones.Count &&
             (trainingCharacteristics is null || trainingCharacteristics[dimension]) &&
             set.Any(level => zones[dimension].Contains(level))).Any(matches => matches);

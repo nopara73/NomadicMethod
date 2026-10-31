@@ -1,0 +1,16 @@
+{
+  "partialFeedback": [
+    { "exerciseId": 1715, "minutes": 3, "modifiers": 0 },
+    { "exerciseId": 1716, "minutes": 3, "modifiers": 0 },
+    { "exerciseId": 1715, "minutes": 5, "modifiers": 17 },
+    { "exerciseId": 1716, "minutes": 7, "modifiers": 3 },
+    { "exerciseId": 1715, "minutes": 10, "modifiers": 513 },
+    { "exerciseId": 1716, "minutes": 15, "modifiers": 17 },
+    { "exerciseId": 1715, "minutes": 15, "modifiers": 273 }
+  ],
+  "emptyKnownProfiles": [
+    { "minutes": 15, "modifiers": 0 },
+    { "minutes": 15, "modifiers": 4096 },
+    { "minutes": 7, "modifiers": 1 }
+  ]
+}

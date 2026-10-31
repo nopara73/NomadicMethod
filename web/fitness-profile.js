@@ -32,6 +32,10 @@ export function isFitnessEligible(levels, zones, trainingCharacteristics = null)
   if (!levels || trainingCharacteristics && trainingCharacteristics.length !== levels.length) return false;
   if (trainingCharacteristics && !trainingCharacteristics.some(Boolean))
     return zones.every((zone, dimension) => !zone.length || levels[dimension]?.some(level => zone.includes(level)));
+  // Explore genuinely trained axes without user evidence. An unknown axis
+  // cannot bypass a mismatch on another assessed training axis.
+  if (trainingCharacteristics && !trainingCharacteristics.some((trained, dimension) =>
+    trained && zones[dimension]?.length)) return levels.every(set => Array.isArray(set) && set.length > 0);
   return levels.some((set, dimension) => set.length > 0 &&
     (!trainingCharacteristics || trainingCharacteristics[dimension]) &&
     set.some(level => zones[dimension]?.includes(level)));

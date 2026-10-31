@@ -144,6 +144,23 @@ Reviewed training-characteristic flags keep an inactive minimum-1 demand rating
 from qualifying a hard movement through an unrelated low user characteristic.
 Work with no claimed fitness-training characteristic must match every known zone;
 its minimum-1 ratings do not grant an exemption at higher user levels.
+Missing user evidence is distinct from a mismatch: an exercise whose genuine
+training characteristics are all unassessed is available for exploration. If
+any trained characteristic is assessed, the existing known-axis overlap rule
+applies; an unknown trained axis cannot bypass a known mismatch. Zero-claim work
+retains the separate minimum-only rule. Exercise ratings and profile evidence
+are never filled, changed or inferred merely to complete a workout.
+
+Before a new preparation or explicit setup edit fails, the planner resolves
+empty fine slots using existing broader anatomical groups. It first preserves
+as much fine coverage as possible through complete sibling merges. Where
+resolution boundaries cross, it repartitions unperformed coverage together
+using an existing coarser resolution. Every required body area remains covered;
+completed/current protected selections, sets and checkpoints stay fixed. The
+normal solver verifies the entire atomic lineup and remaining time budget,
+including when each original slot has candidates but they cannot fit together.
+Cold reopening never runs this resolver. Truly incompatible assessed/physical
+profiles still fail explicitly instead of changing ratings or physical settings.
 
 Within the eligible pool, a movement's latest “too easy” or “too hard” response
 deprioritizes its complete movement family. This reads existing history without

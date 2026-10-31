@@ -499,9 +499,9 @@ public sealed partial class ExerciseSessionService
         // happened. Persistent rejection feedback is stored by workout phase.
         state.NextWorkoutExcludedExerciseIds.Clear();
         RemoveDifficultyKeeps(state);
-        CarrySlotPreferencesForward(state);
+        CarrySlotPreferencesForward(state, resolveEmptySlots: true);
         RepairActiveLineup(state, preserveCurrentSelections:
-            !modifiers.HasFlag(WorkoutModifiers.Light));
+            !modifiers.HasFlag(WorkoutModifiers.Light), resolveEmptySlots: true);
         SetActiveLongWorkoutAllocation(state);
         BroadenRejectedSelectionSlots(state);
         ReconcileLineupWithScheduledPhases(state);
@@ -534,7 +534,7 @@ public sealed partial class ExerciseSessionService
             IsLightDayDue(state, workoutStartedAtUnixMilliseconds))
         {
             EnableLightModeForExistingActiveWorkout(state);
-            RepairActiveLineup(state, preserveCurrentSelections: false);
+            RepairActiveLineup(state, preserveCurrentSelections: false, resolveEmptySlots: true);
             SetActiveLongWorkoutAllocation(state);
             BroadenRejectedSelectionSlots(state);
             ReconcileLineupWithScheduledPhases(state);
@@ -665,10 +665,11 @@ public sealed partial class ExerciseSessionService
         bool currentSelectionGroupAvailable = selectionGroups.Any(group =>
             group.Id == currentRound.SelectionKey);
 
-        IReadOnlyDictionary<string, int> ChooseReconfiguredLineup(SelectedSequencePlacement[]? geometry) =>
-            ChooseBestDistinctLineup(
+        IReadOnlyDictionary<string, int> ChooseReconfiguredLineup(SelectedSequencePlacement[]? geometry)
+        {
+            IReadOnlyDictionary<string, int> Plan(WorkoutGroup[] groups) => ChooseBestDistinctLineup(
                 state,
-                selectionGroups,
+                groups,
                 modifiers,
                 currentExerciseIds: lockedExerciseIdsByGroup,
                 allowSavedSelectionException: true,
@@ -677,6 +678,11 @@ public sealed partial class ExerciseSessionService
                     (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length),
                 selectionGeometryOverride: geometry,
                 preserveGeometryBlockLengths: false);
+            if (geometry is not null) return Plan(selectionGroups);
+            return ResolveEligibleLineup(state, selectionGroups, modifiers, protectedBaseGroupIds,
+                lockedPlacements.Sum(p => (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length),
+                Plan, out selectionGroups);
+        }
         IReadOnlyDictionary<string, int> replannedLineup;
         bool canRetainPartition = state.ActiveCoverageAccountingVersion >= 2 &&
             state.ActiveDurationSelectionGroupIds is not null && !targetIsLightDay &&
@@ -694,6 +700,9 @@ public sealed partial class ExerciseSessionService
             replannedLineup = ChooseReconfiguredLineup(null);
         }
 
+        currentSelectionGroupAvailable = selectionGroups.Any(group => group.Id == currentRound.SelectionKey);
+        var durationGroupsBefore = state.ActiveDurationSelectionGroupIds;
+        var simpleGroupsBefore = state.ActiveSimpleRoundSelectionGroupIds;
         var selectedExerciseIdsBefore = new Dictionary<string, int>(
             state.SelectedExerciseIds,
             StringComparer.Ordinal);
@@ -730,6 +739,7 @@ public sealed partial class ExerciseSessionService
                 preserveCompletedCurrentSelection
                     ? currentRound.SelectionKey
                     : null;
+            ApplyResolvedSelectionGroups(state, selectionGroups, protectedBaseGroupIds);
             ApplyDistinctLineup(
                 state,
                 selectionGroups,
@@ -838,6 +848,8 @@ public sealed partial class ExerciseSessionService
         catch
         {
             state.SelectedExerciseIds = selectedExerciseIdsBefore;
+            state.ActiveDurationSelectionGroupIds = durationGroupsBefore;
+            state.ActiveSimpleRoundSelectionGroupIds = simpleGroupsBefore;
             state.ActiveSetCountsBySelectionGroupId = setCountsBefore;
             state.ActiveExtraSetSelectionGroupIds = extraSetGroupsBefore;
             state.ActiveSelectionGroupOrder = selectionOrderBefore;
@@ -2405,7 +2417,8 @@ public sealed partial class ExerciseSessionService
 
     private void RepairActiveLineup(
         WorkoutState state,
-        bool preserveCurrentSelections = true)
+        bool preserveCurrentSelections = true,
+        bool resolveEmptySlots = false)
     {
         WorkoutGroup[] selectionGroups = GetSelectionGroups(state).ToArray();
         IReadOnlyList<WorkoutGroup> activeRounds;
@@ -2431,12 +2444,14 @@ public sealed partial class ExerciseSessionService
                 entry => entry.Id,
                 entry => entry.ExerciseId,
                 StringComparer.Ordinal);
-        IReadOnlyDictionary<string, int> repairedLineup = ChooseBestDistinctLineup(
-            state,
-            selectionGroups,
-            state.ActiveWorkoutModifiers,
-            currentExerciseIds: currentExerciseIds,
+        IReadOnlyDictionary<string, int> Plan(WorkoutGroup[] groups) => ChooseBestDistinctLineup(
+            state, groups, state.ActiveWorkoutModifiers, currentExerciseIds: currentExerciseIds,
             allowSavedSelectionException: preserveCurrentSelections);
+        IReadOnlyDictionary<string, int> repairedLineup = resolveEmptySlots
+            ? ResolveEligibleLineup(state, selectionGroups, state.ActiveWorkoutModifiers,
+                new HashSet<string>(StringComparer.Ordinal), 0, Plan, out selectionGroups)
+            : Plan(selectionGroups);
+        if (resolveEmptySlots) ApplyResolvedSelectionGroups(state, selectionGroups);
         ApplyDistinctLineup(
             state,
             selectionGroups,
@@ -2510,7 +2525,7 @@ public sealed partial class ExerciseSessionService
                    protectedSelectionGroupId))));
     }
 
-    private void CarrySlotPreferencesForward(WorkoutState state)
+    private void CarrySlotPreferencesForward(WorkoutState state, bool resolveEmptySlots = false)
     {
         if (state.KeptExerciseRootIdsBySelectionGroupId.Values.All(
                 keptRootIds => keptRootIds.Count == 0))
@@ -2535,13 +2550,22 @@ public sealed partial class ExerciseSessionService
                 entry => entry.Id,
                 entry => entry.ExerciseId,
                 StringComparer.Ordinal);
-        IReadOnlyDictionary<string, int> carriedLineup = ChooseBestDistinctLineup(
+        IReadOnlyDictionary<string, int> Plan(WorkoutGroup[] groups)
+        {
+            carriedKeepRootIdsByGroup = BuildCrossResolutionKeepPreferences(state, groups);
+            return ChooseBestDistinctLineup(
             state,
-            targetGroups,
+            groups,
             state.ActiveWorkoutModifiers,
             currentExerciseIds: currentExerciseIds,
             carriedKeepRootIdsBySelectionGroupId:
                 carriedKeepRootIdsByGroup);
+        }
+        IReadOnlyDictionary<string, int> carriedLineup = resolveEmptySlots
+            ? ResolveEligibleLineup(state, targetGroups, state.ActiveWorkoutModifiers,
+                new HashSet<string>(StringComparer.Ordinal), 0, Plan, out targetGroups)
+            : Plan(targetGroups);
+        if (resolveEmptySlots) ApplyResolvedSelectionGroups(state, targetGroups);
         ApplyDistinctLineup(
             state,
             targetGroups,

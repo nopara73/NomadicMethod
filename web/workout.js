@@ -5032,8 +5032,8 @@ export class WorkoutSession {
     // rejection feedback is stored by workout phase.
     this.state.nextWorkoutExcludedExerciseIds = [];
     this.removeDifficultyKeeps();
-    this.carrySlotPreferencesForward();
-    this.repairActiveLineup((modifiers & WORKOUT_MODIFIERS.Light) === 0);
+    this.carrySlotPreferencesForward(true);
+    this.repairActiveLineup((modifiers & WORKOUT_MODIFIERS.Light) === 0, true);
     this.setActiveLongWorkoutAllocation();
     this.broadenRejectedSelectionSlots();
     this.reconcileLineupWithScheduledPhases();
@@ -5284,7 +5284,7 @@ export class WorkoutSession {
     if ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0 &&
         this.isAutomaticLightDayDue()) {
       enableLightModeForExistingActiveWorkout(this.state);
-      this.repairActiveLineup(false);
+      this.repairActiveLineup(false, true);
       this.setActiveLongWorkoutAllocation();
       this.broadenRejectedSelectionSlots();
       this.reconcileLineupWithScheduledPhases();
@@ -5529,15 +5529,20 @@ export class WorkoutSession {
         this.state.activeSetCountsBySelectionGroupId = { ...before.activeSetCountsBySelectionGroupId };
         this.state.activeExtraSetSelectionGroupIds = [...before.activeExtraSetSelectionGroupIds];
         this.state.activeSelectionGroupOrder = [];
-        const groups = [...prefix.flatMap(p => p.coveredGroups), ...candidates.slice(0, count)];
+        let groups = [...prefix.flatMap(p => p.coveredGroups), ...candidates.slice(0, count)];
         this.state.activeDurationSelectionGroupIds = [...new Set(groups.map(g => g.id))];
         try {
-          const lineup = this.chooseBestDistinctLineup(groups, this.state.activeWorkoutModifiers, {
+          const plan = target => this.chooseBestDistinctLineup(target, this.state.activeWorkoutModifiers, {
             currentExerciseIds: lockedExercises,
             allowSavedSelectionException: true,
             modifierTransitionProtectedGroupIds: protectedGroups,
             reservedRepeatMinutes: protectedCount - prefix.reduce((sum, p) => sum + p.root.sequenceBlocks.length, 0),
           });
+          const resolved = this.resolveEligibleLineup(groups, this.state.activeWorkoutModifiers,
+            protectedGroups, protectedCount - prefix.reduce((sum, p) => sum + p.root.sequenceBlocks.length, 0), plan);
+          groups = resolved.groups;
+          const lineup = resolved.lineup;
+          this.applyResolvedSelectionGroups(groups, protectedGroups);
           this.applyDistinctLineup(groups, lineup, false);
           this.rebalanceNewExercisesByMuscleBalance(locked);
           this.setEditedSelectionOrder(lockedIds);
@@ -5649,17 +5654,18 @@ export class WorkoutSession {
       ],
     ));
     const protectedBaseGroupIds = new Set(lockedExerciseIdsByGroup.keys());
-    const selectionGroups = this.getSelectionGroups(
+    let selectionGroups = this.getSelectionGroups(
       modifiers,
       protectedBaseGroupIds,
     );
     const retainedUnavailableSelectionGroupIds = selectionGroups
       .filter((group) => !isSelectionGroupAvailable(group, modifiers, this.state.activeCatalogRevision))
       .map((group) => group.id);
-    const currentSelectionGroupAvailable = selectionGroups.some((group) =>
+    let currentSelectionGroupAvailable = selectionGroups.some((group) =>
       group.id === getSelectionKey(currentRound));
-    const chooseReconfiguredLineup = (geometry) => this.chooseBestDistinctLineup(
-      selectionGroups,
+    const chooseReconfiguredLineup = (geometry) => {
+      const plan = groups => this.chooseBestDistinctLineup(
+      groups,
       modifiers,
       {
         currentExerciseIds: lockedExerciseIdsByGroup,
@@ -5671,6 +5677,12 @@ export class WorkoutSession {
         preserveGeometryBlockLengths: false,
       },
     );
+      if (geometry) return plan(selectionGroups);
+      const resolved = this.resolveEligibleLineup(selectionGroups, modifiers, protectedBaseGroupIds,
+        lockedPlacements.reduce((sum, p) => sum + ((lockedSetCountsBySelectionGroupId.get(p.anchor.id) ?? 1) - 1) * p.root.sequenceBlocks.length, 0), plan);
+      selectionGroups = resolved.groups;
+      return resolved.lineup;
+    };
     const priorGroupIds = new Set(priorPlacements.flatMap(p => p.coveredGroups.map(g => g.id)));
     const canRetainPartition = this.state.activeCoverageAccountingVersion >= 2 &&
       this.state.activeDurationSelectionGroupIds !== null && !targetIsLightDay &&
@@ -5683,6 +5695,9 @@ export class WorkoutSession {
       replannedLineup = chooseReconfiguredLineup(null);
     }
 
+    currentSelectionGroupAvailable = selectionGroups.some(group => group.id === getSelectionKey(currentRound));
+    const durationGroupsBefore = this.state.activeDurationSelectionGroupIds;
+    const simpleGroupsBefore = this.state.activeSimpleRoundSelectionGroupIds;
     const selectedExerciseIdsBefore = { ...this.state.selectedExerciseIds };
     const setCountsBefore = { ...this.state.activeSetCountsBySelectionGroupId };
     const extraSetGroupsBefore = [
@@ -5712,6 +5727,7 @@ export class WorkoutSession {
         preserveCompletedCurrentSelection
           ? getSelectionKey(currentRound)
           : null;
+      this.applyResolvedSelectionGroups(selectionGroups, protectedBaseGroupIds);
       this.applyDistinctLineup(selectionGroups, replannedLineup, false);
       this.updateSelectionOrderAfterReconfiguration(priorOrderedPlacements, getSelectionKey(currentRound));
       this.rebalanceNewExercisesByMuscleBalance(lockedSelectionGroupIds);
@@ -5796,6 +5812,8 @@ export class WorkoutSession {
       });
     } catch (error) {
       this.state.selectedExerciseIds = selectedExerciseIdsBefore;
+      this.state.activeDurationSelectionGroupIds = durationGroupsBefore;
+      this.state.activeSimpleRoundSelectionGroupIds = simpleGroupsBefore;
       this.state.activeSetCountsBySelectionGroupId = setCountsBefore;
       this.state.activeExtraSetSelectionGroupIds = extraSetGroupsBefore;
       this.state.activeSelectionGroupOrder = selectionOrderBefore;
@@ -6711,8 +6729,85 @@ export class WorkoutSession {
     this.resetTransientState();
   }
 
-  repairActiveLineup(preserveCurrentSelections = true) {
-    const selectionGroups = this.getSelectionGroups();
+  applyResolvedSelectionGroups(groups, protectedGroupIds = new Set()) {
+    if (groups.map(group => group.id).join("|") === this.getSelectionGroups().map(group => group.id).join("|")) return;
+    this.state.activeDurationSelectionGroupIds = groups.map(group => group.id);
+    this.state.activeSimpleRoundSelectionGroupIds = [...new Set([
+      ...this.state.activeSimpleRoundSelectionGroupIds.filter(id => groups.some(group => group.id === id)),
+      ...groups.filter(group => !protectedGroupIds.has(group.id) && this.state.activeWorkoutMinutes <= 30)
+        .map(group => group.id),
+    ])];
+  }
+
+  // Complete siblings may resolve an empty slot or an impossible atomic budget.
+  // Preparation and explicit edits only; a cold reopen keeps its saved partition.
+  resolveEligibleLineup(initialGroups, modifiers, protectedGroupIds, reservedRepeatMinutes, plan) {
+    const fitness = this.getFitnessEligibility();
+    const budget = this.state.activeWorkoutMinutes - reservedRepeatMinutes;
+    const roots = this.exercises.filter(root => root.sequenceBlocks.length > 0 &&
+      root.sequenceBlocks.length <= budget && this.getSequenceRoot(root).id === root.id &&
+      fitness.get(root.id) && this.getSequenceExercises(root).every(member =>
+        this.isCompatibleWithModifiers(member, modifiers)));
+    const required = new Set(initialGroups.flatMap(group => group.canonicalGroups));
+    const parents = [...ALL_GROUPS.values()].filter(group =>
+      isSelectionGroupAvailable(group, modifiers, this.state.activeCatalogRevision))
+      .sort((a, b) => a.canonicalGroups.length - b.canonicalGroups.length ||
+        (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    const pending = [initialGroups], visited = new Set();
+    let firstError = null;
+    let broaderResolutionsAdded = false;
+    while (pending.length) {
+      let index = 0;
+      for (let i = 1; i < pending.length; i++)
+        if (pending[i].length > pending[index].length) index = i;
+      const groups = pending.splice(index, 1)[0];
+      const signature = groups.map(group => group.id).sort().join("|");
+      if (visited.has(signature)) continue;
+      visited.add(signature);
+      const empty = new Set(groups.filter(group => !protectedGroupIds.has(group.id) &&
+        !roots.some(root => this.isWorkoutSelectionCandidate(root, group, modifiers, groups)))
+        .map(group => group.id));
+      if (!empty.size) {
+        try { return { groups, lineup: plan(groups) }; }
+        catch (error) {
+          if (!(error instanceof Error) || !error.message.includes("No complete exercise lineup exists")) throw error;
+          firstError ??= error;
+        }
+      }
+      if (!broaderResolutionsAdded) {
+        broaderResolutionsAdded = true;
+        const locked = initialGroups.filter(group => protectedGroupIds.has(group.id));
+        const remaining = new Set(initialGroups.filter(group => !protectedGroupIds.has(group.id)).flatMap(group => group.canonicalGroups));
+        for (const minutes of SUPPORTED_MINUTES.filter(minutes => minutes <= Math.min(this.state.activeWorkoutMinutes, 30)).sort((a, b) => b - a)) {
+          const broader = getResolution(minutes).groups.filter(group =>
+            isSelectionGroupAvailable(group, modifiers, this.state.activeCatalogRevision) &&
+            group.canonicalGroups.some(muscle => remaining.has(muscle)) && !protectedGroupIds.has(group.id));
+          const proposed = [...new Map([...locked, ...broader].map(group => [group.id, group])).values()];
+          const covered = new Set(proposed.flatMap(group => group.canonicalGroups));
+          if (proposed.length >= initialGroups.length || [...required].some(muscle => !covered.has(muscle))) continue;
+          pending.push(proposed);
+        }
+      }
+      for (const parent of parents) {
+        const siblings = groups.filter(group => group.canonicalGroups.some(muscle => parent.canonicalGroups.includes(muscle)));
+        if (siblings.length < 2 || siblings.some(group => protectedGroupIds.has(group.id) ||
+            group.canonicalGroups.some(muscle => !parent.canonicalGroups.includes(muscle))) ||
+            empty.size > 0 && !siblings.some(group => empty.has(group.id))) continue;
+        const combined = new Set(siblings.flatMap(group => group.canonicalGroups));
+        if (siblings.reduce((n, group) => n + group.canonicalGroups.length, 0) !== combined.size ||
+            !sameStringSet([...combined], parent.canonicalGroups.filter(muscle => required.has(muscle)))) continue;
+        const replaced = new Set(siblings.map(group => group.id));
+        const proposed = groups.flatMap(group => group.id === siblings[0].id ? [parent] : replaced.has(group.id) ? [] : [group]);
+        if (!roots.some(root => this.isWorkoutSelectionCandidate(root, parent, modifiers, proposed))) continue;
+        pending.push(proposed);
+      }
+    }
+    if (firstError) throw firstError;
+    return { groups: initialGroups, lineup: plan(initialGroups) };
+  }
+
+  repairActiveLineup(preserveCurrentSelections = true, resolveEmptySlots = false) {
+    let selectionGroups = this.getSelectionGroups();
     let activeGroups = [];
     try {
       activeGroups = this.getActiveGroups();
@@ -6730,14 +6825,22 @@ export class WorkoutSession {
         ])
         .filter(([, exerciseId]) => exerciseId),
     );
-    const repairedLineup = this.chooseBestDistinctLineup(
-      selectionGroups,
+    const plan = groups => this.chooseBestDistinctLineup(
+      groups,
       this.state.activeWorkoutModifiers,
       {
         currentExerciseIds,
         allowSavedSelectionException: preserveCurrentSelections,
       },
     );
+    let repairedLineup;
+    if (resolveEmptySlots) {
+      const resolved = this.resolveEligibleLineup(selectionGroups, this.state.activeWorkoutModifiers,
+        new Set(), 0, plan);
+      selectionGroups = resolved.groups;
+      repairedLineup = resolved.lineup;
+      this.applyResolvedSelectionGroups(selectionGroups);
+    } else repairedLineup = plan(selectionGroups);
     this.applyDistinctLineup(selectionGroups, repairedLineup, true, activeGroups);
   }
 
@@ -6804,14 +6907,14 @@ export class WorkoutSession {
       });
   }
 
-  carrySlotPreferencesForward() {
+  carrySlotPreferencesForward(resolveEmptySlots = false) {
     if (Object.values(this.state.keptExerciseRootIdsBySelectionGroupId)
       .every((rootIds) => rootIds.length === 0)) {
       return;
     }
 
-    const targetGroups = this.getSelectionGroups();
-    const carriedKeepRootIdsBySelectionGroupId =
+    let targetGroups = this.getSelectionGroups();
+    let carriedKeepRootIdsBySelectionGroupId =
       this.buildCrossResolutionKeepPreferences(targetGroups);
     const currentExerciseIds = new Map(
       targetGroups
@@ -6824,14 +6927,24 @@ export class WorkoutSession {
         ])
         .filter(([, exerciseId]) => exerciseId),
     );
-    const carriedLineup = this.chooseBestDistinctLineup(
-      targetGroups,
+    const plan = groups => {
+      carriedKeepRootIdsBySelectionGroupId = this.buildCrossResolutionKeepPreferences(groups);
+      return this.chooseBestDistinctLineup(
+      groups,
       this.state.activeWorkoutModifiers,
       {
         currentExerciseIds,
         carriedKeepRootIdsBySelectionGroupId,
       },
     );
+    };
+    let carriedLineup;
+    if (resolveEmptySlots) {
+      const resolved = this.resolveEligibleLineup(targetGroups, this.state.activeWorkoutModifiers, new Set(), 0, plan);
+      targetGroups = resolved.groups;
+      carriedLineup = resolved.lineup;
+      this.applyResolvedSelectionGroups(targetGroups);
+    } else carriedLineup = plan(targetGroups);
     this.applyDistinctLineup(targetGroups, carriedLineup, false);
 
     for (const placement of this.getSelectedSequencePlacements()) {
