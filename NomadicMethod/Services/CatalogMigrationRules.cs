@@ -22,7 +22,8 @@ public static class CatalogMigrationRules
     // Revision 102 names arm pulses accurately and completes their fixed stance.
     // Revision 103 relaxes only reviewed locomotion surface classifications.
     // Existing identities, lineups, Keeps, feedback and history remain valid.
-    public const int CurrentCatalogRevision = 103;
+    // Revision 104 replaces jargon with reviewed position and movement cues.
+    public const int CurrentCatalogRevision = 104;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;
@@ -2126,6 +2127,9 @@ public static class CatalogMigrationRules
         ArgumentNullException.ThrowIfNull(bundledCatalog);
         ArgumentNullException.ThrowIfNull(storedExercises);
 
+        static string IdentityName(Exercise exercise) =>
+            ExerciseNamePolicy.IdentityName(exercise.Id, exercise.Name);
+
         Dictionary<int, Exercise> bundledById;
         try
         {
@@ -2153,14 +2157,18 @@ public static class CatalogMigrationRules
         var restoredReviewedExerciseIds = new HashSet<int>();
         var integrityReplacedExerciseIds = new HashSet<int>();
 
-        foreach ((int exerciseId, StoredExerciseSnapshot stored) in storedExercises)
+        foreach ((int exerciseId, StoredExerciseSnapshot snapshot) in storedExercises)
         {
+            StoredExerciseSnapshot stored = snapshot with
+            {
+                Name = ExerciseNamePolicy.IdentityName(exerciseId, snapshot.Name),
+            };
             // Different-action replacements must not inherit the old action's
             // score. The exact reviewed name and video still have to match.
             if (ScopedScoreInvalidationsByRevision[73].Contains(exerciseId) &&
                 bundledById.TryGetValue(exerciseId, out Exercise? integrityReplacement) &&
-                !string.Equals(stored.Name, integrityReplacement.Name, StringComparison.Ordinal) &&
-                IsApprovedExerciseCorrection(exerciseId, stored.Name, integrityReplacement.Name) &&
+                !string.Equals(stored.Name, IdentityName(integrityReplacement), StringComparison.Ordinal) &&
+                IsApprovedExerciseCorrection(exerciseId, stored.Name, IdentityName(integrityReplacement)) &&
                 string.Equals(stored.Video, integrityReplacement.Video, StringComparison.Ordinal))
             {
                 integrityReplacedExerciseIds.Add(exerciseId);
@@ -2183,7 +2191,7 @@ public static class CatalogMigrationRules
                 bool currentReviewedIdentityMatches =
                     (string.Equals(
                             stored.Name,
-                            replacement.Name,
+                            IdentityName(replacement),
                             StringComparison.Ordinal) ||
                         (replacement.SideSequence.UsesTimedSides() &&
                             stored.Name.StartsWith(
@@ -2191,7 +2199,7 @@ public static class CatalogMigrationRules
                                 StringComparison.Ordinal) &&
                             string.Equals(
                                 stored.Name[AlternatingPrefix.Length..],
-                                replacement.Name,
+                                IdentityName(replacement),
                                 StringComparison.Ordinal))) &&
                     string.Equals(
                         stored.Video,
@@ -2201,7 +2209,7 @@ public static class CatalogMigrationRules
                     IsApprovedExerciseCorrection(
                         exerciseId,
                         stored.Name,
-                        replacement.Name) &&
+                        IdentityName(replacement)) &&
                     string.Equals(
                         stored.Video,
                         replacement.Video,
@@ -2268,7 +2276,7 @@ public static class CatalogMigrationRules
                         exerciseId,
                         out ApprovedExerciseCorrection? directionSplitIdentity) &&
                     string.Equals(
-                        replacement.Name,
+                        IdentityName(replacement),
                         directionSplitIdentity.CurrentName,
                         StringComparison.Ordinal) &&
                     NameMatchesWithOptionalAlternatingPrefix(
@@ -2312,28 +2320,28 @@ public static class CatalogMigrationRules
 
             bool nameIsPreserved = string.Equals(
                 stored.Name,
-                bundled.Name,
+                IdentityName(bundled),
                 StringComparison.Ordinal);
             bool nameIsApprovedTimedSideNormalization =
                 bundled.SideSequence.UsesTimedSides() &&
                 stored.Name.StartsWith(AlternatingPrefix, StringComparison.Ordinal) &&
                 string.Equals(
                     stored.Name[AlternatingPrefix.Length..],
-                    bundled.Name,
+                    IdentityName(bundled),
                     StringComparison.Ordinal);
             bool nameIsApprovedContinuousAlternationNormalization =
                 ContinuousAlternationNormalizationIdSet.Contains(exerciseId) &&
                 !bundled.SideSequence.UsesTimedSides() &&
-                bundled.Name.StartsWith(AlternatingPrefix, StringComparison.Ordinal) &&
+                IdentityName(bundled).StartsWith(AlternatingPrefix, StringComparison.Ordinal) &&
                 string.Equals(
                     stored.Name,
-                    bundled.Name[AlternatingPrefix.Length..],
+                    IdentityName(bundled)[AlternatingPrefix.Length..],
                     StringComparison.Ordinal);
             bool nameIsApprovedExerciseCorrection =
                 IsApprovedExerciseCorrection(
                     exerciseId,
                     stored.Name,
-                    bundled.Name);
+                    IdentityName(bundled));
             bool nameIsApprovedReviewedRestoration =
                 RestoredReviewedExerciseIdentities.TryGetValue(
                     exerciseId,
@@ -2343,7 +2351,7 @@ public static class CatalogMigrationRules
                     restoration.PreviousReplacementName,
                     StringComparison.Ordinal) &&
                 string.Equals(
-                    bundled.Name,
+                    IdentityName(bundled),
                     restoration.RestoredName,
                     StringComparison.Ordinal);
             if ((!nameIsPreserved &&

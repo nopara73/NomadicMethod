@@ -13,6 +13,11 @@ on:
       - "docs/catalog-audit/fixed-position-review-2026-10-29.json"
       - "docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json"
       - "NomadicMethod/Assets/exercises.json"
+      - "NomadicMethod/Assets/exercise_names.json"
+      - "tools/generate-exercise-names.mjs"
+      - "tools/ExerciseDisplayNames.ps1"
+      - "tools/Test-ExerciseDisplayNames.ps1"
+      - "tools/BilateralExerciseNames.psd1"
       - "NomadicMethod/Assets/workout_durations.json"
       - "NomadicMethod/Assets/reaction_drills.json"
       - "NomadicMethod/Assets/fitness_ratings.json"
@@ -131,6 +136,11 @@ jobs:
             /docs/catalog-audit/fixed-position-review-2026-10-29.json
             /docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json
             /NomadicMethod/Assets/exercises.json
+            /NomadicMethod/Assets/exercise_names.json
+            /tools/generate-exercise-names.mjs
+            /tools/ExerciseDisplayNames.ps1
+            /tools/Test-ExerciseDisplayNames.ps1
+            /tools/BilateralExerciseNames.psd1
             /NomadicMethod/Assets/workout_durations.json
             /NomadicMethod/Assets/reaction_drills.json
             /NomadicMethod/Assets/fitness_ratings.json
@@ -296,6 +306,9 @@ jobs:
       - name: Test
         run: npm test
         working-directory: web
+      - name: Verify reviewed display names survive catalog generation
+        shell: pwsh
+        run: ./tools/Test-ExerciseDisplayNames.ps1
 
       - name: Build
         run: npm run build

@@ -11,6 +11,7 @@ const sourceTargets = [
   "NomadicMethod/NomadicMethod.csproj",
   "NomadicMethod/Assets/workout_durations.json",
   "NomadicMethod/Assets/catalog_protocol_history.json",
+  "NomadicMethod/Assets/exercise_names.json",
   "NomadicMethod/MainActivity.cs",
   "NomadicMethod/MainActivity.ExerciseFeedback.cs",
   // Oura is intentionally Android-only (owner decision, docs/OURA_RECOVERY.md).

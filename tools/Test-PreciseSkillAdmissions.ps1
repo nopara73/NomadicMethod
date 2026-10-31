@@ -51,7 +51,8 @@ foreach ($entry in $audit.entries) {
     $movementId = if ($exercise.Count -eq 1 -and [int]$exercise[0].sessionMovementId -gt 0) {
         [int]$exercise[0].sessionMovementId
     } else { $id }
-    if ($exercise.Count -ne 1 -or $exercise[0].name -cne $entry.name -or
+    if ($exercise.Count -ne 1 -or
+        (Get-ExerciseIdentityName -ExerciseId $id -Name $exercise[0].name) -cne $entry.name -or
         $movementId -ne [int]$entry.sessionMovementId) {
         throw "Admission identity changed: $id."
     }

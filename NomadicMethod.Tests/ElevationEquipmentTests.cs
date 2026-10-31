@@ -25,7 +25,7 @@ public sealed class ElevationEquipmentTests
         foreach (JsonElement item in review.RootElement.EnumerateArray())
         {
             Exercise exercise = Assert.Single(catalog, e => e.Id == item.GetProperty("id").GetInt32());
-            Assert.Equal(item.GetProperty("name").GetString(), exercise.Name);
+            Assert.Equal(ExerciseNamePolicy.DisplayName(exercise.Id, item.GetProperty("name").GetString()!), exercise.Name);
             Assert.Equal(item.GetProperty("primary").GetString(), exercise.PrimaryCanonicalGroup.ToString());
             Assert.Equal(item.GetProperty("side").GetString(), exercise.SideSequence.ToString());
             Assert.Equal(item.GetProperty("floor").GetBoolean(), !exercise.OnlyFeetTouchGround);

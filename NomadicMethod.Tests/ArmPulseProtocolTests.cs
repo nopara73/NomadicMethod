@@ -26,7 +26,7 @@ public sealed class ArmPulseProtocolTests
         JsonElement c = fixture.RootElement;
         Exercise[] catalog = Catalog();
         Exercise root = catalog.Single(e => e.Id == c.GetProperty("id").GetInt32());
-        Assert.Equal(c.GetProperty("name").GetString(), root.Name);
+        Assert.Equal(ExerciseNamePolicy.DisplayName(root.Id, c.GetProperty("name").GetString()!), root.Name);
         Assert.Equal(c.GetProperty("motionProfile").GetString(), root.MotionProfile);
         Assert.Equal(c.GetProperty("sideSequence").GetString(), root.SideSequence.ToString());
         Assert.Equal(JsonSerializer.Deserialize<ExerciseSequenceBlock[]>(c.GetProperty("blocks"), Options), root.SequenceBlocks);

@@ -1,3 +1,4 @@
+import { beforeNameReview } from "./catalog-review-history.js";
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -8,7 +9,7 @@ const load = name => JSON.parse(readFileSync(new URL(name, import.meta.url), 'ut
 const catalog = load('../../NomadicMethod/Assets/exercises.json');
 const admissions = load('../../docs/catalog-audit/anatomical-variety-admissions-2026-10-26.json');
 // Historical anatomy evidence keeps its reviewed protocol; the later pose audit owns revision 100.
-const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99);
+const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99).map(beforeNameReview);
 const review = load('../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json');
 const hash = data => createHash('sha256').update(data).digest('hex');
 const dimensions = ['Metadata', 'FullLoop', 'Crop', 'LoopSeam', 'PlaybackSpeed', 'Mirroring', 'Travel', 'HoldFrame', 'Equipment', 'Workout'];

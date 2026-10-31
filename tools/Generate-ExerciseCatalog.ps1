@@ -18,6 +18,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'ExerciseLocomotionSpaces.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseFloorContacts.ps1')
 . (Join-Path $PSScriptRoot 'ExerciseElevationRequirements.ps1')
+. (Join-Path $PSScriptRoot 'ExerciseDisplayNames.ps1')
 $sourceDefinitions = @(Get-ExerciseCatalogDefinitions)
 $sourceExerciseIds = @($sourceDefinitions | ForEach-Object { [int]$_.Id })
 
@@ -3499,7 +3500,7 @@ foreach ($definition in $sourceDefinitions) {
 
     $record = [ordered]@{
         id = $exerciseId
-        name = $exerciseName
+        name = (Get-ExerciseDisplayName -ExerciseId $exerciseId -SourceName $exerciseName)
         retiredName = if ($null -ne $replacement) {
             [string]$replacement.RetiredName
         }

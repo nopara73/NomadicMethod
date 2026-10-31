@@ -158,7 +158,7 @@ test("reviewed catalog retains exact demos and independent floor and platform re
     assert.deepEqual({name: exercise.name, primary: exercise.primaryCanonicalGroup,
       side: exercise.sideSequence, floor: !exercise.onlyFeetTouchGround,
       platform: exercise.jumpPlatformRequired, hold: exercise.mode === "Hold"},
-    {name: item.name, primary: item.primary, side: item.side, floor: item.floor,
+    {name: exerciseDisplayName(item.id, item.name), primary: item.primary, side: item.side, floor: item.floor,
       platform: item.platform, hold: item.hold});
     const base = WORKOUT_MODIFIERS.UpperBodyClothing | WORKOUT_MODIFIERS.Floor;
     assert.equal(isCompatibleWithWorkoutModifiers(exercise, base), false);
@@ -166,3 +166,4 @@ test("reviewed catalog retains exact demos and independent floor and platform re
     assert.equal(isCompatibleWithWorkoutModifiers(exercise, base | WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.JumpPlatform), true);
   }
 });
+import { exerciseDisplayName } from "../exercise-names.js";
