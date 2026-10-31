@@ -13,6 +13,8 @@ const catalog = JSON.parse(readFileSync(path.join(assets, 'exercises.json'), 'ut
 resolveReactionDrills(document, catalog);
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const check = process.argv.includes('--check');
+const additionsOnly = process.argv.includes('--additions-only');
+const addedFamilies = ['squat', 'hinge', 'heel', 'trunk'];
 for (const family of document.families) {
   for (const action of family.actions) {
     const source = catalog.find(exercise => exercise.id === action.sourceId);
@@ -25,7 +27,7 @@ for (const family of document.families) {
         action.previewSeconds >= action.durationSeconds) throw new Error('Invalid reviewed reaction segment.');
     const output = path.join(assets, action.video);
     const preview = path.join(assets, action.preview);
-    if (check) {
+    if (check || (additionsOnly && !addedFamilies.includes(family.id))) {
       for (const [file, expected] of [[output, action.videoSha256], [preview, action.previewSha256]]) {
         if (!expected || !existsSync(file) || sha(readFileSync(file)) !== expected) {
           throw new Error(`Reaction asset changed or missing: ${file}`);
@@ -59,9 +61,11 @@ const expectedPlans = [
   { exerciseId: 1621, familyId: 'arm', protocol: 'Initiation' },
   ...['punch', 'knee', 'arm', 'kick', 'crouch'].map((familyId, index) =>
     ({ exerciseId: 1605 + index * 10, familyId, protocol: 'StopOnly' })),
+  ...addedFamilies.map((familyId, index) =>
+    ({ exerciseId: 1741 + index, familyId, protocol: 'ContextChoice' })),
 ].sort((a, b) => a.exerciseId - b.exerciseId);
-if (document.families.length !== 5 ||
+if (document.families.length !== 9 ||
     JSON.stringify(document.plans) !== JSON.stringify(expectedPlans))
-  throw new Error('Expected fifteen immutable choice protocols, arm initiation and five stop-only protocols.');
+  throw new Error('Expected the twenty-one original protocols and four reviewed context-choice additions.');
 if (!check) writeFileSync(definitionPath, `${JSON.stringify(document, null, 2)}\n`);
-console.log(`Reaction media ${check ? 'verified' : 'generated'}: 5 families, 21 plans, 20 exact responses.`);
+console.log(`Reaction media ${check ? 'verified' : 'generated'}: 9 families, 25 plans, 36 exact responses.`);

@@ -110,6 +110,21 @@ try {
     Assert-ReviewStatus 'STALE'
     [IO.File]::WriteAllText($definitionPath, $multiline)
     Assert-ReviewStatus 'PASS'
+    $realDefinition = [IO.File]::ReadAllText((Join-Path $PSScriptRoot '../NomadicMethod/Assets/reaction_drills.json')).Replace("`r`n", "`n")
+    $frozenDefinition = [IO.File]::ReadAllText((Join-Path $PSScriptRoot '../docs/catalog-audit/reaction-protocols-through106.json')).Replace("`r`n", "`n")
+    if ((Get-HistoricalReactionReviewText $realDefinition 1602) -cne $frozenDefinition) {
+        throw 'Append-only admissions must preserve the exact older review definition.'
+    }
+    foreach ($kind in @('source', 'protocol', 'duplicate')) {
+        $changed = $realDefinition | ConvertFrom-Json
+        if ($kind -eq 'source') { $changed.families[0].actions[0].durationSeconds += 0.5 }
+        if ($kind -eq 'protocol') { $changed.plans[0].protocol = 'Changed' }
+        if ($kind -eq 'duplicate') { $changed.plans += $changed.plans[0] }
+        $rejected = $false
+        try { $null = Get-HistoricalReactionReviewText ($changed | ConvertTo-Json -Depth 100) 1602 }
+        catch { $rejected = $true }
+        if (-not $rejected) { throw "Changed older $kind must reject historical evidence." }
+    }
     Write-Output 'Review evidence tests passed: missing, partial, failed, changed metadata, video, hold, direction, reaction response, preview and protocol assets.'
 }
 finally {

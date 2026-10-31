@@ -40,7 +40,7 @@ test("anatomy corrections remain bound to reviewed movements and media", () => {
     if (exercise.mode === "Hold") expectedAssets.push(`exercise_hold_frames/exercise_${String(exercise.id).padStart(4, "0")}.png`);
     if (exercise.directionSequence !== "None") expectedAssets.push(`exercise_direction_videos/exercise_${String(exercise.id).padStart(4, "0")}.mp4`);
     if (exercise.practice === "Reaction training") {
-      const plan = resolveReactionDrills(reactionDocument, catalog).get(exercise.id);
+      const plan = resolveReactionDrills(reactionDocument, getWorkoutCatalog(catalog, 106)).get(exercise.id);
       assert.deepEqual(entry.reactionPlan, plan);
       expectedAssets.push("reaction_drills.json");
       for (const action of plan.actions) {

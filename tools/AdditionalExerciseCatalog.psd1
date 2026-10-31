@@ -587,4 +587,10 @@
     1738 = @{ Name = 'Standing Rounded-Back Rib Stretch'; Region = 'CHEST'; Practice = 'Breathing muscle mobility'; MotionProfile = 'PostFilter1738' }
     1739 = @{ Name = 'Standing Hands-Behind Rib Stretch'; Region = 'CHEST'; Practice = 'Breathing muscle mobility'; MotionProfile = 'PostFilter1739' }
     1740 = @{ Name = 'Standing Elbow-Lift Rib Stretch'; Region = 'CHEST'; Practice = 'Breathing muscle mobility'; MotionProfile = 'PostFilter1740' }
+
+    # Reviewed context-choice tasks use established physical families and exact human responses.
+    1741 = @{ Name = 'Squat Reactions · Context Choices'; Region = 'LEGS'; Practice = 'Reaction training'; MotionProfile = 'ReactionContext1741' }
+    1742 = @{ Name = 'Hip Hinge Reactions · Context Choices'; Region = 'BACK'; Practice = 'Reaction training'; MotionProfile = 'ReactionContext1742' }
+    1743 = @{ Name = 'Heel Raise Reactions · Context Choices'; Region = 'FEET'; Practice = 'Reaction training'; MotionProfile = 'ReactionContext1743' }
+    1744 = @{ Name = 'Trunk Movement Reactions · Context Choices'; Region = 'CORE'; Practice = 'Reaction training'; MotionProfile = 'ReactionContext1744' }
 }

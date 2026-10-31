@@ -16,6 +16,27 @@ function Get-CatalogMetadataHash {
     [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
 }
 
+function Get-HistoricalReactionReviewText {
+    param([string]$Text, [int]$ExerciseId)
+    $path = Join-Path $PSScriptRoot '../docs/catalog-audit/reaction-protocols-through106.json'
+    $frozenText = [IO.File]::ReadAllText($path).Replace("`r`n", "`n")
+    $frozen = $frozenText | ConvertFrom-Json
+    if ($ExerciseId -notin $frozen.plans.exerciseId) { return $Text }
+    $current = $Text | ConvertFrom-Json
+    $families = @($current.families | Where-Object { $_.id -cin $frozen.families.id })
+    $plans = @($current.plans | Where-Object { $_.exerciseId -in $frozen.plans.exerciseId })
+    if ($current.version -ne $frozen.version -or
+        (ConvertTo-Json -InputObject $families -Depth 100 -Compress) -cne
+            (ConvertTo-Json -InputObject @($frozen.families) -Depth 100 -Compress) -or
+        (ConvertTo-Json -InputObject $plans -Depth 100 -Compress) -cne
+            (ConvertTo-Json -InputObject @($frozen.plans) -Depth 100 -Compress)) {
+        throw 'An existing reaction family or protocol changed; historical review cannot be reused.'
+    }
+    # Bind dated evidence to its complete unchanged definition. Append-only
+    # admissions do not rewrite old evidence or exempt changed old responses.
+    return $frozenText
+}
+
 function Get-CatalogAssetHashes {
     param([Parameter(Mandatory)]$Exercise, [Parameter(Mandatory)][string]$AssetsRoot)
     $id = [int]$Exercise.id
@@ -59,6 +80,7 @@ function Get-CatalogAssetHashes {
             # Checkouts may change JSON newlines. Bind the exact UTF-8 text
             # after LF normalization; all binary movie/frame hashes stay raw.
             $text = [IO.File]::ReadAllText($path).Replace("`r`n", "`n")
+            $text = Get-HistoricalReactionReviewText -Text $text -ExerciseId $id
             $text = Restore-ReviewedReactionLabels -Text $text
             $bytes = [Text.Encoding]::UTF8.GetBytes($text)
             $hashes[$relative] = [Convert]::ToHexString(
@@ -81,8 +103,9 @@ function Get-CatalogReviewResult {
     # Exact, separately reviewed metadata amendments may retain earlier evidence.
     # Both fingerprints must match; unknown metadata or asset drift stays stale.
     if ($null -ne $Review -and $metadataHash -cne [string]$Review.metadataSha256) {
-        $amendmentPath = Join-Path $PSScriptRoot '../docs/catalog-audit/post-filter-variety-review-2026-10-31.json'
-        if (Test-Path -LiteralPath $amendmentPath) {
+        foreach ($file in @('post-filter-variety-review-2026-10-31.json', 'context-response-review-2026-10-31.json')) {
+          $amendmentPath = Join-Path $PSScriptRoot "../docs/catalog-audit/$file"
+          if (Test-Path -LiteralPath $amendmentPath) {
             $amendments = (Get-Content -LiteralPath $amendmentPath -Raw | ConvertFrom-Json).metadataAmendments
             $matched = @($amendments | Where-Object {
                 [int]$_.id -eq [int]$Exercise.id -and
@@ -90,6 +113,7 @@ function Get-CatalogReviewResult {
                 $_.previousMetadataSha256 -ceq [string]$Review.metadataSha256
             })
             if ($matched.Count -eq 1) { $metadataHash = [string]$matched[0].previousMetadataSha256 }
+          }
         }
     }
     $dimensions = [ordered]@{}

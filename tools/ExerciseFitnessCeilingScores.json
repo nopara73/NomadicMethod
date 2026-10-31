@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-31",
   "blockSeconds": 45,
-  "catalogRevision": 106,
-  "catalogSha256": "73eb686c36bd87edddcc5f2aaff91dfc5b6bc944e297d0ba5fcd6814e3ca23ad",
+  "catalogRevision": 107,
+  "catalogSha256": "18b101160c2178d37759813829733dc1a512cb2a5f4927911f0aee063160d5c8",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -11850,6 +11850,222 @@
         "coordination": true,
         "power": false,
         "reactionTime": false,
+        "speed": false
+      }
+    },
+    "context-response-1741": {
+      "basis": "The existing ContextChoice engine presents a normal/reverse mapping before an unpredictable numbered cue, with four visually distinct established human response patterns. Level 5 applies to contextual response selection only. The wait/respond/reset dose supports basic local muscular endurance at level 1 and learned movement sequencing at coordination level 2. General strength, balance, flexibility, agility, aerobic capacity, speed and power are not independently claimed. No measured reaction latency or universal transfer is inferred. Each response family retains its original physical SessionMovementId.",
+      "trainingConditions": "Learn all four complete human response patterns from Ready. Respond to the unpredictable number under the displayed normal/reverse mapping before feedback. Every response is preloaded; allow the complete natural response and reset within the remaining block. No accuracy or response latency is measured.",
+      "exerciseIds": [
+        1741
+      ],
+      "levels": {
+        "cardiorespiratoryEndurance": [
+          1
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingCharacteristics": {
+        "cardiorespiratoryEndurance": false,
+        "muscularStrength": false,
+        "muscularEndurance": true,
+        "flexibility": false,
+        "agility": false,
+        "balance": false,
+        "coordination": true,
+        "power": false,
+        "reactionTime": true,
+        "speed": false
+      }
+    },
+    "context-response-1742": {
+      "basis": "The existing ContextChoice engine presents a normal/reverse mapping before an unpredictable numbered cue, with four visually distinct established human response patterns. Level 5 applies to contextual response selection only. The wait/respond/reset dose supports basic local muscular endurance at level 1 and learned movement sequencing at coordination level 2. General strength, balance, flexibility, agility, aerobic capacity, speed and power are not independently claimed. No measured reaction latency or universal transfer is inferred. Each response family retains its original physical SessionMovementId.",
+      "trainingConditions": "Learn all four complete human response patterns from Ready. Respond to the unpredictable number under the displayed normal/reverse mapping before feedback. Every response is preloaded; allow the complete natural response and reset within the remaining block. No accuracy or response latency is measured.",
+      "exerciseIds": [
+        1742
+      ],
+      "levels": {
+        "cardiorespiratoryEndurance": [
+          1
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingCharacteristics": {
+        "cardiorespiratoryEndurance": false,
+        "muscularStrength": false,
+        "muscularEndurance": true,
+        "flexibility": false,
+        "agility": false,
+        "balance": false,
+        "coordination": true,
+        "power": false,
+        "reactionTime": true,
+        "speed": false
+      }
+    },
+    "context-response-1743": {
+      "basis": "The existing ContextChoice engine presents a normal/reverse mapping before an unpredictable numbered cue, with four visually distinct established human response patterns. Level 5 applies to contextual response selection only. The wait/respond/reset dose supports basic local muscular endurance at level 1 and learned movement sequencing at coordination level 2. General strength, balance, flexibility, agility, aerobic capacity, speed and power are not independently claimed. No measured reaction latency or universal transfer is inferred. Each response family retains its original physical SessionMovementId.",
+      "trainingConditions": "Learn all four complete human response patterns from Ready. Respond to the unpredictable number under the displayed normal/reverse mapping before feedback. Every response is preloaded; allow the complete natural response and reset within the remaining block. No accuracy or response latency is measured.",
+      "exerciseIds": [
+        1743
+      ],
+      "levels": {
+        "cardiorespiratoryEndurance": [
+          1
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingCharacteristics": {
+        "cardiorespiratoryEndurance": false,
+        "muscularStrength": false,
+        "muscularEndurance": true,
+        "flexibility": false,
+        "agility": false,
+        "balance": false,
+        "coordination": true,
+        "power": false,
+        "reactionTime": true,
+        "speed": false
+      }
+    },
+    "context-response-1744": {
+      "basis": "The existing ContextChoice engine presents a normal/reverse mapping before an unpredictable numbered cue, with four visually distinct established human response patterns. Level 5 applies to contextual response selection only. The wait/respond/reset dose supports basic local muscular endurance at level 1 and learned movement sequencing at coordination level 2. General strength, balance, flexibility, agility, aerobic capacity, speed and power are not independently claimed. No measured reaction latency or universal transfer is inferred. Each response family retains its original physical SessionMovementId.",
+      "trainingConditions": "Learn all four complete human response patterns from Ready. Respond to the unpredictable number under the displayed normal/reverse mapping before feedback. Every response is preloaded; allow the complete natural response and reset within the remaining block. No accuracy or response latency is measured.",
+      "exerciseIds": [
+        1744
+      ],
+      "levels": {
+        "cardiorespiratoryEndurance": [
+          1
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingCharacteristics": {
+        "cardiorespiratoryEndurance": false,
+        "muscularStrength": false,
+        "muscularEndurance": true,
+        "flexibility": false,
+        "agility": false,
+        "balance": false,
+        "coordination": true,
+        "power": false,
+        "reactionTime": true,
         "speed": false
       }
     }

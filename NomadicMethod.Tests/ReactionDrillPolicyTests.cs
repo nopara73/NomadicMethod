@@ -118,7 +118,7 @@ public sealed class ReactionDrillPolicyTests
         Assert.Equal(-1, delayed.DemoActionIndex);
     }
     [Fact]
-    public void CanonicalAssetResolvesTwentyOneProtocolsAcrossFivePhysicalFamilies()
+    public void CanonicalAssetResolvesTwentyFiveProtocolsAcrossNinePhysicalFamilies()
     {
         var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             Converters = { new JsonStringEnumConverter() } };
@@ -126,11 +126,12 @@ public sealed class ReactionDrillPolicyTests
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), options)!;
         using Stream stream = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "reaction_drills.json"));
         IReadOnlyDictionary<int, ReactionPlan> plans = ReactionDrill.Load(stream, catalog);
-        Assert.Equal(21, plans.Count);
-        Assert.Equal(5, plans.Values.Select(p => p.FamilyId).Distinct().Count());
+        Assert.Equal(25, plans.Count);
+        Assert.Equal(9, plans.Values.Select(p => p.FamilyId).Distinct().Count());
         foreach (var family in plans.Values.GroupBy(p => p.FamilyId))
         {
-            Assert.Equal(family.Key == "arm" ? new[] { 1, 2, 4, 4, 1 } : new[] { 2, 4, 4, 1 },
+            Assert.Equal(family.Key is "squat" or "hinge" or "heel" or "trunk" ? new[] { 4 } :
+                family.Key == "arm" ? new[] { 1, 2, 4, 4, 1 } : new[] { 2, 4, 4, 1 },
                 family.Select(p => p.Actions.Length));
             Assert.Single(family.Select(p => catalog.Single(e => e.Id == p.ExerciseId).SessionMovementId).Distinct());
         }

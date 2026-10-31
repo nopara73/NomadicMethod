@@ -29,6 +29,11 @@ on:
       - "tools/generate-reaction-drill-media.mjs"
       - "tools/CatalogReviewEvidence.ps1"
       - "tools/Test-CatalogReviewEvidence.ps1"
+      - "tools/ExactExerciseMediaCopies.psd1"
+      - "docs/catalog-audit/evidence/2026-10-31-context-response/**"
+      - "docs/catalog-audit/reaction-protocols-through106.json"
+      - "docs/catalog-audit/context-response-review-2026-10-31.json"
+      - "tools/Test-ContextResponseAdmissions.ps1"
       - "tools/Test-PreciseSkillAdmissions.ps1"
       - "docs/catalog-audit/precise-admissions-2026-10-23.json"
       - "docs/catalog-audit/precise-skill-review-2026-10-23.json"
@@ -157,6 +162,11 @@ jobs:
             /tools/generate-reaction-drill-media.mjs
             /tools/CatalogReviewEvidence.ps1
             /tools/Test-CatalogReviewEvidence.ps1
+            /tools/ExactExerciseMediaCopies.psd1
+            /docs/catalog-audit/evidence/2026-10-31-context-response/**
+            /docs/catalog-audit/reaction-protocols-through106.json
+            /docs/catalog-audit/context-response-review-2026-10-31.json
+            /tools/Test-ContextResponseAdmissions.ps1
             /tools/Test-PreciseSkillAdmissions.ps1
             /docs/catalog-audit/precise-admissions-2026-10-23.json
             /docs/catalog-audit/precise-skill-review-2026-10-23.json
@@ -271,6 +281,10 @@ jobs:
       - name: Validate anatomical variety admissions
         shell: pwsh
         run: ./tools/Test-AnatomicalVarietyAdmissions.ps1
+
+      - name: Validate context response admissions
+        shell: pwsh
+        run: ./tools/Test-ContextResponseAdmissions.ps1
 
       - name: Validate post-filter variety admissions
         shell: pwsh

@@ -4,6 +4,8 @@
     # rule never manufactures another physical identity. A workout may select
     # at most one member of a family as a base muscle-group slot.
     Families = @{
+        '146' = @(146, 1742) # Hip-hinge response protocol; no new physical identity.
+        '804' = @(804, 1744) # Trunk response protocol; no new physical identity.
         '784' = @(784, 1740)
         '740' = @(740, 1738)
         '1522' = @(1522, 1734)
@@ -29,7 +31,7 @@
         '143' = @(143, 538) # Reverse lunge followed by a front kick
         '529' = @(529, 539) # Single-leg hip hinge with rear leg extension
         '211' = @(211, 233) # Straight-elbow assisted wrist-flexion stretch
-        '187' = @(187, 252, 253, 254, 562, 566, 581, 582) # Standing calf raises, including neutral and toe-angle variants
+        '187' = @(187, 252, 253, 254, 562, 566, 581, 582, 1743) # Standing calf raises, including neutral and toe-angle variants
         '153' = @(153, 603) # Wall-supported straight-leg hip extension
         '286' = @(286, 541) # Alternating inward forearm blocks
 
@@ -39,7 +41,7 @@
         '278' = @(278, 326, 1602, 1603, 1604, 1605) # Rear-hand straight punch
         '160' = @(160, 533)      # One-leg standing bent-knee hip extension
         '329' = @(329, 531)      # One-arm controlled shoulder circle
-        '101' = @(101, 110) # Shoulder-width squat and its shallow pulse variant
+        '101' = @(101, 110, 1741) # Shoulder-width squat and its shallow pulse variant
         '102' = @(102, 111, 147) # Squat with an overhead arm sweep, including its bent-elbow variation
         '104' = @(19, 103, 104, 105, 107, 109, 136, 199, 626) # Wide turned-out squat, partial/pulse and repetition variants
         '134' = @(134, 137) # Wall-supported squat and its held variant

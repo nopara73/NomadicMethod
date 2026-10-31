@@ -1,6 +1,6 @@
 # Fitness training-level catalog coverage
 
-Catalog revision 106; 930 assessed exercise records.
+Catalog revision 107; 934 assessed exercise records.
 
 Required: **at least 5 distinct approved session movements that can train each characteristic-level combination**.
 An exercise can support multiple explicitly assessed levels. A maximum alone does not imply lower-level coverage. Sides, directions, sets, aliases and renamed duplicates do not multiply a movement.
@@ -11,13 +11,13 @@ Gate: **PASS**. 0 of 50 cells are below the minimum; 0 characteristic-level plac
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Cardiorespiratory endurance | 134 | 78 | 44 | 32 | 7 |
 | Muscular strength | 334 | 223 | 54 | 24 | 13 |
-| Muscular endurance | 309 | 466 | 235 | 24 | 11 |
+| Muscular endurance | 311 | 466 | 235 | 24 | 11 |
 | Flexibility | 121 | 158 | 95 | 10 | 6 |
 | Agility | 14 | 13 | 13 | 13 | 5 |
 | Balance | 96 | 75 | 27 | 27 | 5 |
-| Coordination | 243 | 235 | 41 | 44 | 6 |
+| Coordination | 243 | 239 | 41 | 44 | 6 |
 | Power | 56 | 23 | 33 | 12 | 10 |
-| Reaction time | 34 | 34 | 5 | 5 | 5 |
+| Reaction time | 38 | 34 | 9 | 9 | 9 |
 | Speed | 38 | 70 | 48 | 42 | 27 |
 
 ## Missing combinations
@@ -30,7 +30,7 @@ Ratings are provisional NM training-level judgments for repeated 45-second block
 
 ## Spiderweb contributors (diagnostic)
 
-634 records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.
+638 records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.
 
 | Characteristic | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |

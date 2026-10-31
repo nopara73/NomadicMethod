@@ -235,11 +235,11 @@ const catalog = JSON.parse(
   await readFile(path.join(outputRoot, "data", catalogOutputName), "utf8"),
 );
 
-if (!Array.isArray(catalog) || catalog.length !== 930) {
-  throw new Error(`Expected 930 exercises, found ${catalog?.length ?? "invalid data"}.`);
+if (!Array.isArray(catalog) || catalog.length !== 934) {
+  throw new Error(`Expected 934 exercises, found ${catalog?.length ?? "invalid data"}.`);
 }
 const reactionPlans = resolveReactionDrills(JSON.parse(reactionSource), catalog);
-if (reactionPlans.size !== 21) throw new Error('Expected twenty-one reviewed reaction protocols.');
+if (reactionPlans.size !== 25) throw new Error('Expected twenty-five reviewed reaction protocols.');
 for (const plan of reactionPlans.values()) {
   for (const action of plan.actions) {
     for (const [relative, expected] of [[action.video, action.videoSha256], [action.preview, action.previewSha256]]) {

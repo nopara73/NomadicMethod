@@ -305,6 +305,250 @@
           "previewSha256": "ec3a76983a50ce4e6c2e085de97b6a28dc21af03e2b320c1154d10b7c6ce4c0c"
         }
       ]
+    },
+    {
+      "id": "squat",
+      "actions": [
+        {
+          "label": "Squat",
+          "sourceId": 101,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "e1244e3a90eadb86ca2ea1befef8383e5d9c78a2408897796cd233ff2e46e950",
+          "startSeconds": 0,
+          "durationSeconds": 3.95,
+          "mirror": false,
+          "video": "reaction_videos/squat-1.mp4",
+          "preview": "reaction_previews/squat-1.png",
+          "previewSeconds": 1.58,
+          "videoSha256": "be60c5692c89641ff47587b927630b0aa544a6662bf06a57b557d1357a32a614",
+          "previewSha256": "9aeb0f5dcfcef0a40a0de630f4d13ea394af5616e80a7ef54dc6365b61845848"
+        },
+        {
+          "label": "Overhead squat",
+          "sourceId": 113,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "d030097fc468d4b516b0805a5e011e124c885b4b3a3fd8f78c018ff769dc5851",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/squat-2.mp4",
+          "preview": "reaction_previews/squat-2.png",
+          "previewSeconds": 1.46,
+          "videoSha256": "e7be54827ec304fa74fb8def0241f19dcf236e2254a8bb2e9cadc8d6485167a5",
+          "previewSha256": "c90abf3532c2d3ba15d85d7b4439ae06d70ee18068a6f0f29573a896ee885e75"
+        },
+        {
+          "label": "Squat to calf raise",
+          "sourceId": 550,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "e75e4d4dd70ee1718fe14e08fcb2247c5a6cdbd878306ed79fd6214a294bd139",
+          "startSeconds": 0,
+          "durationSeconds": 5.2,
+          "mirror": false,
+          "video": "reaction_videos/squat-3.mp4",
+          "preview": "reaction_previews/squat-3.png",
+          "previewSeconds": 2.08,
+          "videoSha256": "89f04e1f3824edb417a7601dacc30687cb70412daf619ca2c2754e37267155e1",
+          "previewSha256": "c8ab89edcde8064ae1f15e793e57b3f2181b6174ef3533387d22f243ac51d3aa"
+        },
+        {
+          "label": "Mini squat scoop",
+          "sourceId": 619,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "430c7cf925421061d99ac3b8822e3692954611b4ce4566d97f6a1e8f5956c04e",
+          "startSeconds": 0,
+          "durationSeconds": 6.2,
+          "mirror": false,
+          "video": "reaction_videos/squat-4.mp4",
+          "preview": "reaction_previews/squat-4.png",
+          "previewSeconds": 2.48,
+          "videoSha256": "906d02a5f7ff866e496cb88350e148b7c3baadd731693ee0a0c058367188cbf8",
+          "previewSha256": "4b3d71117d4d84482fe45cac78a38727e9bad7ce6e7e5f6f839fe74a1552171d"
+        }
+      ]
+    },
+    {
+      "id": "hinge",
+      "actions": [
+        {
+          "label": "Good morning",
+          "sourceId": 146,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "de9dc4bee0f617d79999312f8b41085c9ce6bdfde496e45d7a9de3cbd15ae9b1",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/hinge-1.mp4",
+          "preview": "reaction_previews/hinge-1.png",
+          "previewSeconds": 1.46,
+          "videoSha256": "3820053d0d203a06c44cea84e0758f9e10ba430b3467d5e08445e0689972536a",
+          "previewSha256": "c5be8848c0e6a976ac67ba13965dd7d8ea84c54c7bbafb1d5f550093bfad001e"
+        },
+        {
+          "label": "Hinge and reach",
+          "sourceId": 193,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "f19ed7be8bf78e4d96922330a665134e3685d295aec1d45c83dbfde77bdea0ff",
+          "startSeconds": 0,
+          "durationSeconds": 3.1,
+          "mirror": false,
+          "video": "reaction_videos/hinge-2.mp4",
+          "preview": "reaction_previews/hinge-2.png",
+          "previewSeconds": 1.24,
+          "videoSha256": "9325cfc9e873992cfa25970afd50a8eacb9fd8826e9ed59e5babeb5892a51aaa",
+          "previewSha256": "0dadc3eb022868cc15fe4a974e19400e16a69f22c728dd6d68b334bff1a89766"
+        },
+        {
+          "label": "Fold and reach",
+          "sourceId": 251,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "3c06f0bb6bf119a0d0d001716c8d7eb22eb408a4dfa3d477efded3a5107bb051",
+          "startSeconds": 0,
+          "durationSeconds": 4,
+          "mirror": false,
+          "video": "reaction_videos/hinge-3.mp4",
+          "preview": "reaction_previews/hinge-3.png",
+          "previewSeconds": 1.6,
+          "videoSha256": "694283efa99c5e512dc243329545bd38772d62e45caaf6d5887e0b9db9158f13",
+          "previewSha256": "82a9ab2184048e4a85404260f061b0fb0c88c8822d4b000ed7d47f32cff72e22"
+        },
+        {
+          "label": "Hinge to squat",
+          "sourceId": 200,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "f52845062034b00068fd4e5d1d8ebc44883d11abf6fa6b120a082451755659a1",
+          "startSeconds": 0,
+          "durationSeconds": 4.5,
+          "mirror": false,
+          "video": "reaction_videos/hinge-4.mp4",
+          "preview": "reaction_previews/hinge-4.png",
+          "previewSeconds": 1.8,
+          "videoSha256": "1543d91a362cf9c237b2fa40364240d096e9a5626ba618395731c2a91e7328d7",
+          "previewSha256": "bb449f38625b54007d80c9e0d5df25dd273b2056bf0e7ebeae4bbb132f7ce775"
+        }
+      ]
+    },
+    {
+      "id": "heel",
+      "actions": [
+        {
+          "label": "Heel raise",
+          "sourceId": 187,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "3c30eb273203e1f55aa1c685a11735019ec62a4edfde0b5505b3411b75b06b7d",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/heel-1.mp4",
+          "preview": "reaction_previews/heel-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "90fb264c9bd3f3b0b5e1169573afc929bbcc4f45ae98fa975af8699c2429b7b7",
+          "previewSha256": "4e91b33592f631fdb56afccad9748aadc9ef2fec0e326b50bde37f94f2901e8b"
+        },
+        {
+          "label": "Alternating heel raises",
+          "sourceId": 295,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "dc8a8f87644b571a17538cbff5799a394e5696f41e982ed338e9184f4e0a6f0b",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/heel-2.mp4",
+          "preview": "reaction_previews/heel-2.png",
+          "previewSeconds": 0.58,
+          "videoSha256": "7016e759a759f3f00dd855dc64524079dfdaab6c3f1f379849dbba1889270658",
+          "previewSha256": "c8f548da0a13c08ae15ef505359d273e24a7039019f4eaf1a6ff142d19e2eb3c"
+        },
+        {
+          "label": "Heel raise, walking arms",
+          "sourceId": 555,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "d0aa663b6b17ad524ae3034d5fff3d14c034febe145bdcd3f6370cf22f8956f2",
+          "startSeconds": 0,
+          "durationSeconds": 2.35,
+          "mirror": false,
+          "video": "reaction_videos/heel-3.mp4",
+          "preview": "reaction_previews/heel-3.png",
+          "previewSeconds": 0.94,
+          "videoSha256": "56d38e5bc3d55b7976abd28cdfc6a892ae0f923983fc067c808fbfee816302fd",
+          "previewSha256": "32a984d756f3b1d7238a6001683e48fea6ecefe72ec3e0e2b82af846bc1ad385"
+        },
+        {
+          "label": "Bent-knee heel raise",
+          "sourceId": 565,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "60a88e1dd635f116e6109082ea4b11f9b7ce51c64852bf925ede9eb62195acb5",
+          "startSeconds": 0,
+          "durationSeconds": 3.9,
+          "mirror": false,
+          "video": "reaction_videos/heel-4.mp4",
+          "preview": "reaction_previews/heel-4.png",
+          "previewSeconds": 1.56,
+          "videoSha256": "d40b9e1f35375f0d50ca1efb34af7e14a17d4b9241ebdc5fc884019d849f36fa",
+          "previewSha256": "04eb0d85fa1ea802d8be5066181591583dbbc64547329b88514cbde69824d0f7"
+        }
+      ]
+    },
+    {
+      "id": "trunk",
+      "actions": [
+        {
+          "label": "Torso twist",
+          "sourceId": 804,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "8948beba3e8f503f1d984fdb24fb732368b16268ce7b9e7dd01405f040d21449",
+          "startSeconds": 0,
+          "durationSeconds": 2.5,
+          "mirror": false,
+          "video": "reaction_videos/trunk-1.mp4",
+          "preview": "reaction_previews/trunk-1.png",
+          "previewSeconds": 1,
+          "videoSha256": "2ad9f5c51f3fca1ae12e8b741abad846d7cd7804fc6c4381b9384e4b45adce34",
+          "previewSha256": "36e23e9bad0421d0f68110ff547e761695217fc4f02163ec682a217652513c85"
+        },
+        {
+          "label": "Standing cat-cow",
+          "sourceId": 818,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "e781ee64f51c57f5f3c258a939e29dc9298d6420d8d7d4770bb9cd1b49c281d0",
+          "startSeconds": 0,
+          "durationSeconds": 5.8,
+          "mirror": false,
+          "video": "reaction_videos/trunk-2.mp4",
+          "preview": "reaction_previews/trunk-2.png",
+          "previewSeconds": 2.32,
+          "videoSha256": "26b5e4e36d3ae9bd45c5ce19fdb036bfe03858ef9828d82dfc75d889c09c99df",
+          "previewSha256": "9fb6de4bf077053d887e444c1a8cf02f62ef7fd6a75b47e0fdff02c4a21a2168"
+        },
+        {
+          "label": "Cross-and-side crunch",
+          "sourceId": 906,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "748c77aa44e17d29086a71dda732c7b5aa1ad67060561612120fc1eab9a11018",
+          "startSeconds": 0,
+          "durationSeconds": 4.35,
+          "mirror": false,
+          "video": "reaction_videos/trunk-3.mp4",
+          "preview": "reaction_previews/trunk-3.png",
+          "previewSeconds": 1.74,
+          "videoSha256": "94f76abdf6a46160b18e2ddbc05cd2358d1807a76ae5e56b42d7cf90a806f32a",
+          "previewSha256": "69c17bc08400298de23ce30628b996f60fd9c162529bbacaacdd61860f9c1402"
+        },
+        {
+          "label": "Twist and side reach",
+          "sourceId": 954,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "a248a14f2fe4e8a01dedfb6c5eb568ee34e0c502c539ac8a67098a9798f74094",
+          "startSeconds": 0,
+          "durationSeconds": 2.25,
+          "mirror": false,
+          "video": "reaction_videos/trunk-4.mp4",
+          "preview": "reaction_previews/trunk-4.png",
+          "previewSeconds": 0.9,
+          "videoSha256": "68070e4a256f47651bf0bbe24f0f9740f111bf4e3c4d15c2d285376bd766a222",
+          "previewSha256": "39fe5f1329ce87944780e0c299b931facb36e286d97e445e8f9977bad4c5d24a"
+        }
+      ]
     }
   ],
   "plans": [
@@ -412,6 +656,26 @@
       "exerciseId": 1645,
       "familyId": "crouch",
       "protocol": "StopOnly"
+    },
+    {
+      "exerciseId": 1741,
+      "familyId": "squat",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1742,
+      "familyId": "hinge",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1743,
+      "familyId": "heel",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1744,
+      "familyId": "trunk",
+      "protocol": "ContextChoice"
     }
   ]
 }

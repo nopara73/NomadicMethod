@@ -3586,7 +3586,8 @@
     "locomotionSpace": "None",
     "maxSpaceMeters": 2,
     "equipment": "None",
-    "silent": true
+    "silent": true,
+    "sessionMovementId": 146
   },
   {
     "id": 147,
@@ -23928,7 +23929,8 @@
     "locomotionSpace": "None",
     "maxSpaceMeters": 2,
     "equipment": "None",
-    "silent": true
+    "silent": true,
+    "sessionMovementId": 804
   },
   {
     "id": 816,
@@ -46317,5 +46319,192 @@
     "equipment": "None",
     "silent": true,
     "sessionMovementId": 784
+  },
+  {
+    "id": 1741,
+    "name": "Squat Reactions · Context Choices",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1741.mp4",
+    "primaryCanonicalGroup": "MedialAndDeepKneeExtensors",
+    "secondaryCanonicalGroups": [
+      "LateralKneeExtensors",
+      "GlutealExtensors"
+    ],
+    "practice": "Reaction training",
+    "motionProfile": "ReactionContext1741",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1741,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 1,
+    "reactionCueLevel": 2,
+    "onlyFeetTouchGround": true,
+    "floorContactPoints": "Feet",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true,
+    "sessionMovementId": 101
+  },
+  {
+    "id": 1742,
+    "name": "Hip Hinge Reactions · Context Choices",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1742.mp4",
+    "primaryCanonicalGroup": "PosteriorThighAndKneeFlexors",
+    "secondaryCanonicalGroups": [
+      "SpinalExtensors"
+    ],
+    "practice": "Reaction training",
+    "motionProfile": "ReactionContext1742",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1742,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 1,
+    "reactionCueLevel": 2,
+    "onlyFeetTouchGround": true,
+    "floorContactPoints": "Feet",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true,
+    "sessionMovementId": 146
+  },
+  {
+    "id": 1743,
+    "name": "Heel Raise Reactions · Context Choices",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1743.mp4",
+    "primaryCanonicalGroup": "CalfDeepPosteriorLegAndPlantarFoot",
+    "secondaryCanonicalGroups": [
+      "Soleus"
+    ],
+    "practice": "Reaction training",
+    "motionProfile": "ReactionContext1743",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1743,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 1,
+    "reactionCueLevel": 2,
+    "onlyFeetTouchGround": true,
+    "floorContactPoints": "Feet",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true,
+    "sessionMovementId": 187
+  },
+  {
+    "id": 1744,
+    "name": "Trunk Movement Reactions · Context Choices",
+    "retiredName": null,
+    "video": "exercise_videos/exercise_1744.mp4",
+    "primaryCanonicalGroup": "AbdominalWall",
+    "secondaryCanonicalGroups": [],
+    "practice": "Reaction training",
+    "motionProfile": "ReactionContext1744",
+    "mode": "Repetition",
+    "presentation": "Motion",
+    "holdFramePercent": 0,
+    "sideSequence": "Continuous",
+    "directionSequence": "None",
+    "sequenceBlocks": [
+      {
+        "exerciseId": 1744,
+        "sideCue": "None",
+        "directionCue": "None",
+        "mirrorMedia": false,
+        "mediaSegment": "Full"
+      }
+    ],
+    "insectCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
+    "upperBodyClothingRequirement": "Agnostic",
+    "shyCompatibility": "Compatible",
+    "wallRequired": false,
+    "elevationRequired": false,
+    "jumpPlatformRequired": false,
+    "soleWallContactRequired": false,
+    "mirrorRelationship": "Agnostic",
+    "minimumMirrorCoverage": "None",
+    "score": 0,
+    "muscularDemand": 1,
+    "reactionCueLevel": 2,
+    "onlyFeetTouchGround": true,
+    "floorContactPoints": "Feet",
+    "shoeAgnostic": true,
+    "locomotionSpace": "None",
+    "maxSpaceMeters": 2,
+    "equipment": "None",
+    "silent": true,
+    "sessionMovementId": 804
   }
 ]

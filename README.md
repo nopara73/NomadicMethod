@@ -19,6 +19,8 @@ The Android package and local storage use the Nomadic Method identity. See the
 Nomadic Method is also a private, offline Android app written in C# with .NET for Android.
 It supports Android 7.0 (API 24) and newer. No account is required.
 
+Catalog revision 107 adds context-choice reaction tasks for squats, hip hinges, heel raises and trunk movements, using sixteen existing approved human demonstrations. The physical families and all prior fitness ratings stay unchanged. See the [review and coverage result](docs/catalog-audit/context-response-review-2026-10-31.json).
+
 ## The method
 
 Nomadic Method randomizes exercises, not workout structure.

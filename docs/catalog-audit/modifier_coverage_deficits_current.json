@@ -1,7 +1,7 @@
 {
-  "catalogRevision": 106,
-  "catalogRecordCount": 930,
-  "catalogSha256": "73eb686c36bd87edddcc5f2aaff91dfc5b6bc944e297d0ba5fcd6814e3ca23ad",
+  "catalogRevision": 107,
+  "catalogRecordCount": 934,
+  "catalogSha256": "18b101160c2178d37759813829733dc1a512cb2a5f4927911f0aee063160d5c8",
   "policy": {
     "anatomicalGroupMinimum": 10,
     "treatment": "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",

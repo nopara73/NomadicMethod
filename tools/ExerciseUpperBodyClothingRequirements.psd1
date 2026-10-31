@@ -27,6 +27,7 @@
     # demonstrated exercise. Keep this exhaustive so new catalog records fail
     # generation until they receive a real review.
     Agnostic = @(
+        1741, 1742, 1743, 1744,
         1734, 1735, 1736, 1737, 1738, 1739, 1740,
         1730, 1731, 1732, 1733,
         1727,

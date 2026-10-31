@@ -82,11 +82,11 @@ test('a complete decision, real action and reset must fit before another cue', (
   assert.equal(delayed.phase, 'Complete');
   assert.equal(delayed.demoActionIndex, -1);
 });
-test('twenty-one explicit protocols retain five physical movement families', () => {
-  assert.equal(plans.size, 21);
+test('twenty-five explicit protocols retain nine physical movement families', () => {
+  assert.equal(plans.size, 25);
   for (const family of document.families) {
     const members = [...plans.values()].filter(p => p.familyId === family.id);
-    assert.deepEqual(members.map(p => p.actions.length), family.id === 'arm' ? [1, 2, 4, 4, 1] : [2, 4, 4, 1]);
+    assert.deepEqual(members.map(p => p.actions.length), ['squat', 'hinge', 'heel', 'trunk'].includes(family.id) ? [4] : family.id === 'arm' ? [1, 2, 4, 4, 1] : [2, 4, 4, 1]);
     assert.equal(new Set(members.map(p => catalog.find(e => e.id === p.exerciseId).sessionMovementId)).size, 1);
     assert.ok(members.every(p => catalog.find(e => e.id === p.exerciseId).insectCompatibility === 'Incompatible'));
   }

@@ -16,7 +16,7 @@ const dimensions = ['Metadata', 'FullLoop', 'Crop', 'LoopSeam', 'PlaybackSpeed',
 
 test('the floor is supplied by ten new identities and five reviewed anatomy corrections', () => {
   assert.equal(admissions.catalogRevision, 98);
-  assert.equal(catalog.length, 930);
+  assert.equal(catalog.length, 934);
   assert.deepEqual(admissions.newExerciseIds, Array.from({ length: 10 }, (_, i) => 1720 + i));
   assert.deepEqual(admissions.anatomyCorrectionIds, [1069, 1071, 1209, 1216, 1292]);
   assert.equal(new Set(catalog.filter(e => admissions.newExerciseIds.includes(e.id)).map(getSessionMovementId)).size, 10);

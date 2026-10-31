@@ -7,6 +7,7 @@
     # Incompatible
     # exercises remain available when the user selects a stable soft surface.
     Compatible = @(
+        1741, 1742, 1743, 1744,
         # Exact locomotion review, 31 October 2026; controlled steps and load transfers.
         119, 194, 999, 1063, 1076, 1131, 1212, 1263, 1265, 1271, 1432,
         1069,

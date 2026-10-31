@@ -505,7 +505,9 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Revision 104 improves display wording without changing movement identities.
 // Revision 105 restores conventional names without resetting exercise identity.
 // Revision 106 adds reviewed choices and checks five after physical and training-zone filters.
-export const CURRENT_CATALOG_REVISION = 106;
+// Revision 107 adds four immutable context-response tasks over existing physical families.
+export const CURRENT_CATALOG_REVISION = 107;
+export const CONTEXT_RESPONSE_EXERCISE_IDS = Object.freeze([1741, 1742, 1743, 1744]);
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -3375,14 +3377,12 @@ function solveAtomicSequenceLineup(
       return utilityDifference > 0n ? 1 : utilityDifference < 0n ? -1 :
         left.blockCount - right.blockCount;
     });
-  const maximumUtilityByGroup = Array.from({ length: groupCount }, (_, groupIndex) =>
-    candidates
-      .filter((candidate) =>
-        (candidate.coverageMask & (1n << BigInt(groupIndex))) !== 0n)
-      .reduce((maximum, candidate) =>
-        candidate.utilitiesByGroup[groupIndex] > maximum
-          ? candidate.utilitiesByGroup[groupIndex]
-          : maximum, 0n));
+  const candidatesByGroup = Array.from({ length: groupCount }, (_, groupIndex) =>
+    candidates.filter((candidate) =>
+      (candidate.coverageMask & (1n << BigInt(groupIndex))) !== 0n));
+  const maximumUtilityByGroup = candidatesByGroup.map((group, index) =>
+    group.reduce((maximum, candidate) => candidate.utilitiesByGroup[index] > maximum
+      ? candidate.utilitiesByGroup[index] : maximum, 0n));
 
   let best = null;
   const selected = [];
@@ -3521,12 +3521,35 @@ function solveAtomicSequenceLineup(
   };
 
   const search = (decidedMask, coveredMask, utility) => {
-    let upperBound = utility;
-    for (let groupIndex = 0; groupIndex < groupCount; groupIndex += 1) {
-      if ((coveredMask & (1n << BigInt(groupIndex))) === 0n) {
-        upperBound += maximumUtilityByGroup[groupIndex];
-      }
+    // Avoid the tighter scan when the ordinary singleton ceiling already wins.
+    if (best) {
+      let ceiling = utility;
+      for (let index = 0; index < groupCount; index += 1)
+        if ((coveredMask & (1n << BigInt(index))) === 0n) ceiling += maximumUtilityByGroup[index];
+      if (ceiling <= best.utility) return;
     }
+    let upperBound = utility;
+    const remainingBlocks = workoutMinutes - selected.reduce((sum, candidate) => sum + candidate.blockCount, 0);
+    let minimumScaledBlocks = 0;
+    for (let groupIndex = 0; groupIndex < groupCount; groupIndex += 1) {
+      const groupMask = 1n << BigInt(groupIndex);
+      if ((coveredMask & groupMask) !== 0n) continue;
+      let maximum = null, minimumCost = Infinity;
+      for (const candidate of candidatesByGroup[groupIndex]) {
+        if (selectedMovementIds.has(candidate.movementId) || candidate.blockCount > remainingBlocks ||
+            candidate.coverageMask !== groupMask && (candidate.coverageMask & decidedMask) !== 0n) continue;
+        const value = candidate.utilitiesByGroup[groupIndex];
+        if (maximum === null || value > maximum) maximum = value;
+        minimumCost = Math.min(minimumCost,
+          Math.floor(candidate.blockCount * groupCount / countMaskBits(candidate.coverageMask)));
+      }
+      // Exclude placements ruled out by singleton decisions or used movements.
+      if (maximum === null) return;
+      upperBound += maximum;
+      minimumScaledBlocks += minimumCost;
+    }
+    // Rounded-down fractional costs are a safe lower bound on required blocks.
+    if (minimumScaledBlocks > remainingBlocks * groupCount) return;
     if (best && upperBound <= best.utility) {
       return;
     }
@@ -4680,6 +4703,8 @@ export const PRECISE_SKILL_EXERCISE_IDS = Object.freeze([1605, 1615, 1625, 1635,
 export const PROFILE_CONTRIBUTOR_EXERCISE_IDS = Object.freeze([1621, 1701, 1702, 1703, 1704, 1705]);
 export const FITNESS_COVERAGE_EXERCISE_IDS = Object.freeze([1506, 1507, 1508, 1509, 1516, 1521, 1522, 1523, 1524, 1525, 1531, 1532, 1533, 1534, 1535, 1540, 1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644]);
 export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerciseIds = []) {
+  if (activeRevision > 0 && activeRevision < 107)
+    catalog = catalog.filter(exercise => !CONTEXT_RESPONSE_EXERCISE_IDS.includes(exercise.id));
   const snapshots = [frozenWorkoutProtocols, ...(frozenWorkoutProtocols.laterSnapshots ?? [])]
     .sort((a, b) => b.beforeRevision - a.beforeRevision);
   for (const snapshot of snapshots.filter(s => activeRevision > 0 && activeRevision < s.beforeRevision))

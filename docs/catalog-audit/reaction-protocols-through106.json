@@ -1,0 +1,417 @@
+{
+  "version": 1,
+  "families": [
+    {
+      "id": "punch",
+      "actions": [
+        {
+          "label": "Straight punch",
+          "sourceId": 278,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "2c44b0a7fb8956027efedccf731a25799d8655ab7dbbc89ff2d8d3768eb33091",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/punch-1.mp4",
+          "preview": "reaction_previews/punch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "52c35f4ad4271d81e41cee140bc68397baffaafdcd79ee5efdf1569a25bbe851",
+          "previewSha256": "7acc8f748fb6fa0b34da42e21cd53fd05a27fd06874cd179ee1cd689df83214a"
+        },
+        {
+          "label": "Jab–cross",
+          "sourceId": 279,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "27d1daa5c16d5274c8e1834330813536ab3adadc5fee8ab1f1be9d03466005d3",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/punch-2.mp4",
+          "preview": "reaction_previews/punch-2.png",
+          "previewSeconds": 0.65,
+          "videoSha256": "2d4ce7b682c1ef1bee63b252b9b008c471cc45e8f26b6ddb47ec31d7d6c76079",
+          "previewSha256": "cb50d9252a2360fc91119bba4042c7f4bcf58a3bb5101918ea645732d490e8b3"
+        },
+        {
+          "label": "Hook",
+          "sourceId": 280,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "25a49a8e33bd5baf1fb8e648a58614c06e53bd4cf31163e60935c469e8b5adc5",
+          "startSeconds": 0,
+          "durationSeconds": 1.95,
+          "mirror": false,
+          "video": "reaction_videos/punch-3.mp4",
+          "preview": "reaction_previews/punch-3.png",
+          "previewSeconds": 0.9,
+          "videoSha256": "b7980cf45f00edeebd1d2eb9d8cb540e98fb302b800d16bb336814e23fb721ee",
+          "previewSha256": "e12e72b0a35d7e9d45eff61fa82c90f418781ac352484c600170ba86f7daa91c"
+        },
+        {
+          "label": "Uppercuts",
+          "sourceId": 274,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "42a9561a248e3778ae1467ec64c97028350b82faa6c366a8bab9a8ac98c9b09e",
+          "startSeconds": 0,
+          "durationSeconds": 1.6,
+          "mirror": false,
+          "video": "reaction_videos/punch-4.mp4",
+          "preview": "reaction_previews/punch-4.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "2830470221d4ab47568bd7d13e85282b645ff43c69ff9d1e847061b574088a7f",
+          "previewSha256": "e679faca077624c6401a2cadfcd0a078eeb04ab65ce96f2e5869dcea4d7aae9c"
+        }
+      ]
+    },
+    {
+      "id": "knee",
+      "actions": [
+        {
+          "label": "Front knee lift",
+          "sourceId": 144,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "5794fbf13744d509b9b27f3bcef2d5d09e62269719efba6df99840246092f69b",
+          "startSeconds": 0,
+          "durationSeconds": 3.65,
+          "mirror": false,
+          "video": "reaction_videos/knee-1.mp4",
+          "preview": "reaction_previews/knee-1.png",
+          "previewSeconds": 1.6,
+          "videoSha256": "9929f432ae89958d27741a74f5bfb2418323025f3d8566902ed485951ab774c3",
+          "previewSha256": "afadbaa83829a7d3fa68d06fd211c1b3cc1949a7ac2d4298e9ce4c587d5d20f0"
+        },
+        {
+          "label": "Cross-body knee drive",
+          "sourceId": 170,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "18d58e995ef9134bd56e264446ae379818627af0debc30bb4b7c73d3c463090d",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/knee-2.mp4",
+          "preview": "reaction_previews/knee-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "4c0442af7070773ed09e3a2ffd8666c590d16dadca36994108958cbd520a0943",
+          "previewSha256": "e92e6b646e751aba5ca22cb9973e16b78137390916eeac5c6d3fda0171a2d4ea"
+        },
+        {
+          "label": "Side knee lift",
+          "sourceId": 173,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "052cc0523f5c802a193092fb76f5df00f6252273f77a6825f41f430b36d6740f",
+          "startSeconds": 0,
+          "durationSeconds": 1.3,
+          "mirror": false,
+          "video": "reaction_videos/knee-3.mp4",
+          "preview": "reaction_previews/knee-3.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "8ae840ac9fcc881e391b802e7e420706e2aadfac01d8134818aef03a24fa6d91",
+          "previewSha256": "0e709cb571f530ab0a9f7a56f8833615495121a163c1b5ede2100740f6272b2f"
+        },
+        {
+          "label": "Knee lift with pull-down",
+          "sourceId": 31,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "86ed2aca3282d3b453c594d5ed10fe4fc5a8c5e38915320a6cdb3e93de956f75",
+          "startSeconds": 0,
+          "durationSeconds": 1.6,
+          "mirror": false,
+          "video": "reaction_videos/knee-4.mp4",
+          "preview": "reaction_previews/knee-4.png",
+          "previewSeconds": 0.4,
+          "videoSha256": "d251be168c45fed79d224f95a9802958f0d8d0a538577a01dc4147edeb7a1402",
+          "previewSha256": "a7e15d14a481acb52daed2e81c1da66e30b6582420617aa2eee417bd7e1bf776"
+        }
+      ]
+    },
+    {
+      "id": "arm",
+      "actions": [
+        {
+          "label": "Alternating arm raises",
+          "sourceId": 266,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "06a5d56754050d84018c98ad5ddd087cab427f48f07ae52e89458f17f4e9ce5c",
+          "startSeconds": 0,
+          "durationSeconds": 3.15,
+          "mirror": false,
+          "video": "reaction_videos/arm-1.mp4",
+          "preview": "reaction_previews/arm-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "d65c70ddd9acdc08415e4abd607481123781f8c9306873a37809ccb8aaa0b3dd",
+          "previewSha256": "61cd0842d0a7c4a1f4ad317afabc577abf8d66da33268ab2952837bf84f82df0"
+        },
+        {
+          "label": "W extensions",
+          "sourceId": 234,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "4fa27dd526cb997f22247d058294da7488348e208d5960683658ab2e016838cb",
+          "startSeconds": 0,
+          "durationSeconds": 1.45,
+          "mirror": false,
+          "video": "reaction_videos/arm-2.mp4",
+          "preview": "reaction_previews/arm-2.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "d6a7f3c4a5932edea212b513d7e3ef8483ab316e6fbe05ea714d104d53908e5a",
+          "previewSha256": "6951ed1c6a05d7cbde899ca9df41a5b2e22a44755831f711f10abda94ce96121"
+        },
+        {
+          "label": "Arm pulses",
+          "sourceId": 264,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "a66110f1464dd6261e0afb1648d584c6c8b45e942c8676e450d1e70b723bb37e",
+          "startSeconds": 0,
+          "durationSeconds": 2.1,
+          "mirror": false,
+          "video": "reaction_videos/arm-3.mp4",
+          "preview": "reaction_previews/arm-3.png",
+          "previewSeconds": 0.6,
+          "videoSha256": "433a8f5424e6b94c10b75ba136c7b1a10423ca13a60ade9f9ab72f07b43381a8",
+          "previewSha256": "15e6f255251b8943a08ee09ebf894dc553846094c0779bdddda7043593cdb5e7"
+        },
+        {
+          "label": "Goalpost to T",
+          "sourceId": 268,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "49857d1d6156086ce3f4f7c65a3fc9a269584c92af05c6b2e11c40103fe89c1f",
+          "startSeconds": 0,
+          "durationSeconds": 1.65,
+          "mirror": false,
+          "video": "reaction_videos/arm-4.mp4",
+          "preview": "reaction_previews/arm-4.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "e3ec4d2639699b3faa6d6f7c83c91f29c623a883e40723e604c5a73024eeccf2",
+          "previewSha256": "9d629fe808a4bee78c3151ee0547cec98893855be15619820d2ea6d7a4e0b275"
+        }
+      ]
+    },
+    {
+      "id": "kick",
+      "actions": [
+        {
+          "label": "Front snap kick",
+          "sourceId": 180,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "506542231cd6136725427438745e9ab699c930dc35055d6b1786014309f1179d",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/kick-1.mp4",
+          "preview": "reaction_previews/kick-1.png",
+          "previewSeconds": 0.45,
+          "videoSha256": "1d8b4cb3b822e0746d1cfecb62fc9a2d82d71162832cf1c1ea405a816efab9e9",
+          "previewSha256": "9fa17e9e049b031c13f6af43c59dce6f4d9b680e125555504777e59ab1b970f0"
+        },
+        {
+          "label": "Toe-touch kicks",
+          "sourceId": 174,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "7045a1065d930f45544c5a79aef7a7b35fec8774229a64c5305cf266f77baa9e",
+          "startSeconds": 0,
+          "durationSeconds": 2.5,
+          "mirror": false,
+          "video": "reaction_videos/kick-2.mp4",
+          "preview": "reaction_previews/kick-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "13bc30d471de4a4afd32f7ecc53a2bb83bde11345d9ebf90eeb06796b811f353",
+          "previewSha256": "5167a79f01f8cf3dd9df79507cffa4dab39db515f521ca949ff861fba970c435"
+        },
+        {
+          "label": "Inward crescent",
+          "sourceId": 182,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "ff88110ed35bf8b079ef448cb1c526d1d5a15009246b20bd8babb531a8098aa0",
+          "startSeconds": 0,
+          "durationSeconds": 5.3,
+          "mirror": true,
+          "video": "reaction_videos/kick-3.mp4",
+          "preview": "reaction_previews/kick-3.png",
+          "previewSeconds": 1.8,
+          "videoSha256": "60f0004853e650126a7f4be061b2c648b69a24030581fb59eb09744c63ceba59",
+          "previewSha256": "028347f5a86c79bde0422015cddeaee450f10f692fc28850603bfd8acc6e63d8"
+        },
+        {
+          "label": "Outward crescent",
+          "sourceId": 178,
+          "sourceStartSeconds": 0,
+          "sourceVideoSha256": "3ee2f82832a4616020cc1249dcda7fe525a768c6c759173ba3793025adce8122",
+          "startSeconds": 0,
+          "durationSeconds": 2.6,
+          "mirror": true,
+          "video": "reaction_videos/kick-4.mp4",
+          "preview": "reaction_previews/kick-4.png",
+          "previewSeconds": 0.7,
+          "videoSha256": "fac1150651c1b9c9929cf2d959d79f157c9be72335080dc3ba7e85738b4e92ef",
+          "previewSha256": "09891e48be57eecd2f0bedab52ef12703a934a6c5fa2455b1d08f33ad07e0003"
+        }
+      ]
+    },
+    {
+      "id": "crouch",
+      "actions": [
+        {
+          "label": "Near hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 1.7,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.2,
+          "mirror": false,
+          "video": "reaction_videos/crouch-1.mp4",
+          "preview": "reaction_previews/crouch-1.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
+          "previewSha256": "4803a51498b5842a6ff3c5274915580536c71b695f37de34311a30e4ef296ef6"
+        },
+        {
+          "label": "Far hand",
+          "sourceId": 1516,
+          "sourceStartSeconds": 3,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.25,
+          "mirror": false,
+          "video": "reaction_videos/crouch-2.mp4",
+          "preview": "reaction_previews/crouch-2.png",
+          "previewSeconds": 0.5,
+          "videoSha256": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
+          "previewSha256": "1f5c036807940de95f6f6c1f7749b7f80e2ddf52fffea08131801f50ca09966e"
+        },
+        {
+          "label": "Near foot",
+          "sourceId": 1516,
+          "sourceStartSeconds": 0.2,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.35,
+          "mirror": false,
+          "video": "reaction_videos/crouch-3.mp4",
+          "preview": "reaction_previews/crouch-3.png",
+          "previewSeconds": 0.6,
+          "videoSha256": "0c5df5e8ceb35486e2d5e7be2c7cfbad6396940110d9518a38090727df02d521",
+          "previewSha256": "bf5f7e7de753d59dbc262b64ad90e00825e7c45de53b1c6aa4625be3b91be00c"
+        },
+        {
+          "label": "Far foot",
+          "sourceId": 1516,
+          "sourceStartSeconds": 5.5,
+          "sourceVideoSha256": "23d5f2b7d9657000d778bc0d48bb6d3ba5a1c7794fb823008550bb24d29c4cc7",
+          "startSeconds": 0,
+          "durationSeconds": 1.55,
+          "mirror": false,
+          "video": "reaction_videos/crouch-4.mp4",
+          "preview": "reaction_previews/crouch-4.png",
+          "previewSeconds": 0.75,
+          "videoSha256": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f",
+          "previewSha256": "ec3a76983a50ce4e6c2e085de97b6a28dc21af03e2b320c1154d10b7c6ce4c0c"
+        }
+      ]
+    }
+  ],
+  "plans": [
+    {
+      "exerciseId": 1602,
+      "familyId": "punch",
+      "protocol": "TwoChoice"
+    },
+    {
+      "exerciseId": 1603,
+      "familyId": "punch",
+      "protocol": "FourChoice"
+    },
+    {
+      "exerciseId": 1604,
+      "familyId": "punch",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1605,
+      "familyId": "punch",
+      "protocol": "StopOnly"
+    },
+    {
+      "exerciseId": 1612,
+      "familyId": "knee",
+      "protocol": "TwoChoice"
+    },
+    {
+      "exerciseId": 1613,
+      "familyId": "knee",
+      "protocol": "FourChoice"
+    },
+    {
+      "exerciseId": 1614,
+      "familyId": "knee",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1615,
+      "familyId": "knee",
+      "protocol": "StopOnly"
+    },
+    {
+      "exerciseId": 1621,
+      "familyId": "arm",
+      "protocol": "Initiation"
+    },
+    {
+      "exerciseId": 1622,
+      "familyId": "arm",
+      "protocol": "TwoChoice"
+    },
+    {
+      "exerciseId": 1623,
+      "familyId": "arm",
+      "protocol": "FourChoice"
+    },
+    {
+      "exerciseId": 1624,
+      "familyId": "arm",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1625,
+      "familyId": "arm",
+      "protocol": "StopOnly"
+    },
+    {
+      "exerciseId": 1632,
+      "familyId": "kick",
+      "protocol": "TwoChoice"
+    },
+    {
+      "exerciseId": 1633,
+      "familyId": "kick",
+      "protocol": "FourChoice"
+    },
+    {
+      "exerciseId": 1634,
+      "familyId": "kick",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1635,
+      "familyId": "kick",
+      "protocol": "StopOnly"
+    },
+    {
+      "exerciseId": 1642,
+      "familyId": "crouch",
+      "protocol": "TwoChoice"
+    },
+    {
+      "exerciseId": 1643,
+      "familyId": "crouch",
+      "protocol": "FourChoice"
+    },
+    {
+      "exerciseId": 1644,
+      "familyId": "crouch",
+      "protocol": "ContextChoice"
+    },
+    {
+      "exerciseId": 1645,
+      "familyId": "crouch",
+      "protocol": "StopOnly"
+    }
+  ]
+}

@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\web\tests\fixtures\atomic-lineup-bounds.json" Link="Assets\atomic-lineup-bounds.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\context-response-cases.json" Link="Assets\context-response-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\docs\catalog-audit\reaction-protocols-through106.json" Link="Assets\reaction-protocols-through106.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\catalog-display-title-case.json" Link="Assets\catalog-display-title-case.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fitness-selection-preferences.json" Link="Assets\fitness-selection-preferences.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\docs\catalog-audit\hard-floor-locomotion-review-2026-10-31.json" Link="Assets\hard-floor-locomotion-review.json" CopyToOutputDirectory="PreserveNewest" />

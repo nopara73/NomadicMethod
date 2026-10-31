@@ -7620,6 +7620,38 @@
       "media": {
         "exercise_videos/exercise_1740.mp4": "6673b92d0516f5e553478619e7c065b76a5891d8ecb759b501e57b654bd1e12e"
       }
+    },
+    {
+      "id": 1741,
+      "coverage": "Symmetric",
+      "reason": "Preparation footage is the unchanged complete human action from 101. The contextual task uses bilateral or naturally alternating complete response loops, with no fixed crossed-hand, lead or supporting-side position omitted.",
+      "media": {
+        "exercise_videos/exercise_1741.mp4": "b5c8dc3f45cb6ab171787ca2e6ef1a8a4ed4860d3c893d4890b59a9c6584a78c"
+      }
+    },
+    {
+      "id": 1742,
+      "coverage": "Symmetric",
+      "reason": "Preparation footage is the unchanged complete human action from 146. The contextual task uses bilateral or naturally alternating complete response loops, with no fixed crossed-hand, lead or supporting-side position omitted.",
+      "media": {
+        "exercise_videos/exercise_1742.mp4": "2c9baaf761ce57ac3793c7de9415a2656b519f78cc186b95f78f1be8bfeec35f"
+      }
+    },
+    {
+      "id": 1743,
+      "coverage": "Symmetric",
+      "reason": "Preparation footage is the unchanged complete human action from 187. The contextual task uses bilateral or naturally alternating complete response loops, with no fixed crossed-hand, lead or supporting-side position omitted.",
+      "media": {
+        "exercise_videos/exercise_1743.mp4": "e55108213fba06ccacf1848cfe64784899b01f07b96fabcfa417f301f96c720b"
+      }
+    },
+    {
+      "id": 1744,
+      "coverage": "WholeLoop",
+      "reason": "Preparation footage is the unchanged complete human action from 804. The contextual task uses bilateral or naturally alternating complete response loops, with no fixed crossed-hand, lead or supporting-side position omitted.",
+      "media": {
+        "exercise_videos/exercise_1744.mp4": "4e36f9e1e8c804d154b499c5861bd0a8779eac7943e63ff5424bf60c8857cd32"
+      }
     }
   ],
   "reactionMedia": {
@@ -7642,6 +7674,22 @@
     "reaction_videos/crouch-1.mp4": "e7a461db26c3c3e9a57344b3f5000c17fe12fc4b6759c360f4a4bd9552ef0bbc",
     "reaction_videos/crouch-2.mp4": "bacfe05f2d196a163c973fa7c6b15db1f8eff3e34d542a46359337e826e9d5f0",
     "reaction_videos/crouch-3.mp4": "0c5df5e8ceb35486e2d5e7be2c7cfbad6396940110d9518a38090727df02d521",
-    "reaction_videos/crouch-4.mp4": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f"
+    "reaction_videos/crouch-4.mp4": "7746c2d7d5b11e5df0a9b680e7d79534d50c5767e64fd7fa410531c49b82123f",
+    "reaction_videos/squat-1.mp4": "be60c5692c89641ff47587b927630b0aa544a6662bf06a57b557d1357a32a614",
+    "reaction_videos/squat-2.mp4": "e7be54827ec304fa74fb8def0241f19dcf236e2254a8bb2e9cadc8d6485167a5",
+    "reaction_videos/squat-3.mp4": "89f04e1f3824edb417a7601dacc30687cb70412daf619ca2c2754e37267155e1",
+    "reaction_videos/squat-4.mp4": "906d02a5f7ff866e496cb88350e148b7c3baadd731693ee0a0c058367188cbf8",
+    "reaction_videos/hinge-1.mp4": "3820053d0d203a06c44cea84e0758f9e10ba430b3467d5e08445e0689972536a",
+    "reaction_videos/hinge-2.mp4": "9325cfc9e873992cfa25970afd50a8eacb9fd8826e9ed59e5babeb5892a51aaa",
+    "reaction_videos/hinge-3.mp4": "694283efa99c5e512dc243329545bd38772d62e45caaf6d5887e0b9db9158f13",
+    "reaction_videos/hinge-4.mp4": "1543d91a362cf9c237b2fa40364240d096e9a5626ba618395731c2a91e7328d7",
+    "reaction_videos/heel-1.mp4": "90fb264c9bd3f3b0b5e1169573afc929bbcc4f45ae98fa975af8699c2429b7b7",
+    "reaction_videos/heel-2.mp4": "7016e759a759f3f00dd855dc64524079dfdaab6c3f1f379849dbba1889270658",
+    "reaction_videos/heel-3.mp4": "56d38e5bc3d55b7976abd28cdfc6a892ae0f923983fc067c808fbfee816302fd",
+    "reaction_videos/heel-4.mp4": "d40b9e1f35375f0d50ca1efb34af7e14a17d4b9241ebdc5fc884019d849f36fa",
+    "reaction_videos/trunk-1.mp4": "2ad9f5c51f3fca1ae12e8b741abad846d7cd7804fc6c4381b9384e4b45adce34",
+    "reaction_videos/trunk-2.mp4": "26b5e4e36d3ae9bd45c5ce19fdb036bfe03858ef9828d82dfc75d889c09c99df",
+    "reaction_videos/trunk-3.mp4": "94f76abdf6a46160b18e2ddbc05cd2358d1807a76ae5e56b42d7cf90a806f32a",
+    "reaction_videos/trunk-4.mp4": "68070e4a256f47651bf0bbe24f0f9740f111bf4e3c4d15c2d285376bd766a222"
   }
 }

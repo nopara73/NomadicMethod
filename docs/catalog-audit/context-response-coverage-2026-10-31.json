@@ -1,0 +1,95 @@
+{
+  "catalogRevision": 107,
+  "baselineRevision": 106,
+  "cases": 1350,
+  "scope": "Fresh regular workouts, empty history, deterministic random draw 0.42 and clock1; 5 fully assessed uniform singleton fitness profiles, 54 existing single/pair physical modifier profiles, durations3/5/7/10/15. Application factory preflight, complete atomic feasibility and all normal physical/eligibility rules are active. Synthetic profiles do not represent every mixed or wider user training zone. Wall/Elevation/Light are not additional axes in these 54 validation profiles.",
+  "closed": 45,
+  "previousShortages": 70,
+  "remainingShortages": 25,
+  "successful": 1325,
+  "wrongDuration": 0,
+  "outOfZone": 0,
+  "remainingProfiles": [
+    {
+      "level": 4,
+      "modifiers": 17,
+      "modifierNames": [
+        "Insect",
+        "HardFloor"
+      ],
+      "durations": [
+        3,
+        5,
+        7,
+        10,
+        15
+      ],
+      "behavior": "Preparation stops before starting or replacing a workout; the existing strict five-choice gate remains in force. Known-axis eligibility and physical restrictions are unchanged."
+    },
+    {
+      "level": 5,
+      "modifiers": 3,
+      "modifierNames": [
+        "Insect",
+        "Silence"
+      ],
+      "durations": [
+        3,
+        5,
+        7,
+        10,
+        15
+      ],
+      "behavior": "Preparation stops before starting or replacing a workout; the existing strict five-choice gate remains in force. Known-axis eligibility and physical restrictions are unchanged."
+    },
+    {
+      "level": 5,
+      "modifiers": 17,
+      "modifierNames": [
+        "Insect",
+        "HardFloor"
+      ],
+      "durations": [
+        3,
+        5,
+        7,
+        10,
+        15
+      ],
+      "behavior": "Preparation stops before starting or replacing a workout; the existing strict five-choice gate remains in force. Known-axis eligibility and physical restrictions are unchanged."
+    },
+    {
+      "level": 5,
+      "modifiers": 513,
+      "modifierNames": [
+        "Insect",
+        "Shy"
+      ],
+      "durations": [
+        3,
+        5,
+        7,
+        10,
+        15
+      ],
+      "behavior": "Preparation stops before starting or replacing a workout; the existing strict five-choice gate remains in force. Known-axis eligibility and physical restrictions are unchanged."
+    },
+    {
+      "level": 5,
+      "modifiers": 528,
+      "modifierNames": [
+        "HardFloor",
+        "Shy"
+      ],
+      "durations": [
+        3,
+        5,
+        7,
+        10,
+        15
+      ],
+      "behavior": "Preparation stops before starting or replacing a workout; the existing strict five-choice gate remains in force. Known-axis eligibility and physical restrictions are unchanged."
+    }
+  ],
+  "preservation": "All prior 930 rating sets and training masks and all 21 prior reaction protocols are independently hash/semantic pinned in native and web tests."
+}

@@ -92,13 +92,15 @@ internal static class AtomicSequenceLineupSolver
                 singletonCandidatesByGroup, cancellationToken);
         }
 
-        BigInteger[] maximumUtilityByGroup = Enumerable.Range(0, groupCount)
+        AtomicSequenceCandidate[][] candidatesByGroup = Enumerable.Range(0, groupCount)
             .Select(groupIndex => candidates
                 .Where(candidate =>
                     (candidate.CoverageMask & (1UL << groupIndex)) != 0)
-                .Select(candidate => candidate.UtilitiesByGroup[groupIndex])
-                .DefaultIfEmpty(BigInteger.Zero)
-                .Max())
+                .ToArray())
+            .ToArray();
+        BigInteger[] maximumUtilityByGroup = candidatesByGroup
+            .Select((group, index) => group.Aggregate(BigInteger.Zero,
+                (maximum, candidate) => BigInteger.Max(maximum, candidate.UtilitiesByGroup[index])))
             .ToArray();
 
         // The singleton matcher is polynomial and usually reaches the exact
@@ -118,14 +120,45 @@ internal static class AtomicSequenceLineupSolver
         void Search(ulong decidedMask, ulong coveredMask, BigInteger utility)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            // Keep the cheap ceiling for ordinary singleton-optimal plans.
+            // Only ambiguous branches need the tighter availability/cost scan.
+            if (best is not null)
+            {
+                BigInteger ceiling = utility;
+                for (int index = 0; index < groupCount; index++)
+                    if ((coveredMask & (1UL << index)) == 0) ceiling += maximumUtilityByGroup[index];
+                if (ceiling <= best.Utility) return;
+            }
             BigInteger upperBound = utility;
+            int remainingBlocks = workoutMinutes - selected.Sum(candidate => candidate.BlockCount);
+            long minimumScaledBlocks = 0;
             for (int groupIndex = 0; groupIndex < groupCount; groupIndex++)
             {
-                if ((coveredMask & (1UL << groupIndex)) == 0)
+                ulong groupMask = 1UL << groupIndex;
+                if ((coveredMask & groupMask) != 0) continue;
+                BigInteger? maximum = null;
+                long minimumCost = long.MaxValue;
+                foreach (AtomicSequenceCandidate candidate in candidatesByGroup[groupIndex])
                 {
-                    upperBound += maximumUtilityByGroup[groupIndex];
+                    if (selectedMovementIds.Contains(candidate.MovementId) ||
+                        candidate.BlockCount > remainingBlocks ||
+                        candidate.CoverageMask != groupMask &&
+                            (candidate.CoverageMask & decidedMask) != 0) continue;
+                    BigInteger value = candidate.UtilitiesByGroup[groupIndex];
+                    maximum = maximum is null ? value : BigInteger.Max(maximum.Value, value);
+                    minimumCost = Math.Min(minimumCost,
+                        (long)candidate.BlockCount * groupCount / BitOperations.PopCount(candidate.CoverageMask));
                 }
+                // A singleton decision rules out every overlapping atomic
+                // placement, and a used movement cannot supply another slot.
+                // Only still-possible choices may contribute to this bound.
+                if (maximum is null) return;
+                upperBound += maximum.Value;
+                minimumScaledBlocks += minimumCost;
             }
+            // Split each candidate's cost across its covered groups, rounding
+            // down. This is a lower bound, so it cannot reject a fitting plan.
+            if (minimumScaledBlocks > (long)remainingBlocks * groupCount) return;
             if (best is not null && upperBound <= best.Utility)
             {
                 return;

@@ -1,0 +1,97 @@
+{
+  "catalogRevision": 107,
+  "previousRevision": 106,
+  "previousRecordCount": 930,
+  "previousRatingsAndClaimsSha256": "67600a327d968d3dad8aa4145864a11310fe30c1754f5deff6a575f70f61b789",
+  "durations": [
+    3,
+    5,
+    7,
+    10,
+    15
+  ],
+  "closedProfiles": [
+    {
+      "level": 5,
+      "modifiers": 16
+    },
+    {
+      "level": 5,
+      "modifiers": 18
+    },
+    {
+      "level": 5,
+      "modifiers": 20
+    },
+    {
+      "level": 5,
+      "modifiers": 28
+    },
+    {
+      "level": 5,
+      "modifiers": 144
+    },
+    {
+      "level": 5,
+      "modifiers": 514
+    },
+    {
+      "level": 5,
+      "modifiers": 1040
+    },
+    {
+      "level": 5,
+      "modifiers": 3088
+    },
+    {
+      "level": 5,
+      "modifiers": 4112
+    }
+  ],
+  "families": [
+    {
+      "id": 1741,
+      "family": "squat",
+      "movementId": 101,
+      "sources": [
+        101,
+        113,
+        550,
+        619
+      ]
+    },
+    {
+      "id": 1742,
+      "family": "hinge",
+      "movementId": 146,
+      "sources": [
+        146,
+        193,
+        251,
+        200
+      ]
+    },
+    {
+      "id": 1743,
+      "family": "heel",
+      "movementId": 187,
+      "sources": [
+        187,
+        295,
+        555,
+        565
+      ]
+    },
+    {
+      "id": 1744,
+      "family": "trunk",
+      "movementId": 804,
+      "sources": [
+        804,
+        818,
+        906,
+        954
+      ]
+    }
+  ]
+}

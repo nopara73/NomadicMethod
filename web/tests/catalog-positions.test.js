@@ -28,7 +28,7 @@ test("the pose review changes only execution geometry and retains the historical
 });
 
 test("all catalog poses and runtime media have current independent reviews", async () => {
-  assert.deepEqual(await checkFixedPositionReviews(), { exercises: 930, oppositeBlocks: 408, reactionClips: 20 });
+  assert.deepEqual(await checkFixedPositionReviews(), { exercises: 934, oppositeBlocks: 408, reactionClips: 36 });
 });
 
 test("the pose gate rejects alternating motion with a missing opposite linked/direction position", () => {
@@ -60,7 +60,8 @@ test("revision99 retains all changed protocols, including zero-block linked memb
     for (const field of ["sideSequence", "directionSequence", "sequenceBlocks"])
       assert.deepEqual(actual[field], old[field], `${old.id} ${field}`);
   }
-  assert.deepEqual(getWorkoutCatalog(catalog,102), catalog);
+  assert.deepEqual(getWorkoutCatalog(catalog,102), catalog.filter(e => e.id < 1741));
+  assert.deepEqual(getWorkoutCatalog(catalog,107), catalog);
 });
 
 for (const id of [103, 1144, 307]) for (const phase of ["Ready", "Movement", "Rest"])

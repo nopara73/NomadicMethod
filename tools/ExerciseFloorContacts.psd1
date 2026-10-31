@@ -2,6 +2,7 @@
     # The existing human-reviewed catalog is feet-only. New identities must
     # explicitly declare every support contact, including transitions.
     FeetOnly = @(
+        1741, 1742, 1743, 1744,
         1737, 1738, 1739, 1740,
         1730, 1731, 1732, 1733,
         1727,

@@ -115,6 +115,7 @@
     # Reuse is allowed only when the reviewed source is human footage and the
     # target movement has identical mechanics.
     ReviewedExactCopies = @(
+        1741, 1742, 1743, 1744,
         1605, 1615, 1625, 1635, 1645,
         1621,
         1602, 1603, 1604, 1612, 1613, 1614, 1622, 1623, 1624, 1632, 1633, 1634, 1642, 1643, 1644

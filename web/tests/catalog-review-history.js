@@ -5,13 +5,25 @@ import { exerciseIdentityName } from "../exercise-names.js";
 const names = JSON.parse(readFileSync(new URL(
   "../../NomadicMethod/Assets/exercise_names.json", import.meta.url), "utf8"));
 const reactionLabels = new Map(names.reactionLabels.map(entry => [entry.name, entry.identityName]));
+const frozenReactionSource = readFileSync(new URL(
+  '../../docs/catalog-audit/reaction-protocols-through106.json', import.meta.url), 'utf8').replaceAll('\r\n', '\n');
+const frozenReaction = JSON.parse(frozenReactionSource);
+
+function beforeReactionAdmissions(document) {
+  const previous = { ...document,
+    families: document.families.filter(family => frozenReaction.families.some(old => old.id === family.id)),
+    plans: document.plans.filter(plan => frozenReaction.plans.some(old => old.exerciseId === plan.exerciseId)),
+  };
+  assert.deepEqual(previous, frozenReaction, 'Existing response families and protocols must stay immutable');
+  return previous;
+}
 
 export const beforeNameReview = exercise => ({
   ...exercise, name: exerciseIdentityName(exercise.id, exercise.name),
 });
 
 export function beforeReactionLabelReview(document) {
-  const previous = structuredClone(document);
+  const previous = structuredClone(beforeReactionAdmissions(document));
   for (const family of previous.families)
     for (const action of family.actions)
       action.label = reactionLabels.get(action.label) ?? action.label;
@@ -19,6 +31,8 @@ export function beforeReactionLabelReview(document) {
 }
 
 export function beforeReactionLabelReviewSource(source) {
+  beforeReactionAdmissions(JSON.parse(source));
+  source = frozenReactionSource;
   for (const [current, previous] of reactionLabels)
     source = source.replaceAll(`"label": ${JSON.stringify(current)}`, `"label": ${JSON.stringify(previous)}`);
   return source;
@@ -31,13 +45,17 @@ const corrections = new Map(surfaceReview.entries
   .map(entry => [entry.id, entry]));
 const varietyReview = JSON.parse(readFileSync(new URL(
   "../../docs/catalog-audit/post-filter-variety-review-2026-10-31.json", import.meta.url), "utf8"));
+const contextReview = JSON.parse(readFileSync(new URL(
+  '../../docs/catalog-audit/context-response-review-2026-10-31.json', import.meta.url), 'utf8'));
 
 // Dated fingerprints retain every field. Restore only the separately reviewed
 // later surface correction when comparing metadata from an earlier review.
 export function beforeSurfaceReview(exercise, reviewedRevision) {
   exercise = beforeNameReview(exercise);
-  const amendment = varietyReview.metadataAmendments.find(entry => entry.id === exercise.id);
-  if (amendment && reviewedRevision < varietyReview.catalogRevision) {
+  const amendment = [...varietyReview.metadataAmendments, ...contextReview.metadataAmendments]
+    .find(entry => entry.id === exercise.id);
+  const amendmentRevision = contextReview.metadataAmendments.includes(amendment) ? contextReview.catalogRevision : varietyReview.catalogRevision;
+  if (amendment && reviewedRevision < amendmentRevision) {
     for (const [field, value] of Object.entries(amendment.currentFields)) assert.equal(exercise[field], value);
     exercise = {...exercise, ...amendment.previousFields};
     for (const field of amendment.previousAbsentFields) delete exercise[field];

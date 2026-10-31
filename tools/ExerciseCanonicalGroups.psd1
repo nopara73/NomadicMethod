@@ -960,4 +960,9 @@
     1738 = @{ Primary = 'ScapularGirdle'; Secondary = @('BreathingMuscles') }
     1739 = @{ Primary = 'Chest'; Secondary = @('BreathingMuscles') }
     1740 = @{ Primary = 'ShoulderAbductors'; Secondary = @('BreathingMuscles') }
+
+    1741 = @{ Primary = 'MedialAndDeepKneeExtensors'; Secondary = @('LateralKneeExtensors', 'GlutealExtensors') }
+    1742 = @{ Primary = 'PosteriorThighAndKneeFlexors'; Secondary = @('SpinalExtensors') }
+    1743 = @{ Primary = 'CalfDeepPosteriorLegAndPlantarFoot'; Secondary = @('Soleus') }
+    1744 = @{ Primary = 'AbdominalWall'; Secondary = @() }
 }
