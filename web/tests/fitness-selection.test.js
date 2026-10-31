@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import test from "node:test";
 import { FITNESS_DIMENSIONS, roundFitnessLevel, isFitnessEligible, isFitnessSequenceEligible, fitnessZones, inspectFitnessProfile, orderFitnessCandidates,
-  calculateFavouriteFitnessProfile, parseFitnessRatings } from "../fitness-profile.js";
+  calculateFavouriteFitnessProfile, parseFitnessRatings, serializeFitnessRatings } from "../fitness-profile.js";
 import { WorkoutSession, createDefaultState, getResolution,
   WORKOUT_MODIFIERS as M } from "../workout.js";
 
@@ -125,6 +125,25 @@ for (const outcome of preferences.difficultyResponses) {
   });
 }
 
+test("loaded training claims reach foreground and worker-transported planning", () => {
+  const {exercises, ratings, session} = discoveryFixture();
+  ratings.get(1)[8] = [1];
+  ratings.set(6, FITNESS_DIMENSIONS.map((_, dimension) => dimension === 1 ? [4] : []));
+  const source = {schemaVersion:2, dimensions:[...FITNESS_DIMENSIONS],
+    ratings:Object.fromEntries([...ratings].map(([id, axes]) => [id, axes.map(set => set.length ? set : [1])])),
+    trainingCharacteristics:Object.fromEntries([...ratings].map(([id, axes]) => [id, axes.map(set => set.length > 0)]))};
+  const loaded = parseFitnessRatings(source);
+  session.state.keptExerciseRootIdsBySelectionGroupId = {};
+  session.state.scores[6] = 10000;
+  for (const dependency of [loaded, parseFitnessRatings(structuredClone(serializeFitnessRatings(loaded)))]) {
+    const planner = new WorkoutSession(exercises, structuredClone(session.state), () => 0, now, dependency);
+    assert.equal(planner.getFitnessEligibility().get(6), false);
+    planner.startWorkout(3, 0);
+    assert.ok(planner.state.activeWorkoutSession.initialSelections.every(selection => selection.rootExerciseId !== 6));
+    assert.equal(planner.getActiveGroups().length, 3);
+  }
+});
+
 test("phase refusals apply to aliases before a fitness profile exists", () => {
   const {session}=discoveryFixture();
   session.state.workoutHistory=[];
@@ -244,18 +263,19 @@ test("worker receives the same read-only rating dependency as foreground plannin
     constructor(...values) { args = values; this.state = values[1]; }
     prepareWorkout() {}
   }
-  vm.runInNewContext(read("../workout-preparation-worker.js").replace(/^import .*;\r?\n/, ""), {
-    WorkoutSession: Session,
+  vm.runInNewContext(read("../workout-preparation-worker.js").replace(/^import .*;\r?\n/gm, ""), {
+    WorkoutSession: Session, parseFitnessRatings,
     self: {addEventListener: (_, callback) => { receive = callback; },
       postMessage: value => { sent = value; }},
   });
   receive({data:{generation:1, exercises:catalog, state:createDefaultState(),
-    fitnessRatings:ratings, minutes:3, modifiers}});
-  assert.equal(args[4], ratings);
+    fitnessRatings:structuredClone(serializeFitnessRatings(ratings)), minutes:3, modifiers}});
+  assert.deepEqual([...args[4]], [...ratings]);
+  assert.deepEqual([...args[4].trainingCharacteristics], [...ratings.trainingCharacteristics]);
   assert.equal(sent.generation, 1);
   assert.ok(!sent.error);
   const app = read("../app.js");
-  assert.match(app, /exercises: exerciseCatalog,\s+fitnessRatings,/);
+  assert.match(app, /exercises: exerciseCatalog,\s+fitnessRatings: serializeFitnessRatings\(fitnessRatings\),/);
 });
 
 for (const entry of planningCases) {

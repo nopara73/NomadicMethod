@@ -21,7 +21,7 @@ test('every exercise has an explicit conditional level set for all ten character
   assert.equal(rows.length, catalog.length);
   assert.deepEqual(rows.map(row => row.id), catalog.map(e => e.id).sort((a,b) => a-b));
   assert.ok(rows.every(row => row.reviewStatus === 'provisional-training-level-assessment'));
-  assert.ok(rows.every(row => dimensions.every(d => Array.isArray(row[d]))));
+  assert.ok(rows.every(row => dimensions.every(d => Array.isArray(row[d]) && row[d].length > 0)));
   assert.equal(renderScores(rows), read('../../docs/catalog-audit/acsm-fitness-ceiling-scores.csv').replaceAll('\r\n','\n'));
 });
 test('palms and other actual adjustable-resistance actions support several strength and endurance levels', () => {
@@ -33,7 +33,8 @@ test('palms and other actual adjustable-resistance actions support several stren
     assert.match(row.trainingConditions, /opposing force|sustained force/);
   }
   assert.deepEqual(rows.find(r => r.id === 115).muscularStrength, [3,4]);
-  assert.deepEqual(rows.find(r => r.id === 518).cardiorespiratoryEndurance, []);
+  assert.deepEqual(rows.find(r => r.id === 518).cardiorespiratoryEndurance, [1]);
+  assert.equal(rows.find(r => r.id === 518).trainingCharacteristics.cardiorespiratoryEndurance, false);
 });
 test('coverage counts supported sets, deduplicates within each cell and passes every minimum', () => {
   const { rows, summary } = audit();
@@ -41,7 +42,7 @@ test('coverage counts supported sets, deduplicates within each cell and passes e
   assert.equal(coveragePolicy.minimumDistinctSessionMovements, 5);
   assert.doesNotThrow(() => assertMinimumCoverage(summary));
   for (const d of dimensions) for (const level of [1,2,3,4,5]) {
-    const expected = [...new Set(rows.filter(r => r[d].includes(level)).map(r => r.sessionMovementId))].sort((a,b)=>a-b);
+    const expected = [...new Set(rows.filter(r => r.trainingCharacteristics[d] && r[d].includes(level)).map(r => r.sessionMovementId))].sort((a,b)=>a-b);
     assert.deepEqual(summary.coverage[d][level].sessionMovementIds, expected);
   }
   assert.equal(renderCoverageReport(summary), read('../../docs/catalog-audit/acsm-fitness-ceiling-gaps.md').replaceAll('\r\n','\n'));
@@ -73,7 +74,7 @@ test('profile contributor diagnostics distinguish precise evidence from trainabl
   assert.equal(coverage.speed[3].count, 0);
 });
 test('invalid, repeated, unsorted, zero and fractional levels are rejected', () => {
-  for (const invalid of [5,[0],[6],[1,1],[3,2],[1.5]]) {
+  for (const invalid of [[],5,[0],[6],[1,1],[3,2],[1.5]]) {
     const copy = structuredClone(assessment); Object.values(copy.profiles)[0].levels.power = invalid;
     assert.throws(() => buildAudit(catalog,copy,context), /Invalid power levels/);
   }
@@ -86,7 +87,7 @@ test('invalid, repeated, unsorted, zero and fractional levels are rejected', () 
 test('training conditions are required and static holds cannot claim speed or power', () => {
   const copy=structuredClone(assessment);const p=profileFor(copy,134);
   p.trainingConditions='';assert.throws(()=>buildAudit(catalog,copy,context), /training conditions/);
-  p.trainingConditions='A deliberately specified synthetic test condition.';p.levels.power=[1];
+  p.trainingConditions='A deliberately specified synthetic test condition.';p.levels.power=[1];p.trainingCharacteristics.power=true;
   assert.throws(()=>buildAudit(catalog,copy,context), /Static exercise/);
 });
 test('reaction support follows actual decision task, including noncontiguous choice sets', () => {
@@ -106,7 +107,8 @@ function fixture() {
       const id=level*10+n;ids.push(id);exercises.push({id,name:`Synthetic ${id}`,mode:'Repetition',presentation:'Motion',reactionCueLevel:2});
       if(level!==2)reactionProtocols.set(id,{protocol:{1:'Initiation',3:'TwoChoice',4:'FourChoice',5:'ContextChoice'}[level]});
     }
-    profiles[level]={levels:Object.fromEntries(dimensions.map(d=>[d,[level]])),exerciseIds:ids,
+    profiles[level]={levels:Object.fromEntries(dimensions.map(d=>[d,[level]])),
+      trainingCharacteristics:Object.fromEntries(dimensions.map(d=>[d,true])),exerciseIds:ids,
       basis:'Synthetic boundary fixture only, not an exercise assessment.',
       trainingConditions:'Synthetic boundary fixture only, not a physiological training claim.'};
   }

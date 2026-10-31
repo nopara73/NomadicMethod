@@ -2,7 +2,7 @@ import { frozenWorkoutProtocols } from "./workout-protocol-history.js";
 import "./light-cadence.js";
 import { copyProfileSnapshot } from "./completion-profile.js";
 import { calculateFitnessProfile, inspectFitnessProfile, FITNESS_EVIDENCE_VERSION, FITNESS_DIMENSIONS, fitnessZones,
-  isFitnessSequenceEligible, hasFitnessTrainingClaim, latestFitnessMovementDecisions, FITNESS_UNAVAILABLE_MESSAGE, orderFitnessCandidates } from "./fitness-profile.js";
+  isFitnessSequenceEligible, latestFitnessMovementDecisions, FITNESS_UNAVAILABLE_MESSAGE, orderFitnessCandidates } from "./fitness-profile.js";
 
 import "./workout-duration.js";
 
@@ -7297,8 +7297,8 @@ export class WorkoutSession {
     const zones = fitnessZones(inspectFitnessProfile(this.catalogExercises, this.state, this.fitnessRatings));
     return new Map([...this.sequenceExercisesByRootId].map(([id, members]) => [id,
       isFitnessSequenceEligible(members.map(member => this.fitnessRatings.get(member.id)), zones,
-        members.map(member => Array.from({length:this.fitnessRatings.get(member.id)?.length ?? FITNESS_DIMENSIONS.length},
-          (_,dimension)=>hasFitnessTrainingClaim(this.fitnessRatings,member.id,dimension))))]));
+        this.fitnessRatings.trainingCharacteristics
+          ? members.map(member => this.fitnessRatings.trainingCharacteristics.get(member.id)) : null)]));
   }
 
   getDifficultyDeclinedMovementIds() {

@@ -2659,9 +2659,9 @@ public sealed partial class ExerciseSessionService
         return _sequenceExercisesByRootId.ToDictionary(entry => entry.Key,
             entry => FitnessSelectionPolicy.IsSequenceEligible(entry.Value.Select(member =>
                 _fitnessRatings.GetValueOrDefault(member.Id)), zones,
-                entry.Value.Select(member => (IReadOnlyList<bool>?)Enumerable.Range(0,
-                    _fitnessRatings.GetValueOrDefault(member.Id)?.Length ?? FitnessProfilePolicy.Dimensions.Length)
-                    .Select(dimension => FitnessProfilePolicy.HasTrainingClaim(_fitnessRatings, member.Id, dimension)).ToArray())));
+                _fitnessRatings is FitnessRatingCatalog
+                    ? entry.Value.Select(member => FitnessProfilePolicy.GetTrainingCharacteristics(_fitnessRatings, member.Id))
+                    : null));
     }
 
     private HashSet<int> GetDifficultyDeclinedMovementIds(WorkoutState state) =>

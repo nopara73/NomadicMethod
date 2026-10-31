@@ -24,6 +24,8 @@ Gate: **PASS**. 0 of 50 cells are below the minimum; 0 characteristic-level plac
 
 Every combination meets the minimum.
 
+Every exercise has ten explicit nonempty ratings from 1 to 5. Level 1 is the minimum assessed demand. Reviewed training-characteristic flags govern training claims and coverage; minimum ratings do not create training claims or fitness eligibility exemptions.
+
 Ratings are provisional NM training-level judgments for repeated 45-second blocks. Each supported level needs a meaningful training case using the actual movement and its documented adjustments. The coverage requirement supplies no evidence for a rating and never authorizes score inflation or unreviewed admissions.
 
 ## Spiderweb contributors (diagnostic)

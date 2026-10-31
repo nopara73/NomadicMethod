@@ -10,6 +10,22 @@ public sealed record FitnessEvidence(int MovementId, int ExerciseId, string Name
 public sealed record FitnessProfileAxis(double Mean, IReadOnlyList<FitnessEvidence> Contributions,
     int[]? BestLevels = null);
 
+// Complete demand ratings and reviewed training claims are separate contracts.
+public sealed class FitnessRatingCatalog : System.Collections.ObjectModel.ReadOnlyDictionary<int, int[][]>
+{
+    private readonly IReadOnlyDictionary<int, bool[]> _trainingCharacteristics;
+
+    internal FitnessRatingCatalog(Dictionary<int, int[][]> ratings, Dictionary<int, bool[]> trainingCharacteristics)
+        : base(ratings) => _trainingCharacteristics = trainingCharacteristics;
+
+    public IReadOnlyList<bool>? GetTrainingCharacteristics(int exerciseId) =>
+        _trainingCharacteristics.GetValueOrDefault(exerciseId);
+
+    public bool HasTrainingClaim(int exerciseId, int dimension) =>
+        _trainingCharacteristics.TryGetValue(exerciseId, out bool[]? claims) &&
+        dimension >= 0 && dimension < claims.Length && claims[dimension];
+}
+
 /// <summary>Equal-weight challenge estimates from each movement's latest difficulty response.</summary>
 public static class FitnessProfilePolicy
 {
@@ -44,37 +60,63 @@ public static class FitnessProfilePolicy
         ["agility"], ["balance"], ["coordination"], ["power"], ["reaction"], ["speed"],
     ];
 
-    public static IReadOnlyDictionary<int, int[][]> Load(Stream source)
+    public static FitnessRatingCatalog Load(Stream source)
     {
         using JsonDocument document = JsonDocument.Parse(source);
         JsonElement root = document.RootElement;
-        if (root.GetProperty("schemaVersion").GetInt32() != 1 ||
+        if (root.GetProperty("schemaVersion").GetInt32() != 2 ||
             !root.GetProperty("dimensions").EnumerateArray()
                 .Select(value => value.GetString()).SequenceEqual(Dimensions))
-        {
             throw new InvalidDataException("Invalid fitness rating schema.");
-        }
-        var result = new Dictionary<int, int[][]>();
+
+        var ratings = new Dictionary<int, int[][]>();
+        var trainingCharacteristics = new Dictionary<int, bool[]>();
+        JsonElement claimsByExercise = root.GetProperty("trainingCharacteristics");
         foreach (JsonProperty property in root.GetProperty("ratings").EnumerateObject())
         {
             int[][] levels = property.Value.EnumerateArray()
-                .Select(value => value.EnumerateArray().Select(level => level.GetInt32()).ToArray())
-                .ToArray();
+                .Select(ReadLevelSet).ToArray();
             if (!int.TryParse(property.Name, out int id) || id <= 0 ||
                 levels.Length != Dimensions.Length || levels.Any(set =>
-                    set.Any(value => value is < 1 or > 5) ||
-                    !set.SequenceEqual(set.Distinct().Order())))
-            {
-                throw new InvalidDataException("Invalid exercise fitness ratings.");
-            }
-            result.Add(id, levels);
+                    set.Length == 0 || set.Any(value => value is < 1 or > 5) ||
+                    !set.SequenceEqual(set.Distinct().Order())) ||
+                !claimsByExercise.TryGetProperty(property.Name, out JsonElement claimValues))
+                throw new InvalidDataException("Every exercise requires ten nonempty fitness ratings from 1 through 5 and reviewed training claims.");
+            JsonElement[] claimElements = claimValues.EnumerateArray().ToArray();
+            if (claimElements.Length != Dimensions.Length || claimElements.Any(value =>
+                    value.ValueKind is not (JsonValueKind.True or JsonValueKind.False)))
+                throw new InvalidDataException("Invalid exercise training characteristics.");
+            bool[] claims = claimElements.Select(value => value.GetBoolean()).ToArray();
+            if (levels.Where((set, dimension) => !claims[dimension]).Any(set => !set.SequenceEqual(new[] { 1 })))
+                throw new InvalidDataException("A characteristic without a training claim must have the explicit minimum level 1.");
+            ratings.Add(id, levels);
+            trainingCharacteristics.Add(id, claims);
         }
-        return result;
+        if (claimsByExercise.EnumerateObject().Count() != ratings.Count)
+            throw new InvalidDataException("Training characteristics must match the rated exercises.");
+        return new FitnessRatingCatalog(ratings, trainingCharacteristics);
+    }
+
+    private static int[] ReadLevelSet(JsonElement value)
+    {
+        if (value.ValueKind != JsonValueKind.Array)
+            throw new InvalidDataException("An exercise rating must be a nonempty level set from 1 through 5.");
+        return value.EnumerateArray().Select(level =>
+            level.ValueKind == JsonValueKind.Number && level.TryGetInt32(out int number)
+                ? number : throw new InvalidDataException("Exercise rating levels must be integers from 1 through 5.")).ToArray();
     }
 
     public static bool HasTrainingClaim(IReadOnlyDictionary<int, int[][]> ratings, int exerciseId, int dimension) =>
+        ratings is FitnessRatingCatalog catalog ? catalog.HasTrainingClaim(exerciseId, dimension) :
         ratings.TryGetValue(exerciseId, out int[][]? levels) && dimension >= 0 &&
         dimension < levels.Length && levels[dimension].Length > 0;
+
+    public static IReadOnlyList<bool>? GetTrainingCharacteristics(IReadOnlyDictionary<int, int[][]> ratings, int exerciseId) =>
+        (ratings as FitnessRatingCatalog)?.GetTrainingCharacteristics(exerciseId);
+
+    private static int StrongestTrainingLevel(IReadOnlyDictionary<int, int[][]> ratings, int exerciseId, int[][] levels) =>
+        levels.Where((_, dimension) => HasTrainingClaim(ratings, exerciseId, dimension))
+            .SelectMany(set => set).DefaultIfEmpty(0).Max();
 
     public static double[] Calculate(
         IReadOnlyList<Exercise> exercises,
@@ -95,13 +137,14 @@ public static class FitnessProfilePolicy
         foreach (var (movementId, (exercise, decision)) in latest.OrderBy(entry => entry.Key))
         {
             if (!ratings.TryGetValue(exercise.Id, out int[][]? levels)) continue;
-            int strongest = levels.SelectMany(set => set).DefaultIfEmpty(0).Max();
+            int strongest = StrongestTrainingLevel(ratings, exercise.Id, levels);
             for (int dimension = 0; dimension < Dimensions.Length; dimension++)
             {
                 int[] set = levels[dimension];
                 // Too easy describes the whole exercise; love and too hard only
                 // identify its strongest demands as appropriate or excessive.
-                if (set.Length == 0 || decision.Outcome != ExerciseOutcome.TooEasy && set[^1] != strongest) continue;
+                if (!HasTrainingClaim(ratings, exercise.Id, dimension) || set.Length == 0 ||
+                    decision.Outcome != ExerciseOutcome.TooEasy && set[^1] != strongest) continue;
                 contributions[dimension].Add(new(movementId, exercise.Id, exercise.Name,
                     [.. set], decision.Outcome, SupportedLevels(set, decision.Outcome)));
             }
@@ -209,7 +252,7 @@ public static class FitnessProfilePolicy
         {
             if (!ratings.TryGetValue(exercise.Id, out int[][]? levels))
                 continue;
-            int strongest = levels.SelectMany(set => set).DefaultIfEmpty(0).Max();
+            int strongest = StrongestTrainingLevel(ratings, exercise.Id, levels);
             int movementId = exercise.SessionMovementId > 0 ? exercise.SessionMovementId : exercise.Id;
             if (!movements.TryGetValue(movementId, out FitnessContribution?[]? values))
                 movements[movementId] = values = new FitnessContribution?[Dimensions.Length];
@@ -219,7 +262,8 @@ public static class FitnessProfilePolicy
                 // An ambiguous strongest range never promotes a lower secondary rating.
                 // Equal saved variants use the lowest id, independent of input order.
                 FitnessContribution? prior = values[dimension];
-                if (set.Length == 1 && set[0] == strongest && (prior is null ||
+                if (HasTrainingClaim(ratings, exercise.Id, dimension) &&
+                    set.Length == 1 && set[0] == strongest && (prior is null ||
                     set[0] > prior.Level || (set[0] == prior.Level && exercise.Id < prior.ExerciseId)))
                     values[dimension] = new(movementId, exercise.Id, exercise.Name, set[0]);
             }

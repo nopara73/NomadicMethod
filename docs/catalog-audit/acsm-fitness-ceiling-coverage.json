@@ -1,12 +1,18 @@
 {
-  "scoringVersion": 4,
-  "representation": "trainable-level-sets",
+  "scoringVersion": 5,
+  "representation": "complete-level-sets",
   "status": "provisional",
-  "assessedOn": "2026-10-26",
+  "assessedOn": "2026-10-31",
   "blockSeconds": 45,
   "catalogRevision": 102,
   "catalogSha256": "8185768614fd907d1662b11eadeb6855a6a77e656476469533cf7479f3502566",
   "exerciseCount": 919,
+  "ratingScale": {
+    "minimum": 1,
+    "maximum": 5,
+    "minimumMeaning": "The lowest assessed demand on a characteristic, including minimal demand. Every characteristic has an explicit 1–5 level set. Training claims are reviewed separately and do not grant fitness eligibility exemptions."
+  },
+  "emptyRatingCells": 0,
   "profileCount": 209,
   "coveragePolicy": {
     "schemaVersion": 2,

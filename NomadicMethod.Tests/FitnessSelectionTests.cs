@@ -51,6 +51,27 @@ public sealed class FitnessSelectionTests
     }
 
     [Fact]
+    public void LoadedTrainingClaimsReachTheActualPlanner()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture();
+        ratings[1][8] = [1];
+        ratings[6] = Enumerable.Range(0, 10).Select(axis => axis == 1 ? new[] { 4 } : Array.Empty<int>()).ToArray();
+        var claims = ratings.ToDictionary(entry => entry.Key, entry => entry.Value.Select(set => set.Length > 0).ToArray());
+        var complete = ratings.ToDictionary(entry => entry.Key,
+            entry => entry.Value.Select(set => set.Length > 0 ? set : new[] { 1 }).ToArray());
+        string json = JsonSerializer.Serialize(new { schemaVersion = 2, dimensions = FitnessProfilePolicy.Dimensions,
+            ratings = complete, trainingCharacteristics = claims });
+        using var source = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json));
+        FitnessRatingCatalog loaded = FitnessProfilePolicy.Load(source);
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        exercises.Single(exercise => exercise.Id == 6).Score = 10000;
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: loaded);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.DoesNotContain(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 6);
+        Assert.Equal(3, service.GetActiveGroups(state).Count);
+    }
+
+    [Fact]
     public void PhaseRefusalsApplyToAliasesBeforeAnyFitnessProfileExists()
     {
         var (exercises, ratings, state) = DiscoveryFixture();

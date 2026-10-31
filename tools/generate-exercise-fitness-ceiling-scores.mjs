@@ -4,7 +4,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { resolveReactionDrills } from '../web/reaction-drills.js';
-import { calculateFavouriteFitnessProfile } from '../web/fitness-profile.js';
+import { calculateFavouriteFitnessProfile, parseFitnessRatings } from '../web/fitness-profile.js';
 
 export const dimensions = Object.freeze([
   'cardiorespiratoryEndurance', 'muscularStrength', 'muscularEndurance',
@@ -35,10 +35,11 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
   if (!Array.isArray(catalog) || catalog.length === 0) {
     throw new Error('Exercise catalog is empty or invalid.');
   }
-  if (assessment.scoringVersion !== 4 || assessment.representation !== 'trainable-level-sets' || assessment.status !== 'provisional' ||
+  if (assessment.scoringVersion !== 5 || assessment.representation !== 'complete-level-sets' ||
+      assessment.levelScale?.minimum !== 1 || assessment.levelScale?.maximum !== 5 || assessment.status !== 'provisional' ||
       assessment.blockSeconds !== 45 ||
       JSON.stringify(assessment.dimensions) !== JSON.stringify(dimensions)) {
-    throw new Error('Invalid version-4, explicit-level-set, provisional, 45-second assessment schema.');
+    throw new Error('Invalid version-5, complete-level-set, provisional, 45-second assessment schema.');
   }
   if (assessment.catalogRevision !== catalogRevision ||
       assessment.catalogSha256 !== catalogSha256) {
@@ -64,30 +65,39 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
         JSON.stringify([...dimensions].sort())) {
       throw new Error(`Assessment profile ${profileName} must specify all ten characteristics.`);
     }
+    if (JSON.stringify(Object.keys(profile.trainingCharacteristics ?? {}).sort()) !==
+        JSON.stringify([...dimensions].sort()))
+      throw new Error(`Assessment profile ${profileName} must review training claims for all ten characteristics.`);
     for (const dimension of dimensions) {
       const levels = profile.levels[dimension];
-      if (!Array.isArray(levels) || levels.some((level, index) =>
+      if (!Array.isArray(levels) || levels.length === 0 || levels.some((level, index) =>
         !Number.isInteger(level) || level < 1 || level > 5 || (index > 0 && level <= levels[index - 1]))) {
-        throw new Error(`Invalid ${dimension} levels in ${profileName}; expected distinct ascending integers from 1 to 5, or an empty array.`);
+        throw new Error(`Invalid ${dimension} levels in ${profileName}; expected a nonempty set of distinct ascending integers from 1 to 5.`);
       }
+    }
+    for (const dimension of dimensions) {
+      const claim = profile.trainingCharacteristics[dimension];
+      if (typeof claim !== 'boolean' || !claim && JSON.stringify(profile.levels[dimension]) !== '[1]')
+        throw new Error(`Assessment profile ${profileName} needs an explicit training verdict; an untrained characteristic has minimum level 1.`);
     }
     for (const id of profile.exerciseIds) {
       if (!byId.has(id)) throw new Error(`Unknown exercise ${id} in ${profileName}.`);
       if (assigned.has(id)) throw new Error(`Exercise ${id} is assessed more than once.`);
       const exercise = byId.get(id);
-      if (profile.levels.reactionTime.length > 0 && !(exercise.reactionCueLevel > 0)) {
+      if (profile.trainingCharacteristics.reactionTime && !(exercise.reactionCueLevel > 0)) {
         throw new Error(`Exercise ${id} needs an unpredictable external cue for a reaction-time claim.`);
       }
       const protocol = reactionProtocols.get(id)?.protocol;
       const reactionSupport = protocol
         ? ({ Initiation: [1], StopOnly: [2], TwoChoice: [1,3], FourChoice: [1,3,4], ContextChoice: [1,3,4,5] })[protocol]
         : exercise.reactionCueLevel > 0 ? [1,2] : [];
-      if (!reactionSupport || profile.levels.reactionTime.some(level => !reactionSupport.includes(level)) ||
-          (protocol && !profile.levels.reactionTime.includes(reactionSupport.at(-1)))) {
+      if (profile.trainingCharacteristics.reactionTime &&
+          (!reactionSupport || profile.levels.reactionTime.some(level => !reactionSupport.includes(level)) ||
+           (protocol && !profile.levels.reactionTime.includes(reactionSupport.at(-1))))) {
         throw new Error(`Exercise ${id} needs the matching actual reaction protocol for its supported levels.`);
       }
       if ((exercise.mode === 'Hold' || exercise.presentation === 'Still') &&
-          (profile.levels.power.length > 0 || profile.levels.speed.length > 0)) {
+          (profile.trainingCharacteristics.power || profile.trainingCharacteristics.speed)) {
         throw new Error(`Static exercise ${id} cannot train ballistic power or movement speed.`);
       }
       assigned.set(id, {
@@ -97,6 +107,7 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
         sessionMovementId: exercise.sessionMovementId > 0 ? exercise.sessionMovementId : id,
         name: exercise.name,
         ...profile.levels,
+        trainingCharacteristics: { ...profile.trainingCharacteristics },
         reviewStatus: 'provisional-training-level-assessment',
         assessmentProfile: profileName,
         primaryCanonicalGroup: exercise.primaryCanonicalGroup,
@@ -112,7 +123,7 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
   const rows = [...assigned.values()].sort((a, b) => a.id - b.id);
   // Training-set coverage and usable heart-derived evidence are different.
   // Use the product calculation so this diagnostic cannot silently count ranges.
-  const ratings = new Map(rows.map(row => [row.id, dimensions.map(key => row[key])]));
+  const ratings = parseFitnessRatings(JSON.parse(renderRuntimeRatings(rows)));
   const contributions = new Map(rows.map(row => [row.id,
     calculateFavouriteFitnessProfile([byId.get(row.id)], { lastKeptExerciseIds: [row.id] }, ratings)]));
   const profileContributorCoverage = {
@@ -128,7 +139,7 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
   };
   const coverage = Object.fromEntries(dimensions.map(dimension => [dimension,
     Object.fromEntries([1, 2, 3, 4, 5].map(level => {
-      const matching = rows.filter(row => row[dimension].includes(level));
+      const matching = rows.filter(row => row.trainingCharacteristics[dimension] && row[dimension].includes(level));
       const sessionMovementIds = [...new Set(matching.map(row => row.sessionMovementId))]
         .sort((a, b) => a - b);
       return [level, {
@@ -157,6 +168,8 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
       catalogRevision,
       catalogSha256,
       exerciseCount: rows.length,
+      ratingScale: assessment.levelScale,
+      emptyRatingCells: rows.reduce((count, row) => count + dimensions.filter(key => row[key].length === 0).length, 0),
       profileCount: Object.keys(assessment.profiles).length,
       coveragePolicy,
       coverage,
@@ -166,13 +179,24 @@ export function buildAudit(catalog, assessment, { catalogRevision, catalogSha256
   };
 }
 
+export function renderRuntimeRatings(rows) {
+  return JSON.stringify({
+    schemaVersion: 2, dimensions,
+    ratings: Object.fromEntries(rows.map(row => [row.id, dimensions.map(key => row[key])])),
+    trainingCharacteristics: Object.fromEntries(rows.map(row =>
+      [row.id, dimensions.map(key => row.trainingCharacteristics[key])])),
+  }) + '\n';
+}
+
 export function renderScores(rows) {
   const headers = [
     'scoringVersion', 'catalogRevision', 'id', 'sessionMovementId', 'name',
-    ...dimensions, 'reviewStatus', 'assessmentProfile', 'primaryCanonicalGroup', 'basis', 'trainingConditions',
+    ...dimensions, 'trainingCharacteristics', 'reviewStatus', 'assessmentProfile', 'primaryCanonicalGroup', 'basis', 'trainingConditions',
   ];
   const csv = value => {
-    const text = Array.isArray(value) ? value.join(';') : String(value ?? '');
+    const text = value && typeof value === 'object' && !Array.isArray(value)
+      ? dimensions.filter(key => value[key]).join(';') || 'none'
+      : Array.isArray(value) ? value.join(';') : String(value ?? '');
     return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
   };
   return `${[
@@ -207,6 +231,7 @@ export function renderCoverageReport(summary) {
       '| --- | ---: | ---: | ---: | ---: |',
       ...summary.deficits.map(cell => `| ${labels[cell.characteristic]} | ${cell.level} | ${cell.count} | ${cell.required} | ${cell.missing} |`),
     ] : ['Every combination meets the minimum.']), '',
+    'Every exercise has ten explicit nonempty ratings from 1 to 5. Level 1 is the minimum assessed demand. Reviewed training-characteristic flags govern training claims and coverage; minimum ratings do not create training claims or fitness eligibility exemptions.', '',
     'Ratings are provisional NM training-level judgments for repeated 45-second blocks. Each supported level needs a meaningful training case using the actual movement and its documented adjustments. The coverage requirement supplies no evidence for a rating and never authorizes score inflation or unreviewed admissions.', '',
     '## Spiderweb contributors (diagnostic)', '',
     `${summary.profileContributorCoverage.recordsWithoutContribution} records have no precise strongest contribution. The following counts use the catalog's precise strongest ratings before feedback adjustment and deduplicate movement identities. Training ranges above remain useful for exercise selection but do not count here.`, '',
@@ -255,12 +280,7 @@ function main() {
     { catalogRevision: Number(revision[1]), catalogSha256, reactionProtocols },
   );
   const outputs = [
-    [options.get('--runtime-output'), JSON.stringify({
-      schemaVersion: 1,
-      dimensions,
-      ratings: Object.fromEntries(audit.rows.map(row =>
-        [row.id, dimensions.map(dimension => row[dimension])])),
-    }) + '\n'],
+    [options.get('--runtime-output'), renderRuntimeRatings(audit.rows)],
     [options.get('--output'), renderScores(audit.rows)],
     [options.get('--coverage-output'), `${JSON.stringify(audit.summary, null, 2)}\n`],
     [options.get('--gap-output'), renderCoverageReport(audit.summary)],

@@ -1,5 +1,5 @@
 import { ExerciseFeedbackView } from "./exercise-feedback.js";
-import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings, FITNESS_EVIDENCE_VERSION, FITNESS_UNAVAILABLE_MESSAGE } from "./fitness-profile.js";
+import { FitnessProfileView, inspectFitnessProfile, parseFitnessRatings, serializeFitnessRatings, FITNESS_EVIDENCE_VERSION, FITNESS_UNAVAILABLE_MESSAGE } from "./fitness-profile.js";
 import { renderCompletionProfile } from "./completion-profile.js";
 import { resolveReactionDrills, ReactionDrill } from "./reaction-drills.js";
 import { ReactionDrillView } from "./reaction-drill-view.js";
@@ -1224,7 +1224,7 @@ function queueWorkoutPreparation(
     workoutPreparationWorker.postMessage({
       generation,
       exercises: exerciseCatalog,
-      fitnessRatings,
+      fitnessRatings: serializeFitnessRatings(fitnessRatings),
       state: session.state,
       minutes,
       modifiers,
