@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationId>com.local.nomadicmethod</ApplicationId>
-    <ApplicationVersion>192</ApplicationVersion>
-    <ApplicationDisplayVersion>3.68</ApplicationDisplayVersion>
+    <ApplicationVersion>195</ApplicationVersion>
+    <ApplicationDisplayVersion>3.71</ApplicationDisplayVersion>
     <NomadicDebuggable>false</NomadicDebuggable>
     <!-- Device deployments must remain launchable without transient fast-deploy files. -->
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
@@ -26,6 +26,8 @@
     <AndroidUseInterpreter>false</AndroidUseInterpreter>
     <UseInterpreter>false</UseInterpreter>
     <AndroidUseDebugRuntime>true</AndroidUseDebugRuntime>
+    <!-- Optimized Debug still needs the debug runtime's dynamic JNI registration. -->
+    <AndroidEnableMarshalMethods>false</AndroidEnableMarshalMethods>
     <NomadicDebuggable>true</NomadicDebuggable>
   </PropertyGroup>
 

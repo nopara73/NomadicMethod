@@ -1,7 +1,10 @@
 # Provisional exercise training levels
 
-Version 4, 21 October 2026. Each exercise now has **an explicit set of levels it
-can meaningfully train in each characteristic**. A single maximum is insufficient:
+Version 5, 31 October 2026. Every exercise has **a nonempty explicit 1–5 rating
+on all ten characteristics**. Level 1 is the minimum assessed demand, including
+minimal demand. Reviewed training-characteristic flags separately identify actual
+training claims; a minimum rating does not invent a training stimulus or grant
+an eligibility exemption. A single maximum is insufficient for scalable work:
 an isometric palm press can use gentle or very strong opposing force without
 changing the exercise. Its strength and local-endurance sets are `[1,2,3,4,5]`.
 This corrects the earlier inference that unmeasured resistance meant low resistance.
@@ -20,7 +23,11 @@ capacity **in the directly trained action**. These are fixed, provisional abilit
 categories, without age/sex percentiles. They are not entry requirements, current
 user abilities, workout preference scores, or guarantees of adaptation.
 
-- `[]`: no supported direct training claim. This replaces the old scalar zero.
+- Every characteristic requires a nonempty set of integers from 1 through 5.
+  Empty sets, null, zero and missing ratings are invalid.
+- `[1]`: the minimum assessed demand. An explicit boolean training-characteristic
+  verdict states whether the movement actually makes a reviewed training claim
+  on that axis; a static hold may have minimum speed demand without training speed.
 - `[1,2,3,4,5]`: the actual exercise can be scaled to meaningfully train all five.
 - `[3,4]`: two explicitly assessed useful levels; lower levels are not inferred.
 - `[1,3,4,5]`: a legitimate noncontiguous set. The context-choice reaction task
@@ -48,7 +55,7 @@ prerequisites still matter even when an exercise supports several levels.
 | --- | --- | --- |
 | Opposing palms, contralateral resistance, or pushing against a fixed wall | Voluntary opposing force; brief high-effort contractions with recovery for strength, or lower sustained/repeated force for endurance | Not 45 seconds of uninterrupted maximal force. Force is not measured. Specialist capability in a different exercise is not guaranteed. |
 | Fixed bodyweight loading | Appropriate clean repetition/hold dose within the existing movement | A pistol squat is assessed at strength `[3,4]`; it does not automatically supply novice loading or become a weighted pistol. |
-| Conditioning movements | Appropriate cadence and repeated weekly exposure | One breathless 45-second appearance does not establish aerobic adaptation. Breathing drills alone do not earn aerobic ratings. |
+| Conditioning movements | Appropriate cadence and repeated weekly exposure | One breathless 45-second appearance does not establish aerobic adaptation. Breathing drills alone do not earn aerobic training claims. |
 | Power and speed | Fresh high-intent efforts with deliberate recovery | Continuous fatigued maximal output is not required; technical range and movement identity remain intact. |
 | Flexibility and balance | Practice the actual demonstrated range/support task using tolerable, clean attempts | Ordinary stretches do not silently become full splits; ordinary stance does not silently become inverted or eyes-closed balance. Transfer is task-specific. |
 | Coordination | Acquisition through fluent, precise execution of the actual pattern | Tutting and arm waves can support specialist coordination without requiring an aerial skill. No transfer to unrelated patterns is assumed. |
@@ -131,7 +138,7 @@ spiderweb tiers. It creates no quota to justify artificially precise ratings.
 The eleven new physical records use fixed demonstrated mechanics and quality
 practice inside the same 45-second opportunity. Their complete assessments are
 in [the admission audit](catalog-audit/precise-admissions-2026-10-23.json).
-Every nonempty new cell is a singleton; none of the 890 previous records or
+Every newly reviewed training cell is a singleton; none of the 890 previous records or
 assessments is narrowed or overwritten. Short attempts, holds and fresh explosive
 efforts are not a sustained-to-fatigue prescription, so no dose-dependent
 endurance tier is guessed for these additions.
@@ -174,7 +181,8 @@ still does not establish a precise profile value or justify an inflated rating.
 - [`ExerciseFitnessCeilingScores.json`](../tools/ExerciseFitnessCeilingScores.json):
   explicit level sets, rationale, training conditions and assigned stable IDs.
 - [CSV export](catalog-audit/acsm-fitness-ceiling-scores.csv): supported numeric
-  levels separated by semicolons; an empty cell has no claim. Includes scope
+  levels separated by semicolons, with no empty characteristic cells. A separate
+  training-characteristics column records reviewed claims. Includes scope
   through the primary muscle, rationale and training conditions.
 - [Coverage JSON](catalog-audit/acsm-fitness-ceiling-coverage.json) and
   [readable report](catalog-audit/acsm-fitness-ceiling-gaps.md): supported-level
@@ -184,8 +192,12 @@ still does not establish a precise profile value or justify an inflated rating.
 - [Media and admission audit](catalog-audit/acsm-fitness-ceiling-candidates.json):
   source provenance, review results and deferred candidates.
 
-Historical filenames retain “ceiling” for continuity. Version 4 data uses
-`representation: "trainable-level-sets"`. Nothing infers ratings from names,
+Historical filenames retain “ceiling” for continuity. Version 5 uses
+`representation: "complete-level-sets"`; runtime schema 2 carries complete ratings
+and explicit training-characteristic booleans. Only reviewed training claims
+count toward training coverage and fitness evidence. Incidental minimum ratings
+cannot qualify advanced work; minimum-only movements must match every known
+user characteristic. Nothing infers higher ratings from names,
 muscular demand, or a coverage quota. The normalized-LF catalog hash requires
 deliberate reassessment after catalog changes. Fitness ratings do not alter
 preference scores, Keeps, muscle-recovery timestamps or Light ranking.
@@ -200,7 +212,7 @@ node --test web/tests/fitness-ceiling-scores.test.js web/tests/reaction-drills.t
 Generation and `--check` reject any coverage deficit. `--report-only` can write
 an honest failing sourcing report, but cannot be combined with `--check`.
 Validation also rejects absent/duplicate IDs, missing dimensions or conditions,
-invalid/unsorted/repeated levels, unsupported reaction tasks, power/speed claims
+empty/null/zero ratings, missing training verdicts, invalid/unsorted/repeated levels, unsupported reaction tasks, power/speed claims
 for still holds, changed response assets, and stale exports.
 
 Framework references: [ACSM roundtable](https://doi.org/10.1249/MSS.0000000000003997),

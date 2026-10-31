@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { mapConcurrent } from "./map-concurrent.mjs";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -37,6 +38,7 @@ export async function checkFixedPositionReviews(assetsRoot = assets) {
   assert.deepEqual(review.exercises.map(e => e.id).sort((a,b)=>a-b), catalog.map(e=>e.id).sort((a,b)=>a-b),
     "Every catalog entry needs an explicit whole-pose review");
   assert.equal(new Set(review.exercises.map(e => e.id)).size, catalog.length);
+  const mediaChecks = [];
   for (const row of review.exercises) {
     assert.ok(["Symmetric", "WholeLoop", "OppositeBlocks"].includes(row.coverage), `Unreviewed pose ${row.id}`);
     assert.ok(row.reason, `Missing review reasoning ${row.id}`);
@@ -45,13 +47,15 @@ export async function checkFixedPositionReviews(assetsRoot = assets) {
     if (exercise.presentation === "Still") files.push(`exercise_hold_frames/exercise_${String(row.id).padStart(4,"0")}.png`);
     if (exercise.directionSequence !== "None") files.push(`exercise_direction_videos/exercise_${String(row.id).padStart(4,"0")}.mp4`);
     assert.deepEqual(Object.keys(row.media), files, `Reviewed media inventory changed for ${row.id}`);
-    for (const file of files) assert.equal(await sha256(assetsRoot, file), row.media[file], `Pose review is stale: ${file}`);
+    for (const file of files) mediaChecks.push([assetsRoot, file, row.media[file], `Pose review is stale: ${file}`]);
   }
   assert.deepEqual(findPositionCoverageDeficiencies(catalog, review.exercises), [], "Fixed positions need complete opposite blocks");
   const reaction = JSON.parse(await readFile(path.join(assets, "reaction_drills.json"), "utf8"));
   const responseFiles = reaction.families.flatMap(f=>f.actions.map(a=>a.video));
   assert.deepEqual(Object.keys(review.reactionMedia), responseFiles);
-  for (const file of responseFiles) assert.equal(await sha256(assets, file), review.reactionMedia[file], `Reaction pose review is stale: ${file}`);
+  for (const file of responseFiles) mediaChecks.push([assets, file, review.reactionMedia[file], `Reaction pose review is stale: ${file}`]);
+  await mapConcurrent(mediaChecks, 8, async ([directory, file, expected, message]) =>
+    assert.equal(await sha256(directory, file), expected, message));
   const history = JSON.parse(await readFile(path.join(assets, "catalog_protocol_history.json"), "utf8"));
   assert.deepEqual(frozenWorkoutProtocols, history, "Web must use the Android protocol history");
   return { exercises: catalog.length, oppositeBlocks: review.exercises.filter(e=>e.coverage==="OppositeBlocks").length,

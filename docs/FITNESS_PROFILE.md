@@ -11,7 +11,7 @@ Tapping an axis or its label opens a read-only details dialog. Labels retain the
 The chart reads recorded love (`Tick`), too-easy and too-hard decisions from saved workout history and the active session, including interrupted sessions. Meh (`X`), timeouts, neutral outcomes and pending gestures neither contribute nor erase the last informative response. Saved Keeps without a recorded response do not imply difficulty evidence. Existing history is read without mutation.
 
 1. Select the latest love/easy/hard response per SessionMovementId across all slots, sides and aliases. Order by decision timestamp; equal timestamps use session ID and then recorded decision order. The atomic selection root supplies one response; sides, blocks and sets never multiply it.
-2. Use that exact exercise's current canonical ratings. Find the highest supported level across its ten characteristics. For love (just right) and too hard, only nonempty characteristics whose maximum equals that level qualify, including ranges and ties. Too easy qualifies every nonempty rated characteristic: the whole exercise was too easy, including its weaker demands. Empty cells make no claim. A newer unrated alias replaces old evidence rather than reviving stale ratings.
+2. Use that exact exercise's complete canonical 1–5 ratings and reviewed training-characteristic flags. Every axis has a nonempty rating. Find the highest supported level among its reviewed training characteristics. For love (just right) and too hard, only reviewed training characteristics whose maximum equals that level qualify, including ranges and ties. Too easy qualifies every reviewed training characteristic, including weaker trained demands. Minimum ratings on untrained axes do not create evidence. A newer alias with no reviewed training claims replaces old evidence rather than reviving stale claims.
 3. Interpret feedback against the whole rated set: love supports exactly its listed levels; too easy supports all levels above its maximum; too hard supports all levels below its minimum. Saturate too-easy-at-5 to `[5]` and too-hard-at-1 to `[1]`. Thus `[2,3]` yields `[4,5]`, `[2,3]` or `[1]` for easy, love or hard respectively. `[1,2,3,4,5]` yields `[5]`, all five, or `[1]`.
 4. For each candidate integer level 1–5, sum the squared distance to the nearest supported member of each movement's evidence set. Movements have equal weight. Keep every candidate with the minimum sum; average those equally good candidates and round half upward only for display. Noncontiguous sets retain their holes. The average is a summary and need not itself be a member of a noncontiguous best-fit set.
 5. No evidence, or equal support for all five candidates, remains unknown (internal zero). In particular, full-range love alone does not fabricate level 3; when combined with informative evidence it adds zero penalty everywhere and cannot dilute that evidence.
@@ -20,7 +20,7 @@ Examples: easy at 2 and hard at 4 agree on 3. Love at 2 and love at 4 disagree, 
 
 These are provisional training-level estimates under the owner's feedback interpretation, not measured ability. In particular, the chosen whole-range rule deliberately maps a full-range self-resisted exercise marked easy to 5 and hard to 1; the app does not measure applied resistance.
 
-The canonical ratings asset remains `NomadicMethod/Assets/fitness_ratings.json`. No catalog ratings change. Shared `fitness-difficulty-cases.json` fixtures verify both platforms' ranges, noncontiguous sets, conflicts, ties, endpoint saturation, unknowns, latest-response replacement and movement deduplication.
+The canonical ratings asset remains `NomadicMethod/Assets/fitness_ratings.json`. Existing reviewed training levels are preserved; complete minimum ratings do not create additional training claims. Shared `fitness-difficulty-cases.json` fixtures verify both platforms' ranges, noncontiguous sets, conflicts, ties, endpoint saturation, unknowns, latest-response replacement and movement deduplication.
 
 ## Completion changes
 
@@ -30,20 +30,21 @@ New workouts capture the same difficulty-derived profile at activation and freez
 
 Selection now uses the same latest love/easy/hard evidence and exact best-fit level sets as the chart. Display rounding does not change membership. A movement qualifies when at least one known characteristic shares any explicitly rated level with that characteristic's best-fit set. For zone `[3,4]`, `[3]`, `[4]`, `[3,4]`, `[2,3]` and `[4,5]` all qualify; `[1,2]` and `[5]` do not. A user at `[5]` can select sprinting rated `[3,4,5]` through cardio. Ranges describe supported training options, so levels outside the user's zone do not disqualify the shared option. Noncontiguous holes remain holes. Every distinct member of an atomic sequence must qualify; sides and aliases never create extra family draws.
 
-Unknown axes cannot qualify an exercise. If the entire profile is unknown (including only full-range love), ordinary selection bootstraps feedback. Once any axis is known, empty/unrated cells cannot supply a match. There is no +1 priority, nearest-level fallback, hidden relaxation or automatic reset of the profile.
+Unknown axes cannot qualify an exercise. If the entire profile is unknown (including only full-range love), ordinary selection bootstraps feedback. Missing, empty or invalid exercise ratings are rejected before planning. For exercises with training claims, only those characteristics can supply a match. Minimum-only exercises must match every known user characteristic, so minimum demand is never a universal fitness exemption. There is no +1 priority, nearest-level fallback, hidden relaxation or automatic reset of the profile.
 
 Equipment, truthful anatomical coverage, complete sequences/durations, Light and recovery retain their existing constraints and priorities. Eligible loved movements keep repeat priority. A later easy/hard response removes the family's saved Keeps across slots without a dislike penalty or rewriting history; a later love can earn a Keep again. Meh retains its existing preference/refusal behavior and supplies no difficulty evidence.
 
 The filter applies to new lineups, shuffle replacements, balancing replacements and newly planned portions of duration/modifier edits. Saved unfinished selections, completed work and the current atomic selection retain the existing preservation guarantees. A chart update does not regenerate them. If no complete eligible lineup exists, preparation fails without saving its speculative state and both platforms show: “No complete workout fits your current training zone with these settings.” Users can change their existing settings; the app does not invent a workout or alter their feedback to unblock it.
 
-Shared eligibility fixtures cover overlapping levels, unknowns, empty cells, noncontiguous sets, any-characteristic matching and complete sequence membership. Planner tests cover favourite priority, family refusals, easy/hard Keep removal, Light/recovery, shuffle, no-solution behavior and unfinished-workout restoration. Canonical ratings remain read-only and the saved-state schema is unchanged. The [overlap coverage audit](catalog-audit/overlap-coverage-2026-10-25.md) records remaining global and whole-workout gaps.
+Shared validation rejects empty exercise ratings. Eligibility fixtures cover overlapping levels, unknown user axes, noncontiguous sets, any-characteristic matching and complete sequence membership. Planner tests cover favourite priority, family refusals, easy/hard Keep removal, Light/recovery, shuffle, no-solution behavior and unfinished-workout restoration. Canonical ratings remain read-only and the saved-state schema is unchanged. The [overlap coverage audit](catalog-audit/overlap-coverage-2026-10-25.md) records remaining global and whole-workout gaps.
 
 ## Historical catalog diagnostics
 
 Revision 90 contains 906 records. It adds 11 reviewed physical movements and
 five stop-only reaction protocols; all 890 previous records and assessments are
-unchanged. Every nonempty rating cell on these additions is a singleton. Empty
-cells mean no supported claim, not an assigned level zero.
+unchanged. Every reviewed training cell on these additions is a singleton.
+Other characteristics carry an explicit minimum rating of 1 with their
+training-characteristic verdict set to false; no exercise rating is empty.
 
 | New exercise | Precise strongest profile contributions |
 | --- | --- |
