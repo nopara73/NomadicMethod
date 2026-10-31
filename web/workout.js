@@ -1,5 +1,6 @@
 import { exerciseIdentityName } from "./exercise-names.js";
 import { frozenWorkoutProtocols } from "./workout-protocol-history.js";
+import {findWorkoutVarietyDeficiencies, REQUIRED_WORKOUT_MOVEMENT_CHOICES, WORKOUT_VARIETY_UNAVAILABLE_MESSAGE} from "./workout-variety.js";
 import "./light-cadence.js";
 import { copyProfileSnapshot } from "./completion-profile.js";
 import { calculateFitnessProfile, inspectFitnessProfile, FITNESS_EVIDENCE_VERSION, FITNESS_DIMENSIONS, fitnessZones,
@@ -502,7 +503,8 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Existing identities, feedback and unfinished selections remain valid.
 // Revision 101 clarifies push-up hand placement without replacing the movement.
 // Revision 104 improves display wording without changing movement identities.
-export const CURRENT_CATALOG_REVISION = 104;
+// Revision 105 adds reviewed choices and enforces variety after physical and fitness filters.
+export const CURRENT_CATALOG_REVISION = 105;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -4730,12 +4732,18 @@ export function getWorkoutCatalog(catalog, activeRevision, singleDirectionExerci
 }
 
 export class WorkoutSession {
+  static createForApplication(exercises, state, random, nowProvider, fitnessRatings) {
+    return new WorkoutSession(exercises, state, random, nowProvider, fitnessRatings,
+      REQUIRED_WORKOUT_MOVEMENT_CHOICES);
+  }
+
   constructor(
     exercises,
     storedState = createDefaultState(),
     random = Math.random,
     nowProvider = () => Date.now(),
     fitnessRatings = new Map(),
+    minimumMovementChoices = 1,
   ) {
     if (!Array.isArray(exercises)) {
       throw new TypeError("Exercise catalog must be an array.");
@@ -4750,6 +4758,10 @@ export class WorkoutSession {
     this.random = random;
     this.nowProvider = nowProvider;
     this.fitnessRatings = fitnessRatings;
+    if (!Number.isInteger(minimumMovementChoices) || minimumMovementChoices < 1)
+      throw new RangeError("Invalid movement variety requirement.");
+    this.minimumMovementChoices = minimumMovementChoices;
+    this.workoutVarietyCache = new Map();
     if (this.loadedStateVersion < SLOT_SCOPED_PREFERENCE_STATE_VERSION) {
       this.migrateSlotScopedPreferences();
     }
@@ -4974,6 +4986,8 @@ export class WorkoutSession {
       throw new Error("A workout is already active.");
     }
 
+    this.ensureSelectableWorkoutVariety(minutes, modifiers);
+
     this.state.activeCatalogRevision = CURRENT_CATALOG_REVISION;
     this.state.activeCoverageAccountingVersion = 2;
     this.state.activeSetupOrderVersion = 1;
@@ -5137,6 +5151,9 @@ export class WorkoutSession {
       this.state.activeSetCountsBySelectionGroupId = {...previous.activeSetCountsBySelectionGroupId};
       this.state.activeExtraSetSelectionGroupIds = [...previous.activeExtraSetSelectionGroupIds];
       this.state.activeSelectionGroupOrder = [];
+      this.ensureSelectableWorkoutVariety(this.state.activeWorkoutMinutes, this.state.activeWorkoutModifiers,
+        groups, lockedExercises, locked.reduce((sum, p) => sum +
+          ((previous.activeSetCountsBySelectionGroupId[p.anchor.id] ?? 1) - 1) * p.root.sequenceBlocks.length, 0));
       const lineup = this.chooseBestDistinctLineup(groups, this.state.activeWorkoutModifiers, {
         currentExerciseIds: lockedExercises,
         allowSavedSelectionException: lockedSelectionGroupIds !== null,
@@ -5155,7 +5172,8 @@ export class WorkoutSession {
         ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) === 0 || after.lightBlocks >= before.lightBlocks);
       return accepted;
     } catch (error) {
-      if (!(error instanceof Error) || !/No complete exercise lineup|The selected (?:mandatory sequences|sequence lengths|sequences)/.test(error.message)) throw error;
+      if (!(error instanceof Error) || (error.message !== WORKOUT_VARIETY_UNAVAILABLE_MESSAGE &&
+          !/No complete exercise lineup|The selected (?:mandatory sequences|sequence lengths|sequences)/.test(error.message))) throw error;
       return false;
     } finally {
       if (!accepted) Object.assign(this.state, previous);
@@ -5211,6 +5229,7 @@ export class WorkoutSession {
       if (allowedRoots.size === 0) continue;
       let lineup;
       try {
+        this.ensureSelectableWorkoutVariety(this.state.activeWorkoutMinutes, this.state.activeWorkoutModifiers, expanded);
         lineup = this.chooseBestDistinctLineup([extraGroup], this.state.activeWorkoutModifiers, {
           reservedRepeatMinutes: this.state.activeWorkoutMinutes - remaining,
           allowedExerciseIds: allowedRoots,
@@ -5221,7 +5240,8 @@ export class WorkoutSession {
         const nextAllocation = this.chooseLongWorkoutAllocation(new Set(), next);
         if (isLight && lightBlocks(next, nextAllocation) < priorLightBlocks) continue;
       } catch (error) {
-        if (!(error instanceof Error) || !/No complete exercise lineup exists|selected sequence lengths cannot fill/.test(error.message)) throw error;
+        if (!(error instanceof Error) || (error.message !== WORKOUT_VARIETY_UNAVAILABLE_MESSAGE &&
+            !/No complete exercise lineup exists|selected sequence lengths cannot fill/.test(error.message))) throw error;
         // Try another existing anatomical slot when no unused complete movement fits.
         continue;
       }
@@ -5448,6 +5468,7 @@ export class WorkoutSession {
         !this.state.activeWorkoutMinutes || minutes < this.getMinimumActiveWorkoutMinutes()) {
       throw new Error("The duration must include the current exercise sequence.");
     }
+    this.ensureSelectableWorkoutVariety(minutes, this.state.activeWorkoutModifiers);
     const current = this.getNextGroup();
     const priorRounds = this.getActiveGroups();
     const prior = this.getScheduleOrderedPlacements();
@@ -5499,6 +5520,8 @@ export class WorkoutSession {
         const groups = [...prefix.flatMap(p => p.coveredGroups), ...candidates.slice(0, count)];
         this.state.activeDurationSelectionGroupIds = [...new Set(groups.map(g => g.id))];
         try {
+          this.ensureSelectableWorkoutVariety(minutes, this.state.activeWorkoutModifiers, groups, lockedExercises,
+            protectedCount - prefix.reduce((sum, p) => sum + p.root.sequenceBlocks.length, 0));
           const lineup = this.chooseBestDistinctLineup(groups, this.state.activeWorkoutModifiers, {
             currentExerciseIds: lockedExercises,
             allowSavedSelectionException: true,
@@ -5625,6 +5648,9 @@ export class WorkoutSession {
       .map((group) => group.id);
     const currentSelectionGroupAvailable = selectionGroups.some((group) =>
       group.id === getSelectionKey(currentRound));
+    this.ensureSelectableWorkoutVariety(this.state.activeWorkoutMinutes, modifiers, selectionGroups,
+      lockedExerciseIdsByGroup, lockedPlacements.reduce((sum, p) =>
+        sum + ((lockedSetCountsBySelectionGroupId.get(p.anchor.id) ?? 1) - 1) * p.root.sequenceBlocks.length, 0));
     const replannedLineup = this.chooseBestDistinctLineup(
       selectionGroups,
       modifiers,
@@ -7413,6 +7439,58 @@ export class WorkoutSession {
       () => 0,
       this.random);
     candidates.splice(0, candidates.length, ...ordered);
+  }
+
+  ensureSelectableWorkoutVariety(minutes, modifiers, actualGroups = null, protectedRoots = new Map(), reservedRepeatMinutes = 0) {
+    if (this.minimumMovementChoices <= 1) return;
+    modifiers = normalizeWorkoutModifiers(modifiers) & ~WORKOUT_MODIFIERS.Light;
+    const eligibility = this.getFitnessEligibility();
+    const groups = actualGroups ?? getResolution(Math.min(minutes, 30)).groups.filter(group => isSelectionGroupAvailable(group, modifiers));
+    const cacheable = protectedRoots.size === 0 && reservedRepeatMinutes === 0;
+    const key = JSON.stringify([minutes, modifiers, actualGroups === null, this.workoutCatalogKey,
+      [...eligibility].filter(([,allowed])=>allowed).map(([id])=>id).sort((a,b)=>a-b), groups.map(group=>group.id)]);
+    if (cacheable && this.workoutVarietyCache.has(key)) {
+      if (!this.workoutVarietyCache.get(key)) throw new Error(WORKOUT_VARIETY_UNAVAILABLE_MESSAGE);
+      return;
+    }
+    const catalog = actualGroups === null ? this.catalogExercises : this.exercises;
+    const byId = new Map(catalog.map(exercise => [exercise.id, exercise]));
+    const indexes = new Map(groups.map((group, index) => [group.id, index]));
+    const candidates = [];
+    const validateMask = groups.reduce((mask, group, index) => protectedRoots.has(group.id) ? mask : mask | (1n << BigInt(index)), 0n);
+    const protectedFamilies = new Set([...protectedRoots.values()].map(id => getSessionMovementId(byId.get(id))));
+    for (const family of protectedFamilies) {
+      const roots = new Set([...protectedRoots.values()].filter(id => getSessionMovementId(byId.get(id)) === family));
+      const id = [...roots][0], root = byId.get(id);
+      const mask = [...protectedRoots].filter(([, rootId]) => roots.has(rootId))
+        .reduce((value, [groupId]) => value | (1n << BigInt(indexes.get(groupId))), 0n);
+      candidates.push({exerciseId:id, movementId:getSessionMovementId(root), coverageMask:mask,
+        blockCount:[...roots].reduce((sum, rootId) => sum + byId.get(rootId).sequenceBlocks.length, 0),
+        utilitiesByGroup:Array(groups.length).fill(0n), tieOrder:id});
+    }
+    for (const root of catalog.filter(exercise => exercise.sequenceBlocks?.length > 0 && !protectedFamilies.has(getSessionMovementId(exercise)))) {
+      const members = getSequenceMembers(root, byId);
+      if (!eligibility.get(root.id) || !members.length ||
+          !members.every(member => this.isCompatibleWithModifiers(member, modifiers))) continue;
+      const cost = getSequenceBlockCount(root, minutes);
+      for (const option of getSequencePlacementOptions(root, byId, groups, true)) {
+        if (option.some(group => protectedRoots.has(group.id) ||
+            !this.isWorkoutSelectionCandidate(root, group, modifiers, groups))) continue;
+        const mask = option.reduce((value, group) => value | (1n << BigInt(indexes.get(group.id))), 0n);
+        candidates.push({exerciseId:root.id, movementId:getSessionMovementId(root), coverageMask:mask,
+          blockCount:cost, utilitiesByGroup:Array(groups.length).fill(0n), tieOrder:cost*10000+root.id});
+      }
+    }
+    const rawSupply = groups.every((_, index) => (validateMask & (1n << BigInt(index))) === 0n ||
+      new Set(candidates.filter(candidate => (candidate.coverageMask & (1n << BigInt(index))) !== 0n)
+        .map(candidate => candidate.movementId)).size >= this.minimumMovementChoices);
+    const sufficient = groups.length > 0 && rawSupply && (validateMask === 0n || findWorkoutVarietyDeficiencies(groups.length,
+      minutes - reservedRepeatMinutes, candidates, solveAtomicSequenceLineup, this.minimumMovementChoices, validateMask).length === 0);
+    if (cacheable) {
+      if (this.workoutVarietyCache.size >= 64) this.workoutVarietyCache.clear();
+      this.workoutVarietyCache.set(key, sufficient);
+    }
+    if (!sufficient) throw new Error(WORKOUT_VARIETY_UNAVAILABLE_MESSAGE);
   }
 
   getFitnessEligibility() {

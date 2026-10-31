@@ -23,7 +23,8 @@ public static class CatalogMigrationRules
     // Revision 103 relaxes only reviewed locomotion surface classifications.
     // Existing identities, lineups, Keeps, feedback and history remain valid.
     // Revision 104 replaces jargon with reviewed position and movement cues.
-    public const int CurrentCatalogRevision = 104;
+    // Revision 105 adds reviewed choices and enforces variety after physical and fitness filters.
+    public const int CurrentCatalogRevision = 105;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;

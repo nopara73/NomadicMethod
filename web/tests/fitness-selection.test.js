@@ -192,9 +192,12 @@ test("sharing cannot borrow a hard opportunity from another slot", () => {
 
 for (const outcome of preferences.difficultyResponses) {
   test("latest difficulty broadens a trapped slot without inventing scores: " + outcome, () => {
+    // Keep the historical singleton scenario after filling the actual catalog.
+    const legacyCatalog=structuredClone(catalog.filter(e=>e.id<1730));
+    legacyCatalog.find(e=>e.id===1069).hardFloorCompatibility="Incompatible";
     const state = {...createDefaultState(), workoutHistory: [{sessionId:1, status:"Interrupted", blocks:[],
       decisions:[{rootExerciseId:918,outcome,decidedAtUnixMilliseconds:now()-3600000}]}]};
-    const session = new WorkoutSession(catalog, state, seededRandom(5), now);
+    const session = new WorkoutSession(legacyCatalog, state, seededRandom(5), now);
     session.initialize();
     const history = structuredClone(session.state.workoutHistory);
     const scores = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
@@ -269,6 +272,7 @@ for (const [light, recovering, expected] of [[false,false,3], [true,false,7], [f
 test("worker receives the same read-only rating dependency as foreground planning", () => {
   let receive, args, sent;
   class Session {
+    static createForApplication(...values) { return new Session(...values); }
     constructor(...values) { args = values; this.state = values[1]; }
     prepareWorkout() {}
   }

@@ -349,4 +349,15 @@
     1721 = 'ScreenRightThenLeft'
     1722 = 'ScreenRightThenLeft'
     1723 = 'ScreenRightThenLeft'
+    1733 = 'ScreenLeftThenRight'
+
+    1735 = 'ScreenRightThenLeft'
+    1736 = 'ScreenLeftThenRight'
+
+
+    1730 = 'ShownHandPositionThenOpposite'
+    1737 = 'ShownHandPositionThenOpposite'
+    1738 = 'ShownHandPositionThenOpposite'
+    1739 = 'ShownHandPositionThenOpposite'
+    1740 = 'ShownHandPositionThenOpposite'
 }

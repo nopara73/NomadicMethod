@@ -1,7 +1,7 @@
 {
-  "catalogRevision": 104,
-  "catalogRecordCount": 919,
-  "catalogSha256": "30bfd665c0f9835dd0cd859eb628bfe72eef9750464612d0d4fe8e6cf56fc3b4",
+  "catalogRevision": 105,
+  "catalogRecordCount": 930,
+  "catalogSha256": "dec477a25be443268124851a6606ed797e4cf349232837c6a1ef4c69505ed03a",
   "policy": {
     "anatomicalGroupMinimum": 10,
     "treatment": "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
@@ -92,7 +92,7 @@
       "minutes": 3,
       "groupId": "r3.head-neck-upper-limbs",
       "groupName": "Head, neck and upper limbs",
-      "matchingExerciseCount": 347,
+      "matchingExerciseCount": 351,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         31,
@@ -309,6 +309,7 @@
         745,
         751,
         752,
+        784,
         804,
         831,
         835,
@@ -441,14 +442,17 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
       "minutes": 3,
       "groupId": "r3.torso-pelvic-complex",
       "groupName": "Torso and pelvic complex",
-      "matchingExerciseCount": 274,
+      "matchingExerciseCount": 278,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         21,
@@ -474,6 +478,7 @@
         245,
         248,
         251,
+        256,
         260,
         262,
         263,
@@ -539,6 +544,8 @@
         703,
         704,
         712,
+        740,
+        784,
         790,
         801,
         804,
@@ -712,6 +719,7 @@
         1436,
         1437,
         1438,
+        1522,
         1523,
         1701,
         1712,
@@ -731,7 +739,7 @@
       "minutes": 3,
       "groupId": "r3.lower-limbs",
       "groupName": "Lower limbs",
-      "matchingExerciseCount": 458,
+      "matchingExerciseCount": 460,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         15,
@@ -838,6 +846,7 @@
         242,
         251,
         255,
+        256,
         260,
         262,
         272,
@@ -1191,7 +1200,8 @@
         1726,
         1727,
         1728,
-        1729
+        1729,
+        1733
       ]
     },
     {
@@ -1292,7 +1302,7 @@
       "minutes": 5,
       "groupId": "r5.upper-limbs",
       "groupName": "Upper limbs",
-      "matchingExerciseCount": 312,
+      "matchingExerciseCount": 315,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         31,
@@ -1606,7 +1616,10 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
@@ -1740,7 +1753,7 @@
       "minutes": 5,
       "groupId": "r5.torso",
       "groupName": "Torso",
-      "matchingExerciseCount": 280,
+      "matchingExerciseCount": 283,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         21,
@@ -1766,6 +1779,7 @@
         245,
         248,
         251,
+        256,
         260,
         262,
         263,
@@ -1833,6 +1847,7 @@
         703,
         704,
         712,
+        740,
         742,
         784,
         790,
@@ -2010,6 +2025,7 @@
         1436,
         1437,
         1438,
+        1522,
         1523,
         1701,
         1712,
@@ -2029,7 +2045,7 @@
       "minutes": 5,
       "groupId": "r5.hips-thighs",
       "groupName": "Hips and thighs",
-      "matchingExerciseCount": 426,
+      "matchingExerciseCount": 428,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         15,
@@ -2128,6 +2144,7 @@
         242,
         251,
         255,
+        256,
         260,
         262,
         264,
@@ -2457,7 +2474,8 @@
         1726,
         1727,
         1728,
-        1729
+        1729,
+        1733
       ]
     },
     {
@@ -2817,7 +2835,7 @@
       "minutes": 7,
       "groupId": "r7.hip-flexors-adductors",
       "groupName": "Hip flexors and adductors",
-      "matchingExerciseCount": 200,
+      "matchingExerciseCount": 202,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         31,
@@ -2873,6 +2891,7 @@
         219,
         240,
         242,
+        256,
         260,
         262,
         282,
@@ -3019,7 +3038,8 @@
         1717,
         1726,
         1727,
-        1728
+        1728,
+        1733
       ]
     },
     {
@@ -3153,7 +3173,7 @@
       "minutes": 7,
       "groupId": "r7.head-neck-upper-limbs",
       "groupName": "Head, neck and upper limbs",
-      "matchingExerciseCount": 361,
+      "matchingExerciseCount": 364,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         31,
@@ -3516,7 +3536,10 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
@@ -3697,7 +3720,7 @@
       "minutes": 7,
       "groupId": "r7.torso",
       "groupName": "Torso",
-      "matchingExerciseCount": 280,
+      "matchingExerciseCount": 283,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         21,
@@ -3723,6 +3746,7 @@
         245,
         248,
         251,
+        256,
         260,
         262,
         263,
@@ -3790,6 +3814,7 @@
         703,
         704,
         712,
+        740,
         742,
         784,
         790,
@@ -3967,6 +3992,7 @@
         1436,
         1437,
         1438,
+        1522,
         1523,
         1701,
         1712,
@@ -4046,7 +4072,7 @@
       "minutes": 10,
       "groupId": "r10.upper-limbs",
       "groupName": "Upper limbs",
-      "matchingExerciseCount": 312,
+      "matchingExerciseCount": 315,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         31,
@@ -4360,7 +4386,10 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
@@ -4488,7 +4517,7 @@
       "minutes": 10,
       "groupId": "r10.head-neck-scapular-chest-breathing",
       "groupName": "Head, neck, scapular girdle, chest and breathing",
-      "matchingExerciseCount": 177,
+      "matchingExerciseCount": 179,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         47,
@@ -4502,6 +4531,7 @@
         241,
         245,
         248,
+        256,
         274,
         277,
         278,
@@ -4597,6 +4627,7 @@
         712,
         740,
         751,
+        784,
         790,
         831,
         836,
@@ -4845,7 +4876,7 @@
       "minutes": 10,
       "groupId": "r10.back-abdominal-pelvic-floor",
       "groupName": "Back, abdominal wall and pelvic floor",
-      "matchingExerciseCount": 190,
+      "matchingExerciseCount": 192,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         21,
@@ -4862,6 +4893,7 @@
         219,
         227,
         251,
+        256,
         260,
         262,
         263,
@@ -5031,6 +5063,7 @@
         1433,
         1437,
         1438,
+        1522,
         1523,
         1713,
         1714,
@@ -5312,7 +5345,7 @@
       "minutes": 10,
       "groupId": "r10.hip-flexors-adductors",
       "groupName": "Hip flexors and adductors",
-      "matchingExerciseCount": 200,
+      "matchingExerciseCount": 202,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         31,
@@ -5368,6 +5401,7 @@
         219,
         240,
         242,
+        256,
         260,
         262,
         282,
@@ -5514,7 +5548,8 @@
         1717,
         1726,
         1727,
-        1728
+        1728,
+        1733
       ]
     },
     {
@@ -6301,7 +6336,7 @@
       "minutes": 15,
       "groupId": "r15.abdominal-pelvic-floor",
       "groupName": "Abdominal wall and pelvic floor",
-      "matchingExerciseCount": 141,
+      "matchingExerciseCount": 144,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         59,
@@ -6310,6 +6345,7 @@
         132,
         176,
         219,
+        256,
         262,
         305,
         394,
@@ -6400,6 +6436,7 @@
         1192,
         1199,
         1200,
+        1206,
         1209,
         1211,
         1212,
@@ -6438,6 +6475,7 @@
         1431,
         1433,
         1437,
+        1522,
         1523,
         1713,
         1714,
@@ -6451,7 +6489,7 @@
       "minutes": 15,
       "groupId": "r15.arm-forearm-hand",
       "groupName": "Arm, forearm and hand",
-      "matchingExerciseCount": 125,
+      "matchingExerciseCount": 128,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         204,
@@ -6578,7 +6616,10 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
@@ -6678,7 +6719,7 @@
       "minutes": 15,
       "groupId": "r15.scapular-chest-breathing",
       "groupName": "Scapular girdle, chest and breathing",
-      "matchingExerciseCount": 128,
+      "matchingExerciseCount": 130,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         203,
@@ -6690,6 +6731,7 @@
         241,
         245,
         248,
+        256,
         274,
         277,
         278,
@@ -6742,6 +6784,7 @@
         704,
         712,
         740,
+        784,
         790,
         831,
         836,
@@ -7395,7 +7438,7 @@
       "minutes": 15,
       "groupId": "r15.hip-adductors",
       "groupName": "Hip adductors",
-      "matchingExerciseCount": 74,
+      "matchingExerciseCount": 76,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         93,
@@ -7426,6 +7469,7 @@
         201,
         240,
         242,
+        256,
         341,
         392,
         420,
@@ -7471,7 +7515,8 @@
         1525,
         1726,
         1727,
-        1728
+        1728,
+        1733
       ]
     },
     {
@@ -7799,12 +7844,13 @@
       "minutes": 20,
       "groupId": "r20.accessory-hip-adductors",
       "groupName": "Accessory hip adductors",
-      "matchingExerciseCount": 20,
+      "matchingExerciseCount": 22,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         117,
         133,
         192,
+        256,
         572,
         733,
         748,
@@ -7821,14 +7867,15 @@
         1292,
         1429,
         1522,
-        1525
+        1525,
+        1733
       ]
     },
     {
       "minutes": 20,
       "groupId": "r20.forearm-hand",
       "groupName": "Forearm and hand",
-      "matchingExerciseCount": 32,
+      "matchingExerciseCount": 35,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         211,
@@ -7862,7 +7909,10 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
@@ -8514,7 +8564,7 @@
       "minutes": 20,
       "groupId": "r20.abdominal-pelvic-floor",
       "groupName": "Abdominal wall and pelvic floor",
-      "matchingExerciseCount": 141,
+      "matchingExerciseCount": 144,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         59,
@@ -8523,6 +8573,7 @@
         132,
         176,
         219,
+        256,
         262,
         305,
         394,
@@ -8613,6 +8664,7 @@
         1192,
         1199,
         1200,
+        1206,
         1209,
         1211,
         1212,
@@ -8651,6 +8703,7 @@
         1431,
         1433,
         1437,
+        1522,
         1523,
         1713,
         1714,
@@ -8696,7 +8749,7 @@
       "minutes": 20,
       "groupId": "r20.chest-breathing",
       "groupName": "Chest and breathing",
-      "matchingExerciseCount": 96,
+      "matchingExerciseCount": 99,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         203,
@@ -8708,6 +8761,7 @@
         241,
         245,
         248,
+        256,
         274,
         277,
         278,
@@ -8751,6 +8805,8 @@
         703,
         704,
         712,
+        740,
+        784,
         790,
         1003,
         1005,
@@ -9512,7 +9568,7 @@
       "minutes": 20,
       "groupId": "r20.major-hip-adductors",
       "groupName": "Major hip adductors",
-      "matchingExerciseCount": 74,
+      "matchingExerciseCount": 76,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         93,
@@ -9543,6 +9599,7 @@
         201,
         240,
         242,
+        256,
         341,
         392,
         420,
@@ -9588,7 +9645,8 @@
         1525,
         1726,
         1727,
-        1728
+        1728,
+        1733
       ]
     },
     {
@@ -9854,15 +9912,18 @@
       "minutes": 30,
       "groupId": "r30.pelvic-floor-perineum",
       "groupName": "Pelvic floor and perineum",
-      "matchingExerciseCount": 10,
+      "matchingExerciseCount": 13,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
+        256,
         918,
         1069,
         1071,
+        1206,
         1209,
         1216,
         1292,
+        1522,
         1726,
         1727,
         1728,
@@ -9873,7 +9934,7 @@
       "minutes": 30,
       "groupId": "r30.intrinsic-hand",
       "groupName": "Intrinsic hand",
-      "matchingExerciseCount": 10,
+      "matchingExerciseCount": 13,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         218,
@@ -9885,7 +9946,10 @@
         1720,
         1721,
         1722,
-        1723
+        1723,
+        1730,
+        1731,
+        1732
       ]
     },
     {
@@ -10007,12 +10071,13 @@
       "minutes": 30,
       "groupId": "r30.accessory-hip-adductors",
       "groupName": "Accessory hip adductors",
-      "matchingExerciseCount": 20,
+      "matchingExerciseCount": 22,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         117,
         133,
         192,
+        256,
         572,
         733,
         748,
@@ -10029,7 +10094,8 @@
         1292,
         1429,
         1522,
-        1525
+        1525,
+        1733
       ]
     },
     {
@@ -10141,14 +10207,18 @@
       "minutes": 30,
       "groupId": "r30.breathing-muscles",
       "groupName": "Breathing muscles",
-      "matchingExerciseCount": 10,
+      "matchingExerciseCount": 14,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
+        256,
         398,
         480,
         484,
         518,
         520,
+        712,
+        740,
+        784,
         1003,
         1005,
         1302,
@@ -10986,7 +11056,7 @@
       "minutes": 30,
       "groupId": "r30.abdominal-wall",
       "groupName": "Abdominal wall",
-      "matchingExerciseCount": 131,
+      "matchingExerciseCount": 132,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         59,
@@ -10995,6 +11065,7 @@
         132,
         176,
         219,
+        256,
         262,
         305,
         394,
@@ -11851,7 +11922,7 @@
       "minutes": 30,
       "groupId": "r30.major-hip-adductors",
       "groupName": "Major hip adductors",
-      "matchingExerciseCount": 74,
+      "matchingExerciseCount": 76,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         93,
@@ -11882,6 +11953,7 @@
         201,
         240,
         242,
+        256,
         341,
         392,
         420,
@@ -11927,7 +11999,8 @@
         1525,
         1726,
         1727,
-        1728
+        1728,
+        1733
       ]
     },
     {

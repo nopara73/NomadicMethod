@@ -71,7 +71,8 @@ public sealed partial class ExerciseSessionService
         Random? random = null,
         Func<DateTimeOffset>? utcNowProvider = null,
         TimeZoneInfo? localTimeZone = null,
-        IReadOnlyDictionary<int, int[][]>? fitnessRatings = null)
+        IReadOnlyDictionary<int, int[][]>? fitnessRatings = null,
+        int minimumMovementChoices = 1)
     {
         ArgumentNullException.ThrowIfNull(exercises);
         _catalogExercises = exercises;
@@ -80,6 +81,8 @@ public sealed partial class ExerciseSessionService
         _utcNowProvider = utcNowProvider ?? (() => DateTimeOffset.UtcNow);
         _localTimeZone = localTimeZone ?? TimeZoneInfo.Local;
         _fitnessRatings = fitnessRatings ?? new Dictionary<int, int[][]>();
+        if (minimumMovementChoices < 1) throw new ArgumentOutOfRangeException(nameof(minimumMovementChoices));
+        _minimumMovementChoices = minimumMovementChoices;
     }
 
     // Every public state operation crosses this boundary. A service can be
@@ -447,6 +450,10 @@ public sealed partial class ExerciseSessionService
             throw new InvalidOperationException("A workout is already active.");
         }
 
+        // Reject an insufficient final pool before changing any saved workout,
+        // preferences, scores, history, duration or physical setup.
+        EnsureSelectableWorkoutVariety(state, minutes, modifiers);
+
         state.ActiveCatalogRevision = CatalogMigrationRules.CurrentCatalogRevision;
         state.ActiveCoverageAccountingVersion = 2;
         state.ActiveSetupOrderVersion = 1;
@@ -665,6 +672,9 @@ public sealed partial class ExerciseSessionService
         bool currentSelectionGroupAvailable = selectionGroups.Any(group =>
             group.Id == currentRound.SelectionKey);
 
+        EnsureSelectableWorkoutVariety(state, state.ActiveWorkoutMinutes, modifiers, selectionGroups,
+            lockedExerciseIdsByGroup, lockedPlacements.Sum(p =>
+                (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length));
         IReadOnlyDictionary<string, int> replannedLineup =
             ChooseBestDistinctLineup(
                 state,

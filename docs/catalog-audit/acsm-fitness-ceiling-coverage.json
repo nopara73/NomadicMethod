@@ -4,16 +4,16 @@
   "status": "provisional",
   "assessedOn": "2026-10-31",
   "blockSeconds": 45,
-  "catalogRevision": 104,
-  "catalogSha256": "30bfd665c0f9835dd0cd859eb628bfe72eef9750464612d0d4fe8e6cf56fc3b4",
-  "exerciseCount": 919,
+  "catalogRevision": 105,
+  "catalogSha256": "dec477a25be443268124851a6606ed797e4cf349232837c6a1ef4c69505ed03a",
+  "exerciseCount": 930,
   "ratingScale": {
     "minimum": 1,
     "maximum": 5,
     "minimumMeaning": "The lowest assessed demand on a characteristic, including minimal demand. Every characteristic has an explicit 1–5 level set. Training claims are reviewed separately and do not grant fitness eligibility exemptions."
   },
   "emptyRatingCells": 0,
-  "profileCount": 209,
+  "profileCount": 210,
   "coveragePolicy": {
     "schemaVersion": 2,
     "minimumDistinctSessionMovements": 5,
@@ -679,8 +679,8 @@
     },
     "muscularStrength": {
       "1": {
-        "count": 333,
-        "exerciseCount": 384,
+        "count": 334,
+        "exerciseCount": 385,
         "exerciseIds": [
           15,
           16,
@@ -1065,7 +1065,8 @@
           1643,
           1644,
           1706,
-          1723
+          1723,
+          1733
         ],
         "sessionMovementIds": [
           15,
@@ -1400,7 +1401,8 @@
           1534,
           1535,
           1706,
-          1723
+          1723,
+          1733
         ]
       },
       "2": {
@@ -2096,8 +2098,8 @@
     },
     "muscularEndurance": {
       "1": {
-        "count": 308,
-        "exerciseCount": 365,
+        "count": 309,
+        "exerciseCount": 366,
         "exerciseIds": [
           15,
           16,
@@ -2463,7 +2465,8 @@
           1642,
           1643,
           1644,
-          1723
+          1723,
+          1733
         ],
         "sessionMovementIds": [
           15,
@@ -2773,12 +2776,13 @@
           1425,
           1430,
           1516,
-          1723
+          1723,
+          1733
         ]
       },
       "2": {
-        "count": 465,
-        "exerciseCount": 531,
+        "count": 466,
+        "exerciseCount": 532,
         "exerciseIds": [
           15,
           16,
@@ -3310,7 +3314,8 @@
           1534,
           1535,
           1702,
-          1703
+          1703,
+          1733
         ],
         "sessionMovementIds": [
           15,
@@ -3777,7 +3782,8 @@
           1534,
           1535,
           1702,
-          1703
+          1703,
+          1733
         ]
       },
       "3": {
@@ -4375,8 +4381,8 @@
     },
     "flexibility": {
       "1": {
-        "count": 119,
-        "exerciseCount": 137,
+        "count": 121,
+        "exerciseCount": 140,
         "exerciseIds": [
           17,
           59,
@@ -4514,7 +4520,10 @@
           1634,
           1720,
           1721,
-          1722
+          1722,
+          1738,
+          1739,
+          1740
         ],
         "sessionMovementIds": [
           17,
@@ -4565,7 +4574,9 @@
           611,
           625,
           712,
+          740,
           751,
+          784,
           801,
           804,
           818,
@@ -4639,8 +4650,8 @@
         ]
       },
       "2": {
-        "count": 156,
-        "exerciseCount": 169,
+        "count": 158,
+        "exerciseCount": 176,
         "exerciseIds": [
           17,
           21,
@@ -4810,7 +4821,14 @@
           1726,
           1727,
           1728,
-          1729
+          1729,
+          1734,
+          1735,
+          1736,
+          1737,
+          1738,
+          1739,
+          1740
         ],
         "sessionMovementIds": [
           17,
@@ -4940,6 +4958,7 @@
           1196,
           1197,
           1200,
+          1206,
           1209,
           1210,
           1215,
@@ -4964,6 +4983,7 @@
           1418,
           1419,
           1420,
+          1522,
           1710,
           1726,
           1727,
@@ -4973,7 +4993,7 @@
       },
       "3": {
         "count": 95,
-        "exerciseCount": 102,
+        "exerciseCount": 106,
         "exerciseIds": [
           115,
           163,
@@ -5076,7 +5096,11 @@
           1726,
           1727,
           1728,
-          1729
+          1729,
+          1734,
+          1735,
+          1736,
+          1737
         ],
         "sessionMovementIds": [
           115,
@@ -5920,8 +5944,8 @@
     },
     "coordination": {
       "1": {
-        "count": 241,
-        "exerciseCount": 251,
+        "count": 243,
+        "exerciseCount": 254,
         "exerciseIds": [
           17,
           31,
@@ -6173,7 +6197,10 @@
           1424,
           1426,
           1434,
-          1435
+          1435,
+          1738,
+          1739,
+          1740
         ],
         "sessionMovementIds": [
           17,
@@ -6323,6 +6350,8 @@
           687,
           712,
           733,
+          740,
+          784,
           790,
           801,
           804,
@@ -6420,8 +6449,8 @@
         ]
       },
       "2": {
-        "count": 232,
-        "exerciseCount": 264,
+        "count": 235,
+        "exerciseCount": 267,
         "exerciseIds": [
           21,
           41,
@@ -6686,7 +6715,10 @@
           1644,
           1701,
           1702,
-          1703
+          1703,
+          1730,
+          1731,
+          1732
         ],
         "sessionMovementIds": [
           21,
@@ -6920,7 +6952,10 @@
           1523,
           1701,
           1702,
-          1703
+          1703,
+          1730,
+          1731,
+          1732
         ]
       },
       "3": {
@@ -8215,7 +8250,7 @@
     }
   },
   "profileContributorCoverage": {
-    "recordsWithoutContribution": 626,
+    "recordsWithoutContribution": 634,
     "coverage": {
       "cardiorespiratoryEndurance": {
         "1": {
@@ -9079,7 +9114,7 @@
           ]
         },
         "2": {
-          "count": 46,
+          "count": 49,
           "exerciseIds": [
             174,
             178,
@@ -9128,7 +9163,10 @@
             1230,
             1252,
             1281,
-            1284
+            1284,
+            1730,
+            1731,
+            1732
           ],
           "sessionMovementIds": [
             174,
@@ -9176,7 +9214,10 @@
             1230,
             1252,
             1281,
-            1284
+            1284,
+            1730,
+            1731,
+            1732
           ]
         },
         "3": {

@@ -4,6 +4,9 @@
     # rule never manufactures another physical identity. A workout may select
     # at most one member of a family as a base muscle-group slot.
     Families = @{
+        '784' = @(784, 1740)
+        '740' = @(740, 1738)
+        '1522' = @(1522, 1734)
         '588' = @(588, 1300) # Shoulder-roll mobility; the natural marching demonstration expands compatibility without multiplying the fundamental scapular-circle movement.
         '161' = @(161, 1297) # Standing gate openers; sequential and naturally alternating demonstrations share one movement identity.
         '969' = @(969, 1028, 1031) # Chair holds and repetitions, including explicitly cued thigh-squeeze variants
@@ -11,7 +14,7 @@
         '625' = @(625, 1021) # Segmental standing roll-down: halfway-lift and continuous variants share one identity
         '327' = @(327, 546) # Horizontal elbow strikes: single-side pivoting and alternating planted demonstrations
         '1010' = @(1010, 1018) # Torso circumduction with moving or resting arms
-        '712' = @(712, 1012) # Arms-behind chest opening: passive hold and repeated active scapular-squeeze variant
+        '712' = @(712, 1012, 1739) # Arms-behind chest opening: passive hold and repeated active scapular-squeeze variant
         '437' = @(437, 1002) # Knee-lift under-leg claps: hopping and grounded variants share one identity
         '549' = @(549, 570) # Calf raise with bilateral forward arm elevation; range and fist-close variants
         '31' = @(31, 169, 486) # Same alternating knee lift with two-arm overhead pull-down
@@ -50,7 +53,7 @@
         '177' = @(177, 186)      # Hip airplane
         '214' = @(214, 223, 236, 755, 756)      # Single-arm wrist controlled circles
         '231' = @(231, 685)      # Karate reverse punch
-        '256' = @(256, 845, 958)      # Overhead side stretch
+        '256' = @(256, 845, 958, 1735, 1736)      # Overhead side stretch
         '270' = @(270, 677) # Goalpost arm movement and hold
         '277' = @(261, 277) # Standing bent-elbow chest squeeze
         '262' = @(262, 507)      # Standing cross-body bicycle crunch
@@ -72,6 +75,6 @@
         '144' = @(144, 1612, 1613, 1614, 1615)
         '180' = @(180, 534, 1632, 1633, 1634, 1635)
         '1516' = @(1516, 1642, 1643, 1644, 1645)
-        '1206' = @(1206, 1521) # Same standing forward-fold family, different demonstrated depth. # Conservative floor movement identity
+        '1206' = @(1206, 1521, 1737) # Same standing forward-fold family, different demonstrated depth. # Conservative floor movement identity
     }
 }

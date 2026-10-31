@@ -14,7 +14,7 @@ self.addEventListener("message", (event) => {
   } = event.data ?? {};
   try {
     const fitnessRatings = parseFitnessRatings(fitnessRatingSource);
-    const session = new WorkoutSession(exercises, state, undefined, undefined, fitnessRatings);
+    const session = WorkoutSession.createForApplication(exercises, state, undefined, undefined, fitnessRatings);
     if (mode === "reconfigure") {
       session.reconfigureActiveWorkout(modifiers, currentWorkoutGroupId);
       session.resizeActiveWorkout(minutes);

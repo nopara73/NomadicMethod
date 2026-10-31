@@ -141,8 +141,7 @@ public sealed class FitnessSelectionTests
     [InlineData(ExerciseOutcome.TooHard)]
     public void LatestDifficultyCanBroadenATrappedSlotWithoutInventingScores(ExerciseOutcome outcome)
     {
-        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
-            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
+        Exercise[] catalog = LegacyPelvicCatalogFixture.Load();
         var state = new WorkoutState
         {
             CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,

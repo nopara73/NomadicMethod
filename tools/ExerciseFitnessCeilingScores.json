@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-31",
   "blockSeconds": 45,
-  "catalogRevision": 104,
-  "catalogSha256": "30bfd665c0f9835dd0cd859eb628bfe72eef9750464612d0d4fe8e6cf56fc3b4",
+  "catalogRevision": 105,
+  "catalogSha256": "dec477a25be443268124851a6606ed797e4cf349232837c6a1ef4c69505ed03a",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -36,7 +36,8 @@
         603,
         612,
         648,
-        649
+        649,
+        1733
       ],
       "levels": {
         "cardiorespiratoryEndurance": [
@@ -2615,7 +2616,11 @@
         1726,
         1727,
         1728,
-        1729
+        1729,
+        1734,
+        1735,
+        1736,
+        1737
       ],
       "levels": {
         "cardiorespiratoryEndurance": [
@@ -2812,7 +2817,10 @@
         1239,
         1240,
         1247,
-        1280
+        1280,
+        1738,
+        1739,
+        1740
       ],
       "levels": {
         "cardiorespiratoryEndurance": [
@@ -11791,12 +11799,65 @@
         "reactionTime": false,
         "speed": false
       }
+    },
+    "independent-opposing-finger-patterns": {
+      "basis": "Independent opposing finger folds, fingertip contacts and split patterns require deliberate bilateral finger individuation and coordination. No external resistance, cardiovascular load, measured speed or reaction stimulus is demonstrated.",
+      "exerciseIds": [
+        1730,
+        1731,
+        1732
+      ],
+      "levels": {
+        "cardiorespiratoryEndurance": [
+          1
+        ],
+        "muscularStrength": [
+          1
+        ],
+        "muscularEndurance": [
+          1
+        ],
+        "flexibility": [
+          1
+        ],
+        "agility": [
+          1
+        ],
+        "balance": [
+          1
+        ],
+        "coordination": [
+          2
+        ],
+        "power": [
+          1
+        ],
+        "reactionTime": [
+          1
+        ],
+        "speed": [
+          1
+        ]
+      },
+      "trainingConditions": "Repeat the exact demonstrated finger pattern at a controlled natural speed. Learn the independent pattern within the 45-second opportunity, with deliberate resets when needed. This provisional coordination category does not imply strength, endurance, speed or higher-level performance.",
+      "trainingCharacteristics": {
+        "cardiorespiratoryEndurance": false,
+        "muscularStrength": false,
+        "muscularEndurance": false,
+        "flexibility": false,
+        "agility": false,
+        "balance": false,
+        "coordination": true,
+        "power": false,
+        "reactionTime": false,
+        "speed": false
+      }
     }
   },
   "representation": "complete-level-sets",
   "levelScale": {
     "minimum": 1,
     "maximum": 5,
-    "minimumMeaning": "The lowest assessed demand on a characteristic, including minimal demand. Every characteristic has an explicit 1–5 level set. Training claims are reviewed separately and do not grant fitness eligibility exemptions."
+    "minimumMeaning": "The lowest assessed demand on a characteristic, including minimal demand. Every characteristic has an explicit 1\u20135 level set. Training claims are reviewed separately and do not grant fitness eligibility exemptions."
   }
 }

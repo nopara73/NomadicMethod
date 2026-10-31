@@ -572,4 +572,19 @@
     1727 = @{ Name = 'Deep Squat Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1727' }
     1728 = @{ Name = 'Wall-Supported Happy Baby Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1728' }
     1729 = @{ Name = 'Legs-Up-the-Wall Stretch'; Region = 'HIPS'; Practice = 'Yoga'; MotionProfile = 'AnatomicalVariety1729' }
+
+    # Reviewed post-filter admissions; exact final-workout evidence is recorded separately.
+    1730 = @{ Name = 'Interlaced Finger Folds'; Region = 'HANDS'; Practice = 'Finger coordination'; MotionProfile = 'PostFilter1730' }
+    1731 = @{ Name = 'Opposing Fingertip Taps'; Region = 'HANDS'; Practice = 'Finger coordination'; MotionProfile = 'PostFilter1731' }
+    1732 = @{ Name = 'Finger Splits'; Region = 'HANDS'; Practice = 'Finger coordination'; MotionProfile = 'PostFilter1732' }
+    1733 = @{ Name = 'Standing Hip Adduction'; Region = 'HIPS'; Practice = 'Standing hip strengthening'; MotionProfile = 'PostFilter1733' }
+
+    # Exact human post-filter mobility admissions, 31 October 2026.
+    1734 = @{ Name = 'Seated Straddle Forward Fold'; Region = 'HIPS'; Practice = 'Flexibility training'; MotionProfile = 'PostFilter1734' }
+    1735 = @{ Name = 'Seated Straddle Side Stretch'; Region = 'BACK'; Practice = 'Flexibility training'; MotionProfile = 'PostFilter1735' }
+    1736 = @{ Name = 'Cross-Legged Side Stretch'; Region = 'BACK'; Practice = 'Flexibility training'; MotionProfile = 'PostFilter1736' }
+    1737 = @{ Name = 'Ragdoll Forward Fold'; Region = 'HIPS'; Practice = 'Flexibility training'; MotionProfile = 'PostFilter1737' }
+    1738 = @{ Name = 'Standing Rounded-Back Rib Stretch'; Region = 'CHEST'; Practice = 'Breathing muscle mobility'; MotionProfile = 'PostFilter1738' }
+    1739 = @{ Name = 'Standing Hands-Behind Rib Stretch'; Region = 'CHEST'; Practice = 'Breathing muscle mobility'; MotionProfile = 'PostFilter1739' }
+    1740 = @{ Name = 'Standing Elbow-Lift Rib Stretch'; Region = 'CHEST'; Practice = 'Breathing muscle mobility'; MotionProfile = 'PostFilter1740' }
 }

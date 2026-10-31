@@ -28,11 +28,11 @@ test('all ninety existing groups and subgroups have ten selectable catalog movem
 test('additions preserve an unfinished revision-97 workout and its preferences', () => {
   const additions = Array.from({ length: 10 }, (_, index) => 1720 + index);
   assert.deepEqual(ANATOMICAL_VARIETY_EXERCISE_IDS, additions);
-  assert.equal(getWorkoutCatalog(catalog, 97).length, 909);
+  assert.equal(getWorkoutCatalog(catalog, 97).length, 920);
   assert.ok(getWorkoutCatalog(catalog, 97).every(e => !additions.includes(e.id)));
   assert.ok(additions.every(id => getWorkoutCatalog(catalog, 98).some(e => e.id === id)));
   const anatomyCorrections = new Set([1069, 1071, 1209, 1216, 1292]);
-  const previousCatalog = structuredClone(getWorkoutCatalog(catalog, 97));
+  const previousCatalog = structuredClone(getWorkoutCatalog(catalog, 97).filter(e => e.id < 1730));
   for (const e of previousCatalog) if (anatomyCorrections.has(e.id))
     e.secondaryCanonicalGroups = e.secondaryCanonicalGroups.filter(g => g !== 'PelvicFloorAndPerineum');
   const state = createDefaultState();
@@ -51,5 +51,5 @@ test('additions preserve an unfinished revision-97 workout and its preferences',
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 97);
-  assert.equal(restored.state.catalogRevision, 104);
+  assert.equal(restored.state.catalogRevision, 105);
 });

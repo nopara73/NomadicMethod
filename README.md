@@ -37,6 +37,14 @@ before whole-lineup reservations or personal ranking. Sides, sets, directions an
 aliases count once. The native tests, web tests and production build reject any
 remaining shortage; existing contextual availability floors remain separate.
 
+Application planning also requires five distinct selectable movement families per
+applicable slot after settings, the personal training zone and complete-workout
+duration feasibility. This includes added variety slots and explicit edits of
+saved longer workouts. Existing workouts retain their saved progress on reopen.
+The [post-filter review](docs/catalog-audit/post-filter-variety-review-2026-10-31.json)
+records eleven human demonstrations, conservative shared identities and unchanged
+existing ratings; any remaining profile-specific shortage fails preparation.
+
 Choosing a shorter session therefore coarsens the body map instead of cutting
 the end off a longer routine. The default 5-minute partition has five broad
 targets; the 30-minute partition addresses all 30 leaves individually. Selected exercise

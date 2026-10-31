@@ -104,5 +104,5 @@ test("catalog 96 workouts, Keeps, history and downvotes survive the additive upd
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 96);
-  assert.equal(restored.state.catalogRevision, 104);
+  assert.equal(restored.state.catalogRevision, 105);
 });

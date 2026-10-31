@@ -14,6 +14,10 @@
     <None Include="..\web\tests\fixtures\arm-pulses.json" Link="Assets\arm-pulses.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\complete-fitness-ratings-cases.json" Link="Assets\complete-fitness-ratings-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\workout-variety-cases.json" Link="Assets\workout-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutVarietyPolicy.cs" Link="Production\Services\WorkoutVarietyPolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\ExerciseSessionService.Variety.cs" Link="Production\Services\ExerciseSessionService.Variety.cs" />
+    <None Include="..\web\tests\fixtures\post-filter-variety-cases.json" Link="Assets\post-filter-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\post-filter-variety-profiles.json" Link="Assets\post-filter-variety-profiles.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\catalog-position-cases.json" Link="Assets\catalog-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fixed-position-cases.json" Link="Assets\fixed-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\shared-coverage-cases.json" Link="Assets\shared-coverage-cases.json" CopyToOutputDirectory="PreserveNewest" />

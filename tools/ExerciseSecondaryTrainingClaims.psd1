@@ -19,6 +19,7 @@
         )
 
         PosteriorThighAndKneeFlexors = @(
+        1734,
         1709,
         1522,
 
@@ -34,7 +35,8 @@
         )
 
         MajorHipAdductors = @(
-            1064, 1090, 1234, 1241, 1245,
+            1735,
+        1064, 1090, 1234, 1241, 1245,
 
             1045,
             1031,
@@ -99,7 +101,8 @@
         )
 
         SpinalExtensors = @(
-            1071, 1083, 1175, 1205, 1206, 1216,
+            1737,
+        1071, 1083, 1175, 1205, 1206, 1216,
             1032,
         1021,
             1020,
@@ -154,6 +157,7 @@
         )
 
         AbdominalWall = @(
+        1735, 1736,
         1713, 1714,
         1523, 1429,
             1108, 1116, 1143, 1157, 1164, 1165, 1174, 1200, 1212, 1218, 1219, 1221, 1231, 1243,
@@ -294,7 +298,8 @@
         )
 
         BreathingMuscles = @(
-            484
+            1735, 1736, 1738, 1739, 1740,
+        484
         )
 
         ForearmExtensorsAndSupinators = @(
@@ -313,7 +318,9 @@
         )
 
         AccessoryHipAdductors = @(
-            # Full anatomical-region audit, 26 October 2026.
+            1734, 1735,
+        1733,
+        # Full anatomical-region audit, 26 October 2026.
             116, 733, 1064, 1214, 1221, 1222, 1229, 1241, 1245, 1292, 1429, 1522, 1525,
             1031,
             # The source explicitly cues continuous bilateral thigh pressure.
@@ -345,7 +352,8 @@
         )
 
         PelvicFloorAndPerineum = @(
-            # Exact held relaxation stretches reviewed against NHS/clinical guidance.
+            1734, 1736, 1737,
+        # Exact held relaxation stretches reviewed against NHS/clinical guidance.
             1069, 1071, 1209, 1216, 1292, 1726, 1727, 1728, 1729
         )
 

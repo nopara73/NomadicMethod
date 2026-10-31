@@ -78,6 +78,20 @@ function Get-CatalogReviewResult {
     )
     $metadataHash = Get-CatalogMetadataHash -Exercise $Exercise
     $assetHashes = Get-CatalogAssetHashes -Exercise $Exercise -AssetsRoot $AssetsRoot
+    # Exact, separately reviewed metadata amendments may retain earlier evidence.
+    # Both fingerprints must match; unknown metadata or asset drift stays stale.
+    if ($null -ne $Review -and $metadataHash -cne [string]$Review.metadataSha256) {
+        $amendmentPath = Join-Path $PSScriptRoot '../docs/catalog-audit/post-filter-variety-review-2026-10-31.json'
+        if (Test-Path -LiteralPath $amendmentPath) {
+            $amendments = (Get-Content -LiteralPath $amendmentPath -Raw | ConvertFrom-Json).metadataAmendments
+            $matched = @($amendments | Where-Object {
+                [int]$_.id -eq [int]$Exercise.id -and
+                $_.metadataSha256 -ceq $metadataHash -and
+                $_.previousMetadataSha256 -ceq [string]$Review.metadataSha256
+            })
+            if ($matched.Count -eq 1) { $metadataHash = [string]$matched[0].previousMetadataSha256 }
+        }
+    }
     $dimensions = [ordered]@{}
     foreach ($name in $catalogReviewDimensions) { $dimensions[$name] = 'UNREVIEWED' }
     $result = [ordered]@{

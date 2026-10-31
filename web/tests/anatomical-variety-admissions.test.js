@@ -1,4 +1,4 @@
-import { beforeNameReview } from "./catalog-review-history.js";
+import { beforeSurfaceReview } from "./catalog-review-history.js";
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -9,18 +9,18 @@ const load = name => JSON.parse(readFileSync(new URL(name, import.meta.url), 'ut
 const catalog = load('../../NomadicMethod/Assets/exercises.json');
 const admissions = load('../../docs/catalog-audit/anatomical-variety-admissions-2026-10-26.json');
 // Historical anatomy evidence keeps its reviewed protocol; the later pose audit owns revision 100.
-const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99).map(beforeNameReview);
+const anatomyReviewCatalog = getWorkoutCatalog(catalog, 99).map(e => beforeSurfaceReview(e, 98));
 const review = load('../../docs/catalog-audit/anatomical-variety-review-2026-10-26.json');
 const hash = data => createHash('sha256').update(data).digest('hex');
 const dimensions = ['Metadata', 'FullLoop', 'Crop', 'LoopSeam', 'PlaybackSpeed', 'Mirroring', 'Travel', 'HoldFrame', 'Equipment', 'Workout'];
 
 test('the floor is supplied by ten new identities and five reviewed anatomy corrections', () => {
   assert.equal(admissions.catalogRevision, 98);
-  assert.equal(catalog.length, 919);
+  assert.equal(catalog.length, 930);
   assert.deepEqual(admissions.newExerciseIds, Array.from({ length: 10 }, (_, i) => 1720 + i));
   assert.deepEqual(admissions.anatomyCorrectionIds, [1069, 1071, 1209, 1216, 1292]);
   assert.equal(new Set(catalog.filter(e => admissions.newExerciseIds.includes(e.id)).map(getSessionMovementId)).size, 10);
-  const baseline = structuredClone(catalog.filter(e => !admissions.newExerciseIds.includes(e.id)));
+  const baseline = structuredClone(catalog.filter(e => e.id < 1730 && !admissions.newExerciseIds.includes(e.id)));
   for (const e of baseline) if (admissions.anatomyCorrectionIds.includes(e.id))
     e.secondaryCanonicalGroups = e.secondaryCanonicalGroups.filter(g => g !== 'PelvicFloorAndPerineum');
   const inventory = getAnatomicalGroupVarietyInventory(baseline);

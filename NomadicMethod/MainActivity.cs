@@ -278,7 +278,7 @@ public partial class MainActivity : Activity
                 ReactionDrill.Load(reactionSource, database.Exercises);
             using Stream fitnessSource = context.Assets!.Open("fitness_ratings.json");
             IReadOnlyDictionary<int, int[][]> fitnessRatings = FitnessProfilePolicy.Load(fitnessSource);
-            var sessionService = new ExerciseSessionService(database.Exercises, fitnessRatings: fitnessRatings);
+            var sessionService = ExerciseSessionService.CreateForApplication(database.Exercises, fitnessRatings: fitnessRatings);
             sessionService.RestoreAfterReopen(_state);
             RecoverPendingScoreUpdate(database, _state);
 
@@ -421,7 +421,7 @@ public partial class MainActivity : Activity
                 ?? throw new InvalidOperationException(
                     "Unable to clone the workout state for preparation.");
             preparedState.OuraRecovery = recoveryContext;
-            var preparationService = new ExerciseSessionService(exercises, fitnessRatings: fitnessRatings);
+            var preparationService = ExerciseSessionService.CreateForApplication(exercises, fitnessRatings: fitnessRatings);
             using (preparationService.ObservePlanningCancellation(cancellationToken))
             {
                 if (isReconfiguration)
@@ -3048,6 +3048,8 @@ public partial class MainActivity : Activity
             Android.Util.Log.Error("NomadicMethod", $"Unable to start workout: {error}");
             string message = error.Message.StartsWith(FitnessSelectionPolicy.UnavailableMessage, StringComparison.Ordinal)
                 ? FitnessSelectionPolicy.UnavailableMessage
+                : error.Message.StartsWith(WorkoutVarietyPolicy.UnavailableMessage, StringComparison.Ordinal)
+                    ? WorkoutVarietyPolicy.UnavailableMessage
                 : "Could not prepare this workout. Your progress is safe.";
             ShowModifierFeedback(Resource.String.workout_unavailable, message);
         }

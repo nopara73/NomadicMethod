@@ -28,7 +28,7 @@ test("the pose review changes only execution geometry and retains the historical
 });
 
 test("all catalog poses and runtime media have current independent reviews", async () => {
-  assert.deepEqual(await checkFixedPositionReviews(), { exercises: 919, oppositeBlocks: 400, reactionClips: 20 });
+  assert.deepEqual(await checkFixedPositionReviews(), { exercises: 930, oppositeBlocks: 408, reactionClips: 20 });
 });
 
 test("the pose gate rejects alternating motion with a missing opposite linked/direction position", () => {

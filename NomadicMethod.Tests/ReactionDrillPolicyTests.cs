@@ -151,10 +151,10 @@ public sealed class ReactionDrillPolicyTests
         using var mismatch = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(document.ToJsonString()));
         Assert.Contains("Invalid reaction training claim", Assert.Throws<InvalidDataException>(() => ReactionDrill.Load(mismatch, catalog)).Message);
         IReadOnlyList<Exercise> old = WorkoutCatalogPolicy.ForWorkout(catalog, 87);
-        Assert.Equal(853, old.Count);
+        Assert.Equal(864, old.Count);
         Assert.DoesNotContain(old, item => WorkoutCatalogPolicy.FitnessCoverageExerciseIds.Contains(item.Id));
-        Assert.Equal(884, WorkoutCatalogPolicy.ForWorkout(catalog, 88).Count);
-        Assert.Equal(890, WorkoutCatalogPolicy.ForWorkout(catalog, 89).Count);
-        Assert.Equal(906, WorkoutCatalogPolicy.ForWorkout(catalog, 90).Count);
+        Assert.Equal(895, WorkoutCatalogPolicy.ForWorkout(catalog, 88).Count);
+        Assert.Equal(901, WorkoutCatalogPolicy.ForWorkout(catalog, 89).Count);
+        Assert.Equal(917, WorkoutCatalogPolicy.ForWorkout(catalog, 90).Count);
     }
 }
