@@ -27,13 +27,20 @@ export function fitnessZones(profile) {
   return profile.map(axis => axis.mean > 0 ? [...axis.bestLevels] : []);
 }
 
-export function isFitnessEligible(levels, zones) {
-  return !zones.some(zone => zone.length > 0) || !!levels?.some((set, dimension) =>
-    set.length > 0 && set.some(level => zones[dimension]?.includes(level)));
+export function isFitnessEligible(levels, zones, trainingCharacteristics = null) {
+  if (!zones.some(zone => zone.length > 0)) return true;
+  if (!levels || trainingCharacteristics && trainingCharacteristics.length !== levels.length) return false;
+  if (trainingCharacteristics && !trainingCharacteristics.some(Boolean))
+    return zones.every((zone, dimension) => !zone.length || levels[dimension]?.some(level => zone.includes(level)));
+  return levels.some((set, dimension) => set.length > 0 &&
+    (!trainingCharacteristics || trainingCharacteristics[dimension]) &&
+    set.some(level => zones[dimension]?.includes(level)));
 }
 
-export function isFitnessSequenceEligible(members, zones) {
-  return members.every(levels => isFitnessEligible(levels, zones));
+export function isFitnessSequenceEligible(members, zones, trainingCharacteristics = null) {
+  if (trainingCharacteristics && (trainingCharacteristics.length !== members.length || trainingCharacteristics.some(claim => !claim)))
+    return false;
+  return members.every((levels, index) => isFitnessEligible(levels, zones, trainingCharacteristics?.[index]));
 }
 
 export function orderFitnessCandidates(candidates, movementId, tier, random) {
@@ -81,6 +88,12 @@ export function parseFitnessRatings(source) {
     ratings.set(id, levels);
   }
   return ratings;
+}
+
+export function hasFitnessTrainingClaim(ratings, exerciseId, dimension) {
+  return ratings.trainingCharacteristics
+    ? ratings.trainingCharacteristics.get(exerciseId)?.[dimension] === true
+    : (ratings.get(exerciseId)?.[dimension]?.length ?? 0) > 0;
 }
 
 export function calculateFitnessProfile(exercises, state, ratings) {

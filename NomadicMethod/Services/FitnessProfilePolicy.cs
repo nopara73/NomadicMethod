@@ -72,6 +72,10 @@ public static class FitnessProfilePolicy
         return result;
     }
 
+    public static bool HasTrainingClaim(IReadOnlyDictionary<int, int[][]> ratings, int exerciseId, int dimension) =>
+        ratings.TryGetValue(exerciseId, out int[][]? levels) && dimension >= 0 &&
+        dimension < levels.Length && levels[dimension].Length > 0;
+
     public static double[] Calculate(
         IReadOnlyList<Exercise> exercises,
         WorkoutState state,

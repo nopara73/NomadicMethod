@@ -14,6 +14,23 @@ const ratings = parseFitnessRatings(JSON.parse(read("../../NomadicMethod/Assets/
 const now = () => Date.parse("2026-10-22T08:00:00Z");
 const modifiers = M.Mirror | M.TallMirror | M.HardFloor | M.Wall;
 const planningCases = JSON.parse(read("./fixtures/workout-planning-cases.json"));
+const preferences = JSON.parse(read("./fixtures/fitness-selection-preferences.json"));
+
+for (const entry of preferences.maskedMatches) {
+  test("shared training-claim selection: " + entry.name, () => {
+    const before=JSON.stringify(entry);
+    assert.equal(isFitnessEligible(entry.levels,entry.zones,entry.trained),entry.eligible);
+    assert.equal(JSON.stringify(entry),before);
+  });
+}
+test("every atomic member must match with its own training claims", () => {
+  const hard=FITNESS_DIMENSIONS.map((_,i)=>[i===1?3:1]);
+  const easy=FITNESS_DIMENSIONS.map(()=>[1]);
+  const zone=FITNESS_DIMENSIONS.map(()=>[3]);
+  const claims=FITNESS_DIMENSIONS.map((_,i)=>i===1);
+  assert.equal(isFitnessSequenceEligible([hard,easy],zone,[claims,FITNESS_DIMENSIONS.map(()=>false)]),false);
+  assert.equal(isFitnessSequenceEligible([hard],zone,[null]),false);
+});
 
 for (const entry of fixture.cases) {
   test("fitness selection: " + entry.name, () => {
@@ -65,16 +82,17 @@ test("equal-tier families have equal chances regardless of aliases", () => {
   assert.ok(familyOne > 4750 && familyOne < 5250, String(familyOne));
 });
 
-function discoveryFixture(higherHard = false) {
+function discoveryFixture(higherHard = false, lightStress = false, shareDeclinedCoverage = false) {
   const groups = getResolution(3).groups;
   const exercises = fixture.discovery.exercises.map(row => ({
     id: row.id, name: `Synthetic planner fixture ${row.id}`, video: "", practice: "", motionProfile: "",
     primaryCanonicalGroup: groups[row.group].canonicalGroups[0],
-    secondaryCanonicalGroups: groups[row.group].canonicalGroups.slice(1),
+    secondaryCanonicalGroups: groups[row.group].canonicalGroups.slice(1)
+      .concat(shareDeclinedCoverage && row.id===30 ? groups[1].canonicalGroups : []),
     mode: "Repetition", presentation: "Motion", holdFramePercent: 0, sideSequence: "Continuous",
     sequenceBlocks: [{exerciseId: row.id, sideCue: "None", directionCue: "None", mediaSegment: "Full", mirrorMedia: false}],
     sessionMovementId: row.movementId ?? row.id, score: row.score ?? 0,
-    muscularDemand: higherHard && [3,4,5].includes(row.id) ? 2 : 0,
+    muscularDemand: lightStress && row.id<20 && row.id!==7 || higherHard && [3,4,5].includes(row.id) ? 2 : 0,
     onlyFeetTouchGround: true, shoeAgnostic: true, maxSpaceMeters: 2, equipment: "None", silent: true,
     mirrorRelationship: "Agnostic", minimumMirrorCoverage: "None", hardFloorCompatibility: "Compatible",
     shyCompatibility: "Compatible", upperBodyClothingRequirement: "Agnostic", floorContactPoints: "Feet",
@@ -89,6 +107,60 @@ function discoveryFixture(higherHard = false) {
   const session = new WorkoutSession(exercises, state, () => 0, now, ratings);
   return { exercises, ratings, session };
 }
+
+for (const outcome of preferences.difficultyResponses) {
+  test("movement difficulty outranks the aggregate profile across aliases: " + outcome, () => {
+    const {session,ratings,exercises}=discoveryFixture();
+    session.state.keptExerciseRootIdsBySelectionGroupId={};
+    for(const id of [3,6])session.state.scores[id]=10000;
+    session.state.workoutHistory[0].decisions.push({rootExerciseId:6,outcome,decidedAtUnixMilliseconds:2});
+    const zones=fitnessZones(inspectFitnessProfile(exercises,session.state,ratings));
+    assert.equal(isFitnessEligible(ratings.get(6),zones),true);
+    const history=structuredClone(session.state.workoutHistory);
+    session.startWorkout(3,0);
+    assert.notEqual(session.getSelectedExercise(session.getNextGroup()).sessionMovementId,3);
+    assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase,{});
+    assert.deepEqual(session.state.workoutHistory,history);
+    assert.equal(session.getScore(session.exercisesById.get(6)),10000);
+  });
+}
+
+test("phase refusals apply to aliases before a fitness profile exists", () => {
+  const {session}=discoveryFixture();
+  session.state.workoutHistory=[];
+  session.state.keptExerciseRootIdsBySelectionGroupId={};
+  session.state.scores[6]=10000;
+  session.state.exerciseScoreAdjustmentsByPhase.Warmup={3:-1};
+  session.startWorkout(3,0);
+  assert.notEqual(session.getSelectedExercise(session.getNextGroup()).sessionMovementId,3);
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase.Warmup,{3:-1});
+});
+
+test("Light still dominates difficulty preference", () => {
+  const {session}=discoveryFixture(false,true);
+  session.state.workoutHistory[0].decisions.push({rootExerciseId:7,outcome:"easy",decidedAtUnixMilliseconds:2});
+  session.startWorkout(3,M.Light);
+  assert.equal(session.getSelectedExercise(session.getNextGroup()).id,7);
+});
+
+test("extra sets prefer other eligible work over a mandatory difficulty mismatch", () => {
+  const {session}=discoveryFixture();
+  session.state.workoutHistory[0].decisions.push({rootExerciseId:30,outcome:"hard",decidedAtUnixMilliseconds:2});
+  session.startWorkout(10,0);
+  const selected=session.state.activeWorkoutSession.initialSelections.filter(s=>s.rootExerciseId===30);
+  assert.equal(session.getActiveGroups().length,10);
+  assert.ok(selected.length>0);
+  assert.ok(selected.every(s=>s.setCount===1));
+});
+
+test("shared coverage cannot undo a difficulty preference", () => {
+  const {session}=discoveryFixture(false,false,true);
+  session.state.keptExerciseRootIdsBySelectionGroupId={};
+  session.state.scores[30]=10000;
+  session.state.workoutHistory[0].decisions.push({rootExerciseId:30,outcome:"hard",decidedAtUnixMilliseconds:2});
+  session.startWorkout(3,0);
+  for(const id of [20,30]) assert.ok(session.state.activeWorkoutSession.initialSelections.some(s=>s.rootExerciseId===id));
+});
 
 test("eligible loves first, then eligible new movements only, including after cold reopen", () => {
   let {exercises, ratings, session} = discoveryFixture();

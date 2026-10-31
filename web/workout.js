@@ -1,8 +1,8 @@
 import { frozenWorkoutProtocols } from "./workout-protocol-history.js";
 import "./light-cadence.js";
 import { copyProfileSnapshot } from "./completion-profile.js";
-import { calculateFitnessProfile, inspectFitnessProfile, FITNESS_EVIDENCE_VERSION, fitnessZones,
-  isFitnessSequenceEligible, latestFitnessMovementDecisions, FITNESS_UNAVAILABLE_MESSAGE, orderFitnessCandidates } from "./fitness-profile.js";
+import { calculateFitnessProfile, inspectFitnessProfile, FITNESS_EVIDENCE_VERSION, FITNESS_DIMENSIONS, fitnessZones,
+  isFitnessSequenceEligible, hasFitnessTrainingClaim, latestFitnessMovementDecisions, FITNESS_UNAVAILABLE_MESSAGE, orderFitnessCandidates } from "./fitness-profile.js";
 
 import "./workout-duration.js";
 
@@ -6373,8 +6373,7 @@ export class WorkoutSession {
   }
 
   removeDifficultyKeeps() {
-    const declined = new Set([...latestFitnessMovementDecisions(this.catalogExercises, this.state)]
-      .filter(([, entry]) => ["easy", "hard"].includes(entry.decision.outcome)).map(([id]) => id));
+    const declined = this.getDifficultyDeclinedMovementIds();
     for (const [slot, roots] of Object.entries(this.state.keptExerciseRootIdsBySelectionGroupId))
       this.state.keptExerciseRootIdsBySelectionGroupId[slot] = roots.filter(id => {
         const exercise = this.exercisesById.get(id);
@@ -6639,7 +6638,7 @@ export class WorkoutSession {
       return new Map();
     }
 
-    const fitnessEligibility = this.getFitnessEligibility();
+    const fitness = this.getFitnessSelectionContext();
     const frozenRoots = allowSavedSelectionException && this.state.activeWorkoutSession !== null
       ? new Map(groups.filter(g => {
         const root = this.exercisesById.get(currentExerciseIds.get(g.id));
@@ -6647,7 +6646,7 @@ export class WorkoutSession {
       }).map(g => [g.id, currentExerciseIds.get(g.id)])) : new Map();
     const calculateIsAllowed = (exercise, group) => {
       if (frozenRoots.has(group.id) && frozenRoots.get(group.id) !== exercise.id) return false;
-      if (fitnessEligibility.get(exercise.id) && this.isWorkoutSelectionCandidate(
+      if (fitness.eligibility.get(exercise.id) && this.isWorkoutSelectionCandidate(
         exercise,
         group,
         modifiers,
@@ -6685,7 +6684,9 @@ export class WorkoutSession {
       scheduledPhaseByGroupId.get(group.id) ??
         this.getProjectedSelectionPhase(group, groups.length);
     if (this.fitnessRatings.size === 0) this.shuffle(candidates);
-    const hasFitnessEvidence = [...fitnessEligibility.values()].some(eligible => !eligible);
+    const hasFitnessEvidence = fitness.hasRestrictions;
+    const hasDifficultyPreference = candidates.some(exercise => fitness.declinedMovements.has(getSessionMovementId(exercise))) &&
+      candidates.some(exercise => !fitness.declinedMovements.has(getSessionMovementId(exercise)));
     const excludedMovements = this.getExcludedMovementIds();
     const refusalDepths = new Map(candidates.flatMap(exercise => groups
       .filter(group => isAllowed(exercise, group)).map(group => {
@@ -6765,8 +6766,9 @@ export class WorkoutSession {
       moderateRecoveryAvoidanceWeight = addPriorityDimension(1);
       hardRecoveryAvoidanceWeight = addPriorityDimension(1);
     }
-    const refusalWeight = hasFitnessEvidence ? addPriorityDimension(Math.max(0, refusalRanks.size - 1)) : 0n;
+    const refusalWeight = addPriorityDimension(Math.max(0, refusalRanks.size - 1));
     const keptExerciseWeight = addPriorityDimension(1);
+    const acceptedDifficultyWeight = hasDifficultyPreference ? addPriorityDimension(1) : 0n;
     const unexcludedWeight = addPriorityDimension(1);
     const lightDayOpportunityWeight = addPriorityDimension(1);
     const preservedActiveSelectionWeight = allowSavedSelectionException
@@ -6805,6 +6807,7 @@ export class WorkoutSession {
          carriedKeepRootIdsBySelectionGroupId.get(evaluationGroup.id)
            ?.has(this.getSequenceRoot(exercise).id) === true);
       const phase = getSelectionPhase(evaluationGroup);
+      const difficultyDeclined = fitness.declinedMovements.has(getSessionMovementId(exercise));
       const selectionScore = includeSlotPreference
         ? this.getSelectionScore(exercise, phase)
         : 0;
@@ -6812,9 +6815,10 @@ export class WorkoutSession {
         this.getMovementRoots(exercise).some(root => this.getPhaseScoreAdjustment(root, phase) < 0);
       const hasHardOpportunity = includeSlotPreference &&
         hardRotationStatus === HARD_ROTATION_STATUS.FreshHard &&
-        !isDownvotedInPhase &&
+        !difficultyDeclined && !isDownvotedInPhase &&
         (isKept || selectionScore === highestScoreByGroup.get(evaluationGroup.id));
       const hasContextualKeepPreference = includeSlotPreference && isKept &&
+        !difficultyDeclined &&
         !isDownvotedInPhase &&
         hardRotationStatus !== HARD_ROTATION_STATUS.RecoveringHard &&
         !isRecoveringModerate;
@@ -6827,6 +6831,7 @@ export class WorkoutSession {
           ? lightDayOpportunityWeight
           : 0n) +
         (!excludedMovements.has(getSessionMovementId(exercise)) ? unexcludedWeight : 0n) +
+        (!difficultyDeclined ? acceptedDifficultyWeight : 0n) +
         (hasHardOpportunity ? hardOpportunityWeight : 0n) +
         (hasContextualKeepPreference ? keptExerciseWeight : 0n) +
         BigInt(refusalRanks.get(hasContextualKeepPreference ? 0 : refusalDepths.get(`${exercise.id}:${phase}`))) * refusalWeight +
@@ -6996,11 +7001,11 @@ export class WorkoutSession {
         .reduce((best, value) => value > best ? value : best, 0n),
     ]));
     const protectedKeepRoots = new Set();
-    const scoreTier = [...priorities.values()].reduce((a, b) => a > b ? a : b, 0n) + 1n;
-    const preferenceTier = scoreTier * BigInt(scoreRanks.size + 1);
-    for (const [id, priority] of priorities) {
+    // Keep the same priorities after solving, including direct difficulty feedback.
+    for (const id of priorities.keys()) {
       const root = this.exercisesById.get(id);
-      const kept = groups.some(g => lineup.get(g.id) === id && (this.isSequenceKept(g.id, root) ||
+      const kept = !fitness.declinedMovements.has(getSessionMovementId(root)) &&
+        groups.some(g => lineup.get(g.id) === id && (this.isSequenceKept(g.id, root) ||
         carriedKeepRootIdsBySelectionGroupId.get(g.id)?.has(id)) &&
         this.getMovementRoots(root).every(member => this.getPhaseScoreAdjustment(member, getSelectionPhase(g)) >= 0) &&
         getHardRotationStatus(this.getSequenceSelectionExerciseForGroup(root, g), g,
@@ -7008,10 +7013,6 @@ export class WorkoutSession {
         !isModerateExerciseRecovering(this.getSequenceSelectionExerciseForGroup(root, g),
           this.state.lastMeaningfulWorkUnixMillisecondsByPrimaryMuscle, selectionTimeUnixMilliseconds));
       if (kept) protectedKeepRoots.add(id);
-      const light = (modifiers & WORKOUT_MODIFIERS.Light) !== 0 && this.isDemandZeroSequence(root);
-      const bestScore = Math.max(...groups.filter(g => lineup.get(g.id) === id).map(g => this.getSelectionScore(root, getSelectionPhase(g))));
-      priorities.set(id, priority + BigInt(scoreRanks.get(bestScore)) * scoreTier +
-        (kept ? preferenceTier : 0n) + (light ? 2n * preferenceTier : 0n));
     }
     const coverageBalanceCache = new Map();
     return consolidateWorkoutCoverage(lineup, groups, this.exercisesById, priorities,
@@ -7023,7 +7024,7 @@ export class WorkoutSession {
         const key = [...placements].sort((a, b) => a.anchor.order - b.anchor.order).map(p => p.root.id + ':' + p.anchor.id).join('|');
         if (coverageBalanceCache.has(key)) return coverageBalanceCache.get(key);
         try {
-          const allocation = this.chooseLongWorkoutAllocation(new Set(), placements);
+          const allocation = this.chooseLongWorkoutAllocation(new Set(), placements, fitness.declinedMovements);
           const balance = calculateMuscleBalanceEvaluation(this.calculateScheduledCanonicalLoadEighthUnits(placements, allocation));
           coverageBalanceCache.set(key, balance);
           return balance;
@@ -7175,7 +7176,20 @@ export class WorkoutSession {
   getFitnessEligibility() {
     const zones = fitnessZones(inspectFitnessProfile(this.catalogExercises, this.state, this.fitnessRatings));
     return new Map([...this.sequenceExercisesByRootId].map(([id, members]) => [id,
-      isFitnessSequenceEligible(members.map(member => this.fitnessRatings.get(member.id)), zones)]));
+      isFitnessSequenceEligible(members.map(member => this.fitnessRatings.get(member.id)), zones,
+        members.map(member => Array.from({length:this.fitnessRatings.get(member.id)?.length ?? FITNESS_DIMENSIONS.length},
+          (_,dimension)=>hasFitnessTrainingClaim(this.fitnessRatings,member.id,dimension))))]));
+  }
+
+  getDifficultyDeclinedMovementIds() {
+    return new Set([...latestFitnessMovementDecisions(this.catalogExercises, this.state)]
+      .filter(([, entry]) => ["easy", "hard"].includes(entry.decision.outcome)).map(([id]) => id));
+  }
+
+  getFitnessSelectionContext() {
+    const eligibility = this.getFitnessEligibility();
+    return { eligibility, declinedMovements: this.getDifficultyDeclinedMovementIds(),
+      hasRestrictions: [...eligibility.values()].some(eligible => !eligible) };
   }
 
   getMovementRoots(exercise) {
@@ -7194,6 +7208,7 @@ export class WorkoutSession {
 
   orderFreshCandidates(group, candidates, exercise = item => item) {
     this.orderMovementFamilies(candidates, exercise);
+    const difficultyDeclined = this.getDifficultyDeclinedMovementIds();
     const phase = this.getExercisePhase(group);
     const now = this.getCurrentUnixTimeMilliseconds();
     const ordered = candidates.map(item => {
@@ -7206,6 +7221,7 @@ export class WorkoutSession {
         !this.getMovementRoots(root).some(variant => this.getPhaseScoreAdjustment(variant, phase) < 0);
       return { item, priority: [
         Number((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0 && !this.isDemandZeroSequence(root)),
+        Number(difficultyDeclined.has(getSessionMovementId(root))),
         kept ? 0 : 1, kept ? 0 : this.getMovementRefusalDepth(root, phase), Number(hardRecovery), Number(moderateRecovery),
         -this.getSelectionScore(root, phase),
       ] };
@@ -7889,6 +7905,7 @@ export class WorkoutSession {
   chooseLongWorkoutAllocation(
     lockedSelectionGroupIds = new Set(),
     selectedPlacements = null,
+    difficultyDeclinedMovements = null,
   ) {
     const rankedPlacements = [...(selectedPlacements ??
       this.getSelectedSequencePlacements())]
@@ -7980,6 +7997,7 @@ export class WorkoutSession {
 
     const scheduledRegionalLoad = createRegionalMuscleLoad(scheduledLoad);
     const addedRegionalLoadByRoot = new Map(rankedPlacements.map(p => [p.root.id, this.getSequenceMuscleLoad(p.root).regional]));
+    const difficultyDeclined = difficultyDeclinedMovements ?? this.getDifficultyDeclinedMovementIds();
     while (remainingMinutes > 0) {
       // Compute every candidate's next-set phase in one prefix scan. The old
       // comparator rescanned the entire schedule for both sides of every sort
@@ -8001,6 +8019,7 @@ export class WorkoutSession {
 
       let selectedMetadata = null;
       let selectedScore = Number.MIN_SAFE_INTEGER;
+      let selectedAcceptedDifficulty = false;
       let selectedLoad = null;
       let selectedRegionalLoad = null;
       for (const metadata of repeatableMetadata) {
@@ -8010,6 +8029,7 @@ export class WorkoutSession {
         }
         if (lightBlocksByBudget && lightBlocksByBudget[remainingMinutes - cost] +
             (this.isDemandZeroSequence(placement.root) ? cost : 0) !== lightBlocksByBudget[remainingMinutes]) continue;
+        const acceptedDifficulty = !difficultyDeclined.has(getSessionMovementId(placement.root));
         const score = hasPhaseScoreAdjustments
           ? this.getPhaseScoreAdjustment(
               placement.root,
@@ -8023,7 +8043,8 @@ export class WorkoutSession {
         if (loadComparison === 0 && accountForSharedLoad && selectedLoad)
           loadComparison = load.numerator * selectedLoad.denominator - selectedLoad.numerator * load.denominator;
         if (!selectedMetadata ||
-            score > selectedScore ||
+            acceptedDifficulty && !selectedAcceptedDifficulty ||
+            acceptedDifficulty === selectedAcceptedDifficulty && (score > selectedScore ||
             (score === selectedScore &&
               (loadComparison < 0 || loadComparison === 0 &&
               (setCount < selectedMetadata.setCount ||
@@ -8031,9 +8052,10 @@ export class WorkoutSession {
                   (Number(kept) > Number(selectedMetadata.kept) ||
                     (kept === selectedMetadata.kept &&
                       Number(cost === 1) >
-                        Number(selectedMetadata.cost === 1)))))))) {
+                        Number(selectedMetadata.cost === 1))))))))) {
           selectedMetadata = metadata;
           selectedScore = score;
+          selectedAcceptedDifficulty = acceptedDifficulty;
           selectedLoad = load;
           selectedRegionalLoad = regionalLoad;
         }
@@ -8076,12 +8098,12 @@ export class WorkoutSession {
     }
     const selectionTimeUnixMilliseconds = this.getCurrentUnixTimeMilliseconds();
     const allocationCache = new Map();
-    const fitnessEligibility = this.getFitnessEligibility();
+    const fitness = this.getFitnessSelectionContext();
     const excludedMovements = this.getExcludedMovementIds();
     const rebalanceRoots = this.exercises.filter((exercise) =>
       exercise.sequenceBlocks.length > 0 &&
       this.getSequenceRoot(exercise).id === exercise.id &&
-      fitnessEligibility.get(exercise.id) &&
+      fitness.eligibility.get(exercise.id) &&
       !keptExerciseIds.has(exercise.id) &&
       !excludedMovements.has(getSessionMovementId(exercise)) &&
       this.getSequenceExercises(exercise).every((member) =>
@@ -8140,6 +8162,7 @@ export class WorkoutSession {
           allocationBehaviorKey: this.getLongWorkoutAllocationPlacementKey(
             candidate,
             option.anchor,
+            fitness.declinedMovements,
           ),
         })),
     }));
@@ -8162,6 +8185,7 @@ export class WorkoutSession {
           currentPlacements,
           allocationCache,
           lockedSelectionGroupIds,
+          fitness.declinedMovements,
         );
       } catch {
         break;
@@ -8245,6 +8269,11 @@ export class WorkoutSession {
             // A balance improvement cannot restart a more-refused family.
             continue;
           }
+          if (removedPlacements.some(placement =>
+            fitness.declinedMovements.has(candidateMovementId) &&
+              !fitness.declinedMovements.has(getSessionMovementId(placement.root)))) {
+            continue;
+          }
           let candidateBalance;
           const removedBlockCount = removedPlacements.reduce(
             (total, placement) =>
@@ -8318,6 +8347,7 @@ export class WorkoutSession {
                   candidatePlacements,
                   allocationCache,
                   lockedSelectionGroupIds,
+                  fitness.declinedMovements,
                 );
               } catch {
                 candidateAllocation = null;
@@ -8492,12 +8522,15 @@ export class WorkoutSession {
     placements,
     allocationCache,
     lockedSelectionGroupIds = new Set(),
+    difficultyDeclinedMovements = null,
   ) {
+    difficultyDeclinedMovements ??= this.getDifficultyDeclinedMovementIds();
     const signature = placements
       .sort((left, right) => left.anchor.order - right.anchor.order)
       .map((placement) => this.getLongWorkoutAllocationPlacementKey(
         placement.root,
         placement.anchor,
+        difficultyDeclinedMovements,
       ))
       .join("|");
     if (allocationCache.has(signature)) {
@@ -8511,6 +8544,7 @@ export class WorkoutSession {
       const allocation = this.chooseLongWorkoutAllocation(
         lockedSelectionGroupIds,
         placements,
+        difficultyDeclinedMovements,
       );
       allocationCache.set(signature, allocation);
       return allocation;
@@ -8520,7 +8554,7 @@ export class WorkoutSession {
     }
   }
 
-  getLongWorkoutAllocationPlacementKey(root, anchor) {
+  getLongWorkoutAllocationPlacementKey(root, anchor, difficultyDeclinedMovements = this.getDifficultyDeclinedMovementIds()) {
     const sequenceExercises = this.getSequenceExercises(root);
     const keyParts = [
       this.state.activeCoverageAccountingVersion > 0
@@ -8533,6 +8567,7 @@ export class WorkoutSession {
       Number(sequenceExercises.some((member) =>
         member.muscularDemand === HARD_MUSCULAR_DEMAND)),
       Number(this.isSequenceKept(anchor.id, root)),
+      Number(difficultyDeclinedMovements.has(getSessionMovementId(root))),
     ];
     const hasPhaseScoreAdjustments = Object.values(
       this.state.exerciseScoreAdjustmentsByPhase,

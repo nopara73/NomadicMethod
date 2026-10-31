@@ -131,6 +131,26 @@ The spiderweb retains fractional difficulty estimates, so feedback can move an
 axis before it crosses a whole level. Existing saved responses are recalculated
 without changing the discrete training zones used to select exercises.
 
+The fitness-zone filter remains strict for every complete atomic sequence.
+Every exercise must have ten explicit nonempty level sets from 1 through 5.
+Reviewed training-characteristic flags keep an inactive minimum-1 demand rating
+from qualifying a hard movement through an unrelated low user characteristic.
+Work with no claimed fitness-training characteristic must match every known zone;
+its minimum-1 ratings do not grant an exemption at higher user levels.
+
+Within the eligible pool, a movement's latest “too easy” or “too hard” response
+deprioritizes its complete movement family. This reads existing history without
+adding further score adjustments. Phase-local refusals also follow the physical
+movement's aliases before any fitness profile exists. Light retains its dominant
+demand-zero priority. Genuine post-filter catalogue shortages remain visible;
+the planner does not admit easier or unrated work merely to fill a slot.
+
+Shuffle, coverage consolidation, muscle balancing and extra-set allocation retain
+movement-specific difficulty preferences. Extra sets use other available work
+ahead of a mandatory difficulty mismatch whenever complete sequences can still
+fill the selected duration. Personalization diagnostics must count the choices
+remaining after both physical restrictions and the fitness-zone filter.
+
 Modifier profiles share a logical slot, so a Keep made with Insect off remains
 the Keep for that same slot with Insect on whenever the exercise is eligible.
 When the duration changes anatomical resolution, Nomadic Method maps a Keep through the
