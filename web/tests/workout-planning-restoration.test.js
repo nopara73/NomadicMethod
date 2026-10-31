@@ -72,7 +72,8 @@ for (const item of rejectedSlotCases) {
     const log = structuredClone(session.state.activeWorkoutSession);
     assert.ok(log.initialSelections.every(s => s.rootExerciseId !== item.rejectedRoot));
     assert.equal(log.initialSelections.some(s => s.coveredWorkoutGroupIds.includes('r30.pelvic-floor-perineum')), !item.broaden);
-    if (item.broaden) assert.ok(session.state.activeDurationSelectionGroupIds.includes('r15.abdominal-pelvic-floor'));
+    if (item.broaden) assert.ok(session.getSelectionGroups().some(group=>
+      group.canonicalGroups.includes('PelvicFloorAndPerineum') && group.canonicalGroups.length>1));
     assert.equal(log.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.minutes);
     assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, feedback);
     assert.ok(session.state.keptExerciseRootIdsBySelectionGroupId['r30.pelvic-floor-perineum'].includes(item.rejectedRoot));

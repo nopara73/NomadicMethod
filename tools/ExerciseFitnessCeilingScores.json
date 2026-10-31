@@ -3,8 +3,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-31",
   "blockSeconds": 45,
-  "catalogRevision": 105,
-  "catalogSha256": "dec477a25be443268124851a6606ed797e4cf349232837c6a1ef4c69505ed03a",
+  "catalogRevision": 106,
+  "catalogSha256": "73eb686c36bd87edddcc5f2aaff91dfc5b6bc944e297d0ba5fcd6814e3ca23ad",
   "dimensions": [
     "cardiorespiratoryEndurance",
     "muscularStrength",
@@ -11858,6 +11858,6 @@
   "levelScale": {
     "minimum": 1,
     "maximum": 5,
-    "minimumMeaning": "The lowest assessed demand on a characteristic, including minimal demand. Every characteristic has an explicit 1\u20135 level set. Training claims are reviewed separately and do not grant fitness eligibility exemptions."
+    "minimumMeaning": "The lowest assessed demand on a characteristic, including minimal demand. Every characteristic has an explicit 1–5 level set. Training claims are reviewed separately and do not grant fitness eligibility exemptions."
   }
 }

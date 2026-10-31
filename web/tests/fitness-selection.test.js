@@ -315,7 +315,11 @@ for (const minutes of [3,5,7,10,15,45]) {
   for (const light of [false, true]) {
     test("bootstrap planning and restoration preserve " + minutes + " minutes, Light " + light, () => {
       const state = createDefaultState();
-      const session = new WorkoutSession(catalog, state, seededRandom(minutes), now, ratings);
+      // Setup now stops at 15 minutes. A longer checkpoint must originate
+      // in its historical catalog, then reopen and edit with today's catalog.
+      const initialCatalog = minutes > 15 ? structuredClone(catalog.filter(e => e.id < 1730)) : catalog;
+      if (minutes > 15) initialCatalog.find(e => e.id === 1069).hardFloorCompatibility = "Incompatible";
+      const session = new WorkoutSession(initialCatalog, state, seededRandom(minutes), now, ratings);
       session.initialize();
       const anchor = catalog.find(e => e.id === 218);
       const slot = getResolution(30).groups.find(g => g.canonicalGroups.includes(anchor.primaryCanonicalGroup));

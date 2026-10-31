@@ -408,6 +408,7 @@ await writeFile(
 
 const appSource = await readFile(path.join(webRoot, "app.js"), "utf8");
 const fingerprintedAppSource = appSource
+  .replace('"./workout-variety.js"', `"./${moduleOutputs.get('workout-variety')}"`)
   .replace('"./exercise-feedback.js"', `"./${moduleOutputs.get('exercise-feedback')}"`)
   .replace('"./reaction-drills.js"', `"./${moduleOutputs.get('reaction-drills')}"`)
   .replace('"./reaction-drill-view.js"', `"./${moduleOutputs.get('reaction-drill-view')}"`)

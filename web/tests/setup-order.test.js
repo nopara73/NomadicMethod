@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
-  orderPlacementsBySetup, orderSelectedSequencePlacementsForSchedule,
+  orderPlacementsBySetup, orderSelectedSequencePlacementsForSchedule, getSequenceSetup,
   WorkoutSession, createDefaultState, parseStoredState, WORKOUT_MODIFIERS,
 } from "../workout.js";
 
@@ -40,24 +40,36 @@ for (const entry of cases) {
 }
 
 for (const equipmentCount of [2, 8]) {
-  for (const hasCurrent of [false, true]) {
-    test(`${equipmentCount} equipment groups stay contiguous across surfaces and spaces (current: ${hasCurrent})`, () => {
-      // Four stations use exact routing; sixteen exercise the bounded fallback.
-      const exercises = Array.from({ length: equipmentCount * 2 }, (_, i) => makeExercise({
-        id: i + 1, wall: Boolean((i >> 1) & 1), mirror: Boolean((i >> 1) & 2),
-        elevation: Boolean((i >> 1) & 4), demand: i % 2,
+  for (const currentSpace of [-1, 0, 1, 2]) {
+    test(`${equipmentCount} equipment and locomotion groups stay contiguous across surfaces (current: ${currentSpace})`, () => {
+      // Six stations use exact routing; twenty-four exercise the bounded fallback.
+      const exercises = Array.from({ length: equipmentCount * 6 }, (_, i) => makeExercise({
+        id: i + 1, wall: Boolean(Math.floor(i / 6) & 1), mirror: Boolean(Math.floor(i / 6) & 2),
+        elevation: Boolean(Math.floor(i / 6) & 4), demand: i % 2,
         floor: Boolean(i % 2), soft: Boolean(i % 2),
-        locomotion: i % 2 === 0 ? "Room" : "None",
+        locomotion: ["None", "Room", "Field"][Math.floor(i / 2) % 3],
       }));
       const byId = new Map(exercises.map(e => [e.id, e]));
       const placements = exercises.map(root => ({ root, anchor: { id: String(root.id), order: root.id } }));
-      const ordered = orderPlacementsBySetup(placements, byId, profile, hasCurrent ? exercises[0] : null);
-      const equipment = ordered.map(p => (p.root.id - 1) >> 1);
+      const ordered = orderPlacementsBySetup(placements, byId, profile | WORKOUT_MODIFIERS.FieldLocomotion,
+        currentSpace >= 0 ? exercises[currentSpace * 2] : null);
+      const equipment = ordered.map(p => Math.floor((p.root.id - 1) / 6));
       const visits = equipment.filter((value, i) => i === 0 || value !== equipment[i - 1]);
       assert.equal(visits.length, equipmentCount);
       assert.equal(new Set(visits).size, equipmentCount);
+      for (const group of new Set(equipment)) {
+        const spaces = ordered.filter((_, i) => equipment[i] === group)
+          .map(p => Math.floor((p.root.id - 1) / 2) % 3);
+        const spaceVisits = spaces.filter((value, i) => i === 0 || value !== spaces[i - 1]);
+        assert.equal(spaceVisits.length, 3);
+        assert.equal(new Set(spaceVisits).size, 3);
+        assert.equal(spaces.filter((value, i) => value !== 0 && (i === 0 || spaces[i - 1] === 0)).length, 1);
+      }
       assert.deepEqual(new Set(ordered), new Set(placements));
-      if (hasCurrent) assert.equal(visits[0], 0);
+      if (currentSpace >= 0) {
+        assert.equal(visits[0], 0);
+        assert.equal(Math.floor((ordered[0].root.id - 1) / 2) % 3, currentSpace);
+      }
     });
   }
 }
@@ -65,6 +77,30 @@ for (const equipmentCount of [2, 8]) {
 const profile = WORKOUT_MODIFIERS.Wall | WORKOUT_MODIFIERS.Mirror |
   WORKOUT_MODIFIERS.TallMirror | WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.UpperBodyClothing |
   WORKOUT_MODIFIERS.Elevation | WORKOUT_MODIFIERS.RoomLocomotion;
+for (const equipment of [false, true]) {
+  for (const minutes of [15, 45, 90]) {
+    test(`actual ${minutes}-minute prepared workout keeps equipment and travel groups together (equipment: ${equipment})`, () => {
+      const modifiers = WORKOUT_MODIFIERS.RoomLocomotion | WORKOUT_MODIFIERS.FieldLocomotion |
+        (equipment ? profile | WORKOUT_MODIFIERS.SoleWallContact : 0);
+      const session = new WorkoutSession(catalog, createDefaultState(), () => 0);
+      session.initialize();
+      session.startWorkout(minutes, modifiers);
+      const byId = new Map(catalog.map(e => [e.id, e]));
+      const setups = session.state.activeWorkoutSession.initialSelections
+        .map(s => getSequenceSetup(byId.get(s.rootExerciseId), byId, modifiers));
+      const equipmentGroups = setups.map(s => s.station & 7);
+      const equipmentVisits = equipmentGroups.filter((value, i) => i === 0 || value !== equipmentGroups[i - 1]);
+      assert.equal(equipmentVisits.length, new Set(equipmentVisits).size);
+      for (const group of new Set(equipmentGroups)) {
+        const travel = setups.filter(s => (s.station & 7) === group).map(s => s.station & 24);
+        const visits = travel.filter((value, i) => i === 0 || value !== travel[i - 1]);
+        assert.equal(visits.length, new Set(visits).size);
+        assert.ok(travel.filter((value, i) => value !== 0 && (i === 0 || travel[i - 1] === 0)).length <= 1);
+      }
+      assert.equal(session.getActiveGroups().length, minutes);
+    });
+  }
+}
 for (const checkpoint of ["ready", "movement", "rest"]) {
   test(`setup order and progress survive cold reopen at ${checkpoint}`, () => {
     const state = createDefaultState();

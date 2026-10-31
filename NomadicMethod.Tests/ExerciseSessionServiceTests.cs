@@ -239,7 +239,12 @@ public sealed class ExerciseSessionServiceTests
             plannedGroups.SelectMany(g => g.CanonicalGroups).Distinct().Order());
         Assert.Equal(feedback, JsonSerializer.Serialize(restored.ExerciseScoreAdjustmentsByPhase));
         Assert.Equal(history, JsonSerializer.Serialize(restored.WorkoutHistory));
-        Assert.Equal(keeps, JsonSerializer.Serialize(restored.KeptExerciseRootIdsBySelectionGroupId));
+        var originalKeeps = JsonSerializer.Deserialize<Dictionary<string, HashSet<int>>>(keeps)!;
+        Assert.All(originalKeeps, entry => Assert.True(
+            restored.KeptExerciseRootIdsBySelectionGroupId.TryGetValue(entry.Key, out var actual) &&
+            entry.Value.IsSubsetOf(actual)));
+        Assert.Equal(originalKeeps.Values.SelectMany(ids => ids).Distinct().Order(),
+            restored.KeptExerciseRootIdsBySelectionGroupId.Values.SelectMany(ids => ids).Distinct().Order());
     }
 
     [Fact]

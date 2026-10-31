@@ -25,8 +25,8 @@ function start(item) {
   if(item.phaseFeedback) for(const exercise of catalog) {
     const first=exercise.id%10===0;
     state.exerciseScoreAdjustmentsByPhase.Warmup[exercise.id]=first?3:0;
-    state.exerciseScoreAdjustmentsByPhase.PeakPerformance[exercise.id]=first?-2:3;
-    state.exerciseScoreAdjustmentsByPhase.Fatigued[exercise.id]=first?-2:3;
+    state.exerciseScoreAdjustmentsByPhase.PeakPerformance[exercise.id]=first?0:3;
+    state.exerciseScoreAdjustmentsByPhase.Fatigued[exercise.id]=first?0:3;
   }
   const session=new WorkoutSession(catalog,state,()=>0.5,now);
   session.startWorkout(item.minutes,item.light?M.Light:M.None);
@@ -66,6 +66,16 @@ test('older allocation versions are retained on reopen',()=>{
   }
 });
 
+test('modifier changes retain the distinct partition and whole duration',()=>{
+  const {session}=start(cases[0]);
+  const slots=structuredClone(session.state.activeDurationSelectionGroupIds);
+  session.reconfigureActiveWorkout(M.Silence,session.getNextGroup().id);
+  assert.deepEqual(session.state.activeDurationSelectionGroupIds,slots);
+  assert.equal(session.getActiveGroups().length,45);
+  assert.equal(session.getSelectedSequencePlacements().length,45);
+  assert.ok(Object.values(session.state.activeSetCountsBySelectionGroupId).every(sets=>sets===1));
+});
+
 test('a prepared distinct lineup survives reopening before activation',()=>{
   const catalog=catalogFor(cases[0]), session=new WorkoutSession(catalog,createDefaultState(),()=>0.5,now);
   session.prepareWorkout(45,M.None);
@@ -74,4 +84,21 @@ test('a prepared distinct lineup survives reopening before activation',()=>{
   restored.initialize();
   assert.equal(JSON.stringify(restored.getActiveGroups()),rounds);
   assert.equal(restored.state.activeWorkoutSession.blocks.length,0);
+});
+
+test('earned Keeps follow additional selections into their actual slots',()=>{
+  const muscles=[...new Set(getResolution(30).groups.flatMap(group=>group.canonicalGroups))];
+  const catalog=catalogFor(cases[0]).map(exercise=>({...exercise,
+    secondaryCanonicalGroups:muscles.filter(muscle=>muscle!==exercise.primaryCanonicalGroup)}));
+  const session=new WorkoutSession(catalog,createDefaultState(),()=>0.5,now);
+  session.startWorkout(3);
+  const earned=[...new Set(session.getActiveGroups().map(group=>session.getSelectedExercise(group).id))];
+  for(let next; (next=session.getNextGroup());) session.recordOutcome(next,true);
+  session.acknowledgeCompletion();
+  session.startWorkout(45);
+  const activeSlots=new Set(session.state.activeDurationSelectionGroupIds);
+  const activeKeeps=new Set(Object.entries(session.state.keptExerciseRootIdsBySelectionGroupId)
+    .filter(([slot])=>activeSlots.has(slot)).flatMap(([,roots])=>roots));
+  assert.ok(earned.every(id=>activeKeeps.has(id)));
+  assert.equal(session.getActiveGroups().length,45);
 });

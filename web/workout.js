@@ -503,8 +503,9 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Existing identities, feedback and unfinished selections remain valid.
 // Revision 101 clarifies push-up hand placement without replacing the movement.
 // Revision 104 improves display wording without changing movement identities.
-// Revision 105 adds reviewed choices and enforces variety after physical and fitness filters.
-export const CURRENT_CATALOG_REVISION = 105;
+// Revision 105 restores conventional names without resetting exercise identity.
+// Revision 106 adds reviewed choices and checks five after physical and training-zone filters.
+export const CURRENT_CATALOG_REVISION = 106;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,
@@ -2083,12 +2084,14 @@ export function orderPlacementsBySetup(placements, exercisesById,
     for (; bits !== 0; bits &= bits - 1) count++;
     return count;
   };
-  // Keep exact equipment requirements together, including no equipment. Only
-  // surface and travel requirements may share a compatible station within that
-  // equipment group.
+  // Keep actual equipment and travel requirements separate. Stationary, Room
+  // and Field work must not be mixed because a larger space could host them all.
+  // Compatible surfaces can still share a station within the same group.
   const equipmentMask = 1 | 2 | 4;
+  const locomotionMask = 8 | 16;
+  const setupGroupMask = equipmentMask | locomotionMask;
   const canHost = (station, requirements) =>
-    (station & equipmentMask) === (requirements & equipmentMask) &&
+    (station & setupGroupMask) === (requirements & setupGroupMask) &&
     (station & requirements) === requirements;
   const stations = [...new Set(setups.map(s => s.station))]
     .filter(station => !setups.some(s => s.station !== station &&
@@ -2124,23 +2127,34 @@ export function orderPlacementsBySetup(placements, exercisesById,
     (next.startsOnFloor !== next.endsOnFloor ? 10 : 0);
   const context = index => index < 0 ? start :
     { station: choices[index].station, floor: choices[index].endsOnFloor };
-  // Finish this equipment group across all of its surfaces/travel spaces before
-  // moving to another. Keep this constraint in both exact and fallback routing.
-  const continuingEquipment = (remaining, previous) =>
-    previous && stations.some((station, g) => (remaining & (1 << g)) &&
-      (station & equipmentMask) === (previous.station & equipmentMask))
-      ? previous.station & equipmentMask : null;
+  // Finish equipment, its moving/stationary section, then the exact travel class.
+  // This also finishes the current class after an edit, in either router.
+  const continuingGroups = (remaining, previous) => {
+    if (!previous) return remaining;
+    let equipment = 0, locomotion = 0, exact = 0;
+    const previousTravel = previous.station & locomotionMask;
+    for (let g = 0; g < stations.length; g++) {
+      const bit = 1 << g;
+      if (!(remaining & bit) ||
+          (stations[g] & equipmentMask) !== (previous.station & equipmentMask)) continue;
+      equipment |= bit;
+      const travel = stations[g] & locomotionMask;
+      if ((travel !== 0) !== (previousTravel !== 0)) continue;
+      locomotion |= bit;
+      if (travel === previousTravel) exact |= bit;
+    }
+    return exact || locomotion || equipment || remaining;
+  };
   const memo = new Map();
   const best = (remaining, previous) => {
     if (remaining === 0) return 0;
     const key = remaining * (choices.length + 1) + previous + 1;
     if (memo.has(key)) return memo.get(key);
-    const equipment = continuingEquipment(remaining, context(previous));
+    const allowed = continuingGroups(remaining, context(previous));
     let cost = Infinity;
     for (let i = 0; i < choices.length; i++) {
       const next = choices[i];
-      if (!(remaining & (1 << next.group))) continue;
-      if (equipment !== null && (next.station & equipmentMask) !== equipment) continue;
+      if (!(allowed & (1 << next.group))) continue;
       cost = Math.min(cost, transition(context(previous), next) +
         best(remaining & ~(1 << next.group), i));
     }
@@ -2150,12 +2164,11 @@ export function orderPlacementsBySetup(placements, exercisesById,
   const result = [];
   let mask = (1 << stations.length) - 1, last = -1;
   while (mask !== 0) {
-    const equipment = continuingEquipment(mask, context(last));
+    const allowed = continuingGroups(mask, context(last));
     let selected = -1, cost = Infinity;
     for (let i = 0; i < choices.length; i++) {
       const next = choices[i];
-      if (!(mask & (1 << next.group))) continue;
-      if (equipment !== null && (next.station & equipmentMask) !== equipment) continue;
+      if (!(allowed & (1 << next.group))) continue;
       // Exact routing is over stations, with a bounded fallback for unusually
       // diverse future catalogs. Sides, directions and sets remain atomic.
       const candidate = transition(context(last), next) + (stations.length <= 12
@@ -5227,30 +5240,50 @@ export class WorkoutSession {
         getCanonicalCoverage(member, extraGroup) * 2 >= extraGroup.canonicalGroups.length) &&
         this.isWorkoutSelectionCandidate(root, extraGroup, this.state.activeWorkoutModifiers, [extraGroup])).map(root => root.id));
       if (allowedRoots.size === 0) continue;
-      let lineup;
-      try {
-        this.ensureSelectableWorkoutVariety(this.state.activeWorkoutMinutes, this.state.activeWorkoutModifiers, expanded);
-        lineup = this.chooseBestDistinctLineup([extraGroup], this.state.activeWorkoutModifiers, {
-          reservedRepeatMinutes: this.state.activeWorkoutMinutes - remaining,
-          allowedExerciseIds: allowedRoots,
-        });
-        const extraRoot = this.exercisesById.get(lineup.get(extraGroup.id));
-        if (usedMovements.has(getSessionMovementId(extraRoot))) continue;
-        const next = [...placements, {root: extraRoot, anchor: extraGroup, coveredGroups: [extraGroup]}];
-        const nextAllocation = this.chooseLongWorkoutAllocation(new Set(), next);
-        if (isLight && lightBlocks(next, nextAllocation) < priorLightBlocks) continue;
-      } catch (error) {
-        if (!(error instanceof Error) || (error.message !== WORKOUT_VARIETY_UNAVAILABLE_MESSAGE &&
-            !/No complete exercise lineup exists|selected sequence lengths cannot fill/.test(error.message))) throw error;
-        // Try another existing anatomical slot when no unused complete movement fits.
-        continue;
+      const carriedKeeps = this.buildCrossResolutionKeepPreferences([extraGroup]);
+      while (allowedRoots.size > 0) {
+        let lineup;
+        try {
+          this.ensureSelectableWorkoutVariety(this.state.activeWorkoutMinutes, this.state.activeWorkoutModifiers, expanded);
+          lineup = this.chooseBestDistinctLineup([extraGroup], this.state.activeWorkoutModifiers, {
+            carriedKeepRootIdsBySelectionGroupId: carriedKeeps,
+            reservedRepeatMinutes: this.state.activeWorkoutMinutes - remaining,
+            allowedExerciseIds: allowedRoots,
+          });
+          const extraRoot = this.exercisesById.get(lineup.get(extraGroup.id));
+          if (usedMovements.has(getSessionMovementId(extraRoot))) {allowedRoots.delete(extraRoot.id); continue;}
+          const next = [...placements, {root: extraRoot, anchor: extraGroup, coveredGroups: [extraGroup]}];
+          const nextAllocation = this.chooseLongWorkoutAllocation(new Set(), next);
+          if (isLight && lightBlocks(next, nextAllocation) < priorLightBlocks ||
+              this.getPhaseRefusalDepth(extraRoot, this.getAddedSelectionPhase(next, nextAllocation, extraGroup.id)) > 0) {
+            allowedRoots.delete(extraRoot.id); continue;
+          }
+        } catch (error) {
+          if (!(error instanceof Error) || (error.message !== WORKOUT_VARIETY_UNAVAILABLE_MESSAGE &&
+              !/No complete exercise lineup exists|selected sequence lengths cannot fill/.test(error.message))) throw error;
+          // Try another existing anatomical slot when no unused complete movement fits.
+          break;
+        }
+        this.state.activeDurationSelectionGroupIds = expanded.map(g => g.id);
+        this.state.activeSelectionGroupOrder = [];
+        this.state.selectedExerciseIds[this.getSelectionStorageKey(extraGroup.id, this.state.activeWorkoutModifiers)] = lineup.get(extraGroup.id);
+        if (carriedKeeps.get(extraGroup.id)?.has(lineup.get(extraGroup.id))) {
+          this.keepSequenceInSlot(extraGroup.id, this.exercisesById.get(lineup.get(extraGroup.id)));
+          this.syncLegacyKeptExerciseIds();
+        }
+        return true;
       }
-      this.state.activeDurationSelectionGroupIds = expanded.map(g => g.id);
-      this.state.activeSelectionGroupOrder = [];
-      this.state.selectedExerciseIds[this.getSelectionStorageKey(extraGroup.id, this.state.activeWorkoutModifiers)] = lineup.get(extraGroup.id);
-      return true;
     }
     return false;
+  }
+
+  getAddedSelectionPhase(placements, allocation, groupId) {
+    let blockOrder = 0;
+    for (const placement of this.getScheduleOrderedPlacements(placements)) {
+      blockOrder += placement.root.sequenceBlocks.length * allocation.setCountsBySelectionGroupId.get(placement.anchor.id);
+      if (placement.anchor.id === groupId) return getWorkoutExercisePhase(blockOrder);
+    }
+    throw new Error('The additional selection is missing from its proposed schedule.');
   }
 
   activatePreparedWorkout() {
@@ -5651,7 +5684,7 @@ export class WorkoutSession {
     this.ensureSelectableWorkoutVariety(this.state.activeWorkoutMinutes, modifiers, selectionGroups,
       lockedExerciseIdsByGroup, lockedPlacements.reduce((sum, p) =>
         sum + ((lockedSetCountsBySelectionGroupId.get(p.anchor.id) ?? 1) - 1) * p.root.sequenceBlocks.length, 0));
-    const replannedLineup = this.chooseBestDistinctLineup(
+    const chooseReconfiguredLineup = (geometry) => this.chooseBestDistinctLineup(
       selectionGroups,
       modifiers,
       {
@@ -5660,8 +5693,21 @@ export class WorkoutSession {
         modifierTransitionProtectedGroupIds: protectedBaseGroupIds,
         reservedRepeatMinutes: lockedPlacements.reduce((sum, p) => sum +
           (lockedSetCountsBySelectionGroupId.get(p.anchor.id) - 1) * p.root.sequenceBlocks.length, 0),
+        selectionGeometryOverride: geometry,
+        preserveGeometryBlockLengths: false,
       },
     );
+    const priorGroupIds = new Set(priorPlacements.flatMap(p => p.coveredGroups.map(g => g.id)));
+    const canRetainPartition = this.state.activeCoverageAccountingVersion >= 2 &&
+      this.state.activeDurationSelectionGroupIds !== null && !targetIsLightDay &&
+      priorGroupIds.size === selectionGroups.length && selectionGroups.every(g => priorGroupIds.has(g.id));
+    let replannedLineup;
+    try {
+      replannedLineup = chooseReconfiguredLineup(canRetainPartition ? priorPlacements : null);
+    } catch (error) {
+      if (!canRetainPartition || !error.message.includes('No complete exercise lineup exists')) throw error;
+      replannedLineup = chooseReconfiguredLineup(null);
+    }
 
     const selectedExerciseIdsBefore = { ...this.state.selectedExerciseIds };
     const setCountsBefore = { ...this.state.activeSetCountsBySelectionGroupId };
@@ -6882,12 +6928,15 @@ export class WorkoutSession {
       reservedRepeatMinutes = 0,
       allowedExerciseIds = null,
       preserveSelectionGeometry = false,
+      selectionGeometryOverride = null,
+      preserveGeometryBlockLengths = true,
     } = {},
   ) {
     if (groups.length === 0) {
       return new Map();
     }
-    const selectionGeometry = preserveSelectionGeometry ? this.getSelectedSequencePlacements() : null;
+    const selectionGeometry = selectionGeometryOverride ??
+      (preserveSelectionGeometry ? this.getSelectedSequencePlacements() : null);
     const requiredGroupIds = selectionGeometry === null ? null : new Set(getResolution(
       this.state.activeWorkoutMinutes > 30 ? 30 : this.state.activeWorkoutMinutes).groups.map(g => g.id));
 
@@ -7146,7 +7195,8 @@ export class WorkoutSession {
       const candidate = candidates[candidateIndex];
       const placementOptions = selectionGeometry === null
         ? [...this.getSequencePlacementOptions(candidate, groups)]
-        : selectionGeometry.filter(p => p.root.sequenceBlocks.length === candidate.sequenceBlocks.length &&
+        : selectionGeometry.filter(p => (!preserveGeometryBlockLengths ||
+            p.root.sequenceBlocks.length === candidate.sequenceBlocks.length) &&
           p.coveredGroups.every(g => isSequenceSelectable(candidate, this.exercisesById, g)) &&
           (requiredGroupIds.has(p.anchor.id) || this.getSequenceExercises(candidate).every(member =>
             getCanonicalCoverage(member, p.anchor) * 2 >= p.anchor.canonicalGroups.length))).map(p => p.coveredGroups);
@@ -7228,7 +7278,7 @@ export class WorkoutSession {
       this.state.activeWorkoutMinutes - reservedRepeatMinutes,
       atomicCandidates,
     );
-    if (!solution && this.state.activeCoverageAccountingVersion > 0) {
+    if (!solution && this.state.activeCoverageAccountingVersion > 0 && selectionGeometryOverride === null) {
       for (let candidateIndex = 0; candidateIndex < candidates.length; candidateIndex++) {
         const candidate = candidates[candidateIndex];
         for (const option of getSequencePlacementOptions(candidate, this.exercisesById, groups, true)) {

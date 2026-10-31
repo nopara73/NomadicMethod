@@ -914,7 +914,7 @@ test("web and mobile persist one combined duration and modifier selection contex
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible ||
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible));
   assert.equal(catalog.filter((exercise) =>
-    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 702);
+    exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Compatible).length, 713);
   assert.equal(catalog.filter((exercise) =>
     exercise.shyCompatibility === EXERCISE_SHY_COMPATIBILITY.Incompatible).length, 217);
   assert.deepEqual(
@@ -1499,7 +1499,7 @@ test("runtime media and the deployable web shell are content-addressed", () => {
   assert.match(webBuild, /reloadRequired: true, catalogRevision: CURRENT_CATALOG_REVISION/);
   assert.match(webBuild, /readFile\(path\.join\(outputRoot, "data", catalogOutputName\), "utf8"\)/,
     "Production validation must read the fingerprinted catalog, never the cached-client reload guard");
-  assert.ok(webApp.indexOf("if (!Array.isArray(exercises))") < webApp.indexOf("new WorkoutSession(exercises, loadState(), undefined, undefined, fitnessRatings)"),
+  assert.ok(webApp.indexOf("if (!Array.isArray(exercises))") < webApp.indexOf("WorkoutSession.createForApplication(exercises, loadState(), undefined, undefined, fitnessRatings)"),
     "An outdated runtime must reject the guard before it can migrate or write a session");
 });
 
@@ -1812,7 +1812,7 @@ test("Start activates an off-thread prepared workout on Android and web", async 
   );
   assert.match(
     preparationWorker,
-    /new WorkoutSession\(exercises, state, undefined, undefined, fitnessRatings\)[\s\S]*prepareWorkout\(minutes, modifiers\)[\s\S]*postMessage/,
+    /WorkoutSession\.createForApplication\(exercises, state, undefined, undefined, fitnessRatings\)[\s\S]*prepareWorkout\(minutes, modifiers\)[\s\S]*postMessage/,
   );
   assert.match(
     webBuild,
@@ -1834,7 +1834,7 @@ test("prepared Android state retains its planner and cancellation survives rapid
   assert.match(background, /new PreparedWorkout\([\s\S]*preparationService\)/);
   assert.match(start, /prepared\.SessionService\.ActivatePreparedWorkout\(nextState\)/);
   assert.equal((start.match(/_sessionService = prepared\.SessionService;/g) ?? []).length, 2);
-  assert.match(webApp, /new WorkoutSession\(exerciseCatalog, prepared\.state, undefined, undefined, fitnessRatings\)/);
+  assert.match(webApp, /WorkoutSession\.createForApplication\(exerciseCatalog, prepared\.state, undefined, undefined, fitnessRatings\)/);
 });
 
 test("Android persistence rejects malformed stored shapes without crashing launch", async () => {

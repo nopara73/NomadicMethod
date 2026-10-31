@@ -120,7 +120,9 @@ public sealed class WorkoutPlanningRestorationTests
         Assert.DoesNotContain(selections, s => s.RootExerciseId == item.RejectedRoot);
         Assert.Equal(!item.Broaden, selections.Any(s => s.CoveredWorkoutGroupIds.Contains("r30.pelvic-floor-perineum")));
         if (item.Broaden)
-            Assert.Contains("r15.abdominal-pelvic-floor", state.ActiveDurationSelectionGroupIds!);
+            Assert.Contains(service.GetActiveGroups(state), group =>
+                group.CanonicalGroups.Contains(CanonicalMuscleGroup.PelvicFloorAndPerineum) &&
+                group.CanonicalGroups.Count > 1);
         Assert.Equal(item.Minutes, service.GetActiveGroups(state).Count);
         Assert.Equal(item.Minutes, selections.Sum(s => s.SequenceBlockCount * s.SetCount));
         Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));

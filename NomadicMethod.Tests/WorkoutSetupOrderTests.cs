@@ -37,32 +37,81 @@ public sealed class WorkoutSetupOrderTests
     }
 
     [Theory]
-    [InlineData(2, false)]
-    [InlineData(2, true)]
-    [InlineData(8, false)]
-    [InlineData(8, true)]
-    public void EquipmentGroupsStayContiguousAcrossDifferentSurfacesAndSpaces(
-        int equipmentCount, bool hasCurrent)
+    [InlineData(2, -1)]
+    [InlineData(2, 0)]
+    [InlineData(2, 1)]
+    [InlineData(2, 2)]
+    [InlineData(8, -1)]
+    [InlineData(8, 0)]
+    [InlineData(8, 1)]
+    [InlineData(8, 2)]
+    public void EquipmentAndLocomotionGroupsStayContiguousAcrossSurfaces(
+        int equipmentCount, int currentSpace)
     {
-        // Two incomparable physical stations per equipment combination exercise
-        // both exact routing (four stations) and its bounded fallback (sixteen).
-        Exercise[] exercises = Enumerable.Range(0, equipmentCount * 2).Select(i =>
+        // Six stations exercise exact routing; twenty-four exercise its bounded
+        // fallback. Each travel class has standing and floor/surface variants.
+        Exercise[] exercises = Enumerable.Range(0, equipmentCount * 6).Select(i =>
             MakeExercise(new ExerciseSpec
             {
-                Id = i + 1, Wall = (i / 2 & 1) != 0, Mirror = (i / 2 & 2) != 0,
-                Elevation = (i / 2 & 4) != 0, Demand = i % 2,
+                Id = i + 1, Wall = (i / 6 & 1) != 0, Mirror = (i / 6 & 2) != 0,
+                Elevation = (i / 6 & 4) != 0, Demand = i % 2,
                 Floor = i % 2 != 0, Soft = i % 2 != 0,
-                Locomotion = i % 2 == 0 ? LocomotionSpace.Room : LocomotionSpace.None,
+                Locomotion = (LocomotionSpace)(i / 2 % 3),
             })).ToArray();
         var byId = exercises.ToDictionary(e => e.Id);
         Exercise[] ordered = WorkoutSchedulePolicy.OrderBySetup(exercises,
-            e => e, e => e.Id, byId, Profile, hasCurrent ? exercises[0] : null);
-        int[] equipment = ordered.Select(e => (e.Id - 1) / 2).ToArray();
+            e => e, e => e.Id, byId, Profile | WorkoutModifiers.FieldLocomotion,
+            currentSpace >= 0 ? exercises[currentSpace * 2] : null);
+        int[] equipment = ordered.Select(e => (e.Id - 1) / 6).ToArray();
         int[] visits = equipment.Where((value, i) => i == 0 || value != equipment[i - 1]).ToArray();
         Assert.Equal(equipmentCount, visits.Length);
         Assert.Equal(equipmentCount, visits.Distinct().Count());
+        foreach (var group in ordered.GroupBy(e => (e.Id - 1) / 6))
+        {
+            int[] spaces = group.Select(e => (e.Id - 1) / 2 % 3).ToArray();
+            int[] spaceVisits = spaces.Where((value, i) => i == 0 || value != spaces[i - 1]).ToArray();
+            Assert.Equal(3, spaceVisits.Length);
+            Assert.Equal(3, spaceVisits.Distinct().Count());
+            Assert.Single(spaces.Where((value, i) => value != 0 && (i == 0 || spaces[i - 1] == 0)));
+        }
         Assert.Equal(exercises.OrderBy(e => e.Id), ordered.OrderBy(e => e.Id));
-        if (hasCurrent) Assert.Equal(0, visits[0]);
+        if (currentSpace >= 0)
+        {
+            Assert.Equal(0, visits[0]);
+            Assert.Equal(currentSpace, (ordered[0].Id - 1) / 2 % 3);
+        }
+    }
+
+    [Theory]
+    [InlineData(15, false)]
+    [InlineData(45, false)]
+    [InlineData(90, false)]
+    [InlineData(15, true)]
+    [InlineData(45, true)]
+    [InlineData(90, true)]
+    public void ActualPreparedWorkoutsKeepEquipmentAndTravelGroupsTogether(int minutes, bool equipment)
+    {
+        Exercise[] catalog = Catalog();
+        var byId = catalog.ToDictionary(e => e.Id);
+        WorkoutModifiers modifiers = WorkoutModifiers.RoomLocomotion | WorkoutModifiers.FieldLocomotion;
+        if (equipment) modifiers |= Profile | WorkoutModifiers.SoleWallContact;
+        var service = new ExerciseSessionService(catalog, new Random(0));
+        var state = new WorkoutState();
+        service.Initialize(state);
+        service.StartWorkout(state, minutes, modifiers);
+        var setups = state.ActiveWorkoutSession!.InitialSelections.Select(s =>
+            WorkoutSchedulePolicy.GetSequenceSetup(byId[s.RootExerciseId], byId, modifiers)).ToArray();
+        int[] equipmentGroups = setups.Select(s => s.Station & 7).ToArray();
+        int[] equipmentVisits = equipmentGroups.Where((value, i) => i == 0 || value != equipmentGroups[i - 1]).ToArray();
+        Assert.Equal(equipmentVisits.Length, equipmentVisits.Distinct().Count());
+        foreach (int group in equipmentGroups.Distinct())
+        {
+            int[] travel = setups.Where(s => (s.Station & 7) == group).Select(s => s.Station & 24).ToArray();
+            int[] visits = travel.Where((value, i) => i == 0 || value != travel[i - 1]).ToArray();
+            Assert.Equal(visits.Length, visits.Distinct().Count());
+            Assert.True(travel.Where((value, i) => value != 0 && (i == 0 || travel[i - 1] == 0)).Count() <= 1);
+        }
+        Assert.Equal(minutes, service.GetActiveGroups(state).Count);
     }
 
     [Theory]

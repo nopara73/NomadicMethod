@@ -418,7 +418,9 @@ public sealed class FitnessSelectionTests
             Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
         using FileStream source = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "fitness_ratings.json"));
         var ratings = FitnessProfilePolicy.Load(source);
-        var service = new ExerciseSessionService(catalog, new Random(minutes), () => Now, fitnessRatings: ratings);
+        // Longer workouts originate in an older catalog and reopen with the full current catalog.
+        Exercise[] initialCatalog = minutes > 15 ? LegacyPelvicCatalogFixture.Load() : catalog;
+      var service = new ExerciseSessionService(initialCatalog, new Random(minutes), () => Now, fitnessRatings: ratings);
         var state = new WorkoutState();
         service.Initialize(state);
         Exercise anchor = catalog.Single(e => e.Id == 218);

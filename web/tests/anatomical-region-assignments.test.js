@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
 import { resolveReactionDrills } from "../reaction-drills.js";
-import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getWorkoutCatalog, getResolution, getMaximumDistinctLineupSize } from "../workout.js";
+import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getWorkoutCatalog, getResolution, getMaximumDistinctLineupSize, CURRENT_CATALOG_REVISION } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 // Historical anatomy evidence predates the pose audit and the explicit arm-pulse
@@ -104,5 +104,5 @@ test("catalog 96 workouts, Keeps, history and downvotes survive the additive upd
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 96);
-  assert.equal(restored.state.catalogRevision, 105);
+  assert.equal(restored.state.catalogRevision, CURRENT_CATALOG_REVISION);
 });

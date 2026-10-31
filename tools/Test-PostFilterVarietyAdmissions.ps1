@@ -11,7 +11,7 @@ $verified = Import-PowerShellDataFile (Join-Path $PSScriptRoot 'VerifiedExercise
 $assessment = Get-Content (Join-Path $PSScriptRoot 'ExerciseFitnessCeilingScores.json') -Raw | ConvertFrom-Json -AsHashtable
 $ratings = Get-Content (Join-Path $assets 'fitness_ratings.json') -Raw | ConvertFrom-Json -AsHashtable
 $expected = @(1069) + @(1730..1740)
-if ($document.schemaVersion -ne 1 -or $document.catalogRevision -ne 105 -or $document.status -cne 'PASS' -or
+if ($document.schemaVersion -ne 1 -or $document.catalogRevision -ne 106 -or $document.status -cne 'PASS' -or
     (@($reviews.Keys | Sort-Object) -join ',') -cne (@($expected | Sort-Object) -join ',')) {
     throw 'Every post-filter admission and physical correction needs its completed exact review.'
 }

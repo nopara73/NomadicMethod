@@ -1,4 +1,5 @@
 using System.Text.Json;
+using NomadicMethod.Models;
 
 namespace NomadicMethod.Services;
 
@@ -41,4 +42,14 @@ public static class ExerciseNamePolicy
     public static string DisplayName(int id, string name) =>
         Reviewed.TryGetValue(id, out ReviewedName? reviewed) && reviewed.Names.Contains(name)
             ? reviewed.Display : name;
+
+    public static bool HasDistinctIdentityNames(IReadOnlyCollection<Exercise> exercises)
+    {
+        var identities = new HashSet<string>(StringComparer.Ordinal);
+        return exercises.All(exercise =>
+        {
+            string identity = IdentityName(exercise.Id, exercise.Name);
+            return !string.IsNullOrWhiteSpace(identity) && identities.Add(identity);
+        });
+    }
 }

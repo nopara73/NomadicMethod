@@ -675,7 +675,7 @@ public sealed partial class ExerciseSessionService
         EnsureSelectableWorkoutVariety(state, state.ActiveWorkoutMinutes, modifiers, selectionGroups,
             lockedExerciseIdsByGroup, lockedPlacements.Sum(p =>
                 (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length));
-        IReadOnlyDictionary<string, int> replannedLineup =
+        IReadOnlyDictionary<string, int> ChooseReconfiguredLineup(SelectedSequencePlacement[]? geometry) =>
             ChooseBestDistinctLineup(
                 state,
                 selectionGroups,
@@ -684,7 +684,25 @@ public sealed partial class ExerciseSessionService
                 allowSavedSelectionException: true,
                 modifierTransitionProtectedGroupIds: protectedBaseGroupIds,
                 reservedRepeatMinutes: lockedPlacements.Sum(p =>
-                    (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length));
+                    (lockedSetCountsBySelectionGroupId[p.Anchor.Id] - 1) * p.Root.SequenceBlocks.Length),
+                selectionGeometryOverride: geometry,
+                preserveGeometryBlockLengths: false);
+        IReadOnlyDictionary<string, int> replannedLineup;
+        bool canRetainPartition = state.ActiveCoverageAccountingVersion >= 2 &&
+            state.ActiveDurationSelectionGroupIds is not null && !targetIsLightDay &&
+            priorPlacements.SelectMany(p => p.CoveredGroups).Select(g => g.Id)
+                .ToHashSet(StringComparer.Ordinal).SetEquals(selectionGroups.Select(g => g.Id));
+        try
+        {
+            // Keep the distinct anatomical partition when the new physical
+            // context can fill it. Choices and whole sequence lengths may change.
+            replannedLineup = ChooseReconfiguredLineup(canRetainPartition ? priorPlacements : null);
+        }
+        catch (InvalidOperationException error) when (canRetainPartition &&
+            error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal))
+        {
+            replannedLineup = ChooseReconfiguredLineup(null);
+        }
 
         var selectedExerciseIdsBefore = new Dictionary<string, int>(
             state.SelectedExerciseIds,
@@ -1843,7 +1861,9 @@ public sealed partial class ExerciseSessionService
             scheduledPhaseByGroupId = null,
         int reservedRepeatMinutes = 0,
         IReadOnlySet<int>? allowedExerciseIds = null,
-        bool preserveSelectionGeometry = false)
+        bool preserveSelectionGeometry = false,
+        SelectedSequencePlacement[]? selectionGeometryOverride = null,
+        bool preserveGeometryBlockLengths = true)
     {
         if (groups.Count == 0)
         {
@@ -1855,8 +1875,8 @@ public sealed partial class ExerciseSessionService
             new Dictionary<string, HashSet<int>>(StringComparer.Ordinal);
         modifierTransitionProtectedGroupIds ??=
             new HashSet<string>(StringComparer.Ordinal);
-        SelectedSequencePlacement[]? selectionGeometry = preserveSelectionGeometry
-            ? GetSelectedSequencePlacements(state) : null;
+        SelectedSequencePlacement[]? selectionGeometry = selectionGeometryOverride ??
+            (preserveSelectionGeometry ? GetSelectedSequencePlacements(state) : null);
         HashSet<string>? requiredGroupIds = selectionGeometry is null ? null :
             GetSelectionGroups(state.ActiveWorkoutMinutes, modifiers).Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
 
@@ -2180,7 +2200,8 @@ public sealed partial class ExerciseSessionService
             // may replace choices, but cannot merge them or recreate spare time.
             var placementOptions = selectionGeometry is null
                 ? GetSequencePlacementOptions(candidate, groups).ToList()
-                : selectionGeometry.Where(p => p.Root.SequenceBlocks.Length == candidate.SequenceBlocks.Length &&
+                : selectionGeometry.Where(p => (!preserveGeometryBlockLengths ||
+                    p.Root.SequenceBlocks.Length == candidate.SequenceBlocks.Length) &&
                     p.CoveredGroups.All(g => WorkoutSequencePolicy.IsSelectable(candidate, _exercisesById, g)) &&
                     (requiredGroupIds!.Contains(p.Anchor.Id) || GetSequenceExercises(candidate).All(member =>
                         WorkoutCoveragePolicy.GetCanonicalCoverage(member, p.Anchor) * 2 >= p.Anchor.CanonicalGroups.Count)))
@@ -2297,7 +2318,7 @@ public sealed partial class ExerciseSessionService
             groups.Count,
             state.ActiveWorkoutMinutes - reservedRepeatMinutes,
             atomicCandidates, _planningCancellationToken);
-        if (solution is null && state.ActiveCoverageAccountingVersion > 0)
+        if (solution is null && state.ActiveCoverageAccountingVersion > 0 && selectionGeometryOverride is null)
         {
             // Shared coverage can make a complete sequence fit when separate
             // per-slot selections cannot. Only invoke this larger search when

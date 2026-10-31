@@ -74,33 +74,56 @@ public sealed partial class ExerciseSessionService
                 IsWorkoutSelectionCandidate(state, root, extraGroup, state.ActiveWorkoutModifiers, [extraGroup]))
                 .Select(root => root.Id).ToHashSet();
             if (allowedRoots.Count == 0) continue;
-            IReadOnlyDictionary<string, int> lineup;
-            try
+            var carriedKeeps = BuildCrossResolutionKeepPreferences(state, [extraGroup]);
+            while (allowedRoots.Count > 0)
             {
-                EnsureSelectableWorkoutVariety(state, state.ActiveWorkoutMinutes, state.ActiveWorkoutModifiers, expanded);
-                lineup = ChooseBestDistinctLineup(state, [extraGroup], state.ActiveWorkoutModifiers,
-                    reservedRepeatMinutes: state.ActiveWorkoutMinutes - remaining,
-                    allowedExerciseIds: allowedRoots);
-                Exercise extraRoot = _exercisesById[lineup[extraGroup.Id]];
-                if (usedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(extraRoot))) continue;
-                SelectedSequencePlacement[] next = [.. placements, new(extraRoot, extraGroup, [extraGroup])];
-                LongWorkoutAllocation nextAllocation = ChooseLongWorkoutAllocation(state, selectedPlacements: next);
-                if (isLight && LightBlocks(next, nextAllocation) < priorLightBlocks) continue;
+                IReadOnlyDictionary<string, int> lineup;
+                try
+                {
+                    EnsureSelectableWorkoutVariety(state, state.ActiveWorkoutMinutes, state.ActiveWorkoutModifiers, expanded);
+                    lineup = ChooseBestDistinctLineup(state, [extraGroup], state.ActiveWorkoutModifiers,
+                        carriedKeepRootIdsBySelectionGroupId: carriedKeeps,
+                        reservedRepeatMinutes: state.ActiveWorkoutMinutes - remaining,
+                        allowedExerciseIds: allowedRoots);
+                    Exercise extraRoot = _exercisesById[lineup[extraGroup.Id]];
+                    if (usedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(extraRoot)))
+                    { allowedRoots.Remove(extraRoot.Id); continue; }
+                    SelectedSequencePlacement[] next = [.. placements, new(extraRoot, extraGroup, [extraGroup])];
+                    LongWorkoutAllocation nextAllocation = ChooseLongWorkoutAllocation(state, selectedPlacements: next);
+                    if (isLight && LightBlocks(next, nextAllocation) < priorLightBlocks ||
+                        GetPhaseRefusalDepth(state, extraRoot, GetAddedSelectionPhase(state, next, nextAllocation, extraGroup.Id)) > 0)
+                    { allowedRoots.Remove(extraRoot.Id); continue; }
+                }
+                catch (InvalidOperationException error) when (
+                    error.Message == WorkoutVarietyPolicy.UnavailableMessage ||
+                    error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal) ||
+                    error.Message.Contains("selected sequence lengths cannot fill", StringComparison.Ordinal))
+                {
+                    // A candidate slot may have no unused movement whose complete
+                    // sequence fits. Other existing slots can still fill the budget.
+                    break;
+                }
+                state.ActiveDurationSelectionGroupIds = expanded.Select(g => g.Id).ToList();
+                state.ActiveSelectionGroupOrder.Clear();
+                state.SelectedExerciseIds[GetSelectionStorageKey(extraGroup.Id, state.ActiveWorkoutModifiers)] = lineup[extraGroup.Id];
+                if (carriedKeeps.GetValueOrDefault(extraGroup.Id)?.Contains(lineup[extraGroup.Id]) == true &&
+                    GetKeptRootIdsForSlot(state, extraGroup.Id).Add(lineup[extraGroup.Id]))
+                    SyncLegacyKeptExerciseIds(state);
+                return true;
             }
-            catch (InvalidOperationException error) when (
-                error.Message == WorkoutVarietyPolicy.UnavailableMessage ||
-                error.Message.Contains("No complete exercise lineup exists", StringComparison.Ordinal) ||
-                error.Message.Contains("selected sequence lengths cannot fill", StringComparison.Ordinal))
-            {
-                // A candidate slot may have no unused movement whose complete
-                // sequence fits. Other existing slots can still fill the budget.
-                continue;
-            }
-            state.ActiveDurationSelectionGroupIds = expanded.Select(g => g.Id).ToList();
-            state.ActiveSelectionGroupOrder.Clear();
-            state.SelectedExerciseIds[GetSelectionStorageKey(extraGroup.Id, state.ActiveWorkoutModifiers)] = lineup[extraGroup.Id];
-            return true;
         }
         return false;
+    }
+
+    private WorkoutExercisePhase GetAddedSelectionPhase(WorkoutState state,
+        SelectedSequencePlacement[] placements, LongWorkoutAllocation allocation, string groupId)
+    {
+        int blockOrder = 0;
+        foreach (var placement in GetScheduleOrderedPlacements(state, placements))
+        {
+            blockOrder += placement.Root.SequenceBlocks.Length * allocation.SetCountsBySelectionGroupId[placement.Anchor.Id];
+            if (placement.Anchor.Id == groupId) return WorkoutExercisePhasePolicy.FromOneBasedBlockOrder(blockOrder);
+        }
+        throw new InvalidOperationException("The additional selection is missing from its proposed schedule.");
     }
 }

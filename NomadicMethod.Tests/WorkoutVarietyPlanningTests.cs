@@ -85,6 +85,36 @@ public sealed class WorkoutVarietyPlanningTests
     }
 
     [Fact]
+    public void ModifierChangesRetainTheDistinctPartitionAndWholeDuration()
+    {
+        var (service, state, _) = Start(Cases()[0]);
+        string[] slots = state.ActiveDurationSelectionGroupIds!.ToArray();
+        service.ReconfigureActiveWorkout(state, WorkoutModifiers.Silence, service.GetNextGroup(state)!.Id);
+        Assert.Equal(slots, state.ActiveDurationSelectionGroupIds);
+        Assert.Equal(45, service.GetActiveGroups(state).Count);
+        Assert.Equal(45, service.GetActiveGroups(state).DistinctBy(g => g.SelectionKey).Count());
+        Assert.All(state.ActiveSetCountsBySelectionGroupId.Values, sets => Assert.Equal(1, sets));
+    }
+
+    [Fact]
+    public void EarnedKeepsFollowAdditionalSelectionsIntoTheirActualSlots()
+    {
+        var (_, _, catalog) = Start(Cases()[0], wholeBodyCoverage: true);
+        var service = new ExerciseSessionService(catalog, new Random(1));
+        var state = new WorkoutState();
+        service.StartWorkout(state, 3);
+        int[] earned = service.GetActiveGroups(state).Select(g => service.GetSelectedExercise(state, g).Id).Distinct().ToArray();
+        while (service.GetNextGroup(state) is { } next) service.RecordOutcome(state, next, true);
+        service.AcknowledgeCompletion(state);
+        service.StartWorkout(state, 45);
+        var activeSlots = state.ActiveDurationSelectionGroupIds!.ToHashSet(StringComparer.Ordinal);
+        var activeKeeps = state.KeptExerciseRootIdsBySelectionGroupId
+            .Where(entry => activeSlots.Contains(entry.Key)).SelectMany(entry => entry.Value).ToHashSet();
+        Assert.All(earned, id => Assert.Contains(id, activeKeeps));
+        Assert.Equal(45, service.GetActiveGroups(state).Count);
+    }
+
+    [Fact]
     public void PreparedDistinctLineupSurvivesReopenBeforeActivation()
     {
         var (_, _, catalog) = Start(Cases()[0]);
@@ -98,7 +128,7 @@ public sealed class WorkoutVarietyPlanningTests
         Assert.Empty(state.ActiveWorkoutSession!.Blocks);
     }
 
-    private static (ExerciseSessionService Service, WorkoutState State, Exercise[] Catalog) Start(JsonElement item)
+    private static (ExerciseSessionService Service, WorkoutState State, Exercise[] Catalog) Start(JsonElement item, bool wholeBodyCoverage = false)
     {
         int copies = item.GetProperty("copies").GetInt32();
         bool aliases = item.GetProperty("aliases").GetBoolean(), light = item.GetProperty("light").GetBoolean();
@@ -110,7 +140,10 @@ public sealed class WorkoutVarietyPlanningTests
                 return new Exercise
                 {
                     Id = id, Name = $"Exercise {id}", Video = $"exercise_{id}.mp4",
-                    PrimaryCanonicalGroup = g.CanonicalGroups.First(), SecondaryCanonicalGroups = [],
+                    PrimaryCanonicalGroup = g.CanonicalGroups.First(),
+                    SecondaryCanonicalGroups = wholeBodyCoverage
+                        ? MassGroupingTaxonomy.GetResolution(30).Groups.SelectMany(group => group.CanonicalGroups)
+                            .Distinct().Where(muscle => muscle != g.CanonicalGroups.First()).ToArray() : [],
                     SessionMovementId = aliases ? 1000 + index * 10 : id,
                     Score = 0, MuscularDemand = light && copy == 1 ? 2 : 0,
                     Practice = "Test", MotionProfile = "Test", Mode = ExerciseMode.Repetition,
@@ -137,8 +170,8 @@ public sealed class WorkoutVarietyPlanningTests
             {
                 bool first = exercise.Id % 10 == 0;
                 state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.Warmup][exercise.Id] = first ? 3 : 0;
-                state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.PeakPerformance][exercise.Id] = first ? -2 : 3;
-                state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.Fatigued][exercise.Id] = first ? -2 : 3;
+                state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.PeakPerformance][exercise.Id] = first ? 0 : 3;
+                state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.Fatigued][exercise.Id] = first ? 0 : 3;
             }
         var service = new ExerciseSessionService(catalog, new Random(1), () => DateTimeOffset.Parse("2026-10-31T01:00:00Z"));
         service.StartWorkout(state, item.GetProperty("minutes").GetInt32(), light ? WorkoutModifiers.Light : WorkoutModifiers.None);
