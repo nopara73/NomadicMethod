@@ -223,7 +223,8 @@ const [
   source("NomadicMethod", "Services", "WorkoutRecoveryLightPolicy.cs"),
   source("NomadicMethod", "Services", "ReactionCuePolicy.cs"),
   source("NomadicMethod", "Services", "WorkoutLightDayPolicy.cs"),
-  source("NomadicMethod", "Data", "SqliteExerciseDatabase.cs"),
+  Promise.all(["SqliteExerciseDatabase.cs", "ExerciseCatalogValidator.cs", "ExerciseDatabaseMigrationSql.cs"]
+    .map(file => source("NomadicMethod", "Data", file))).then(parts => parts.join("\n")),
   source("NomadicMethod.Tests", "CatalogInvariantTests.cs"),
   source("NomadicMethod", "Data", "ExerciseDatabaseVersionPolicy.cs"),
   source("NomadicMethod", "Models", "WorkoutSessionLog.cs"),
