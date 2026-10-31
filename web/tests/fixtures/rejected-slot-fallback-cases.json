@@ -1,0 +1,7 @@
+[
+  {"name":"thirty-minute hard floor pelvic slot", "minutes":30, "modifiers":5232, "rejectedRoot":918, "broaden":true},
+  {"name":"forty-five-minute hard floor pelvic slot", "minutes":45, "modifiers":5232, "rejectedRoot":918, "broaden":true},
+  {"name":"ninety-minute hard floor pelvic slot", "minutes":90, "modifiers":5232, "rejectedRoot":918, "broaden":true},
+  {"name":"Light preserves or increases demand-zero work", "minutes":45, "modifiers":5488, "rejectedRoot":918, "broaden":true},
+  {"name":"soft floor offers alternatives in the fine slot", "minutes":45, "modifiers":5344, "rejectedRoot":918, "broaden":false}
+]

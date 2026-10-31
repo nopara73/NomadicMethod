@@ -113,6 +113,7 @@
     <None Include="..\web\tests\fixtures\workout-planning-cases.json"
           Link="Assets\workout-planning-cases.json"
           CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\rejected-slot-fallback-cases.json" Link="Assets\rejected-slot-fallback-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\trained-muscle-membership-cases.json"
           Link="Assets\trained-muscle-membership-cases.json"
           CopyToOutputDirectory="PreserveNewest" />

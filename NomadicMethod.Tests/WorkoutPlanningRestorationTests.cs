@@ -85,6 +85,101 @@ public sealed class WorkoutPlanningRestorationTests
         Assert.Equal(7, service.GetActiveGroups(state).Count);
     }
 
+    public static IEnumerable<object[]> RejectedSlotCases() =>
+        JsonSerializer.Deserialize<RejectedSlotCase[]>(File.ReadAllText(Path.Combine(
+            AppContext.BaseDirectory, "Assets", "rejected-slot-fallback-cases.json")), JsonOptions)!
+            .Select(item => new object[] { item });
+
+    [Theory]
+    [MemberData(nameof(RejectedSlotCases))]
+    public void RejectedSingletonCanUseABroaderSiblingTarget(RejectedSlotCase item)
+    {
+        Exercise[] catalog = Catalog();
+        var state = new WorkoutState
+        {
+            CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
+            ExerciseScoreAdjustmentsByPhase = Enum.GetValues<WorkoutExercisePhase>()
+                .Where(p => p != WorkoutExercisePhase.Unknown).ToDictionary(p => p,
+                    _ => new Dictionary<int, int> { [item.RejectedRoot] = -2 }),
+            KeptExerciseRootIdsBySelectionGroupId = new()
+            {
+                ["r30.pelvic-floor-perineum"] = [item.RejectedRoot],
+            },
+        };
+        string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
+        var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
+        service.Initialize(state);
+        service.StartWorkout(state, item.Minutes, (WorkoutModifiers)item.Modifiers);
+        var selections = state.ActiveWorkoutSession!.InitialSelections;
+        Assert.DoesNotContain(selections, s => s.RootExerciseId == item.RejectedRoot);
+        Assert.Equal(item.Broaden, state.ActiveDurationSelectionGroupIds is not null);
+        if (item.Broaden)
+            Assert.Contains("r15.abdominal-pelvic-floor", state.ActiveDurationSelectionGroupIds!);
+        Assert.Equal(item.Minutes, service.GetActiveGroups(state).Count);
+        Assert.Equal(item.Minutes, selections.Sum(s => s.SequenceBlockCount * s.SetCount));
+        Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
+        Assert.Contains(item.RejectedRoot, state.KeptExerciseRootIdsBySelectionGroupId["r30.pelvic-floor-perineum"]);
+        Assert.Empty(state.WorkoutHistory);
+        Assert.Empty(state.ActiveWorkoutSession.Blocks);
+        Assert.Empty(state.ActiveWorkoutSession.Decisions);
+        Assert.All(service.GetActiveGroups(state), round => Assert.True(
+            WorkoutModifierPolicy.IsCompatible(service.GetSelectedExercise(state, round), (WorkoutModifiers)item.Modifiers)));
+        WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
+        string log = JsonSerializer.Serialize(state.ActiveWorkoutSession);
+        state = Reload(state);
+        service.RestoreAfterReopen(state);
+        Assert.Equal(rounds, service.GetActiveGroups(state));
+        Assert.Equal(log, JsonSerializer.Serialize(state.ActiveWorkoutSession));
+    }
+
+    [Fact]
+    public void DurationExtensionAvoidsARejectedFutureSlotWithoutChangingCurrentWork()
+    {
+        var service = new ExerciseSessionService(Catalog(), new Random(5), () => Now);
+        var state = new WorkoutState
+        {
+            CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
+            ExerciseScoreAdjustmentsByPhase = Enum.GetValues<WorkoutExercisePhase>()
+                .Where(p => p != WorkoutExercisePhase.Unknown).ToDictionary(p => p,
+                    _ => new Dictionary<int, int> { [918] = -2 }),
+        };
+        service.Initialize(state);
+        service.StartWorkout(state, 15, (WorkoutModifiers)5232);
+        WorkoutGroup current = service.GetNextGroup(state)!;
+        WorkoutGroup[] currentSequence = service.GetActiveGroups(state)
+            .Where(g => g.SelectionKey == current.SelectionKey).ToArray();
+        string feedback = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
+        long sessionId = state.ActiveWorkoutSession!.SessionId;
+        service.ResizeActiveWorkout(state, 45);
+        Assert.Equal(currentSequence, service.GetActiveGroups(state).Take(currentSequence.Length));
+        Assert.Equal(current.Id, service.GetNextGroup(state)!.Id);
+        Assert.Equal(sessionId, state.ActiveWorkoutSession.SessionId);
+        Assert.Equal(45, service.GetActiveGroups(state).Count);
+        Assert.DoesNotContain(state.ActiveWorkoutSession.DurationChanges.Single().PlannedSelections,
+            s => s.RootExerciseId == 918);
+        Assert.Equal(feedback, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
+        Assert.Empty(state.ActiveWorkoutSession.Blocks);
+        Assert.Empty(state.ActiveWorkoutSession.Decisions);
+    }
+
+    [Fact]
+    public void StillKeptSingletonRetainsPriorityOverItsOldGlobalNegativeScore()
+    {
+        Exercise[] catalog = Catalog();
+        catalog.Single(e => e.Id == 918).Score = -2;
+        var state = new WorkoutState
+        {
+            CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
+            KeptExerciseRootIdsBySelectionGroupId = new() { ["r30.pelvic-floor-perineum"] = [918] },
+        };
+        var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
+        service.Initialize(state);
+        service.StartWorkout(state, 30, (WorkoutModifiers)5232);
+        Assert.Null(state.ActiveDurationSelectionGroupIds);
+        Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, s => s.RootExerciseId == 918);
+        Assert.Equal(-2, catalog.Single(e => e.Id == 918).Score);
+    }
+
     [Theory]
     [InlineData(3, false)]
     [InlineData(5, false)]
@@ -174,4 +269,5 @@ public sealed class WorkoutPlanningRestorationTests
     public sealed record PlanningCase(string Name, int Minutes, int Modifiers,
         Dictionary<WorkoutExercisePhase, Dictionary<int, int>> Adjustments, int LegacyScore,
         int ExpectedResolution, int ExpectedRejectedBlocks, int[] ExcludedRoots);
+    public sealed record RejectedSlotCase(string Name, int Minutes, int Modifiers, int RejectedRoot, bool Broaden);
 }
