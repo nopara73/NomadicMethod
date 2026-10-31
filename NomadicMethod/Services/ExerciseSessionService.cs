@@ -503,7 +503,6 @@ public sealed partial class ExerciseSessionService
         RepairActiveLineup(state, preserveCurrentSelections:
             !modifiers.HasFlag(WorkoutModifiers.Light));
         SetActiveLongWorkoutAllocation(state);
-        ReconcileLineupWithScheduledPhases(state);
         BroadenRejectedSelectionSlots(state);
         FillRemainingTimeWithDistinctSelections(state);
         RebalanceNewExercisesByMuscleBalance(state);
@@ -536,7 +535,6 @@ public sealed partial class ExerciseSessionService
             EnableLightModeForExistingActiveWorkout(state);
             RepairActiveLineup(state, preserveCurrentSelections: false);
             SetActiveLongWorkoutAllocation(state);
-            ReconcileLineupWithScheduledPhases(state);
             BroadenRejectedSelectionSlots(state);
             FillRemainingTimeWithDistinctSelections(state);
             RebalanceNewExercisesByMuscleBalance(state);

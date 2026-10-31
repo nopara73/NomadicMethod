@@ -5020,7 +5020,6 @@ export class WorkoutSession {
     this.carrySlotPreferencesForward();
     this.repairActiveLineup((modifiers & WORKOUT_MODIFIERS.Light) === 0);
     this.setActiveLongWorkoutAllocation();
-    this.reconcileLineupWithScheduledPhases();
     this.broadenRejectedSelectionSlots();
     this.fillRemainingTimeWithDistinctSelections();
     this.rebalanceNewExercisesByMuscleBalance();
@@ -5231,7 +5230,6 @@ export class WorkoutSession {
       enableLightModeForExistingActiveWorkout(this.state);
       this.repairActiveLineup(false);
       this.setActiveLongWorkoutAllocation();
-      this.reconcileLineupWithScheduledPhases();
       this.broadenRejectedSelectionSlots();
       this.fillRemainingTimeWithDistinctSelections();
       this.rebalanceNewExercisesByMuscleBalance();
