@@ -5044,7 +5044,7 @@ export class WorkoutSession {
       const protectedGroups = new Set(this.getSelectedSequencePlacements()
         .filter(p => lockedSelectionGroupIds?.has(p.anchor.id)).flatMap(p => p.coveredGroups.map(g => g.id)));
       const phases = this.getScheduledPhaseByGroupId();
-      let improved = false;
+      const proposals = [], proposedParents = new Set();
       for (const trapped of groups) {
         if (protectedGroups.has(trapped.id)) continue;
         const phase = phases.get(trapped.id);
@@ -5052,8 +5052,9 @@ export class WorkoutSession {
           root, trapped, this.state.activeWorkoutModifiers, groups));
         if ((this.state.activeWorkoutModifiers & WORKOUT_MODIFIERS.Light) !== 0 && eligible.some(root => this.isDemandZeroSequence(root)))
           eligible = eligible.filter(root => this.isDemandZeroSequence(root));
-        if (!eligible.length || eligible.some(root => !declinedMovements.has(getSessionMovementId(root)) &&
-            this.getPhaseRefusalDepth(root, phase) === 0)) continue;
+        const accepted = root => !declinedMovements.has(getSessionMovementId(root)) &&
+          this.getPhaseRefusalDepth(root, phase) === 0;
+        if (!eligible.length || eligible.some(accepted)) continue;
         const broaderGroups = [...ALL_GROUPS.values()].filter(g =>
           g.canonicalGroups.length > trapped.canonicalGroups.length &&
           trapped.canonicalGroups.every(muscle => g.canonicalGroups.includes(muscle)) &&
@@ -5061,20 +5062,39 @@ export class WorkoutSession {
           .sort((a, b) => a.canonicalGroups.length - b.canonicalGroups.length ||
             (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
         for (const broader of broaderGroups) {
+          if (proposedParents.has(broader.id)) continue;
           const siblings = groups.filter(g => g.canonicalGroups.some(muscle => broader.canonicalGroups.includes(muscle)));
           if (siblings.length < 2 || siblings.some(g => protectedGroups.has(g.id) || g.canonicalGroups.some(muscle =>
               !broader.canonicalGroups.includes(muscle))) ||
+              siblings.reduce((n, g) => n + g.canonicalGroups.length, 0) !== broader.canonicalGroups.length ||
               new Set(siblings.flatMap(g => g.canonicalGroups)).size !== broader.canonicalGroups.length) continue;
           const replaced = new Set(siblings.map(g => g.id));
           const proposed = groups.flatMap(g => g.id === siblings[0].id ? [broader] : replaced.has(g.id) ? [] : [g]);
-          if (!roots.some(root => !declinedMovements.has(getSessionMovementId(root)) &&
-              this.getPhaseRefusalDepth(root, phase) === 0 &&
+          if (!roots.some(root => accepted(root) &&
               this.isWorkoutSelectionCandidate(root, broader, this.state.activeWorkoutModifiers, proposed))) continue;
-          if (!this.tryBroaderPreparedWorkout(proposed, before, declinedMovements, lockedSelectionGroupIds)) continue;
-          improved = true;
-          break;
+          proposals.push({broader, anchor:siblings[0].id, replaced});
+          proposedParents.add(broader.id);
         }
-        if (improved) break;
+      }
+      if (!proposals.length) return;
+      // Match native: validate disjoint improvements in a single complete plan.
+      const batch = [], replacedByBatch = new Set();
+      for (const proposal of proposals) {
+        if ([...proposal.replaced].some(id => replacedByBatch.has(id))) continue;
+        batch.push(proposal);
+        for (const id of proposal.replaced) replacedByBatch.add(id);
+      }
+      if (batch.length > 1) {
+        const parents = new Map(batch.map(p => [p.anchor, p.broader]));
+        const combined = groups.flatMap(g => parents.has(g.id) ? [parents.get(g.id)] : replacedByBatch.has(g.id) ? [] : [g]);
+        if (this.tryBroaderPreparedWorkout(combined, before, declinedMovements, lockedSelectionGroupIds)) continue;
+      }
+      let improved = false;
+      for (const proposal of proposals) {
+        const proposed = groups.flatMap(g => g.id === proposal.anchor ? [proposal.broader] : proposal.replaced.has(g.id) ? [] : [g]);
+        if (!this.tryBroaderPreparedWorkout(proposed, before, declinedMovements, lockedSelectionGroupIds)) continue;
+        improved = true;
+        break;
       }
       if (!improved) return;
     }
