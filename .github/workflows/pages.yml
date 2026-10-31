@@ -11,6 +11,7 @@ on:
       - "tools/check-exercise-position-reviews.mjs"
       - "tools/map-concurrent.mjs"
       - "docs/catalog-audit/fixed-position-review-2026-10-29.json"
+      - "docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json"
       - "NomadicMethod/Assets/exercises.json"
       - "NomadicMethod/Assets/workout_durations.json"
       - "NomadicMethod/Assets/reaction_drills.json"
@@ -128,6 +129,7 @@ jobs:
             /tools/check-exercise-position-reviews.mjs
             /tools/map-concurrent.mjs
             /docs/catalog-audit/fixed-position-review-2026-10-29.json
+            /docs/catalog-audit/hard-floor-locomotion-review-2026-10-31.json
             /NomadicMethod/Assets/exercises.json
             /NomadicMethod/Assets/workout_durations.json
             /NomadicMethod/Assets/reaction_drills.json

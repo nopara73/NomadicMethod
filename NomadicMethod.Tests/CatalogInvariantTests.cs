@@ -618,12 +618,12 @@ public sealed class CatalogInvariantTests
             exercise.InsectCompatibility == ExerciseInsectCompatibility.Unreviewed);
         Assert.DoesNotContain(exercises, exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Unreviewed);
-        Assert.Equal(416, exercises.Count(exercise =>
+        Assert.Equal(427, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Compatible));
-        Assert.Equal(503, exercises.Count(exercise =>
+        Assert.Equal(492, exercises.Count(exercise =>
             exercise.HardFloorCompatibility == ExerciseHardFloorCompatibility.Incompatible));
         Assert.All(
-            new[] { 37, 194, 610, 326 },
+            new[] { 37, 610, 326 },
             exerciseId => Assert.Equal(
                 ExerciseHardFloorCompatibility.Incompatible,
                 exercises.Single(exercise => exercise.Id == exerciseId)
@@ -1006,7 +1006,7 @@ public sealed class CatalogInvariantTests
         Exercise[] timedSideExercises = exercises
             .Where(exercise => exercise.SideSequence.UsesTimedSides())
             .ToArray();
-        Assert.Equal(399, timedSideExercises.Length);
+        Assert.Equal(400, timedSideExercises.Length);
         Dictionary<int, (string Name, ExerciseSideSequence SideSequence)>
             auditedMirroredSideSequences = new()
             {
@@ -1164,8 +1164,8 @@ public sealed class CatalogInvariantTests
         {
             [1] = 477,
             [2] = 363,
-            [3] = 13,
-            [4] = 25,
+            [3] = 12,
+            [4] = 26,
         };
         Dictionary<int, int> actualSequenceBlockDistribution = exercises
             .Where(exercise => exercise.SequenceBlocks.Length > 0)
@@ -1502,7 +1502,7 @@ public sealed class CatalogInvariantTests
             [399] = "Inhale Chest Open, Exhale Arms Close with Shallow Squat",
             [400] = "Inhale Rise and Lift Arms, Exhale Squat and Sweep Down",
             [401] = "Alternating Inhale-Twist, Exhale-Push",
-            [264] = "Standing Arm Circles",
+            [264] = "Staggered-Stance Arm Pulses",
             [275] = "Small Arm Circles",
             [406] = "Standing Wheel Arm Circles",
             [409] = "Full Neck Circles",

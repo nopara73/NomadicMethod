@@ -1,7 +1,7 @@
 {
-  "catalogRevision": 101,
+  "catalogRevision": 103,
   "catalogRecordCount": 919,
-  "catalogSha256": "6b219149a4e033a9bf9a6b9ef9ef581e0372216e489d4eb31b59dbdc840fb6a6",
+  "catalogSha256": "da6808511ed35c714e02ac2028232bdc735eb2fac7f4e4e19c757fc2a5ada1f5",
   "policy": {
     "anatomicalGroupMinimum": 10,
     "treatment": "Availability, complete atomic lineups and modifier materiality must have zero deficits outside the exact owner-accepted exceptions. Affected coverage slots are omitted and the selected workout duration is preserved. Repeated complete movements are allowed. Distinct-lineup and demand-category arrays are diagnostics, not release gates.",
@@ -448,7 +448,7 @@
       "minutes": 3,
       "groupId": "r3.torso-pelvic-complex",
       "groupName": "Torso and pelvic complex",
-      "matchingExerciseCount": 275,
+      "matchingExerciseCount": 274,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         21,
@@ -477,7 +477,6 @@
         260,
         262,
         263,
-        264,
         271,
         274,
         277,
@@ -732,7 +731,7 @@
       "minutes": 3,
       "groupId": "r3.lower-limbs",
       "groupName": "Lower limbs",
-      "matchingExerciseCount": 459,
+      "matchingExerciseCount": 458,
       "requiredExerciseCount": 10,
       "sessionMovementIds": [
         15,
@@ -841,7 +840,6 @@
         255,
         260,
         262,
-        264,
         272,
         273,
         282,

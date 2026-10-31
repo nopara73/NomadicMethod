@@ -19,7 +19,10 @@ public static class CatalogMigrationRules
     // Protocol-only repairs preserve identity and freeze unfinished workout geometry.
     // Revision 101 describes push-up hand placement without grip terminology.
     // Name-only corrections preserve feedback and unfinished workout progress.
-    public const int CurrentCatalogRevision = 101;
+    // Revision 102 names arm pulses accurately and completes their fixed stance.
+    // Revision 103 relaxes only reviewed locomotion surface classifications.
+    // Existing identities, lineups, Keeps, feedback and history remain valid.
+    public const int CurrentCatalogRevision = 103;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;
@@ -122,6 +125,7 @@ public static class CatalogMigrationRules
         ApprovedExerciseCorrections =
             new Dictionary<int, ApprovedExerciseCorrection>
             {
+                [264] = new("Standing Arm Circles", "Staggered-Stance Arm Pulses"),
                 [31] = new(
                     "High-Knee Overhead-Reach March",
                     "Alternating Knee Raises with Two-Arm Pull-Down"),

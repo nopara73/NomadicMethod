@@ -29,7 +29,7 @@ through one of these audited mechanisms:
 - repeated jumping or landing;
 - running or rapid foot impact;
 - deliberate stomping;
-- lateral travel or weight-bearing direction changes;
+- forceful lateral push-offs, rapid reversals or loaded direction changes that depend on traction;
 - a traction-loaded wide, split, lunge, or staggered stance;
 - pivoting strikes, stance-driven boxing movements, or forceful kicks; or
 - wall or balance loading that depends on reliable floor traction.
@@ -42,10 +42,14 @@ unsafe surface on which nobody should exercise. Classification follows the
 final packaged movement, not its name or a coverage target. Every mandatory
 sequence must use one consistent floor classification across all of its blocks.
 
+Controlled short hand-and-foot steps are not excluded merely for traveling. Review their actual impact, contacts and shear against already-admitted controlled walking, push-ups and reverse tabletop work. Source footage using a mat does not by itself establish a padding requirement.
+
+See the [44-movement locomotion review](HARD_FLOOR_LOCOMOTION_REVIEW_2026_10_31.md) for the explicit 31 October 2026 decisions.
+
 ## Current result
 
-- `Compatible`: 348 exercises
-- `Incompatible`: 192 exercises
+- `Compatible`: 427 exercises
+- `Incompatible`: 492 exercises
 - `Unreviewed`: 0 exercises
 
 ## Earlier migrations

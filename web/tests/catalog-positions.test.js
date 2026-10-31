@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
+import { beforeSurfaceReview } from "./catalog-review-history.js";
 import { checkFixedPositionReviews, findPositionCoverageDeficiencies } from "../../tools/check-exercise-position-reviews.mjs";
 import { frozenWorkoutProtocols } from "../workout-protocol-history.js";
 import { WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, getWorkoutCatalog, getSequenceBlockCount, getWorkoutBlockAccent, canUseSingleDirection } from "../workout.js";
@@ -18,8 +19,8 @@ test("the pose review changes only execution geometry and retains the historical
   for (const entry of review.entries) {
     const current = catalog.find(e => e.id === entry.id);
     const previous = previousCatalog.find(e => e.id === entry.id);
-    assert.equal(hash(previous), entry.previousMetadataSha256, String(entry.id));
-    assert.equal(hash(current), entry.metadataSha256, String(entry.id));
+    assert.equal(hash(beforeSurfaceReview(previous, review.catalogRevision)), entry.previousMetadataSha256, String(entry.id));
+    assert.equal(hash(beforeSurfaceReview(current, review.catalogRevision)), entry.metadataSha256, String(entry.id));
     const geometry = ["sideSequence", "directionSequence", "sequenceBlocks"];
     const withoutGeometry = e => Object.fromEntries(Object.entries(e).filter(([key]) => !geometry.includes(key)));
     assert.deepEqual(withoutGeometry(current), withoutGeometry(previous), String(entry.id));
@@ -27,7 +28,7 @@ test("the pose review changes only execution geometry and retains the historical
 });
 
 test("all catalog poses and runtime media have current independent reviews", async () => {
-  assert.deepEqual(await checkFixedPositionReviews(), { exercises: 919, oppositeBlocks: 399, reactionClips: 20 });
+  assert.deepEqual(await checkFixedPositionReviews(), { exercises: 919, oppositeBlocks: 400, reactionClips: 20 });
 });
 
 test("the pose gate rejects alternating motion with a missing opposite linked/direction position", () => {
@@ -59,7 +60,7 @@ test("revision99 retains all changed protocols, including zero-block linked memb
     for (const field of ["sideSequence", "directionSequence", "sequenceBlocks"])
       assert.deepEqual(actual[field], old[field], `${old.id} ${field}`);
   }
-  assert.deepEqual(getWorkoutCatalog(catalog,100), catalog);
+  assert.deepEqual(getWorkoutCatalog(catalog,102), catalog);
 });
 
 for (const id of [103, 1144, 307]) for (const phase of ["Ready", "Movement", "Rest"])

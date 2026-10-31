@@ -2124,7 +2124,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -5787,7 +5787,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -8520,7 +8520,7 @@
   },
   {
     "id": 264,
-    "name": "Standing Arm Circles",
+    "name": "Staggered-Stance Arm Pulses",
     "retiredName": "Backward Standing Arm Circles",
     "video": "exercise_videos/exercise_0264.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
@@ -8528,18 +8528,25 @@
       "RotatorCuff"
     ],
     "practice": "Standing mobility and movement practice",
-    "motionProfile": "ArmCircle",
+    "motionProfile": "ArmPulse",
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 264,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 264,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       },
       {
@@ -26019,7 +26026,7 @@
       }
     ],
     "insectCompatibility": "Incompatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -28996,7 +29003,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -29611,7 +29618,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -32321,7 +32328,7 @@
       }
     ],
     "insectCompatibility": "Incompatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Compatible",
     "wallRequired": false,
@@ -36257,7 +36264,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -38721,7 +38728,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -38809,7 +38816,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -39084,7 +39091,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,
@@ -42178,7 +42185,7 @@
       }
     ],
     "insectCompatibility": "Compatible",
-    "hardFloorCompatibility": "Incompatible",
+    "hardFloorCompatibility": "Compatible",
     "upperBodyClothingRequirement": "Agnostic",
     "shyCompatibility": "Incompatible",
     "wallRequired": false,

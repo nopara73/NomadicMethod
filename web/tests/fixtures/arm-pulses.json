@@ -1,0 +1,65 @@
+{
+  "id": 264,
+  "revision": 102,
+  "name": "Staggered-Stance Arm Pulses",
+  "previousName": "Standing Arm Circles",
+  "previousMotionProfile": "ArmCircle",
+  "motionProfile": "ArmPulse",
+  "legacyName": "Backward Standing Arm Circles",
+  "sideSequence": "ShownFootPositionThenOpposite",
+  "video": "exercise_videos/exercise_0264.mp4",
+  "videoSha256": "a66110f1464dd6261e0afb1648d584c6c8b45e942c8676e450d1e70b723bb37e",
+  "blocks": [
+    {
+      "exerciseId": 264,
+      "sideCue": "ShownFootPosition",
+      "directionCue": "None",
+      "mirrorMedia": false,
+      "mediaSegment": "Full"
+    },
+    {
+      "exerciseId": 264,
+      "sideCue": "OppositeFootPosition",
+      "directionCue": "None",
+      "mirrorMedia": true,
+      "mediaSegment": "Full"
+    },
+    {
+      "exerciseId": 406,
+      "sideCue": "None",
+      "directionCue": "Clockwise",
+      "mirrorMedia": false,
+      "mediaSegment": "FirstDirection"
+    },
+    {
+      "exerciseId": 406,
+      "sideCue": "None",
+      "directionCue": "Counterclockwise",
+      "mirrorMedia": false,
+      "mediaSegment": "SecondDirection"
+    }
+  ],
+  "previousBlocks": [
+    {
+      "exerciseId": 264,
+      "sideCue": "None",
+      "directionCue": "None",
+      "mirrorMedia": false,
+      "mediaSegment": "Full"
+    },
+    {
+      "exerciseId": 406,
+      "sideCue": "None",
+      "directionCue": "Clockwise",
+      "mirrorMedia": false,
+      "mediaSegment": "FirstDirection"
+    },
+    {
+      "exerciseId": 406,
+      "sideCue": "None",
+      "directionCue": "Counterclockwise",
+      "mirrorMedia": false,
+      "mediaSegment": "SecondDirection"
+    }
+  ]
+}
