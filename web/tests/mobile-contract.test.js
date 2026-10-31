@@ -1717,7 +1717,7 @@ test("Android device builds embed their managed assemblies", async () => {
   assert.match(project, /<EmbedAssembliesIntoApk>true<\/EmbedAssembliesIntoApk>/);
 });
 
-test("phone Debug builds use optimized JIT execution for workout planning", async () => {
+test("phone Debug builds use optimized JIT with dynamic native registration", async () => {
   const project = await source("NomadicMethod", "NomadicMethod.csproj");
   const debugProperties = project.match(/<PropertyGroup Condition="[^\"]*Debug[^\"]*">([\s\S]*?)<\/PropertyGroup>/)?.[1];
   assert.ok(debugProperties, "The phone's Debug runtime policy must be explicit.");
@@ -1725,6 +1725,9 @@ test("phone Debug builds use optimized JIT execution for workout planning", asyn
   assert.match(debugProperties, /<AndroidUseInterpreter>false<\/AndroidUseInterpreter>/);
   assert.match(debugProperties, /<UseInterpreter>false<\/UseInterpreter>/);
   assert.match(debugProperties, /<AndroidUseDebugRuntime>true<\/AndroidUseDebugRuntime>/);
+  // Optimized Debug can select native marshal methods. The debug runtime needs
+  // dynamic registration or MainActivity.n_onCreate cannot bind.
+  assert.match(debugProperties, /<AndroidEnableMarshalMethods>false<\/AndroidEnableMarshalMethods>/);
   assert.match(debugProperties, /<NomadicDebuggable>true<\/NomadicDebuggable>/);
   assert.match(project, /<NomadicDebuggable>false<\/NomadicDebuggable>/);
   assert.match(project, /nomadicDebuggable=\$\(NomadicDebuggable\)/);
