@@ -505,6 +505,7 @@ public sealed partial class ExerciseSessionService
         RebalanceNewExercisesByMuscleBalance(state);
         SetActiveLongWorkoutAllocation(state);
         ReconcileLineupWithScheduledPhases(state);
+        BroadenRejectedSelectionSlots(state);
     }
 
     public void ActivatePreparedWorkout(WorkoutState state)
@@ -533,6 +534,7 @@ public sealed partial class ExerciseSessionService
             RebalanceNewExercisesByMuscleBalance(state);
             SetActiveLongWorkoutAllocation(state);
             ReconcileLineupWithScheduledPhases(state);
+            BroadenRejectedSelectionSlots(state);
         }
         int[] keptExerciseIdsAtStart = state.LastKeptExerciseIds
             .Order()
@@ -6519,12 +6521,18 @@ public sealed partial class ExerciseSessionService
     private IReadOnlyDictionary<string, WorkoutExercisePhase>
         GetScheduledPhaseByGroupId(
             WorkoutState state,
-            LongWorkoutAllocation allocation)
+            LongWorkoutAllocation allocation) =>
+        GetScheduledPhaseByGroupId(state, allocation.SetCountsBySelectionGroupId);
+
+    private IReadOnlyDictionary<string, WorkoutExercisePhase>
+        GetScheduledPhaseByGroupId(
+            WorkoutState state,
+            IReadOnlyDictionary<string, int> setCountsBySelectionGroupId)
     {
         Dictionary<string, WorkoutExercisePhase> phaseBySelectionGroupId =
             CreateWorkoutSchedule(
                     state,
-                    allocation.SetCountsBySelectionGroupId)
+                    setCountsBySelectionGroupId)
                 .GroupBy(group => group.SelectionKey, StringComparer.Ordinal)
                 .ToDictionary(
                     groups => groups.Key,
