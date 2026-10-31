@@ -9,6 +9,15 @@ const load = async file => JSON.parse(await readFile(new URL(file, import.meta.u
 const catalog = await load('../../NomadicMethod/Assets/exercises.json');
 const policy = await load('../../NomadicMethod/Assets/exercise_names.json');
 
+test('the Android app packages the reviewed name table used at startup', async () => {
+  const project = await readFile(new URL('../../NomadicMethod/NomadicMethod.csproj', import.meta.url), 'utf8');
+  const resources = [...project.matchAll(/<EmbeddedResource\b([^>]+)>/g)].map(match => match[1]);
+  assert.ok(resources.some(attributes =>
+    /Include\s*=\s*["']Assets[\\/]exercise_names\.json["']/.test(attributes) &&
+    /LogicalName\s*=\s*["']NomadicMethod\.ExerciseNames["']/.test(attributes)),
+  'The production assembly must embed the same name table as the domain tests.');
+});
+
 test('shared reviewed names are display aliases of the existing movements', () => {
   assert.equal(policy.names.length, 709);
   for (const entry of policy.names) {

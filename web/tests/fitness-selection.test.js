@@ -14,6 +14,23 @@ const ratings = parseFitnessRatings(JSON.parse(read("../../NomadicMethod/Assets/
 const now = () => Date.parse("2026-10-22T08:00:00Z");
 const modifiers = M.Mirror | M.TallMirror | M.HardFloor | M.Wall;
 const planningCases = JSON.parse(read("./fixtures/workout-planning-cases.json"));
+const preferences = JSON.parse(read("./fixtures/fitness-selection-preferences.json"));
+
+for (const entry of preferences.maskedMatches) {
+  test("shared training-claim selection: " + entry.name, () => {
+    const before=JSON.stringify(entry);
+    assert.equal(isFitnessEligible(entry.levels,entry.zones,entry.trained),entry.eligible);
+    assert.equal(JSON.stringify(entry),before);
+  });
+}
+test("every atomic member must match with its own training claims", () => {
+  const hard=FITNESS_DIMENSIONS.map((_,i)=>[i===1?3:1]);
+  const easy=FITNESS_DIMENSIONS.map(()=>[1]);
+  const zone=FITNESS_DIMENSIONS.map(()=>[3]);
+  const claims=FITNESS_DIMENSIONS.map((_,i)=>i===1);
+  assert.equal(isFitnessSequenceEligible([hard,easy],zone,[claims,FITNESS_DIMENSIONS.map(()=>false)]),false);
+  assert.equal(isFitnessSequenceEligible([hard],zone,[null]),false);
+});
 
 for (const entry of fixture.cases) {
   test("fitness selection: " + entry.name, () => {
@@ -65,22 +82,24 @@ test("equal-tier families have equal chances regardless of aliases", () => {
   assert.ok(familyOne > 4750 && familyOne < 5250, String(familyOne));
 });
 
-function discoveryFixture(higherHard = false) {
+function discoveryFixture(higherHard = false, lightStress = false, shareDeclinedCoverage = false) {
   const groups = getResolution(3).groups;
   const exercises = fixture.discovery.exercises.map(row => ({
     id: row.id, name: `Synthetic planner fixture ${row.id}`, video: "", practice: "", motionProfile: "",
     primaryCanonicalGroup: groups[row.group].canonicalGroups[0],
-    secondaryCanonicalGroups: groups[row.group].canonicalGroups.slice(1),
+    secondaryCanonicalGroups: groups[row.group].canonicalGroups.slice(1)
+      .concat(shareDeclinedCoverage && row.id===30 ? groups[1].canonicalGroups : []),
     mode: "Repetition", presentation: "Motion", holdFramePercent: 0, sideSequence: "Continuous",
     sequenceBlocks: [{exerciseId: row.id, sideCue: "None", directionCue: "None", mediaSegment: "Full", mirrorMedia: false}],
     sessionMovementId: row.movementId ?? row.id, score: row.score ?? 0,
-    muscularDemand: higherHard && [3,4,5].includes(row.id) ? 2 : 0,
+    muscularDemand: lightStress && row.id<20 && row.id!==7 ||
+      higherHard && ([3,4,5].includes(row.id) || shareDeclinedCoverage && row.id===30) ? 2 : 0,
     onlyFeetTouchGround: true, shoeAgnostic: true, maxSpaceMeters: 2, equipment: "None", silent: true,
     mirrorRelationship: "Agnostic", minimumMirrorCoverage: "None", hardFloorCompatibility: "Compatible",
     shyCompatibility: "Compatible", upperBodyClothingRequirement: "Agnostic", floorContactPoints: "Feet",
     locomotionSpace: "None", insectCompatibility: "Compatible",
   }));
-  const ratings = new Map(fixture.discovery.exercises.map(row => [row.id, row.levels]));
+  const ratings = new Map(fixture.discovery.exercises.map(row => [row.id, structuredClone(row.levels)]));
   const state = createDefaultState();
   state.keptExerciseRootIdsBySelectionGroupId[groups[0].id] = [...fixture.discovery.kept];
   state.workoutHistory = [{sessionId:1, status:"Interrupted", blocks:[], decisions:[{
@@ -88,6 +107,110 @@ function discoveryFixture(higherHard = false) {
   }]}];
   const session = new WorkoutSession(exercises, state, () => 0, now, ratings);
   return { exercises, ratings, session };
+}
+
+for (const outcome of preferences.difficultyResponses) {
+  test("movement difficulty outranks the aggregate profile across aliases: " + outcome, () => {
+    const {session,ratings,exercises}=discoveryFixture();
+    session.state.keptExerciseRootIdsBySelectionGroupId={};
+    for(const id of [3,6])session.state.scores[id]=10000;
+    session.state.workoutHistory[0].decisions.push({rootExerciseId:6,outcome,decidedAtUnixMilliseconds:2});
+    const zones=fitnessZones(inspectFitnessProfile(exercises,session.state,ratings));
+    assert.equal(isFitnessEligible(ratings.get(6),zones),true);
+    const history=structuredClone(session.state.workoutHistory);
+    session.startWorkout(3,0);
+    assert.notEqual(session.getSelectedExercise(session.getNextGroup()).sessionMovementId,3);
+    assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase,{});
+    assert.deepEqual(session.state.workoutHistory,history);
+    assert.equal(session.getScore(session.exercisesById.get(6)),10000);
+  });
+}
+
+test("loaded training claims reach foreground and worker-transported planning", () => {
+  const {exercises, ratings, session} = discoveryFixture();
+  ratings.get(1)[8] = [1];
+  ratings.set(6, FITNESS_DIMENSIONS.map((_, dimension) => dimension === 1 ? [4] : []));
+  const source = {schemaVersion:2, dimensions:[...FITNESS_DIMENSIONS],
+    ratings:Object.fromEntries([...ratings].map(([id, axes]) => [id, axes.map(set => set.length ? set : [1])])),
+    trainingCharacteristics:Object.fromEntries([...ratings].map(([id, axes]) => [id, axes.map(set => set.length > 0)]))};
+  const loaded = parseFitnessRatings(source);
+  session.state.keptExerciseRootIdsBySelectionGroupId = {};
+  session.state.scores[6] = 10000;
+  for (const dependency of [loaded, parseFitnessRatings(structuredClone(serializeFitnessRatings(loaded)))]) {
+    const planner = new WorkoutSession(exercises, structuredClone(session.state), () => 0, now, dependency);
+    assert.equal(planner.getFitnessEligibility().get(6), false);
+    planner.startWorkout(3, 0);
+    assert.ok(planner.state.activeWorkoutSession.initialSelections.every(selection => selection.rootExerciseId !== 6));
+    assert.equal(planner.getActiveGroups().length, 3);
+  }
+});
+
+test("phase refusals apply to aliases before a fitness profile exists", () => {
+  const {session}=discoveryFixture();
+  session.state.workoutHistory=[];
+  session.state.keptExerciseRootIdsBySelectionGroupId={};
+  session.state.scores[6]=100;
+  session.state.exerciseScoreAdjustmentsByPhase.Warmup={3:-1};
+  session.startWorkout(3,0);
+  assert.notEqual(session.getSelectedExercise(session.getNextGroup()).sessionMovementId,3);
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase.Warmup,{3:-1});
+});
+
+test("Light still dominates difficulty preference", () => {
+  const {session}=discoveryFixture(false,true);
+  session.state.workoutHistory[0].decisions.push({rootExerciseId:7,outcome:"easy",decidedAtUnixMilliseconds:2});
+  session.startWorkout(3,M.Light);
+  assert.equal(session.getSelectedExercise(session.getNextGroup()).id,7);
+});
+
+test("extra sets prefer other eligible work over a mandatory difficulty mismatch", () => {
+  const {session}=discoveryFixture();
+  session.state.workoutHistory[0].decisions.push({rootExerciseId:30,outcome:"hard",decidedAtUnixMilliseconds:2});
+  session.startWorkout(10,0);
+  const selected=session.state.activeWorkoutSession.initialSelections.filter(s=>s.rootExerciseId===30);
+  assert.equal(session.getActiveGroups().length,10);
+  assert.ok(selected.length>0);
+  assert.ok(selected.every(s=>s.setCount===1));
+});
+
+test("shared coverage cannot undo a difficulty preference", () => {
+  const {session}=discoveryFixture(false,false,true);
+  session.state.keptExerciseRootIdsBySelectionGroupId={};
+  session.state.scores[30]=10000;
+  session.state.workoutHistory[0].decisions.push({rootExerciseId:30,outcome:"hard",decidedAtUnixMilliseconds:2});
+  session.startWorkout(3,0);
+  for(const id of [20,30]) assert.ok(session.state.activeWorkoutSession.initialSelections.some(s=>s.rootExerciseId===id));
+});
+
+test("sharing cannot borrow a hard opportunity from another slot", () => {
+  const {session} = discoveryFixture(true,false,true);
+  session.state.keptExerciseRootIdsBySelectionGroupId = {};
+  session.state.scores[20] = 10000;
+  session.startWorkout(3,0);
+  for (const id of [20,30]) assert.ok(session.state.activeWorkoutSession.initialSelections.some(s=>s.rootExerciseId===id));
+});
+
+for (const outcome of preferences.difficultyResponses) {
+  test("latest difficulty broadens a trapped slot without inventing scores: " + outcome, () => {
+    const state = {...createDefaultState(), workoutHistory: [{sessionId:1, status:"Interrupted", blocks:[],
+      decisions:[{rootExerciseId:918,outcome,decidedAtUnixMilliseconds:now()-3600000}]}]};
+    const session = new WorkoutSession(catalog, state, seededRandom(5), now);
+    session.initialize();
+    const history = structuredClone(session.state.workoutHistory);
+    const scores = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+    session.startWorkout(45, 5232);
+    assert.ok(session.state.activeWorkoutSession.initialSelections.every(selection => selection.rootExerciseId !== 918));
+    assert.ok(session.state.activeDurationSelectionGroupIds.includes("r15.abdominal-pelvic-floor"));
+    assert.equal(session.getActiveGroups().length, 45);
+    assert.deepEqual(session.state.workoutHistory, history);
+    assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, scores);
+    const activeSelections = () => session.getActiveGroups().map(group => [group.id, session.getSelectedExercise(group).id]);
+    const selected = activeSelections();
+    const log = structuredClone(session.state.activeWorkoutSession);
+    session.restoreAfterReopen();
+    assert.deepEqual(activeSelections(), selected);
+    assert.deepEqual(session.state.activeWorkoutSession, log);
+  });
 }
 
 test("eligible loves first, then eligible new movements only, including after cold reopen", () => {

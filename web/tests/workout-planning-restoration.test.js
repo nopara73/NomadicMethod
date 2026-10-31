@@ -68,7 +68,7 @@ for (const item of rejectedSlotCases) {
     session.startWorkout(item.minutes, item.modifiers);
     const log = structuredClone(session.state.activeWorkoutSession);
     assert.ok(log.initialSelections.every(s => s.rootExerciseId !== item.rejectedRoot));
-    assert.equal(session.getSelectionGroups().some(group=>group.id==='r30.pelvic-floor-perineum'), !item.broaden);
+    assert.equal(log.initialSelections.some(s => s.coveredWorkoutGroupIds.includes('r30.pelvic-floor-perineum')), !item.broaden);
     if (item.broaden) assert.ok(session.getSelectionGroups().some(group=>
       group.canonicalGroups.includes('PelvicFloorAndPerineum') && group.canonicalGroups.length>1));
     assert.equal(log.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.minutes);
@@ -117,7 +117,7 @@ test("a still-kept singleton retains priority over an old global negative score"
   const session = new WorkoutSession(catalog, state, () => 0.5, () => now);
   session.initialize();
   session.startWorkout(30, 5232);
-  assert.ok(session.getSelectionGroups().some(group=>group.id==='r30.pelvic-floor-perineum'));
+  assert.ok(session.state.activeWorkoutSession.initialSelections.some(s => s.coveredWorkoutGroupIds.includes('r30.pelvic-floor-perineum')));
   assert.ok(session.state.activeWorkoutSession.initialSelections.some(s => s.rootExerciseId === 918));
   assert.equal(session.getScore(session.exercisesById.get(918)), -2);
 });

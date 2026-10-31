@@ -112,8 +112,7 @@ public sealed class WorkoutPlanningRestorationTests
         service.StartWorkout(state, item.Minutes, (WorkoutModifiers)item.Modifiers);
         var selections = state.ActiveWorkoutSession!.InitialSelections;
         Assert.DoesNotContain(selections, s => s.RootExerciseId == item.RejectedRoot);
-        Assert.Equal(!item.Broaden, service.GetActiveGroups(state).Any(group =>
-            group.SelectionKey == "r30.pelvic-floor-perineum"));
+        Assert.Equal(!item.Broaden, selections.Any(s => s.CoveredWorkoutGroupIds.Contains("r30.pelvic-floor-perineum")));
         if (item.Broaden)
             Assert.Contains(service.GetActiveGroups(state), group =>
                 group.CanonicalGroups.Contains(CanonicalMuscleGroup.PelvicFloorAndPerineum) &&
@@ -178,7 +177,8 @@ public sealed class WorkoutPlanningRestorationTests
         var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
         service.Initialize(state);
         service.StartWorkout(state, 30, (WorkoutModifiers)5232);
-        Assert.Contains(service.GetActiveGroups(state), group => group.SelectionKey == "r30.pelvic-floor-perineum");
+        Assert.Contains(state.ActiveWorkoutSession!.InitialSelections,
+            s => s.CoveredWorkoutGroupIds.Contains("r30.pelvic-floor-perineum"));
         Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, s => s.RootExerciseId == 918);
         Assert.Equal(-2, catalog.Single(e => e.Id == 918).Score);
     }

@@ -7,8 +7,167 @@ namespace NomadicMethod.Tests;
 
 public sealed class FitnessSelectionTests
 {
+    [Fact]
+    public void SharedTrainingClaimsPreventIncidentalMinimumLevelShortcuts()
+    {
+        using JsonDocument fixture = JsonDocument.Parse(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-selection-preferences.json")));
+        foreach (JsonElement entry in fixture.RootElement.GetProperty("maskedMatches").EnumerateArray())
+        {
+            int[][] ReadSets(string field) => entry.GetProperty(field).EnumerateArray().Select(set =>
+                set.EnumerateArray().Select(level => level.GetInt32()).ToArray()).ToArray();
+            int[][] levels = ReadSets("levels"), zones = ReadSets("zones");
+            bool[] trained = entry.GetProperty("trained").EnumerateArray().Select(value => value.GetBoolean()).ToArray();
+            string before = JsonSerializer.Serialize(levels);
+            Assert.Equal(entry.GetProperty("eligible").GetBoolean(), FitnessSelectionPolicy.IsEligible(levels, zones, trained));
+            Assert.Equal(before, JsonSerializer.Serialize(levels));
+        }
+        int[][] hard = Enumerable.Range(0, 10).Select(axis => new[] { axis == 1 ? 3 : 1 }).ToArray();
+        int[][] easy = Enumerable.Range(0, 10).Select(_ => new[] { 1 }).ToArray();
+        int[][] zone = Enumerable.Range(0, 10).Select(_ => new[] { 3 }).ToArray();
+        bool[] claims = Enumerable.Range(0, 10).Select(axis => axis == 1).ToArray();
+        Assert.False(FitnessSelectionPolicy.IsSequenceEligible([hard, easy], zone, [claims, new bool[10]]));
+        Assert.False(FitnessSelectionPolicy.IsSequenceEligible([hard], zone, [null]));
+    }
+
+    [Theory]
+    [InlineData(ExerciseOutcome.TooEasy)]
+    [InlineData(ExerciseOutcome.TooHard)]
+    public void MovementDifficultyOutranksTheGlobalProfileAndAppliesToAliases(ExerciseOutcome outcome)
+    {
+        var (exercises, ratings, state) = DiscoveryFixture();
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        foreach (int id in new[] { 3, 6 }) exercises.Single(e => e.Id == id).Score = 10000;
+        state.WorkoutHistory[0].Decisions.Add(new() { RootExerciseId = 6, Outcome = outcome, DecidedAtUnixMilliseconds = 2 });
+        int[][] zones = FitnessSelectionPolicy.Zones(FitnessProfilePolicy.Inspect(exercises, state, ratings));
+        Assert.True(FitnessSelectionPolicy.IsEligible(ratings[6], zones));
+        string feedback = JsonSerializer.Serialize(state.WorkoutHistory);
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.NotEqual(3, WorkoutModifierPolicy.GetSessionMovementId(service.GetSelectedExercise(state, service.GetNextGroup(state)!)));
+        Assert.Empty(state.ExerciseScoreAdjustmentsByPhase);
+        Assert.Equal(feedback, JsonSerializer.Serialize(state.WorkoutHistory));
+        Assert.Equal(10000, exercises.Single(e => e.Id == 6).Score);
+    }
+
+    [Fact]
+    public void LoadedTrainingClaimsReachTheActualPlanner()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture();
+        ratings[1][8] = [1];
+        ratings[6] = Enumerable.Range(0, 10).Select(axis => axis == 1 ? new[] { 4 } : Array.Empty<int>()).ToArray();
+        var claims = ratings.ToDictionary(entry => entry.Key, entry => entry.Value.Select(set => set.Length > 0).ToArray());
+        var complete = ratings.ToDictionary(entry => entry.Key,
+            entry => entry.Value.Select(set => set.Length > 0 ? set : new[] { 1 }).ToArray());
+        string json = JsonSerializer.Serialize(new { schemaVersion = 2, dimensions = FitnessProfilePolicy.Dimensions,
+            ratings = complete, trainingCharacteristics = claims });
+        using var source = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json));
+        FitnessRatingCatalog loaded = FitnessProfilePolicy.Load(source);
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        exercises.Single(exercise => exercise.Id == 6).Score = 10000;
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: loaded);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.DoesNotContain(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 6);
+        Assert.Equal(3, service.GetActiveGroups(state).Count);
+    }
+
+    [Fact]
+    public void PhaseRefusalsApplyToAliasesBeforeAnyFitnessProfileExists()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture();
+        state.WorkoutHistory.Clear();
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        exercises.Single(e => e.Id == 6).Score = 100;
+        state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.Warmup] = new() { [3] = -1 };
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.NotEqual(3, WorkoutModifierPolicy.GetSessionMovementId(service.GetSelectedExercise(state, service.GetNextGroup(state)!)));
+        Assert.Equal(new Dictionary<int,int> { [3] = -1 }, state.ExerciseScoreAdjustmentsByPhase[WorkoutExercisePhase.Warmup]);
+    }
+
+    [Fact]
+    public void LightStillDominatesDifficultyPreference()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture(lightStress: true);
+        state.WorkoutHistory[0].Decisions.Add(new() { RootExerciseId = 7, Outcome = ExerciseOutcome.TooEasy, DecidedAtUnixMilliseconds = 2 });
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 3, WorkoutModifiers.Light);
+        Assert.Equal(7, service.GetSelectedExercise(state, service.GetNextGroup(state)!).Id);
+    }
+
+    [Fact]
+    public void ExtraSetsPreferOtherEligibleWorkOverAMandatoryDifficultyMismatch()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture();
+        state.WorkoutHistory[0].Decisions.Add(new() { RootExerciseId = 30, Outcome = ExerciseOutcome.TooHard, DecidedAtUnixMilliseconds = 2 });
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 10, WorkoutModifiers.None);
+        Assert.Equal(10, service.GetActiveGroups(state).Count);
+        Assert.All(state.ActiveWorkoutSession!.InitialSelections.Where(selection => selection.RootExerciseId == 30),
+            selection => Assert.Equal(1, selection.SetCount));
+        Assert.Contains(state.ActiveWorkoutSession.InitialSelections, selection => selection.RootExerciseId == 30);
+    }
+
+    [Fact]
+    public void SharedCoverageCannotUndoADifficultyPreference()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture(shareDeclinedCoverage: true);
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        exercises.Single(e => e.Id == 30).Score = 10000;
+        state.WorkoutHistory[0].Decisions.Add(new() { RootExerciseId = 30, Outcome = ExerciseOutcome.TooHard, DecidedAtUnixMilliseconds = 2 });
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 20);
+        Assert.Contains(state.ActiveWorkoutSession.InitialSelections, selection => selection.RootExerciseId == 30);
+    }
+
+    [Fact]
+    public void SharingCannotBorrowAHardOpportunityFromAnotherSlot()
+    {
+        var (exercises, ratings, state) = DiscoveryFixture(higherHard: true, shareDeclinedCoverage: true);
+        state.KeptExerciseRootIdsBySelectionGroupId.Clear();
+        exercises.Single(exercise => exercise.Id == 20).Score = 10000;
+        var service = new ExerciseSessionService(exercises, new ZeroRandom(), () => Now, fitnessRatings: ratings);
+        service.StartWorkout(state, 3, WorkoutModifiers.None);
+        Assert.Contains(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 20);
+        Assert.Contains(state.ActiveWorkoutSession.InitialSelections, selection => selection.RootExerciseId == 30);
+    }
+
     private static JsonDocument Fixture() => JsonDocument.Parse(File.ReadAllText(
         Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-selection-cases.json")));
+
+    [Theory]
+    [InlineData(ExerciseOutcome.TooEasy)]
+    [InlineData(ExerciseOutcome.TooHard)]
+    public void LatestDifficultyCanBroadenATrappedSlotWithoutInventingScores(ExerciseOutcome outcome)
+    {
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
+        var state = new WorkoutState
+        {
+            CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
+            WorkoutHistory = [new() { SessionId = 1, Status = WorkoutSessionStatus.Interrupted,
+                Decisions = [new() { RootExerciseId = 918, Outcome = outcome,
+                    DecidedAtUnixMilliseconds = Now.AddHours(-1).ToUnixTimeMilliseconds() }] }],
+        };
+        var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
+        service.Initialize(state);
+        string history = JsonSerializer.Serialize(state.WorkoutHistory);
+        string scores = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
+        service.StartWorkout(state, 45, (WorkoutModifiers)5232);
+        Assert.DoesNotContain(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 918);
+        Assert.Contains("r15.abdominal-pelvic-floor", state.ActiveDurationSelectionGroupIds!);
+        Assert.Equal(45, service.GetActiveGroups(state).Count);
+        Assert.Equal(history, JsonSerializer.Serialize(state.WorkoutHistory));
+        Assert.Equal(scores, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
+        string ActiveSelections() => JsonSerializer.Serialize(service.GetActiveGroups(state)
+            .Select(group => new { group.Id, ExerciseId = service.GetSelectedExercise(state, group).Id }));
+        string selections = ActiveSelections();
+        string log = JsonSerializer.Serialize(state.ActiveWorkoutSession);
+        service.RestoreAfterReopen(state);
+        Assert.Equal(selections, ActiveSelections());
+        Assert.Equal(log, JsonSerializer.Serialize(state.ActiveWorkoutSession));
+    }
 
     [Fact]
     public void SharedEligibilityHandlesUnknownsOverlappingRangesAndNoncontiguousZones()
@@ -93,7 +252,8 @@ public sealed class FitnessSelectionTests
         Assert.True(FitnessSelectionPolicy.IsSequenceEligible([null, [[]]], [[]]));
     }
 
-    private static (Exercise[] Exercises, Dictionary<int, int[][]> Ratings, WorkoutState State) DiscoveryFixture(bool higherHard = false)
+    private static (Exercise[] Exercises, Dictionary<int, int[][]> Ratings, WorkoutState State) DiscoveryFixture(
+        bool higherHard = false, bool lightStress = false, bool shareDeclinedCoverage = false)
     {
         using JsonDocument fixture = Fixture();
         JsonElement discovery = fixture.RootElement.GetProperty("discovery");
@@ -105,12 +265,14 @@ public sealed class FitnessSelectionTests
             return new Exercise
             {
                 Id = id, Name = $"Synthetic planner fixture {id}", Video = "", Practice = "", MotionProfile = "",
-                PrimaryCanonicalGroup = muscles[0], SecondaryCanonicalGroups = muscles.Skip(1).ToArray(),
+                PrimaryCanonicalGroup = muscles[0], SecondaryCanonicalGroups = muscles.Skip(1)
+                    .Concat(shareDeclinedCoverage && id == 30 ? groups[1].CanonicalGroups : []).ToArray(),
                 Mode = ExerciseMode.Repetition, Presentation = ExercisePresentation.Motion, HoldFramePercent = 0,
                 SideSequence = ExerciseSideSequence.Continuous, SequenceBlocks = [new() { ExerciseId = id, MirrorMedia = false }],
                 SessionMovementId = row.TryGetProperty("movementId", out var movement) ? movement.GetInt32() : id,
                 Score = row.TryGetProperty("score", out var score) ? score.GetInt32() : 0,
-                MuscularDemand = higherHard && id is 3 or 4 or 5 ? 2 : 0,
+                MuscularDemand = lightStress && id < 20 && id != 7 ||
+                    higherHard && (id is 3 or 4 or 5 || shareDeclinedCoverage && id == 30) ? 2 : 0,
                 OnlyFeetTouchGround = true, ShoeAgnostic = true, MaxSpaceMeters = 2, Equipment = "None", Silent = true,
                 MirrorRelationship = ExerciseMirrorRelationship.Agnostic,
                 HardFloorCompatibility = ExerciseHardFloorCompatibility.Compatible,

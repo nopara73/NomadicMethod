@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { WorkoutSession, createDefaultState, SUPPORTED_MINUTES, SHORT_WORKOUT_COVERAGE_MAXIMUM_MINUTES,
   WORKOUT_MODIFIERS, WORKOUT_MODIFIER_VALIDATION_PROFILES, getSessionMovementId,
   CURRENT_CATALOG_REVISION } from "../workout.js";
-import { FITNESS_DIMENSIONS, isFitnessSequenceEligible, parseFitnessRatings } from "../fitness-profile.js";
+import { FITNESS_DIMENSIONS, hasFitnessTrainingClaim, isFitnessSequenceEligible, parseFitnessRatings } from "../fitness-profile.js";
 
 const root = new URL("../../", import.meta.url);
 const source = await readFile(new URL("NomadicMethod/Assets/exercises.json", root), "utf8");
@@ -16,11 +16,14 @@ session.state.activeCatalogRevision = CURRENT_CATALOG_REVISION;
 session.updateSequenceCatalog(3);
 const roots = [...session.sequenceExercisesByRootId].map(([id, members]) => ({
   exercise: session.exercisesById.get(id), members: members.map(member => ratings.get(member.id)),
+  training: members.map(member => FITNESS_DIMENSIONS.map((_, dimension) =>
+    hasFitnessTrainingClaim(ratings, member.id, dimension))),
 }));
 const levelCells = FITNESS_DIMENSIONS.flatMap((characteristic, dimension) =>
   [1, 2, 3, 4, 5].map(level => {
     const zones = FITNESS_DIMENSIONS.map((_, index) => index === dimension ? [level] : []);
-    const movementIds = [...new Set(roots.filter(row => isFitnessSequenceEligible(row.members, zones))
+    const movementIds = [...new Set(roots.filter(row => row.training.every(claims => claims[dimension]) &&
+      isFitnessSequenceEligible(row.members, zones, row.training))
       .map(row => getSessionMovementId(row.exercise)))].sort((a, b) => a - b);
     return { characteristic, level, distinctMovements: movementIds.length,
       missingToFive: Math.max(0, 5 - movementIds.length), movementIds };
@@ -47,7 +50,7 @@ for (const minutes of SUPPORTED_MINUTES.filter(value => value <= SHORT_WORKOUT_C
     for (const [dimension, characteristic] of FITNESS_DIMENSIONS.entries()) {
       for (const level of [1, 2, 3, 4, 5]) {
         const zones = FITNESS_DIMENSIONS.map((_, index) => index === dimension ? [level] : []);
-        const matching = eligiblePlacements.filter(row => isFitnessSequenceEligible(row.members, zones));
+        const matching = eligiblePlacements.filter(row => isFitnessSequenceEligible(row.members, zones, row.training));
         const slots = groups.map(group => ({ groupId: group.id, name: group.displayName,
           distinctMovements: new Set(matching.filter(row => row.slots.includes(group.id))
             .map(row => getSessionMovementId(row.exercise))).size }));
@@ -59,7 +62,7 @@ for (const minutes of SUPPORTED_MINUTES.filter(value => value <= SHORT_WORKOUT_C
     }
     for (const level of [1, 2, 3, 4, 5]) {
       const zones = FITNESS_DIMENSIONS.map(() => [level]);
-      const matching = eligiblePlacements.filter(row => isFitnessSequenceEligible(row.members, zones));
+      const matching = eligiblePlacements.filter(row => isFitnessSequenceEligible(row.members, zones, row.training));
       const slots = groups.map(group => {
         const count = new Set(matching.filter(row => row.slots.includes(group.id))
           .map(row => getSessionMovementId(row.exercise))).size;
@@ -82,7 +85,9 @@ if (process.argv.includes("--verify-lineups")) {
     const planner = new WorkoutSession(catalog, createDefaultState(), () => 0.42, () => 1, ratings);
     planner.getFitnessEligibility = () => new Map([...planner.sequenceExercisesByRootId]
       .map(([id, members]) => [id,
-        isFitnessSequenceEligible(members.map(member => ratings.get(member.id)), zones)]));
+        isFitnessSequenceEligible(members.map(member => ratings.get(member.id)), zones,
+          members.map(member => FITNESS_DIMENSIONS.map((_, dimension) =>
+            hasFitnessTrainingClaim(ratings, member.id, dimension))))]));
     try {
       planner.prepareWorkout(profile.minutes, profile.modifiers);
       completeLineups.push({ minutes: profile.minutes, modifiers: profile.modifiers,
@@ -98,7 +103,7 @@ const report = {
   catalogRevision: CURRENT_CATALOG_REVISION, catalogRecords: catalog.length,
   catalogSha256: createHash("sha256").update(source.replaceAll("\r\n", "\n")).digest("hex"),
   ratingsSha256: createHash("sha256").update(ratingsSource.replaceAll("\r\n", "\n")).digest("hex"),
-  policy: "Any explicitly rated level overlaps the corresponding known zone; every atomic member qualifies; SessionMovementId deduplicated.",
+  policy: "A reviewed training characteristic overlaps its known zone; minimum-demand-only work matches every known zone. Every atomic member qualifies; SessionMovementId deduplicated. Global characteristic cells count meaningful training claims, not incidental minimum ratings.",
   scope: "50 single-axis singleton cells globally under the overlap rule, plus all five uniform singleton profiles across short-workout durations and the existing single/pair physical validation profiles. It also checks each single known characteristic/level against the same physical/duration profiles. These are representative profiles, not every possible mixed user zone. Slot availability does not prove a simultaneous complete lineup; --verify-lineups additionally runs the normal planner with fixed synthetic zones on uniform-level profiles without an empty slot.",
   summary: {
     levelCellsBelowFive: levelCells.filter(row => row.missingToFive > 0).length,

@@ -44,8 +44,9 @@ sequences are grouped by physical setup before muscular demand: finish work at a
 station before moving to another, and group floor-contact work within each visit.
 Wall, mirror, elevation, locomotion space and soft-surface requirements all count.
 Each equipment combination forms a contiguous group, including equipment-free
-work. Surface and travel needs can share a compatible station
-within the same equipment group. Within equivalent setups, demand
+work. Within each, locomotion stays together with separate Room and Field
+subgroups; stationary work has its own section. Compatible surfaces can share a
+station within the same equipment/travel group. Within equivalent setups, demand
 `0`, then `2`, then `1` precedes the existing anatomical order. See
 [`docs/SETUP_ORDER.md`](docs/SETUP_ORDER.md).
 
@@ -95,17 +96,23 @@ The optimizer applies these priorities lexicographically:
 2. whenever Light mode is active, maximize complete demand-`0` sequences first;
    saved scores and Keeps then arbitrate among the available demand-`0` choices,
    while harder work fills only slots that demand-`0` work cannot cover;
-3. give a fresh hard keep, or a suitable highest-score fresh hard exercise, a
-   hard-work opportunity;
-4. retain contextual keeps, except demand-`1` and demand-`2` keeps whose
+3. honor temporary family exclusions made by shuffling this workout;
+4. prefer families whose latest difficulty response is neither too easy nor too hard;
+5. retain contextual keeps, except demand-`1` and demand-`2` keeps whose
    primary muscle is still inside the applicable recovery window;
-5. prefer exercises with better saved keep/discard scores;
-6. prefer work outside its recovery window, then fresh hard work and its
-   longest-rested primary muscle;
-7. preserve a valid existing selection when the higher priorities tie;
-8. apply the soft available-equipment preference for Wall and Mirror;
-9. prefer primary ownership and then wider coverage of the target group;
-10. randomize only otherwise equivalent choices.
+6. when the fitness zone restricts the pool, prefer a smaller refusal depth across
+   the movement family's aliases;
+7. when the fitness zone restricts the pool, prefer work outside recovery;
+8. give a fresh hard keep, or a suitable highest-score fresh hard exercise, a
+   hard-work opportunity;
+9. prefer exercises with better saved keep/discard scores;
+10. otherwise use family refusal depth to break score ties; apply the remaining
+    recovery and fresh-hard rotation preferences, then
+    prefer the longest-rested primary muscle;
+11. preserve a valid existing selection when the higher priorities tie;
+12. apply the soft available-equipment preference for Wall and Mirror;
+13. prefer primary ownership and then wider coverage of the target group;
+14. randomize only otherwise equivalent choices.
 
 The priority weights are constructed so that all lower priorities combined
 cannot outweigh a higher one. Global assignment also prevents an early greedy
@@ -130,6 +137,33 @@ Both difficulty responses remove the movement family's saved Keeps.
 The spiderweb retains fractional difficulty estimates, so feedback can move an
 axis before it crosses a whole level. Existing saved responses are recalculated
 without changing the discrete training zones used to select exercises.
+
+The fitness-zone filter remains strict for every complete atomic sequence.
+Every exercise must have ten explicit nonempty level sets from 1 through 5.
+Reviewed training-characteristic flags keep an inactive minimum-1 demand rating
+from qualifying a hard movement through an unrelated low user characteristic.
+Work with no claimed fitness-training characteristic must match every known zone;
+its minimum-1 ratings do not grant an exemption at higher user levels.
+
+Within the eligible pool, a movement's latest “too easy” or “too hard” response
+deprioritizes its complete movement family. This reads existing history without
+adding further score adjustments. Phase-local refusals also follow the physical
+movement's aliases before any fitness profile exists. Light retains its dominant
+demand-zero priority. Genuine post-filter catalogue shortages remain visible;
+the planner does not admit easier or unrated work merely to fill a slot.
+
+Shuffle, coverage consolidation, muscle balancing and extra-set allocation retain
+movement-specific difficulty preferences. Extra sets use other available work
+ahead of a mandatory difficulty mismatch whenever complete sequences can still
+fill the selected duration. Personalization diagnostics must count the choices
+remaining after both physical restrictions and the fitness-zone filter.
+
+For a new workout or an explicit duration edit, a narrow slot whose every eligible
+choice has phase rejection or latest difficulty feedback may broaden to an
+existing parent anatomical group. Only complete sibling groups are merged, and
+the replacement must reduce difficulty-mismatched blocks, then phase-rejected
+blocks, without reducing Light coverage. Completed and current selections stay
+fixed; reopening an unfinished workout never triggers this regrouping.
 
 Modifier profiles share a logical slot, so a Keep made with Insect off remains
 the Keep for that same slot with Insect on whenever the exercise is eligible.

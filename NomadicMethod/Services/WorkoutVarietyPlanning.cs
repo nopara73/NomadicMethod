@@ -34,11 +34,15 @@ public sealed partial class ExerciseSessionService
             WorkoutModifierPolicy.GetSessionMovementId(p.Root)).ToHashSet();
         Dictionary<int, bool> eligibility = GetFitnessEligibility(state);
         HashSet<int> excluded = GetExcludedMovementIds(state);
+        HashSet<int> declined = GetDifficultyDeclinedMovementIds(state);
         Exercise[] available = _exercises.Where(root =>
             root.SequenceBlocks.Length > 0 && root.SequenceBlocks.Length <= remaining &&
             GetSequenceRoot(root).Id == root.Id && eligibility.GetValueOrDefault(root.Id) &&
             !usedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
             !excluded.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
+            !declined.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
+            Enum.GetValues<WorkoutExercisePhase>().Any(phase => phase != WorkoutExercisePhase.Unknown &&
+                GetPhaseRefusalDepth(state, root, phase) == 0) &&
             GetSequenceExercises(root).All(member => IsCompatibleWithModifiers(member, state.ActiveWorkoutModifiers)))
             .ToArray();
         if (available.Length == 0) return false;

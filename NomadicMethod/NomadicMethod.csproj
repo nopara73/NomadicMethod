@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationId>com.local.nomadicmethod</ApplicationId>
-    <ApplicationVersion>196</ApplicationVersion>
-    <ApplicationDisplayVersion>3.72</ApplicationDisplayVersion>
+    <ApplicationVersion>198</ApplicationVersion>
+    <ApplicationDisplayVersion>3.74</ApplicationDisplayVersion>
     <NomadicDebuggable>false</NomadicDebuggable>
     <!-- Device deployments must remain launchable without transient fast-deploy files. -->
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
@@ -38,6 +38,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\workout_durations.json" LogicalName="NomadicMethod.WorkoutDurations" />
     <EmbeddedResource Include="Assets\catalog_protocol_history.json" LogicalName="NomadicMethod.WorkoutProtocolHistory" />
+    <EmbeddedResource Include="Assets\exercise_names.json" LogicalName="NomadicMethod.ExerciseNames" />
     <!-- GIFs are reproducible generator inputs, not runtime assets. -->
     <AndroidAsset Remove="Assets\exercise_gifs\**\*.gif" />
   </ItemGroup>

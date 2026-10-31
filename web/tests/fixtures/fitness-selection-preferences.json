@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "difficultyResponses": ["easy", "hard"],
+  "maskedMatches": [
+    { "name": "inactive minimum ratings cannot qualify an advanced movement", "levels": [[1],[4],[1],[1],[1],[1],[1],[1],[1],[1]], "trained": [false,true,false,false,false,false,false,false,false,false], "zones": [[1],[2],[1],[1],[1],[1],[1],[1],[1],[1]], "eligible": false },
+    { "name": "an actual trained characteristic must match", "levels": [[1],[4],[1],[1],[1],[1],[1],[1],[1],[1]], "trained": [false,true,false,false,false,false,false,false,false,false], "zones": [[1],[4],[1],[1],[1],[1],[1],[1],[1],[1]], "eligible": true },
+    { "name": "minimum-level work matches a minimum-level user", "levels": [[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]], "trained": [false,false,false,false,false,false,false,false,false,false], "zones": [[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]], "eligible": true },
+    { "name": "minimum-level work never bypasses a higher training zone", "levels": [[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]], "trained": [false,false,false,false,false,false,false,false,false,false], "zones": [[2],[2],[2],[2],[2],[2],[2],[2],[2],[2]], "eligible": false },
+    { "name": "one low characteristic does not exempt minimum-level work", "levels": [[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]], "trained": [false,false,false,false,false,false,false,false,false,false], "zones": [[1],[3],[1],[1],[1],[1],[1],[1],[1],[1]], "eligible": false },
+    { "name": "reviewed supported ranges retain exact membership", "levels": [[1],[2,3],[1],[1],[1],[1],[1],[1],[1],[1]], "trained": [false,true,false,false,false,false,false,false,false,false], "zones": [[2],[3],[2],[2],[2],[2],[2],[2],[2],[2]], "eligible": true }
+  ]
+}

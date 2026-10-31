@@ -1437,8 +1437,10 @@ test("web and mobile apply rolling muscular recovery by primary muscle", () => {
   );
   assert.doesNotMatch(sessionService, /fitnessWeights|GetFitnessTiers/);
   assert.doesNotMatch(workoutModule, /fitnessWeights|getFitnessTiers/);
-  assert.match(sessionService, /fitnessEligibility\.GetValueOrDefault\(exercise\.Id\) && IsWorkoutSelectionCandidate/);
-  assert.match(workoutModule, /fitnessEligibility\.get\(exercise\.id\) && this\.isWorkoutSelectionCandidate/);
+  assert.match(sessionService, /fitness\.Eligibility\.GetValueOrDefault\(exercise\.Id\) && IsWorkoutSelectionCandidate/);
+  assert.match(workoutModule, /fitness\.eligibility\.get\(exercise\.id\) && this\.isWorkoutSelectionCandidate/);
+  assert.match(sessionService, /acceptedDifficultyWeight/);
+  assert.match(workoutModule, /acceptedDifficultyWeight/);
   assert.match(
     sessionService,
     /var baseUtilities = new BigInteger\[groups\.Count, candidates\.Count\][\s\S]*var anchorUtilities = new BigInteger\[groups\.Count, candidates\.Count\][\s\S]*utilitiesByGroup/,
