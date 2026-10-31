@@ -98,7 +98,7 @@ function discoveryFixture(higherHard = false, lightStress = false, shareDeclined
     shyCompatibility: "Compatible", upperBodyClothingRequirement: "Agnostic", floorContactPoints: "Feet",
     locomotionSpace: "None", insectCompatibility: "Compatible",
   }));
-  const ratings = new Map(fixture.discovery.exercises.map(row => [row.id, row.levels]));
+  const ratings = new Map(fixture.discovery.exercises.map(row => [row.id, structuredClone(row.levels)]));
   const state = createDefaultState();
   state.keptExerciseRootIdsBySelectionGroupId[groups[0].id] = [...fixture.discovery.kept];
   state.workoutHistory = [{sessionId:1, status:"Interrupted", blocks:[], decisions:[{
