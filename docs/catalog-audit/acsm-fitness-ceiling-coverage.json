@@ -4,8 +4,8 @@
   "status": "provisional",
   "assessedOn": "2026-10-31",
   "blockSeconds": 45,
-  "catalogRevision": 104,
-  "catalogSha256": "30bfd665c0f9835dd0cd859eb628bfe72eef9750464612d0d4fe8e6cf56fc3b4",
+  "catalogRevision": 105,
+  "catalogSha256": "317013a93741d075178dff38fdecc778b2949d1ea4982013094e0f40f0369d1f",
   "exerciseCount": 919,
   "ratingScale": {
     "minimum": 1,

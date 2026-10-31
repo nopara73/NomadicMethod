@@ -502,7 +502,8 @@ export const MINIMUM_LEGACY_HARD_PRIMARY_MUSCLES = 3;
 // Existing identities, feedback and unfinished selections remain valid.
 // Revision 101 clarifies push-up hand placement without replacing the movement.
 // Revision 104 improves display wording without changing movement identities.
-export const CURRENT_CATALOG_REVISION = 104;
+// Revision 105 restores conventional names without resetting exercise identity.
+export const CURRENT_CATALOG_REVISION = 105;
 export const REACTION_CUE_CATALOG_REVISION = 87;
 const REACTION_CUE_TIMINGS = Object.freeze([
   Object.freeze({ minimumMoveMilliseconds: 5_500, maximumMoveMilliseconds: 8_000,

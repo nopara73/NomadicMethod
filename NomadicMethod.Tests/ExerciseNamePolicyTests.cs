@@ -43,11 +43,36 @@ public sealed class ExerciseNamePolicyTests
             stored[id] = stored[id] with { Name = identity };
         }
         Assert.Equal(stored.Keys.Order(), CatalogMigrationRules.ValidatePreservedCatalog(catalog, stored).Order());
+        // The published instruction-style labels may already be in Android's
+        // database. Restoring conventional titles must retain those scores too.
+        foreach (JsonElement entry in names.EnumerateArray())
+        {
+            int id = entry.GetProperty("id").GetInt32();
+            string? previous = entry.GetProperty("previousNames").EnumerateArray()
+                .Select(alias => alias.GetString()).FirstOrDefault();
+            if (previous is not null) stored[id] = stored[id] with { Name = previous };
+        }
+        Assert.Equal(stored.Keys.Order(), CatalogMigrationRules.ValidatePreservedCatalog(catalog, stored).Order());
         Assert.All(stored, pair => Assert.Equal(-pair.Key, pair.Value.Score));
         stored[1255] = stored[1255] with { Name = "Unknown push-up" };
         Assert.Throws<InvalidOperationException>(() => CatalogMigrationRules.ValidatePreservedCatalog(catalog, stored));
         stored[1255] = new("Narrow-Hand Push-Ups", "other.mp4", -4);
         Assert.Throws<InvalidOperationException>(() => CatalogMigrationRules.ValidatePreservedCatalog(catalog, stored));
+    }
+
+    [Fact]
+    public void FamiliarExerciseNamesStayConventional()
+    {
+        Dictionary<int, Exercise> catalog = Catalog().ToDictionary(e => e.Id);
+        Assert.Equal("Glute Bridges", catalog[1093].Name);
+        Assert.Equal("Bird Dogs", catalog[1066].Name);
+        Assert.Equal("Bird Dogs", catalog[1244].Name);
+        Assert.Equal("Side Plank Rotations", catalog[1073].Name);
+        Assert.Equal("Cat-Cow", catalog[1200].Name);
+        Assert.Equal("Diamond Push-Ups", catalog[1080].Name);
+        Assert.Equal("Narrow-Hand Push-Ups", catalog[1255].Name);
+        Assert.Equal("Glute Bridges", ExerciseNamePolicy.DisplayName(1093,
+            "On Back, Lift and Lower Hips"));
     }
 
     [Theory]
