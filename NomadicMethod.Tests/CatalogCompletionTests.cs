@@ -377,8 +377,8 @@ public sealed class CatalogCompletionTests
 
             WorkoutGroup[] rounds = service.GetActiveGroups(state).ToArray();
             Assert.Equal(3, rounds.Length);
-            Assert.Equal(MassGroupingTaxonomy.GetResolution(3).Groups.Select(g => g.Id).Order(),
-                state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds).Order());
+            Assert.All(MassGroupingTaxonomy.GetResolution(3).Groups, group =>
+                Assert.Contains(group.Id, state.ActiveWorkoutSession!.InitialSelections.SelectMany(s => s.CoveredWorkoutGroupIds)));
             foreach (WorkoutGroup round in rounds)
             {
                 Exercise selected = service.GetSelectedExercise(state, round);

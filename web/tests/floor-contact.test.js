@@ -134,14 +134,21 @@ test("revision-85 floor travel stays out of earlier workouts and its boundary in
 for (const phase of ["Ready", "Movement", "Rest"]) {
   test(`chest-contact correction retains the version-85 ${phase} session and completed work`, () => {
     const now = Date.UTC(2026, 9, 20, 6);
-    const oldCatalog = catalog.map(e => ({ ...e, score: e.id === 1436 ? 1_000_000 : 0,
+    const oldCatalog = getWorkoutCatalog(catalog, 85).map(e => ({ ...e, score: e.id === 1436 ? 1_000_000 : 0,
       ...(e.id === 1436 ? { floorContactPoints: "Feet, Hands", upperBodyClothingRequirement: "Agnostic" } : {}) }));
     const profile = WORKOUT_MODIFIERS.Floor | WORKOUT_MODIFIERS.RoomLocomotion;
     const original = new WorkoutSession(oldCatalog, createDefaultState(), () => 0.4, () => now);
-    original.startWorkout(60, profile);
+    original.prepareWorkout(60, profile);
+    // This fixture represents a saved plan from before distinct additions.
+    original.state.activeCoverageAccountingVersion = 1;
+    original.state.activeDurationSelectionGroupIds = null;
+    original.state.activeSetCountsBySelectionGroupId = {};
+    original.state.activeExtraSetSelectionGroupIds = [];
+    original.state.activeSelectionGroupOrder = [];
+    original.initialize();
     const target = original.exercisesById.get(1436);
-    const slot = original.getSelectionGroups().find(g => original.isSavedSelectionValid(target, g, profile));
-    original.state.selectedExerciseIds[original.getSelectionStorageKey(slot.id, profile)] = 1436;
+    const targetRound = original.getActiveGroups().find(g => original.getSelectedExercise(g).id === 1436);
+    const slot = original.getSelectionGroups().find(g => g.id === (targetRound.selectionGroupId ?? targetRound.id));
     for (let i = 0; i < 80; i++) {
       const next = original.getNextGroup();
       if (original.getSelectedExercise(next).id === 1436) break;
@@ -174,10 +181,17 @@ for (const phase of ["Ready", "Movement", "Rest"]) {
 
   test(`floor expansion preserves an unfinished version-80 ${phase} workout`, () => {
     const now = Date.UTC(2026, 9, 15, 6);
-    const original = new WorkoutSession(catalog.filter(e => e.id < 1057),
+    const original = new WorkoutSession(getWorkoutCatalog(catalog, 80),
       createDefaultState(), () => 0.4, () => now);
     original.startWorkout(7, DEFAULT_WORKOUT_MODIFIERS);
-    original.recordOutcome(original.getNextGroup(), true);
+    const firstKey = original.getNextGroup().selectionGroupId ?? original.getNextGroup().id;
+    while (original.getNextGroup() && (original.getNextGroup().selectionGroupId ?? original.getNextGroup().id) === firstKey) {
+      const first = original.getNextGroup();
+      original.beginRest(first, now + 15_000);
+      if (original.isIntermediateSequenceBlock(first)) original.advanceSequence(first);
+      else original.recordOutcome(first, true);
+      original.clearPendingRest();
+    }
     const next = original.getNextGroup();
     const id = original.getSelectedExercise(next).id;
     if (phase === "Movement") original.beginMovement(next, 28_000, now + 28_000);

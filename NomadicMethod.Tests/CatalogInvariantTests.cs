@@ -161,8 +161,10 @@ public sealed class CatalogInvariantTests
                             profileService.GetSelectedExercise(profileState, group),
                             profile)));
                     IReadOnlyList<WorkoutGroup> resolutionGroups =
-                        MassGroupingTaxonomy.GetResolution(
-                            minutes > 30 ? 30 : minutes).Groups;
+                        profileState.ActiveDurationSelectionGroupIds is { } selectedGroupIds
+                            ? MassGroupingTaxonomy.SupportedMinutes.SelectMany(m => MassGroupingTaxonomy.GetResolution(m).Groups)
+                                .Where(g => selectedGroupIds.Contains(g.Id)).ToArray()
+                            : MassGroupingTaxonomy.GetResolution(minutes > 30 ? 30 : minutes).Groups;
                     Assert.All(
                         activeGroups.GroupBy(
                             group => group.SelectionKey,
@@ -186,6 +188,17 @@ public sealed class CatalogInvariantTests
                     Assert.Equal(minutes, activeGroups.Length);
                 }
             });
+    }
+
+    [Fact]
+    public void BundledCatalogSatisfiesTheCombinedModifierProfile()
+    {
+        Exercise[] exercises = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(Path.Combine(
+            AppContext.BaseDirectory, "Assets", "exercises.json")), JsonOptions)!;
+        var exercisesById = exercises.ToDictionary(e => e.Id);
+        var sequenceRootByExerciseId = exercises.Where(root => root.SequenceBlocks.Length > 0)
+            .SelectMany(root => root.SequenceBlocks.Select(block => (block.ExerciseId, Root: root)))
+            .DistinctBy(entry => entry.ExerciseId).ToDictionary(entry => entry.ExerciseId, entry => entry.Root);
         var profileService = new ExerciseSessionService(exercises, new Random(1));
         WorkoutModifiers allModifiers = WorkoutModifiers.Insect |
             WorkoutModifiers.Silence |
@@ -203,8 +216,10 @@ public sealed class CatalogInvariantTests
                     profileService.GetSelectedExercise(profileState, group),
                     allModifiers)));
             IReadOnlyList<WorkoutGroup> resolutionGroups =
-                MassGroupingTaxonomy.GetResolution(
-                    minutes > 30 ? 30 : minutes).Groups;
+                profileState.ActiveDurationSelectionGroupIds is { } selectedGroupIds
+                    ? MassGroupingTaxonomy.SupportedMinutes.SelectMany(m => MassGroupingTaxonomy.GetResolution(m).Groups)
+                        .Where(g => selectedGroupIds.Contains(g.Id)).ToArray()
+                    : MassGroupingTaxonomy.GetResolution(minutes > 30 ? 30 : minutes).Groups;
             Assert.All(
                 activeGroups.GroupBy(group => group.SelectionKey, StringComparer.Ordinal),
                 rounds =>

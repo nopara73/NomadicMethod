@@ -417,13 +417,19 @@ unit. A block is always 45 seconds of the exact named exercise followed by 15
 seconds of rest. Blocks in one sequence are adjacent, cannot be divided between
 sessions, and share one Keep/reject decision after the final block.
 
-Long-workout extra sets are allocated in set-count rounds. Within the same
-round, one-block sequences are preferred before multi-block sequences; hard
-work, anatomical Keep status, phase-scoped downvotes, and workout order then
-break ties. This gives standalone
-movements their second-set opportunity first without allowing third sets to
-starve a multi-block sequence that still has only one set. Exact remaining
-duration remains mandatory.
+New plans fill spare time with additional distinct, complete movements before
+allocating repeat sets. They use the existing anatomical slots across duration
+resolutions, preserve the required whole-body coverage, and keep the same
+fitness, equipment, phase feedback and Light rules. Sides, directions and
+aliases never count as additional movement identities.
+
+When repeats are necessary, one-block sequences take priority over multi-block
+sequences. Within that tier, the lowest set count takes priority over phase
+score, projected muscle balance and Keeps. Thus a preferred exercise cannot
+accumulate three or four sets while other eligible one-block exercises still
+have only one. Multi-block repetitions remain a last resort, and always contain
+the whole side/direction sequence. Exact duration remains mandatory. Saved
+unfinished workouts retain their original planning version, selections and sets.
 
 Sequence structure is derived from the demonstrated movement:
 
