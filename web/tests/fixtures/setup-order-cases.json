@@ -1,5 +1,21 @@
 [
   {
+    "name": "stationary short distance and field work each stay together",
+    "exercises": [{"id":1,"locomotion":"Room","demand":0},{"id":2,"demand":0},{"id":3,"locomotion":"Field","demand":2},{"id":4,"locomotion":"Room","demand":1},{"id":5,"locomotion":"Field","demand":1},{"id":6,"demand":2}],
+    "expected": [2,6,1,4,3,5]
+  },
+  {
+    "name": "replanning finishes short distance and field work before stationary work",
+    "currentId":7,
+    "exercises": [{"id":1,"demand":0},{"id":2,"locomotion":"Field","demand":0},{"id":3,"locomotion":"Room","demand":2},{"id":4,"demand":1},{"id":5,"locomotion":"Field","demand":1},{"id":6,"locomotion":"Room","demand":1},{"id":7,"locomotion":"Room"}],
+    "expected": [3,6,2,5,1,4]
+  },
+  {
+    "name": "a linked locomotion sequence uses its largest required space",
+    "exercises": [{"id":1,"locomotion":"Room","blocks":[1,6],"demand":0},{"id":2,"demand":0},{"id":3,"locomotion":"Room","demand":1},{"id":4,"locomotion":"Field","demand":2},{"id":5,"demand":1},{"id":6,"locomotion":"Field","blocks":[],"demand":1}],
+    "expected": [2,5,3,4,1]
+  },
+  {
     "name": "equipment free work stays together before wall work including palm press holds",
     "exercises": [{"id":1,"demand":0},{"id":2,"wall":true,"demand":0},{"id":3,"demand":1}],
     "expected": [1,3,2]
@@ -20,9 +36,9 @@
     "expected": [1,3,2]
   },
   {
-    "name": "stationary and room travel can stay at the field",
+    "name": "stationary room and field work keep separate station visits",
     "exercises": [{"id":1,"locomotion":"Room","demand":0},{"id":2,"wall":true,"demand":0},{"id":3,"locomotion":"Field","demand":2},{"id":4,"demand":1}],
-    "expected": [1,3,4,2]
+    "expected": [2,4,1,3]
   },
   {
     "name": "wall work stays together before equipment free work",

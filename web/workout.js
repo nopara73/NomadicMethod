@@ -2081,12 +2081,14 @@ export function orderPlacementsBySetup(placements, exercisesById,
     for (; bits !== 0; bits &= bits - 1) count++;
     return count;
   };
-  // Keep exact equipment requirements together, including no equipment. Only
-  // surface and travel requirements may share a compatible station within that
-  // equipment group.
+  // Keep actual equipment and travel requirements separate. Stationary, Room
+  // and Field work must not be mixed because a larger space could host them all.
+  // Compatible surfaces can still share a station within the same group.
   const equipmentMask = 1 | 2 | 4;
+  const locomotionMask = 8 | 16;
+  const setupGroupMask = equipmentMask | locomotionMask;
   const canHost = (station, requirements) =>
-    (station & equipmentMask) === (requirements & equipmentMask) &&
+    (station & setupGroupMask) === (requirements & setupGroupMask) &&
     (station & requirements) === requirements;
   const stations = [...new Set(setups.map(s => s.station))]
     .filter(station => !setups.some(s => s.station !== station &&
@@ -2122,23 +2124,34 @@ export function orderPlacementsBySetup(placements, exercisesById,
     (next.startsOnFloor !== next.endsOnFloor ? 10 : 0);
   const context = index => index < 0 ? start :
     { station: choices[index].station, floor: choices[index].endsOnFloor };
-  // Finish this equipment group across all of its surfaces/travel spaces before
-  // moving to another. Keep this constraint in both exact and fallback routing.
-  const continuingEquipment = (remaining, previous) =>
-    previous && stations.some((station, g) => (remaining & (1 << g)) &&
-      (station & equipmentMask) === (previous.station & equipmentMask))
-      ? previous.station & equipmentMask : null;
+  // Finish equipment, its moving/stationary section, then the exact travel class.
+  // This also finishes the current class after an edit, in either router.
+  const continuingGroups = (remaining, previous) => {
+    if (!previous) return remaining;
+    let equipment = 0, locomotion = 0, exact = 0;
+    const previousTravel = previous.station & locomotionMask;
+    for (let g = 0; g < stations.length; g++) {
+      const bit = 1 << g;
+      if (!(remaining & bit) ||
+          (stations[g] & equipmentMask) !== (previous.station & equipmentMask)) continue;
+      equipment |= bit;
+      const travel = stations[g] & locomotionMask;
+      if ((travel !== 0) !== (previousTravel !== 0)) continue;
+      locomotion |= bit;
+      if (travel === previousTravel) exact |= bit;
+    }
+    return exact || locomotion || equipment || remaining;
+  };
   const memo = new Map();
   const best = (remaining, previous) => {
     if (remaining === 0) return 0;
     const key = remaining * (choices.length + 1) + previous + 1;
     if (memo.has(key)) return memo.get(key);
-    const equipment = continuingEquipment(remaining, context(previous));
+    const allowed = continuingGroups(remaining, context(previous));
     let cost = Infinity;
     for (let i = 0; i < choices.length; i++) {
       const next = choices[i];
-      if (!(remaining & (1 << next.group))) continue;
-      if (equipment !== null && (next.station & equipmentMask) !== equipment) continue;
+      if (!(allowed & (1 << next.group))) continue;
       cost = Math.min(cost, transition(context(previous), next) +
         best(remaining & ~(1 << next.group), i));
     }
@@ -2148,12 +2161,11 @@ export function orderPlacementsBySetup(placements, exercisesById,
   const result = [];
   let mask = (1 << stations.length) - 1, last = -1;
   while (mask !== 0) {
-    const equipment = continuingEquipment(mask, context(last));
+    const allowed = continuingGroups(mask, context(last));
     let selected = -1, cost = Infinity;
     for (let i = 0; i < choices.length; i++) {
       const next = choices[i];
-      if (!(mask & (1 << next.group))) continue;
-      if (equipment !== null && (next.station & equipmentMask) !== equipment) continue;
+      if (!(allowed & (1 << next.group))) continue;
       // Exact routing is over stations, with a bounded fallback for unusually
       // diverse future catalogs. Sides, directions and sets remain atomic.
       const candidate = transition(context(last), next) + (stations.length <= 12

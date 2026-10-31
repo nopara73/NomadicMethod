@@ -15,16 +15,22 @@ place otherwise unrelated stations together.
 
 Exact equipment requirements define contiguous groups, including equipment-free
 work. Wall-only, mirror-only and combined wall/mirror work remain separate groups.
-Only within the same equipment group may a less constrained selection share an
-already required surface or travel space: hard-floor-compatible work may stay on
-the softer surface; stationary and room work may stay in the larger travel area.
+Within each equipment group, stationary work stays separate from one contiguous
+locomotion section. Room (short-distance) and Field work each form a contiguous
+subgroup inside that section. The largest travel requirement among an atomic
+sequence's members determines its subgroup; its blocks and sets stay intact.
+Having Field space available still admits Room and stationary exercises, but
+does not mix their actual travel requirements during ordering.
+Only compatible surfaces may share a station within the same equipment/travel
+group: hard-floor-compatible work may stay on the softer surface.
 When several stations fit, prefer the current station, matching posture, fewer
 extra requirements, then the earlier demand/anatomy rank. Equipment-free work
 must never be absorbed into an equipment group and interleaved with its exercises.
 
 Each equipment group gets one contiguous visit across all of its physical
 stations, even when switching equipment would shorten the route. Replanning
-finishes the current equipment group first when it has remaining work.
+finishes the current travel subgroup, then the remaining locomotion section,
+then the rest of its equipment group before switching equipment.
 Each physical station gets one contiguous visit. Within it, standing and floor
 work each get one contiguous run. Up to twelve stations, dynamic programming chooses the
 route and each visit's posture orientation; beyond that a deterministic greedy
@@ -53,4 +59,5 @@ wall/mirror/elevation combinations, room/field travel, equipment-free work, link
 members, and replanning from the current station. Platform tests also cover
 Ready/movement/rest restoration, pre-logging restoration, frozen order, duration
 edits, modifier transitions and complete atomic sequences. Both routing strategies
-also verify contiguous equipment groups across incompatible surface/travel needs.
+also verify contiguous equipment groups, locomotion sections and Room/Field
+subgroups across surfaces, including replanning from every travel class.
