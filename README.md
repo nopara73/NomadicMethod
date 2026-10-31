@@ -95,17 +95,21 @@ The optimizer applies these priorities lexicographically:
 2. whenever Light mode is active, maximize complete demand-`0` sequences first;
    saved scores and Keeps then arbitrate among the available demand-`0` choices,
    while harder work fills only slots that demand-`0` work cannot cover;
-3. give a fresh hard keep, or a suitable highest-score fresh hard exercise, a
-   hard-work opportunity;
-4. retain contextual keeps, except demand-`1` and demand-`2` keeps whose
+3. honor temporary family exclusions made by shuffling this workout;
+4. prefer families whose latest difficulty response is neither too easy nor too hard;
+5. retain contextual keeps, except demand-`1` and demand-`2` keeps whose
    primary muscle is still inside the applicable recovery window;
-5. prefer exercises with better saved keep/discard scores;
-6. prefer work outside its recovery window, then fresh hard work and its
-   longest-rested primary muscle;
-7. preserve a valid existing selection when the higher priorities tie;
-8. apply the soft available-equipment preference for Wall and Mirror;
-9. prefer primary ownership and then wider coverage of the target group;
-10. randomize only otherwise equivalent choices.
+6. prefer a smaller refusal depth across the movement family's aliases;
+7. when the fitness zone restricts the pool, prefer work outside recovery;
+8. give a fresh hard keep, or a suitable highest-score fresh hard exercise, a
+   hard-work opportunity;
+9. prefer exercises with better saved keep/discard scores;
+10. apply the remaining recovery and fresh-hard rotation preferences, then
+    prefer the longest-rested primary muscle;
+11. preserve a valid existing selection when the higher priorities tie;
+12. apply the soft available-equipment preference for Wall and Mirror;
+13. prefer primary ownership and then wider coverage of the target group;
+14. randomize only otherwise equivalent choices.
 
 The priority weights are constructed so that all lower priorities combined
 cannot outweigh a higher one. Global assignment also prevents an early greedy
