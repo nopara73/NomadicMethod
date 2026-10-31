@@ -26,7 +26,8 @@ public sealed partial class ExerciseSessionService
                 .Where(p => lockedSelectionGroupIds?.Contains(p.Anchor.Id) == true)
                 .SelectMany(p => p.CoveredGroups).Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
             var phases = GetScheduledPhaseByGroupId(state, state.ActiveSetCountsBySelectionGroupId);
-            bool improved = false;
+            var proposals = new List<(WorkoutGroup Broader, string Anchor, HashSet<string> Replaced)>();
+            var proposedParents = new HashSet<string>(StringComparer.Ordinal);
             foreach (WorkoutGroup trapped in groups)
             {
                 if (protectedGroups.Contains(trapped.Id)) continue;
@@ -35,9 +36,10 @@ public sealed partial class ExerciseSessionService
                     state, root, trapped, state.ActiveWorkoutModifiers, groups)).ToArray();
                 if (state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) && eligible.Any(IsDemandZeroSequence))
                     eligible = eligible.Where(IsDemandZeroSequence).ToArray();
-                if (eligible.Length == 0 || eligible.Any(root =>
-                        !declinedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
-                        GetPhaseRefusalDepth(state, root, phase) == 0)) continue;
+                bool Accepted(Exercise root) =>
+                    !declinedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
+                    GetPhaseRefusalDepth(state, root, phase) == 0;
+                if (eligible.Length == 0 || eligible.Any(Accepted)) continue;
                 foreach (WorkoutGroup broader in KnownWorkoutGroups.Values
                     .Where(g => g.CanonicalGroups.IsProperSupersetOf(trapped.CanonicalGroups) &&
                         WorkoutModifierPolicy.IsSelectionGroupAvailable(g, state.ActiveWorkoutModifiers,
@@ -45,24 +47,49 @@ public sealed partial class ExerciseSessionService
                     .OrderBy(g => g.CanonicalGroups.Count).ThenBy(g => g.Id, StringComparer.Ordinal))
                 {
                     _planningCancellationToken.ThrowIfCancellationRequested();
+                    if (proposedParents.Contains(broader.Id)) continue;
                     WorkoutGroup[] siblings = groups.Where(g => g.CanonicalGroups.Overlaps(
                         broader.CanonicalGroups)).ToArray();
                     if (siblings.Length < 2 || siblings.Any(g => protectedGroups.Contains(g.Id) ||
                             !g.CanonicalGroups.IsSubsetOf(broader.CanonicalGroups)) ||
-                        !siblings.SelectMany(g => g.CanonicalGroups).ToHashSet().SetEquals(
-                            broader.CanonicalGroups)) continue;
+                        siblings.Sum(g => g.CanonicalGroups.Count) != broader.CanonicalGroups.Count ||
+                        !siblings.SelectMany(g => g.CanonicalGroups).ToHashSet().SetEquals(broader.CanonicalGroups)) continue;
                     HashSet<string> replaced = siblings.Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
                     WorkoutGroup[] proposed = groups.SelectMany(g => g.Id == siblings[0].Id
                         ? new[] { broader } : replaced.Contains(g.Id) ? [] : new[] { g }).ToArray();
-                    if (!roots.Any(root => !declinedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
-                            GetPhaseRefusalDepth(state, root, phase) == 0 &&
-                            IsWorkoutSelectionCandidate(state, root, broader,
-                                state.ActiveWorkoutModifiers, proposed))) continue;
-                    if (!TryBroaderPreparedWorkout(state, proposed, before, declinedMovements, lockedSelectionGroupIds)) continue;
-                    improved = true;
-                    break;
+                    if (!roots.Any(root => Accepted(root) && IsWorkoutSelectionCandidate(state, root, broader,
+                            state.ActiveWorkoutModifiers, proposed))) continue;
+                    proposals.Add((broader, siblings[0].Id, replaced));
+                    proposedParents.Add(broader.Id);
                 }
-                if (improved) break;
+            }
+            if (proposals.Count == 0) return;
+
+            // Validate disjoint improvements together instead of solving an
+            // entire long workout again for each independently trapped slot.
+            var batch = new List<(WorkoutGroup Broader, string Anchor, HashSet<string> Replaced)>();
+            var replacedByBatch = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var proposal in proposals)
+            {
+                if (proposal.Replaced.Overlaps(replacedByBatch)) continue;
+                batch.Add(proposal);
+                replacedByBatch.UnionWith(proposal.Replaced);
+            }
+            if (batch.Count > 1)
+            {
+                var parents = batch.ToDictionary(p => p.Anchor, p => p.Broader, StringComparer.Ordinal);
+                WorkoutGroup[] combined = groups.SelectMany(g => parents.TryGetValue(g.Id, out WorkoutGroup? parent)
+                    ? new[] { parent } : replacedByBatch.Contains(g.Id) ? [] : new[] { g }).ToArray();
+                if (TryBroaderPreparedWorkout(state, combined, before, declinedMovements, lockedSelectionGroupIds)) continue;
+            }
+            bool improved = false;
+            foreach (var proposal in proposals)
+            {
+                WorkoutGroup[] proposed = groups.SelectMany(g => g.Id == proposal.Anchor
+                    ? new[] { proposal.Broader } : proposal.Replaced.Contains(g.Id) ? [] : new[] { g }).ToArray();
+                if (!TryBroaderPreparedWorkout(state, proposed, before, declinedMovements, lockedSelectionGroupIds)) continue;
+                improved = true;
+                break;
             }
             if (!improved) return;
         }
