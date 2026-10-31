@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import test from "node:test";
 import { beforeSurfaceReview } from "./catalog-review-history.js";
-import { WorkoutSession, createDefaultState, getWorkoutCatalog, getSessionMovementId, isCompatibleWithWorkoutModifiers as isExerciseCompatible, WORKOUT_MODIFIERS as M } from "../workout.js";
+import { WorkoutSession, createDefaultState, getWorkoutCatalog, getSessionMovementId, isCompatibleWithWorkoutModifiers as isExerciseCompatible, WORKOUT_MODIFIERS as M, CURRENT_CATALOG_REVISION } from "../workout.js";
 
 const catalog = JSON.parse(readFileSync(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 // The revision 100 protocol audit supersedes execution, preserving the reviewed anatomy and media.
@@ -111,7 +111,7 @@ test(`additive anatomy correction preserves a workout, Keeps and feedback from c
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, sourceRevision);
-  assert.equal(restored.state.catalogRevision, 104);
+  assert.equal(restored.state.catalogRevision, CURRENT_CATALOG_REVISION);
 });
 
 for (const [id, minutes, target] of [[428,10,"r10.anterior-lateral-lower-leg-dorsal-foot"]])

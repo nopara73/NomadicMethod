@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP, getAnatomicalGroupVarietyInventory, findAnatomicalGroupVarietyDeficiencies, ANATOMICAL_VARIETY_EXERCISE_IDS, getWorkoutCatalog, WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M } from '../workout.js';
+import { MINIMUM_SESSION_MOVEMENTS_PER_ANATOMICAL_GROUP, getAnatomicalGroupVarietyInventory, findAnatomicalGroupVarietyDeficiencies, ANATOMICAL_VARIETY_EXERCISE_IDS, getWorkoutCatalog, WorkoutSession, createDefaultState, WORKOUT_MODIFIERS as M, CURRENT_CATALOG_REVISION } from '../workout.js';
 const catalog = JSON.parse(readFileSync(new URL('../../NomadicMethod/Assets/exercises.json', import.meta.url), 'utf8'));
 const cases = JSON.parse(readFileSync(new URL('./fixtures/anatomical-variety-cases.json', import.meta.url), 'utf8'));
 for (const fixture of cases) test('global anatomical variety: ' + fixture.name, () => {
@@ -51,5 +51,5 @@ test('additions preserve an unfinished revision-97 workout and its preferences',
     assert.deepEqual(restored.state[key], saved[key], key);
   assert.equal(restored.state.activeWorkoutSession.sessionId, saved.activeWorkoutSession.sessionId);
   assert.equal(restored.state.activeCatalogRevision, 97);
-  assert.equal(restored.state.catalogRevision, 104);
+  assert.equal(restored.state.catalogRevision, CURRENT_CATALOG_REVISION);
 });
