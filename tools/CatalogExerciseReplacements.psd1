@@ -2550,12 +2550,13 @@
     }
     264 = @{
         RetiredName = 'Backward Standing Arm Circles'
-        Name = 'Standing Arm Circles'
+        Name = 'Staggered-Stance Arm Pulses'
         Practice = 'Standing mobility and movement practice'
-        MotionProfile = 'ArmCircle'
+        MotionProfile = 'ArmPulse'
         Primary = 'ShoulderAbductors'
         Secondary = @('RotatorCuff')
-        SideSequence = 'Continuous'
+        # The arm pulses retain one turned-out foot and bent-knee stance.
+        SideSequence = 'ShownFootPositionThenOpposite'
         Mode = 'Repetition'
         Presentation = 'Motion'
         HoldFramePercent = 0

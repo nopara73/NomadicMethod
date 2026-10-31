@@ -17,7 +17,10 @@ public static class CatalogMigrationRules
     // These additive associations retain every existing selection and identity.
     // Revision 100 completes fixed positions hidden by alternating motion.
     // Protocol-only repairs preserve identity and freeze unfinished workout geometry.
-    public const int CurrentCatalogRevision = 100;
+    // Revision 101 describes push-up hand placement without grip terminology.
+    // Name-only corrections preserve feedback and unfinished workout progress.
+    // Revision 102 names arm pulses accurately and completes their fixed stance.
+    public const int CurrentCatalogRevision = 102;
     private const int HardFloorSlipperinessCatalogRevision = 53;
     private const int ReusedShyAuditCatalogRevision = 70;
     private const int LastCumulativeWorkoutStateRevision = 3;
@@ -120,6 +123,7 @@ public static class CatalogMigrationRules
         ApprovedExerciseCorrections =
             new Dictionary<int, ApprovedExerciseCorrection>
             {
+                [264] = new("Standing Arm Circles", "Staggered-Stance Arm Pulses"),
                 [31] = new(
                     "High-Knee Overhead-Reach March",
                     "Alternating Knee Raises with Two-Arm Pull-Down"),
@@ -786,6 +790,8 @@ public static class CatalogMigrationRules
                 [993] = new(
                     "Mirror Standing Vacuum Repetitions",
                     "Standing Stomach Vacuum, Then Release"),
+                [1195] = new("Wide-Grip Push-Ups", "Wide-Hand Push-Ups"),
+                [1255] = new("Close-Grip Push-Ups", "Narrow-Hand Push-Ups"),
             };
 
     private static readonly IReadOnlyDictionary<int, IReadOnlySet<string>>

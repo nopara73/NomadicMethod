@@ -18,7 +18,7 @@
         '220' = @(220, 543)               # Rising-block sides, then alternating integration
         '223' = @(223, 756)               # Inward, then outward controlled wrist circles on both sides
         '252' = @(252, 253, 254)          # Three calf-raise foot angles
-        '264' = @(264, 406)               # Synchronous arm circles, then windmill-style integration
+        '264' = @(264, 406)               # Arm pulses in both stances, then wheel circles in both directions
         '285' = @(285, 545)               # Outward-block sides, then the same outward action alternating
         '288' = @(288, 758)               # Forward, then backward knee-and-ankle circles on both sides
         '291' = @(291, 294)               # Inward, then outward alternating knife-hand strikes

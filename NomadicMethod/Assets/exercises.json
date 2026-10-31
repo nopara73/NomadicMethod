@@ -8520,7 +8520,7 @@
   },
   {
     "id": 264,
-    "name": "Standing Arm Circles",
+    "name": "Staggered-Stance Arm Pulses",
     "retiredName": "Backward Standing Arm Circles",
     "video": "exercise_videos/exercise_0264.mp4",
     "primaryCanonicalGroup": "ShoulderAbductors",
@@ -8528,18 +8528,25 @@
       "RotatorCuff"
     ],
     "practice": "Standing mobility and movement practice",
-    "motionProfile": "ArmCircle",
+    "motionProfile": "ArmPulse",
     "mode": "Repetition",
     "presentation": "Motion",
     "holdFramePercent": 0,
-    "sideSequence": "Continuous",
+    "sideSequence": "ShownFootPositionThenOpposite",
     "directionSequence": "None",
     "sequenceBlocks": [
       {
         "exerciseId": 264,
-        "sideCue": "None",
+        "sideCue": "ShownFootPosition",
         "directionCue": "None",
         "mirrorMedia": false,
+        "mediaSegment": "Full"
+      },
+      {
+        "exerciseId": 264,
+        "sideCue": "OppositeFootPosition",
+        "directionCue": "None",
+        "mirrorMedia": true,
         "mediaSegment": "Full"
       },
       {
@@ -35423,7 +35430,7 @@
   },
   {
     "id": 1195,
-    "name": "Wide-Grip Push-Ups",
+    "name": "Wide-Hand Push-Ups",
     "retiredName": null,
     "video": "exercise_videos/exercise_1195.mp4",
     "primaryCanonicalGroup": "Chest",
@@ -38325,7 +38332,7 @@
   },
   {
     "id": 1255,
-    "name": "Close-Grip Push-Ups",
+    "name": "Narrow-Hand Push-Ups",
     "retiredName": null,
     "video": "exercise_videos/exercise_1255.mp4",
     "primaryCanonicalGroup": "ElbowExtensors",
