@@ -151,6 +151,13 @@ ahead of a mandatory difficulty mismatch whenever complete sequences can still
 fill the selected duration. Personalization diagnostics must count the choices
 remaining after both physical restrictions and the fitness-zone filter.
 
+For a new workout or an explicit duration edit, a narrow slot whose every eligible
+choice has phase rejection or latest difficulty feedback may broaden to an
+existing parent anatomical group. Only complete sibling groups are merged, and
+the replacement must reduce difficulty-mismatched blocks, then phase-rejected
+blocks, without reducing Light coverage. Completed and current selections stay
+fixed; reopening an unfinished workout never triggers this regrouping.
+
 Modifier profiles share a logical slot, so a Keep made with Insect off remains
 the Keep for that same slot with Insect on whenever the exercise is eligible.
 When the duration changes anatomical resolution, Nomadic Method maps a Keep through the

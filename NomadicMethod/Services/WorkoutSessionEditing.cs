@@ -10,16 +10,17 @@ public sealed partial class ExerciseSessionService
     private void BroadenRejectedSelectionSlots(WorkoutState state,
         IReadOnlySet<string>? lockedSelectionGroupIds = null)
     {
-        if (state.ExerciseScoreAdjustmentsByPhase.Values.All(entries => entries.Values.All(value => value >= 0)) &&
-            _exercises.All(exercise => exercise.Score >= 0)) return;
+        HashSet<int> declinedMovements = GetDifficultyDeclinedMovementIds(state);
+        if (declinedMovements.Count == 0 &&
+            state.ExerciseScoreAdjustmentsByPhase.Values.All(entries => entries.Values.All(value => value >= 0))) return;
         Dictionary<int, bool> fitness = GetFitnessEligibility(state);
         Exercise[] roots = _exercises.Where(e => e.SequenceBlocks.Length > 0 &&
             GetSequenceRoot(e).Id == e.Id && fitness.GetValueOrDefault(e.Id)).ToArray();
         while (true)
         {
             _planningCancellationToken.ThrowIfCancellationRequested();
-            var before = GetPreparedWorkoutFeedbackCost(state);
-            if (before.RefusedBlocks == 0) return;
+            var before = GetPreparedWorkoutFeedbackCost(state, declinedMovements);
+            if (before.DeclinedBlocks == 0 && before.RefusedBlocks == 0) return;
             WorkoutGroup[] groups = GetSelectionGroups(state).ToArray();
             HashSet<string> protectedGroups = GetSelectedSequencePlacements(state)
                 .Where(p => lockedSelectionGroupIds?.Contains(p.Anchor.Id) == true)
@@ -35,6 +36,7 @@ public sealed partial class ExerciseSessionService
                 if (state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) && eligible.Any(IsDemandZeroSequence))
                     eligible = eligible.Where(IsDemandZeroSequence).ToArray();
                 if (eligible.Length == 0 || eligible.Any(root =>
+                        !declinedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
                         GetPhaseRefusalDepth(state, root, phase) == 0)) continue;
                 foreach (WorkoutGroup broader in KnownWorkoutGroups.Values
                     .Where(g => g.CanonicalGroups.IsProperSupersetOf(trapped.CanonicalGroups) &&
@@ -52,10 +54,11 @@ public sealed partial class ExerciseSessionService
                     HashSet<string> replaced = siblings.Select(g => g.Id).ToHashSet(StringComparer.Ordinal);
                     WorkoutGroup[] proposed = groups.SelectMany(g => g.Id == siblings[0].Id
                         ? new[] { broader } : replaced.Contains(g.Id) ? [] : new[] { g }).ToArray();
-                    if (!roots.Any(root => GetPhaseRefusalDepth(state, root, phase) == 0 &&
+                    if (!roots.Any(root => !declinedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(root)) &&
+                            GetPhaseRefusalDepth(state, root, phase) == 0 &&
                             IsWorkoutSelectionCandidate(state, root, broader,
                                 state.ActiveWorkoutModifiers, proposed))) continue;
-                    if (!TryBroaderPreparedWorkout(state, proposed, before, lockedSelectionGroupIds)) continue;
+                    if (!TryBroaderPreparedWorkout(state, proposed, before, declinedMovements, lockedSelectionGroupIds)) continue;
                     improved = true;
                     break;
                 }
@@ -65,29 +68,33 @@ public sealed partial class ExerciseSessionService
         }
     }
 
-    // Old global scores still rank choices. Only an explicit phase rejection
-    // can change the anatomical grouping of a new plan.
+    // Old global scores still rank choices. Explicit phase or difficulty
+    // feedback can change the anatomical grouping of a new plan.
     private long GetPhaseRefusalDepth(WorkoutState state, Exercise root, WorkoutExercisePhase phase) =>
         GetMovementRoots(root).Max(variant => Math.Max(0L,
             -(long)GetPhaseScoreAdjustment(state, variant, phase)));
 
-    private (int RefusedBlocks, int LightBlocks) GetPreparedWorkoutFeedbackCost(WorkoutState state)
+    private (int DeclinedBlocks, int RefusedBlocks, int LightBlocks) GetPreparedWorkoutFeedbackCost(
+        WorkoutState state, IReadOnlySet<int> declinedMovements)
     {
         var phases = GetScheduledPhaseByGroupId(state, state.ActiveSetCountsBySelectionGroupId);
-        int refused = 0, light = 0;
+        int declined = 0, refused = 0, light = 0;
         foreach (SelectedSequencePlacement placement in GetSelectedSequencePlacements(state))
         {
             int blocks = placement.Root.SequenceBlocks.Length *
                 state.ActiveSetCountsBySelectionGroupId.GetValueOrDefault(placement.Anchor.Id, 1);
+            if (declinedMovements.Contains(WorkoutModifierPolicy.GetSessionMovementId(placement.Root)))
+                declined += blocks;
             if (GetPhaseRefusalDepth(state, placement.Root, phases[placement.Anchor.Id]) > 0)
                 refused += blocks;
             if (IsDemandZeroSequence(placement.Root)) light += blocks;
         }
-        return (refused, light);
+        return (declined, refused, light);
     }
 
     private bool TryBroaderPreparedWorkout(WorkoutState state, WorkoutGroup[] groups,
-        (int RefusedBlocks, int LightBlocks) before, IReadOnlySet<string>? lockedSelectionGroupIds)
+        (int DeclinedBlocks, int RefusedBlocks, int LightBlocks) before,
+        IReadOnlySet<int> declinedMovements, IReadOnlySet<string>? lockedSelectionGroupIds)
     {
         var previousGroups = state.ActiveDurationSelectionGroupIds;
         var previousSimple = state.ActiveSimpleRoundSelectionGroupIds;
@@ -121,8 +128,9 @@ public sealed partial class ExerciseSessionService
             if (lockedSelectionGroupIds is not null) SetEditedSelectionOrder(state, locked.Select(p => p.Anchor.Id).ToArray());
             ApplyLongWorkoutAllocation(state, ChooseLongWorkoutAllocation(state, lockedSelectionGroupIds));
             ReconcileLineupWithScheduledPhases(state, lockedSelectionGroupIds);
-            var after = GetPreparedWorkoutFeedbackCost(state);
-            accepted = after.RefusedBlocks < before.RefusedBlocks &&
+            var after = GetPreparedWorkoutFeedbackCost(state, declinedMovements);
+            accepted = (after.DeclinedBlocks < before.DeclinedBlocks ||
+                after.DeclinedBlocks == before.DeclinedBlocks && after.RefusedBlocks < before.RefusedBlocks) &&
                 (!state.ActiveWorkoutModifiers.HasFlag(WorkoutModifiers.Light) ||
                     after.LightBlocks >= before.LightBlocks);
             return accepted;

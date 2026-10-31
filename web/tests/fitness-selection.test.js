@@ -162,6 +162,29 @@ test("shared coverage cannot undo a difficulty preference", () => {
   for(const id of [20,30]) assert.ok(session.state.activeWorkoutSession.initialSelections.some(s=>s.rootExerciseId===id));
 });
 
+for (const outcome of preferences.difficultyResponses) {
+  test("latest difficulty broadens a trapped slot without inventing scores: " + outcome, () => {
+    const state = {...createDefaultState(), workoutHistory: [{sessionId:1, status:"Interrupted", blocks:[],
+      decisions:[{rootExerciseId:918,outcome,decidedAtUnixMilliseconds:now()-3600000}]}]};
+    const session = new WorkoutSession(catalog, state, seededRandom(5), now);
+    session.initialize();
+    const history = structuredClone(session.state.workoutHistory);
+    const scores = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+    session.startWorkout(45, 5232);
+    assert.ok(session.state.activeWorkoutSession.initialSelections.every(selection => selection.rootExerciseId !== 918));
+    assert.ok(session.state.activeDurationSelectionGroupIds.includes("r15.abdominal-pelvic-floor"));
+    assert.equal(session.getActiveGroups().length, 45);
+    assert.deepEqual(session.state.workoutHistory, history);
+    assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, scores);
+    const activeSelections = () => session.getActiveGroups().map(group => [group.id, session.getSelectedExercise(group).id]);
+    const selected = activeSelections();
+    const log = structuredClone(session.state.activeWorkoutSession);
+    session.restoreAfterReopen();
+    assert.deepEqual(activeSelections(), selected);
+    assert.deepEqual(session.state.activeWorkoutSession, log);
+  });
+}
+
 test("eligible loves first, then eligible new movements only, including after cold reopen", () => {
   let {exercises, ratings, session} = discoveryFixture();
   session.startWorkout(3, 0);

@@ -103,6 +103,39 @@ public sealed class FitnessSelectionTests
     private static JsonDocument Fixture() => JsonDocument.Parse(File.ReadAllText(
         Path.Combine(AppContext.BaseDirectory, "Assets", "fitness-selection-cases.json")));
 
+    [Theory]
+    [InlineData(ExerciseOutcome.TooEasy)]
+    [InlineData(ExerciseOutcome.TooHard)]
+    public void LatestDifficultyCanBroadenATrappedSlotWithoutInventingScores(ExerciseOutcome outcome)
+    {
+        Exercise[] catalog = JsonSerializer.Deserialize<Exercise[]>(File.ReadAllText(
+            Path.Combine(AppContext.BaseDirectory, "Assets", "exercises.json")), Options)!;
+        var state = new WorkoutState
+        {
+            CatalogRevision = CatalogMigrationRules.CurrentCatalogRevision,
+            WorkoutHistory = [new() { SessionId = 1, Status = WorkoutSessionStatus.Interrupted,
+                Decisions = [new() { RootExerciseId = 918, Outcome = outcome,
+                    DecidedAtUnixMilliseconds = Now.AddHours(-1).ToUnixTimeMilliseconds() }] }],
+        };
+        var service = new ExerciseSessionService(catalog, new Random(5), () => Now);
+        service.Initialize(state);
+        string history = JsonSerializer.Serialize(state.WorkoutHistory);
+        string scores = JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase);
+        service.StartWorkout(state, 45, (WorkoutModifiers)5232);
+        Assert.DoesNotContain(state.ActiveWorkoutSession!.InitialSelections, selection => selection.RootExerciseId == 918);
+        Assert.Contains("r15.abdominal-pelvic-floor", state.ActiveDurationSelectionGroupIds!);
+        Assert.Equal(45, service.GetActiveGroups(state).Count);
+        Assert.Equal(history, JsonSerializer.Serialize(state.WorkoutHistory));
+        Assert.Equal(scores, JsonSerializer.Serialize(state.ExerciseScoreAdjustmentsByPhase));
+        string ActiveSelections() => JsonSerializer.Serialize(service.GetActiveGroups(state)
+            .Select(group => new { group.Id, ExerciseId = service.GetSelectedExercise(state, group).Id }));
+        string selections = ActiveSelections();
+        string log = JsonSerializer.Serialize(state.ActiveWorkoutSession);
+        service.RestoreAfterReopen(state);
+        Assert.Equal(selections, ActiveSelections());
+        Assert.Equal(log, JsonSerializer.Serialize(state.ActiveWorkoutSession));
+    }
+
     [Fact]
     public void SharedEligibilityHandlesUnknownsOverlappingRangesAndNoncontiguousZones()
     {
