@@ -67,7 +67,11 @@ for (const id of [103, 1144, 307]) for (const phase of ["Ready", "Movement", "Re
     const now = Date.parse("2026-10-29T00:00:00Z");
     const legacy = getWorkoutCatalog(catalog, 99);
     const state = createDefaultState();
-    state.scores[id] = 100000;
+    for (const owner of legacy.filter(e => e.sequenceBlocks.some(b => b.exerciseId === id)))
+      for (const block of owner.sequenceBlocks) state.scores[block.exerciseId] = 100000;
+    for (const scorePhase of ['Warmup','PeakPerformance','Fatigued'])
+      state.exerciseScoreAdjustmentsByPhase[scorePhase] = Object.fromEntries(legacy
+        .filter(e => e.sequenceBlocks.some(b => b.exerciseId === id)).map(e => [e.id,100000]));
     const old = new WorkoutSession(legacy, state, () => 0.4, () => now);
     old.initialize();
     old.startWorkout(60, M.Floor | M.Elevation | M.UpperBodyClothing);

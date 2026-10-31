@@ -1,0 +1,10 @@
+{
+  "cases": [
+    { "name": "distinct movements fill 45 minutes before repeats", "minutes": 45, "copies": 2, "firstBlocks": 1, "otherBlocks": 1, "aliases": false, "light": false, "expectedSelections": 45, "expectedMaxSets": 1, "expectedFirstSets": 1 },
+    { "name": "aliases cannot manufacture workout variety", "minutes": 45, "copies": 2, "firstBlocks": 1, "otherBlocks": 1, "aliases": true, "light": false, "expectedSelections": 30, "expectedMaxSets": 2, "expectedFirstSets": 2 },
+    { "name": "a kept two-sided sequence is the last repeat resort", "minutes": 45, "copies": 1, "firstBlocks": 2, "otherBlocks": 1, "aliases": false, "light": false, "expectedSelections": 30, "expectedMaxSets": 2, "expectedFirstSets": 1 },
+    { "name": "complete two-sided repeats remain possible when needed", "minutes": 90, "copies": 1, "firstBlocks": 2, "otherBlocks": 2, "aliases": false, "light": false, "expectedSelections": 30, "expectedMaxSets": 2, "expectedFirstSets": 2 },
+    { "name": "Light work is preserved when unused alternatives are demanding", "minutes": 45, "copies": 2, "firstBlocks": 1, "otherBlocks": 1, "aliases": false, "light": true, "expectedSelections": 30, "expectedMaxSets": 2, "expectedFirstSets": 2 },
+    { "name": "phase feedback cannot collapse a filled distinct lineup", "minutes": 45, "copies": 2, "firstBlocks": 1, "otherBlocks": 1, "aliases": false, "light": false, "phaseFeedback": true, "expectedSelections": 45, "expectedMaxSets": 1, "expectedFirstSets": 1 }
+  ]
+}

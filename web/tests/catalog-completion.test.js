@@ -298,8 +298,8 @@ for (const insect of [false, true]) {
 
           const rounds = session.getActiveGroups();
           assert.equal(rounds.length, 3);
-          assert.deepEqual(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds).sort(),
-            getResolution(3).groups.map(g => g.id).sort());
+          const covered = new Set(session.state.activeWorkoutSession.initialSelections.flatMap(s => s.coveredWorkoutGroupIds));
+          assert.ok(getResolution(3).groups.every(g => covered.has(g.id)));
           for (const round of rounds) {
             const selected = session.getSelectedExercise(round);
             assert.equal(isSelectable(selected, round), true);

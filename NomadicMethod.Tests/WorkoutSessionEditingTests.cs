@@ -135,7 +135,19 @@ public sealed class WorkoutSessionEditingTests
         var service = new ExerciseSessionService(Catalog(), new Random(seed));
         var state = new WorkoutState();
         service.Initialize(state);
-        service.StartWorkout(state, 60, profile);
+        if (profile == WorkoutModifiers.None && seed == 10)
+        {
+            // Exercise edits of a saved repeated-set plan independently of the
+            // new planner's ability to fill 60 minutes with distinct selections.
+            service.PrepareWorkout(state, 60, profile);
+            state.ActiveCoverageAccountingVersion = 1;
+            state.ActiveDurationSelectionGroupIds = null;
+            state.ActiveSetCountsBySelectionGroupId.Clear();
+            state.ActiveExtraSetSelectionGroupIds.Clear();
+            state.ActiveSelectionGroupOrder.Clear();
+            service.Initialize(state);
+        }
+        else service.StartWorkout(state, 60, profile);
         for (int i = 0; i < 10; i++) Finish(service, state);
         // Reach the repeated-set checkpoint explicitly; catalog additions must
         // not turn this regression into a test of a particular random lineup.

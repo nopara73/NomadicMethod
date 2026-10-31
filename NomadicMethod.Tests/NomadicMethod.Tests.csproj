@@ -12,6 +12,7 @@
     <None Include="..\web\tests\fixtures\fitness-selection-preferences.json" Link="Assets\fitness-selection-preferences.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\arm-pulses.json" Link="Assets\arm-pulses.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\complete-fitness-ratings-cases.json" Link="Assets\complete-fitness-ratings-cases.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\web\tests\fixtures\workout-variety-cases.json" Link="Assets\workout-variety-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\catalog-position-cases.json" Link="Assets\catalog-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\fixed-position-cases.json" Link="Assets\fixed-position-cases.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\web\tests\fixtures\shared-coverage-cases.json" Link="Assets\shared-coverage-cases.json" CopyToOutputDirectory="PreserveNewest" />
@@ -100,6 +101,7 @@
     <Compile Include="..\NomadicMethod\Services\WorkoutRecoveryLightPolicy.cs" Link="Production\Services\WorkoutRecoveryLightPolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutSchedulePolicy.cs" Link="Production\Services\WorkoutSchedulePolicy.cs" />
     <Compile Include="..\NomadicMethod\Services\WorkoutSequencePolicy.cs" Link="Production\Services\WorkoutSequencePolicy.cs" />
+    <Compile Include="..\NomadicMethod\Services\WorkoutVarietyPlanning.cs" Link="Production\Services\WorkoutVarietyPlanning.cs" />
   </ItemGroup>
 
   <ItemGroup>

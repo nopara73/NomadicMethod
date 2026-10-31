@@ -16,7 +16,9 @@ public sealed class WorkoutState
     public int ActiveCatalogRevision { get; set; }
 
     // Missing on saved workouts: retain their original placements and sets.
-    // Only preparing a new workout opts into shared anatomical coverage.
+    // Version 1 credits shared anatomical coverage; version 2 fills spare time
+    // with distinct selections before allocating fairly spread repeat sets.
+    // Only preparing a new workout opts into a newer planning contract.
     public int ActiveCoverageAccountingVersion { get; set; }
 
     // Missing on older workouts: their demand order remains the restoration fallback.
