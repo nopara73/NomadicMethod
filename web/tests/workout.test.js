@@ -9766,7 +9766,11 @@ for (const minutes of [30, 90]) {
     assert.ok(exercises.every((exercise) => exercise.score === 7));
     restored.prepareWorkout(minutes, WORKOUT_MODIFIERS.None);
     assert.equal(restored.getActiveGroups().length, minutes);
-    assert.equal(new Set(restored.getActiveGroups().map(getSelectionKey)).size, groups.length);
+    assert.deepEqual(restored.getSelectionGroups().flatMap(g => g.canonicalGroups).sort(),
+      groups.flatMap(g => g.canonicalGroups).sort());
+    assert.deepEqual(restored.state.exerciseScoreAdjustmentsByPhase, feedback);
+    assert.deepEqual(restored.state.workoutHistory, history);
+    assert.deepEqual(restored.state.keptExerciseRootIdsBySelectionGroupId, keeps);
   });
 }
 

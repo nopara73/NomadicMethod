@@ -2,12 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
-  WorkoutSession, createDefaultState, getResolution,
+  WorkoutSession, createDefaultState, getResolution, CURRENT_CATALOG_REVISION,
   isCompatibleWithWorkoutModifiers, WORKOUT_MODIFIERS as M,
 } from "../workout.js";
 
 const catalog = JSON.parse(await readFile(new URL("../../NomadicMethod/Assets/exercises.json", import.meta.url), "utf8"));
 const cases = JSON.parse(await readFile(new URL("fixtures/workout-planning-cases.json", import.meta.url), "utf8"));
+const rejectedSlotCases = JSON.parse(await readFile(new URL("fixtures/rejected-slot-fallback-cases.json", import.meta.url), "utf8"));
 const profile = M.Mirror | M.TallMirror | M.HardFloor | M.Wall;
 const now = Date.parse("2026-09-26T04:00:00Z");
 const rejectedState = () => ({
@@ -52,6 +53,73 @@ for (const item of cases) {
     });
   }
 }
+
+for (const item of rejectedSlotCases) {
+  test(`rejected singleton fallback: ${item.name}`, () => {
+    const state = {...createDefaultState(),
+      catalogRevision: CURRENT_CATALOG_REVISION,
+      exerciseScoreAdjustmentsByPhase: Object.fromEntries(['Warmup', 'PeakPerformance', 'Fatigued']
+        .map(phase => [phase, {[item.rejectedRoot]: -2}])),
+      keptExerciseRootIdsBySelectionGroupId: {'r30.pelvic-floor-perineum': [item.rejectedRoot]},
+    };
+    let session = new WorkoutSession(catalog, state, () => 0.5, () => now);
+    session.initialize();
+    const feedback = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+    session.startWorkout(item.minutes, item.modifiers);
+    const log = structuredClone(session.state.activeWorkoutSession);
+    assert.ok(log.initialSelections.every(s => s.rootExerciseId !== item.rejectedRoot));
+    assert.equal(session.state.activeDurationSelectionGroupIds !== null, item.broaden);
+    if (item.broaden) assert.ok(session.state.activeDurationSelectionGroupIds.includes('r15.abdominal-pelvic-floor'));
+    assert.equal(log.initialSelections.reduce((sum, s) => sum + s.sequenceBlockCount * s.setCount, 0), item.minutes);
+    assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, feedback);
+    assert.ok(session.state.keptExerciseRootIdsBySelectionGroupId['r30.pelvic-floor-perineum'].includes(item.rejectedRoot));
+    assert.equal(session.state.workoutHistory.length, 0);
+    assert.equal(log.blocks.length, 0);
+    assert.equal(log.decisions.length, 0);
+    const rounds = session.getActiveGroups();
+    assert.equal(rounds.length, item.minutes);
+    assert.ok(rounds.every(round => isCompatibleWithWorkoutModifiers(session.getSelectedExercise(round), item.modifiers)));
+    session = new WorkoutSession(catalog, structuredClone(session.state), () => 0.5, () => now);
+    session.restoreAfterReopen();
+    assert.deepEqual(session.getActiveGroups(), rounds);
+    assert.deepEqual(session.state.activeWorkoutSession, log);
+  });
+}
+
+test("duration extension avoids a rejected future slot and preserves the current sequence", () => {
+  const state = {...createDefaultState(), catalogRevision: CURRENT_CATALOG_REVISION,
+    exerciseScoreAdjustmentsByPhase: Object.fromEntries(['Warmup', 'PeakPerformance', 'Fatigued']
+      .map(phase => [phase, {918: -2}])),
+  };
+  const session = new WorkoutSession(catalog, state, () => 0.5, () => now);
+  session.initialize();
+  session.startWorkout(15, 5232);
+  const current = session.getNextGroup();
+  const currentSequence = session.getActiveGroups().filter(g => (g.selectionGroupId ?? g.id) === (current.selectionGroupId ?? current.id));
+  const feedback = structuredClone(session.state.exerciseScoreAdjustmentsByPhase);
+  const sessionId = session.state.activeWorkoutSession.sessionId;
+  session.resizeActiveWorkout(45);
+  assert.deepEqual(session.getActiveGroups().slice(0, currentSequence.length), currentSequence);
+  assert.equal(session.getNextGroup().id, current.id);
+  assert.equal(session.state.activeWorkoutSession.sessionId, sessionId);
+  assert.equal(session.getActiveGroups().length, 45);
+  assert.ok(session.state.activeWorkoutSession.durationChanges[0].plannedSelections.every(s => s.rootExerciseId !== 918));
+  assert.deepEqual(session.state.exerciseScoreAdjustmentsByPhase, feedback);
+  assert.equal(session.state.activeWorkoutSession.blocks.length, 0);
+  assert.equal(session.state.activeWorkoutSession.decisions.length, 0);
+});
+
+test("a still-kept singleton retains priority over an old global negative score", () => {
+  const state = {...createDefaultState(), catalogRevision: CURRENT_CATALOG_REVISION,
+    scores: {918: -2}, keptExerciseRootIdsBySelectionGroupId: {'r30.pelvic-floor-perineum': [918]},
+  };
+  const session = new WorkoutSession(catalog, state, () => 0.5, () => now);
+  session.initialize();
+  session.startWorkout(30, 5232);
+  assert.equal(session.state.activeDurationSelectionGroupIds, null);
+  assert.ok(session.state.activeWorkoutSession.initialSelections.some(s => s.rootExerciseId === 918));
+  assert.equal(session.getScore(session.exercisesById.get(918)), -2);
+});
 
 test("Rejection feedback does not displace Light choices", () => {
   const baseline = new WorkoutSession(catalog, createDefaultState(), () => 0.5, () => now);
